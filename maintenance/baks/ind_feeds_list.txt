@@ -1,0 +1,23 @@
+ind*|*Olahraga*|*sport.detik*|*http://rss.detik.com/index.php/sport
+ind*|*Kesehatan*|*ANTARA News - Nasional - Kesehatan*|*http://www.antaranews.com/rss/nasional-kesehatan
+ind*|*Nasional*|*Sindikasi news.okezone.com*|*http://sindikasi.okezone.com/index.php/rss/1/RSS2.0
+ind*|*Internasional*|*Sindikasi international.okezone.com*|*http://sindikasi.okezone.com/index.php/rss/18/RSS2.0
+ind*|*Teknologi*|*Sindikasi techno.okezone.com*|*http://sindikasi.okezone.com/index.php/rss/16/RSS2.0
+ind*|*Olahraga*|*Tempo.co News Site*|*http://www.tempo.co/rss/olahraga
+ind*|*Hiburan*|*ANTARA News - Hiburan*|*http://www.antaranews.com/rss/hiburan
+ind*|*Travel*|*Tempo.co News Site*|*http://www.tempo.co/rss/travel
+ind*|*Keuangan*|*Sindikasi economy.okezone.com*|*http://sindikasi.okezone.com/index.php/rss/11/RSS2.0
+ind*|*Nasional*|*Inilah.com - Nasional*|*http://www.inilah.com/rss/feed/nasional/
+ind*|*Nasional*|*METRO TV NEWS NUSANTARA*|*http://www.metrotvnews.com/front/rss/nusantara
+ind*|*Nasional*|*Tempo.co News Site*|*http://www.tempo.co/rss/nasional
+ind*|*Internasional*|*ANTARA News - Internasional*|*http://www.antaranews.com/rss/internasional
+ind*|*Internasional*|*Tempo.co News Site*|*http://www.tempo.co/rss/internasional
+ind*|*Internasional*|*Inilah.com - Duniahariini*|*http://www.inilah.com/rss/feed/duniahariini/
+ind*|*Internasional*|*METRO TV NEWS INTERNASIONAL*|*http://www.metrotvnews.com/front/rss/internasional
+ind*|*Teknologi*|*Inilah.com - Teknologi*|*http://www.inilah.com/rss/feed/teknologi/
+ind*|*Olahraga*|*ANTARA News - Olahraga*|*http://www.antaranews.com/rss/olahraga
+ind*|*Olahraga*|*Inilah.com - Olahraga*|*http://www.inilah.com/rss/feed/olahraga/
+ind*|*Olahraga*|*METRO TV NEWS OLAHRAGA*|*http://www.metrotvnews.com/front/rss/olahraga
+ind*|*Hiburan*|*Inilah.com - Artis*|*http://www.inilah.com/rss/feed/artis/
+ind*|*Keuangan*|*METRO TV NEWS EKONOMI*|*http://www.metrotvnews.com/front/rss/ekonomi
+ind*|*Keuangan*|*Inilah.com - Ekonomi*|*http://www.inilah.com/rss/feed/ekonomi/
