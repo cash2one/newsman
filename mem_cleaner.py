@@ -2,8 +2,6 @@
 # -*- coding: utf-8 -*-
 
 ##
-#@author Jun LI
-#@contact lijun04@baidu.com
 #@created Mar 18, 2013
 #
 #

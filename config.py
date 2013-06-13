@@ -2,8 +2,6 @@
 # -*- coding: utf-8 -*-
 
 ##
-#@author Yuan JIN
-#@contact jinyuan@baidu.com
 #@created Jan 17, 2013
 #@updated Feb 8, 2013
 #

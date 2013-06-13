@@ -3,8 +3,6 @@
 
 ##
 #
-#@author Yuan JIN
-#@contact jinyuan@baidu.com
 #@created Jan 2, 2013
 #@updated Feb 8, 2013
 #

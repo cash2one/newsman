@@ -2,8 +2,6 @@
 # -*- coding: utf-8 -*-
 
 ##
-#@author Jun LI
-#@contact lijun04@baidu.com
 #@created Mar 5, 2013
 #
 #
@@ -20,16 +18,8 @@ import smtplib
 import os
 
 def mail(address):
-    #smtp = smtplib.SMTP()
-    #smtp.connect('smtp.baidu.com', '25')
-    #smtp.login('lijun04@baidu.com', 'Ujinforever329')
-    #smtp = smtplib.SMTP('email.baidu.com')
-    #smtp.sendmail('lijun04@baidu.com', '10771040@qq.com', 'From: lijun04@baidu.com\rTo: 10771040@qq.com\rSubject: Tokyo server %s is down' % address)
-    #smtp.quit()
     sendmail_location = '/usr/sbin/sendmail'
     p = os.popen('%s -t' % sendmail_location, 'w')
-    p.write('From: %s\n' % 'lijun04@baidu.com')
-    p.write('To: %s,%s\n' % ('ujinlaixujin@gmail.com', 'chengdujin@gmail.com'))
     p.write('Subject: Tokyo server %s is down\n' % address)
     p.write('\n')
     p.write('Apache or redis has crashed due to low memory, script has restarted it, check it')
