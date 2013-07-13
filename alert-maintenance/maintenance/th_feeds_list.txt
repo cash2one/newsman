@@ -1,0 +1,13 @@
+th*|*สุขภาพ*|*S! Men Health*|*http://rssfeeds.sanook.com/rss/feeds/sanook/men.health.xml
+th*|*ในประเทศ*|*Posttoday District*|*www.posttoday.com/rss/src/district.xml
+th*|*ในประเทศ*|*ข่าวในประเทศ - อาร์เอสเอส มติชนออนไลน์*|*http://www.matichon.co.th/rss/news_inbound.xml
+th*|*ต่างประเทศ*|*ข่าวต่างประเทศ - อาร์เอสเอส มติชนออนไลน์*|*http://www.matichon.co.th/rss/news_world.xml
+th*|*เศรษฐกิจ*|*ข่าวเศรษฐกิจ - อาร์เอสเอส มติชนออนไลน์*|*http://www.matichon.co.th/rss/news_business.xml
+th*|*บันเทิง*|*ข่าวบันเทิงและศิลปวัฒนธรรม - อาร์เอสเอส มติชนออนไลน์*|*http://www.matichon.co.th/rss/news_entertainment.xml
+th*|*กีฬา*|*ข่าวกีฬา - อาร์เอสเอส มติชนออนไลน์*|*http://www.matichon.co.th/rss/news_sport.xml
+th*|*วิทยาศาสตร์*|*สนุก! ข่าวไอที*|*http://rssfeeds.sanook.com/rss/feeds/sanook/hitech.news.xml
+th*|*กิน-เที่ยว*|*สนุก! ท่องเที่ยวทั่วไทย*|*http://rssfeeds.sanook.com/rss/feeds/sanook/travel.index.xml
+th*|*ในประเทศ*|*สนุก! ข่าวประจำวัน*|*http://rssfeeds.sanook.com/rss/feeds/sanook/news.index.xml
+th*|*ในประเทศ*|*ข่าวสังคม*|*http://www.krobkruakao.com/rss/SocialNews.rss
+th*|*ต่างประเทศ*|*สนุก! ข่าวต่างประเทศ*|*http://rssfeeds.sanook.com/rss/feeds/sanook/news.world.xml
+th*|*ต่างประเทศ*|*ข่าว ข่าวรายวัน ข่าววันนี้ ข่าวการเมือง » ข่าวต่างประเทศ*|*http://news.mthai.com/category/world-news/feed

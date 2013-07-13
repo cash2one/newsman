@@ -1,0 +1,38 @@
+en-rIN*|*Business*|*Deccan Herald - Business*|*http://www.deccanherald.com/rss/business.rss
+en-rIN*|*Business*|*BusinessLine - Industry & Economy*|*http://www.thehindubusinessline.com/industry-and-economy/?service=rss
+en-rIN*|*Business*|*The Asian Age*|*http://dc.asianage.com/rss/43
+en-rIN*|*Business*|*Top Business News- IBNLive.com*|*http://www.ibnlive.com/xml/rss/business.xml
+en-rIN*|*Business*|*Top Headlines*|*http://www.indianexpress.com/rss/37/business.xml
+en-rIN*|*Business*|*NDTV Business News*|*http://www.ndtv.com/convergence/ndtv/rssbus.asp
+en-rIN*|*Entertainment*|*Deccan Herald - Entertainment*|*http://www.deccanherald.com/rss/entertainment.rss
+en-rIN*|*Sports*|*Rediff Sports*|*http://www.rediff.com/rss/sportsrss.xml
+en-rIN*|*Sports*|*Cricket News*|*http://feeds.hindustantimes.com/HT-Cricket-TopStories
+en-rIN*|*Sports*|*Top Sports News- IBNLive.com*|*http://www.ibnlive.com/xml/rss/sports.xml
+en-rIN*|*Sports*|*Deccan Herald - Sports*|*http://www.deccanherald.com/rss/sports.rss
+en-rIN*|*Sports*|*The Hindu - Other Sports*|*http://www.thehindu.com/sport/other-sports/?service=rss
+en-rIN*|*Sports*|*Reuters: World of Sport*|*http://feeds.reuters.com/reuters/worldOfSport
+en-rIN*|*Sports*|*Cricket news from ESPN Cricinfo.com*|*http://www.espncricinfo.com/rss/content/story/feeds/0.xml
+en-rIN*|*India*|*DNA - Popular News - Daily News & Analysis*|*http://www.dnaindia.com/syndication/rss_popular.xml
+en-rIN*|*India*|*Deccan Herald - National*|*http://www.deccanherald.com/rss/national.rss
+en-rIN*|*India*|*The Hindu - National*|*http://www.thehindu.com/news/national/?service=rss
+en-rIN*|*India*|*Top Headlines*|*http://syndication.indianexpress.com/rss/795/corporate.xml
+en-rIN*|*India*|*Oneindia.in - News*|*http://feeds.feedburner.com/oneindia-all-news
+en-rIN*|*India*|*Indlawnews RSS Feed*|*http://www.indlawnews.com/rss/rss.ashx?id=2
+en-rIN*|*India*|*The New Indian Express - Nation - http://newindianexpress.com/nation/*|*http://newindianexpress.com/nation/?widgetName=rssfeed&widgetId=276210&getXmlFeed=true
+en-rIN*|*India*|*Latest India News*|*http://www.newkerala.com/india-news.xml
+en-rIN*|*Travel*|*WanderingTrader: Traveling. Living Overseas. Day Trading.*|*http://feeds.feedburner.com/wanderingtrader
+en-rIN*|*Travel*|*Traveling Canucks*|*http://feeds.feedburner.com/TravelingCanucks
+en-rIN*|*Technology*|*The Hindu - Technology*|*http://www.thehindu.com/sci-tech/technology/?service=rss
+en-rIN*|*Technology*|*Campaign India  - Advertising*|*http://www.campaignindia.in/RSS/rss.ashx?type=Category&ID=470
+en-rIN*|*Technology*|*Campaign India  - Marketing*|*http://www.campaignindia.in/RSS/rss.ashx?type=Category&ID=473
+en-rIN*|*Technology*|*Campaign India  - Creativity*|*http://www.campaignindia.in/RSS/rss.ashx?type=Category&ID=475
+en-rIN*|*Technology*|*Telecom Asia RSS*|*http://feeds.feedburner.com/tarss?format=xml
+en-rIN*|*Technology*|*WirelessDuniya*|*http://feeds.feedburner.com/wirelessduniya/ZLXi
+en-rIN*|*Technology*|*Digital Inspiration Technology Blog*|*http://feeds.labnol.org/labnol
+en-rIN*|*International*|*The Guardian World News*|*http://feeds.guardian.co.uk/theguardian/rss
+en-rIN*|*International*|*The Hindu - International*|*http://www.thehindu.com/news/international/?service=rss
+en-rIN*|*International*|*ABC News: Top Stories*|*http://feeds.abcnews.com/abcnews/topstories
+en-rIN*|*International*|*FOXNews.com*|*http://feeds.feedburner.com/foxnews/latest
+en-rIN*|*International*|*The Huffington Post | Full News Feed*|*http://feeds.huffingtonpost.com/huffingtonpost/LatestNews
+en-rIN*|*Health*|*Cricket News*|*http://www.newkerala.com/health-news.xml
+
