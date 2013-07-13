@@ -4,8 +4,8 @@
 ##
 #@created Jan 1, 2013
 #@updated Jan 17, 2013
+#@updated Jul 13, 2013
 #
-# TODO
 #
 
 import sys
@@ -111,8 +111,8 @@ def add_feed(source_address=None, language=None, category=None, weight_category=
     else:
         return 4
 
+'''
 def remove_feed(collection_name=None, source_name=None):
-    ''''''
     if not collection_name or not source_name:
         return 1
     else:
@@ -122,3 +122,4 @@ def remove_feed(collection_name=None, source_name=None):
         col = Collection(db, FEED_REGISTRAR)
         col.remove({'source_name':source_name})
         return 0
+'''
