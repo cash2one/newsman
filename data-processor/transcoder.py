@@ -5,8 +5,8 @@
 #
 #@created Jan 2, 2013
 #@updated Feb 5, 2013
+#@updated Jul 13, 2013
 #
-# TODO
 #
 
 import sys
@@ -31,13 +31,14 @@ from config import TRANSCODED_LOCAL_DIR
 from config import TRANSCODED_WEB_DIR
 from config import UCK_TRANSCODING
 import urllib2
-import re                                # lijun
 
 if not os.path.exists(TRANSCODED_LOCAL_DIR):
     os.mkdir(TRANSCODED_LOCAL_DIR)
 
-transcoding_button_language = {'en':TRANSCODING_BTN_EN, 'ja':TRANSCODING_BTN_JA, 'th':TRANSCODING_BTN_TH, 'pt':TRANSCODING_BTN_PT, 'ind':TRANSCODING_BTN_IND, 'en-rIN':TRANSCODING_BTN_EN}
-
+transcoding_button_language = {'en':TRANSCODING_BTN_EN, 'ja':TRANSCODING_BTN_JA, 
+                               'th':TRANSCODING_BTN_TH, 'pt':TRANSCODING_BTN_PT, 
+                               'ind':TRANSCODING_BTN_IND, 'en-rIN':TRANSCODING_BTN_EN
+                               }
 
 def uck_sanitize(content):
     ''''''
@@ -150,7 +151,9 @@ def find_big_images(content):
         # filter out thumbnails
         try:
             image = img['src']
-            if image.endswith('.jpg') or image.endswith('.JPG') or image.endswith('.jpeg') or image.endswith('.JPEG') or image.endswith('.png') or image.endswith('.PNG'):
+            if image.endswith('.jpg') or image.endswith('.JPG') 
+                or image.endswith('.jpeg') or image.endswith('.JPEG') 
+                or image.endswith('.png') or image.endswith('.PNG'):
                 current_size = get_image_size(image)
                 if current_size > THUMBNAIL_SIZE:
                     images.append(image)
@@ -171,6 +174,8 @@ def transcode(language, title, link, relative_path):
         return None
     '''#transcoded = transcode_by_readability(link)
     transcoded = TRANSCODED_ENCODING + transcode_by_readability(link)   # lijun
+    
+    import re
 
     # adding attribute for htmls : lijun
     jpgindex = transcoded.find('jpg')
