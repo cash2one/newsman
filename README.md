@@ -7,7 +7,7 @@ This project is outlined with the following modules:
 image is content-sensitive; checking if the content of the image matches its
 description, etc.
 
-* `alert-maitenance`: provides code to watch over the running databases and the like; clean and restore obsolete data.
+* `alert-maintenance`: provides code to watch over the running databases and the like; clean and restore obsolete data.
 
 * `scraper`: scrapes RSS resources for news, blogs and images; APIs of SNS,
 APIs of SNS-based images, and streams.
