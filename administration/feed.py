@@ -110,16 +110,3 @@ def add_feed(source_address=None, language=None, category=None, weight_category=
         return 0
     else:
         return 4
-
-'''
-def remove_feed(collection_name=None, source_name=None):
-    if not collection_name or not source_name:
-        return 1
-    else:
-        task.remove_task(source_name)
-        rclient.hdel(collection_name, source_name)
-        entry.remove_entries(collection_name, source_name)
-        col = Collection(db, FEED_REGISTRAR)
-        col.remove({'source_name':source_name})
-        return 0
-'''
