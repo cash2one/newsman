@@ -151,9 +151,7 @@ def find_big_images(content):
         # filter out thumbnails
         try:
             image = img['src']
-            if image.endswith('.jpg') or image.endswith('.JPG') 
-                or image.endswith('.jpeg') or image.endswith('.JPEG') 
-                or image.endswith('.png') or image.endswith('.PNG'):
+            if image.endswith('.jpg') or image.endswith('.JPG') or image.endswith('.jpeg') or image.endswith('.JPEG') or image.endswith('.png') or image.endswith('.PNG'):
                 current_size = get_image_size(image)
                 if current_size > THUMBNAIL_SIZE:
                     images.append(image)
