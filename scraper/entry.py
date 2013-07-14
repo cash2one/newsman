@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-##
+#
 #
 #@created Jan 2, 2013
 #@updated Feb 8, 2013
@@ -53,15 +53,18 @@ def update_memory(added_items=None, language=None, category=None, feed_name=None
 
         # add entry ids to the language list
         b = rclient.zadd(language, entry['updated'], entry['_id'])
-        #print entry['_id'], 'is added to memory', rclient.zcard(language)
+        # print entry['_id'], 'is added to memory', rclient.zcard(language)
 
         # add entry ids to the category list
-        c = rclient.zadd('%s-%s' % (language, category), entry['updated'], entry['_id'])
+        c = rclient.zadd('%s-%s' %
+                         (language, category), entry['updated'], entry['_id'])
 
         # add entry ids to the feed list
-        d = rclient.zadd('%s-%s-%s' % (language, category, feed_name), entry['updated'], entry['_id'])
+        d = rclient.zadd('%s-%s-%s' %
+                         (language, category, feed_name), entry['updated'], entry['_id'])
         print datetime.utcfromtimestamp(entry['updated']), entry['title'], a, b, c, d
     return len(added_items)
+
 
 def update_database(entries=None, language=None):
     ''''''
@@ -72,32 +75,38 @@ def update_database(entries=None, language=None):
     added_entries = []
     col = Collection(db, language)
     for entry in entries:
-        duplicated = col.find_one({'link':entry['link']})
+        duplicated = col.find_one({'link': entry['link']})
         if duplicated:
             print 'Find a duplicate for %s' % entry['title']
             continue
-        item = col.find_one({'title':entry['title']})
+        item = col.find_one({'title': entry['title']})
         if not item:
             # transcode the link
             try:
                 random_code = random.random()
-                transcoded_path, big_images = transcoder.transcode(entry['language'], entry['title'], entry['link'], base64.urlsafe_b64encode('%f%s%s' % (random_code, entry['language'], entry['updated'])))
+                transcoded_path, big_images = transcoder.transcode(entry['language'], entry['title'], entry[
+                                                                   'link'], base64.urlsafe_b64encode('%f%s%s' % (random_code, entry['language'], entry['updated'])))
                 if not transcoded_path:
                     raise Exception('cannot transcode %s' % entry['link'])
                 else:
-                    entry['transcoded'] = 'None' if not transcoded_path else transcoded_path
-                    entry['big_images'] = 'None' if not big_images else big_images
+                    entry[
+                        'transcoded'] = 'None' if not transcoded_path else transcoded_path
+                    entry[
+                        'big_images'] = 'None' if not big_images else big_images
                     if entry['image'] == 'None' and entry['big_images'] != 'None':
                         entry['image'] = []
                         bimage_max = 0, 0
                         for bimage in entry['big_images']:
                             bimage_current = transcoder.get_image_size(bimage)
                             if bimage_current > bimage_max:
-                                thumbnail_relative_path = base64.urlsafe_b64encode('%s.jpeg' % bimage)
+                                thumbnail_relative_path = base64.urlsafe_b64encode(
+                                    '%s.jpeg' % bimage)
                                 if len(thumbnail_relative_path) > 200:
-                                    thumbnail_relative_path = thumbnail_relative_path[-200:]
+                                    thumbnail_relative_path = thumbnail_relative_path[
+                                        -200:]
                                 try:
-                                    thumbnail_url = generate_thumbnail(bimage, thumbnail_relative_path)
+                                    thumbnail_url = generate_thumbnail(
+                                        bimage, thumbnail_relative_path)
                                     entry['image'] = thumbnail_url
                                     bimage_max = bimage_current
                                 except IOError as e:
@@ -115,6 +124,7 @@ def update_database(entries=None, language=None):
             print 'Find a duplicate for %s' % entry['title']
     return added_entries
 
+
 def generate_thumbnail(image_url, relative_path):
     ''''''
     if not image_url or not relative_path:
@@ -123,14 +133,17 @@ def generate_thumbnail(image_url, relative_path):
     image_pil = Image.open(image_web)
     # generate thumbnail
     if image_pil.size > THUMBNAIL_SIZE:
-        image_thumbnail_local_path = '%s%s.jpeg' % (THUMBNAIL_LOCAL_DIR, relative_path)
-        image_thumbnail_web_path = '%s%s.jpeg' % (THUMBNAIL_WEB_DIR, relative_path)
+        image_thumbnail_local_path = '%s%s.jpeg' % (
+            THUMBNAIL_LOCAL_DIR, relative_path)
+        image_thumbnail_web_path = '%s%s.jpeg' % (
+            THUMBNAIL_WEB_DIR, relative_path)
         image_pil.thumbnail(THUMBNAIL_SIZE, Image.ANTIALIAS)
         image_pil = image_pil.convert('RGB')
         image_pil.save(image_thumbnail_local_path, 'JPEG')
         return image_thumbnail_web_path
     else:
         return image_url
+
 
 def read_entry(e=None, language=None, category=None, feed_name=None):
     ''''''
@@ -143,14 +156,15 @@ def read_entry(e=None, language=None, category=None, feed_name=None):
     entry['title'] = hparser.unescape(e.title.strip())
     entry['link'] = e.link.strip()
     if ('published_parsed' in e and e['published_parsed']) or ('updated_parsed' in e and e['updated_parsed']):
-        entry['updated'] = calendar.timegm(e['published_parsed']) if 'published_parsed' in e else calendar.timegm(e['updated_parsed'])
+        entry['updated'] = calendar.timegm(
+            e['published_parsed']) if 'published_parsed' in e else calendar.timegm(e['updated_parsed'])
     elif 'published' in e or 'updated' in e:
         published = e.published if 'published' in e else e.updated
         try:
             offset = int(published[-5:])
         except:
             return None
-        delta = timedelta(hours=offset/100)
+        delta = timedelta(hours=offset / 100)
         format = "%a , %d %b %Y %H:%M:%S"
         if published[-8:-5] != 'UTC':
             updated = datetime.strptime(published[:-6], format)
@@ -159,7 +173,8 @@ def read_entry(e=None, language=None, category=None, feed_name=None):
         updated -= delta
         entry['updated'] = time.mktime(updated.timetuple())
     if 'media_thumbnail' in e or 'media_content' in e:
-        thumbnails = e['media_content'] if 'media_content' in e else e['media_thumbnail']
+        thumbnails = e['media_content'] if 'media_content' in e else e[
+            'media_thumbnail']
         # a list of thumbnails
         for thumbnail in thumbnails:
             if 'url' in thumbnail:
@@ -179,17 +194,22 @@ def read_entry(e=None, language=None, category=None, feed_name=None):
         if soup.img:
             img = soup.img['src']
             if isinstance(img, str):
-                thumbnail_relative_path = base64.urlsafe_b64encode('%s.jpeg' & img)
+                thumbnail_relative_path = base64.urlsafe_b64encode(
+                    '%s.jpeg' & img)
                 if len(thumbnail_relative_path) > 200:
                     thumbnail_relative_path = thumbnail_relative_path[-200:]
-                thumbnail_url = generate_thumbnail(img, thumbnail_relative_path)
+                thumbnail_url = generate_thumbnail(
+                    img, thumbnail_relative_path)
                 entry['image'].append(thumbnail_url)
             elif isinstance(img, list):
                 for im in img:
-                    thumbnail_relative_path = base64.urlsafe_b64encode('%s.jpeg' % im)
+                    thumbnail_relative_path = base64.urlsafe_b64encode(
+                        '%s.jpeg' % im)
                     if len(thumbnail_relative_path) > 200:
-                        thumbnail_relative_path = thumbnail_relative_path[-200:]
-                    thumbnail_url = generate_thumbnail(im, thumbnail_relative_path)
+                        thumbnail_relative_path = thumbnail_relative_path[
+                            -200:]
+                    thumbnail_url = generate_thumbnail(
+                        im, thumbnail_relative_path)
                     entry['image'].append(thumbnail_url)
         # abstract
         if soup.text:
@@ -201,22 +221,26 @@ def read_entry(e=None, language=None, category=None, feed_name=None):
     entry['summary'] = 'None' if not entry['summary'] else entry['summary']
     return entry
 
+
 def extract_entries(feed_name=None, feed_link=None, language=None, category=None):
     '''read rss/atom data from a given feed'''
     def validate_time(entry):
         ''''''
-        deadline = datetime.utcfromtimestamp(entry['updated']) + timedelta(days=MEMORY_RESTORATION_DAYS)
+        deadline = datetime.utcfromtimestamp(
+            entry['updated']) + timedelta(days=MEMORY_RESTORATION_DAYS)
         return True if deadline > datetime.now() else False
 
     d = feedparser.parse(feed_link)
     if d:
         if 'entries' in d:
-            entries = [read_entry(e, language, category, feed_name) for e in d['entries']]
+            entries = [read_entry(e, language, category, feed_name)
+                       for e in d['entries']]
             return filter(validate_time, entries)
         else:
             return None
     else:
         return None
+
 
 def add_entries(feed_name=None, feed_link=None, language=None, category=None):
     ''''''
@@ -238,19 +262,21 @@ def add_entries(feed_name=None, feed_link=None, language=None, category=None):
         added_entries = update_database(entries, language)
         print 'Nothing updated' if not added_entries else '    2/3 .. updated %i database items' % len(added_entries)
         if added_entries:
-            updated_entries = update_memory(added_entries, language, category, feed_name)
+            updated_entries = update_memory(
+                added_entries, language, category, feed_name)
             print '' '    3/3 .. updated memory'
             return updated_entries
     return None
+
 
 def remove_entries(language=None, category=None, source_name=None):
     ''''''
     if not language or not category or not source_name:
         return 1
     else:
-        # remove feed entries from collection in database 
+        # remove feed entries from collection in database
         col = Collection(db, language)
-        col.remove({'source':source_name})
+        col.remove({'source': source_name})
 
         # remove entry objects from memory
         source_ids_total = rclient.zcard(source_name)
