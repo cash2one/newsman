@@ -12,12 +12,12 @@
 import sys
 reload(sys)
 sys.setdefaultencoding('UTF-8')
-sys.path.add('..')
+sys.path.append('../')
 
 import calendar
 from administration.config import Collection
 from datetime import datetime, timedelta
-from  administration.config import db
+from administration.config import db
 import entry
 import feedparser
 import os
