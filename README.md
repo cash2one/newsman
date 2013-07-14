@@ -33,11 +33,12 @@ ToDos - High Priority
 2. 图片类的代码放在image_processor中
 3. 图片抓取代码加入
 4. task.py内容分解到各相应文件夹
-5. 转码测试readability（decruft）
+5. Readability（decruft）代码整理出来
 6. 文件名生成方式修改 --> 语言-分类-源（objectId）-时间-随机码
 7. image/big_image等修改
 8. 加入朗读抓取代码
 9. 加入摘要代码
+10. 提供一个简单的RSS修改/添加/删除Web界面
 
 ToDos - Low Priority
 ---------------------
