@@ -285,23 +285,6 @@ def add_task(feed_name, feed_link, language, category):
     return 0
 
 
-def remove_task(feed_name):
-    ''''''
-    if not feed_name:
-        return 1
-    else:
-        f = open(FEED_LIST, 'r')
-        lines = f.readlines()
-        tasks = filter(lambda x: x.split('*|*')[1] != feed_name, lines)
-        f.close()
-
-        f = open(FEED_LIST, 'w')
-        for task in tasks:
-            f.write(task)
-        f.close()
-        return 0
-
-
 def extract_task(line):
     ''''''
     if line:
@@ -316,10 +299,10 @@ def execute_task(lines):
     if lines:
         f = open(RSS_UPDATE_LOG, 'a')
         for line in lines:
-            language, category, feed_name, feed_link = extract_task(line)
-            print language, category, feed_name
+            language, category, feed_id, feed_link = extract_task(line)
+            print language, category, feed_id
             updated_tasks = entry.add_entries(
-                feed_name, feed_link, language, category)
+                feed_id, feed_link, language, category)
             if updated_tasks:
                 f.write("%s: %s %i\n" %
                         (time.asctime(time.gmtime()), feed_name, updated_tasks))

@@ -14,7 +14,6 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('../')
 
-import base64
 from BeautifulSoup import BeautifulStoneSoup
 import calendar
 from administration.config import Collection
@@ -84,8 +83,10 @@ def update_database(entries=None, language=None):
             # transcode the link
             try:
                 random_code = random.random()
+                # create a proper name for url encoding
+                safe_category = (entry['category']).strip().replace(" ", "-")
                 transcoded_path, big_images = transcoder.transcode(entry['language'], entry['title'], entry[
-                                                                   'link'], '%f%s%s' % (random_code, entry['language'], entry['updated']))
+                                                                   'link'], '%s_%s_%s_%f' % (entry['language'], safe_category, entry['updated'], random_code))
                 if not transcoded_path:
                     raise Exception('cannot transcode %s' % entry['link'])
                 else:
