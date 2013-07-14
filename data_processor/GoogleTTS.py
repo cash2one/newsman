@@ -30,7 +30,7 @@ def main():
 
     #process text into chunks
     text = text.replace('\n','')
-    text_list = re.split('(\,|\.)', text)
+    text_list = re.split('(\,|\.|\，|\。)', text)
     combined_text = []
     for idx, val in enumerate(text_list):
         if idx % 2 == 0:

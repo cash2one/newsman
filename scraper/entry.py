@@ -157,6 +157,7 @@ def read_entry(e=None, language=None, category=None, feed_id=None):
     entry['category'] = category
     entry['feed'] = feed_id
     entry['title'] = hparser.unescape(e.title.strip())
+    # Google TTS
     entry['link'] = e.link.strip()
     if ('published_parsed' in e and e['published_parsed']) or ('updated_parsed' in e and e['updated_parsed']):
         entry['updated'] = calendar.timegm(
