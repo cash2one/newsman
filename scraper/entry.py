@@ -85,7 +85,7 @@ def update_database(entries=None, language=None):
             try:
                 random_code = random.random()
                 transcoded_path, big_images = transcoder.transcode(entry['language'], entry['title'], entry[
-                                                                   'link'], base64.urlsafe_b64encode('%f%s%s' % (random_code, entry['language'], entry['updated'])))
+                                                                   'link'], '%f%s%s' % (random_code, entry['language'], entry['updated']))
                 if not transcoded_path:
                     raise Exception('cannot transcode %s' % entry['link'])
                 else:
