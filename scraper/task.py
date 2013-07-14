@@ -255,11 +255,10 @@ def clear():
     return 0
 
 
-def add_task(feed_name, feed_link, language, category):
+def add_task(feed_id, feed_link, language, category):
     ''''''
-    if not feed_name or not feed_link or not language or not category:
+    if not feed_id or not feed_link or not language or not category:
         return 1
-    feed_name = feed_name.strip()
     feed_link = feed_link.strip()
     language = language.strip()
     category = category.strip()
@@ -279,7 +278,7 @@ def add_task(feed_name, feed_link, language, category):
                 return 5
 
     f = open(feeds_list_path, 'a')
-    line = '*|*'.join([language, category, feed_name, feed_link])
+    line = '*|*'.join([language, category, feed_id, feed_link])
     f.write(line + '\n')
     f.close()
     return 0
