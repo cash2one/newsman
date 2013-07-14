@@ -28,7 +28,7 @@ import random
 from administration.config import rclient
 from cStringIO import StringIO
 import time
-import data-processor.transcoder
+import data_processor.transcoder
 import urllib2
 
 from administration.config import LANGUAGES
