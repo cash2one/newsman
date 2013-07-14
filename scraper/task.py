@@ -66,14 +66,14 @@ def restore():
         language = None
         col = None
         for line in lines:
-            language, category, feed_name, feed_link = extract_task(line)
+            language, category, feed_id, feed_link = extract_task(line)
             col = Collection(db, language)
             current_utc_time_posix = calendar.timegm(time.gmtime())
             active_datetime = datetime.utcfromtimestamp(
                 current_utc_time_posix) - timedelta(days=MEMORY_RESTORATION_DAYS)
             active_posix = calendar.timegm(active_datetime.timetuple())
             items = col.find(
-                {'category': category, 'feed': feed_name, 'updated': {'$gte': active_posix}}).sort('updated', -1)
+                {'category': category, 'feed': feed_id, 'updated': {'$gte': active_posix}}).sort('updated', -1)
             if items:
                 items_with_expiration = [(item, get_expiration(float(item['updated'])))
                                          for item in items]
@@ -83,8 +83,8 @@ def restore():
                     # print '++', ent['_id'],
                     # datetime.utcfromtimestamp(ent['updated']), exp
                 entry.update_memory(
-                    items_with_expiration, language, category, feed_name)
-            print language, category, feed_name, len(items_with_expiration)
+                    items_with_expiration, language, category, feed_id)
+            print language, category, feed_id, len(items_with_expiration)
         l.close()
         print 'memory to database for %s' % language
         language_in_memory_total = rclient.zcard(language)
@@ -133,9 +133,9 @@ def clear_transcoded(removal_candidate):
         os.remove(transcoded_local_path)
 
 
-def clear_short_dated(language, category, feed_name):
+def clear_short_dated(language, category, feed_id):
     ''''''
-    if not language or not category or not feed_name:
+    if not language or not category or not feed_id:
         return None
     else:
         # remove entry ids in the language list that are already expired
@@ -162,7 +162,7 @@ def clear_short_dated(language, category, feed_name):
 
         # remove entry ids in the source list that are already expired
         removed_source_ids = 0
-        source_name = '%s-%s-%s' % (language, category, feed_name)
+        source_name = '%s-%s-%s' % (language, category, feed_id)
         source_ids_total = rclient.zcard(source_name)
         if source_ids_total:
             entry_ids = rclient.zrange(source_name, 0, source_ids_total)
@@ -241,14 +241,14 @@ def clear():
         l = open(language_file, 'r')
         lines = l.readlines()
         for line in lines:
-            language, category, feed_name, feed_link = extract_task(line)
+            language, category, feed_id, feed_link = extract_task(line)
             removed_short_ids = clear_short_dated(
-                language, category, feed_name)
+                language, category, feed_id)
             if removed_short_ids:
-                print 'SHORT', language, category, feed_name, removed_short_ids
+                print 'SHORT', language, category, feed_id, removed_short_ids
                 f.write(
                     '[SHORT] %s: %s %i %s %i %s %i\n' % (time.asctime(time.gmtime()), language, removed_short_ids[0], '%s-%s' %
-                       (language, category), removed_short_ids[1], '%s-%s-%s' % (language, category, feed_name), removed_short_ids[2]))
+                       (language, category), removed_short_ids[1], '%s-%s-%s' % (language, category, feed_id), removed_short_ids[2]))
         f.write('\n')
         l.close()
         print
