@@ -87,6 +87,7 @@ def update_database(entries=None, language=None):
                 safe_category = (entry['category']).strip().replace(" ", "-")
                 transcoded_path, big_images = transcoder.transcode(entry['language'], entry['title'], entry[
                                                                    'link'], '%s_%s_%s_%s_%f' % (entry['language'], safe_category, entry[feed], entry['updated'], random_code))
+  
                 if not transcoded_path:
                     raise Exception('cannot transcode %s' % entry['link'])
                 else:
@@ -150,7 +151,7 @@ def read_entry(e=None, language=None, category=None, feed_id=None):
     ''''''
     if not e:
         return 1
-    # Todos 
+    # Todos
     # add more boundary checks
 
     entry = {}
@@ -195,11 +196,15 @@ def read_entry(e=None, language=None, category=None, feed_id=None):
         entry['image'] = []
         entry['summary'] = ''
         # thumbnail(s)
+        
+        # Todos 
+        # rename variable! bloody ugly
+        # remove name length checking
+        #
         if soup.img:
             img = soup.img['src']
             if isinstance(img, str):
-                thumbnail_relative_path = base64.urlsafe_b64encode(
-                    '%s.jpeg' & img)
+                thumbnail_relative_path = '%s.jpeg' & img
                 if len(thumbnail_relative_path) > 200:
                     thumbnail_relative_path = thumbnail_relative_path[-200:]
                 thumbnail_url = generate_thumbnail(
@@ -207,8 +212,7 @@ def read_entry(e=None, language=None, category=None, feed_id=None):
                 entry['image'].append(thumbnail_url)
             elif isinstance(img, list):
                 for im in img:
-                    thumbnail_relative_path = base64.urlsafe_b64encode(
-                        '%s.jpeg' % im)
+                    thumbnail_relative_path = '%s.jpeg' % im
                     if len(thumbnail_relative_path) > 200:
                         thumbnail_relative_path = thumbnail_relative_path[
                             -200:]
