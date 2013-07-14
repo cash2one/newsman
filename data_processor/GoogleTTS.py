@@ -6,7 +6,18 @@ import re
 import urllib, urllib2
 import time
 
-def text_process(text):
+def get_output():
+    """
+    1. download mp3 from google tts api
+    2. convert it to wav
+    3. speed up the wav file, if necessary
+    4. convert to mp3
+    5. store in some location
+    6. return the path
+    """
+    pass
+
+def google_speak(text):
     '''comment'''
     text = text.replace('\n','')
     text_list = re.split('(\,|\.|\，|\。|、)', text)
@@ -75,7 +86,7 @@ def main():
         text = ' '.join(map(str,args.string))
 
     #process text into chunks
-    text_process(text)
+    google_speak(text)
     args.output.close()
 
     print('Saved MP3 to %s' % args.output.name)
