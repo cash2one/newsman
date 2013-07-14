@@ -172,7 +172,8 @@ def transcode(language, title, link, relative_path):
     ''''''
     if not link or not relative_path:
         return None
-    '''#transcoded = transcode_by_readability(link)
+    '''
+    #transcoded = transcode_by_readability(link)
     transcoded = TRANSCODED_ENCODING + transcode_by_readability(link)   # lijun
     
     import re

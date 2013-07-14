@@ -53,6 +53,7 @@ def main():
                 combined_text.extend(temp_array)
     #download chunks and write them to the output file
     for idx, val in enumerate(combined_text):
+        print 'transmitting ... %s' % val
         mp3url = "http://translate.google.com/translate_tts?tl=%s&q=%s&total=%s&idx=%s" % (args.language, urllib.quote(val), len(combined_text), idx)
         headers = {"Host":"translate.google.com",
           "Referer":"http://www.gstatic.com/translate/sound_player2.swf",
