@@ -87,7 +87,6 @@ def update_database(entries=None, language=None):
                 safe_category = (entry['category']).strip().replace(" ", "-")
                 transcoded_path, big_images = transcoder.transcode(entry['language'], entry['title'], entry[
                                                                    'link'], '%s_%s_%s_%s_%f' % (entry['language'], safe_category, entry[feed], entry['updated'], random_code))
-  
                 if not transcoded_path:
                     raise Exception('cannot transcode %s' % entry['link'])
                 else:
@@ -101,8 +100,7 @@ def update_database(entries=None, language=None):
                         for bimage in entry['big_images']:
                             bimage_current = transcoder.get_image_size(bimage)
                             if bimage_current > bimage_max:
-                                thumbnail_relative_path = base64.urlsafe_b64encode(
-                                    '%s.jpeg' % bimage)
+                                thumbnail_relative_path = '%s.jpeg' % bimage
                                 if len(thumbnail_relative_path) > 200:
                                     thumbnail_relative_path = thumbnail_relative_path[
                                         -200:]
@@ -196,8 +194,8 @@ def read_entry(e=None, language=None, category=None, feed_id=None):
         entry['image'] = []
         entry['summary'] = ''
         # thumbnail(s)
-        
-        # Todos 
+
+        # Todos
         # rename variable! bloody ugly
         # remove name length checking
         #
