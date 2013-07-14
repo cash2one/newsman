@@ -267,30 +267,3 @@ def add_entries(feed_name=None, feed_link=None, language=None, category=None):
             print '' '    3/3 .. updated memory'
             return updated_entries
     return None
-
-
-def remove_entries(language=None, category=None, source_name=None):
-    ''''''
-    if not language or not category or not source_name:
-        return 1
-    else:
-        # remove feed entries from collection in database
-        col = Collection(db, language)
-        col.remove({'source': source_name})
-
-        # remove entry objects from memory
-        source_ids_total = rclient.zcard(source_name)
-        if source_ids_total:
-            entry_ids = rclient.zrange(source_name, 0, source_ids_total)
-            for entry_id in entry_ids:
-                rclient.delete(entry_id)
-                # language
-                rclient.zrem(language, entry_id)
-                # category
-                collection_name = '%s-%s' % (language, category)
-                rclient.zrem(collection_name, entry_id)
-                # source
-                rclient.zrem(source_name, entry_id)
-            return 0
-        else:
-            return 2
