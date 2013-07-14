@@ -86,7 +86,7 @@ def update_database(entries=None, language=None):
                 # create a proper name for url encoding
                 safe_category = (entry['category']).strip().replace(" ", "-")
                 transcoded_path, big_images = transcoder.transcode(entry['language'], entry['title'], entry[
-                                                                   'link'], '%s_%s_%s_%f' % (entry['language'], safe_category, entry['updated'], random_code))
+                                                                   'link'], '%s_%s_%s_%s_%f' % (entry['language'], safe_category, entry[feed], entry['updated'], random_code))
                 if not transcoded_path:
                     raise Exception('cannot transcode %s' % entry['link'])
                 else:
