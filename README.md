@@ -3,20 +3,20 @@ News Backend
 
 This project is outlined with the following modules:
 
-* `image-processor`: handles scaling images, making thumbnails; checking if the
+* `image_processor`: handles scaling images, making thumbnails; checking if the
 image is content-sensitive; checking if the content of the image matches its
 description, etc.
 
-* `alert-maintenance`: provides code to watch over the running databases and the like; clean and restore obsolete data.
+* `alert_maintenance`: provides code to watch over the running databases and the like; clean and restore obsolete data.
 
 * `scraper`: scrapes RSS resources for news, blogs and images; APIs of SNS,
 APIs of SNS-based images, and streams.
 
-* `data-miner`: mines hot and related news from server logs and stored user information; it also provides code to dedup news 
+* `data_miner`: mines hot and related news from server logs and stored user information; it also provides code to dedup news 
 
-* `user-account`: provides code to do user register/login/logoff, API-based login/logoff; code to comment on news/images; code to favorate news/images; code to do personalization (subscription, collect, comment, change themes and colors)
+* `user_account`: provides code to do user register/login/logoff, API-based login/logoff; code to comment on news/images; code to favorate news/images; code to do personalization (subscription, collect, comment, change themes and colors)
 
-* `data-processor`: transcoding webpages, news summarization, TTS-generation,
+* `data_processor`: transcoding webpages, news summarization, TTS-generation,
 Searchet-based features 
 
 * `template`: HTML, CSS and Javascript code necessary for news-page and
@@ -30,7 +30,7 @@ modification page
 ToDos - High Priority
 ----------------------
 1. 去掉没用的代码
-2. 图片类的代码放在image-processor中
+2. 图片类的代码放在image_processor中
 3. 图片抓取代码加入
 4. task.py内容分解到各相应文件夹
 5. 转码测试readability（decruft）
