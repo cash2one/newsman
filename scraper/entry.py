@@ -12,30 +12,31 @@
 import sys
 reload(sys)
 sys.setdefaultencoding('UTF-8')
-
+#sys.path.append('/home/jinyuan/Downloads/global-mobile-news/administration')
+sys.path.append('../')
 
 import base64
 from BeautifulSoup import BeautifulStoneSoup
 import calendar
-from config import Collection
+from administration.config import Collection
 from datetime import timedelta, datetime
-from config import db
+from administration.config import db
 import feedparser
-from config import hparser
+from administration.config import hparser
 import Image
 import random
-from config import rclient
+from administration.config import rclient
 from cStringIO import StringIO
 import time
-import transcoder
+import data-processor.transcoder
 import urllib2
 
-from config import LANGUAGES
-from config import MEMORY_RESTORATION_DAYS
-from config import REDIS_ENTRY_EXPIRATION
-from config import THUMBNAIL_LOCAL_DIR
-from config import THUMBNAIL_SIZE
-from config import THUMBNAIL_WEB_DIR
+from administration.config import LANGUAGES
+from administration.config import MEMORY_RESTORATION_DAYS
+from administration.config import REDIS_ENTRY_EXPIRATION
+from administration.config import THUMBNAIL_LOCAL_DIR
+from administration.config import THUMBNAIL_SIZE
+from administration.config import THUMBNAIL_WEB_DIR
 
 
 def update_memory(added_items=None, language=None, category=None, feed_name=None):
