@@ -12,28 +12,29 @@
 import sys
 reload(sys)
 sys.setdefaultencoding('UTF-8')
+sys.path.add('..')
 
 import calendar
-from config import Collection
+from administration.config import Collection
 from datetime import datetime, timedelta
-from config import db
+from  administration.config import db
 import entry
 import feedparser
 import os
-from config import rclient
+from administration.config import rclient
 import time
 
 from bson.objectid import ObjectId
-from config import DATA_CLEAR_LOG
-from config import DATABASE_REMOVAL_DAYS
-from config import LANGUAGES
-from config import MAINTENANCE_DIR
-from config import MEMORY_RESTORATION_DAYS
-from config import THUMBNAIL_LOCAL_DIR
-from config import THUMBNAIL_WEB_DIR
-from config import TRANSCODED_LOCAL_DIR
-from config import TRANSCODED_WEB_DIR
-from config import RSS_UPDATE_LOG
+from administration.config import DATA_CLEAR_LOG
+from administration.config import DATABASE_REMOVAL_DAYS
+from administration.config import LANGUAGES
+from administration.config import MAINTENANCE_DIR
+from administration.config import MEMORY_RESTORATION_DAYS
+from administration.config import THUMBNAIL_LOCAL_DIR
+from administration.config import THUMBNAIL_WEB_DIR
+from administration.config import TRANSCODED_LOCAL_DIR
+from administration.config import TRANSCODED_WEB_DIR
+from administration.config import RSS_UPDATE_LOG
 
 if not os.path.exists(MAINTENANCE_DIR):
     os.mkdir(MAINTENANCE_DIR)
@@ -304,7 +305,7 @@ def execute_task(lines):
                 feed_id, feed_link, language, category)
             if updated_tasks:
                 f.write("%s: %s %i\n" %
-                        (time.asctime(time.gmtime()), feed_name, updated_tasks))
+                        (time.asctime(time.gmtime()), feed_id, updated_tasks))
         f.write('\n')
         f.close()
         print
