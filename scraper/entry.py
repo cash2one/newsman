@@ -37,7 +37,7 @@ from administration.config import THUMBNAIL_SIZE
 from administration.config import THUMBNAIL_WEB_DIR
 
 
-def update_memory(added_items=None, language=None, category=None, feed_name=None):
+def update_memory(added_items=None, language=None, category=None, feed_id=None):
     ''''''
     if not added_items:
         return None
@@ -60,7 +60,7 @@ def update_memory(added_items=None, language=None, category=None, feed_name=None
 
         # add entry ids to the feed list
         d = rclient.zadd('%s-%s-%s' %
-                         (language, category, feed_name), entry['updated'], entry['_id'])
+                         (language, category, feed_id), entry['updated'], entry['_id'])
         print datetime.utcfromtimestamp(entry['updated']), entry['title'], a, b, c, d
     return len(added_items)
 
@@ -146,14 +146,14 @@ def generate_thumbnail(image_url, relative_path):
         return image_url
 
 
-def read_entry(e=None, language=None, category=None, feed_name=None):
+def read_entry(e=None, language=None, category=None, feed_id=None):
     ''''''
     if not e:
         return 1
     entry = {}
     entry['language'] = language
     entry['category'] = '%s' % category
-    entry['feed'] = '%s' % feed_name
+    entry['feed'] = '%s' % feed_id
     entry['title'] = hparser.unescape(e.title.strip())
     entry['link'] = e.link.strip()
     if ('published_parsed' in e and e['published_parsed']) or ('updated_parsed' in e and e['updated_parsed']):
@@ -223,7 +223,7 @@ def read_entry(e=None, language=None, category=None, feed_name=None):
     return entry
 
 
-def extract_entries(feed_name=None, feed_link=None, language=None, category=None):
+def extract_entries(feed_id=None, feed_link=None, language=None, category=None):
     '''read rss/atom data from a given feed'''
     def validate_time(entry):
         ''''''
@@ -234,7 +234,7 @@ def extract_entries(feed_name=None, feed_link=None, language=None, category=None
     d = feedparser.parse(feed_link)
     if d:
         if 'entries' in d:
-            entries = [read_entry(e, language, category, feed_name)
+            entries = [read_entry(e, language, category, feed_id)
                        for e in d['entries']]
             return filter(validate_time, entries)
         else:
@@ -243,11 +243,10 @@ def extract_entries(feed_name=None, feed_link=None, language=None, category=None
         return None
 
 
-def add_entries(feed_name=None, feed_link=None, language=None, category=None):
+def add_entries(feed_id=None, feed_link=None, language=None, category=None):
     ''''''
-    if not feed_name or not feed_link or not language or not category:
+    if not feed_id or not feed_link or not language or not category:
         return None
-    feed_name = feed_name.strip()
     feed_link = feed_link.strip()
     language = language.strip()
     category = category.strip()
@@ -256,7 +255,7 @@ def add_entries(feed_name=None, feed_link=None, language=None, category=None):
     if category.count(' '):
         return None
 
-    entries = extract_entries(feed_name, feed_link, language, category)
+    entries = extract_entries(feed_id, feed_link, language, category)
     print 'Nothing found from RSS' if not entries else '    1/3 .. retrieved %i entries' % len(entries)
     # store in both database and memory
     if entries:
@@ -264,7 +263,7 @@ def add_entries(feed_name=None, feed_link=None, language=None, category=None):
         print 'Nothing updated' if not added_entries else '    2/3 .. updated %i database items' % len(added_entries)
         if added_entries:
             updated_entries = update_memory(
-                added_entries, language, category, feed_name)
+                added_entries, language, category, feed_id)
             print '' '    3/3 .. updated memory'
             return updated_entries
     return None
