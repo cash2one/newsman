@@ -150,10 +150,13 @@ def read_entry(e=None, language=None, category=None, feed_id=None):
     ''''''
     if not e:
         return 1
+    # Todos 
+    # add more boundary checks
+
     entry = {}
     entry['language'] = language
-    entry['category'] = '%s' % category
-    entry['feed'] = '%s' % feed_id
+    entry['category'] = category
+    entry['feed'] = feed_id
     entry['title'] = hparser.unescape(e.title.strip())
     entry['link'] = e.link.strip()
     if ('published_parsed' in e and e['published_parsed']) or ('updated_parsed' in e and e['updated_parsed']):
