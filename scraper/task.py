@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-##
+#
 #
 #@created Jan 2, 2013
 #@updated Feb 8, 2013
@@ -51,9 +51,10 @@ def restore():
     '''if memory failed, restore items from database'''
     def get_expiration(updated):
         ''''''
-        deadline = datetime.utcfromtimestamp(updated) + timedelta(days=MEMORY_RESTORATION_DAYS)
+        deadline = datetime.utcfromtimestamp(
+            updated) + timedelta(days=MEMORY_RESTORATION_DAYS)
         time_left = deadline - datetime.now()
-        return time_left.days * 60 * 60 *24 + time_left.seconds
+        return time_left.days * 60 * 60 * 24 + time_left.seconds
 
     print '----------------------restoring-------------------------'
     language_files = read_task_directory()
@@ -67,16 +68,21 @@ def restore():
             language, category, feed_name, feed_link = extract_task(line)
             col = Collection(db, language)
             current_utc_time_posix = calendar.timegm(time.gmtime())
-            active_datetime = datetime.utcfromtimestamp(current_utc_time_posix) - timedelta(days=MEMORY_RESTORATION_DAYS) 
+            active_datetime = datetime.utcfromtimestamp(
+                current_utc_time_posix) - timedelta(days=MEMORY_RESTORATION_DAYS)
             active_posix = calendar.timegm(active_datetime.timetuple())
-            items = col.find({'category':category, 'feed':feed_name, 'updated':{'$gte':active_posix}}).sort('updated', -1)
+            items = col.find(
+                {'category': category, 'feed': feed_name, 'updated': {'$gte': active_posix}}).sort('updated', -1)
             if items:
-                items_with_expiration = [(item, get_expiration(float(item['updated']))) for item in items]
-                #for i in items_with_expiration:
+                items_with_expiration = [(item, get_expiration(float(item['updated'])))
+                                         for item in items]
+                # for i in items_with_expiration:
                     #ent = i[0]
                     #exp = i[1]
-                    #print '++', ent['_id'], datetime.utcfromtimestamp(ent['updated']), exp
-                entry.update_memory(items_with_expiration, language, category, feed_name)
+                    # print '++', ent['_id'],
+                    # datetime.utcfromtimestamp(ent['updated']), exp
+                entry.update_memory(
+                    items_with_expiration, language, category, feed_name)
             print language, category, feed_name, len(items_with_expiration)
         l.close()
         print 'memory to database for %s' % language
@@ -86,36 +92,45 @@ def restore():
             for language_id in language_ids:
                 if not rclient.get(language_id):
                     print language_id, 'is missing'
-                    id_aloof = col.find_one({'_id':ObjectId(language_id)})
+                    id_aloof = col.find_one({'_id': ObjectId(language_id)})
                     if id_aloof:
                         for key, value in id_aloof.iteritems():
                             id_aloof[key] = str(value)
                         rclient.set(id_aloof['_id'], id_aloof)
-                        #print '--', id_aloof['_id'], datetime.utcfromtimestamp(id_aloof['updated']), get_expiration(float(id_aloof['updated']))
-                        rclient.expire(id_aloof['_id'], get_expiration(float(id_aloof['updated'])))
+                        # print '--', id_aloof['_id'],
+                        # datetime.utcfromtimestamp(id_aloof['updated']),
+                        # get_expiration(float(id_aloof['updated']))
+                        rclient.expire(
+                            id_aloof['_id'], get_expiration(float(id_aloof['updated'])))
                         print 'restored', id_aloof['_id'], id_aloof['title'], datetime.utcfromtimestamp(float(id_aloof['updated']))
         print
     return 0
+
 
 def clear_thumbnail(removal_candidate):
     '''convert web path to local path'''
     if isinstance(removal_candidate['image'], str):
         thumbnail_web_path = removal_candidate['image']
-        thumbnail_local_path = thumbnail_web_path.replace(THUMBNAIL_WEB_DIR, THUMBNAIL_LOCAL_DIR)
+        thumbnail_local_path = thumbnail_web_path.replace(
+            THUMBNAIL_WEB_DIR, THUMBNAIL_LOCAL_DIR)
         if os.path.exists(thumbnail_local_path):
             os.remove(thumbnail_local_path)
     elif isinstance(removal_candidate['image'], list):
         for thumbnail_web_path in removal_candidate['image']:
-            thumbnail_local_path = thumbnail_web_path.replace(THUMBNAIL_WEB_DIR, THUMBNAIL_LOCAL_DIR)
+            thumbnail_local_path = thumbnail_web_path.replace(
+                THUMBNAIL_WEB_DIR, THUMBNAIL_LOCAL_DIR)
             if os.path.exists(thumbnail_local_path):
                 os.remove(thumbnail_local_path)
+
 
 def clear_transcoded(removal_candidate):
     '''convert web path to local path'''
     transcoded_web_path = removal_candidate['transcoded']
-    transcoded_local_path = transcoded_web_path.replace(TRANSCODED_WEB_DIR, TRANSCODED_LOCAL_DIR)
+    transcoded_local_path = transcoded_web_path.replace(
+        TRANSCODED_WEB_DIR, TRANSCODED_LOCAL_DIR)
     if os.path.exists(transcoded_local_path):
         os.remove(transcoded_local_path)
+
 
 def clear_short_dated(language, category, feed_name):
     ''''''
@@ -137,7 +152,8 @@ def clear_short_dated(language, category, feed_name):
         removed_collection_ids = 0
         collection_ids_total = rclient.zcard(collection_name)
         if collection_ids_total:
-            entry_ids = rclient.zrange(collection_name, 0, collection_ids_total)
+            entry_ids = rclient.zrange(
+                collection_name, 0, collection_ids_total)
             for entry_id in entry_ids:
                 if not rclient.exists(entry_id):
                     rclient.zrem(collection_name, entry_id)
@@ -155,6 +171,7 @@ def clear_short_dated(language, category, feed_name):
                     removed_source_ids = removed_source_ids + 1
         return removed_language_ids, removed_collection_ids, removed_source_ids
 
+
 def clear_zombies(language):
     '''zombies are shits in memory but no more in database'''
     language_ids_total = rclient.zcard(language)
@@ -163,8 +180,8 @@ def clear_zombies(language):
     if language_ids_total:
         entry_ids = rclient.zrange(language, 0, language_ids_total)
         for entry_id in entry_ids:
-            item = col.find_one({'_id':ObjectId(entry_id)})
-            if not item: # then its a zombie
+            item = col.find_one({'_id': ObjectId(entry_id)})
+            if not item:  # then its a zombie
                 zombies.append(entry_id)
                 if rclient.exists(entry_id):
                     print 'ZOMBIE!!: ', entry_id, eval(rclient.get(entry_id))['title']
@@ -172,6 +189,7 @@ def clear_zombies(language):
     else:
         print 'there is no such a language %s' % language
     return zombies
+
 
 def clear_long_dated(language):
     ''''''
@@ -181,10 +199,11 @@ def clear_long_dated(language):
         col = Collection(db, language)
         # data more than DATABASE_REMOVAL_DAYS days are removed
         current_utc_time_posix = calendar.timegm(time.gmtime())
-        deadline_datetime = datetime.utcfromtimestamp(current_utc_time_posix) - timedelta(days=DATABASE_REMOVAL_DAYS) 
+        deadline_datetime = datetime.utcfromtimestamp(
+            current_utc_time_posix) - timedelta(days=DATABASE_REMOVAL_DAYS)
         deadline_posix = calendar.timegm(deadline_datetime.timetuple())
 
-        removal_candidates = col.find({'updated': {'$lt':deadline_posix}})
+        removal_candidates = col.find({'updated': {'$lt': deadline_posix}})
         removed_ids = []
         for removal_candidate in removal_candidates:
             clear_transcoded(removal_candidate)
@@ -193,8 +212,9 @@ def clear_long_dated(language):
             # remove memory items
             rclient.delete(str(removal_candidate['_id']))
             # remove database items
-            col.remove({'_id':removal_candidate['_id']})
+            col.remove({'_id': removal_candidate['_id']})
         return removed_ids
+
 
 def clear():
     ''''''
@@ -208,27 +228,33 @@ def clear():
         removed_long_ids = clear_long_dated(language)
         if removed_long_ids:
             print 'LONG', len(removed_long_ids)
-            f.write('[LONG] %s: %s %i\n' % (time.asctime(time.gmtime()), language, len(removed_long_ids)))
+            f.write('[LONG] %s: %s %i\n' %
+                    (time.asctime(time.gmtime()), language, len(removed_long_ids)))
         # remove zombies
         removed_zombies = clear_zombies(language)
         if removed_zombies:
             print 'ZOMBIE', len(removed_zombies)
-            f.write('[ZOMBIE] %s: %s %i\n' %  (time.asctime(time.gmtime()), language, len(removed_zombies)))
+            f.write('[ZOMBIE] %s: %s %i\n' %
+                    (time.asctime(time.gmtime()), language, len(removed_zombies)))
         # remove item in memory
         l = open(language_file, 'r')
         lines = l.readlines()
         for line in lines:
             language, category, feed_name, feed_link = extract_task(line)
-            removed_short_ids = clear_short_dated(language, category, feed_name)
+            removed_short_ids = clear_short_dated(
+                language, category, feed_name)
             if removed_short_ids:
                 print 'SHORT', language, category, feed_name, removed_short_ids
-                f.write('[SHORT] %s: %s %i %s %i %s %i\n' % (time.asctime(time.gmtime()), language, removed_short_ids[0], '%s-%s' % (language, category), removed_short_ids[1], '%s-%s-%s' % (language, category, feed_name), removed_short_ids[2]))
+                f.write(
+                    '[SHORT] %s: %s %i %s %i %s %i\n' % (time.asctime(time.gmtime()), language, removed_short_ids[0], '%s-%s' %
+                       (language, category), removed_short_ids[1], '%s-%s-%s' % (language, category, feed_name), removed_short_ids[2]))
         f.write('\n')
         l.close()
         print
     f.close()
     return 0
-    
+
+
 def add_task(feed_name, feed_link, language, category):
     ''''''
     if not feed_name or not feed_link or not language or not category:
@@ -258,6 +284,7 @@ def add_task(feed_name, feed_link, language, category):
     f.close()
     return 0
 
+
 def remove_task(feed_name):
     ''''''
     if not feed_name:
@@ -265,14 +292,15 @@ def remove_task(feed_name):
     else:
         f = open(FEED_LIST, 'r')
         lines = f.readlines()
-        tasks = filter(lambda x:x.split('*|*')[1] != feed_name, lines)
+        tasks = filter(lambda x: x.split('*|*')[1] != feed_name, lines)
         f.close()
 
         f = open(FEED_LIST, 'w')
         for task in tasks:
-    	    f.write(task)
+            f.write(task)
         f.close()
         return 0
+
 
 def extract_task(line):
     ''''''
@@ -280,7 +308,8 @@ def extract_task(line):
         task = line.split('*|*')
         return task[0], task[1], task[2], task[3]
     else:
-        return 1 
+        return 1
+
 
 def execute_task(lines):
     ''''''
@@ -289,15 +318,18 @@ def execute_task(lines):
         for line in lines:
             language, category, feed_name, feed_link = extract_task(line)
             print language, category, feed_name
-            updated_tasks = entry.add_entries(feed_name, feed_link, language, category)
+            updated_tasks = entry.add_entries(
+                feed_name, feed_link, language, category)
             if updated_tasks:
-                f.write("%s: %s %i\n" % (time.asctime(time.gmtime()), feed_name, updated_tasks))
+                f.write("%s: %s %i\n" %
+                        (time.asctime(time.gmtime()), feed_name, updated_tasks))
         f.write('\n')
         f.close()
         print
         return 0
     else:
         return 1
+
 
 def read_task_directory():
     ''''''
@@ -310,11 +342,12 @@ def read_task_directory():
     else:
         return 0
 
+
 def scrape(language):
     ''''''
     print '----------------------scraping-------------------------'
     #languages = read_task_directory()
-    #for language in languages:
+    # for language in languages:
     f = open(language, 'r')
     lines = f.readlines()
     updated_tasks = execute_task(lines)
@@ -322,7 +355,8 @@ def scrape(language):
 if __name__ == "__main__":
     command = sys.argv[1]
     if len(sys.argv) > 2:
-        language = '/home/ubuntu/hao123/maintenance/%s_feeds_list.txt' % sys.argv[2]
+        language = '/home/ubuntu/hao123/maintenance/%s_feeds_list.txt' % sys.argv[
+            2]
         eval(command)(language)
     else:
         eval(command)()
