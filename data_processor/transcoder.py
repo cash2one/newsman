@@ -12,24 +12,25 @@
 import sys
 reload(sys)
 sys.setdefaultencoding('UTF-8')
+sys.path.append('..')
 
 from BeautifulSoup import BeautifulSoup, NavigableString, Tag
 from decruft import Document
-from config import hparser
+from administration.config import hparser
 import Image
-from config import NEWS_TEMPLATE
+from administration.config import NEWS_TEMPLATE
 import os
 from cStringIO import StringIO
-from config import THUMBNAIL_SIZE
-from config import TRANSCODING_BTN_EN
-from config import TRANSCODING_BTN_JA
-from config import TRANSCODING_BTN_TH
-from config import TRANSCODING_BTN_PT
-from config import TRANSCODING_BTN_IND
-from config import TRANSCODED_ENCODING   # lijun
-from config import TRANSCODED_LOCAL_DIR
-from config import TRANSCODED_WEB_DIR
-from config import UCK_TRANSCODING
+from administration.config import THUMBNAIL_SIZE
+from administration.config import TRANSCODING_BTN_EN
+from administration.config import TRANSCODING_BTN_JA
+from administration.config import TRANSCODING_BTN_TH
+from administration.config import TRANSCODING_BTN_PT
+from administration.config import TRANSCODING_BTN_IND
+from administration.config import TRANSCODED_ENCODING   # lijun
+from administration.config import TRANSCODED_LOCAL_DIR
+from administration.config import TRANSCODED_WEB_DIR
+from administration.config import UCK_TRANSCODING
 import urllib2
 
 if not os.path.exists(TRANSCODED_LOCAL_DIR):

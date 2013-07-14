@@ -27,7 +27,7 @@ hparser = HTMLParser()
 
 # CONSTANTS
 HOST_ADDR = 'http://54.251.107.116/%s'
-HOME = '/home/ubuntu/hao123/%s'
+HOME = '/home/jinyuan/Downloads/global-mobile-news/%s'
 
 TRANSCODED_LOCAL_DIR = HOME % 'interface/transcoded/'
 TRANSCODED_WEB_DIR = HOST_ADDR % 'tr/'
@@ -35,9 +35,9 @@ TRANSCODED_WEB_DIR = HOST_ADDR % 'tr/'
 THUMBNAIL_LOCAL_DIR = HOME % 'interface/thumbnails/'
 THUMBNAIL_WEB_DIR = HOST_ADDR % 'th/'
 
-MAINTENANCE_DIR = HOME % 'alert-maintenance/maintenance/'
-RSS_UPDATE_LOG = HOME % 'alert-maintenance/maintenance/rul.txt'
-DATA_CLEAR_LOG = HOME % 'alert-maintenance/maintenance/dcl.txt'
+MAINTENANCE_DIR = HOME % 'alert_maintenance/maintenance/'
+RSS_UPDATE_LOG = HOME % 'alert_maintenance/maintenance/rul.txt'
+DATA_CLEAR_LOG = HOME % 'alert_maintenance/maintenance/dcl.txt'
 
 NEWS_TEMPLATE = HOME % 'template/index.html'
 UCK_TRANSCODING = 'http://gate.baidu.com/tc?m=8&from=bdpc_browser&src='

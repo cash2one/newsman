@@ -12,7 +12,6 @@
 import sys
 reload(sys)
 sys.setdefaultencoding('UTF-8')
-#sys.path.append('/home/jinyuan/Downloads/global-mobile-news/administration')
 sys.path.append('../')
 
 import base64
@@ -28,7 +27,7 @@ import random
 from administration.config import rclient
 from cStringIO import StringIO
 import time
-import data_processor.transcoder
+from data_processor import transcoder
 import urllib2
 
 from administration.config import LANGUAGES
