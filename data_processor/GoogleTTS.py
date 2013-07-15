@@ -8,7 +8,6 @@ sys.setdefaultencoding('UTF-8')
 import re
 import subprocess
 import time
-import urllib
 import urllib2
 
 
@@ -67,7 +66,7 @@ def google_speak(language='en', text='Service provided by Baidu', output='out.mp
     for idx, val in enumerate(combined_text):
         print 'transmitting ... %s' % val
         mp3url = "http://translate.google.com/translate_tts?tl=%s&q=%s&total=%s&idx=%s" % (
-            language, urllib.quote(val), len(combined_text), idx)
+            language, urllib2.quote(val), len(combined_text), idx)
         headers = {"Host": "translate.google.com",
                    "Referer": "http://www.gstatic.com/translate/sound_player2.swf",
                    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_3) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.163 Safari/535.19"}
