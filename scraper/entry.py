@@ -27,6 +27,7 @@ from administration.config import rclient
 from cStringIO import StringIO
 import time
 from data_processor import transcoder
+from data_processor import tts_provider
 import urllib2
 
 from administration.config import LANGUAGES
@@ -157,7 +158,6 @@ def read_entry(e=None, language=None, category=None, feed_id=None):
     entry['category'] = category
     entry['feed'] = feed_id
     entry['title'] = hparser.unescape(e.title.strip())
-    # Google TTS
     entry['link'] = e.link.strip()
     if ('published_parsed' in e and e['published_parsed']) or ('updated_parsed' in e and e['updated_parsed']):
         entry['updated'] = calendar.timegm(
@@ -226,6 +226,11 @@ def read_entry(e=None, language=None, category=None, feed_id=None):
         entry['image'] = []
     entry['image'] = 'None' if not entry['image'] else entry['image']
     entry['summary'] = 'None' if not entry['summary'] else entry['summary']
+    # Google TTS
+    random_code = random.randint(0, 1000000000) 
+    tts_path = '%s%s_%s_%i.mp3' % (THUMBNAIL_WEB_DIR, entry['language'], entry['updated'], random_code)
+    tts_provider.google(entry['language'], entry['title'], tts_path)
+    entry['mp3'] = tts_path
     return entry
 
 
