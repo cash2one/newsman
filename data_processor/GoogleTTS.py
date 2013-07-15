@@ -25,7 +25,7 @@ def get_output(language='en', text='Service provided by Baidu', output='out.mp3'
     # generate out.mp3
     google_speak(language, text, output)
     subprocess.Popen(
-        "lame --decode out.mp3 out.wav;sox out.wav test.wav speed 1.1;lame test.wav test.mp3;rm test.wav;rm out.wav;out.mp3;mpg123 test.mp3", stderr=subprocess.PIPE, shell=True)
+        "lame --decode out.mp3 out.wav;sox out.wav test.wav speed 1.1;lame test.wav test.mp3;rm test.wav;rm out.wav;rm out.mp3;mpg123 test.mp3", stderr=subprocess.PIPE, shell=True)
 
 
 def google_speak(language='en', text='Service provided by Baidu', output='out.mp3'):
@@ -74,7 +74,6 @@ def google_speak(language='en', text='Service provided by Baidu', output='out.mp
         if len(val) > 0:
             try:
                 response = urllib2.urlopen(req)
-                print output.__class__
                 output.write(response.read())
                 time.sleep(.5)
             except urllib2.HTTPError as e:
