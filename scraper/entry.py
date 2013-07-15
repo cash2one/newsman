@@ -130,7 +130,7 @@ def update_database(entries=None, language=None):
                                 entry['language'], entry['title'], tts_local_path)
                             entry['mp3'] = tts_web_path
                         except Exception as e:
-                            pass
+                            entry['mp3'] = "None"
                     # then save to database
                     entry_id = col.save(entry)
                     entry['_id'] = str(entry_id)
