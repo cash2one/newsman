@@ -40,6 +40,9 @@ from administration.config import THUMBNAIL_WEB_DIR
 
 def update_memory(added_items=None, language=None, category=None, feed_id=None):
     ''''''
+    
+    # Todos
+    # add more comments
     if not added_items:
         return None
     # add entry objects to memory
