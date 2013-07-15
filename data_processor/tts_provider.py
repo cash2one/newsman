@@ -80,3 +80,5 @@ def download(language='en', text='Service provided by Baidu', output='out.mp3'):
                 time.sleep(.5)
             except urllib2.HTTPError as e:
                 print ('%s' % e)
+    output.close()
+    print 
