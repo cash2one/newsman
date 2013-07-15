@@ -26,8 +26,6 @@ def get_output(text):
     google_speak(text)
     subprocess.Popen("lame --decode out.mp3 out.wav;sox out.wav test.wav speed 1.1;lame test.wav test.mp3;rm test.wav;rm out.wav;out.mp3;mpg123 test.mp3", stderr=subprocess.PIPE, shell=True)
 
-#!/usr/bin/python
-
 
 def google_speak(language='en', text='Service provided by Baidu', output='out.mp3'):
     '''
