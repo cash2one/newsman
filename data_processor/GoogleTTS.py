@@ -5,7 +5,6 @@ import sys
 reload(sys)
 sys.setdefaultencoding('UTF-8')
 
-import argparse
 import re
 import subprocess
 import time
@@ -17,7 +16,7 @@ import urllib2
 # rename the file and variables
 # remove accepting command line calls
 
-def output(language='en', text='Service provided by Baidu', output='test'):
+def download(language='en', text='Service provided by Baidu', output_path='out.mp3'):
     """
     1. download mp3 from google tts api
     2. convert it to wav
@@ -27,9 +26,9 @@ def output(language='en', text='Service provided by Baidu', output='test'):
     6. return the path
     """
     # generate out.mp3
-    google_speak(language, text, output)
+    google_speak(language, text, output_path)
     subprocess.Popen(
-        "lame --decode out.mp3 - | sox -t wav - -t wav - speed 1.1 | lame - %s.mp3; rm out.mp3" % output, stderr=subprocess.PIPE, shell=True)
+        'tts="%s"; lame --decode $tts - | sox -t wav - -t wav - speed 1.5 | lame - $tts' % output_path, stderr=subprocess.PIPE, shell=True)
 
 
 def google_speak(language='en', text='Service provided by Baidu', output='out.mp3'):
@@ -82,39 +81,3 @@ def google_speak(language='en', text='Service provided by Baidu', output='out.mp
                 time.sleep(.5)
             except urllib2.HTTPError as e:
                 print ('%s' % e)
-
-
-def main():
-    description = 'Google TTS Downloader.'
-    parser = argparse.ArgumentParser(description=description,
-                                     epilog='tunnel snakes rule')
-
-    parser.add_argument('-o', '--output', action='store', nargs='?',
-                        help='Filename to output audio to',
-                        type=argparse.FileType('w'), default='out.mp3')
-    parser.add_argument('-l', '--language', action='store',
-                        nargs='?', help='Language to output text to.', default='en')
-    group = parser.add_mutually_exclusive_group(required=True)
-    group.add_argument(
-        '-f', '--file', type=argparse.FileType('r'), help='File to read text from.')
-    group.add_argument('-s', '--string', action='store',
-                       nargs='+', help='A string of text to convert to speech.')
-
-    if len(sys.argv) == 1:
-        parser.print_help()
-        sys.exit(1)
-
-    args = parser.parse_args()
-    if args.file:
-        text = args.file.read()
-    if args.string:
-        text = ' '.join(map(str, args.string))
-
-    # process text into chunks
-    google_speak(args.language, text, args.output)
-    args.output.close()
-
-    print('Saved MP3 to %s' % args.output.name)
-
-if __name__ == "__main__":
-    main()
