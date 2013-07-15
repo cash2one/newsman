@@ -27,7 +27,7 @@ def google(language='en', text='Service provided by Baidu', output_path='out.mp3
     # generate out.mp3
     download(language, text, output_path)
     subprocess.Popen(
-        'tts="%s"; lame --decode $tts - | sox -t wav - -t wav - speed 1.5 | lame - $tts' % output_path, stderr=subprocess.PIPE, shell=True)
+        'tts="%s"; lame --decode $tts - | sox -t wav - -t wav - speed 1.1 | lame - $tts' % output_path, stderr=subprocess.PIPE, shell=True)
 
 
 def download(language='en', text='Service provided by Baidu', output='out.mp3'):
