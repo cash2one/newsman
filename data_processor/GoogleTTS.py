@@ -17,7 +17,7 @@ import urllib2
 # rename the file and variables
 # remove accepting command line calls
 
-def output(language='en', text='Service provided by Baidu', output='out.mp3'):
+def output(language='en', text='Service provided by Baidu', output='test'):
     """
     1. download mp3 from google tts api
     2. convert it to wav
@@ -29,7 +29,7 @@ def output(language='en', text='Service provided by Baidu', output='out.mp3'):
     # generate out.mp3
     google_speak(language, text, output)
     subprocess.Popen(
-        "lame --decode out.mp3 out.wav;sox out.wav test.wav speed 1.1;lame test.wav test.mp3;rm test.wav;rm out.wav;rm out.mp3;mpg123 test.mp3", stderr=subprocess.PIPE, shell=True)
+        "lame --decode out.mp3 - | sox -t wav - -t wav - speed 1.1 | lame - %s.mp3; rm out.mp3" % output, stderr=subprocess.PIPE, shell=True)
 
 
 def google_speak(language='en', text='Service provided by Baidu', output='out.mp3'):
