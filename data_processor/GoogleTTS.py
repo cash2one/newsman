@@ -1,8 +1,8 @@
-#!/usr/bin/env python 
-#-*- coding: utf-8 -*- 
+#!/usr/bin/env python
+#-*- coding: utf-8 -*-
 
-import sys 
-reload(sys) 
+import sys
+reload(sys)
 sys.setdefaultencoding('UTF-8')
 
 import argparse
@@ -13,7 +13,7 @@ import urllib
 import urllib2
 
 
-def get_output(text):
+def get_output(language='en', text='Service provided by Baidu', output='out.mp3'):
     """
     1. download mp3 from google tts api
     2. convert it to wav
@@ -23,8 +23,9 @@ def get_output(text):
     6. return the path
     """
     # generate out.mp3
-    google_speak(text)
-    subprocess.Popen("lame --decode out.mp3 out.wav;sox out.wav test.wav speed 1.1;lame test.wav test.mp3;rm test.wav;rm out.wav;out.mp3;mpg123 test.mp3", stderr=subprocess.PIPE, shell=True)
+    google_speak(language, text, output)
+    subprocess.Popen(
+        "lame --decode out.mp3 out.wav;sox out.wav test.wav speed 1.1;lame test.wav test.mp3;rm test.wav;rm out.wav;out.mp3;mpg123 test.mp3", stderr=subprocess.PIPE, shell=True)
 
 
 def google_speak(language='en', text='Service provided by Baidu', output='out.mp3'):
