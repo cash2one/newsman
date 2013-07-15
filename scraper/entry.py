@@ -114,6 +114,20 @@ def update_database(entries=None, language=None):
                                     entry['big_images'].remove(bimage)
                     elif entry['image'] and isinstance(entry['image'], list):
                         entry['image'] = entry['image'][0]
+                    # Google TTS
+                    # only for English, at present
+                    if entry['language'] == 'en':
+                        try:
+                            random_code = random.randint(0, 1000000000)
+                            tts_web_path = '%s%s_%s_%i.mp3' % (
+                                THUMBNAIL_WEB_DIR, entry['language'], entry['updated'], random_code)
+                            tts_local_path = '%s%s_%s_%i.mp3' % (
+                                THUMBNAIL_LOCAL_DIR, entry['language'], entry['updated'], random_code)
+                            tts_provider.google(
+                                entry['language'], entry['title'], tts_local_path)
+                            entry['mp3'] = tts_web_path
+                        except Exception as e:
+                            pass
                     # then save to database
                     entry_id = col.save(entry)
                     entry['_id'] = str(entry_id)
@@ -226,14 +240,6 @@ def read_entry(e=None, language=None, category=None, feed_id=None):
         entry['image'] = []
     entry['image'] = 'None' if not entry['image'] else entry['image']
     entry['summary'] = 'None' if not entry['summary'] else entry['summary']
-    # Google TTS
-    # only for English, at present
-    if entry['language'] == 'en':
-        random_code = random.randint(0, 1000000000) 
-        tts_web_path = '%s%s_%s_%i.mp3' % (THUMBNAIL_WEB_DIR, entry['language'], entry['updated'], random_code)
-        tts_local_path = '%s%s_%s_%i.mp3' % (THUMBNAIL_LOCAL_DIR, entry['language'], entry['updated'], random_code)
-        tts_provider.google(entry['language'], entry['title'], tts_local_path)
-        entry['mp3'] = tts_web_path
     return entry
 
 
