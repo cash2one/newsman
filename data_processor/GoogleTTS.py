@@ -13,7 +13,11 @@ import urllib
 import urllib2
 
 
-def get_output(language='en', text='Service provided by Baidu', output='out.mp3'):
+# Todos
+# rename the file and variables
+# remove accepting command line calls
+
+def output(language='en', text='Service provided by Baidu', output='out.mp3'):
     """
     1. download mp3 from google tts api
     2. convert it to wav
