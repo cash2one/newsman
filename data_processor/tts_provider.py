@@ -15,13 +15,21 @@ import urllib2
 
 
 class GoogleTranslateAPI(threading.Thread):
-    def __init__(self, sentence=None):
+    """
+    doc to be made
+    """
+    def __init__(self, request=None):
         threading.Thread.__init__(self)
-        self.freebase_api = FreebaseAPI(keyword)
-        self.result = []
+        self.request = request
+        self.result = None
 
     def run(self):
-        self.result = self.freebase_api.get_types()
+        try:
+            response = urllib2.urlopen(sel.request)
+            self.result = response.read()
+        except urlib2.HTTPError as e:
+            self.result = None 
+            print ('HTTPError %s' % e)
 
 
 # Todos
@@ -79,8 +87,7 @@ def download(language='en', text='Service provided by Baidu', output='out.mp3'):
     # rewrite: multi-threaded
 
     # download chunks and write them to the output file
-    if isinstance(output, str):
-        output = open(output, 'w')
+    threads = []
     for idx, val in enumerate(combined_text):
         print 'transmitting ... %s' % val
         mp3url = "http://translate.google.com/translate_tts?tl=%s&q=%s&total=%s&idx=%s" % (
@@ -91,12 +98,13 @@ def download(language='en', text='Service provided by Baidu', output='out.mp3'):
         req = urllib2.Request(mp3url, '', headers)
         # sys.stdout.write('.')
         # sys.stdout.flush()
-        if len(val) > 0:
-            try:
-                response = urllib2.urlopen(req)
-                output.write(response.read())
-                time.sleep(.5)
-            except urllib2.HTTPError as e:
-                print ('HTTPError %s' % e)
+        if val > 0:
+            gt_request = GoogleTranslateAPI(req)
+            threads.append(gt_request)
+            gt_request.start()
+            gt_request.join(1*1000)
+    output = open(output, 'w')
+    for th in threads:
+        output.write(th.result)
     output.close()
     print 
