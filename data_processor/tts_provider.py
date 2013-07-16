@@ -27,7 +27,7 @@ class GoogleTranslateAPI(threading.Thread):
         try:
             response = urllib2.urlopen(sel.request)
             self.result = response.read()
-        except urlib2.HTTPError as e:
+        except urllib2.HTTPError as e:
             self.result = None 
             print ('HTTPError %s' % e)
 
@@ -47,7 +47,7 @@ def google(language='en', text='Service provided by Baidu', output_path='out.mp3
     # generate out.mp3
     download(language, text, output_path)
     subprocess.Popen(
-        'tts="%s"; lame --decode $tts - | sox -t wav - -t wav - speed 1.1 | lame - $tts' % output_path, stderr=subprocess.PIPE, shell=True)
+        'tts="%s"; lame --decode $tts - | sox -t wav - -t wav - speed 1.06 | lame - $tts' % output_path, stderr=subprocess.PIPE, shell=True)
 
 
 # Todos
@@ -96,8 +96,6 @@ def download(language='en', text='Service provided by Baidu', output='out.mp3'):
                    "Referer": "http://www.gstatic.com/translate/sound_player2.swf",
                    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_3) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.163 Safari/535.19"}
         req = urllib2.Request(mp3url, '', headers)
-        # sys.stdout.write('.')
-        # sys.stdout.flush()
         if val > 0:
             gt_request = GoogleTranslateAPI(req)
             threads.append(gt_request)
@@ -105,6 +103,8 @@ def download(language='en', text='Service provided by Baidu', output='out.mp3'):
             gt_request.join(1*1000)
     output = open(output, 'w')
     for th in threads:
+        sys.stdout.write('.')
+        sys.stdout.flush()
         output.write(th.result)
     output.close()
     print 
