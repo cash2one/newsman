@@ -37,7 +37,7 @@ def download(language='en', text='Service provided by Baidu', output='out.mp3'):
     '''
     text = text.replace('\n', '')
     sents = nltk.sent_tokenize(text)
-    text_list = re.split('(\,|\.|\，|\。|、)', text)
+    text_list = re.split('(\,|\.)', text)
     combined_text = []
     for idx, val in enumerate(text_list):
         if idx % 2 == 0:
