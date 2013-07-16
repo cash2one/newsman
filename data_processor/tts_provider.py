@@ -36,8 +36,10 @@ def download(language='en', text='Service provided by Baidu', output='out.mp3'):
     languange = ja, en, pt, zh_CN, ar, th
     '''
     text = text.replace('\n', '')
-    sents = nltk.sent_tokenize(text)
-    text_list = re.split('(\,|\.)', text)
+    # simplified case only for latins
+    combined_text = nltk.sent_tokenize(text)
+    """
+    text_list = re.split('(\,)', text)
     combined_text = []
     for idx, val in enumerate(text_list):
         if idx % 2 == 0:
@@ -58,6 +60,7 @@ def download(language='en', text='Service provided by Baidu', output='out.mp3'):
                 # append final part
                 temp_array.append(temp_string)
                 combined_text.extend(temp_array)
+    """
 
     # Todos
     # rewrite: multi-threaded
