@@ -5,6 +5,7 @@ import sys
 reload(sys)
 sys.setdefaultencoding('UTF-8')
 
+import nltk
 import re
 import subprocess
 import time
@@ -35,6 +36,7 @@ def download(language='en', text='Service provided by Baidu', output='out.mp3'):
     languange = ja, en, pt, zh_CN, ar, th
     '''
     text = text.replace('\n', '')
+    sents = nltk.sent_tokenize(text)
     text_list = re.split('(\,|\.|\，|\。|、)', text)
     combined_text = []
     for idx, val in enumerate(text_list):
