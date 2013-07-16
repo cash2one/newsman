@@ -9,13 +9,24 @@ import nltk
 import re
 import subprocess
 import time
+import threading
 import urllib2
+
+
+
+class GoogleTranslateAPI(threading.Thread):
+    def __init__(self, sentence=None):
+        threading.Thread.__init__(self)
+        self.freebase_api = FreebaseAPI(keyword)
+        self.result = []
+
+    def run(self):
+        self.result = self.freebase_api.get_types()
 
 
 # Todos
 # rename the file and variables
 # remove accepting command line calls
-
 def google(language='en', text='Service provided by Baidu', output_path='out.mp3'):
     """
     1. download mp3 from google tts api
@@ -31,6 +42,8 @@ def google(language='en', text='Service provided by Baidu', output_path='out.mp3
         'tts="%s"; lame --decode $tts - | sox -t wav - -t wav - speed 1.1 | lame - $tts' % output_path, stderr=subprocess.PIPE, shell=True)
 
 
+# Todos
+# could separate download to at leat two methods
 def download(language='en', text='Service provided by Baidu', output='out.mp3'):
     '''
     languange = ja, en, pt, zh_CN, ar, th
@@ -76,14 +89,14 @@ def download(language='en', text='Service provided by Baidu', output='out.mp3'):
                    "Referer": "http://www.gstatic.com/translate/sound_player2.swf",
                    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_3) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.163 Safari/535.19"}
         req = urllib2.Request(mp3url, '', headers)
-        sys.stdout.write('.')
-        sys.stdout.flush()
+        # sys.stdout.write('.')
+        # sys.stdout.flush()
         if len(val) > 0:
             try:
                 response = urllib2.urlopen(req)
                 output.write(response.read())
                 time.sleep(.5)
             except urllib2.HTTPError as e:
-                print ('%s' % e)
+                print ('HTTPError %s' % e)
     output.close()
     print 
