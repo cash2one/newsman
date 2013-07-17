@@ -30,12 +30,15 @@ class GoogleTranslateAPI(threading.Thread):
     def run(self):
         response = subprocess.Popen(
             '''curl -A Mozilla "http://translate.google.com/translate_tts?tl=%s&q=%s"''' %
-            (self.language, urlib2.quote(self.text)), stdout=subprocess.PIPE, shell=True)
+            (self.language, urllib2.quote(self.text)), stdout=subprocess.PIPE, shell=True)
         content, error = response.communicate()
         if not error and content:
             if 'error' not in content or 'permission' not in content:
                 self.result = content
-        raise Exception
+            else:
+                raise Exception
+        else:
+            raise Exception
 
 
 # Todos
@@ -92,10 +95,10 @@ def query_segment(language='en', query='Service provided by Baidu'):
                         if combined_words:
                             parts.append(combined_words)
                     # -------------------------- #
-                    # \           |           / #
-                    # _  IMPLEMENT THIS PART _  #
-                    # AS SOON AS POSSIBLE!    #
-                    # /           |           \ #
+                    # \           |           /  #
+                    # _  IMPLEMENT THIS PART _   #
+                    #    AS SOON AS POSSIBLE!    #
+                    # /           |           \  #
                     # -------------------------- #
                     else:  # ja, th, ar
                         # Todos
