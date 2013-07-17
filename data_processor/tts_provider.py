@@ -7,6 +7,7 @@ sys.setdefaultencoding('UTF-8')
 
 import nltk
 import re
+import string
 import subprocess
 import time
 import threading
@@ -35,7 +36,7 @@ class GoogleTranslateAPI(threading.Thread):
 # Todos
 # rename the file and variables
 # remove accepting command line calls
-def google(language='en', text='Service provided by Baidu', output_path='out.mp3'):
+def google(language='en', query='Service provided by Baidu', output_path='out.mp3'):
     """
     1. download mp3 from google tts api
     2. convert it to wav
@@ -45,53 +46,82 @@ def google(language='en', text='Service provided by Baidu', output_path='out.mp3
     6. return the path
     """
     # generate out.mp3
-    download(language, text, output_path)
+    download(language, query, output_path)
     subprocess.Popen(
         'tts="%s"; lame --decode $tts - | sox -t wav - -t wav - speed 1.06 | lame - $tts' % output_path, stderr=subprocess.PIPE, shell=True)
 
 
 # Todos
-# could separate download to at leat two methods
-def download(language='en', text='Service provided by Baidu', output='out.mp3'):
+# to write some boundary checkers
+def query_segment(language='en', query='Service provided by Baidu'):
     '''
-    languange = ja, en, pt, zh_CN, ar, th
+    remove after implementing line 91: the algorithm only now works for latins
     '''
-    text = text.replace('\n', '')
-    # simplified case only for latins
-    combined_text = nltk.sent_tokenize(text)
-    """
-    text_list = re.split('(\,)', text)
-    combined_text = []
-    for idx, val in enumerate(text_list):
-        if idx % 2 == 0:
-            combined_text.append(val)
+    query = query.strip()
+    sentences = nltk.sent_tokenize(query)
+    parts = []
+    for sentence in sentences:
+        if len(sentence) < 99:
+            # none of len(item) in parts will exceed 100
+            parts.append(sentence)  # parts: ['xxx, xxx', 'yyy zzz aaa bbb.']
         else:
-            joined_text = ''.join((combined_text.pop(), val))
-            if len(joined_text) < 100:
-                combined_text.append(joined_text)
-            else:
-                subparts = re.split('( )', joined_text)
-                temp_string = ""
-                temp_array = []
-                for part in subparts:
-                    temp_string = temp_string + part
-                    if len(temp_string) > 80:
-                        temp_array.append(temp_string)
-                        temp_string = ""
-                # append final part
-                temp_array.append(temp_string)
-                combined_text.extend(temp_array)
-    """
+            phrases = sentence.split(',') # phrases: ['xxx -- xxx', 'yyy zzz aaa']
+            for phrase in phrases:
+                if len(phrase) < 99:
+                    parts.append(phrase)
+                else:
+                    if language == 'en' | language == 'pt' | language == 'id':
+                        words = phrase.split(' ')
+                        # none of len(item) in combined_words will exceed 100
+                        combined_words = ""  # combined_words = ['yyy zzz. aaa bbb']
+                        for word in words:
+                            if len(combined_words) + len(word) + 1 < 100: # +1 for possible space
+                                combined_words = ("""%s %s""" if word not in string.punctuation else """%s%s""") % (combined_words, word)
+                            else:
+                                parts.append(combined_words)
+                                combined_words = word
+                        if combined_words:
+                            parts.append(combined_words)
+                    # -------------------------- #
+                    #  \           |           / #
+                    #  _  IMPLEMENT THIS PART _  #
+                    #    AS SOON AS POSSIBLE!    # 
+                    #  /           |           \ #
+                    # -------------------------- #
+                    else: # ja, th, ar
+                        # Todos
+                        # determine how do these languages separate words
+                        pass
+    segments = []
+    # a higher-level version of 'combined_words' algorithm
+    segment = ""
+    for part in parts:
+        if len(segment) + len(part) + 1 < 100:
+            segment = """%s %s""" % (segment, part)
+        else:
+            segments.append(segment)
+            segment = part
+    segments.append(segment)
+    print 'after some serious thoughts, we get these:'
+    for segment in segments:
+        print segment
+    return segments
 
-    # Todos
-    # rewrite: multi-threaded
+# Todos
+# Test! Test! Test!
+# docs!
+def download(language='en', query='Service provided by Baidu', output='out.mp3'):
+    '''
+    docs needed!
+    '''
+    segments = query_segment(language, query)
 
     # download chunks and write them to the output file
     threads = []
-    for idx, val in enumerate(combined_text):
+    for idx, val in enumerate(segments):
         print 'transmitting ... %s' % val
         mp3url = "http://translate.google.com/translate_tts?tl=%s&q=%s&total=%s&idx=%s" % (
-            language, urllib2.quote(val), len(combined_text), idx)
+            language, urllib2.quote(val), len(segments), idx)
         headers = {"Host": "translate.google.com",
                    "Referer": "http://www.gstatic.com/translate/sound_player2.swf",
                    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_3) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.163 Safari/535.19"}
