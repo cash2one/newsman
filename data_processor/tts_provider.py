@@ -100,7 +100,7 @@ def query_segment(language='en', query='Service provided by Baidu'):
                     # -------------------------- #
                     # \           |           /  #
                     # _  IMPLEMENT THIS PART _   #
-                    #    AS SOON AS POSSIBLE!    #
+                    # AS SOON AS POSSIBLE!    #
                     # /           |           \  #
                     # -------------------------- #
                     else:  # ja, th, ar
@@ -159,4 +159,4 @@ def download(language='en', query='Service provided by Baidu', tmp_file='do_not_
     except Exception as e:
         if os.path.exists(output):
             os.remove(output)
-        return None 
+        return None
