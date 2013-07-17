@@ -25,7 +25,7 @@ class GoogleTranslateAPI(threading.Thread):
 
     def run(self):
         try:
-            response = urllib2.urlopen(sel.request)
+            response = urllib2.urlopen(self.request)
             self.result = response.read()
         except urllib2.HTTPError as e:
             self.result = None 
