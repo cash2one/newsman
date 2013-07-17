@@ -7,6 +7,7 @@ sys.setdefaultencoding('UTF-8')
 
 import nltk
 import os
+import random
 import re
 import string
 import subprocess
@@ -44,7 +45,7 @@ class GoogleTranslateAPI(threading.Thread):
 # Todos
 # rename the file and variables
 # remove accepting command line calls
-def google(language='en', query='Service provided by Baidu', output_path='out.mp3'):
+def google(language='en', query='Service provided by Baidu', output_path='do_not_exist.mp3'):
     """
     1. download mp3 from google tts api
     2. convert it to wav
@@ -54,9 +55,11 @@ def google(language='en', query='Service provided by Baidu', output_path='out.mp
     6. return the path
     """
     # generate out.mp3
-    download(language, query, output_path)
+    rand = random.randint(0, 1000000)
+    tmp_file = download(language, query, 'tmp%i-%s' % (rand, output_path))
     subprocess.Popen(
-        'tts="%s"; lame --decode $tts - | sox -t wav - -t wav - speed 1.06 | lame - $tts' % output_path, stderr=subprocess.PIPE, shell=True)
+        'lame -S --decode {0} - | sox -q -t wav - -t wav - speed 1.06 | lame -S - {1}; rm {0}'.format(tmp_file, output_path), stderr=subprocess.PIPE, shell=True)
+    print '----------- MISSION ACCOMPLISHED ----------'
 
 
 # Todos
@@ -114,7 +117,7 @@ def query_segment(language='en', query='Service provided by Baidu'):
             segments.append(segment)
             segment = part
     segments.append(segment)
-    print 'after some serious thoughts, we get these:'
+    print '---------- after some serious thoughts, we get these: -----------'
     for segment in segments:
         print segment
     return segments
@@ -122,8 +125,9 @@ def query_segment(language='en', query='Service provided by Baidu'):
 
 # Todos
 # Test! Test! Test!
+# boundary checkers
 # docs!
-def download(language='en', query='Service provided by Baidu', output='do_not_exists.mp3'):
+def download(language='en', query='Service provided by Baidu', tmp_file='do_not_exist.mp3'):
     '''
     docs needed!
     other ways to write download
@@ -142,7 +146,7 @@ def download(language='en', query='Service provided by Baidu', output='do_not_ex
                 threads.append(gt_request)
                 gt_request.start()
                 gt_request.join(2 * 1000)
-        out = open(output, 'a')
+        out = open(tmp_file, 'a')
         for th in threads:
             sys.stdout.write('.')
             sys.stdout.flush()
@@ -151,7 +155,8 @@ def download(language='en', query='Service provided by Baidu', output='do_not_ex
             else:
                 raise Exception
         out.close()
+        return tmp_file
     except Exception as e:
         if os.path.exists(output):
             os.remove(output)
-    print
+        return None 
