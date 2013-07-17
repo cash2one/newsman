@@ -6,6 +6,7 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 
 import nltk
+import os
 import re
 import string
 import subprocess
@@ -19,18 +20,19 @@ class GoogleTranslateAPI(threading.Thread):
     """
     doc to be made
     """
-    def __init__(self, request=None):
+    def __init__(self, language='en', text='Service provided by Baidu'):
         threading.Thread.__init__(self)
-        self.request = request
+        self.language = language
+        self.text = text
         self.result = None
 
     def run(self):
-        try:
-            response = urllib2.urlopen(self.request)
-            self.result = response.read()
-        except urllib2.HTTPError as e:
-            self.result = None 
-            print ('HTTPError %s' % e)
+        response = subprocess.Popen('''curl -A Mozilla "http://translate.google.com/translate_tts?tl=%s&q=%s"''' % (self.language, urlib2.quote(self.text)), stdout=subprocess.PIPE, shell=True)
+        content, error = response.communicate()
+        if not error and content:
+            if 'error' not in content or 'permission' not in content:
+                self.result = content
+        raise Exception
 
 
 # Todos
@@ -107,34 +109,39 @@ def query_segment(language='en', query='Service provided by Baidu'):
         print segment
     return segments
 
+
 # Todos
 # Test! Test! Test!
 # docs!
-def download(language='en', query='Service provided by Baidu', output='out.mp3'):
+def download(language='en', query='Service provided by Baidu', output='do_not_exists.mp3'):
     '''
     docs needed!
+    other ways to write download
+    1. https://github.com/hungtruong/Google-Translate-TTS/blob/master/GoogleTTS.py
+    2. https://github.com/gavinmh/tts-api/blob/master/text_segmenter.py
     '''
     segments = query_segment(language, query)
 
     # download chunks and write them to the output file
-    threads = []
-    for idx, val in enumerate(segments):
-        print 'transmitting ... %s' % val
-        mp3url = "http://translate.google.com/translate_tts?tl=%s&q=%s&total=%s&idx=%s" % (
-            language, urllib2.quote(val), len(segments), idx)
-        headers = {"Host": "translate.google.com",
-                   "Referer": "http://www.gstatic.com/translate/sound_player2.swf",
-                   "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_3) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.163 Safari/535.19"}
-        req = urllib2.Request(mp3url, '', headers)
-        if val > 0:
-            gt_request = GoogleTranslateAPI(req)
-            threads.append(gt_request)
-            gt_request.start()
-            gt_request.join(1*1000)
-    output = open(output, 'w')
-    for th in threads:
-        sys.stdout.write('.')
-        sys.stdout.flush()
-        output.write(th.result)
-    output.close()
+    try:
+        threads = []
+        for segment in segments:
+            if segment:
+                print 'transmitting ... %s' % segment
+                gt_request = GoogleTranslateAPI(language, segment)
+                threads.append(gt_request)
+                gt_request.start()
+                gt_request.join(2*1000)
+        out = open(output, 'a')
+        for th in threads:
+            sys.stdout.write('.')
+            sys.stdout.flush()
+            if th.result:
+                out.write(th.result)
+            else:
+                raise Exception        
+        out.close()
+    except Exception as e:
+        if os.path.exists(output):
+            os.remove(output)
     print 
