@@ -15,11 +15,12 @@ import threading
 import urllib2
 
 
-
 class GoogleTranslateAPI(threading.Thread):
+
     """
     doc to be made
     """
+
     def __init__(self, language='en', text='Service provided by Baidu'):
         threading.Thread.__init__(self)
         self.language = language
@@ -27,7 +28,9 @@ class GoogleTranslateAPI(threading.Thread):
         self.result = None
 
     def run(self):
-        response = subprocess.Popen('''curl -A Mozilla "http://translate.google.com/translate_tts?tl=%s&q=%s"''' % (self.language, urlib2.quote(self.text)), stdout=subprocess.PIPE, shell=True)
+        response = subprocess.Popen(
+            '''curl -A Mozilla "http://translate.google.com/translate_tts?tl=%s&q=%s"''' %
+            (self.language, urlib2.quote(self.text)), stdout=subprocess.PIPE, shell=True)
         content, error = response.communicate()
         if not error and content:
             if 'error' not in content or 'permission' not in content:
@@ -67,7 +70,8 @@ def query_segment(language='en', query='Service provided by Baidu'):
             # none of len(item) in parts will exceed 100
             parts.append(sentence)  # parts: ['xxx, xxx', 'yyy zzz aaa bbb.']
         else:
-            phrases = sentence.split(',') # phrases: ['xxx -- xxx', 'yyy zzz aaa']
+            # phrases: ['xxx -- xxx', 'yyy zzz aaa']
+            phrases = sentence.split(',')
             for phrase in phrases:
                 if len(phrase) < 99:
                     parts.append(phrase)
@@ -75,22 +79,25 @@ def query_segment(language='en', query='Service provided by Baidu'):
                     if language == 'en' | language == 'pt' | language == 'id':
                         words = phrase.split(' ')
                         # none of len(item) in combined_words will exceed 100
-                        combined_words = ""  # combined_words = ['yyy zzz. aaa bbb']
+                        # combined_words = ['yyy zzz. aaa bbb']
+                        combined_words = ""
                         for word in words:
-                            if len(combined_words) + len(word) + 1 < 100: # +1 for possible space
-                                combined_words = ("""%s %s""" if word not in string.punctuation else """%s%s""") % (combined_words, word)
+                            # +1 for possible space
+                            if len(combined_words) + len(word) + 1 < 100:
+                                combined_words = ("""%s %s""" if word not in string.punctuation else """%s%s""") % (
+                                    combined_words, word)
                             else:
                                 parts.append(combined_words)
                                 combined_words = word
                         if combined_words:
                             parts.append(combined_words)
                     # -------------------------- #
-                    #  \           |           / #
-                    #  _  IMPLEMENT THIS PART _  #
-                    #    AS SOON AS POSSIBLE!    # 
-                    #  /           |           \ #
+                    # \           |           / #
+                    # _  IMPLEMENT THIS PART _  #
+                    # AS SOON AS POSSIBLE!    #
+                    # /           |           \ #
                     # -------------------------- #
-                    else: # ja, th, ar
+                    else:  # ja, th, ar
                         # Todos
                         # determine how do these languages separate words
                         pass
@@ -131,7 +138,7 @@ def download(language='en', query='Service provided by Baidu', output='do_not_ex
                 gt_request = GoogleTranslateAPI(language, segment)
                 threads.append(gt_request)
                 gt_request.start()
-                gt_request.join(2*1000)
+                gt_request.join(2 * 1000)
         out = open(output, 'a')
         for th in threads:
             sys.stdout.write('.')
@@ -139,9 +146,9 @@ def download(language='en', query='Service provided by Baidu', output='do_not_ex
             if th.result:
                 out.write(th.result)
             else:
-                raise Exception        
+                raise Exception
         out.close()
     except Exception as e:
         if os.path.exists(output):
             os.remove(output)
-    print 
+    print
