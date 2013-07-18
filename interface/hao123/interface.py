@@ -28,7 +28,8 @@ from config import STRATEGY_WITHOUT_WEIGHTS
 from config import STRATEGY_WITH_WEIGHTS
 
 
-"""
+# Todos
+# need to refactor this method after sorting out feed.py
 def get_categories_by_language(language=None):
     '''get a list of categories and lists of feeds in a language'''
     if not language:
@@ -44,7 +45,6 @@ def get_categories_by_language(language=None):
                 categories[item['category']] = []
             categories[item['category']].append(item['feed_name'])
         return categories 
-"""
 
 def get_latest_entries_by_language(language=None, limit=10, start_id=None, strategy=1):
     ''''''
