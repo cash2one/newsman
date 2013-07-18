@@ -69,6 +69,8 @@ def update_memory(added_items=None, language=None, category=None, feed_id=None):
     return len(added_items)
 
 
+# Todos
+# break update_database into several shorter mthods
 def update_database(entries=None, language=None):
     ''''''
     print '>>> update_database'
