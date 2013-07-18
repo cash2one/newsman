@@ -25,7 +25,7 @@ class GoogleTranslateAPI(threading.Thread):
     def __init__(self, language='en', text='Service provided by Baidu'):
         threading.Thread.__init__(self)
         self.language = language
-        self.text = text.strip()
+        self.text = text
         self.result = None
 
     def run(self):
@@ -73,13 +73,13 @@ def query_segment(language='en', query='Service provided by Baidu'):
     for sentence in sentences:
         if len(sentence) < 99:
             # none of len(item) in parts will exceed 100
-            parts.append(sentence)  # parts: ['xxx, xxx', 'yyy zzz aaa bbb.']
+            parts.append(sentence.strip())  # parts: ['xxx, xxx', 'yyy zzz aaa bbb.']
         else:
             # phrases: ['xxx -- xxx', 'yyy zzz aaa']
             phrases = sentence.split(',')
             for phrase in phrases:
                 if len(phrase) < 99:
-                    parts.append(phrase)
+                    parts.append(phrase.strip())
                 else:
                     if language == 'en' | language == 'pt' | language == 'id':
                         words = phrase.split(' ')
@@ -92,10 +92,10 @@ def query_segment(language='en', query='Service provided by Baidu'):
                                 combined_words = ("""%s %s""" if word not in string.punctuation else """%s%s""") % (
                                     combined_words, word)
                             else:
-                                parts.append(combined_words)
+                                parts.append(combined_words.strip())
                                 combined_words = word
                         if combined_words:
-                            parts.append(combined_words)
+                            parts.append(combined_words.strip())
                     # -------------------------- #
                     # \           |           /  #
                     # _  IMPLEMENT THIS PART _   #
@@ -113,13 +113,14 @@ def query_segment(language='en', query='Service provided by Baidu'):
         if len(segment) + len(part) + 1 < 100:
             segment = """%s %s""" % (segment, part)
         else:
-            segments.append(segment)
+            segments.append(segment.strip())
             segment = part
-    segments.append(segment)
+    segments.append(segment.strip())
     print '---------- after some serious thoughts, we get these: -----------'
     for segment in segments:
         print segment
     return segments
+    print '----------                     :                      -----------'
 
 
 # Todos
