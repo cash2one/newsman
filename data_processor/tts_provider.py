@@ -25,7 +25,7 @@ class GoogleTranslateAPI(threading.Thread):
     def __init__(self, language='en', text='Service provided by Baidu'):
         threading.Thread.__init__(self)
         self.language = language
-        self.text = text
+        self.text = text.strip()
         self.result = None
 
     def run(self):
