@@ -55,8 +55,7 @@ def google(language='en', query='Service provided by Baidu', output_path='do_not
     6. return the path
     """
     # generate out.mp3
-    rand = random.randint(0, 1000000)
-    tmp_file = download(language, query, 'tmp%i-%s' % (rand, output_path))
+    tmp_file = download(language, query, '%s-tmp.mp3' % output_path[:-4])
     subprocess.Popen(
         'lame -S --decode {0} - | sox -q -t wav - -t wav - speed 1.06 | lame -S - {1}; rm {0}'.format(tmp_file, output_path), stderr=subprocess.PIPE, shell=True)
     print '----------- MISSION ACCOMPLISHED ----------'
