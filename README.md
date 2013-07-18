@@ -56,3 +56,4 @@ ToDos - Low Priority
 12. 为PM提供RSS管理的Web界面
 13. 根据RSS提供者的元数据区分更新时间
 14. 根据todos标签自动生成Markdown文档
+15. 增加在线生成临时图片和MP3的接口
