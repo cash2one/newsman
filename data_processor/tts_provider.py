@@ -157,6 +157,6 @@ def download(language='en', query='Service provided by Baidu', tmp_file='do_not_
         out.close()
         return tmp_file
     except Exception as e:
-        if os.path.exists(output):
-            os.remove(output)
+        if os.path.exists(tmp_file):
+            os.remove(tmp_file)
         return None
