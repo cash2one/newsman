@@ -12,6 +12,8 @@ from cStringIO import StringIO
 import urllib2
 
 
+# Todos
+# boundary checkers
 def generate_thumbnail(image_url, relative_path):
     """
     docs needed!
