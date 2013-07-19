@@ -23,7 +23,7 @@ import feedparser
 from administration.config import hparser
 import random
 from administration.config import rclient
-import image_processor
+from image_processor import thumbnail
 import time
 from data_processor import transcoder
 from data_processor import tts_provider
@@ -39,7 +39,7 @@ from administration.config import THUMBNAIL_WEB_DIR
 
 def update_memory(added_items=None, language=None, category=None, feed_id=None):
     ''''''
-    
+
     # Todos
     # add more comments
     if not added_items:
@@ -110,7 +110,7 @@ def update_database(entries=None, language=None):
                                     thumbnail_relative_path = thumbnail_relative_path[
                                         -200:]
                                 try:
-                                    thumbnail_url = image_processor.generate_thumbnail(
+                                    thumbnail_url = thumbnail.generate_thumbnail(
                                         bimage, thumbnail_relative_path)
                                     entry['image'] = thumbnail_url
                                     bimage_max = bimage_current
@@ -204,7 +204,7 @@ def read_entry(e=None, language=None, category=None, feed_id=None):
                 thumbnail_relative_path = '%s.jpeg' & img
                 if len(thumbnail_relative_path) > 200:
                     thumbnail_relative_path = thumbnail_relative_path[-200:]
-                thumbnail_url = imagge_processor.generate_thumbnail(
+                thumbnail_url = thumbnail.generate_thumbnail(
                     img, thumbnail_relative_path)
                 entry['image'].append(thumbnail_url)
             elif isinstance(img, list):
@@ -213,7 +213,7 @@ def read_entry(e=None, language=None, category=None, feed_id=None):
                     if len(thumbnail_relative_path) > 200:
                         thumbnail_relative_path = thumbnail_relative_path[
                             -200:]
-                    thumbnail_url = image_processor.generate_thumbnail(
+                    thumbnail_url = thumbnail.generate_thumbnail(
                         im, thumbnail_relative_path)
                     entry['image'].append(thumbnail_url)
         # abstract
