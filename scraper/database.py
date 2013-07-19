@@ -4,6 +4,19 @@
 import sys 
 reload(sys) 
 sys.setdefaultencoding('UTF-8')
+sys.path.append('..')
+
+
+from administration.config import Collection
+from administration.config import db
+import random
+from image_processor import thumbnail
+from data_processor import transcoder
+from data_processor import tts_provider
+
+from administration.config import THUMBNAIL_LOCAL_DIR
+from administration.config import THUMBNAIL_SIZE
+from administration.config import THUMBNAIL_WEB_DIR
 
 
 # Todos
