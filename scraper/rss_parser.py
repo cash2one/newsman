@@ -16,17 +16,13 @@ sys.path.append('..')
 
 from BeautifulSoup import BeautifulStoneSoup
 import calendar
-from administration.config import Collection
 from datetime import timedelta, datetime
-from administration.config import db
 import feedparser
 from administration.config import hparser
 import random
 from administration.config import rclient
 from image_processor import thumbnail
 import time
-from data_processor import transcoder
-from data_processor import tts_provider
 import urllib2
 
 from administration.config import LANGUAGES
