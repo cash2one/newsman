@@ -6,8 +6,15 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 
 
+import Image
+from cStringIO import StringIO
+import urllib2
+
+
 def generate_thumbnail(image_url, relative_path):
-    ''''''
+    """
+    docs needed!
+    """
     if not image_url or not relative_path:
         return None
     image_web = StringIO(urllib2.urlopen(image_url).read())
