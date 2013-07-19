@@ -6,6 +6,7 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 
 
+import config
 import Image
 from cStringIO import StringIO
 import urllib2
@@ -25,7 +26,7 @@ def generate_thumbnail(image_url, relative_path):
             THUMBNAIL_LOCAL_DIR, relative_path)
         image_thumbnail_web_path = '%s%s.jpeg' % (
             THUMBNAIL_WEB_DIR, relative_path)
-        image_pil.thumbnail(THUMBNAIL_SIZE, Image.ANTIALIAS)
+        image_pil.thumbnail(config.THUMBNAIL_SIZE, Image.ANTIALIAS)
         image_pil = image_pil.convert('RGB')
         image_pil.save(image_thumbnail_local_path, 'JPEG')
         return image_thumbnail_web_path
