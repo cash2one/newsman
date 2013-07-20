@@ -131,7 +131,9 @@ def extract_entries(feed_id=None, feed_link=None, language=None, category=None):
 
 
 def add_entries(feed_id=None, feed_link=None, language=None, category=None):
-    ''''''
+    """
+
+    """
     if not feed_id or not feed_link or not language or not category:
         return None
     feed_link = feed_link.strip()

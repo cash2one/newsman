@@ -12,16 +12,17 @@
 import sys
 reload(sys)
 sys.setdefaultencoding('UTF-8')
-sys.path.append('../')
+sys.path.append('..')
 
 import calendar
 from administration.config import Collection
 from datetime import datetime, timedelta
 from administration.config import db
-import entry
 import feedparser
+import memory
 import os
 from administration.config import rclient
+import rss_parser
 import time
 
 from bson.objectid import ObjectId
@@ -82,7 +83,7 @@ def restore():
                     #exp = i[1]
                     # print '++', ent['_id'],
                     # datetime.utcfromtimestamp(ent['updated']), exp
-                entry.update_memory(
+                memory.update_memory(
                     items_with_expiration, language, category, feed_id)
             print language, category, feed_id, len(items_with_expiration)
         l.close()
@@ -301,7 +302,7 @@ def execute_task(lines):
         for line in lines:
             language, category, feed_id, feed_link = extract_task(line)
             print language, category, feed_id
-            updated_tasks = entry.add_entries(
+            updated_tasks = .add_entries(
                 feed_id, feed_link, language, category)
             if updated_tasks:
                 f.write("%s: %s %i\n" %
