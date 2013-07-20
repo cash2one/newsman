@@ -132,7 +132,10 @@ def extract_entries(feed_id=None, feed_link=None, language=None, category=None):
 
 def add_entries(feed_id=None, feed_link=None, language=None, category=None):
     """
-
+    add_entries could be called
+    1. by automation/task procedures
+    2. after a rss is called
+    3. manually for testing purpose
     """
     if not feed_id or not feed_link or not language or not category:
         return None
