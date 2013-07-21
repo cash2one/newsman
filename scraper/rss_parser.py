@@ -172,7 +172,8 @@ def read_entry(e=None, language=None, category=None, feed_id=None):
                             raise AttributeError("no image found in 'links'")
                     except AttributeError as k:
                         print k, '... Oooops! cannot find thumbnails!'
-    entry['thumbnails'] = None if not entry['thumbnails'] else entry['thumbnails']
+    entry['thumbnails'] = None if not entry[
+        'thumbnails'] else entry['thumbnails']
 
     # article's big images
     entry['big_images'] = []
@@ -209,7 +210,8 @@ def read_entry(e=None, language=None, category=None, feed_id=None):
     except AttributeError as k:
         if 'big_images' not in entry:
             print k, '... probably this has no big images!'
-    entry['big_images'] = None if not entry['big_images'] else entry['big_images']
+    entry['big_images'] = None if not entry[
+        'big_images'] else entry['big_images']
 
     # article's author
     # e.g. Yuan Jin
