@@ -251,10 +251,11 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None):
 # Todos
 # boundary checkers
 # update parsing info to feed database
-def parse(feed_link=None, feed_id=None, feed_title=None, language=None):
+def parse(feed_link=None, feed_id=None, feed_title=None, language=None, etag=None, modified=None):
     """
     read rss/atom data from a given feed
     feed_id is the feed ObjectId in MongoDB
+    Etag and Modified are used to save rss http server's bandwidth
     Note: category should be added to feed table/database
     """
     if not feed_link or not language:
@@ -275,7 +276,7 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None):
         return True if deadline > datetime.now() else False
 
     # variables d and e follow feedparser tradition
-    d = feedparser.parse(feed_link)
+    d = feedparser.parse(feed_link, etag=etag, modified=modified)
     if d:
         if not feed_title:
             # if title were not found in feed, an AttributeError would be
