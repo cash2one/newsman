@@ -13,7 +13,7 @@ from administration.config import MEMORY_RESTORATION_DAYS
 from administration.config import REDIS_ENTRY_EXPIRATION
 
 
-def update_memory(added_items=None, language=None, category=None, feed_id=None):
+def update(added_items=None, language=None, category=None, feed_id=None):
     ''''''
     
     # Todos
