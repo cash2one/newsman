@@ -173,23 +173,13 @@ def read_entry(e=None, language=None, category=None, feed_id=None):
         print e, '... probably this has no tags'
 
     # article's summary
-    if 'summary' in e:
-        soup = BeautifulStoneSoup(e.summary)
-        entry['image'] = []
-        entry['summary'] = ''
-        # thumbnail(s)
+    try:
+        entry['summary'] = hparser.unescape(e.summary)
+    except AttributeError as e:
+        print e, '... probably this has no summary'
 
-        # Todos
-        # rename variable! bloody ugly
-        # remove name length checking
-        #
-        # abstract
-        if soup.text:
-            entry['summary'] = hparser.unescape(soup.text)
-    else:
-        entry['summary'] = ''
-        entry['image'] = []
-    entry['image'] = 'None' if not entry['image'] else entry['image']
+    # specially made for Android front-end developers
+    entry['thumbnails'] = 'None' if not entry['thumbnails'] else entry['thumbnails']
     entry['summary'] = 'None' if not entry['summary'] else entry['summary']
     return entry
 
