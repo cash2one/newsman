@@ -101,12 +101,36 @@ def read_entry(e=None, language=None, category=None, feed_id=None):
             try:
                 for attribute in e:
                     if 'thumbnail' in attribute:
-                        thumbnail_embedded = e.attribute
-                        width, height = thumbnail.get_image_size(thumbnail_embedded)
-                        entry['thumbnails'] = [{'url':thumbnail_embedded, 'width':width, 'height':height}]
-                        break
+                        # currently set thumbnail to None if its a dictionary
+                        thumbnail_embedded = e.attribute if isinstance(e.attribute, str) else None 
+                        if thumbnail_embedded:
+                            width, height = thumbnail.get_image_size(thumbnail_embedded)
+                            entry['thumbnails'] = [{'url':thumbnail_embedded, 'width':width, 'height':height}]
+                            break
+                if not entry['thumbnails']:
+                    raise AttributeError("cannot find 'thumbnail'-like attribute")
             except AttributeError as e:
-                print e, '... probably this has no thumbnails'
+                print e, '... will try summary, if available'
+                if entry['summary']:
+                    from BeautifulStoneSoup import BeautifulStoneSoup
+                    soup = BeautifulStoneSoup(entry['summary'])
+
+                    if soup.img:
+                        img = soup.img['src']
+                        if isinstance(img, str):
+                            width, height = soup.img['width'], soup.img['height'] if soup.img.get('widht') and soup.img.get('height') else thumbnail.get_image_size(img)
+                            entry['image'].append(thumbnail_url)
+                        elif isinstance(img, list):
+                            for im in img:
+                                thumbnail_relative_path = '%s.jpeg' % im
+                                if len(thumbnail_relative_path) > 200:
+                                    thumbnail_relative_path = thumbnail_relative_path[
+                                        -200:]
+                                thumbnail_url = thumbnail.get(
+                                    im, thumbnail_relative_path)
+                                entry['image'].append(thumbnail_url)
+                            else:
+                    print 'this has no thumbnails!'
 
     # article's author
     # e.g. Yuan Jin
@@ -131,6 +155,7 @@ def read_entry(e=None, language=None, category=None, feed_id=None):
     except AttributeError as e:
         print e, '... probably this has no tags'
 
+    # article's summary
     if 'summary' in e:
         soup = BeautifulStoneSoup(e.summary)
         entry['image'] = []
@@ -141,24 +166,6 @@ def read_entry(e=None, language=None, category=None, feed_id=None):
         # rename variable! bloody ugly
         # remove name length checking
         #
-        if soup.img:
-            img = soup.img['src']
-            if isinstance(img, str):
-                thumbnail_relative_path = '%s.jpeg' & img
-                if len(thumbnail_relative_path) > 200:
-                    thumbnail_relative_path = thumbnail_relative_path[-200:]
-                thumbnail_url = thumbnail.get(
-                    img, thumbnail_relative_path)
-                entry['image'].append(thumbnail_url)
-            elif isinstance(img, list):
-                for im in img:
-                    thumbnail_relative_path = '%s.jpeg' % im
-                    if len(thumbnail_relative_path) > 200:
-                        thumbnail_relative_path = thumbnail_relative_path[
-                            -200:]
-                    thumbnail_url = thumbnail.get(
-                        im, thumbnail_relative_path)
-                    entry['image'].append(thumbnail_url)
         # abstract
         if soup.text:
             entry['summary'] = hparser.unescape(soup.text)
