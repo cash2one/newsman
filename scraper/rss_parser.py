@@ -37,7 +37,8 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None):
     read a specific entry item from a feed 
     """
     if not e or not feed_id or not feed_title or not language:
-        raise Exception("ERROR: Method signature not well formed for %s!" % feed_id)
+        raise Exception(
+            "ERROR: Method signature not well formed for %s!" % feed_id)
     if language not in LANGUAGES:
         raise Exception("ERROR: Language not supported for %s!" % feed_id)
 
@@ -58,7 +59,8 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None):
     except AttributeError as k:
         print k
         entry['error'] = k
-        raise Exception('ERROR: No title or link found for %s!' % entry['feed_id'])
+        raise Exception(
+            'ERROR: No title or link found for %s!' % entry['feed_id'])
 
     # article published time
     # first try parsed time info
@@ -256,13 +258,14 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None):
     Note: category should be added to feed table/database
     """
     if not feed_link or not feed_id or not language:
-        raise Exception("ERROR: Method signature not well formed for %s!" % feed_id)
+        raise Exception(
+            "ERROR: Method signature not well formed for %s!" % feed_id)
     if language not in LANGUAGES:
         raise Exception("ERROR: Language not supported for %s!" % feed_link)
     # parameters striped
     feed_link = feed_link.strip()
     language = language.strip()
-    
+
     def validate_time(entry):
         """
         see if the entry's updated time is earlier than needed
@@ -275,13 +278,15 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None):
     d = feedparser.parse(feed_link)
     if d:
         if not feed_title:
-            # if title were not found in feed, an AttributeError would be raised.
-            feed_title = hparser.unescape(feed.title).strip() 
+            # if title were not found in feed, an AttributeError would be
+            # raised.
+            feed_title = hparser.unescape(feed.title).strip()
         else:
             feed_title = feed_title.strip()
-            feed_title_latest = hparser.unescape(feed.title).strip() 
+            feed_title_latest = hparser.unescape(feed.title).strip()
             if feed_title != feed_title_latest:
-                raise Exception('WARNING: %s title changed! Please update feed table/database' % feed_id)
+                raise Exception(
+                    'WARNING: %s title changed! Please update feed table/database' % feed_id)
 
         if 'entries' in d:
             language = language if 'language' not in d else d.language
