@@ -21,6 +21,7 @@ import Image
 from administration.config import NEWS_TEMPLATE
 import os
 from cStringIO import StringIO
+from image_processor import thumbnail
 from administration.config import THUMBNAIL_SIZE
 from administration.config import TRANSCODING_BTN_EN
 from administration.config import TRANSCODING_BTN_JA
@@ -136,11 +137,6 @@ def generate_path(content, relative_path):
     f.close()
     return web_path
 
-def get_image_size(image_url):
-    image_web = StringIO(urllib2.urlopen(image_url).read())
-    im = Image.open(image_web)
-    width, height = im.size
-    return width, height
 
 def find_big_images(content):
     ''''''
@@ -153,7 +149,7 @@ def find_big_images(content):
         try:
             image = img['src']
             if image.endswith('.jpg') or image.endswith('.JPG') or image.endswith('.jpeg') or image.endswith('.JPEG') or image.endswith('.png') or image.endswith('.PNG'):
-                current_size = get_image_size(image)
+                current_size = thumnail.get_image_size(image)
                 if current_size > THUMBNAIL_SIZE:
                     images.append(image)
         except Exception as e:
