@@ -336,6 +336,9 @@ def scrape(language):
     lines = f.readlines()
     updated_tasks = execute_task(lines)
 
+
+# Todos
+# put language in config file
 if __name__ == "__main__":
     command = sys.argv[1]
     if len(sys.argv) > 2:

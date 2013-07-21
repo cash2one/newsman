@@ -26,17 +26,20 @@ import urllib2
 from administration.config import LANGUAGES
 
 
+# Todos
+# - add more boundary checks
+# - [register unsupported date format](http://pythonhosted.org/feedparser/date-parsing.html#advanced-date)
+# - add tags
 def read_entry(e=None, language=None, category=None, feed_id=None):
-    ''''''
-    if not e:
-        return 1
-    # Todos
-    # add more boundary checks
+    """
+    docs needed!
+    """
     entry = {}
     entry['category'] = category
     entry['feed'] = feed_id
     entry['language'] = language
 
+    # the easy part
     try:
         # article original link
         entry['link'] = e.link.strip()
@@ -86,20 +89,23 @@ def read_entry(e=None, language=None, category=None, feed_id=None):
                 raise Exception('----- ERROR: entry %s has no publication info!' % entry['title'])
 
     # article's thumbnail     
-    if 'media_thumbnail' in e or 'media_content' in e:
-        thumbnails = e['media_content'] if 'media_content' in e else e[
-            'media_thumbnail']
-        # a list of thumbnails
-        for thumbnail in thumbnails:
-            if 'url' in thumbnail:
-                image_web = thumbnail['url']
-                if 'image' not in entry:
-                    entry['image'] = []
-                entry['image'].append(image_web)
-    if 'thumbnail' in e:
-        if 'image' not in entry:
-            entry['image'] = []
-        entry['image'].append(e['thumbnail'])
+    try: 
+        if 'media_thumbnail' in e or 'media_content' in e:
+            thumbnails = e['media_content'] if 'media_content' in e else e['media_thumbnail']
+            # a list of thumbnails
+            for thumbnail in thumbnails:
+                if 'url' in thumbnail:
+                    image_web = thumbnail['url']
+                    if 'image' not in entry:
+                        entry['image'] = []
+                    entry['image'].append(image_web)
+        if 'thumbnail' in e:
+            if 'image' not in entry:
+                entry['image'] = []
+            entry['image'].append(e['thumbnail'])
+    except AttributeError as e:
+        print e
+
     if 'summary' in e:
         soup = BeautifulStoneSoup(e.summary)
         entry['image'] = []
