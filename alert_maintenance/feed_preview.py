@@ -52,7 +52,7 @@ def preview(language='en'):
             if len(feed.entries):
                 for e in feed.entries[0]:
                     output.write(e + '\n')
-                    if 'author' in e or 'tag' in e or 'media' in e or 'thumbnail' in e or e == 'source' or 'link' in e:
+                    if 'author' in e or 'tag' in e or 'media' in e or 'thumbnail' in e or e == 'source' or 'link' in e or 'summary' in e or 'comment' in e or e == 'content':
                         output.write('    %s\n' % feed.entries[0][e])
         output.write('\n')
     output.close()
