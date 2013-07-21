@@ -8,18 +8,20 @@ encoding
 bozo
 headers
 etag
-    "51eb8e0f-1957"
+    "51eba324-1957"
 href
 version
 entries
 namespaces
 -----------------
 summary_detail
+    {'base': u'http://www.deccanherald.com/rss/business.rss', 'type': u'text/html', 'value': u'<strong>It may have lost out to the more modern competitors from Maruti Suzuki, Hyundai, Toyota and Honda but the good old Ambassador car, that once ruled the roost in India, has just been voted as the worlds best taxi by global automotive programme Top Gear.</strong><br /><br />In a show, which is being aired on the BBC, Top Gears executive director Richard Hammond organised a world taxi shootout in which Ambassador emerged a winner, beating competitors from all over the globe.<br /><br />"The winner was Indias virtually indestructible Hindustan Ambassador," UK-based motor museum Beaulieu, where the World of Top Gear featuring vehicles from some of the most ambitious challenges are also showcased, said in a statement.<br /><br />This particular example proved just how enduring the Ambassador really is when it saw off rivals from Britain, America, Germany, South Africa, Mexico and Russia to be named the worlds best taxi, it added.<br /><br />The Hindustan Ambassador started life in Britain as the Morris Oxford but, with a quick name change, it went on to become one of Indias most enduring vehicles.<br /><br />"Its (Ambassador) so tough that, although it now lives in World of Top Gear, with a quick wash and brush up, it could be back in service tomorrow - probably," the statement said.<br /><br />In 1948, CK Birla Group firm Hindustan Motors Ltd began the production of the Ambassador at Uttarpara in Hooghly district, West Bengal.<br /><br />Till the arrival of the Maruti in the early 80s, the Ambassador was the status symbol in India. Gradually it lost out to various global competitors when it came to personal usage but continued to be the favourite vehicle for government officials and also in the taxi segment.<br /><br />In the recent past, its sales in both the segments have shown a decline and in 2012-13, the Ambassador sold a total of just 3,390 units. This fiscal, it has sold only 709 units in the April-June period.  <br />', 'language': None}
 published_parsed
 links
     [{'href': u'http://www.deccanherald.com/content/346102/ambassador-car-ranked-taxi-world.html', 'type': u'text/html', 'rel': u'alternate'}]
 title
 summary
+    <strong>It may have lost out to the more modern competitors from Maruti Suzuki, Hyundai, Toyota and Honda but the good old Ambassador car, that once ruled the roost in India, has just been voted as the worlds best taxi by global automotive programme Top Gear.</strong><br /><br />In a show, which is being aired on the BBC, Top Gears executive director Richard Hammond organised a world taxi shootout in which Ambassador emerged a winner, beating competitors from all over the globe.<br /><br />"The winner was Indias virtually indestructible Hindustan Ambassador," UK-based motor museum Beaulieu, where the World of Top Gear featuring vehicles from some of the most ambitious challenges are also showcased, said in a statement.<br /><br />This particular example proved just how enduring the Ambassador really is when it saw off rivals from Britain, America, Germany, South Africa, Mexico and Russia to be named the worlds best taxi, it added.<br /><br />The Hindustan Ambassador started life in Britain as the Morris Oxford but, with a quick name change, it went on to become one of Indias most enduring vehicles.<br /><br />"Its (Ambassador) so tough that, although it now lives in World of Top Gear, with a quick wash and brush up, it could be back in service tomorrow - probably," the statement said.<br /><br />In 1948, CK Birla Group firm Hindustan Motors Ltd began the production of the Ambassador at Uttarpara in Hooghly district, West Bengal.<br /><br />Till the arrival of the Maruti in the early 80s, the Ambassador was the status symbol in India. Gradually it lost out to various global competitors when it came to personal usage but continued to be the favourite vehicle for government officials and also in the taxi segment.<br /><br />In the recent past, its sales in both the segments have shown a decline and in 2012-13, the Ambassador sold a total of just 3,390 units. This fiscal, it has sold only 709 units in the April-June period.  <br />
 guidislink
     False
 title_detail
@@ -43,16 +45,18 @@ namespaces
 entries
 -----------------
 summary_detail
+    {'base': u'http://www.thehindubusinessline.com/industry-and-economy/?service=rss', 'type': u'text/html', 'value': u'Government\u2019s decision to fully open the cash\u2014starved telecom sector is expected to renew interest from foreign players in the upcoming spectrum auctions, global financial major Bank of America Mer...', 'language': u'en'}
 published_parsed
 links
-    [{'href': u'http://www.thehindubusinessline.com/features/taxation-and-accounts/indirect-tax-kitty-grows-47-in-apriljune/article4937598.ece', 'type': u'text/html', 'rel': u'alternate'}]
+    [{'href': u'http://www.thehindubusinessline.com/industry-and-economy/info-tech/100-fdi-in-telecom-to-spur-interest-in-upcoming-auctionsbofa/article4937659.ece', 'type': u'text/html', 'rel': u'alternate'}]
 tags
-    [{'term': u'Taxation & Accountancy', 'scheme': None, 'label': None}]
+    [{'term': u'Info-tech', 'scheme': None, 'label': None}]
 title
 summary
+    Government’s decision to fully open the cash—starved telecom sector is expected to renew interest from foreign players in the upcoming spectrum auctions, global financial major Bank of America Mer...
 title_detail
 link
-    http://www.thehindubusinessline.com/features/taxation-and-accounts/indirect-tax-kitty-grows-47-in-apriljune/article4937598.ece
+    http://www.thehindubusinessline.com/industry-and-economy/info-tech/100-fdi-in-telecom-to-spur-interest-in-upcoming-auctionsbofa/article4937659.ece
 published
 
 ::::: The Asian Age :::::
@@ -79,25 +83,27 @@ encoding
 bozo
 headers
 etag
-    "180c5-72772-4e200c0b7f000"
+    "1bc7a2-72706-4e20209cbb640"
 href
 version
 entries
 namespaces
 -----------------
 summary_detail
+    {'base': u'http://ibnlive.in.com/xml/rss/business.xml', 'type': u'text/html', 'value': u'<img height="62" src="http://static.ibnlive.in.com/ibnlive/pix/sitepix/06_2013/jet-enters-into-code-share-agreements-with-air-france-klm_170613045320_338x225.jpg" width="90" />Raising concerns over the Rs 2,058 crore Jet-Etihad deal, a BJP MP has written to Prime Minister Manmohan Singh for "wider inter-agency consultations" on the serious technical issue of \'control\' in the proposed FDI deal.', 'language': None}
 published_parsed
 links
-    [{'href': u'http://ibnlive.in.com/news/govt-may-issue-nri-bonds-soon-to-check-rupee-fall-hsbc/408273-7.html', 'type': u'text/html', 'rel': u'alternate'}]
+    [{'href': u'http://ibnlive.in.com/news/bjp-writes-to-pm-says-wider-consultation-needed-on-jetetihad-deal/408299-7.html', 'type': u'text/html', 'rel': u'alternate'}]
 title
 language
 rights
 summary
+    <img height="62" src="http://static.ibnlive.in.com/ibnlive/pix/sitepix/06_2013/jet-enters-into-code-share-agreements-with-air-france-klm_170613045320_338x225.jpg" width="90" />Raising concerns over the Rs 2,058 crore Jet-Etihad deal, a BJP MP has written to Prime Minister Manmohan Singh for "wider inter-agency consultations" on the serious technical issue of 'control' in the proposed FDI deal.
 guidislink
     False
 title_detail
 link
-    http://ibnlive.in.com/news/govt-may-issue-nri-bonds-soon-to-check-rupee-fall-hsbc/408273-7.html
+    http://ibnlive.in.com/news/bjp-writes-to-pm-says-wider-consultation-needed-on-jetetihad-deal/408299-7.html
 published
 rights_detail
 id
@@ -122,7 +128,9 @@ links
     [{'href': u'http://www.indianexpress.com/news/wockhardt-gets-usfda-warning-over-waluj-plant/1144515/', 'type': u'text/html', 'rel': u'alternate'}]
 title
 summary_detail
+    {'base': u'http://syndication.indianexpress.com/rss/37/business.xml', 'type': u'text/html', 'value': u'Quality check: Warning comes for not meeting manufacturing norms', 'language': None}
 summary
+    Quality check: Warning comes for not meeting manufacturing norms
 guidislink
     False
 title_detail
@@ -145,6 +153,7 @@ entries
 bozo_exception
 -----------------
 summary_detail
+    {'base': u'http://www.ndtv.com/convergence/ndtv/rssbus.asp', 'type': u'text/html', 'value': u'<p><a href="http://www.ndtv.com/convergence/ndtv/processarchive.aspx?id=BUSEN20100139988"><img align="left" alt="Apple chief makes case against Adobe Flash software" border="0" src="http://www.ndtv.com/convergence/images/thumbnail/ver1/a/apple.jpg" style="margin-right: 5px; margin-top: 5px; width: 70px; height: 70px;" /></a>Apple CEO Steve Jobs took his case against Flash software public, arguing that Adobe product is a flop on touchscreen iPad and iPhone.&amp;quot;Flash was created during the PC (personal computer) era for PCs and mice,&amp;quot; Jobs said in a long message posted at the Cupertino, California-based firm\'s website.&lt;br&gt;\xa0</p><br clear="all" />', 'language': None}
 links
     [{'href': u'http://www.ndtv.com/convergence/ndtv/processarchive.aspx?id=BUSEN20100139988', 'type': u'text/html', 'rel': u'alternate'}]
 published_parsed
@@ -152,6 +161,7 @@ title
 tags
     [{'term': u'apple,fash,software', 'scheme': None, 'label': None}]
 summary
+    <p><a href="http://www.ndtv.com/convergence/ndtv/processarchive.aspx?id=BUSEN20100139988"><img align="left" alt="Apple chief makes case against Adobe Flash software" border="0" src="http://www.ndtv.com/convergence/images/thumbnail/ver1/a/apple.jpg" style="margin-right: 5px; margin-top: 5px; width: 70px; height: 70px;" /></a>Apple CEO Steve Jobs took his case against Flash software public, arguing that Adobe product is a flop on touchscreen iPad and iPhone.&amp;quot;Flash was created during the PC (personal computer) era for PCs and mice,&amp;quot; Jobs said in a long message posted at the Cupertino, California-based firm's website.&lt;br&gt; </p><br clear="all" />
 title_detail
 link
     http://www.ndtv.com/convergence/ndtv/processarchive.aspx?id=BUSEN20100139988
@@ -167,18 +177,20 @@ encoding
 bozo
 headers
 etag
-    "51eb8e11-1002"
+    "51eba326-1002"
 href
 version
 entries
 namespaces
 -----------------
 summary_detail
+    {'base': u'http://www.deccanherald.com/rss/entertainment.rss', 'type': u'text/html', 'value': u'<strong>A sequel to last months hit "Superman" film "Man of Steel" is not only in the works, but will feature two of DC Comics best-known caped crusaders - Superman and Batman - facing off against each other, director Zack Snyder said on Saturday.</strong><br /><br />Snyder, who directed British actor Henry Cavill as Superman/Clark Kent, was a surprise addition to the end of the Warner Bros. film panel at San Diegos Comic-Con, an annual comics convention, and received thunderous applause from the 6,000-plus in attendance.<br /><br />After announcing the plan to bring the two superheroes together, Snyder issued a statement via Warner Bros. saying the two would be fighting each other, and conceded this might surprise some.<br /><br />"Lets face it, its beyond mythological to have Superman and our new Batman facing off, since they are the greatest superheroes in the world," said Snyder, who has been confirmed as director of the as-yet unnamed sequel.<br /><br />While both Superman and Batman are superheros in the DC universe, they have been portrayed as nemeses in DCs "Dark Knight" comics, from which Christopher Nolan adapted his "Dark Knight" Batman franchise. Nolan will serve as executive producer to the sequel, Warner Bros. said.<br /><br />The studio is banking on the success of other recent films that have paired up heroes from the comic book universe, such as Disneys (DIS.N) Marvel superhero ensemble "The Avengers" in 2012, which made $1.5 billion at the worldwide box office.<br /><br />Nolans 2012s "The Dark Knight Rises," starring Christian Bale as Batman, has made more than $1 billion at the global box office.<br /><br />"Superman" has not always seen a success at the box office and 2006s sequel starring Brandon Routh did not perform up to industry expectations.<br /><br />But Snyders darker reimagining of the complex superhero in "Man of Steel" grossed $621 million worldwide and with Nolan as executive producer, rumors had been circulating that Batman and Superman could soon appear together on screen.<br /><br />Cavill will reprise the role of Superman in the sequel, and "Man of Steel" stars Amy Adams, who plays Lois Lane, and Laurence Fishburne will also return, Warner Bros. said.<br /><br />The film is slated for release in summer 2015, but there has been no word on who will play Batman. Bale has previously shot down rumors that he would play the masked hero again.<br /><br />Greg Silverman, president of creative development at Warner Bros., said the studio could not think of any director better suited to bringing Superman and Batman together.<br /><br />"Zach Snyder is an incredibly talented filmmaker, but beyond that, hes a fan first and he utterly gets this genre," he said in a statement.', 'language': None}
 published_parsed
 links
     [{'href': u'http://www.deccanherald.com/content/346103/superman-battle-batman-039man-steel039.html', 'type': u'text/html', 'rel': u'alternate'}]
 title
 summary
+    <strong>A sequel to last months hit "Superman" film "Man of Steel" is not only in the works, but will feature two of DC Comics best-known caped crusaders - Superman and Batman - facing off against each other, director Zack Snyder said on Saturday.</strong><br /><br />Snyder, who directed British actor Henry Cavill as Superman/Clark Kent, was a surprise addition to the end of the Warner Bros. film panel at San Diegos Comic-Con, an annual comics convention, and received thunderous applause from the 6,000-plus in attendance.<br /><br />After announcing the plan to bring the two superheroes together, Snyder issued a statement via Warner Bros. saying the two would be fighting each other, and conceded this might surprise some.<br /><br />"Lets face it, its beyond mythological to have Superman and our new Batman facing off, since they are the greatest superheroes in the world," said Snyder, who has been confirmed as director of the as-yet unnamed sequel.<br /><br />While both Superman and Batman are superheros in the DC universe, they have been portrayed as nemeses in DCs "Dark Knight" comics, from which Christopher Nolan adapted his "Dark Knight" Batman franchise. Nolan will serve as executive producer to the sequel, Warner Bros. said.<br /><br />The studio is banking on the success of other recent films that have paired up heroes from the comic book universe, such as Disneys (DIS.N) Marvel superhero ensemble "The Avengers" in 2012, which made $1.5 billion at the worldwide box office.<br /><br />Nolans 2012s "The Dark Knight Rises," starring Christian Bale as Batman, has made more than $1 billion at the global box office.<br /><br />"Superman" has not always seen a success at the box office and 2006s sequel starring Brandon Routh did not perform up to industry expectations.<br /><br />But Snyders darker reimagining of the complex superhero in "Man of Steel" grossed $621 million worldwide and with Nolan as executive producer, rumors had been circulating that Batman and Superman could soon appear together on screen.<br /><br />Cavill will reprise the role of Superman in the sequel, and "Man of Steel" stars Amy Adams, who plays Lois Lane, and Laurence Fishburne will also return, Warner Bros. said.<br /><br />The film is slated for release in summer 2015, but there has been no word on who will play Batman. Bale has previously shot down rumors that he would play the masked hero again.<br /><br />Greg Silverman, president of creative development at Warner Bros., said the studio could not think of any director better suited to bringing Superman and Batman together.<br /><br />"Zach Snyder is an incredibly talented filmmaker, but beyond that, hes a fan first and he utterly gets this genre," he said in a statement.
 guidislink
     False
 title_detail
@@ -204,16 +216,18 @@ entries
 namespaces
 -----------------
 summary_detail
+    {'base': u'http://www.rediff.com/rss/sportsrss.xml', 'type': u'text/html', 'value': u"Indian golfer Shiv Kapur's fortunes continued to take a tumble as he carded a nightmarish 12-over 83 to be placed bottom of the leaderboard after the third and penultimate round of the British Open in Muirfield.", 'language': None}
 published_parsed
 links
-    [{'href': u'http://www.rediff.com/sports/report/manchester-united-thrash-australian-all-stars-in-friendly/20130721.htm', 'type': u'text/html', 'rel': u'alternate'}]
+    [{'href': u'http://www.rediff.com/sports/slide-show/slide-show-1-british-open-kapur-tumbles-down-as-westwood-takes-lead/20130721.htm', 'type': u'text/html', 'rel': u'alternate'}]
 title
 summary
+    Indian golfer Shiv Kapur's fortunes continued to take a tumble as he carded a nightmarish 12-over 83 to be placed bottom of the leaderboard after the third and penultimate round of the British Open in Muirfield.
 guidislink
     False
 title_detail
 link
-    http://www.rediff.com/sports/report/manchester-united-thrash-australian-all-stars-in-friendly/20130721.htm
+    http://www.rediff.com/sports/slide-show/slide-show-1-british-open-kapur-tumbles-down-as-westwood-takes-lead/20130721.htm
 published
 id
 
@@ -234,25 +248,27 @@ encoding
 bozo
 headers
 etag
-    "1bc783-616f2-4e200c2ec8340"
+    "606d3-61717-4e2020bf10740"
 href
 version
 entries
 namespaces
 -----------------
 summary_detail
+    {'base': u'http://ibnlive.in.com/xml/rss/sports.xml', 'type': u'text/html', 'value': u'<img height="62" src="http://static.ibnlive.in.com/ibnlive/pix/sitepix/07_2013/grosss---jeaann--_338x225.jpg" width="90" />Grosjean said: "As a driver, you always want to be in the car getting as much experience as possible; especially when there\'s something new."', 'language': None}
 published_parsed
 links
-    [{'href': u'http://ibnlive.in.com/news/french-club-lyon-deny-the-bid-for-arsenal-forward-gervinho/408283-5.html', 'type': u'text/html', 'rel': u'alternate'}]
+    [{'href': u'http://ibnlive.in.com/news/romain-grosjean-wanted-to-take-part-in-young-driver-test/408301-5.html', 'type': u'text/html', 'rel': u'alternate'}]
 title
 language
 rights
 summary
+    <img height="62" src="http://static.ibnlive.in.com/ibnlive/pix/sitepix/07_2013/grosss---jeaann--_338x225.jpg" width="90" />Grosjean said: "As a driver, you always want to be in the car getting as much experience as possible; especially when there's something new."
 guidislink
     False
 title_detail
 link
-    http://ibnlive.in.com/news/french-club-lyon-deny-the-bid-for-arsenal-forward-gervinho/408283-5.html
+    http://ibnlive.in.com/news/romain-grosjean-wanted-to-take-part-in-young-driver-test/408301-5.html
 published
 rights_detail
 id
@@ -267,25 +283,27 @@ encoding
 bozo
 headers
 etag
-    "51eb8e15-4cf3"
+    "51eba329-5d7e"
 href
 version
 entries
 namespaces
 -----------------
 summary_detail
+    {'base': u'http://www.deccanherald.com/rss/sports.rss', 'type': u'text/html', 'value': u'<strong>Competition would be tough when Pankaj Advani and Aditya Mehta head to Colombia for the World Games in the coming week but the two Indian torch-bearers on the green baize say they are up for the challenge and would settle for nothing less than a medal.<br /></strong><br />"World Games is a great event to be a part of and I look forward to it. I expect as much as I do from any other championship -- by simply giving my best and win it. Its a field of 16 players and on a given day anybody can come out in flying colours," Advani told PTI from Rotterdam, The Netherlands.<br /><br />Mehta, on his part, said, "It will be interesting to see what happens in World Games. The goal is always to win it. Looking at the draw, a medal would be a great result. The competition looks tough with around 10 pros in the 16-man draw. Its hard to pick a favourite. Its my first time in South America."<br /><br />The World Games will take place in the city of Cali, Colombia from July 25 to August 4. The international multi-sport event is meant for sports, or disciplines or events within a sport, that are not contested in the Olympic Games.<br /><br />The World Games are organised and governed by the International World Games Association (IWGA), under the patronage of the International Olympic Committee (IOC).<br /><br />This year will see the participation of 31 official sports and five invitational sports.<br /><br />Both Advani and Mehta want to carry on their experience of competing on the professional circuit to the quadrennial event.<br />Talking about the second season of the demanding pro circuit, the two cueists said they face the daunting task of staying in the Top-64 to avoid getting dropped for the next season as for the first time, every player will participate in the first round including the top-64 as per the rule change by the World Snooker Association. <br /><br />Mehta is currently positioned at 74 on the circuit while Advani not too far at 75.<br /><br />"The level is rising every year making it more cut-throat and challenging. But thats exactly what I need to keep going. It (the rule change) can be looked at in two ways -- you get to play with the best early on and more frequently.<br /><br />"Otherwise youd have to first make it through tough qualifying rounds to the main venue to meet them. On the other hand, qualifying becomes more challenging, no doubt," he added.<br /><br />Mehta conceded the rule change will test his abilities but sounded optimistic about making the cut for the next season.<br /><br />"I believe Im good enough to make the cut and I guess time will tell. It does depend a lot on what kind of draws you get initially. And it makes that top 64 place that much more important.<br /><br />"But I feel the opportunity to play the top players so often will have its benefit in the long run. I relish this opportunity and I had a great first match against Ding Junhui, narrowly losing out 5-4. So I know Im capable," he said.<br /><br />India will host the 300,000 pound Indian Open World Ranking Snooker tournament in October for the first time and both the cueists seemed expectedly excited.<br /><br />"Its an exciting news for Indian snooker. We now are on the global map of pro snooker. We have dominated professional billiards for a while now and its time snooker and its top players come here too. Its a step in the right direction for the growth of snooker," said Advani.<br /><br />Mehta said, "Its been a dream since I first turned pro. Weve been trying for a few years now so its amazing that its finally happened. Lot of credit due to the Federation for the hard work. It will be a cracker. This is a major step to producing future talent in the country."', 'language': None}
 published_parsed
 links
-    [{'href': u'http://www.deccanherald.com/content/346097/resplendent-woods-joint-lead.html', 'type': u'text/html', 'rel': u'alternate'}]
+    [{'href': u'http://www.deccanherald.com/content/346108/nothing-less-medal-advani-aditya.html', 'type': u'text/html', 'rel': u'alternate'}]
 title
 summary
+    <strong>Competition would be tough when Pankaj Advani and Aditya Mehta head to Colombia for the World Games in the coming week but the two Indian torch-bearers on the green baize say they are up for the challenge and would settle for nothing less than a medal.<br /></strong><br />"World Games is a great event to be a part of and I look forward to it. I expect as much as I do from any other championship -- by simply giving my best and win it. Its a field of 16 players and on a given day anybody can come out in flying colours," Advani told PTI from Rotterdam, The Netherlands.<br /><br />Mehta, on his part, said, "It will be interesting to see what happens in World Games. The goal is always to win it. Looking at the draw, a medal would be a great result. The competition looks tough with around 10 pros in the 16-man draw. Its hard to pick a favourite. Its my first time in South America."<br /><br />The World Games will take place in the city of Cali, Colombia from July 25 to August 4. The international multi-sport event is meant for sports, or disciplines or events within a sport, that are not contested in the Olympic Games.<br /><br />The World Games are organised and governed by the International World Games Association (IWGA), under the patronage of the International Olympic Committee (IOC).<br /><br />This year will see the participation of 31 official sports and five invitational sports.<br /><br />Both Advani and Mehta want to carry on their experience of competing on the professional circuit to the quadrennial event.<br />Talking about the second season of the demanding pro circuit, the two cueists said they face the daunting task of staying in the Top-64 to avoid getting dropped for the next season as for the first time, every player will participate in the first round including the top-64 as per the rule change by the World Snooker Association. <br /><br />Mehta is currently positioned at 74 on the circuit while Advani not too far at 75.<br /><br />"The level is rising every year making it more cut-throat and challenging. But thats exactly what I need to keep going. It (the rule change) can be looked at in two ways -- you get to play with the best early on and more frequently.<br /><br />"Otherwise youd have to first make it through tough qualifying rounds to the main venue to meet them. On the other hand, qualifying becomes more challenging, no doubt," he added.<br /><br />Mehta conceded the rule change will test his abilities but sounded optimistic about making the cut for the next season.<br /><br />"I believe Im good enough to make the cut and I guess time will tell. It does depend a lot on what kind of draws you get initially. And it makes that top 64 place that much more important.<br /><br />"But I feel the opportunity to play the top players so often will have its benefit in the long run. I relish this opportunity and I had a great first match against Ding Junhui, narrowly losing out 5-4. So I know Im capable," he said.<br /><br />India will host the 300,000 pound Indian Open World Ranking Snooker tournament in October for the first time and both the cueists seemed expectedly excited.<br /><br />"Its an exciting news for Indian snooker. We now are on the global map of pro snooker. We have dominated professional billiards for a while now and its time snooker and its top players come here too. Its a step in the right direction for the growth of snooker," said Advani.<br /><br />Mehta said, "Its been a dream since I first turned pro. Weve been trying for a few years now so its amazing that its finally happened. Lot of credit due to the Federation for the hard work. It will be a cracker. This is a major step to producing future talent in the country."
 guidislink
     False
 title_detail
 link
-    http://www.deccanherald.com/content/346097/resplendent-woods-joint-lead.html
+    http://www.deccanherald.com/content/346108/nothing-less-medal-advani-aditya.html
 source
-    {'href': u'http://www.deccanherald.com/', 'title': u'GULLANE, Scotland: July 20, 2013  Agencies'}
+    {'href': u'http://www.deccanherald.com/', 'title': u'New Delhi, Jul 21, 2013 (PTI):'}
 published
 id
 
@@ -294,31 +312,14 @@ feed
 status
 version
 encoding
-    UTF-8
+    utf-8
 bozo
 headers
 href
 namespaces
 entries
+bozo_exception
 -----------------
-summary_detail
-published_parsed
-links
-    [{'href': u'http://www.thehindu.com/news/national/karnataka/guinness-record-holder-to-skate-his-way-into-istanbul/article4935829.ece', 'type': u'text/html', 'rel': u'alternate'}]
-author
-    Special Correspondent
-tags
-    [{'term': u'Karnataka', 'scheme': None, 'label': None}]
-summary
-title_detail
-link
-    http://www.thehindu.com/news/national/karnataka/guinness-record-holder-to-skate-his-way-into-istanbul/article4935829.ece
-authors
-    [{}]
-title
-author_detail
-    {'name': u'Special Correspondent'}
-published
 
 ::::: Reuters: World of Sport :::::
 feed
@@ -340,11 +341,13 @@ namespaces
 entries
 -----------------
 summary_detail
+    {'base': u'http://www.espncricinfo.com/rss/content/story/feeds/0.xml', 'type': u'text/html', 'value': u'Ali Khan slammed a six on the last ball of the one-over eliminator to clinch a victory for Khan Research Labs against Zarai Taraqiati Bank Limited in Karachi', 'language': None}
 published_parsed
 links
     [{'href': u'http://www.espncricinfo.com/pakistan/content/story/653689.html?CMP=OTC-RSS', 'type': u'text/html', 'rel': u'alternate'}]
 title
 summary
+    Ali Khan slammed a six on the last ball of the one-over eliminator to clinch a victory for Khan Research Labs against Zarai Taraqiati Bank Limited in Karachi
 guidislink
     False
 title_detail
@@ -366,11 +369,13 @@ namespaces
 entries
 -----------------
 summary_detail
+    {'base': u'http://www.dnaindia.com/syndication/rss_popular.xml', 'type': u'text/html', 'value': u'The grandmother-to-be allegedly told friends that the royal baby will be a Leo, which means that Kate would not give birth until at least July 23.', 'language': None}
 published_parsed
 links
     [{'href': u'http://www.dnaindia.com/world/1863550/report-kate-middleton-s-mother-reveals-new-due-date-for-royal-baby-s-birth', 'type': u'text/html', 'rel': u'alternate'}]
 title
 summary
+    The grandmother-to-be allegedly told friends that the royal baby will be a Leo, which means that Kate would not give birth until at least July 23.
 guidislink
     False
 title_detail
@@ -389,25 +394,27 @@ encoding
 bozo
 headers
 etag
-    "51eb951a-caef"
+    "51eba328-ea41"
 href
 version
 entries
 namespaces
 -----------------
 summary_detail
+    {'base': u'http://www.deccanherald.com/rss/national.rss', 'type': u'text/html', 'value': u'<strong>The village school in Bihar where 23 children died by poisoning last week had been providing lunch under the government-sponsored Mid-Day Meal Scheme without checks or monitoring by local officials to see if the food was stored carefully or cooked properly.</strong><br /><br />Although it is the first such disaster in the project that feeds about 120 million children every day across India, a Reuters review of audit reports and research papers shows officials have long ignored warnings of the lack of oversight and accountability in the programme.<br /><br />"You only come and do checks when you get complaints or when there are serious cases," said Rudranarayan Ram, the local education administrator for the village of Gandaman in Bihar, where the children died. "This was the first time."<br /><br />The poisoning, which police suspect was caused by storing cooking oil in a used pesticide container, killed the children so quickly that some died in their parents arms while being taken to hospital.<br /><br />Ram, who was tasked with monitoring the programme, said the headmistress of the school, who has fled, bought the food and the oil in which it was cooked. He just doesnt know from where nor how the items were stored.<br /><br />Although fatal contamination is extremely rare in the midday meal scheme, auditors in several states have described unhygienic conditions in which the food under the programme is prepared and served, and the poor quality of food itself. Two audit reports by the state governments of Andhra Pradesh and Madhya Pradesh have said the food in the scheme was often laced with stones and worms.<br /><br />Another survey by the Indian Institute of Management noted children in Gujarat were made to wash up after their meals by "rubbing the playground soil on the plates and then giving a quick rinse".<br /><br />"If the government checks, they will find that the children who have been eating midday meals are under great physical threat," said Ajay Kumar Jha, professor at A.N. Sinha Institute of Social Studies, who led a team to monitor the programme in Bihar in April.<br /><br />The midday meal scheme of giving school pupils a free lunch is the largest such programme in the world. It has been widely lauded as one of the most successful welfare measures in India, home to a quarter of the worlds hungry, because it also boosts school enrolments and helps children to continue studies.<br /><br />For millions of poor families, the lunch is the only full meal their children eat in a day. That encourages them to send them to school, and not keep them home to help with chores.<br /><br />For this reason, despite being poorly managed, the scheme draws a lot of support from non-governmental organisations, rights activists and the United Nations.<br /><br />"We need it. Its one of Indias most well-thought of programs," said Bharathi Ghanashyam, spokeswoman of Akshaya Patra, an NGO that provides school lunches.<br /><br />Still, audit reports have highlighted the continuing failings of the programme, more than a decade after feeding children a cooked meal in schools was mandated by a Supreme Court order.<br /><br />The problems include grain kept in decrepit condition in central warehouses, and then often stored and cooked in poorly-equipped schools by staff with little or no training.<br /><br />NO WARNING<br /><br />P.K. Shahi, the education minister in Bihar, said there were no warnings from the central government about the programme.<br /><br />"There were general advisories for better hygiene. Thats all," he told Reuters.<br /><br />"In Bihar, the midday meal scheme covers 16-18 million children in 73,000 schools and its run by teachers and school management committees. I can understand the issues about hygiene given the scale of operation, the number of people involved, and given the fact that the individuals who run the programme are not experts in food.<br /><br />"But you have to understand that (this) is a pure case of poisoning."<br /><br />Government guidelines for the programme are strict, including requirements for every school to display delivery details for grains received from central stores and list other ingredients purchased. Kitchens should have lockable storage to check pilferage and ingredients should be stored in proper containers, say the hygiene and safety rules.<br /><br />There should be regular inspections at the local and state level, according to the rules which are laid out by the Human Resources Development Ministry.<br /><br />Experts say the problem is not lack of rules but poor implementation and a lack of accountability.<br /><br />"Accountability and monitoring is weak to non-existent," Suneetha Kadiyala, research fellow at the International Food Policy Research Institute in New Delhi, told Reuters in an email.<br /><br />"The right to food cannot be achieved (through any policy or legal instrument) unless the governance of programmes and their monitoring at grass roots is strengthened."<br /><br />In Bihar, a 2008 audit report showed that 563.75 metric tonnes of rice rotted in schools during a three-year period due to poor storage.<br /><br />No "extra nutrients" such as vegetables or fruit were provided although expenditure of 598.7 million rupees (now about $10 million) was incurred by the government. Only 10 percent of the kitchens that were supposed to be constructed were complete as of March 2008, although funds were provided.<br /><br />"There was complete absence of the internal controls, regular monitoring and evaluation of the Scheme as per the guidelines," the 2008 report said.<br /><br />NO LIGHTS OR FANS<br /><br />Part of the problem is poor infrastructure. Thousands of schools in India do not even have their own buildings, and are run from community centres with no storage facilities. Many schools are no bigger than a single room.<br /><br />The school where the children were poisoned is a tiny building with only one classroom for 50-60 pupils. The room has no lights nor fans and only a black painted rectangle on the wall for a blackboard.<br /><br />The kitchen was a pile of bricks and charcoal in a corner outside the classroom and parents said the ingredients for lunch had to be brought in every day as there was no storage.<br /><br />"These deaths could had been prevented with strict adherence to protocols for preparing the mid day meal," said the United Nations Childrens Fund, after the Bihar tragedy.<br /><br />Many states have faced criticism over the quality of food in the scheme and the way it is provided.<br /><br />In Andhra Pradesh, a recent pilot audit found underweight sacks of rice. In Madhya Pradesh, a report in 2010 found half the schools did not serve meals regularly and cooks brought utensils from home.<br /><br />In West Bengal, a 2010 report by Pratichi Trust, a research body founded by Nobel laureate Amartya Sen, called for more investments to improve the food quality.<br /><br />Hygiene problems are exacerbated by a lack of fresh water and basic sanitation in some rural areas.<br /><br />"We struggle to get basic clean water," said Mridul Salgame, who runs the non-profit Foundation of Food Research and Enterprise for Safety and Hygiene (FRESH). "In remote areas of Bihar and Rajashtan, they have to filter out muddy water and drink it."<br /><br />Salgame wants action and emphasises the victims of these failings are children.<br /><br />"The time has come to take it up on a war footing," she said.', 'language': None}
 published_parsed
 links
-    [{'href': u'http://www.deccanherald.com/content/346105/amarnath-yatra-resumes-jammu.html', 'type': u'text/html', 'rel': u'alternate'}]
+    [{'href': u'http://www.deccanherald.com/content/346107/bihar-mid-day-meal-india.html', 'type': u'text/html', 'rel': u'alternate'}]
 title
 summary
+    <strong>The village school in Bihar where 23 children died by poisoning last week had been providing lunch under the government-sponsored Mid-Day Meal Scheme without checks or monitoring by local officials to see if the food was stored carefully or cooked properly.</strong><br /><br />Although it is the first such disaster in the project that feeds about 120 million children every day across India, a Reuters review of audit reports and research papers shows officials have long ignored warnings of the lack of oversight and accountability in the programme.<br /><br />"You only come and do checks when you get complaints or when there are serious cases," said Rudranarayan Ram, the local education administrator for the village of Gandaman in Bihar, where the children died. "This was the first time."<br /><br />The poisoning, which police suspect was caused by storing cooking oil in a used pesticide container, killed the children so quickly that some died in their parents arms while being taken to hospital.<br /><br />Ram, who was tasked with monitoring the programme, said the headmistress of the school, who has fled, bought the food and the oil in which it was cooked. He just doesnt know from where nor how the items were stored.<br /><br />Although fatal contamination is extremely rare in the midday meal scheme, auditors in several states have described unhygienic conditions in which the food under the programme is prepared and served, and the poor quality of food itself. Two audit reports by the state governments of Andhra Pradesh and Madhya Pradesh have said the food in the scheme was often laced with stones and worms.<br /><br />Another survey by the Indian Institute of Management noted children in Gujarat were made to wash up after their meals by "rubbing the playground soil on the plates and then giving a quick rinse".<br /><br />"If the government checks, they will find that the children who have been eating midday meals are under great physical threat," said Ajay Kumar Jha, professor at A.N. Sinha Institute of Social Studies, who led a team to monitor the programme in Bihar in April.<br /><br />The midday meal scheme of giving school pupils a free lunch is the largest such programme in the world. It has been widely lauded as one of the most successful welfare measures in India, home to a quarter of the worlds hungry, because it also boosts school enrolments and helps children to continue studies.<br /><br />For millions of poor families, the lunch is the only full meal their children eat in a day. That encourages them to send them to school, and not keep them home to help with chores.<br /><br />For this reason, despite being poorly managed, the scheme draws a lot of support from non-governmental organisations, rights activists and the United Nations.<br /><br />"We need it. Its one of Indias most well-thought of programs," said Bharathi Ghanashyam, spokeswoman of Akshaya Patra, an NGO that provides school lunches.<br /><br />Still, audit reports have highlighted the continuing failings of the programme, more than a decade after feeding children a cooked meal in schools was mandated by a Supreme Court order.<br /><br />The problems include grain kept in decrepit condition in central warehouses, and then often stored and cooked in poorly-equipped schools by staff with little or no training.<br /><br />NO WARNING<br /><br />P.K. Shahi, the education minister in Bihar, said there were no warnings from the central government about the programme.<br /><br />"There were general advisories for better hygiene. Thats all," he told Reuters.<br /><br />"In Bihar, the midday meal scheme covers 16-18 million children in 73,000 schools and its run by teachers and school management committees. I can understand the issues about hygiene given the scale of operation, the number of people involved, and given the fact that the individuals who run the programme are not experts in food.<br /><br />"But you have to understand that (this) is a pure case of poisoning."<br /><br />Government guidelines for the programme are strict, including requirements for every school to display delivery details for grains received from central stores and list other ingredients purchased. Kitchens should have lockable storage to check pilferage and ingredients should be stored in proper containers, say the hygiene and safety rules.<br /><br />There should be regular inspections at the local and state level, according to the rules which are laid out by the Human Resources Development Ministry.<br /><br />Experts say the problem is not lack of rules but poor implementation and a lack of accountability.<br /><br />"Accountability and monitoring is weak to non-existent," Suneetha Kadiyala, research fellow at the International Food Policy Research Institute in New Delhi, told Reuters in an email.<br /><br />"The right to food cannot be achieved (through any policy or legal instrument) unless the governance of programmes and their monitoring at grass roots is strengthened."<br /><br />In Bihar, a 2008 audit report showed that 563.75 metric tonnes of rice rotted in schools during a three-year period due to poor storage.<br /><br />No "extra nutrients" such as vegetables or fruit were provided although expenditure of 598.7 million rupees (now about $10 million) was incurred by the government. Only 10 percent of the kitchens that were supposed to be constructed were complete as of March 2008, although funds were provided.<br /><br />"There was complete absence of the internal controls, regular monitoring and evaluation of the Scheme as per the guidelines," the 2008 report said.<br /><br />NO LIGHTS OR FANS<br /><br />Part of the problem is poor infrastructure. Thousands of schools in India do not even have their own buildings, and are run from community centres with no storage facilities. Many schools are no bigger than a single room.<br /><br />The school where the children were poisoned is a tiny building with only one classroom for 50-60 pupils. The room has no lights nor fans and only a black painted rectangle on the wall for a blackboard.<br /><br />The kitchen was a pile of bricks and charcoal in a corner outside the classroom and parents said the ingredients for lunch had to be brought in every day as there was no storage.<br /><br />"These deaths could had been prevented with strict adherence to protocols for preparing the mid day meal," said the United Nations Childrens Fund, after the Bihar tragedy.<br /><br />Many states have faced criticism over the quality of food in the scheme and the way it is provided.<br /><br />In Andhra Pradesh, a recent pilot audit found underweight sacks of rice. In Madhya Pradesh, a report in 2010 found half the schools did not serve meals regularly and cooks brought utensils from home.<br /><br />In West Bengal, a 2010 report by Pratichi Trust, a research body founded by Nobel laureate Amartya Sen, called for more investments to improve the food quality.<br /><br />Hygiene problems are exacerbated by a lack of fresh water and basic sanitation in some rural areas.<br /><br />"We struggle to get basic clean water," said Mridul Salgame, who runs the non-profit Foundation of Food Research and Enterprise for Safety and Hygiene (FRESH). "In remote areas of Bihar and Rajashtan, they have to filter out muddy water and drink it."<br /><br />Salgame wants action and emphasises the victims of these failings are children.<br /><br />"The time has come to take it up on a war footing," she said.
 guidislink
     False
 title_detail
 link
-    http://www.deccanherald.com/content/346105/amarnath-yatra-resumes-jammu.html
+    http://www.deccanherald.com/content/346107/bihar-mid-day-meal-india.html
 source
-    {'href': u'http://www.deccanherald.com/', 'title': u'Jammu, Jul 20, 2013 (PTI):'}
+    {'href': u'http://www.deccanherald.com/', 'title': u'NEW DELHI, July 21, 2013, Reuters:'}
 published
 id
 
@@ -445,7 +452,9 @@ links
     [{'href': u'http://www.indianexpress.com/news/growing-biz-pulling-down-attrition-rate-says-tcs/1144130/', 'type': u'text/html', 'rel': u'alternate'}]
 title
 summary_detail
+    {'base': u'http://syndication.indianexpress.com/rss/795/corporate.xml', 'type': u'text/html', 'value': u"India''s largest software exporter Tata Consultancy Services (TCS) has witnessed its lowest attrition rate  in the last 27 quarters", 'language': None}
 summary
+    India''s largest software exporter Tata Consultancy Services (TCS) has witnessed its lowest attrition rate  in the last 27 quarters
 guidislink
     False
 title_detail
@@ -474,11 +483,13 @@ namespaces
 entries
 -----------------
 summary_detail
+    {'base': u'http://www.indlawnews.com/rss/rss.ashx?id=2', 'type': u'text/html', 'value': u'', 'language': None}
 published_parsed
 links
     [{'href': u'http://www.indlawnews.com/Newsdisplay.aspx?uid=20c745a8-9695-46ee-804a-73e3617d8b6e&type=2', 'type': u'text/html', 'rel': u'alternate'}]
 title
 summary
+    
 guidislink
     False
 title_detail
@@ -501,16 +512,18 @@ entries
 bozo_exception
 -----------------
 summary_detail
+    {'base': u'http://newindianexpress.com/nation/?widgetName=rssfeed&widgetId=276210&getXmlFeed=true', 'type': u'text/html', 'value': u'', 'language': None}
 published_parsed
 links
-    [{'href': u'http://newindianexpress.com/nation/Home-Ministry-opposes-any-hike-of-FDI-cap-in-media/2013/07/21/article1694745.ece', 'type': u'text/html', 'rel': u'alternate'}]
+    [{'href': u'http://newindianexpress.com/nation/Madan-Lal-Khuranas-condition-improving/2013/07/21/article1694768.ece', 'type': u'text/html', 'rel': u'alternate'}]
 title
 summary
+    
 guidislink
     False
 title_detail
 link
-    http://newindianexpress.com/nation/Home-Ministry-opposes-any-hike-of-FDI-cap-in-media/2013/07/21/article1694745.ece
+    http://newindianexpress.com/nation/Madan-Lal-Khuranas-condition-improving/2013/07/21/article1694768.ece
 published
 id
 
@@ -527,11 +540,13 @@ namespaces
 entries
 -----------------
 summary_detail
+    {'base': u'http://www.newkerala.com/india-news.xml', 'type': u'text/html', 'value': u"New Delhi, July 20 : The Delhi Congress unit Saturday held its first meeting of the party's manifesto and publicity committee, ahead of assembly elections.", 'language': None}
 published_parsed
 links
     [{'href': u'http://www.newkerala.com/news/story/44240/delhi-congress-holds-meeting-on-manifesto.html', 'type': u'text/html', 'rel': u'alternate'}]
 title
 summary
+    New Delhi, July 20 : The Delhi Congress unit Saturday held its first meeting of the party's manifesto and publicity committee, ahead of assembly elections.
 guidislink
     False
 title_detail
@@ -581,6 +596,7 @@ namespaces
 entries
 -----------------
 summary_detail
+    {'base': u'http://www.campaignindia.in/RSS/rss.ashx?type=Category&ID=470', 'type': u'text/html', 'value': u'The film directed by Anand Gandhi releases today', 'language': None}
 published_parsed
 links
     [{'href': u'http://www.campaignindia.in/Article/350643,weekend-fun-1-ship-of-theseus.aspx', 'type': u'text/html', 'rel': u'alternate'}]
@@ -588,6 +604,7 @@ title
 imagelink
     http://cdn.i.haymarket.net.au/Utils/ImageResizer.ashx?n=http%3a%2f%2fi.haymarket.net.au%2fNews%2fShip_of.gif&h=55&w=83&c=1
 summary
+    The film directed by Anand Gandhi releases today
 title_detail
 link
     http://www.campaignindia.in/Article/350643,weekend-fun-1-ship-of-theseus.aspx
@@ -606,6 +623,7 @@ namespaces
 entries
 -----------------
 summary_detail
+    {'base': u'http://www.campaignindia.in/RSS/rss.ashx?type=Category&ID=473', 'type': u'text/html', 'value': u'He was referring to those in organisations living by quarter to quarter targets, at the Mumbai leg of the Series which began on 18 July', 'language': None}
 published_parsed
 links
     [{'href': u'http://www.campaignindia.in/Article/350601,brandwealth-seminar-2013-8216biggest-challenge-to-brand-building-is-short-term-thinking-by-brand-managers8217-mg-parameswaran.aspx', 'type': u'text/html', 'rel': u'alternate'}]
@@ -613,6 +631,7 @@ title
 imagelink
     http://cdn.i.haymarket.net.au/Utils/ImageResizer.ashx?n=http%3a%2f%2fi.haymarket.net.au%2fNews%2fAmbi_460.gif&h=55&w=83&c=1
 summary
+    He was referring to those in organisations living by quarter to quarter targets, at the Mumbai leg of the Series which began on 18 July
 title_detail
 link
     http://www.campaignindia.in/Article/350601,brandwealth-seminar-2013-8216biggest-challenge-to-brand-building-is-short-term-thinking-by-brand-managers8217-mg-parameswaran.aspx
@@ -631,6 +650,7 @@ namespaces
 entries
 -----------------
 summary_detail
+    {'base': u'http://www.campaignindia.in/RSS/rss.ashx?type=Category&ID=475', 'type': u'text/html', 'value': u'Basis feedback from the awards curator for the first edition, there will be only 10 sub-categories under the &#8216;Ad Film of the Year&#8217; category', 'language': None}
 published_parsed
 links
     [{'href': u'http://www.campaignindia.in/Article/350596,cifca-2013-sub-categories-under-8216ad-film-of-the-year8217-streamlined-deadline-extended.aspx', 'type': u'text/html', 'rel': u'alternate'}]
@@ -638,6 +658,7 @@ title
 imagelink
     http://cdn.i.haymarket.net.au/Utils/ImageResizer.ashx?n=http%3a%2f%2fi.haymarket.net.au%2fNews%2fCIFCAdotcom.jpg&h=55&w=83&c=1
 summary
+    Basis feedback from the awards curator for the first edition, there will be only 10 sub-categories under the &#8216;Ad Film of the Year&#8217; category
 title_detail
 link
     http://www.campaignindia.in/Article/350596,cifca-2013-sub-categories-under-8216ad-film-of-the-year8217-streamlined-deadline-extended.aspx
@@ -702,6 +723,7 @@ entries
 namespaces
 -----------------
 summary_detail
+    {'base': u'http://feeds.abcnews.com/abcnews/topstories', 'type': u'text/html', 'value': u'<img border="0" height="1" src="http://feeds.abcnews.com/c/35229/f/654824/s/2ef18e5e/mf.gif" width="1" /><div class="mf-viral"><table border="0"><tr><td valign="middle"><a href="http://share.feedsportal.com/share/twitter/?u=http%3A%2F%2Fabcnews.go.com%2FUS%2FwireStory%2Fsuspect-returned-us-built-life-canada-19724921&amp;t=Bar+Talk+Leads+Cops+to+Fugitive+in+Hiding+More+Than+a+Decade" target="_blank"><img border="0" src="http://res3.feedsportal.com/social/twitter.png" /></a>&nbsp;<a href="http://share.feedsportal.com/share/facebook/?u=http%3A%2F%2Fabcnews.go.com%2FUS%2FwireStory%2Fsuspect-returned-us-built-life-canada-19724921&amp;t=Bar+Talk+Leads+Cops+to+Fugitive+in+Hiding+More+Than+a+Decade" target="_blank"><img border="0" src="http://res3.feedsportal.com/social/facebook.png" /></a>&nbsp;<a href="http://share.feedsportal.com/share/linkedin/?u=http%3A%2F%2Fabcnews.go.com%2FUS%2FwireStory%2Fsuspect-returned-us-built-life-canada-19724921&amp;t=Bar+Talk+Leads+Cops+to+Fugitive+in+Hiding+More+Than+a+Decade" target="_blank"><img border="0" src="http://res3.feedsportal.com/social/linkedin.png" /></a>&nbsp;<a href="http://share.feedsportal.com/share/gplus/?u=http%3A%2F%2Fabcnews.go.com%2FUS%2FwireStory%2Fsuspect-returned-us-built-life-canada-19724921&amp;t=Bar+Talk+Leads+Cops+to+Fugitive+in+Hiding+More+Than+a+Decade" target="_blank"><img border="0" src="http://res3.feedsportal.com/social/googleplus.png" /></a>&nbsp;<a href="http://share.feedsportal.com/share/email/?u=http%3A%2F%2Fabcnews.go.com%2FUS%2FwireStory%2Fsuspect-returned-us-built-life-canada-19724921&amp;t=Bar+Talk+Leads+Cops+to+Fugitive+in+Hiding+More+Than+a+Decade" target="_blank"><img border="0" src="http://res3.feedsportal.com/social/email.png" /></a></td></tr></table></div><br /><br /><a href="http://da.feedsportal.com/r/165666311516/u/57/f/654824/c/35229/s/2ef18e5e/a2.htm"><img border="0" src="http://da.feedsportal.com/r/165666311516/u/57/f/654824/c/35229/s/2ef18e5e/a2.img" /></a><img border="0" height="1" src="http://pi.feedsportal.com/r/165666311516/u/57/f/654824/c/35229/s/2ef18e5e/a2t.img" width="1" />', 'language': None}
 published_parsed
 links
     [{'href': u'http://feeds.abcnews.com/c/35229/f/654824/s/2ef18e5e/l/0Labcnews0Bgo0N0CUS0CwireStory0Csuspect0Ereturned0Eus0Ebuilt0Elife0Ecanada0E19724921/story01.htm', 'type': u'text/html', 'rel': u'alternate'}]
@@ -711,54 +733,4 @@ tags
 media_thumbnail
     [{'url': u'http://a.abcnews.com/images/US/AP_jean_keating_130720_4x3t_384.jpg', 'width': u'384', 'height': u'288'}, {'url': u'http://a.abcnews.com/images/US/AP_jean_keating_130720_4x3t_144.jpg', 'width': u'144', 'height': u'108'}, {'url': u'http://a.abcnews.com/images/US/AP_jean_keating_130720_4x3t_384.jpg', 'width': u'384', 'height': u'288'}, {'url': u'http://a.abcnews.com/images/US/AP_jean_keating_130720_16x9t_240.jpg', 'width': u'240', 'height': u'135'}, {'url': u'http://a.abcnews.com/images/US/AP_jean_keating_130720_4x3_608.jpg', 'width': u'608', 'height': u'456'}, {'url': u'http://a.abcnews.com/images/US/AP_jean_keating_130720_16x9_992.jpg', 'width': u'992', 'height': u'558'}]
 summary
-guidislink
-    False
-title_detail
-href
-link
-    http://feeds.abcnews.com/c/35229/f/654824/s/2ef18e5e/l/0Labcnews0Bgo0N0CUS0CwireStory0Csuspect0Ereturned0Eus0Ebuilt0Elife0Ecanada0E19724921/story01.htm
-published
-id
-media_keywords
-    1
-
-::::: FOXNews.com :::::
-feed
-bozo
-bozo_exception
-entries
------------------
-
-::::: The Huffington Post | Full News Feed :::::
-feed
-bozo
-bozo_exception
-entries
------------------
-
-::::: Cricket News :::::
-feed
-status
-version
-encoding
-    iso-8859-1
-bozo
-headers
-href
-namespaces
-entries
------------------
-summary_detail
-published_parsed
-links
-    [{'href': u'http://www.newkerala.com/news/story/44316/genetics-key-role-behind-cholera-revealed.html', 'type': u'text/html', 'rel': u'alternate'}]
-title
-summary
-guidislink
-    False
-title_detail
-link
-    http://www.newkerala.com/news/story/44316/genetics-key-role-behind-cholera-revealed.html
-published
-id
-
+    <img border="0" height="1" src="http://feeds.abcnews.com/c/35229/f/654824/s/2ef18e5e/mf.gif" width="1" /><div class="mf-viral"><table border="0"><tr><td valign="middle"><a href="http://share.feedsportal.com/share/twitter/?u=http%3A%2F%2Fabcnews.go.com%2FUS%2FwireStory%2Fsuspect-returned-us-built-life-canada-19724921&amp;t=Bar+Talk+Leads+Cops+to+Fugitive+in+Hiding+More+Than+a+Decade" target="_blank"><img border="0" src="http://res3.feedsportal.com/social/twitter.png" /></a>&nbsp;<a href="http://share.feedsportal.com/share/facebook/?u=http%3A%2F%2Fabcnews.go.com%2FUS%2FwireStory%2Fsuspect-returned-us-built-life-canada-19724921&amp;t=Bar+Talk+Leads+Cops+to+Fugitive+in+Hiding+More+Than+a+Decade" target="_blank"><img border="0" src="http://res3.feedsportal.com/social/facebook.png" /></a>&nbsp;<a href="http://share.feedsportal.com/share/linkedin/?u=http%3A%2F%2Fabcnews.go.com%2FUS%2FwireStory%2Fsuspect-returned-us-built-life-canada-19724921&amp;t=Bar+Talk+Leads+Cops+to+Fugitive+in+Hiding+More+Than+a+Decade" target="_blank"><img border="0" src="http://res3.feedsportal.com/social/linkedin.png" /></a>&nbsp;<a href="http://share.feedsportal.com/share/gplus/?u=http%3A%2F%2Fabcnews.go.com%2FUS%2FwireStory%2Fsuspect-returned-us-built-life-canada-19724921&amp;t=Bar+Talk+Leads+Cops+to+Fugitive+in+Hiding+More+Than+a+Decade" target="_blank"><img border="0" src="http://res3.feedsportal.com/social/googleplus.png" /></a>&nbsp;<a href="http://share.feedsportal.com/share/email/?u=http%3A%2F%2Fabcnews.go.com%2FUS%2FwireStory%2Fsusp

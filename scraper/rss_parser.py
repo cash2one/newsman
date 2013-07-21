@@ -39,7 +39,7 @@ def read_entry(e=None, language=None, category=None, feed_id=None):
     entry['feed'] = feed_id
     entry['language'] = language
 
-    # the easy part
+    # the easy part: the must have
     try:
         # article original link
         entry['link'] = e.link.strip()
@@ -91,19 +91,41 @@ def read_entry(e=None, language=None, category=None, feed_id=None):
     # article's thumbnail     
     try:
         entry['thumbnails'] = e.media_content
+    except AttributeError as e:
+        print e, '... will try media_thumbnail'
+        try:
+            entry['thumbnails'] = e.media_thumbnail
         except AttributeError as e:
-            print e, '... will try media_thumbnail'
+            print e, '... will try thumbnail':
             try:
-                entry['thumbnails'] = e.media_thumbnail
+                thumbnail_embedded = e.thumbnail
+                width, height = thumbnail.get_image_size(thumbnail_embedded)
+                entry['thumbnails'] = [{'url':thumbnail_embedded, 'width':width, 'height':height}]
             except AttributeError as e:
-                print e, '... will try thumbnail':
-                    try:
-                        thumbnail_embedded = e.thumbnail
-                        width, height = thumbnail.get_image_size(thumbnail_embedded)
-                        entry['thumbnails'] = [{'url':thumbnail_embedded, 'width':width, 'height':height}]
-                    except AttributeError as e:
-                        print e, '... probably this has no thumbnails'
-                        entry['error'] = '%s\n%s' % (entry['error'], 'no thumbnails')
+                print e, '... probably this has no thumbnails'
+
+    # article's author
+    # e.g. Yuan Jin
+    try:
+        # i guess this could be a string or a list
+        entry['author'] = e.author
+    except AttributeError as e:
+        print e, '... probably this has no author'
+
+    # article's source
+    # e.g. {'href': u'http://www.reuters.com/', 'title': u'Reuters'} 
+    try:
+        entry['source'] = e.source
+    except AttributeError as e:
+        print e, '... probably this has no source'
+
+    # article's tags
+    # e.g. [{'term': u'Campus Party Recife 2013', 'scheme': None, 'label': None}]
+    # term is usually combined with scheme to form a url; label is the name of term
+    try:
+        entry['tags'] = e.tag
+    except AttributeError as e:
+        print e, '... probably this has no tags'
 
     if 'summary' in e:
         soup = BeautifulStoneSoup(e.summary)

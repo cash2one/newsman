@@ -11,6 +11,7 @@ namespaces
 entries
 -----------------
 summary_detail
+    {'base': u'http://news.yahoo.com/rss/us', 'type': u'text/html', 'value': u'<p><a href="http://news.yahoo.com/thousands-streets-protest-trayvon-martin-verdict-014643648.html"><img align="left" alt="People carry a photo of Trayvon Martin during a march to protest the verdict in the Zimmerman trial in Los Angeles" border="0" height="86" src="http://l2.yimg.com/bt/api/res/1.2/7NgXkkmKh9l.jQVHApAYGg--/YXBwaWQ9eW5ld3M7Zmk9ZmlsbDtoPTg2O3E9ODU7dz0xMzA-/http://media.zenfs.com/en_us/News/Reuters/2013-07-20T235440Z_1_CBRE96J1O4000_RTROPTP_2_USA-FLORIDA-SHOOTING.JPG" title="People carry a photo of Trayvon Martin during a march to protest the verdict in the Zimmerman trial in Los Angeles" width="130" /></a>By Edward Upright and Zachary Faginson NEW YORK/MIAMI (Reuters) - Demonstrators took to the streets in dozens of U.S. cities on Saturday to vent their anger over the acquittal in Florida of the man who shot unarmed black teenager Trayvon Martin to death and to call for federal charges in the racially tinged case. Hundreds marched in the summer heat to rally at federal courthouses in Miami, Chicago, Los Angeles and other cities, demanding &quot;justice for Trayvon&quot; and an end to racial profiling that they said was at the heart of the case. ...</p><br clear="all" />', 'language': None}
 media_credit
     {'role': u'publishing company'}
 published_parsed
@@ -20,6 +21,7 @@ title
 media_text
     {'type': u'html'}
 summary
+    <p><a href="http://news.yahoo.com/thousands-streets-protest-trayvon-martin-verdict-014643648.html"><img align="left" alt="People carry a photo of Trayvon Martin during a march to protest the verdict in the Zimmerman trial in Los Angeles" border="0" height="86" src="http://l2.yimg.com/bt/api/res/1.2/7NgXkkmKh9l.jQVHApAYGg--/YXBwaWQ9eW5ld3M7Zmk9ZmlsbDtoPTg2O3E9ODU7dz0xMzA-/http://media.zenfs.com/en_us/News/Reuters/2013-07-20T235440Z_1_CBRE96J1O4000_RTROPTP_2_USA-FLORIDA-SHOOTING.JPG" title="People carry a photo of Trayvon Martin during a march to protest the verdict in the Zimmerman trial in Los Angeles" width="130" /></a>By Edward Upright and Zachary Faginson NEW YORK/MIAMI (Reuters) - Demonstrators took to the streets in dozens of U.S. cities on Saturday to vent their anger over the acquittal in Florida of the man who shot unarmed black teenager Trayvon Martin to death and to call for federal charges in the racially tinged case. Hundreds marched in the summer heat to rally at federal courthouses in Miami, Chicago, Los Angeles and other cities, demanding &quot;justice for Trayvon&quot; and an end to racial profiling that they said was at the heart of the case. ...</p><br clear="all" />
 source
     {'href': u'http://www.reuters.com/', 'title': u'Reuters'}
 title_detail
@@ -48,19 +50,21 @@ bozo_exception
 namespaces
 -----------------
 summary_detail
+    {'base': u'http://feeds.bbci.co.uk/news/world/rss.xml', 'type': u'text/html', 'value': u"Belgium's King Albert II formally abdicates in favour of his son Crown Prince Philippe, urging a divided country to stay united.", 'language': None}
 published_parsed
 links
-    [{'href': u'http://www.bbc.co.uk/news/world-asia-23371812#sa-ns_mchannel=rss&ns_source=PublicRSS20-sa', 'type': u'text/html', 'rel': u'alternate'}]
+    [{'href': u'http://www.bbc.co.uk/news/world-europe-23393963#sa-ns_mchannel=rss&ns_source=PublicRSS20-sa', 'type': u'text/html', 'rel': u'alternate'}]
 title
 media_thumbnail
-    [{'url': u'http://news.bbcimg.co.uk/media/images/68863000/jpg/_68863201_68863194.jpg', 'width': u'66', 'height': u'49'}, {'url': u'http://news.bbcimg.co.uk/media/images/68863000/jpg/_68863202_68863194.jpg', 'width': u'144', 'height': u'81'}]
+    [{'url': u'http://news.bbcimg.co.uk/media/images/68863000/jpg/_68863696_hug.jpg', 'width': u'66', 'height': u'49'}, {'url': u'http://news.bbcimg.co.uk/media/images/68863000/jpg/_68863697_hug.jpg', 'width': u'144', 'height': u'81'}]
 summary
+    Belgium's King Albert II formally abdicates in favour of his son Crown Prince Philippe, urging a divided country to stay united.
 guidislink
     False
 title_detail
 href
 link
-    http://www.bbc.co.uk/news/world-asia-23371812#sa-ns_mchannel=rss&ns_source=PublicRSS20-sa
+    http://www.bbc.co.uk/news/world-europe-23393963#sa-ns_mchannel=rss&ns_source=PublicRSS20-sa
 published
 id
 
@@ -77,6 +81,7 @@ namespaces
 entries
 -----------------
 summary_detail
+    {'base': u'http://www.engadget.com/rss.xml', 'type': u'text/html', 'value': u'<p class="image-container" style="text-align: center;"><a href="http://www.engadget.com/2013/07/21/siggraph-disney-research-aireal-haptic-feedback/?utm_source=Feed_Classic&amp;utm_medium=feed&amp;utm_campaign=Engadget"><img alt="DNP Disney Research\'s Aireal creates haptic feedback out of thin air" src="http://www.blogcdn.com/www.engadget.com/media/2013/07/aireal-arm-haptic-feedback.png" /></a></p>\n\n<p>Disney Research is at it again. The arm of Walt\'s empire responsible for <a href="http://www.engadget.com/2012/08/08/disney-research-botanicus-interacticus-hands-on/?utm_source=Feed_Classic&amp;utm_medium=feed&amp;utm_campaign=Engadget">interactive house plants</a> wants to add haptic feedback not to a <a href="http://www.engadget.com/2011/08/11/surround-haptics-could-bring-force-feedback-to-vests-coasters-a/?utm_source=Feed_Classic&amp;utm_medium=feed&amp;utm_campaign=Engadget">seat cushion</a>, but to thin air. Using a combination of 3D-printed components -- thank the <a href="http://www.engadget.com/2012/08/01/makerbot-replicator-hands-on-the-dawning-of-3d-printers-in-ever/?utm_source=Feed_Classic&amp;utm_medium=feed&amp;utm_campaign=Engadget">MakerBots</a> for those -- with five actuators and a gaggle of sensors, AIREAL pumps out tight vortices of air to simulate tactility in three dimensional space. The idea is to give touchless experiences like motion control a form of physical interaction, offering the end user a more natural response through, well, touch.</p>\n\n<p>Like most of <a href="http://www.engadget.com/2012/08/10/disney-revel/?utm_source=Feed_Classic&amp;utm_medium=feed&amp;utm_campaign=Engadget">the lab\'s experiments</a> this has been in the works for awhile, and the chances of it being used outside of Disneyworld anytime soon are probably slim. AIREAL will be on display at SIGGRAPH in Anaheim from Sunday to Wednesday this week. Didn\'t register? Check out the video after the break.</p>\n<p>Filed under: <a href="http://www.engadget.com/category/gaming/?utm_source=Feed_Classic&amp;utm_medium=feed&amp;utm_campaign=Engadget" rel="tag">Gaming</a>, <a href="http://www.engadget.com/category/science/?utm_source=Feed_Classic&amp;utm_medium=feed&amp;utm_campaign=Engadget" rel="tag">Science</a></p>\n<p><strong><a href="http://www.engadget.com/2013/07/21/siggraph-disney-research-aireal-haptic-feedback/?utm_source=Feed_Classic&amp;utm_medium=feed&amp;utm_campaign=Engadget#comments">Comments</a></strong></p>\n<p><strong>Via:</strong> <a href="http://www.gizmodo.com.au/2013/07/whoa-disney-made-video-game-rumble-feedback-for-controllerless-kinect/" target="_blank">Gizmodo (Australia)</a><!--//--></p>\n<p><strong>Source:</strong> <a href="http://www.disneyresearch.com/project/aireal/" target="_blank">Disney Research</a><!--//--></p>', 'language': None}
 published_parsed
 dc_identifier
 author
@@ -87,7 +92,17 @@ title
 tags
     [{'term': u'gaming', 'scheme': u'http://www.engadget.com/category/', 'label': u'Gaming'}, {'term': u'science', 'scheme': u'http://www.engadget.com/category/', 'label': u'Science'}, {'term': u'3dPrinter', 'scheme': None, 'label': None}, {'term': u'aireal', 'scheme': None, 'label': None}, {'term': u'DisneyResearch', 'scheme': None, 'label': None}, {'term': u'gaming', 'scheme': None, 'label': None}, {'term': u'haptic', 'scheme': None, 'label': None}, {'term': u'science', 'scheme': None, 'label': None}, {'term': u'SIGGRAPH', 'scheme': None, 'label': None}, {'term': u'siggraph2013', 'scheme': None, 'label': None}, {'term': u'vortex', 'scheme': None, 'label': None}]
 comments
+    http://www.engadget.com/2013/07/21/siggraph-disney-research-aireal-haptic-feedback/?utm_source=Feed_Classic&utm_medium=feed&utm_campaign=Engadget#comments
 summary
+    <p class="image-container" style="text-align: center;"><a href="http://www.engadget.com/2013/07/21/siggraph-disney-research-aireal-haptic-feedback/?utm_source=Feed_Classic&amp;utm_medium=feed&amp;utm_campaign=Engadget"><img alt="DNP Disney Research's Aireal creates haptic feedback out of thin air" src="http://www.blogcdn.com/www.engadget.com/media/2013/07/aireal-arm-haptic-feedback.png" /></a></p>
+
+<p>Disney Research is at it again. The arm of Walt's empire responsible for <a href="http://www.engadget.com/2012/08/08/disney-research-botanicus-interacticus-hands-on/?utm_source=Feed_Classic&amp;utm_medium=feed&amp;utm_campaign=Engadget">interactive house plants</a> wants to add haptic feedback not to a <a href="http://www.engadget.com/2011/08/11/surround-haptics-could-bring-force-feedback-to-vests-coasters-a/?utm_source=Feed_Classic&amp;utm_medium=feed&amp;utm_campaign=Engadget">seat cushion</a>, but to thin air. Using a combination of 3D-printed components -- thank the <a href="http://www.engadget.com/2012/08/01/makerbot-replicator-hands-on-the-dawning-of-3d-printers-in-ever/?utm_source=Feed_Classic&amp;utm_medium=feed&amp;utm_campaign=Engadget">MakerBots</a> for those -- with five actuators and a gaggle of sensors, AIREAL pumps out tight vortices of air to simulate tactility in three dimensional space. The idea is to give touchless experiences like motion control a form of physical interaction, offering the end user a more natural response through, well, touch.</p>
+
+<p>Like most of <a href="http://www.engadget.com/2012/08/10/disney-revel/?utm_source=Feed_Classic&amp;utm_medium=feed&amp;utm_campaign=Engadget">the lab's experiments</a> this has been in the works for awhile, and the chances of it being used outside of Disneyworld anytime soon are probably slim. AIREAL will be on display at SIGGRAPH in Anaheim from Sunday to Wednesday this week. Didn't register? Check out the video after the break.</p>
+<p>Filed under: <a href="http://www.engadget.com/category/gaming/?utm_source=Feed_Classic&amp;utm_medium=feed&amp;utm_campaign=Engadget" rel="tag">Gaming</a>, <a href="http://www.engadget.com/category/science/?utm_source=Feed_Classic&amp;utm_medium=feed&amp;utm_campaign=Engadget" rel="tag">Science</a></p>
+<p><strong><a href="http://www.engadget.com/2013/07/21/siggraph-disney-research-aireal-haptic-feedback/?utm_source=Feed_Classic&amp;utm_medium=feed&amp;utm_campaign=Engadget#comments">Comments</a></strong></p>
+<p><strong>Via:</strong> <a href="http://www.gizmodo.com.au/2013/07/whoa-disney-made-video-game-rumble-feedback-for-controllerless-kinect/" target="_blank">Gizmodo (Australia)</a><!--//--></p>
+<p><strong>Source:</strong> <a href="http://www.disneyresearch.com/project/aireal/" target="_blank">Disney Research</a><!--//--></p>
 guidislink
     False
 title_detail
@@ -113,23 +128,25 @@ namespaces
 entries
 -----------------
 summary_detail
+    {'base': u'http://news.yahoo.com/rss/business', 'type': u'text/html', 'value': u'<p><a href="http://news.yahoo.com/chinese-economy-set-turn-around-no-hard-landing-084036164.html"><img align="left" alt="Chinese Minister of Finance Lou smiles before G20 finance ministers and central bank governors family photo in Washington" border="0" height="86" src="http://l2.yimg.com/bt/api/res/1.2/s.9INjNtjUALNZ3GfrbL9w--/YXBwaWQ9eW5ld3M7Zmk9ZmlsbDtoPTg2O3E9ODU7dz0xMzA-/http://media.zenfs.com/en_us/News/Reuters/2013-07-21T084036Z_1_CBRE96K0O3Y00_RTROPTP_2_G20-STATEMENT.JPG" title="Chinese Minister of Finance Lou smiles before G20 finance ministers and central bank governors family photo in Washington" width="130" /></a>SHANGHAI (Reuters) - China&#039;s finance minister denied that the world&#039;s second-largest economy was entering a crisis period, adding that he believed growth could even accelerate, as quoted by the official Xinhua news service in an interview. The report quoted Lou Jiwei, speaking on the sidelines of the G20 conference on Saturday, saying he expected China&#039;s economic growth to end the year at 7.5 percent, the official target rate. ...</p><br clear="all" />', 'language': None}
 media_credit
     {'role': u'publishing company'}
 published_parsed
 links
-    [{'href': u'http://news.yahoo.com/g20-puts-growth-austerity-seeks-calm-markets-065215056.html', 'type': u'text/html', 'rel': u'alternate'}]
+    [{'href': u'http://news.yahoo.com/chinese-economy-set-turn-around-no-hard-landing-084036164.html', 'type': u'text/html', 'rel': u'alternate'}]
 title
 media_text
     {'type': u'html'}
 summary
+    <p><a href="http://news.yahoo.com/chinese-economy-set-turn-around-no-hard-landing-084036164.html"><img align="left" alt="Chinese Minister of Finance Lou smiles before G20 finance ministers and central bank governors family photo in Washington" border="0" height="86" src="http://l2.yimg.com/bt/api/res/1.2/s.9INjNtjUALNZ3GfrbL9w--/YXBwaWQ9eW5ld3M7Zmk9ZmlsbDtoPTg2O3E9ODU7dz0xMzA-/http://media.zenfs.com/en_us/News/Reuters/2013-07-21T084036Z_1_CBRE96K0O3Y00_RTROPTP_2_G20-STATEMENT.JPG" title="Chinese Minister of Finance Lou smiles before G20 finance ministers and central bank governors family photo in Washington" width="130" /></a>SHANGHAI (Reuters) - China&#039;s finance minister denied that the world&#039;s second-largest economy was entering a crisis period, adding that he believed growth could even accelerate, as quoted by the official Xinhua news service in an interview. The report quoted Lou Jiwei, speaking on the sidelines of the G20 conference on Saturday, saying he expected China&#039;s economic growth to end the year at 7.5 percent, the official target rate. ...</p><br clear="all" />
 source
     {'href': u'http://www.reuters.com/', 'title': u'Reuters'}
 title_detail
 link
-    http://news.yahoo.com/g20-puts-growth-austerity-seeks-calm-markets-065215056.html
+    http://news.yahoo.com/chinese-economy-set-turn-around-no-hard-landing-084036164.html
 published
 media_content
-    [{'url': u'http://l2.yimg.com/bt/api/res/1.2/XcfdHyHd.YVZjbx1NABM4A--/YXBwaWQ9eW5ld3M7Zmk9ZmlsbDtoPTg2O3E9ODU7dz0xMzA-/http://media.zenfs.com/en_us/News/Reuters/2013-07-20T105405Z_2_CBRE96J0J3H00_RTROPTP_2_G20-RUSSIA.JPG', 'width': u'130', 'type': u'image/jpeg', 'height': u'86'}]
+    [{'url': u'http://l2.yimg.com/bt/api/res/1.2/s.9INjNtjUALNZ3GfrbL9w--/YXBwaWQ9eW5ld3M7Zmk9ZmlsbDtoPTg2O3E9ODU7dz0xMzA-/http://media.zenfs.com/en_us/News/Reuters/2013-07-21T084036Z_1_CBRE96K0O3Y00_RTROPTP_2_G20-STATEMENT.JPG', 'width': u'130', 'type': u'image/jpeg', 'height': u'86'}]
 id
 guidislink
     False
@@ -147,11 +164,13 @@ namespaces
 entries
 -----------------
 summary_detail
+    {'base': u'http://news.yahoo.com/rss/health', 'type': u'text/html', 'value': u"ATLANTA (AP) \u2014 If you're 65 and living in Hawaii, here's some good news: Odds are you'll live another 21 years. And for all but five of those years, you'll likely be in pretty good health.", 'language': None}
 published_parsed
 links
     [{'href': u'http://news.yahoo.com/golden-years-shorter-sicker-southern-states-161453696.html', 'type': u'text/html', 'rel': u'alternate'}]
 title
 summary
+    ATLANTA (AP) — If you're 65 and living in Hawaii, here's some good news: Odds are you'll live another 21 years. And for all but five of those years, you'll likely be in pretty good health.
 source
     {'href': u'http://www.ap.org/', 'title': u'Associated Press'}
 title_detail
@@ -175,6 +194,7 @@ namespaces
 entries
 -----------------
 summary_detail
+    {'base': u'http://news.yahoo.com/rss/sports', 'type': u'text/html', 'value': u'<p><a href="http://news.yahoo.com/westwood-gets-another-shot-winning-major-202341116.html"><img align="left" alt="Tiger Woods of the United States, left, shakes hands with Lee Westwood of England on the 18th green after their third round of the British Open Golf Championship at Muirfield, Scotland, Saturday July 20, 2013. (AP Photo/Scott Heppell)" border="0" height="86" src="http://l2.yimg.com/bt/api/res/1.2/qnGHguqg5kMwF9cJV.ghMg--/YXBwaWQ9eW5ld3M7Zmk9ZmlsbDtoPTg2O3E9ODU7dz0xMzA-/http://media.zenfs.com/en_us/News/ap_webfeeds/d7dd7c26470d2418380f6a706700328c.jpg" title="Tiger Woods of the United States, left, shakes hands with Lee Westwood of England on the 18th green after their third round of the British Open Golf Championship at Muirfield, Scotland, Saturday July 20, 2013. (AP Photo/Scott Heppell)" width="130" /></a>GULLANE, Scotland (AP) \u2014 Lee Westwood has contended enough in the majors that he can identify important moments, even if he could barely see his ball.</p><br clear="all" />', 'language': None}
 media_credit
     {'role': u'publishing company'}
 published_parsed
@@ -184,6 +204,7 @@ title
 media_text
     {'type': u'html'}
 summary
+    <p><a href="http://news.yahoo.com/westwood-gets-another-shot-winning-major-202341116.html"><img align="left" alt="Tiger Woods of the United States, left, shakes hands with Lee Westwood of England on the 18th green after their third round of the British Open Golf Championship at Muirfield, Scotland, Saturday July 20, 2013. (AP Photo/Scott Heppell)" border="0" height="86" src="http://l2.yimg.com/bt/api/res/1.2/qnGHguqg5kMwF9cJV.ghMg--/YXBwaWQ9eW5ld3M7Zmk9ZmlsbDtoPTg2O3E9ODU7dz0xMzA-/http://media.zenfs.com/en_us/News/ap_webfeeds/d7dd7c26470d2418380f6a706700328c.jpg" title="Tiger Woods of the United States, left, shakes hands with Lee Westwood of England on the 18th green after their third round of the British Open Golf Championship at Muirfield, Scotland, Saturday July 20, 2013. (AP Photo/Scott Heppell)" width="130" /></a>GULLANE, Scotland (AP) — Lee Westwood has contended enough in the majors that he can identify important moments, even if he could barely see his ball.</p><br clear="all" />
 source
     {'href': u'http://www.ap.org/', 'title': u'Associated Press'}
 title_detail
