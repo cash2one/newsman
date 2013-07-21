@@ -63,7 +63,8 @@ def read_entry(e=None, language=None, category=None, feed_id=None):
             entry['updated'] = calendar.timegm(e.published_parsed)
         except AttributeError as k:
             print k, "... will try attibutes 'update' and 'published'"
-            entry['error'] = '%s\n%s' % (entry['error'], 'no parsed update or published')
+            entry['error'] = '%s\n%s' % (
+                entry['error'], 'no parsed update or published')
             # then try unparsed time info
             try:
                 updated = e.updated if 'updated' in e else e.published
@@ -79,15 +80,19 @@ def read_entry(e=None, language=None, category=None, feed_id=None):
                     updated -= delta
                     entry['updated'] = time.mktime(updated.timetuple())
                 else:
-                    raise ValueError("attribute updated/published has no value")
+                    raise ValueError(
+                        "attribute updated/published has no value")
             except ValueError as k:
                 print k
                 entry['error'] = '%s\n%s' % (entry['error'], k)
-                raise Exception('----- ERROR: entry %s has no publication info!' % entry['title'])
+                raise Exception(
+                    '----- ERROR: entry %s has no publication info!' % entry['title'])
             except AttributeError as k:
                 print k
-                entry['error'] = '%s\n%s' % (entry['error'], 'no update or published')
-                raise Exception('----- ERROR: entry %s has no publication info!' % entry['title'])
+                entry['error'] = '%s\n%s' % (
+                    entry['error'], 'no update or published')
+                raise Exception(
+                    '----- ERROR: entry %s has no publication info!' % entry['title'])
 
     # article's summary
     try:
@@ -101,16 +106,21 @@ def read_entry(e=None, language=None, category=None, feed_id=None):
         """
         if thumbnail.is_thumbnail(image):
             width, height = thumbnail.get_image_size(image)
-            stored_at.append({'url':image, 'width':width, 'height':height}) 
+            stored_at.append({'url': image, 'width': width, 'height': height})
         else:
             rand = random.randint(0, 1000000)
-            thumbnail_name = 'thumbnail_%s_%s_%i' % (entry['language'], entry['updated'], rand)
-            image_shrinked = thumbnail.generate_thumbnail(image, thumbnail_name) 
+            thumbnail_name = 'thumbnail_%s_%s_%i' % (
+                entry['language'], entry['updated'], rand)
+            image_shrinked = thumbnail.generate_thumbnail(
+                image, thumbnail_name)
             width, height = thumbnail.get_image_size(image_shrinked)
-            stored_at.append({'url':image_shrinked, 'width':width, 'height':height}) 
+            stored_at.append(
+                {'url': image_shrinked, 'width': width, 'height': height})
 
-    # article's thumbnail     
-    # e.g. [{'url': u'http://l.yimg.com/bt/api/res/1.2/SC7vBu0RS0PXeIctqYqbnw--/YXBwaWQ9eW5ld3M7Zmk9ZmlsbDtoPTg2O3E9ODU7dz0xMzA-/http://media.zenfs.com/pt_BR/News/AFP/photo_1374358063998-1-HD.jpg', 'width': u'130', 'type': u'image/jpeg', 'height': u'86'}]
+    # article's thumbnail
+    # e.g. [{'url':
+    # u'http://l.yimg.com/bt/api/res/1.2/SC7vBu0RS0PXeIctqYqbnw--/YXBwaWQ9eW5ld3M7Zmk9ZmlsbDtoPTg2O3E9ODU7dz0xMzA-/http://media.zenfs.com/pt_BR/News/AFP/photo_1374358063998-1-HD.jpg',
+    # 'width': u'130', 'type': u'image/jpeg', 'height': u'86'}]
     try:
         entry['thumbnails'] = e.media_content
     except AttributeError as k:
@@ -123,13 +133,17 @@ def read_entry(e=None, language=None, category=None, feed_id=None):
                 for attribute in e:
                     if 'thumbnail' in attribute:
                         # currently set thumbnail to None if its a dictionary
-                        thumbnail_embedded = e.attribute if isinstance(e.attribute, str) else None 
+                        thumbnail_embedded = e.attribute if isinstance(
+                            e.attribute, str) else None
                         if thumbnail_embedded:
-                            width, height = thumbnail.get_image_size(thumbnail_embedded)
-                            entry['thumbnails'] = [{'url':thumbnail_embedded, 'width':width, 'height':height}]
+                            width, height = thumbnail.get_image_size(
+                                thumbnail_embedded)
+                            entry['thumbnails'] = [
+                                {'url': thumbnail_embedded, 'width': width, 'height': height}]
                             break
                 if not entry['thumbnails']:
-                    raise AttributeError("cannot find 'thumbnail'-like attribute")
+                    raise AttributeError(
+                        "cannot find 'thumbnail'-like attribute")
             except AttributeError as k:
                 print k, '... will try summary, if available'
                 entry['thumbnails'] = []
@@ -149,7 +163,8 @@ def read_entry(e=None, language=None, category=None, feed_id=None):
                         for link in links:
                             if 'type' in link and 'image' in link.type:
                                 if 'href' in link:
-                                    store_thumbnail(entry['thumbnails'], link.href)
+                                    store_thumbnail(
+                                        entry['thumbnails'], link.href)
                         if not entry['thumbnails']:
                             raise AttributeError("no image found in 'links'")
                     except AttributeError as k:
@@ -164,12 +179,14 @@ def read_entry(e=None, language=None, category=None, feed_id=None):
             if isinstance(images, str):
                 if not thumbnail.is_thumbnail(images):
                     width, height = thumbnail.get_image_size(images)
-                    entry['big_images'].append({'url':images, 'width':width, 'height':height})
+                    entry['big_images'].append(
+                        {'url': images, 'width': width, 'height': height})
             elif isinstance(images, list):
                 for image in images:
                     if not thumbnail.is_thumbnail(image):
                         width, height = thumbnail.get_image_size(image)
-                        big_image = {'url':image, 'width':width, 'height':height}
+                        big_image = {
+                            'url': image, 'width': width, 'height': height}
                         if big_image not in entry['big_images']:
                             entry['big_images'].append(big_image)
     try:
@@ -178,7 +195,8 @@ def read_entry(e=None, language=None, category=None, feed_id=None):
             if 'type' in link and 'image' in link.type:
                 if 'href' in link:
                     width, height = thumbnail.get_image_size(link.href)
-                    big_image = {'url':link.href, 'width':width, 'height':height}
+                    big_image = {
+                        'url': link.href, 'width': width, 'height': height}
                     if big_image not in entry['big_images']:
                         entry['big_images'].append(big_image)
         if not entry['big_images']:
@@ -196,7 +214,7 @@ def read_entry(e=None, language=None, category=None, feed_id=None):
         print k, '... probably this has no author'
 
     # article's source
-    # e.g. {'href': u'http://www.reuters.com/', 'title': u'Reuters'} 
+    # e.g. {'href': u'http://www.reuters.com/', 'title': u'Reuters'}
     try:
         entry['source'] = e.source
     except AttributeError as k:
@@ -204,14 +222,16 @@ def read_entry(e=None, language=None, category=None, feed_id=None):
 
     # article's tags
     # e.g. [{'term': u'Campus Party Recife 2013', 'scheme': None, 'label': None}]
-    # term is usually combined with scheme to form a url; label is the name of term
+    # term is usually combined with scheme to form a url; label is the name of
+    # term
     try:
         entry['tags'] = e.tag
     except AttributeError as k:
         print k, '... probably this has no tags'
 
     # specially made for Android front-end developers
-    entry['thumbnails'] = 'None' if not entry['thumbnails'] else entry['thumbnails']
+    entry['thumbnails'] = 'None' if not entry[
+        'thumbnails'] else entry['thumbnails']
     entry['summary'] = 'None' if not entry['summary'] else entry['summary']
     return entry
 
@@ -239,5 +259,3 @@ def parse(feed_id=None, feed_link=None, language=None, category=None):
             return None
     else:
         return None
-
-
