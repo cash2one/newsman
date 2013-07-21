@@ -34,3 +34,10 @@ def generate_thumbnail(image_url, relative_path):
         return image_thumbnail_web_path
     else:
         return image_url
+
+
+def get_image_size(image_url):
+    image_web = StringIO(urllib2.urlopen(image_url).read())
+    im = Image.open(image_web)
+    width, height = im.size
+    return width, height
