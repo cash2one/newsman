@@ -89,22 +89,21 @@ def read_entry(e=None, language=None, category=None, feed_id=None):
                 raise Exception('----- ERROR: entry %s has no publication info!' % entry['title'])
 
     # article's thumbnail     
-    try: 
-        if 'media_thumbnail' in e or 'media_content' in e:
-            thumbnails = e['media_content'] if 'media_content' in e else e['media_thumbnail']
-            # a list of thumbnails
-            for thumbnail in thumbnails:
-                if 'url' in thumbnail:
-                    image_web = thumbnail['url']
-                    if 'image' not in entry:
-                        entry['image'] = []
-                    entry['image'].append(image_web)
-        if 'thumbnail' in e:
-            if 'image' not in entry:
-                entry['image'] = []
-            entry['image'].append(e['thumbnail'])
-    except AttributeError as e:
-        print e
+    try:
+        entry['thumbnails'] = e.media_content
+        except AttributeError as e:
+            print e, '... will try media_thumbnail'
+            try:
+                entry['thumbnails'] = e.media_thumbnail
+            except AttributeError as e:
+                print e, '... will try thumbnail':
+                    try:
+                        thumbnail_embedded = e.thumbnail
+                        width, height = thumbnail.get_image_size(thumbnail_embedded)
+                        entry['thumbnails'] = [{'url':thumbnail_embedded, 'width':width, 'height':height}]
+                    except AttributeError as e:
+                        print e, '... probably this has no thumbnails'
+                        entry['error'] = '%s\n%s' % (entry['error'], 'no thumbnails')
 
     if 'summary' in e:
         soup = BeautifulStoneSoup(e.summary)

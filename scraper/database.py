@@ -54,7 +54,7 @@ def update(entries=None, language=None):
                         entry['image'] = []
                         bimage_max = 0, 0
                         for bimage in entry['big_images']:
-                            bimage_current = transcoder.get_image_size(bimage)
+                            bimage_current = thumbnail.get_image_size(bimage)
                             if bimage_current > bimage_max:
                                 thumbnail_relative_path = '%s.jpeg' % bimage
                                 if len(thumbnail_relative_path) > 200:

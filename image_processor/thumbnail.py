@@ -37,7 +37,11 @@ def generate_thumbnail(image_url, relative_path):
 
 
 def get_image_size(image_url):
-    image_web = StringIO(urllib2.urlopen(image_url).read())
+    try:
+        image_web = StringIO(urllib2.urlopen(image_url).read())
+    except Exception as e:
+        print e
+        image_web = image_url
     im = Image.open(image_web)
     width, height = im.size
     return width, height
