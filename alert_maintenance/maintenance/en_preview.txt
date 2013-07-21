@@ -1,0 +1,219 @@
+::::: U.S. News Headlines - Yahoo! News :::::
+feed
+status
+version
+encoding
+    utf-8
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+media_credit
+    {'role': u'publishing company'}
+published_parsed
+links
+    [{'href': u'http://news.yahoo.com/thousands-streets-protest-trayvon-martin-verdict-014643648.html', 'type': u'text/html', 'rel': u'alternate'}]
+title
+media_text
+    {'type': u'html'}
+summary
+source
+    {'href': u'http://www.reuters.com/', 'title': u'Reuters'}
+title_detail
+link
+    http://news.yahoo.com/thousands-streets-protest-trayvon-martin-verdict-014643648.html
+published
+media_content
+    [{'url': u'http://l2.yimg.com/bt/api/res/1.2/7NgXkkmKh9l.jQVHApAYGg--/YXBwaWQ9eW5ld3M7Zmk9ZmlsbDtoPTg2O3E9ODU7dz0xMzA-/http://media.zenfs.com/en_us/News/Reuters/2013-07-20T235440Z_1_CBRE96J1O4000_RTROPTP_2_USA-FLORIDA-SHOOTING.JPG', 'width': u'130', 'type': u'image/jpeg', 'height': u'86'}]
+id
+guidislink
+    False
+
+::::: BBC News - World :::::
+feed
+status
+updated
+updated_parsed
+encoding
+    utf-8
+bozo
+headers
+href
+version
+entries
+bozo_exception
+namespaces
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://www.bbc.co.uk/news/world-asia-23371812#sa-ns_mchannel=rss&ns_source=PublicRSS20-sa', 'type': u'text/html', 'rel': u'alternate'}]
+title
+media_thumbnail
+    [{'url': u'http://news.bbcimg.co.uk/media/images/68863000/jpg/_68863201_68863194.jpg', 'width': u'66', 'height': u'49'}, {'url': u'http://news.bbcimg.co.uk/media/images/68863000/jpg/_68863202_68863194.jpg', 'width': u'144', 'height': u'81'}]
+summary
+guidislink
+    False
+title_detail
+href
+link
+    http://www.bbc.co.uk/news/world-asia-23371812#sa-ns_mchannel=rss&ns_source=PublicRSS20-sa
+published
+id
+
+::::: Engadget :::::
+feed
+status
+version
+encoding
+    utf-8
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+published_parsed
+dc_identifier
+author
+    Timothy J. Seppala
+links
+    [{'href': u'http://www.engadget.com/2013/07/21/siggraph-disney-research-aireal-haptic-feedback/?utm_medium=feed&utm_source=Feed_Classic&utm_campaign=Engadget', 'type': u'text/html', 'rel': u'alternate'}]
+title
+tags
+    [{'term': u'gaming', 'scheme': u'http://www.engadget.com/category/', 'label': u'Gaming'}, {'term': u'science', 'scheme': u'http://www.engadget.com/category/', 'label': u'Science'}, {'term': u'3dPrinter', 'scheme': None, 'label': None}, {'term': u'aireal', 'scheme': None, 'label': None}, {'term': u'DisneyResearch', 'scheme': None, 'label': None}, {'term': u'gaming', 'scheme': None, 'label': None}, {'term': u'haptic', 'scheme': None, 'label': None}, {'term': u'science', 'scheme': None, 'label': None}, {'term': u'SIGGRAPH', 'scheme': None, 'label': None}, {'term': u'siggraph2013', 'scheme': None, 'label': None}, {'term': u'vortex', 'scheme': None, 'label': None}]
+comments
+summary
+guidislink
+    False
+title_detail
+link
+    http://www.engadget.com/2013/07/21/siggraph-disney-research-aireal-haptic-feedback/?utm_medium=feed&utm_source=Feed_Classic&utm_campaign=Engadget
+authors
+    [{}]
+author_detail
+    {'name': u'Timothy J. Seppala'}
+id
+published
+
+::::: Business News Headlines - Yahoo! News :::::
+feed
+status
+version
+encoding
+    utf-8
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+media_credit
+    {'role': u'publishing company'}
+published_parsed
+links
+    [{'href': u'http://news.yahoo.com/g20-puts-growth-austerity-seeks-calm-markets-065215056.html', 'type': u'text/html', 'rel': u'alternate'}]
+title
+media_text
+    {'type': u'html'}
+summary
+source
+    {'href': u'http://www.reuters.com/', 'title': u'Reuters'}
+title_detail
+link
+    http://news.yahoo.com/g20-puts-growth-austerity-seeks-calm-markets-065215056.html
+published
+media_content
+    [{'url': u'http://l2.yimg.com/bt/api/res/1.2/XcfdHyHd.YVZjbx1NABM4A--/YXBwaWQ9eW5ld3M7Zmk9ZmlsbDtoPTg2O3E9ODU7dz0xMzA-/http://media.zenfs.com/en_us/News/Reuters/2013-07-20T105405Z_2_CBRE96J0J3H00_RTROPTP_2_G20-RUSSIA.JPG', 'width': u'130', 'type': u'image/jpeg', 'height': u'86'}]
+id
+guidislink
+    False
+
+::::: Health News Headlines - Yahoo! News :::::
+feed
+status
+version
+encoding
+    utf-8
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://news.yahoo.com/golden-years-shorter-sicker-southern-states-161453696.html', 'type': u'text/html', 'rel': u'alternate'}]
+title
+summary
+source
+    {'href': u'http://www.ap.org/', 'title': u'Associated Press'}
+title_detail
+link
+    http://news.yahoo.com/golden-years-shorter-sicker-southern-states-161453696.html
+published
+id
+guidislink
+    False
+
+::::: Sports News Headlines - Yahoo! News :::::
+feed
+status
+version
+encoding
+    utf-8
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+media_credit
+    {'role': u'publishing company'}
+published_parsed
+links
+    [{'href': u'http://news.yahoo.com/westwood-gets-another-shot-winning-major-202341116.html', 'type': u'text/html', 'rel': u'alternate'}]
+title
+media_text
+    {'type': u'html'}
+summary
+source
+    {'href': u'http://www.ap.org/', 'title': u'Associated Press'}
+title_detail
+link
+    http://news.yahoo.com/westwood-gets-another-shot-winning-major-202341116.html
+published
+media_content
+    [{'url': u'http://l2.yimg.com/bt/api/res/1.2/qnGHguqg5kMwF9cJV.ghMg--/YXBwaWQ9eW5ld3M7Zmk9ZmlsbDtoPTg2O3E9ODU7dz0xMzA-/http://media.zenfs.com/en_us/News/ap_webfeeds/d7dd7c26470d2418380f6a706700328c.jpg', 'width': u'130', 'type': u'image/jpeg', 'height': u'86'}]
+id
+guidislink
+    False
+
+::::: CNN.com - Entertainment :::::
+feed
+bozo
+bozo_exception
+entries
+-----------------
+
+::::: CNN.com - Travel :::::
+feed
+bozo
+bozo_exception
+entries
+-----------------
+
+::::: CNN.com - Sport :::::
+feed
+bozo
+bozo_exception
+entries
+-----------------
+

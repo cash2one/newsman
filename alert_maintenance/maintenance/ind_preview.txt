@@ -1,0 +1,560 @@
+::::: sport.detik :::::
+feed
+status
+updated
+updated_parsed
+encoding
+    UTF-8
+bozo
+headers
+etag
+    1374388907000
+href
+version
+entries
+namespaces
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://detik.feedsportal.com/c/33613/f/656100/s/2ef246c7/l/0Lsport0Bdetik0N0Cread0C20A130C0A70C210C1341470C230A92240C810Cstart0Eposisi0Eempat0Erossi0Ecukup0Epuas/story01.htm', 'type': u'text/html', 'rel': u'alternate'}, {'length': u'10240', 'href': u'http://detik.feedsportal.com/c/33613/f/656100/e/1/s/2ef246c7/l/0Limages0Bdetik0N0Ccontent0C20A130C0A70C210C810Cvalentinoisi0Bjpg/valentinoisi.jpg', 'type': u'image/jpg', 'rel': u'enclosure'}]
+title
+summary
+guidislink
+    False
+title_detail
+link
+    http://detik.feedsportal.com/c/33613/f/656100/s/2ef246c7/l/0Lsport0Bdetik0N0Cread0C20A130C0A70C210C1341470C230A92240C810Cstart0Eposisi0Eempat0Erossi0Ecukup0Epuas/story01.htm
+published
+id
+
+::::: ANTARA News - Nasional - Kesehatan :::::
+feed
+status
+updated
+updated_parsed
+encoding
+    us-ascii
+bozo
+headers
+etag
+    "a69c9-3418-4e206baf2d440"
+href
+version
+entries
+namespaces
+-----------------
+summary_detail
+links
+    [{'href': u'http://www.antaranews.com/berita/386355/kemenkes-imbau-pemda-optimalkan-ipwl', 'type': u'text/html', 'rel': u'alternate'}]
+published_parsed
+title
+summary
+guidislink
+    False
+title_detail
+link
+    http://www.antaranews.com/berita/386355/kemenkes-imbau-pemda-optimalkan-ipwl
+published
+id
+
+::::: Sindikasi news.okezone.com :::::
+feed
+status
+version
+encoding
+    UTF-8
+bozo
+headers
+href
+namespaces
+entries
+bozo_exception
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://news.okezone.com/read/2013/07/21/339/840184/dps-banyak-masalah-kpu-harus-siap-ubah-jadwal', 'type': u'text/html', 'rel': u'alternate'}]
+title
+tags
+    [{'term': u'breaking news - Polhukam', 'scheme': None, 'label': None}]
+summary
+guidislink
+    False
+title_detail
+link
+    http://news.okezone.com/read/2013/07/21/339/840184/dps-banyak-masalah-kpu-harus-siap-ubah-jadwal
+published
+id
+
+::::: Sindikasi international.okezone.com :::::
+feed
+status
+version
+encoding
+    UTF-8
+bozo
+headers
+href
+namespaces
+entries
+bozo_exception
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://international.okezone.com/read/2013/07/20/412/840022/mayat-hidup-kunci-perdamaian-israel-palestina', 'type': u'text/html', 'rel': u'alternate'}]
+title
+tags
+    [{'term': u'breaking news - Timur Tengah', 'scheme': None, 'label': None}]
+summary
+guidislink
+    False
+title_detail
+link
+    http://international.okezone.com/read/2013/07/20/412/840022/mayat-hidup-kunci-perdamaian-israel-palestina
+published
+id
+
+::::: Sindikasi techno.okezone.com :::::
+feed
+status
+version
+encoding
+    UTF-8
+bozo
+headers
+href
+namespaces
+entries
+bozo_exception
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://techno.okezone.com/read/2013/07/21/57/840158/bocoran-gambar-smartphone-moto-x-beredar-di-internet', 'type': u'text/html', 'rel': u'alternate'}]
+title
+tags
+    [{'term': u'breaking news - Gadget', 'scheme': None, 'label': None}]
+summary
+guidislink
+    False
+title_detail
+link
+    http://techno.okezone.com/read/2013/07/21/57/840158/bocoran-gambar-smartphone-moto-x-beredar-di-internet
+published
+id
+
+::::: Tempo.co News Site :::::
+feed
+status
+version
+encoding
+    iso-8859-1
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+links
+    [{'href': u'http://www.tempo.co/read/news/2013/07/21/099498276/Istri-Rooney-Siap-Pindah-Ke-London', 'type': u'text/html', 'rel': u'alternate'}]
+published_parsed
+tags
+    [{'term': u'sepakbola', 'scheme': None, 'label': None}]
+title
+summary
+content
+guidislink
+    True
+title_detail
+href
+link
+    http://www.tempo.co/read/news/2013/07/21/099498276/Istri-Rooney-Siap-Pindah-Ke-London
+published
+id
+
+::::: ANTARA News - Hiburan :::::
+feed
+status
+updated
+updated_parsed
+encoding
+    us-ascii
+bozo
+headers
+etag
+    "a69dd-35ff-4e206c9503280"
+href
+version
+entries
+namespaces
+-----------------
+summary_detail
+links
+    [{'href': u'http://www.antaranews.com/berita/386578/putri-bruce-lee-mengenang-sang-ayah', 'type': u'text/html', 'rel': u'alternate'}]
+published_parsed
+title
+summary
+guidislink
+    False
+title_detail
+link
+    http://www.antaranews.com/berita/386578/putri-bruce-lee-mengenang-sang-ayah
+published
+id
+
+::::: Tempo.co News Site :::::
+feed
+status
+version
+encoding
+    iso-8859-1
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+links
+    [{'href': u'http://www.tempo.co/read/news/2013/07/21/204498208/Menyusuri-Gua-Putri-di-Ogan-Komering-Ulu', 'type': u'text/html', 'rel': u'alternate'}]
+published_parsed
+tags
+    [{'term': u'travel_trip', 'scheme': None, 'label': None}]
+title
+summary
+content
+guidislink
+    True
+title_detail
+href
+link
+    http://www.tempo.co/read/news/2013/07/21/204498208/Menyusuri-Gua-Putri-di-Ogan-Komering-Ulu
+published
+id
+
+::::: Sindikasi economy.okezone.com :::::
+feed
+status
+version
+encoding
+    UTF-8
+bozo
+headers
+href
+namespaces
+entries
+bozo_exception
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://economy.okezone.com/read/2013/07/21/320/840208/hatta-aher-jualan-minyak-goreng-murah-di-cianjur', 'type': u'text/html', 'rel': u'alternate'}]
+title
+tags
+    [{'term': u'breaking news - Sektor Riil', 'scheme': None, 'label': None}]
+summary
+guidislink
+    False
+title_detail
+link
+    http://economy.okezone.com/read/2013/07/21/320/840208/hatta-aher-jualan-minyak-goreng-murah-di-cianjur
+published
+id
+
+::::: Inilah.com - Nasional :::::
+feed
+status
+version
+encoding
+    us-ascii
+bozo
+headers
+href
+namespaces
+entries
+bozo_exception
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://nasional.inilah.com/read/detail/2012522/bom-di-tasikmalaya-bukan-dari-dinamit-yang-hilang', 'type': u'text/html', 'rel': u'alternate'}]
+title
+tags
+    [{'term': u'nasional', 'scheme': None, 'label': None}]
+summary
+guidislink
+    False
+title_detail
+link
+    http://nasional.inilah.com/read/detail/2012522/bom-di-tasikmalaya-bukan-dari-dinamit-yang-hilang
+published
+id
+
+::::: Tempo.co News Site :::::
+feed
+status
+version
+encoding
+    iso-8859-1
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+links
+    [{'href': u'http://www.tempo.co/read/news/2013/07/21/063498268/KPK-Diminta-Pakai-Pasal-Pencucian-Uang-untuk-Anas', 'type': u'text/html', 'rel': u'alternate'}]
+published_parsed
+tags
+    [{'term': u'hukum', 'scheme': None, 'label': None}]
+title
+summary
+content
+guidislink
+    True
+title_detail
+href
+link
+    http://www.tempo.co/read/news/2013/07/21/063498268/KPK-Diminta-Pakai-Pasal-Pencucian-Uang-untuk-Anas
+published
+id
+
+::::: ANTARA News - Internasional :::::
+feed
+status
+updated
+updated_parsed
+encoding
+    us-ascii
+bozo
+headers
+etag
+    "a69cc-3450-4e206d067fe40"
+href
+version
+entries
+namespaces
+-----------------
+summary_detail
+links
+    [{'href': u'http://www.antaranews.com/berita/386577/lagi-biksu-tibet-meninggal-bakar-diri', 'type': u'text/html', 'rel': u'alternate'}]
+published_parsed
+title
+summary
+guidislink
+    False
+title_detail
+link
+    http://www.antaranews.com/berita/386577/lagi-biksu-tibet-meninggal-bakar-diri
+published
+id
+
+::::: Tempo.co News Site :::::
+feed
+status
+version
+encoding
+    iso-8859-1
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+links
+    [{'href': u'http://www.tempo.co/read/news/2013/07/21/117498277/Belgia-Punya-Raja-Baru', 'type': u'text/html', 'rel': u'alternate'}]
+published_parsed
+tags
+    [{'term': u'eropa', 'scheme': None, 'label': None}]
+title
+summary
+content
+guidislink
+    True
+title_detail
+href
+link
+    http://www.tempo.co/read/news/2013/07/21/117498277/Belgia-Punya-Raja-Baru
+published
+id
+
+::::: Inilah.com - Duniahariini :::::
+feed
+status
+version
+encoding
+    us-ascii
+bozo
+headers
+href
+namespaces
+entries
+bozo_exception
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://web.inilah.com/read/detail/2012414/militer-hisbullah-bakal-dicap-teroris-oleh-eropa', 'type': u'text/html', 'rel': u'alternate'}]
+title
+tags
+    [{'term': u'dunia', 'scheme': None, 'label': None}]
+summary
+guidislink
+    False
+title_detail
+link
+    http://web.inilah.com/read/detail/2012414/militer-hisbullah-bakal-dicap-teroris-oleh-eropa
+published
+id
+
+::::: Inilah.com - Teknologi :::::
+feed
+status
+version
+encoding
+    UTF-8
+bozo
+headers
+href
+namespaces
+entries
+bozo_exception
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://teknologi.inilah.com/read/detail/2012480/samsung-ungkap-penyebab-galaxy-s3-meledak-di-swiss', 'type': u'text/html', 'rel': u'alternate'}]
+title
+tags
+    [{'term': u'teknologi', 'scheme': None, 'label': None}]
+summary
+guidislink
+    False
+title_detail
+link
+    http://teknologi.inilah.com/read/detail/2012480/samsung-ungkap-penyebab-galaxy-s3-meledak-di-swiss
+published
+id
+
+::::: ANTARA News - Olahraga :::::
+feed
+status
+updated
+updated_parsed
+encoding
+    us-ascii
+bozo
+headers
+etag
+    "a69e7-368d-4e206d067fe40"
+href
+version
+entries
+namespaces
+-----------------
+summary_detail
+links
+    [{'href': u'http://www.antaranews.com/berita/386571/federer-kalah-ke-12-kali-dalam-karirnya', 'type': u'text/html', 'rel': u'alternate'}]
+published_parsed
+title
+summary
+guidislink
+    False
+title_detail
+link
+    http://www.antaranews.com/berita/386571/federer-kalah-ke-12-kali-dalam-karirnya
+published
+id
+
+::::: Inilah.com - Olahraga :::::
+feed
+status
+version
+encoding
+    us-ascii
+bozo
+headers
+href
+namespaces
+entries
+bozo_exception
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://olahraga.inilah.com/read/detail/2012441/federer-dibungkam-petenis-gurem-lagi', 'type': u'text/html', 'rel': u'alternate'}]
+title
+tags
+    [{'term': u'olahraga', 'scheme': None, 'label': None}]
+summary
+guidislink
+    False
+title_detail
+link
+    http://olahraga.inilah.com/read/detail/2012441/federer-dibungkam-petenis-gurem-lagi
+published
+id
+
+::::: Inilah.com - Artis :::::
+feed
+status
+version
+encoding
+    UTF-8
+bozo
+headers
+href
+namespaces
+entries
+bozo_exception
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://artis.inilah.com/read/detail/2012451/behati-prinsloo-santai-adam-levine-akan-nikahinya', 'type': u'text/html', 'rel': u'alternate'}]
+title
+tags
+    [{'term': u'artis', 'scheme': None, 'label': None}]
+summary
+guidislink
+    False
+title_detail
+link
+    http://artis.inilah.com/read/detail/2012451/behati-prinsloo-santai-adam-levine-akan-nikahinya
+published
+id
+
+::::: Inilah.com - Ekonomi :::::
+feed
+status
+version
+encoding
+    us-ascii
+bozo
+headers
+href
+namespaces
+entries
+bozo_exception
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://ekonomi.inilah.com/read/detail/2012477/semester-i-2013-penjualan-honda-rekor-190', 'type': u'text/html', 'rel': u'alternate'}]
+title
+tags
+    [{'term': u'ekonomi', 'scheme': None, 'label': None}]
+summary
+guidislink
+    False
+title_detail
+link
+    http://ekonomi.inilah.com/read/detail/2012477/semester-i-2013-penjualan-honda-rekor-190
+published
+id
+

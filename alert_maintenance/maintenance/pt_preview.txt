@@ -1,0 +1,854 @@
+::::: G1 :::::
+feed
+status
+version
+encoding
+    utf-8
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://g1.globo.com/mundo/noticia/2013/07/forte-terremoto-sacode-nova-zelandia.html', 'type': u'text/html', 'rel': u'alternate'}]
+title
+tags
+    [{'term': u'Mundo', 'scheme': None, 'label': None}]
+summary
+title_detail
+link
+    http://g1.globo.com/mundo/noticia/2013/07/forte-terremoto-sacode-nova-zelandia.html
+published
+
+::::: Folha de S.Paulo - Tec - Principal :::::
+feed
+status
+updated
+updated_parsed
+encoding
+    iso-8859-1
+bozo
+headers
+etag
+    "5cf7-4e1f27948ec00"
+href
+version
+entries
+namespaces
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://redir.folha.com.br/redir/online/tec/rss091/*http://www1.folha.uol.com.br/poder/2013/07/1313541-facebook-apaga-post-da-folha-com-nudez.shtml', 'type': u'text/html', 'rel': u'alternate'}]
+title
+summary
+title_detail
+link
+    http://redir.folha.com.br/redir/online/tec/rss091/*http://www1.folha.uol.com.br/poder/2013/07/1313541-facebook-apaga-post-da-folha-com-nudez.shtml
+published
+
+::::: R7- Noticias de Economia :::::
+feed
+status
+updated
+updated_parsed
+encoding
+    utf-8
+bozo
+headers
+etag
+    "2497b69-33b2-4e1f8bd98db54"
+href
+version
+entries
+namespaces
+-----------------
+links
+    [{'href': u'http://noticias.r7.com/economia/noticias/oriente-medio-israelenses-e-palestinos-estao-prontos-para-a-paz-20130720.html', 'type': u'text/html', 'rel': u'alternate'}]
+published_parsed
+title
+title_detail
+link
+    http://noticias.r7.com/economia/noticias/oriente-medio-israelenses-e-palestinos-estao-prontos-para-a-paz-20130720.html
+published
+
+::::: Terra - RSS - Esportes :::::
+feed
+status
+version
+encoding
+    utf-8
+bozo
+headers
+href
+namespaces
+entries
+bozo_exception
+-----------------
+published_parsed
+links
+    [{'href': u'http://esportes.terra.com.br/sao-paulo/alvo-em-protesto-marco-aurelio-diz-nao-ter-medo-de-pedir-mudancas,c97c965c889ff310VgnCLD2000000ec6eb0aRCRD.html', 'type': u'text/html', 'rel': u'alternate'}]
+title
+tags
+    [{'term': u'S\xe3o Paulo', 'scheme': None, 'label': None}]
+summary
+content
+guidislink
+    False
+title_detail
+link
+    http://esportes.terra.com.br/sao-paulo/alvo-em-protesto-marco-aurelio-diz-nao-ter-medo-de-pedir-mudancas,c97c965c889ff310VgnCLD2000000ec6eb0aRCRD.html
+published
+id
+
+::::: Terra - RSS - Diversão :::::
+feed
+status
+version
+encoding
+    utf-8
+bozo
+headers
+href
+namespaces
+entries
+bozo_exception
+-----------------
+published_parsed
+links
+    [{'href': u'http://diversao.terra.com.br/tv/a-fazenda/a-fazenda-6-presta-atencao-no-que-fala-diz-mateus-a-barbara,3a0326c3fdeff310VgnVCM10000098cceb0aRCRD.html', 'type': u'text/html', 'rel': u'alternate'}]
+title
+tags
+    [{'term': u'A Fazenda', 'scheme': None, 'label': None}]
+thumbnail
+    http://p2.trrsf.com.br/image/fget/cf/66/66/images.terra.com/2013/07/21/mateus-e-barbara-evans-se-beijam-foto-oficial-20072013.jpg
+summary
+content
+guidislink
+    False
+title_detail
+link
+    http://diversao.terra.com.br/tv/a-fazenda/a-fazenda-6-presta-atencao-no-que-fala-diz-mateus-a-barbara,3a0326c3fdeff310VgnVCM10000098cceb0aRCRD.html
+published
+id
+
+::::: G1 > Turismo e Viagem :::::
+feed
+status
+version
+encoding
+    utf-8
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://g1.globo.com/turismo-e-viagem/noticia/2013/07/paris-faz-guia-oficial-para-ensinar-moradores-tratar-melhor-os-turistas.html', 'type': u'text/html', 'rel': u'alternate'}]
+title
+tags
+    [{'term': u'Turismo e Viagem', 'scheme': None, 'label': None}]
+summary
+title_detail
+link
+    http://g1.globo.com/turismo-e-viagem/noticia/2013/07/paris-faz-guia-oficial-para-ensinar-moradores-tratar-melhor-os-turistas.html
+published
+
+::::: Estadao.com.br :::::
+feed
+status
+updated
+updated_parsed
+encoding
+    UTF-8
+bozo
+headers
+etag
+    1374370380000
+href
+version
+entries
+namespaces
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://estadao.feedsportal.com/c/33043/f/534108/s/2ef152cf/l/0L0Sestadao0N0Bbr0Cnoticias0Cinternacional0Hpresidente0Edo0Eafeganistao0Esanciona0Enova0Elei0Eeleitoral0H10A555740H0A0Bhtm/story01.htm', 'type': u'text/html', 'rel': u'alternate'}]
+title
+summary
+guidislink
+    False
+title_detail
+link
+    http://estadao.feedsportal.com/c/33043/f/534108/s/2ef152cf/l/0L0Sestadao0N0Bbr0Cnoticias0Cinternacional0Hpresidente0Edo0Eafeganistao0Esanciona0Enova0Elei0Eeleitoral0H10A555740H0A0Bhtm/story01.htm
+published
+id
+
+::::: R7- Notícias de Saúde :::::
+feed
+status
+updated
+updated_parsed
+encoding
+    utf-8
+bozo
+headers
+etag
+    "2497b76-3259-4e1cb17b21423"
+href
+version
+entries
+namespaces
+-----------------
+links
+    [{'href': u'http://noticias.r7.com/saude/e-um-problema-de-disposicao-diz-ideli-sobre-falta-de-medicos-no-interior-18072013', 'type': u'text/html', 'rel': u'alternate'}]
+published_parsed
+title
+title_detail
+link
+    http://noticias.r7.com/saude/e-um-problema-de-disposicao-diz-ideli-sobre-falta-de-medicos-no-interior-18072013
+published
+
+::::: Notícias do Brasil - Yahoo! Notícias :::::
+feed
+status
+version
+encoding
+    utf-8
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://br.noticias.yahoo.com/mulher-vice-governador-sc-morre-lipoaspira%C3%A7%C3%A3o-000101780.html', 'type': u'text/html', 'rel': u'alternate'}]
+title
+summary
+source
+    {'href': u'http://www.agenciaoglobo.com.br/', 'title': u'Ag\xeancia O Globo'}
+title_detail
+link
+    http://br.noticias.yahoo.com/mulher-vice-governador-sc-morre-lipoaspira%C3%A7%C3%A3o-000101780.html
+published
+id
+guidislink
+    False
+
+::::: Brasil: últimas notícias - Último Segundo - iG :::::
+feed
+status
+version
+encoding
+    UTF-8
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://ultimosegundo.ig.com.br/brasil/2013-07-21/resultado-da-mega-sena-premio-acumula-em-r-10-milhoes.html', 'type': u'text/html', 'rel': u'alternate'}]
+title
+summary
+guidislink
+    False
+title_detail
+link
+    http://ultimosegundo.ig.com.br/brasil/2013-07-21/resultado-da-mega-sena-premio-acumula-em-r-10-milhoes.html
+published
+id
+
+::::: Estadao.com.br :::::
+feed
+status
+updated
+updated_parsed
+encoding
+    UTF-8
+bozo
+headers
+etag
+    1374370560000
+href
+version
+entries
+namespaces
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://estadao.feedsportal.com/c/33043/f/534106/s/2ef14296/l/0L0Sestadao0N0Bbr0Cnoticias0Cnacional0Hindicacao0Ena0Ecorte0Econtou0Ecom0Eajuda0Edo0Epadrinho0Esarney0H10A555750H0A0Bhtm/story01.htm', 'type': u'text/html', 'rel': u'alternate'}]
+title
+summary
+guidislink
+    False
+title_detail
+link
+    http://estadao.feedsportal.com/c/33043/f/534106/s/2ef14296/l/0L0Sestadao0N0Bbr0Cnoticias0Cnacional0Hindicacao0Ena0Ecorte0Econtou0Ecom0Eajuda0Edo0Epadrinho0Esarney0H10A555750H0A0Bhtm/story01.htm
+published
+id
+
+::::: Notícias do Mundo - Yahoo! Notícias - :::::
+feed
+status
+version
+encoding
+    utf-8
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://br.noticias.yahoo.com/n%C3%BAmero-desertores-norte-coreanos-aumenta-1-vez-2009-065011017.html', 'type': u'text/html', 'rel': u'alternate'}]
+title
+summary
+source
+    {'href': u'http://www.efe.com/efe/noticias/brasil/3/', 'title': u'EFE'}
+title_detail
+link
+    http://br.noticias.yahoo.com/n%C3%BAmero-desertores-norte-coreanos-aumenta-1-vez-2009-065011017.html
+published
+id
+guidislink
+    False
+
+::::: G1 > Mundo :::::
+feed
+status
+version
+encoding
+    utf-8
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://g1.globo.com/mundo/noticia/2013/07/forte-terremoto-sacode-nova-zelandia.html', 'type': u'text/html', 'rel': u'alternate'}]
+title
+tags
+    [{'term': u'Mundo', 'scheme': None, 'label': None}]
+summary
+title_detail
+link
+    http://g1.globo.com/mundo/noticia/2013/07/forte-terremoto-sacode-nova-zelandia.html
+published
+
+::::: Terra - RSS - Mundo :::::
+feed
+status
+version
+encoding
+    utf-8
+bozo
+headers
+href
+namespaces
+entries
+bozo_exception
+-----------------
+published_parsed
+links
+    [{'href': u'http://noticias.terra.com.br/mundo/europa/belgica-rei-albert-ii-abdica-em-favor-do-primogenito-philippe,29b2ba69dffff310VgnVCM10000098cceb0aRCRD.html', 'type': u'text/html', 'rel': u'alternate'}]
+title
+tags
+    [{'term': u'Europa', 'scheme': None, 'label': None}]
+thumbnail
+    http://p2.trrsf.com.br/image/fget/cf/66/66/images.terra.com/2013/07/21/belgicaabdicacaocerimoniarts.JPG
+summary
+content
+guidislink
+    False
+title_detail
+link
+    http://noticias.terra.com.br/mundo/europa/belgica-rei-albert-ii-abdica-em-favor-do-primogenito-philippe,29b2ba69dffff310VgnVCM10000098cceb0aRCRD.html
+published
+id
+
+::::: Mundo : últimas notícias - Último Segundo - iG :::::
+feed
+status
+version
+encoding
+    UTF-8
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://ultimosegundo.ig.com.br/mundo/2013-07-21/manifestacoes-por-justica-para-trayvon-ganham-apoio-de-celebridades-nos-eua.html', 'type': u'text/html', 'rel': u'alternate'}]
+title
+summary
+guidislink
+    False
+title_detail
+link
+    http://ultimosegundo.ig.com.br/mundo/2013-07-21/manifestacoes-por-justica-para-trayvon-ganham-apoio-de-celebridades-nos-eua.html
+published
+id
+
+::::: Notícias de Economia Nacional e Internacional - Yahoo! Notícias :::::
+feed
+status
+version
+encoding
+    utf-8
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+media_credit
+    {'role': u'publishing company'}
+published_parsed
+links
+    [{'href': u'http://br.noticias.yahoo.com/fi%C3%A9is-consumidores-jmj-arsenal-produtos-f%C3%A9-220946215.html', 'type': u'text/html', 'rel': u'alternate'}]
+title
+media_text
+    {'type': u'html'}
+summary
+source
+    {'href': u'http://www.afp.com/portugues/home/', 'title': u'AFP'}
+title_detail
+link
+    http://br.noticias.yahoo.com/fi%C3%A9is-consumidores-jmj-arsenal-produtos-f%C3%A9-220946215.html
+published
+media_content
+    [{'url': u'http://l.yimg.com/bt/api/res/1.2/SC7vBu0RS0PXeIctqYqbnw--/YXBwaWQ9eW5ld3M7Zmk9ZmlsbDtoPTg2O3E9ODU7dz0xMzA-/http://media.zenfs.com/pt_BR/News/AFP/photo_1374358063998-1-HD.jpg', 'width': u'130', 'type': u'image/jpeg', 'height': u'86'}]
+id
+guidislink
+    False
+
+::::: G1 > Economia :::::
+feed
+status
+version
+encoding
+    utf-8
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://g1.globo.com/economia/noticia/2013/07/titulos-de-detroit-caem-enquanto-juiza-tenta-evitar-pedido-de-falencia.html', 'type': u'text/html', 'rel': u'alternate'}]
+title
+tags
+    [{'term': u'Economia', 'scheme': None, 'label': None}]
+summary
+title_detail
+link
+    http://g1.globo.com/economia/noticia/2013/07/titulos-de-detroit-caem-enquanto-juiza-tenta-evitar-pedido-de-falencia.html
+published
+
+::::: Economia - Notícias sobre a Bolsa, Finanças e Investimentos - iG :::::
+feed
+status
+updated
+updated_parsed
+encoding
+    UTF-8
+bozo
+headers
+etag
+    1374353218000
+href
+version
+entries
+namespaces
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://br.economia.feedsportal.com/c/33512/f/584953/s/2ef069e1/l/0Leconomia0Big0N0Bbr0C20A130E0A70E20A0Creceita0Etrimestral0Ede0Eteles0Ecrescera0Epouco0Bhtml/story01.htm', 'type': u'text/html', 'rel': u'alternate'}]
+title
+summary
+guidislink
+    False
+title_detail
+link
+    http://br.economia.feedsportal.com/c/33512/f/584953/s/2ef069e1/l/0Leconomia0Big0N0Bbr0C20A130E0A70E20A0Creceita0Etrimestral0Ede0Eteles0Ecrescera0Epouco0Bhtml/story01.htm
+published
+id
+
+::::: Notícias de Entretenimiento - Yahoo! Notícias :::::
+feed
+status
+version
+encoding
+    utf-8
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+media_credit
+    {'role': u'publishing company'}
+published_parsed
+links
+    [{'href': u'http://br.noticias.yahoo.com/morre-helen-thomas-correspondente-casa-branca-220141961.html', 'type': u'text/html', 'rel': u'alternate'}]
+title
+media_text
+    {'type': u'html'}
+summary
+source
+    {'href': u'http://www.afp.com/portugues/home/', 'title': u'AFP'}
+title_detail
+link
+    http://br.noticias.yahoo.com/morre-helen-thomas-correspondente-casa-branca-220141961.html
+published
+media_content
+    [{'url': u'http://l.yimg.com/bt/api/res/1.2/FU1UfQ3.bm9hLx2bPth0Tg--/YXBwaWQ9eW5ld3M7Zmk9ZmlsbDtoPTg2O3E9ODU7dz0xMzA-/http://media.zenfs.com/pt_BR/News/AFP/photo_1374357580251-1-HD.jpg', 'width': u'130', 'type': u'image/jpeg', 'height': u'86'}]
+id
+guidislink
+    False
+
+::::: R7- Notícias de Famosos e TV :::::
+feed
+status
+updated
+updated_parsed
+encoding
+    utf-8
+bozo
+headers
+etag
+    "2497b6b-371d-4e1b180cd1726"
+href
+version
+entries
+namespaces
+-----------------
+links
+    [{'href': u'http://entretenimento.r7.com/famosos-e-tv/carol-dias-diz-que-panico-pegou-pesado-na-pegadinha-com-gui-santana-mexeu-com-a-sexualidade-dele-17072013', 'type': u'text/html', 'rel': u'alternate'}]
+published_parsed
+title
+title_detail
+link
+    http://entretenimento.r7.com/famosos-e-tv/carol-dias-diz-que-panico-pegou-pesado-na-pegadinha-com-gui-santana-mexeu-com-a-sexualidade-dele-17072013
+published
+
+::::: R7 - Notícias de Cinema :::::
+feed
+status
+updated
+updated_parsed
+encoding
+    utf-8
+bozo
+headers
+etag
+    "2497b66-2a3e-4e2007b3795fc"
+href
+version
+entries
+namespaces
+-----------------
+links
+    [{'href': u'http://www.clickgratis.com.br/cinema/filmes/outros/the-rivals.html', 'type': u'text/html', 'rel': u'alternate'}]
+published_parsed
+title
+title_detail
+link
+    http://www.clickgratis.com.br/cinema/filmes/outros/the-rivals.html
+published
+
+::::: R7-Notícias de Moda e beleza :::::
+feed
+status
+updated
+updated_parsed
+encoding
+    utf-8
+bozo
+headers
+etag
+    "2497b71-3564-4e1f22cdb8b7b"
+href
+version
+entries
+namespaces
+-----------------
+links
+    [{'href': u'http://entretenimento.r7.com/moda-e-beleza/as-vesperas-do-casamento-fiorella-mattheis-conta-como-se-preparou-enxuguei-dois-quilos-19072013', 'type': u'text/html', 'rel': u'alternate'}]
+published_parsed
+title
+title_detail
+link
+    http://entretenimento.r7.com/moda-e-beleza/as-vesperas-do-casamento-fiorella-mattheis-conta-como-se-preparou-enxuguei-dois-quilos-19072013
+published
+
+::::: iG Esporte: Notícias, Vídeos, Fotos, Colunas e Tabelas :::::
+feed
+status
+version
+encoding
+    UTF-8
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://esporte.ig.com.br/futebol/2013-07-21/joinvile-nao-consegue-sair-do-0-a-0-contra-o-abc-lanterna-da-serie-b-em-natal.html', 'type': u'text/html', 'rel': u'alternate'}]
+title
+summary
+guidislink
+    False
+title_detail
+link
+    http://esporte.ig.com.br/futebol/2013-07-21/joinvile-nao-consegue-sair-do-0-a-0-contra-o-abc-lanterna-da-serie-b-em-natal.html
+published
+id
+
+::::: Estadao.com.br :::::
+feed
+status
+updated
+updated_parsed
+encoding
+    UTF-8
+bozo
+headers
+etag
+    1374381180000
+href
+version
+entries
+namespaces
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://estadao.feedsportal.com/c/33043/f/534114/s/2ef20919/l/0Lblogs0Bestadao0N0Bbr0Cantero0Egreco0C20A130C0A70C210Ccraques0Ediscretos0C/story01.htm', 'type': u'text/html', 'rel': u'alternate'}]
+title
+summary
+guidislink
+    False
+title_detail
+link
+    http://estadao.feedsportal.com/c/33043/f/534114/s/2ef20919/l/0Lblogs0Bestadao0N0Bbr0Cantero0Egreco0C20A130C0A70C210Ccraques0Ediscretos0C/story01.htm
+published
+id
+
+::::: G1 > Tecnologia e Games :::::
+feed
+status
+version
+encoding
+    utf-8
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://g1.globo.com/pernambuco/campus-party-recife/2013/noticia/2013/07/fas-montam-campeonato-de-league-legends-na-campus-party-recife.html', 'type': u'text/html', 'rel': u'alternate'}]
+title
+tags
+    [{'term': u'Campus Party Recife 2013', 'scheme': None, 'label': None}]
+summary
+title_detail
+link
+    http://g1.globo.com/pernambuco/campus-party-recife/2013/noticia/2013/07/fas-montam-campeonato-de-league-legends-na-campus-party-recife.html
+published
+
+::::: Tecnologia - Notícias, Análises, Dicas e Especiais - iG :::::
+feed
+status
+version
+encoding
+    utf-8
+bozo
+headers
+href
+namespaces
+entries
+bozo_exception
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://tecnologia.ig.com.br/dicas/internet/2013-07-20/google-conheca-11-ferramentas-alternativas-ao-gigante-das-buscas.html', 'type': u'text/html', 'rel': u'alternate'}]
+title
+summary
+guidislink
+    False
+title_detail
+link
+    http://tecnologia.ig.com.br/dicas/internet/2013-07-20/google-conheca-11-ferramentas-alternativas-ao-gigante-das-buscas.html
+published
+id
+
+::::: Estadao.com.br :::::
+feed
+status
+updated
+updated_parsed
+encoding
+    UTF-8
+bozo
+headers
+etag
+    1370638380000
+href
+version
+entries
+namespaces
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://estadao.feedsportal.com/c/33043/f/534110/s/2cfef914/l/0L0Sestadao0N0Bbr0Cnoticias0Cvidae0Hbiologos0Efazem0Evaquinha0Epara0Edecifrar0Egenoma0Edo0Emexilhao0Edourado0H10A40A0A120H0A0Bhtm/story01.htm', 'type': u'text/html', 'rel': u'alternate'}]
+title
+summary
+guidislink
+    False
+title_detail
+link
+    http://estadao.feedsportal.com/c/33043/f/534110/s/2cfef914/l/0L0Sestadao0N0Bbr0Cnoticias0Cvidae0Hbiologos0Efazem0Evaquinha0Epara0Edecifrar0Egenoma0Edo0Emexilhao0Edourado0H10A40A0A120H0A0Bhtm/story01.htm
+published
+id
+
+::::: R7 - Notícias de Tecnologia e Ciência :::::
+feed
+status
+updated
+updated_parsed
+encoding
+    utf-8
+bozo
+headers
+etag
+    "2497b77-2d30-4e20081b0f676"
+href
+version
+entries
+namespaces
+-----------------
+links
+    [{'href': u'http://www.clickgratis.com.br/papeis-de-parede/animais/perereca_338.html', 'type': u'text/html', 'rel': u'alternate'}]
+published_parsed
+title
+title_detail
+link
+    http://www.clickgratis.com.br/papeis-de-parede/animais/perereca_338.html
+published
+
+::::: Notícias de Saúde - Yahoo! Notícias :::::
+feed
+status
+version
+encoding
+    utf-8
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://br.noticias.yahoo.com/curas-espont%C3%A2neas--como-elas-acontecem--143148888.html', 'type': u'text/html', 'rel': u'alternate'}]
+title
+summary
+guidislink
+    False
+title_detail
+link
+    http://br.noticias.yahoo.com/curas-espont%C3%A2neas--como-elas-acontecem--143148888.html
+published
+id
+
+::::: Estadao.com.br :::::
+feed
+status
+updated
+updated_parsed
+encoding
+    UTF-8
+bozo
+headers
+etag
+    1374365040000
+href
+version
+entries
+namespaces
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://estadao.feedsportal.com/c/33043/f/534109/s/2ef0e7b2/l/0L0Sestadao0N0Bbr0Cnoticias0Cvidae0Hgoverno0Egasta0Er0E10A0Emilhoes0Ecom0Ecampanha0H10A555560H0A0Bhtm/story01.htm', 'type': u'text/html', 'rel': u'alternate'}]
+title
+summary
+guidislink
+    False
+title_detail
+link
+    http://estadao.feedsportal.com/c/33043/f/534109/s/2ef0e7b2/l/0L0Sestadao0N0Bbr0Cnoticias0Cvidae0Hgoverno0Egasta0Er0E10A0Emilhoes0Ecom0Ecampanha0H10A555560H0A0Bhtm/story01.htm
+published
+id
+
+::::: Turismo: Dicas de roteiros de viagens e pacotes turísticos - iG :::::
+feed
+status
+version
+encoding
+    UTF-8
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://turismo.ig.com.br/destinos-internacionais/2013-01-14/castelo-de-a-bela-e-a-fera-e-uma-das-atracoes-da-nova-area-do-magic-kingdom.html', 'type': u'text/html', 'rel': u'alternate'}]
+title
+summary
+guidislink
+    False
+title_detail
+link
+    http://turismo.ig.com.br/destinos-internacionais/2013-01-14/castelo-de-a-bela-e-a-fera-e-uma-das-atracoes-da-nova-area-do-magic-kingdom.html
+published
+id
+

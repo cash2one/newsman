@@ -1,0 +1,764 @@
+::::: Deccan Herald - Business :::::
+feed
+status
+updated
+updated_parsed
+encoding
+    iso-8859-1
+bozo
+headers
+etag
+    "51eb8e0f-1957"
+href
+version
+entries
+namespaces
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://www.deccanherald.com/content/346102/ambassador-car-ranked-taxi-world.html', 'type': u'text/html', 'rel': u'alternate'}]
+title
+summary
+guidislink
+    False
+title_detail
+link
+    http://www.deccanherald.com/content/346102/ambassador-car-ranked-taxi-world.html
+source
+    {'href': u'http://www.deccanherald.com/', 'title': u'New Delhi, Jul 21, 2013 (PTI):'}
+published
+id
+
+::::: BusinessLine - Industry & Economy :::::
+feed
+status
+version
+encoding
+    UTF-8
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://www.thehindubusinessline.com/features/taxation-and-accounts/indirect-tax-kitty-grows-47-in-apriljune/article4937598.ece', 'type': u'text/html', 'rel': u'alternate'}]
+tags
+    [{'term': u'Taxation & Accountancy', 'scheme': None, 'label': None}]
+title
+summary
+title_detail
+link
+    http://www.thehindubusinessline.com/features/taxation-and-accounts/indirect-tax-kitty-grows-47-in-apriljune/article4937598.ece
+published
+
+::::: The Asian Age :::::
+feed
+status
+version
+encoding
+    iso-8859-1
+bozo
+headers
+href
+namespaces
+entries
+bozo_exception
+-----------------
+
+::::: Top Business News- IBNLive.com :::::
+feed
+status
+updated
+updated_parsed
+encoding
+    utf-8
+bozo
+headers
+etag
+    "180c5-72772-4e200c0b7f000"
+href
+version
+entries
+namespaces
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://ibnlive.in.com/news/govt-may-issue-nri-bonds-soon-to-check-rupee-fall-hsbc/408273-7.html', 'type': u'text/html', 'rel': u'alternate'}]
+title
+language
+rights
+summary
+guidislink
+    False
+title_detail
+link
+    http://ibnlive.in.com/news/govt-may-issue-nri-bonds-soon-to-check-rupee-fall-hsbc/408273-7.html
+published
+rights_detail
+id
+
+::::: Top Headlines :::::
+feed
+status
+version
+encoding
+    iso-8859-1
+bozo
+headers
+href
+namespaces
+entries
+bozo_exception
+-----------------
+updated
+published_parsed
+updated_parsed
+links
+    [{'href': u'http://www.indianexpress.com/news/wockhardt-gets-usfda-warning-over-waluj-plant/1144515/', 'type': u'text/html', 'rel': u'alternate'}]
+title
+summary_detail
+summary
+guidislink
+    False
+title_detail
+link
+    http://www.indianexpress.com/news/wockhardt-gets-usfda-warning-over-waluj-plant/1144515/
+published
+id
+
+::::: NDTV Business News :::::
+feed
+status
+version
+encoding
+    windows-1252
+bozo
+headers
+href
+namespaces
+entries
+bozo_exception
+-----------------
+summary_detail
+links
+    [{'href': u'http://www.ndtv.com/convergence/ndtv/processarchive.aspx?id=BUSEN20100139988', 'type': u'text/html', 'rel': u'alternate'}]
+published_parsed
+title
+tags
+    [{'term': u'apple,fash,software', 'scheme': None, 'label': None}]
+summary
+title_detail
+link
+    http://www.ndtv.com/convergence/ndtv/processarchive.aspx?id=BUSEN20100139988
+published
+
+::::: Deccan Herald - Entertainment :::::
+feed
+status
+updated
+updated_parsed
+encoding
+    iso-8859-1
+bozo
+headers
+etag
+    "51eb8e11-1002"
+href
+version
+entries
+namespaces
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://www.deccanherald.com/content/346103/superman-battle-batman-039man-steel039.html', 'type': u'text/html', 'rel': u'alternate'}]
+title
+summary
+guidislink
+    False
+title_detail
+link
+    http://www.deccanherald.com/content/346103/superman-battle-batman-039man-steel039.html
+source
+    {'href': u'http://www.deccanherald.com/', 'title': u'SAN DIEGO , Jul 21, 2013, Reuters'}
+published
+id
+
+::::: Rediff Sports :::::
+feed
+status
+updated
+updated_parsed
+encoding
+    iso-8859-1
+bozo
+headers
+href
+version
+entries
+namespaces
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://www.rediff.com/sports/report/manchester-united-thrash-australian-all-stars-in-friendly/20130721.htm', 'type': u'text/html', 'rel': u'alternate'}]
+title
+summary
+guidislink
+    False
+title_detail
+link
+    http://www.rediff.com/sports/report/manchester-united-thrash-australian-all-stars-in-friendly/20130721.htm
+published
+id
+
+::::: Cricket News :::::
+feed
+bozo
+bozo_exception
+entries
+-----------------
+
+::::: Top Sports News- IBNLive.com :::::
+feed
+status
+updated
+updated_parsed
+encoding
+    utf-8
+bozo
+headers
+etag
+    "1bc783-616f2-4e200c2ec8340"
+href
+version
+entries
+namespaces
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://ibnlive.in.com/news/french-club-lyon-deny-the-bid-for-arsenal-forward-gervinho/408283-5.html', 'type': u'text/html', 'rel': u'alternate'}]
+title
+language
+rights
+summary
+guidislink
+    False
+title_detail
+link
+    http://ibnlive.in.com/news/french-club-lyon-deny-the-bid-for-arsenal-forward-gervinho/408283-5.html
+published
+rights_detail
+id
+
+::::: Deccan Herald - Sports :::::
+feed
+status
+updated
+updated_parsed
+encoding
+    iso-8859-1
+bozo
+headers
+etag
+    "51eb8e15-4cf3"
+href
+version
+entries
+namespaces
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://www.deccanherald.com/content/346097/resplendent-woods-joint-lead.html', 'type': u'text/html', 'rel': u'alternate'}]
+title
+summary
+guidislink
+    False
+title_detail
+link
+    http://www.deccanherald.com/content/346097/resplendent-woods-joint-lead.html
+source
+    {'href': u'http://www.deccanherald.com/', 'title': u'GULLANE, Scotland: July 20, 2013  Agencies'}
+published
+id
+
+::::: The Hindu - Other Sports :::::
+feed
+status
+version
+encoding
+    UTF-8
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://www.thehindu.com/news/national/karnataka/guinness-record-holder-to-skate-his-way-into-istanbul/article4935829.ece', 'type': u'text/html', 'rel': u'alternate'}]
+author
+    Special Correspondent
+tags
+    [{'term': u'Karnataka', 'scheme': None, 'label': None}]
+summary
+title_detail
+link
+    http://www.thehindu.com/news/national/karnataka/guinness-record-holder-to-skate-his-way-into-istanbul/article4935829.ece
+authors
+    [{}]
+title
+author_detail
+    {'name': u'Special Correspondent'}
+published
+
+::::: Reuters: World of Sport :::::
+feed
+bozo
+bozo_exception
+entries
+-----------------
+
+::::: Cricket news from ESPN Cricinfo.com :::::
+feed
+status
+version
+encoding
+    us-ascii
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://www.espncricinfo.com/pakistan/content/story/653689.html?CMP=OTC-RSS', 'type': u'text/html', 'rel': u'alternate'}]
+title
+summary
+guidislink
+    False
+title_detail
+link
+    http://www.espncricinfo.com/pakistan/content/story/653689.html?CMP=OTC-RSS
+published
+id
+
+::::: DNA - Popular News - Daily News & Analysis :::::
+feed
+status
+version
+encoding
+    ISO-8859-1
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://www.dnaindia.com/world/1863550/report-kate-middleton-s-mother-reveals-new-due-date-for-royal-baby-s-birth', 'type': u'text/html', 'rel': u'alternate'}]
+title
+summary
+guidislink
+    False
+title_detail
+link
+    http://www.dnaindia.com/world/1863550/report-kate-middleton-s-mother-reveals-new-due-date-for-royal-baby-s-birth
+published
+id
+
+::::: Deccan Herald - National :::::
+feed
+status
+updated
+updated_parsed
+encoding
+    iso-8859-1
+bozo
+headers
+etag
+    "51eb951a-caef"
+href
+version
+entries
+namespaces
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://www.deccanherald.com/content/346105/amarnath-yatra-resumes-jammu.html', 'type': u'text/html', 'rel': u'alternate'}]
+title
+summary
+guidislink
+    False
+title_detail
+link
+    http://www.deccanherald.com/content/346105/amarnath-yatra-resumes-jammu.html
+source
+    {'href': u'http://www.deccanherald.com/', 'title': u'Jammu, Jul 20, 2013 (PTI):'}
+published
+id
+
+::::: The Hindu - National :::::
+feed
+status
+version
+encoding
+    utf-8
+bozo
+headers
+href
+namespaces
+entries
+bozo_exception
+-----------------
+
+::::: Top Headlines :::::
+feed
+status
+version
+encoding
+    iso-8859-1
+bozo
+headers
+href
+namespaces
+entries
+bozo_exception
+-----------------
+updated
+published_parsed
+updated_parsed
+links
+    [{'href': u'http://www.indianexpress.com/news/growing-biz-pulling-down-attrition-rate-says-tcs/1144130/', 'type': u'text/html', 'rel': u'alternate'}]
+title
+summary_detail
+summary
+guidislink
+    False
+title_detail
+link
+    http://www.indianexpress.com/news/growing-biz-pulling-down-attrition-rate-says-tcs/1144130/
+published
+id
+
+::::: Oneindia.in - News :::::
+feed
+bozo
+bozo_exception
+entries
+-----------------
+
+::::: Indlawnews RSS Feed :::::
+feed
+status
+version
+encoding
+    utf-8
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://www.indlawnews.com/Newsdisplay.aspx?uid=20c745a8-9695-46ee-804a-73e3617d8b6e&type=2', 'type': u'text/html', 'rel': u'alternate'}]
+title
+summary
+guidislink
+    False
+title_detail
+link
+    http://www.indlawnews.com/Newsdisplay.aspx?uid=20c745a8-9695-46ee-804a-73e3617d8b6e&type=2
+published
+id
+
+::::: The New Indian Express - Nation - http://newindianexpress.com/nation/ :::::
+feed
+status
+version
+encoding
+    UTF-8
+bozo
+headers
+href
+namespaces
+entries
+bozo_exception
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://newindianexpress.com/nation/Home-Ministry-opposes-any-hike-of-FDI-cap-in-media/2013/07/21/article1694745.ece', 'type': u'text/html', 'rel': u'alternate'}]
+title
+summary
+guidislink
+    False
+title_detail
+link
+    http://newindianexpress.com/nation/Home-Ministry-opposes-any-hike-of-FDI-cap-in-media/2013/07/21/article1694745.ece
+published
+id
+
+::::: Latest India News :::::
+feed
+status
+version
+encoding
+    iso-8859-1
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://www.newkerala.com/news/story/44240/delhi-congress-holds-meeting-on-manifesto.html', 'type': u'text/html', 'rel': u'alternate'}]
+title
+summary
+guidislink
+    False
+title_detail
+link
+    http://www.newkerala.com/news/story/44240/delhi-congress-holds-meeting-on-manifesto.html
+published
+id
+
+::::: WanderingTrader: Traveling. Living Overseas. Day Trading. :::::
+feed
+bozo
+bozo_exception
+entries
+-----------------
+
+::::: Traveling Canucks :::::
+feed
+bozo
+bozo_exception
+entries
+-----------------
+
+::::: The Hindu - Technology :::::
+feed
+status
+version
+encoding
+    utf-8
+bozo
+headers
+href
+namespaces
+entries
+bozo_exception
+-----------------
+
+::::: Campaign India  - Advertising :::::
+feed
+status
+version
+encoding
+    utf-8
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://www.campaignindia.in/Article/350643,weekend-fun-1-ship-of-theseus.aspx', 'type': u'text/html', 'rel': u'alternate'}]
+title
+imagelink
+    http://cdn.i.haymarket.net.au/Utils/ImageResizer.ashx?n=http%3a%2f%2fi.haymarket.net.au%2fNews%2fShip_of.gif&h=55&w=83&c=1
+summary
+title_detail
+link
+    http://www.campaignindia.in/Article/350643,weekend-fun-1-ship-of-theseus.aspx
+published
+
+::::: Campaign India  - Marketing :::::
+feed
+status
+version
+encoding
+    utf-8
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://www.campaignindia.in/Article/350601,brandwealth-seminar-2013-8216biggest-challenge-to-brand-building-is-short-term-thinking-by-brand-managers8217-mg-parameswaran.aspx', 'type': u'text/html', 'rel': u'alternate'}]
+title
+imagelink
+    http://cdn.i.haymarket.net.au/Utils/ImageResizer.ashx?n=http%3a%2f%2fi.haymarket.net.au%2fNews%2fAmbi_460.gif&h=55&w=83&c=1
+summary
+title_detail
+link
+    http://www.campaignindia.in/Article/350601,brandwealth-seminar-2013-8216biggest-challenge-to-brand-building-is-short-term-thinking-by-brand-managers8217-mg-parameswaran.aspx
+published
+
+::::: Campaign India  - Creativity :::::
+feed
+status
+version
+encoding
+    utf-8
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://www.campaignindia.in/Article/350596,cifca-2013-sub-categories-under-8216ad-film-of-the-year8217-streamlined-deadline-extended.aspx', 'type': u'text/html', 'rel': u'alternate'}]
+title
+imagelink
+    http://cdn.i.haymarket.net.au/Utils/ImageResizer.ashx?n=http%3a%2f%2fi.haymarket.net.au%2fNews%2fCIFCAdotcom.jpg&h=55&w=83&c=1
+summary
+title_detail
+link
+    http://www.campaignindia.in/Article/350596,cifca-2013-sub-categories-under-8216ad-film-of-the-year8217-streamlined-deadline-extended.aspx
+published
+
+::::: Telecom Asia RSS :::::
+feed
+bozo
+bozo_exception
+entries
+-----------------
+
+::::: WirelessDuniya :::::
+feed
+bozo
+bozo_exception
+entries
+-----------------
+
+::::: Digital Inspiration Technology Blog :::::
+feed
+bozo
+bozo_exception
+entries
+-----------------
+
+::::: The Guardian World News :::::
+feed
+bozo
+bozo_exception
+entries
+-----------------
+
+::::: The Hindu - International :::::
+feed
+status
+version
+encoding
+    utf-8
+bozo
+headers
+href
+namespaces
+entries
+bozo_exception
+-----------------
+
+::::: ABC News: Top Stories :::::
+feed
+status
+updated
+updated_parsed
+encoding
+    UTF-8
+bozo
+headers
+etag
+    1374374653000
+href
+version
+entries
+namespaces
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://feeds.abcnews.com/c/35229/f/654824/s/2ef18e5e/l/0Labcnews0Bgo0N0CUS0CwireStory0Csuspect0Ereturned0Eus0Ebuilt0Elife0Ecanada0E19724921/story01.htm', 'type': u'text/html', 'rel': u'alternate'}]
+title
+tags
+    [{'term': u'ABCNews', 'scheme': None, 'label': None}]
+media_thumbnail
+    [{'url': u'http://a.abcnews.com/images/US/AP_jean_keating_130720_4x3t_384.jpg', 'width': u'384', 'height': u'288'}, {'url': u'http://a.abcnews.com/images/US/AP_jean_keating_130720_4x3t_144.jpg', 'width': u'144', 'height': u'108'}, {'url': u'http://a.abcnews.com/images/US/AP_jean_keating_130720_4x3t_384.jpg', 'width': u'384', 'height': u'288'}, {'url': u'http://a.abcnews.com/images/US/AP_jean_keating_130720_16x9t_240.jpg', 'width': u'240', 'height': u'135'}, {'url': u'http://a.abcnews.com/images/US/AP_jean_keating_130720_4x3_608.jpg', 'width': u'608', 'height': u'456'}, {'url': u'http://a.abcnews.com/images/US/AP_jean_keating_130720_16x9_992.jpg', 'width': u'992', 'height': u'558'}]
+summary
+guidislink
+    False
+title_detail
+href
+link
+    http://feeds.abcnews.com/c/35229/f/654824/s/2ef18e5e/l/0Labcnews0Bgo0N0CUS0CwireStory0Csuspect0Ereturned0Eus0Ebuilt0Elife0Ecanada0E19724921/story01.htm
+published
+id
+media_keywords
+    1
+
+::::: FOXNews.com :::::
+feed
+bozo
+bozo_exception
+entries
+-----------------
+
+::::: The Huffington Post | Full News Feed :::::
+feed
+bozo
+bozo_exception
+entries
+-----------------
+
+::::: Cricket News :::::
+feed
+status
+version
+encoding
+    iso-8859-1
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://www.newkerala.com/news/story/44316/genetics-key-role-behind-cholera-revealed.html', 'type': u'text/html', 'rel': u'alternate'}]
+title
+summary
+guidislink
+    False
+title_detail
+link
+    http://www.newkerala.com/news/story/44316/genetics-key-role-behind-cholera-revealed.html
+published
+id
+

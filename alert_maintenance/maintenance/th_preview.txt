@@ -1,0 +1,363 @@
+::::: S! Men Health :::::
+feed
+status
+version
+encoding
+    utf-8
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://rssfeeds.sanook.com/rss/go/?men.health.xml|http://men.sanook.com/1172/easy-workout-tips-for-beginners-\u0e2d\u0e2d\u0e01\u0e01\u0e33\u0e25\u0e31\u0e07\u0e01\u0e32\u0e22\u0e2d\u0e22\u0e48\u0e32\u0e07\u0e44\u0e23\u0e44\u0e21\u0e48\u0e43\u0e2b\u0e49\u0e2a\u0e39\u0e0d\u0e40\u0e1b\u0e25\u0e48\u0e32/', 'type': u'text/html', 'rel': u'alternate'}, {'href': u'http://p3.s1sf.com/me/0/ud/0/1172/b1.jpg', 'type': u'image/jpeg', 'rel': u'enclosure'}]
+title
+comments
+summary
+guidislink
+    False
+title_detail
+link
+    http://rssfeeds.sanook.com/rss/go/?men.health.xml|http://men.sanook.com/1172/easy-workout-tips-for-beginners-ออกกำลังกายอย่างไรไม่ให้สูญเปล่า/
+published
+id
+
+::::: Posttoday District :::::
+feed
+encoding
+    utf-8
+bozo
+version
+namespaces
+entries
+bozo_exception
+-----------------
+
+::::: ข่าวในประเทศ - อาร์เอสเอส มติชนออนไลน์ :::::
+feed
+status
+updated
+updated_parsed
+encoding
+    utf-8
+bozo
+headers
+etag
+    "1510011-28c4-4e200dcf89a80"
+href
+version
+entries
+bozo_exception
+namespaces
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://www.matichon.co.th/news_detail.php?newsid=1374392892&grpid=02&catid=02', 'type': u'text/html', 'rel': u'alternate'}, {'href': u'http://www.matichon.co.th/online/2013/07/13743928921374392917l.jpg', 'type': u'image/jpeg', 'rel': u'enclosure'}, {'href': u'http://www.matichon.co.th/online/2013/07/13743928921374392934l.jpg', 'type': u'image/jpeg', 'rel': u'enclosure'}]
+title
+summary
+title_detail
+link
+    http://www.matichon.co.th/news_detail.php?newsid=1374392892&grpid=02&catid=02
+published
+
+::::: ข่าวต่างประเทศ - อาร์เอสเอส มติชนออนไลน์ :::::
+feed
+status
+updated
+updated_parsed
+encoding
+    utf-8
+bozo
+headers
+etag
+    "1510016-14a0-4e200dcf89a80"
+href
+version
+entries
+bozo_exception
+namespaces
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://www.matichon.co.th/news_detail.php?newsid=1374388696&grpid=03&catid=03', 'type': u'text/html', 'rel': u'alternate'}, {'href': u'http://www.matichon.co.th/online/2013/07/13743886961374388931l.jpg', 'type': u'image/jpeg', 'rel': u'enclosure'}]
+title
+summary
+title_detail
+link
+    http://www.matichon.co.th/news_detail.php?newsid=1374388696&grpid=03&catid=03
+published
+
+::::: ข่าวเศรษฐกิจ - อาร์เอสเอส มติชนออนไลน์ :::::
+feed
+status
+updated
+updated_parsed
+encoding
+    utf-8
+bozo
+headers
+etag
+    "1510012-44c-4e200dcf89a80"
+href
+version
+entries
+bozo_exception
+namespaces
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://www.matichon.co.th/news_detail.php?newsid=1374376929&grpid=03&catid=03', 'type': u'text/html', 'rel': u'alternate'}]
+title
+summary
+title_detail
+link
+    http://www.matichon.co.th/news_detail.php?newsid=1374376929&grpid=03&catid=03
+published
+
+::::: ข่าวบันเทิงและศิลปวัฒนธรรม - อาร์เอสเอส มติชนออนไลน์ :::::
+feed
+status
+updated
+updated_parsed
+encoding
+    utf-8
+bozo
+headers
+etag
+    "1510013-153c-4e200dcf89a80"
+href
+version
+entries
+bozo_exception
+namespaces
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://www.matichon.co.th/news_detail.php?newsid=1374371692&grpid=03&catid=03', 'type': u'text/html', 'rel': u'alternate'}, {'href': u'http://www.matichon.co.th/online/2013/07/13743716921374371748l.jpg', 'type': u'image/jpeg', 'rel': u'enclosure'}]
+title
+summary
+title_detail
+link
+    http://www.matichon.co.th/news_detail.php?newsid=1374371692&grpid=03&catid=03
+published
+
+::::: ข่าวกีฬา - อาร์เอสเอส มติชนออนไลน์ :::::
+feed
+status
+updated
+updated_parsed
+encoding
+    utf-8
+bozo
+headers
+etag
+    "1510015-4a1-4e200dcf89a80"
+href
+version
+entries
+bozo_exception
+namespaces
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://www.matichon.co.th/news_detail.php?newsid=1374378446&grpid=03&catid=03', 'type': u'text/html', 'rel': u'alternate'}, {'href': u'http://www.matichon.co.th/online/2013/07/13743784461374378659l.jpg', 'type': u'image/jpeg', 'rel': u'enclosure'}]
+title
+summary
+title_detail
+link
+    http://www.matichon.co.th/news_detail.php?newsid=1374378446&grpid=03&catid=03
+published
+
+::::: สนุก! ข่าวไอที :::::
+feed
+status
+version
+encoding
+    utf-8
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://rssfeeds.sanook.com/rss/go/?hitech.news.xml|http://hitech.sanook.com/1386890/%E0%B8%A5%E0%B8%B7%E0%B8%AD%E0%B8%AD%E0%B8%B5%E0%B8%81-ipad-mini-2-%E0%B8%AB%E0%B8%99%E0%B9%89%E0%B8%B2%E0%B8%88%E0%B8%AD-retina-display/', 'type': u'text/html', 'rel': u'alternate'}, {'href': u'http://p4.s1sf.com/hi/0/ud/277/1386890/1.jpg', 'type': u'image/jpeg', 'rel': u'enclosure'}]
+title
+comments
+summary
+guidislink
+    False
+title_detail
+link
+    http://rssfeeds.sanook.com/rss/go/?hitech.news.xml|http://hitech.sanook.com/1386890/%E0%B8%A5%E0%B8%B7%E0%B8%AD%E0%B8%AD%E0%B8%B5%E0%B8%81-ipad-mini-2-%E0%B8%AB%E0%B8%99%E0%B9%89%E0%B8%B2%E0%B8%88%E0%B8%AD-retina-display/
+published
+id
+
+::::: สนุก! ท่องเที่ยวทั่วไทย :::::
+feed
+status
+version
+encoding
+    utf-8
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://rssfeeds.sanook.com/rss/go/?travel.index.xml|http://travel.sanook.com/1390724/%E0%B8%9B%E0%B8%B2%E0%B8%87%E0%B8%AD%E0%B8%B8%E0%B9%8B%E0%B8%87-%E0%B9%80%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%87%E0%B8%AB%E0%B8%99%E0%B8%B2%E0%B8%A7%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%A3%E0%B8%B2/', 'type': u'text/html', 'rel': u'alternate'}, {'href': u'http://p3.s1sf.com/tr/0/ud/278/1390724/img_426811.jpg', 'type': u'image/jpeg', 'rel': u'enclosure'}]
+title
+comments
+summary
+guidislink
+    False
+title_detail
+link
+    http://rssfeeds.sanook.com/rss/go/?travel.index.xml|http://travel.sanook.com/1390724/%E0%B8%9B%E0%B8%B2%E0%B8%87%E0%B8%AD%E0%B8%B8%E0%B9%8B%E0%B8%87-%E0%B9%80%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%87%E0%B8%AB%E0%B8%99%E0%B8%B2%E0%B8%A7%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%A3%E0%B8%B2/
+published
+id
+
+::::: สนุก! ข่าวประจำวัน :::::
+feed
+status
+version
+encoding
+    utf-8
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://rssfeeds.sanook.com/rss/go/?news.index.xml|http://news.sanook.com/1198450/%E0%B8%81%E0%B8%A3%E0%B8%A1%E0%B8%A8%E0%B8%B4%E0%B8%A5%E0%B8%9B%E0%B8%B2%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%80%E0%B8%9B%E0%B8%B4%E0%B8%94%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%AA%E0%B8%A1%E0%B8%B1%E0/', 'type': u'text/html', 'rel': u'alternate'}]
+title
+comments
+summary
+guidislink
+    False
+title_detail
+link
+    http://rssfeeds.sanook.com/rss/go/?news.index.xml|http://news.sanook.com/1198450/%E0%B8%81%E0%B8%A3%E0%B8%A1%E0%B8%A8%E0%B8%B4%E0%B8%A5%E0%B8%9B%E0%B8%B2%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%80%E0%B8%9B%E0%B8%B4%E0%B8%94%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%AA%E0%B8%A1%E0%B8%B1%E0/
+published
+id
+
+::::: ข่าวสังคม :::::
+feed
+status
+updated
+updated_parsed
+encoding
+    utf-8
+bozo
+headers
+etag
+    "3bc11ab-bfa2-4e200873334c0"
+href
+version
+entries
+bozo_exception
+namespaces
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://www.krobkruakao.com/\u0e02\u0e48\u0e32\u0e27/76819/\u0e2b\u0e22\u0e38\u0e14\u0e22\u0e32\u0e27-\u0e41\u0e2b\u0e48\u0e17\u0e48\u0e2d\u0e07\u0e40\u0e17\u0e35\u0e48\u0e22\u0e27\u0e17\u0e33\u0e1a\u0e38\u0e0d\u0e44\u0e2b\u0e27\u0e49\u0e1e\u0e23\u0e30\u0e0a\u0e48\u0e27\u0e07\u0e40\u0e02\u0e49\u0e32\u0e1e\u0e23\u0e23\u0e29\u0e32.html', 'type': u'text/html', 'rel': u'alternate'}]
+title
+thumbnail170x115
+    http://www.krobkruakao.com/store/news/76819/1374381396.jpg
+summary
+content
+title_detail
+link
+    http://www.krobkruakao.com/ข่าว/76819/หยุดยาว-แห่ท่องเที่ยวทำบุญไหว้พระช่วงเข้าพรรษา.html
+published
+newsid
+thumbnail
+    http://www.krobkruakao.com/store/news/76819/1374381393.jpg
+tags
+    [{'term': u'\u0e02\u0e48\u0e32\u0e27\u0e2a\u0e31\u0e07\u0e04\u0e21', 'scheme': None, 'label': None}]
+
+::::: สนุก! ข่าวต่างประเทศ :::::
+feed
+status
+version
+encoding
+    utf-8
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://rssfeeds.sanook.com/rss/go/?news.world.xml|http://news.sanook.com/1198384/%E0%B8%AA%E0%B8%A5%E0%B8%94-%E0%B8%AA%E0%B8%B2%E0%B8%A7%E0%B8%A1%E0%B8%B0%E0%B8%81%E0%B8%B1%E0%B8%99%E0%B8%A3%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%A5%E0%B8%B8%E0%B8%94%E0%B8%81%E0%B8%A3/', 'type': u'text/html', 'rel': u'alternate'}, {'href': u'http://p3.s1sf.com/ns/0/ud/239/1198384/1.jpg', 'type': u'image/jpeg', 'rel': u'enclosure'}]
+title
+comments
+summary
+guidislink
+    False
+title_detail
+link
+    http://rssfeeds.sanook.com/rss/go/?news.world.xml|http://news.sanook.com/1198384/%E0%B8%AA%E0%B8%A5%E0%B8%94-%E0%B8%AA%E0%B8%B2%E0%B8%A7%E0%B8%A1%E0%B8%B0%E0%B8%81%E0%B8%B1%E0%B8%99%E0%B8%A3%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%A5%E0%B8%B8%E0%B8%94%E0%B8%81%E0%B8%A3/
+published
+id
+
+::::: ข่าว ข่าวรายวัน ข่าววันนี้ ข่าวการเมือง » ข่าวต่างประเทศ :::::
+feed
+status
+updated
+updated_parsed
+encoding
+    UTF-8
+bozo
+headers
+etag
+    "99be7818fceb4259e5a75eb5caa4ff6b"
+href
+version
+entries
+namespaces
+-----------------
+summary_detail
+published_parsed
+links
+    [{'href': u'http://news.mthai.com/world-news/256567.html', 'type': u'text/html', 'rel': u'alternate'}]
+title
+authors
+    [{}]
+slash_comments
+comments
+summary
+guidislink
+    False
+title_detail
+link
+    http://news.mthai.com/world-news/256567.html
+author
+    Pipat
+published
+author_detail
+    {'name': u'Pipat'}
+wfw_commentrss
+id
+tags
+    [{'term': u'\u0e02\u0e48\u0e32\u0e27\u0e15\u0e48\u0e32\u0e07\u0e1b\u0e23\u0e30\u0e40\u0e17\u0e28', 'scheme': None, 'label': None}, {'term': u'\u0e02\u0e48\u0e32\u0e27\u0e40\u0e14\u0e48\u0e19\u0e1b\u0e23\u0e30\u0e08\u0e33\u0e27\u0e31\u0e19', 'scheme': None, 'label': None}, {'term': u'\u0e40\u0e23\u0e37\u0e2d\u0e2a\u0e33\u0e23\u0e32\u0e0d\u0e25\u0e48\u0e21', 'scheme': None, 'label': None}]
+
