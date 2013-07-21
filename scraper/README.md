@@ -16,9 +16,10 @@ videos and etc.
 
 ToDos
 ------
-1. extract image-processing methods
+1. (done) extract image-processing methods
 2. break down database storing method
 3. integrate api scraping
 4. extract alert-maintenance-related code from task
-5. add newsbeuter-like mechanism to mitigate pressure on rss servers
-6. add feed table/database statistics collector
+5. (done) add newsbeuter-like mechanism to mitigate pressure on rss servers
+6. add feed table/database statistics collector (ctlr to rss.py update method
+   to database.py)
