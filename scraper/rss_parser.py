@@ -89,6 +89,7 @@ def read_entry(e=None, language=None, category=None, feed_id=None):
                 raise Exception('----- ERROR: entry %s has no publication info!' % entry['title'])
 
     # article's thumbnail     
+    # e.g. [{'url': u'http://l.yimg.com/bt/api/res/1.2/SC7vBu0RS0PXeIctqYqbnw--/YXBwaWQ9eW5ld3M7Zmk9ZmlsbDtoPTg2O3E9ODU7dz0xMzA-/http://media.zenfs.com/pt_BR/News/AFP/photo_1374358063998-1-HD.jpg', 'width': u'130', 'type': u'image/jpeg', 'height': u'86'}]
     try:
         entry['thumbnails'] = e.media_content
     except AttributeError as e:
@@ -98,9 +99,11 @@ def read_entry(e=None, language=None, category=None, feed_id=None):
         except AttributeError as e:
             print e, '... will try thumbnail':
             try:
-                thumbnail_embedded = e.thumbnail
-                width, height = thumbnail.get_image_size(thumbnail_embedded)
-                entry['thumbnails'] = [{'url':thumbnail_embedded, 'width':width, 'height':height}]
+                for attribute in e:
+                    thumbnail_embedded = e.attribute
+                    width, height = thumbnail.get_image_size(thumbnail_embedded)
+                    entry['thumbnails'] = [{'url':thumbnail_embedded, 'width':width, 'height':height}]
+                    break
             except AttributeError as e:
                 print e, '... probably this has no thumbnails'
 
