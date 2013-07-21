@@ -89,6 +89,12 @@ def read_entry(e=None, language=None, category=None, feed_id=None):
                 entry['error'] = '%s\n%s' % (entry['error'], 'no update or published')
                 raise Exception('----- ERROR: entry %s has no publication info!' % entry['title'])
 
+    # article's summary
+    try:
+        entry['summary'] = hparser.unescape(e.summary)
+    except AttributeError as e:
+        print e, '... probably this has no summary'
+
     def store_thumbnail(stored_at, image):
         """
         docs needed!
@@ -149,6 +155,38 @@ def read_entry(e=None, language=None, category=None, feed_id=None):
                     except AttributeError as e:
                         print e, '... Oooops! cannot find thumbnails!'
 
+    # article's big images
+    entry['big_images'] = []
+    if entry['summary']:
+        soup = BeautifulStoneSoup(entry['summary'])
+        if soup.img:
+            images = soup.img['src']
+            if isinstance(images, str):
+                if not thumbnail.is_thumbnail(images):
+                    width, height = thumbnail.get_image_size(images)
+                    entry['big_images'].append({'url':images, 'width':width, 'height':height})
+            elif isinstance(images, list):
+                for image in images:
+                    if not thumbnail.is_thumbnail(image):
+                        width, height = thumbnail.get_image_size(image)
+                        big_image = {'url':image, 'width':width, 'height':height}
+                        if big_image not in entry['big_images']:
+                            entry['big_images'].append(big_image)
+    try:
+        links = e.links
+        for link in links:
+            if 'type' in link and 'image' in link.type:
+                if 'href' in link:
+                    width, height = thumbnail.get_image_size(link.href)
+                    big_image = {'url':link.href, 'width':width, 'height':height}
+                    if big_image not in entry['big_images']:
+                        entry['big_images'].append(big_image)
+        if not entry['big_images']:
+            raise AttributeError("no image found in 'links'")
+    except AttributeError as e:
+        if not entry['big_images']:
+            print e, '... probably this has no big images!'
+
     # article's author
     # e.g. Yuan Jin
     try:
@@ -171,12 +209,6 @@ def read_entry(e=None, language=None, category=None, feed_id=None):
         entry['tags'] = e.tag
     except AttributeError as e:
         print e, '... probably this has no tags'
-
-    # article's summary
-    try:
-        entry['summary'] = hparser.unescape(e.summary)
-    except AttributeError as e:
-        print e, '... probably this has no summary'
 
     # specially made for Android front-end developers
     entry['thumbnails'] = 'None' if not entry['thumbnails'] else entry['thumbnails']
