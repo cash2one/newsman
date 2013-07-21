@@ -21,7 +21,7 @@ from administration.config import THUMBNAIL_WEB_DIR
 
 # Todos
 # break update_database into several shorter mthods
-def update_database(entries=None, language=None):
+def update(entries=None, language=None):
     ''''''
     print '>>> update_database'
     if not entries:
