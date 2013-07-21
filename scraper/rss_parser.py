@@ -16,7 +16,7 @@ sys.path.append('..')
 
 from BeautifulSoup import BeautifulStoneSoup
 import calendar
-from datetime import timedelta, datetime
+from datetime import datetime, timedelta
 import feedparser
 from administration.config import hparser
 import random
@@ -32,16 +32,21 @@ from administration.config import MEMORY_RESTORATION_DAYS
 # - add more boundary checks
 # - [register unsupported date format](http://pythonhosted.org/feedparser/date-parsing.html#advanced-date)
 # - add tags
-def _read_entry(e=None, language=None, category=None, feed_id=None):
+def _read_entry(e=None, feed_id=None, feed_title=None, language=None):
     """
-    
+    read a specific entry item from a feed 
     """
-    entry = {}
-    entry['category'] = category
-    entry['feed'] = feed_id
-    entry['language'] = language
+    if not e or not feed_id or not feed_title or not language:
+        raise Exception("ERROR: Method signature not well formed for %s!" % feed_id)
+    if language not in LANGUAGES:
+        raise Exception("ERROR: Language not supported for %s!" % feed_id)
 
-    # the easy part: the must have
+    entry = {}
+    entry['feed_id'] = feed_id
+    entry['feed_title'] = feed_title.strip()
+    entry['language'] = language.strip()
+
+    # the easy part: the must-have
     try:
         # article original link
         entry['link'] = e.link.strip()
@@ -53,6 +58,7 @@ def _read_entry(e=None, language=None, category=None, feed_id=None):
     except AttributeError as k:
         print k
         entry['error'] = k
+        raise Exception('ERROR: No title or link found for %s!' % entry['feed_id'])
 
     # article published time
     # first try parsed time info
@@ -87,13 +93,13 @@ def _read_entry(e=None, language=None, category=None, feed_id=None):
                 print k
                 entry['error'] = '%s\n%s' % (entry['error'], k)
                 raise Exception(
-                    '----- ERROR: entry %s has no publication info!' % entry['title'])
+                    'ERROR: entry %s has no publication info!' % entry['title'])
             except AttributeError as k:
                 print k
                 entry['error'] = '%s\n%s' % (
                     entry['error'], 'no update or published')
                 raise Exception(
-                    '----- ERROR: entry %s has no publication info!' % entry['title'])
+                    'ERROR: entry %s has no publication info!' % entry['title'])
 
     # article's summary
     try:
@@ -243,18 +249,18 @@ def _read_entry(e=None, language=None, category=None, feed_id=None):
 # Todos
 # boundary checkers
 # update parsing info to feed database
-def parse(feed_link=None, feed_id=None, feed_name=None, language=None):
+def parse(feed_link=None, feed_id=None, feed_title=None, language=None):
     """
     read rss/atom data from a given feed
+    feed_id is the feed ObjectId in MongoDB
     Note: category should be added to feed table/database
     """
     if not feed_link or not feed_id or not language:
-        raise Exception("Method signature not well formed!")
+        raise Exception("ERROR: Method signature not well formed for %s!" % feed_id)
     if language not in LANGUAGES:
-        raise Exception("Language not supported!")
+        raise Exception("ERROR: Language not supported for %s!" % feed_link)
     # parameters striped
     feed_link = feed_link.strip()
-    feed_name = feed_name.strip()
     language = language.strip()
     
     def validate_time(entry):
@@ -268,12 +274,22 @@ def parse(feed_link=None, feed_id=None, feed_name=None, language=None):
     # variables d and e follow feedparser tradition
     d = feedparser.parse(feed_link)
     if d:
+        if not feed_title:
+            # if title were not found in feed, an AttributeError would be raised.
+            feed_title = hparser.unescape(feed.title).strip() 
+        else:
+            feed_title = feed_title.strip()
+            feed_title_latest = hparser.unescape(feed.title).strip() 
+            if feed_title != feed_title_latest:
+                raise Exception('WARNING: %s title changed! Please update feed table/database' % feed_id)
+
         if 'entries' in d:
             language = language if 'language' not in d else d.language
-            entries = [_read_entry(e, feed_id, feed_name, language)
+            # an Exception might be raised from _read_entry
+            entries = [_read_entry(e, feed_id, feed_title, language)
                        for e in d['entries']]
             return filter(validate_time, entries)
         else:
-            raise Exception("Feed has no items!")
+            raise Exception("ERROR: Feed %s has no items!" % feed_id)
     else:
-        raise Exception("Cannot parse correctly!")
+        raise Exception("ERROR: Cannot parse %s correctly!" % feed_id)
