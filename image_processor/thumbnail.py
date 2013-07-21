@@ -4,16 +4,20 @@
 import sys
 reload(sys)
 sys.setdefaultencoding('UTF-8')
+sys.path.append('..')
 
-
-import config
 import Image
 from cStringIO import StringIO
 import urllib2
 
+from administration.config import THUMBNAIL_SIZE
+from administration.config import THUMBNAIL_LOCAL_DIR
+from administration.config import THUMBNAIL_WEB_DIR
+
 
 # Todos
 # boundary checkers
+# relative path could be a url including its suffix like jpg/png
 def generate_thumbnail(image_url, relative_path):
     """
     docs needed!
@@ -24,9 +28,9 @@ def generate_thumbnail(image_url, relative_path):
     image_pil = Image.open(image_web)
     # generate thumbnail
     if image_pil.size > THUMBNAIL_SIZE:
-        image_thumbnail_local_path = '%s%s.jpeg' % (
+        image_thumbnail_local_path = '%s%s' % (
             THUMBNAIL_LOCAL_DIR, relative_path)
-        image_thumbnail_web_path = '%s%s.jpeg' % (
+        image_thumbnail_web_path = '%s%s' % (
             THUMBNAIL_WEB_DIR, relative_path)
         image_pil.thumbnail(config.THUMBNAIL_SIZE, Image.ANTIALIAS)
         image_pil = image_pil.convert('RGB')

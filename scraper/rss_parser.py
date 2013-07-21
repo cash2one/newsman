@@ -116,18 +116,15 @@ def read_entry(e=None, language=None, category=None, feed_id=None):
                     soup = BeautifulStoneSoup(entry['summary'])
 
                     if soup.img:
-                        img = soup.img['src']
-                        if isinstance(img, str):
-                            width, height = soup.img['width'], soup.img['height'] if soup.img.get('widht') and soup.img.get('height') else thumbnail.get_image_size(img)
-                            entry['image'].append(thumbnail_url)
-                        elif isinstance(img, list):
-                            for im in img:
-                                thumbnail_relative_path = '%s.jpeg' % im
-                                if len(thumbnail_relative_path) > 200:
-                                    thumbnail_relative_path = thumbnail_relative_path[
-                                        -200:]
-                                thumbnail_url = thumbnail.get(
-                                    im, thumbnail_relative_path)
+                        images = soup.img['src']
+                        if isinstance(images, str):
+                            width, height = soup.img['width'], soup.img['height'] if soup.img.get('width') and soup.img.get('height') else thumbnail.get_image_size(images)
+                            entry['thumbnails'] = [{'url':images, 'width':width, 'height':height}] 
+                        elif isinstance(images, list):
+                            entry['thumbnails'] = []
+                            for image in images:
+                                width, height = thumbnail.get_image_size(image)
+                                entry['thumbnails'] = [{'url':img, 'width':width, 'height':height}] 
                                 entry['image'].append(thumbnail_url)
                             else:
                     print 'this has no thumbnails!'
