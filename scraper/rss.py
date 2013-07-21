@@ -32,7 +32,7 @@ def add_entries(feed_id=None, feed_link=None, language=None, category=None):
     if category.count(' '):
         return None
 
-    entries = rss_parser.extract_entries(feed_id, feed_link, language, category)
+    entries = rss_parser.parse(feed_id, feed_link, language, category)
     print 'Nothing found from RSS' if not entries else '    1/3 .. retrieved %i entries' % len(entries)
     # store in both database and memory
     if entries:
