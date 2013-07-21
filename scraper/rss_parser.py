@@ -14,7 +14,6 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
-from BeautifulSoup import BeautifulStoneSoup
 import calendar
 from datetime import timedelta, datetime
 import feedparser
@@ -125,6 +124,7 @@ def parse(feed_id=None, feed_link=None, language=None, category=None):
     d = feedparser.parse(feed_link)
     if d:
         if 'entries' in d:
+            language = language if not d.language else d.language
             entries = [read_entry(e, language, category, feed_id)
                        for e in d['entries']]
             return filter(validate_time, entries)
