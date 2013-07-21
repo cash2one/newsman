@@ -111,7 +111,10 @@ def read_entry(e=None, language=None, category=None, feed_id=None):
 
 
 def parse(feed_id=None, feed_link=None, language=None, category=None):
-    '''read rss/atom data from a given feed'''
+    """read rss/atom data from a given feed"""
+    # Todos
+    # boundary checkers
+
     def validate_time(entry):
         ''''''
         deadline = datetime.utcfromtimestamp(
