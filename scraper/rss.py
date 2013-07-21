@@ -13,6 +13,7 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
+import rss_parser
 
 def add_entries(feed_id=None, feed_link=None, language=None, category=None):
     """
@@ -31,14 +32,14 @@ def add_entries(feed_id=None, feed_link=None, language=None, category=None):
     if category.count(' '):
         return None
 
-    entries = extract_entries(feed_id, feed_link, language, category)
+    entries = rss_parser.extract_entries(feed_id, feed_link, language, category)
     print 'Nothing found from RSS' if not entries else '    1/3 .. retrieved %i entries' % len(entries)
     # store in both database and memory
     if entries:
-        added_entries = update_database(entries, language)
+        added_entries = database.update(entries, language)
         print 'Nothing updated' if not added_entries else '    2/3 .. updated %i database items' % len(added_entries)
         if added_entries:
-            updated_entries = update_memory(
+            updated_entries = memory.update(
                 added_entries, language, category, feed_id)
             print '' '    3/3 .. updated memory'
             return updated_entries
