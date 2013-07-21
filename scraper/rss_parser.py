@@ -36,11 +36,11 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None):
     """
     read a specific entry item from a feed 
     """
-    if not e or not feed_id or not feed_title or not language:
+    if not e or not feed_title or not language:
         raise Exception(
-            "ERROR: Method signature not well formed for %s!" % feed_id)
+            "ERROR: Method signature not well formed for %s!" % feed_title)
     if language not in LANGUAGES:
-        raise Exception("ERROR: Language not supported for %s!" % feed_id)
+        raise Exception("ERROR: Language not supported for %s!" % feed_title)
 
     entry = {}
     entry['feed_id'] = feed_id
@@ -257,9 +257,9 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None):
     feed_id is the feed ObjectId in MongoDB
     Note: category should be added to feed table/database
     """
-    if not feed_link or not feed_id or not language:
+    if not feed_link or not language:
         raise Exception(
-            "ERROR: Method signature not well formed for %s!" % feed_id)
+            "ERROR: Method signature not well formed for %s!" % feed_link)
     if language not in LANGUAGES:
         raise Exception("ERROR: Language not supported for %s!" % feed_link)
     # parameters striped
@@ -280,10 +280,10 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None):
         if not feed_title:
             # if title were not found in feed, an AttributeError would be
             # raised.
-            feed_title = hparser.unescape(feed.title).strip()
+            feed_title = hparser.unescape(d.feed.title).strip()
         else:
             feed_title = feed_title.strip()
-            feed_title_latest = hparser.unescape(feed.title).strip()
+            feed_title_latest = hparser.unescape(d.feed.title).strip()
             if feed_title != feed_title_latest:
                 raise Exception(
                     'WARNING: %s title changed! Please update feed table/database' % feed_id)
