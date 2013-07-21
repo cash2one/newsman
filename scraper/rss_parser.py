@@ -32,30 +32,60 @@ def read_entry(e=None, language=None, category=None, feed_id=None):
         return 1
     # Todos
     # add more boundary checks
-
     entry = {}
-    entry['language'] = language
     entry['category'] = category
     entry['feed'] = feed_id
-    entry['title'] = hparser.unescape(e.title.strip())
-    entry['link'] = e.link.strip()
-    if ('published_parsed' in e and e['published_parsed']) or ('updated_parsed' in e and e['updated_parsed']):
-        entry['updated'] = calendar.timegm(
-            e['published_parsed']) if 'published_parsed' in e else calendar.timegm(e['updated_parsed'])
-    elif 'published' in e or 'updated' in e:
-        published = e.published if 'published' in e else e.updated
-        try:
-            offset = int(published[-5:])
-        except:
-            return None
-        delta = timedelta(hours=offset / 100)
-        format = "%a , %d %b %Y %H:%M:%S"
-        if published[-8:-5] != 'UTC':
-            updated = datetime.strptime(published[:-6], format)
+    entry['language'] = language
+
+    try:
+        # article original link
+        entry['link'] = e.link.strip()
+        # article title
+        if e.title_detail.type != 'text/plain':
+            entry['title'] = hparser.unescape(e.title.strip())
         else:
-            updated = datetime.strptime(published[:-9], format)
-        updated -= delta
-        entry['updated'] = time.mktime(updated.timetuple())
+            entry['title'] = e.title.strip()
+    except AttributeError as e:
+        print e
+        entry['error'] = e
+
+    # article published time
+    # first try parsed time info
+    try:
+        entry['updated'] = calendar.timegm(e.updated_parsed)
+    except AttributeError as e:
+        print e, "... will try attribute 'published_parsed'"
+        try:
+            entry['updated'] = calendar.timegm(e.published_parsed)
+        except AttributeError as e:
+            print e, "... will try attibutes 'update' and 'published'"
+            entry['error'] = '%s\n%s' % (entry['error'], 'no parsed update or published')
+            # then try unparsed time info
+            try:
+                updated = e.updated if 'updated' in e else e.published
+                if updated:
+                    # get time zone
+                    offset = int(updated[-5:])
+                    delta = timedelta(hours=offset / 100)
+                    format = "%a , %d %b %Y %H:%M:%S"
+                    if updated[-8:-5] != 'UTC':
+                        updated = datetime.strptime(updated[:-6], format)
+                    else:
+                        updated = datetime.strptime(updated[:-9], format)
+                    updated -= delta
+                    entry['updated'] = time.mktime(updated.timetuple())
+                else:
+                    raise ValueError("attribute updated/published has no value")
+            except ValueError as e:
+                print e
+                entry['error'] = '%s\n%s' % (entry['error'], e)
+                raise Exception('----- ERROR: entry %s has no publication info!' % entry['title'])
+            except AttributeError as e:
+                print e
+                entry['error'] = '%s\n%s' % (entry['error'], 'no update or published')
+                raise Exception('----- ERROR: entry %s has no publication info!' % entry['title'])
+
+    # article's thumbnail     
     if 'media_thumbnail' in e or 'media_content' in e:
         thumbnails = e['media_content'] if 'media_content' in e else e[
             'media_thumbnail']
