@@ -14,6 +14,7 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
+from BeautifulStoneSoup import BeautifulStoneSoup
 import calendar
 from datetime import timedelta, datetime
 import feedparser
@@ -88,6 +89,20 @@ def read_entry(e=None, language=None, category=None, feed_id=None):
                 entry['error'] = '%s\n%s' % (entry['error'], 'no update or published')
                 raise Exception('----- ERROR: entry %s has no publication info!' % entry['title'])
 
+    def store_thumbnail(stored_at, image):
+        """
+        docs needed!
+        """
+        if thumbnail.is_thumbnail(image):
+            width, height = thumbnail.get_image_size(image)
+            stored_at.append({'url':image, 'width':width, 'height':height}) 
+        else:
+            rand = random.randint(0, 1000000)
+            thumbnail_name = 'thumbnail_%s_%s_%i' % (entry['language'], entry['updated'], rand)
+            image_shrinked = thumbnail.generate_thumbnail(image, thumbnail_name) 
+            width, height = thumbnail.get_image_size(image_shrinked)
+            stored_at.append({'url':image_shrinked, 'width':width, 'height':height}) 
+
     # article's thumbnail     
     # e.g. [{'url': u'http://l.yimg.com/bt/api/res/1.2/SC7vBu0RS0PXeIctqYqbnw--/YXBwaWQ9eW5ld3M7Zmk9ZmlsbDtoPTg2O3E9ODU7dz0xMzA-/http://media.zenfs.com/pt_BR/News/AFP/photo_1374358063998-1-HD.jpg', 'width': u'130', 'type': u'image/jpeg', 'height': u'86'}]
     try:
@@ -112,20 +127,18 @@ def read_entry(e=None, language=None, category=None, feed_id=None):
             except AttributeError as e:
                 print e, '... will try summary, if available'
                 if entry['summary']:
-                    from BeautifulStoneSoup import BeautifulStoneSoup
                     soup = BeautifulStoneSoup(entry['summary'])
-
                     if soup.img:
                         images = soup.img['src']
+                        entry['thumbnails'] = []
                         if isinstance(images, str):
-                            width, height = soup.img['width'], soup.img['height'] if soup.img.get('width') and soup.img.get('height') else thumbnail.get_image_size(images)
-                            entry['thumbnails'] = [{'url':images, 'width':width, 'height':height}] 
+                            store_thumbnail(entry['thumbnails'], images)
                         elif isinstance(images, list):
-                            entry['thumbnails'] = []
                             for image in images:
-                                width, height = thumbnail.get_image_size(image)
-                                entry['thumbnails'] = [{'url':img, 'width':width, 'height':height}] 
-                            else:
+                                store_thumbnail(entry['thumbnails'], image)
+                    else:
+                        print 'this has no thumbnails!'
+                else:
                     print 'this has no thumbnails!'
 
     # article's author
