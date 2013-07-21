@@ -100,10 +100,11 @@ def read_entry(e=None, language=None, category=None, feed_id=None):
             print e, '... will try thumbnail':
             try:
                 for attribute in e:
-                    thumbnail_embedded = e.attribute
-                    width, height = thumbnail.get_image_size(thumbnail_embedded)
-                    entry['thumbnails'] = [{'url':thumbnail_embedded, 'width':width, 'height':height}]
-                    break
+                    if 'thumbnail' in attribute:
+                        thumbnail_embedded = e.attribute
+                        width, height = thumbnail.get_image_size(thumbnail_embedded)
+                        entry['thumbnails'] = [{'url':thumbnail_embedded, 'width':width, 'height':height}]
+                        break
             except AttributeError as e:
                 print e, '... probably this has no thumbnails'
 
