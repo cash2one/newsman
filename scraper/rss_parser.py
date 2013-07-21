@@ -49,20 +49,20 @@ def read_entry(e=None, language=None, category=None, feed_id=None):
             entry['title'] = hparser.unescape(e.title.strip())
         else:
             entry['title'] = e.title.strip()
-    except AttributeError as e:
-        print e
-        entry['error'] = e
+    except AttributeError as k:
+        print k
+        entry['error'] = k
 
     # article published time
     # first try parsed time info
     try:
         entry['updated'] = calendar.timegm(e.updated_parsed)
-    except AttributeError as e:
-        print e, "... will try attribute 'published_parsed'"
+    except AttributeError as k:
+        print k, "... will try attribute 'published_parsed'"
         try:
             entry['updated'] = calendar.timegm(e.published_parsed)
-        except AttributeError as e:
-            print e, "... will try attibutes 'update' and 'published'"
+        except AttributeError as k:
+            print k, "... will try attibutes 'update' and 'published'"
             entry['error'] = '%s\n%s' % (entry['error'], 'no parsed update or published')
             # then try unparsed time info
             try:
@@ -80,20 +80,20 @@ def read_entry(e=None, language=None, category=None, feed_id=None):
                     entry['updated'] = time.mktime(updated.timetuple())
                 else:
                     raise ValueError("attribute updated/published has no value")
-            except ValueError as e:
-                print e
-                entry['error'] = '%s\n%s' % (entry['error'], e)
+            except ValueError as k:
+                print k
+                entry['error'] = '%s\n%s' % (entry['error'], k)
                 raise Exception('----- ERROR: entry %s has no publication info!' % entry['title'])
-            except AttributeError as e:
-                print e
+            except AttributeError as k:
+                print k
                 entry['error'] = '%s\n%s' % (entry['error'], 'no update or published')
                 raise Exception('----- ERROR: entry %s has no publication info!' % entry['title'])
 
     # article's summary
     try:
         entry['summary'] = hparser.unescape(e.summary)
-    except AttributeError as e:
-        print e, '... probably this has no summary'
+    except AttributeError as k:
+        print k, '... probably this has no summary'
 
     def store_thumbnail(stored_at, image):
         """
@@ -113,12 +113,12 @@ def read_entry(e=None, language=None, category=None, feed_id=None):
     # e.g. [{'url': u'http://l.yimg.com/bt/api/res/1.2/SC7vBu0RS0PXeIctqYqbnw--/YXBwaWQ9eW5ld3M7Zmk9ZmlsbDtoPTg2O3E9ODU7dz0xMzA-/http://media.zenfs.com/pt_BR/News/AFP/photo_1374358063998-1-HD.jpg', 'width': u'130', 'type': u'image/jpeg', 'height': u'86'}]
     try:
         entry['thumbnails'] = e.media_content
-    except AttributeError as e:
-        print e, '... will try media_thumbnail'
+    except AttributeError as k:
+        print k, '... will try media_thumbnail'
         try:
             entry['thumbnails'] = e.media_thumbnail
-        except AttributeError as e:
-            print e, '... will try thumbnail':
+        except AttributeError as k:
+            print k, '... will try thumbnail':
             try:
                 for attribute in e:
                     if 'thumbnail' in attribute:
@@ -130,8 +130,8 @@ def read_entry(e=None, language=None, category=None, feed_id=None):
                             break
                 if not entry['thumbnails']:
                     raise AttributeError("cannot find 'thumbnail'-like attribute")
-            except AttributeError as e:
-                print e, '... will try summary, if available'
+            except AttributeError as k:
+                print k, '... will try summary, if available'
                 entry['thumbnails'] = []
                 if entry['summary']:
                     soup = BeautifulStoneSoup(entry['summary'])
@@ -152,8 +152,8 @@ def read_entry(e=None, language=None, category=None, feed_id=None):
                                     store_thumbnail(entry['thumbnails'], link.href)
                         if not entry['thumbnails']:
                             raise AttributeError("no image found in 'links'")
-                    except AttributeError as e:
-                        print e, '... Oooops! cannot find thumbnails!'
+                    except AttributeError as k:
+                        print k, '... Oooops! cannot find thumbnails!'
 
     # article's big images
     entry['big_images'] = []
@@ -183,32 +183,32 @@ def read_entry(e=None, language=None, category=None, feed_id=None):
                         entry['big_images'].append(big_image)
         if not entry['big_images']:
             raise AttributeError("no image found in 'links'")
-    except AttributeError as e:
+    except AttributeError as k:
         if not entry['big_images']:
-            print e, '... probably this has no big images!'
+            print k, '... probably this has no big images!'
 
     # article's author
     # e.g. Yuan Jin
     try:
         # i guess this could be a string or a list
         entry['author'] = e.author
-    except AttributeError as e:
-        print e, '... probably this has no author'
+    except AttributeError as k:
+        print k, '... probably this has no author'
 
     # article's source
     # e.g. {'href': u'http://www.reuters.com/', 'title': u'Reuters'} 
     try:
         entry['source'] = e.source
-    except AttributeError as e:
-        print e, '... probably this has no source'
+    except AttributeError as k:
+        print k, '... probably this has no source'
 
     # article's tags
     # e.g. [{'term': u'Campus Party Recife 2013', 'scheme': None, 'label': None}]
     # term is usually combined with scheme to form a url; label is the name of term
     try:
         entry['tags'] = e.tag
-    except AttributeError as e:
-        print e, '... probably this has no tags'
+    except AttributeError as k:
+        print k, '... probably this has no tags'
 
     # specially made for Android front-end developers
     entry['thumbnails'] = 'None' if not entry['thumbnails'] else entry['thumbnails']
