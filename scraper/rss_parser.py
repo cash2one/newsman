@@ -278,24 +278,37 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, etag=Non
     # variables d and e follow feedparser tradition
     d = feedparser.parse(feed_link, etag=etag, modified=modified)
     if d:
-        if not feed_title:
-            # if title were not found in feed, an AttributeError would be
-            # raised.
-            feed_title = hparser.unescape(d.feed.title).strip()
-        else:
-            feed_title = feed_title.strip()
-            feed_title_latest = hparser.unescape(d.feed.title).strip()
-            if feed_title != feed_title_latest:
-                raise Exception(
-                    'WARNING: %s title changed! Please update feed table/database' % feed_id)
+        # http://pythonhosted.org/feedparser/reference-status.html
+        # http://pythonhosted.org/feedparser/http-etag.html#http-etag
+        status = d.status
+        if status == 301:
+            raise Exception('ERROR: %s has been permantently moved to a %s!' % (feed_link, d.href))
+        elif status == 304:
+            raise Exception('WARNING: %s server has not updated its feeds' % feed_link)
+        elif status == 410:
+            raise Exception('ERROR: %s is gone! Admin should check the feed availability!' % feed_link)
+        elif status == 200 or status == 302:
+            # no need to worry.
+            if status == 302:
+                print 'WARNING: %s url has been temp moved to a new place' % feed_link)
 
-        if 'entries' in d:
-            language = language if 'language' not in d else d.language
-            # an Exception might be raised from _read_entry
-            entries = [_read_entry(e, feed_id, feed_title, language)
-                       for e in d['entries']]
-            return filter(validate_time, entries)
+            if not feed_title:
+                # if title were not found in feed, an AttributeError would be raised.
+                feed_title = hparser.unescape(d.feed.title).strip()
+            else:
+                feed_title = feed_title.strip()
+                feed_title_latest = hparser.unescape(d.feed.title).strip()
+                if feed_title != feed_title_latest:
+                    raise Exception('WARNING: %s title changed! Please update feed table/database' % feed_link)
+
+            if 'entries' in d:
+                language = language if 'language' not in d else d.language
+                # an Exception might be raised from _read_entry
+                entries = [_read_entry(e, feed_id, feed_title, language) for e in d['entries']]
+                return filter(validate_time, entries)
+            else:
+                raise Exception("ERROR: Feed %s has no items!" % feed_id)
         else:
-            raise Exception("ERROR: Feed %s has no items!" % feed_id)
+            raise Exception('ERROR: HTTP ERROR CODE %i for %s' % (status, feed_link))
     else:
         raise Exception("ERROR: Cannot parse %s correctly!" % feed_id)
