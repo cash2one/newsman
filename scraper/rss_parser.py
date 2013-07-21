@@ -110,7 +110,7 @@ def read_entry(e=None, language=None, category=None, feed_id=None):
     return entry
 
 
-def extract_entries(feed_id=None, feed_link=None, language=None, category=None):
+def parse(feed_id=None, feed_link=None, language=None, category=None):
     '''read rss/atom data from a given feed'''
     def validate_time(entry):
         ''''''
