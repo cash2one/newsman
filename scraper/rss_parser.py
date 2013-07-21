@@ -32,9 +32,9 @@ from administration.config import MEMORY_RESTORATION_DAYS
 # - add more boundary checks
 # - [register unsupported date format](http://pythonhosted.org/feedparser/date-parsing.html#advanced-date)
 # - add tags
-def read_entry(e=None, language=None, category=None, feed_id=None):
+def _read_entry(e=None, language=None, category=None, feed_id=None):
     """
-    docs needed!
+    
     """
     entry = {}
     entry['category'] = category
@@ -240,28 +240,40 @@ def read_entry(e=None, language=None, category=None, feed_id=None):
     return entry
 
 
-def parse(feed_id=None, feed_link=None, language=None, category=None):
+# Todos
+# boundary checkers
+# update parsing info to feed database
+def parse(feed_link=None, feed_id=None, feed_name=None, language=None):
     """
     read rss/atom data from a given feed
+    Note: category should be added to feed table/database
     """
-    # Todos
-    # boundary checkers
-    # update parsing info to feed database
-
+    if not feed_link or not feed_id or not language:
+        raise Exception("Method signature not well formed!")
+    if language not in LANGUAGES:
+        raise Exception("Language not supported!")
+    # parameters striped
+    feed_link = feed_link.strip()
+    feed_name = feed_name.strip()
+    language = language.strip()
+    
     def validate_time(entry):
-        ''''''
+        """
+        see if the entry's updated time is earlier than needed
+        """
         deadline = datetime.utcfromtimestamp(
             entry['updated']) + timedelta(days=MEMORY_RESTORATION_DAYS)
         return True if deadline > datetime.now() else False
 
+    # variables d and e follow feedparser tradition
     d = feedparser.parse(feed_link)
     if d:
         if 'entries' in d:
             language = language if 'language' not in d else d.language
-            entries = [read_entry(e, language, category, feed_id)
+            entries = [_read_entry(e, feed_id, feed_name, language)
                        for e in d['entries']]
             return filter(validate_time, entries)
         else:
-            return None
+            raise Exception("Feed has no items!")
     else:
-        return None
+        raise Exception("Cannot parse correctly!")
