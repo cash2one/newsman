@@ -126,20 +126,28 @@ def read_entry(e=None, language=None, category=None, feed_id=None):
                     raise AttributeError("cannot find 'thumbnail'-like attribute")
             except AttributeError as e:
                 print e, '... will try summary, if available'
+                entry['thumbnails'] = []
                 if entry['summary']:
                     soup = BeautifulStoneSoup(entry['summary'])
                     if soup.img:
                         images = soup.img['src']
-                        entry['thumbnails'] = []
                         if isinstance(images, str):
                             store_thumbnail(entry['thumbnails'], images)
                         elif isinstance(images, list):
                             for image in images:
                                 store_thumbnail(entry['thumbnails'], image)
-                    else:
-                        print 'this has no thumbnails!'
-                else:
-                    print 'this has no thumbnails!'
+                if not entry['thumbnails']:
+                    print 'cannot find thumbnails in summary ... will try links!'
+                    try:
+                        links = e.links
+                        for link in links:
+                            if 'type' in link and 'image' in link.type:
+                                if 'href' in link:
+                                    store_thumbnail(entry['thumbnails'], link.href)
+                        if not entry['thumbnails']:
+                            raise AttributeError("no image found in 'links'")
+                    except AttributeError as e:
+                        print e, '... Oooops! cannot find thumbnails!'
 
     # article's author
     # e.g. Yuan Jin
