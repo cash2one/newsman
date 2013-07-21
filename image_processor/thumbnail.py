@@ -16,6 +16,18 @@ from administration.config import THUMBNAIL_WEB_DIR
 
 
 # Todos
+# boundary checker should not return None, instead probably an Exception 
+def is_thumbnail(image_url):
+    """
+    docs needed
+    """
+    if not image_url:
+        return None
+    image_pil = Image.open(StrinIO(urllib2.urlopen(image_url).read())) 
+    return True if image_pil.size < THUMBNAIL_SIZE else False
+
+
+# Todos
 # boundary checkers
 # relative path could be a url including its suffix like jpg/png
 def generate_thumbnail(image_url, relative_path):
@@ -28,9 +40,9 @@ def generate_thumbnail(image_url, relative_path):
     image_pil = Image.open(image_web)
     # generate thumbnail
     if image_pil.size > THUMBNAIL_SIZE:
-        image_thumbnail_local_path = '%s%s' % (
+        image_thumbnail_local_path = '%s%si.jpg' % (
             THUMBNAIL_LOCAL_DIR, relative_path)
-        image_thumbnail_web_path = '%s%s' % (
+        image_thumbnail_web_path = '%s%s.jpg' % (
             THUMBNAIL_WEB_DIR, relative_path)
         image_pil.thumbnail(config.THUMBNAIL_SIZE, Image.ANTIALIAS)
         image_pil = image_pil.convert('RGB')
@@ -41,6 +53,9 @@ def generate_thumbnail(image_url, relative_path):
 
 
 def get_image_size(image_url):
+    """
+    docs needed
+    """
     try:
         image_web = StringIO(urllib2.urlopen(image_url).read())
     except Exception as e:

@@ -125,7 +125,6 @@ def read_entry(e=None, language=None, category=None, feed_id=None):
                             for image in images:
                                 width, height = thumbnail.get_image_size(image)
                                 entry['thumbnails'] = [{'url':img, 'width':width, 'height':height}] 
-                                entry['image'].append(thumbnail_url)
                             else:
                     print 'this has no thumbnails!'
 
