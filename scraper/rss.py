@@ -33,7 +33,12 @@ def _value_added_process(entries=None, language=None):
     add more value to an entry
     tts, transcode, images
     """
+    if not entries:
+        return None
+    if not language or language not in LANGUAGES:
+        raise Exception("ERROR: language not found or not supported!")
 
+    pass
 
 def update(feed_link=None, feed_id=None, feed_title=None, language=None, etag=None, modified=None):
     """
@@ -64,8 +69,10 @@ def update(feed_link=None, feed_id=None, feed_title=None, language=None, etag=No
             raise k
 
     # filter out existing entries in database
+    # there are some possible exceptions -- yet let it be
+    entries_new = database.dedup(entries, language)
     # and do tts, big_images, image as well as transcode.
-    entries_new = databse
+    _value_added_process(entries_new, language)
 
     # update new entries and some data, like feed_title, etag and modified to database
 
