@@ -1,5 +1,5 @@
-#!/usr/bin/env python 
-#-*- coding: utf-8 -*- 
+#!/usr/bin/env python
+#-*- coding: utf-8 -*-
 
 # rss is the interface to rss parsing,
 # processing and storing.
@@ -8,18 +8,19 @@
 # @email jinyuan@baidu.com
 # @created Jul. 20, 2013
 
-import sys 
-reload(sys) 
+import sys
+reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
 import rss_parser
 
+
 def add_entries(feed_id=None, feed_link=None, language=None, category=None):
     """
     add_entries could be called
     1. by automation/task procedures
-    2. after a rss is called
+    2. after an rss is called
     3. manually for testing purpose
     """
     if not feed_id or not feed_link or not language or not category:
@@ -32,7 +33,7 @@ def add_entries(feed_id=None, feed_link=None, language=None, category=None):
     if category.count(' '):
         return None
 
-    entries = rss_parser.parse(feed_id, feed_link, language, category)
+    entries = rss_parser.parse(feed_link, feed_id, feed_title, language, etag, modified)
     print 'Nothing found from RSS' if not entries else '    1/3 .. retrieved %i entries' % len(entries)
     # store in both database and memory
     if entries:

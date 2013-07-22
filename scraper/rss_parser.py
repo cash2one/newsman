@@ -91,7 +91,7 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None):
                     else:
                         updated = datetime.strptime(updated[:-9], format)
                     updated -= delta
-                    entry['updated'] = time.mktime(updated.timetuple())
+                    entry['updated_parsed'] = time.mktime(updated.timetuple())
                 else:
                     raise ValueError(
                         "attribute updated/published has no value")
@@ -271,12 +271,12 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, etag=Non
     feed_link = feed_link.strip()
     language = language.strip()
 
-    def validate_time(entry):
+    def _validate_time(entry):
         """
         see if the entry's updated time is earlier than needed
         """
         deadline = datetime.utcfromtimestamp(
-            entry['updated']) + timedelta(days=MEMORY_RESTORATION_DAYS)
+            entry['updated_parsed']) + timedelta(days=MEMORY_RESTORATION_DAYS)
         return True if deadline > datetime.now() else False
 
     # variables d and e follow feedparser tradition
@@ -309,7 +309,7 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, etag=Non
                 language = language if 'language' not in d else d.language
                 # an Exception might be raised from _read_entry
                 entries = [_read_entry(e, feed_id, feed_title, language) for e in d['entries']]
-                return filter(validate_time, entries)
+                return filter(_validate_time, entries)
             else:
                 raise Exception("ERROR: Feed %s has no items!" % feed_id)
         else:
