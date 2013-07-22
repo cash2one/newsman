@@ -14,6 +14,7 @@ from image_processor import thumbnail
 from data_processor import transcoder
 from data_processor import tts_provider
 
+from administration.config import LANGUAGES
 from administration.config import THUMBNAIL_LOCAL_DIR
 from administration.config import THUMBNAIL_SIZE
 from administration.config import THUMBNAIL_WEB_DIR
@@ -21,8 +22,26 @@ from administration.config import THUMBNAIL_WEB_DIR
 
 def dedup(entries=None, language=None):
     """
+    return entries not found in database
     """
-    pass
+    if not entries:
+        return None
+    if not language or language not in LANGUAGES:
+        raise Exception("ERROR: language not found or not supported!")
+
+    entries_new = []
+    col = Collection(db, language)
+    for entry in entries:
+        # find duplicate in the form of the same link or title
+        dup_link = col.find_one({'link': entry['link']})
+        dup_title = col.find_one({'title': entry['title']})
+        if not dup_link or not dup_title:
+            print 'Find a duplicate for %s' % entry['title']
+            continue
+        else:
+            entries_new.append(entry)
+    return entries_new if entries_new else None 
+
 
 # Todos
 # break update_database into several shorter mthods

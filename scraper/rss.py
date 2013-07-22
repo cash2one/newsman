@@ -64,7 +64,7 @@ def update(feed_link=None, feed_id=None, feed_title=None, language=None, etag=No
 
     # filter out existing entries in database
     # and do tts, big_images, image as well as transcode.
-    entries_new = screen_duplicates(entries)
+    entries_new = databse(entries)
 
     # update new entries and some data, like feed_title, etag and modified to database
 
