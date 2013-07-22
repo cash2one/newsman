@@ -304,12 +304,23 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, etag=Non
                 feed_title_latest = hparser.unescape(d.feed.title).strip()
                 if feed_title != feed_title_latest:
                     raise Exception('WARNING: %s title changed! Please update feed table/database' % feed_link)
+            
+            # update etag/modified
+            etag = None
+            modified = None
+            try:
+                etag = d.etag
+            except AttributeError as k:
+                try:
+                    modified = d.modified
+                except AttributeError as k:
+                    print k, '... this server has no etag or modified'
 
             if 'entries' in d:
                 language = language if 'language' not in d else d.language
                 # an Exception might be raised from _read_entry
                 entries = [_read_entry(e, feed_id, feed_title, language) for e in d['entries']]
-                return filter(_validate_time, entries)
+                return filter(_validate_time, entries), etag, modified
             else:
                 raise Exception("ERROR: Feed %s has no items!" % feed_id)
         else:
