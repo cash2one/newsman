@@ -23,7 +23,6 @@ from administration.config import THUMBNAIL_WEB_DIR
 # break update_database into several shorter mthods
 def update(entries=None, language=None):
     ''''''
-    print '>>> update_database'
     if not entries:
         return None
     # collection was created by the feed

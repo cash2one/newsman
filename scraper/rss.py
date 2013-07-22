@@ -16,6 +16,21 @@ sys.path.append('..')
 import rss_parser
 
 
+def screen_duplicated():
+    """
+    screen out items already in the database
+    """
+    for entry in entries:
+        duplicated = col.find_one({'link': entry['link']})
+        if duplicated:
+            print 'Find a duplicate for %s' % entry['title']
+            continue
+        item = col.find_one({'title': entry['title']})
+        if not item:
+            # transcode the link
+            try:
+
+
 def add_entries(feed_id=None, feed_link=None, language=None, category=None):
     """
     add_entries could be called
