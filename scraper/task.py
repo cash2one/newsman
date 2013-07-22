@@ -300,6 +300,7 @@ def execute_task(lines):
     if lines:
         f = open(RSS_UPDATE_LOG, 'a')
         for line in lines:
+            # this should be modified to read from the database
             language, category, feed_id, feed_link = extract_task(line)
             print language, category, feed_id
             updated_tasks = .add_entries(

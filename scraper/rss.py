@@ -20,6 +20,11 @@ def screen_duplicated():
     """
     screen out items already in the database
     """
+    if not entries:
+        return None
+    # collection was created by the feed
+    added_entries = []
+    col = Collection(db, language)
     for entry in entries:
         duplicated = col.find_one({'link': entry['link']})
         if duplicated:
@@ -34,8 +39,8 @@ def screen_duplicated():
 def add_entries(feed_id=None, feed_link=None, language=None, category=None):
     """
     add_entries could be called
-    1. by automation/task procedures
-    2. after an rss is called
+    1. from task procedure
+    2. after an rss is added
     3. manually for testing purpose
     """
     if not feed_id or not feed_link or not language or not category:
