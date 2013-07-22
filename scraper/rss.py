@@ -14,6 +14,7 @@ sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
 from administration.config import Collection
+import database
 from administration.config import db
 import random
 import rss_parser
@@ -64,7 +65,7 @@ def update(feed_link=None, feed_id=None, feed_title=None, language=None, etag=No
 
     # filter out existing entries in database
     # and do tts, big_images, image as well as transcode.
-    entries_new = databse(entries)
+    entries_new = databse
 
     # update new entries and some data, like feed_title, etag and modified to database
 
