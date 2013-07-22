@@ -118,11 +118,14 @@ def update(feed_link=None, feed_id=None, feed_title=None, language=None, etag=No
 
     # filter out existing entries in database
     # there are some possible exceptions -- yet let it be
-    entries_new = database.dedup(entries, language)
+    entries = database.dedup(entries, language)
     # and do tts, big_images, image as well as transcode.
-    _value_added_process(entries_new, language)
+    entries = _value_added_process(entries, language)
 
-    # update new entries and some data, like feed_title, etag and modified to database
+    # update new entries to database
+    entries = database.update(entries, language)
+    # and some data, like feed_title, etag and modified to database
+    database.update_feed()
 
     # store in both database and memory
     if entries_new:
