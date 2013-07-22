@@ -14,6 +14,7 @@ sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
 import rss_parser
+from administration.config import LANGUAGES
 
 
 def screen_duplicated():
@@ -36,25 +37,31 @@ def screen_duplicated():
             try:
 
 
-def add_entries(feed_id=None, feed_link=None, language=None, category=None):
+def add_entries(feed_link=None, feed_id=None, feed_title=None, language=None, etag=None, modified=None):
     """
     add_entries could be called
     1. from task procedure
     2. after an rss is added
     3. manually for testing purpose
     """
-    if not feed_id or not feed_link or not language or not category:
-        return None
+    if not feed_link or not language:
+        raise Exception(
+            "ERROR: Method signature not well formed for %s!" % feed_link)
+    if language not in LANGUAGES:
+        raise Exception("ERROR: Language not supported for %s!" % feed_link)
+    # parameters striped
     feed_link = feed_link.strip()
     language = language.strip()
-    category = category.strip()
-    if language not in LANGUAGES:
-        return None
-    if category.count(' '):
-        return None
 
-    entries = rss_parser.parse(feed_link, feed_id, feed_title, language, etag, modified)
-    print 'Nothing found from RSS' if not entries else '    1/3 .. retrieved %i entries' % len(entries)
+    try:
+        entries, feed_title_new, etag_new, modified_new = rss_parser.parse(
+            feed_link, feed_id, feed_title, language, etag, modified)
+    except Exception as k:
+        # deal with exceptions
+        if k.startswith('WARNING'):
+            print k
+        elif k.startswith('ERROR'):
+            raise k
     # store in both database and memory
     if entries:
         added_entries = database.update(entries, language)
