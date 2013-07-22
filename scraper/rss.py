@@ -37,9 +37,9 @@ def screen_duplicated():
             try:
 
 
-def add_entries(feed_link=None, feed_id=None, feed_title=None, language=None, etag=None, modified=None):
+def update(feed_link=None, feed_id=None, feed_title=None, language=None, etag=None, modified=None):
     """
-    add_entries could be called
+    update could be called
     1. from task procedure
     2. after an rss is added
     3. manually for testing purpose
@@ -53,6 +53,7 @@ def add_entries(feed_link=None, feed_id=None, feed_title=None, language=None, et
     feed_link = feed_link.strip()
     language = language.strip()
 
+    # parse rss reading from remote rss servers 
     try:
         entries, feed_title_new, etag_new, modified_new = rss_parser.parse(
             feed_link, feed_id, feed_title, language, etag, modified)
@@ -60,8 +61,10 @@ def add_entries(feed_link=None, feed_id=None, feed_title=None, language=None, et
         # deal with exceptions
         if k.startswith('WARNING'):
             print k
-        elif k.startswith('ERROR'):
+        else:
+            print k
             raise k
+
     # store in both database and memory
     if entries:
         added_entries = database.update(entries, language)
