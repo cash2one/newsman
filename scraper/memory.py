@@ -15,7 +15,6 @@ from administration.config import REDIS_ENTRY_EXPIRATION
 
 def update(added_items=None, language=None, category=None, feed_id=None):
     ''''''
-    
     # Todos
     # add more comments
     if not added_items:
