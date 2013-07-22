@@ -19,6 +19,11 @@ from administration.config import THUMBNAIL_SIZE
 from administration.config import THUMBNAIL_WEB_DIR
 
 
+def dedup(entries=None, language=None):
+    """
+    """
+    pass
+
 # Todos
 # break update_database into several shorter mthods
 def update(entries=None, language=None):
