@@ -17,7 +17,7 @@ import rss_parser
 from administration.config import LANGUAGES
 
 
-def screen_duplicated():
+def screen_duplicates():
     """
     screen out items already in the database
     """
@@ -64,6 +64,12 @@ def update(feed_link=None, feed_id=None, feed_title=None, language=None, etag=No
         else:
             print k
             raise k
+
+    # filter out existing entries in database
+    # and do tts, big_images, image as well as transcode.
+    screen_duplicates
+
+    # update new entries and some data, like feed_title, etag and modified to database
 
     # store in both database and memory
     if entries:
