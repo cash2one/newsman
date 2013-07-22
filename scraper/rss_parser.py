@@ -32,6 +32,7 @@ from administration.config import MEMORY_RESTORATION_DAYS
 # - add more boundary checks
 # - [register unsupported date format](http://pythonhosted.org/feedparser/date-parsing.html#advanced-date)
 # - add tags
+# - add thumbnail limit(downward)
 def _read_entry(e=None, feed_id=None, feed_title=None, language=None):
     """
     read a specific entry item from a feed 
@@ -65,16 +66,19 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None):
     # article published time
     # first try parsed time info
     try:
-        entry['updated'] = calendar.timegm(e.updated_parsed)
+        entry['updated_parsed'] = calendar.timegm(e.updated_parsed)
+        entry['updated'] = e.updated
     except AttributeError as k:
         print k, "... will try attribute 'published_parsed'"
         try:
-            entry['updated'] = calendar.timegm(e.published_parsed)
+            entry['updated_parsed'] = calendar.timegm(e.published_parsed)
+            entry['updated'] = e.published
         except AttributeError as k:
-            print k, "... will try attibutes 'update' and 'published'"
+            print k, "... will try attibutes 'updated' and 'published'"
             entry['error'] = '%s\n%s' % (
-                entry['error'], 'no parsed update or published')
+                entry['error'], "no 'updated_parsed' or 'published_parsed'")
             # then try unparsed time info
+            # this is rarely possible.
             try:
                 updated = e.updated if 'updated' in e else e.published
                 if updated:
@@ -290,7 +294,7 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, etag=Non
         elif status == 200 or status == 302:
             # no need to worry.
             if status == 302:
-                print 'WARNING: %s url has been temp moved to a new place' % feed_link)
+                print 'WARNING: %s url has been temp moved to a new place' % feed_link
 
             if not feed_title:
                 # if title were not found in feed, an AttributeError would be raised.
