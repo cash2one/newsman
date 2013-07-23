@@ -37,13 +37,17 @@ def _value_added_process(entries=None, language=None):
         raise Exception("ERROR: language not found or not supported!")
 
     for entry in entries:
-        random_code = random.random()
-        transcoded_path = transcoder.transcode(entry['language'], entry['title'], entry['link'], '%s_%s_%s_%f' % (entry['language'], entry[feed_id], entry['updated'], random_code))
-        if not transcoded_path:
-            raise Exception('cannot transcode %s' % entry['link'])
+        # get a random int from 100 million possibilities
+        try:
+            rand = random.randint(0, 100000000)
+            relative_path = '%s_%s_%s_%i' % (entry['language'], entry['feed_id'], entry['updated'], rand)
+            # high chances transcoder cannot work properly
+            transcoded_web_path = transcoder.transcode(entry['language'], entry['title'], entry['link'], relative_path) 
+        except Exception as k:
+            print 'WARNING: Cannot transcode %s' % entry['link']
         else:
             entry[
-                'transcoded'] = 'None' if not transcoded_path else transcoded_path
+                'transcoded'] = 'None' if not transcoded_web_path else transcoded_web_path
             entry[
                 'big_images'] = 'None' if not big_images else big_images
             if entry['image'] == 'None' and entry['big_images'] != 'None':
