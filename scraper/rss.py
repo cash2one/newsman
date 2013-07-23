@@ -16,6 +16,7 @@ sys.path.append('..')
 import database
 import random
 import rss_parser
+from iamge_processor import image_scraper
 from image_processor import thumbnail
 from data_processor import transcoder
 from data_processor import tts_provider
@@ -46,15 +47,16 @@ def _value_added_process(entries=None, language=None):
             entry['transcoded'] = transcoder.transcode(entry['language'], entry['title'], entry['link'], relative_path) 
 
             # find big images
-            entry['big_images'].extend(entry['transcoded'])
-            entry['big_images'] = list(set(entry['big_images']))
+            big_images = image_scraper.find_images(entry['transocded'])
+            if big_images:
+                entry['big_images'] = entry['big_images'] if entry.has_key('big_images') else []
+                entry['big_images'].extend(entry['transcoded'])
+                entry['big_images'] = list(set(entry['big_images']))
 
             entries_new.append(entry)
         except Exception as k:
             if k.startswith('ERROR'):
                 print k
-            entry[
-                'big_images'] = 'None' if not big_images else big_images
             if entry['image'] == 'None' and entry['big_images'] != 'None':
                 entry['image'] = []
                 bimage_max = 0, 0
