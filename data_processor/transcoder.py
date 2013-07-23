@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-##
+#
 #
 #@created Jan 2, 2013
 #@updated Feb 5, 2013
@@ -37,10 +37,12 @@ import urllib2
 if not os.path.exists(TRANSCODED_LOCAL_DIR):
     os.mkdir(TRANSCODED_LOCAL_DIR)
 
-transcoding_button_language = {'en':TRANSCODING_BTN_EN, 'ja':TRANSCODING_BTN_JA, 
-                               'th':TRANSCODING_BTN_TH, 'pt':TRANSCODING_BTN_PT, 
-                               'ind':TRANSCODING_BTN_IND, 'en-rIN':TRANSCODING_BTN_EN
-                               }
+transcoding_button_language = {
+    'en': TRANSCODING_BTN_EN, 'ja': TRANSCODING_BTN_JA,
+    'th': TRANSCODING_BTN_TH, 'pt': TRANSCODING_BTN_PT,
+    'ind': TRANSCODING_BTN_IND, 'en-rIN': TRANSCODING_BTN_EN
+}
+
 
 def uck_sanitize(content):
     ''''''
@@ -53,7 +55,7 @@ def uck_sanitize(content):
         img = a.find('img')
         if img:
             a.replaceWith(img)
-        else: # it might be a simple href
+        else:  # it might be a simple href
             a.replaceWith(a.text)
     # remove img prefix
     for img in soup.findAll('img'):
@@ -72,7 +74,7 @@ def uck_sanitize(content):
             if not style.find('p'):
                 style.extract()
         else:
-            style.replaceWith(img)  
+            style.replaceWith(img)
     # remove navigble strings and <div>
     for component in soup.contents:
         if isinstance(component, NavigableString):
@@ -84,6 +86,7 @@ def uck_sanitize(content):
                     component.extract()
     return ''.join([str(item) for item in soup.contents])
 
+
 def uck_reformat(language, title, data):
     ''''''
     successful = int(data['STRUCT_PAGE_TYPE'])
@@ -94,10 +97,12 @@ def uck_reformat(language, title, data):
     if new_content:
         f = open(NEWS_TEMPLATE, 'r')
         template = str(f.read())
-        news = template % (title, title, new_content, transcoding_button_language[language])
+        news = template % (
+            title, title, new_content, transcoding_button_language[language])
         return news
     else:
         return None
+
 
 def process_url(link):
     if link and link.count('http') > 1:
@@ -109,6 +114,7 @@ def process_url(link):
     else:
         return link
 
+
 def transcode_by_uck(language, title, link):
     ''''''
     link = process_url(link)
@@ -117,6 +123,7 @@ def transcode_by_uck(language, title, link):
     recv = urllib2.unquote(f.read())
     return uck_reformat(language, title, eval(recv))
 
+
 def remove_transcoded(absolute_path):
     ''''''
     import os
@@ -124,7 +131,8 @@ def remove_transcoded(absolute_path):
         os.remove(absolute_path)
         return 0
     else:
-        return 1    
+        return 1
+
 
 def generate_path(content, relative_path):
     ''''''
@@ -156,6 +164,7 @@ def find_big_images(content):
             pass
     return images
 
+
 def transcode_by_readability(link):
     ''''''
     if not link:
@@ -163,6 +172,9 @@ def transcode_by_readability(link):
     f = urllib2.urlopen(link)
     return Document(f.read()).summary()
 
+
+# Todos
+# should separate big_images from transcoding
 def transcode(language, title, link, relative_path):
     ''''''
     if not link or not relative_path:

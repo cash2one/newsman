@@ -36,7 +36,7 @@ def _value_added_process(entries=None, language=None):
     if not language or language not in LANGUAGES:
         raise Exception("ERROR: language not found or not supported!")
 
-    try:
+    for entry in entries:
         random_code = random.random()
         # create a proper name for url encoding
         transcoded_path, big_images = transcoder.transcode(entry['language'], entry['title'], entry['link'], '%s_%s_%s_%f' % (entry['language'], entry[feed], entry['updated'], random_code))
