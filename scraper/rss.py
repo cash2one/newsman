@@ -22,9 +22,7 @@ from data_processor import transcoder
 from data_processor import tts_provider
 
 from administration.config import LANGUAGES
-from administration.config import THUMBNAIL_LOCAL_DIR
 from administration.config import THUMBNAIL_SIZE
-from administration.config import THUMBNAIL_WEB_DIR
 
 
 def _value_added_process(entries=None, language=None):
@@ -42,9 +40,9 @@ def _value_added_process(entries=None, language=None):
         # get a random int from 100 million possibilities
         try:
             rand = random.randint(0, 100000000)
-            relative_path = '%s_%s_%s_%i' % (entry['language'], entry['feed_id'], entry['updated'], rand)
+            transcoded_relative_path = '%s_%s_%s_%i' % (entry['language'], entry['feed_id'], entry['updated'], rand)
             # high chances transcoder cannot work properly
-            entry['transcoded'] = transcoder.transcode(entry['language'], entry['title'], entry['link'], relative_path) 
+            entry['transcoded'] = transcoder.transcode(entry['language'], entry['title'], entry['link'], transcoded_relative_path) 
 
             # find big images
             big_images = image_helper.find_images(entry['transocded'])
@@ -53,24 +51,19 @@ def _value_added_process(entries=None, language=None):
                 entry['big_images'].extend(entry['transcoded'])
                 entry['big_images'] = list(set(entry['big_images']))
 
+            # only for English, at present
+            if entry['language'] == 'en':
+                try:
+                    tts_relative_path = '%s_%s_%s_%i' % (entry['language'], entry['feed_id'], entry['updated'], rand)
+                    tts_provider.google(entry['language'], entry['title'], tts_relative_path)
+                    entry['mp3'] = tts_web_path
+                except Exception as e:
+                    entry['mp3'] = "None"
+
             entries_new.append(entry)
         except Exception as k:
             if k.startswith('ERROR'):
                 print k
-            # Google TTS
-            # only for English, at present
-            if entry['language'] == 'en':
-                try:
-                    random_code = random.randint(0, 1000000000)
-                    tts_web_path = '%s%s_%s_%i.mp3' % (
-                        THUMBNAIL_WEB_DIR, entry['language'], entry['updated'], random_code)
-                    tts_local_path = '%s%s_%s_%i.mp3' % (
-                        THUMBNAIL_LOCAL_DIR, entry['language'], entry['updated'], random_code)
-                    tts_provider.google(
-                        entry['language'], entry['title'], tts_local_path)
-                    entry['mp3'] = tts_web_path
-                except Exception as e:
-                    entry['mp3'] = "None"
     except Exception as e:
         print str(e)
     added_entries.append((entry, REDIS_ENTRY_EXPIRATION))
