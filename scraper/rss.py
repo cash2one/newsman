@@ -30,8 +30,6 @@ from administration.config import MEMORY_EXPIRATION_DAYS
 from administration.config import THUMBNAIL_SIZE
 
 
-            
-
 def _value_added_process(entries=None, language=None):
     """
     add more value to an entry
@@ -57,10 +55,12 @@ def _value_added_process(entries=None, language=None):
                 entry['big_images'] = entry['big_images'] if entry.has_key('big_images') else []
                 entry['big_images'].extend(entry['transcoded'])
                 entry['big_images'] = list(set(entry['big_images']))
+            entry['big_images'] = None if not entry.has_key('big_images') else entry['big_images']
 
             # find biggest image
             if entry.has_key('big_images'):
                 entry['image'] = image_helper.find_biggest_image(entry['big_images'])
+            entry['image'] = None if not entry.has_key('image') else entry['image']
 
             # tts only for English, at present
             if entry['language'] == 'en':
@@ -69,7 +69,8 @@ def _value_added_process(entries=None, language=None):
                     entry['mp3'], entry['mp3_local'] = tts_provider.google(entry['language'], entry['title'], tts_relative_path)
                 except Exception as k:
                     print k, '... cannot generate TTS for %s' % entry['link']
-                    entry['mp3'] = "None"
+                    entry['mp3'] = None
+                    entry['mp3_local'] = None
 
             # add expiration data
             def _expired(updated_parsed, days_to_deadline):
@@ -106,17 +107,8 @@ def update(feed_link=None, feed_id=None, feed_title=None, language=None, etag=No
     language = language.strip()
 
     # parse rss reading from remote rss servers 
-    try:
-        entries, feed_title_new, etag_new, modified_new = rss_parser.parse(
-            feed_link, feed_id, feed_title, language, etag, modified)
-    except Exception as k:
-        # deal with exceptions
-        print k.__class__
-        if k.startswith('WARNING'):
-            print k
-        else:
-            print k
-            raise k
+    entries, feed_title_new, etag_new, modified_new = rss_parser.parse(
+        feed_link, feed_id, feed_title, language, etag, modified)
 
     # filter out existing entries in database
     # there are some possible exceptions -- yet let it be

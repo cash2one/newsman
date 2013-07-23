@@ -268,7 +268,7 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, etag=Non
         if status == 301:
             raise Exception('ERROR: %s has been permantently moved to a %s!' % (feed_link, d.href))
         elif status == 304:
-            raise Exception('WARNING: %s server has not updated its feeds' % feed_link)
+            print 'WARNING: %s server has not updated its feeds' % feed_link
         elif status == 410:
             raise Exception('ERROR: %s is gone! Admin should check the feed availability!' % feed_link)
         elif status == 200 or status == 302:
@@ -283,7 +283,7 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, etag=Non
                 feed_title = feed_title.strip()
                 feed_title_latest = hparser.unescape(d.feed.title).strip()
                 if feed_title != feed_title_latest:
-                    raise Exception('WARNING: %s title changed! Please update feed table/database' % feed_link)
+                    print 'WARNING: %s title changed! Please update feed table/database' % feed_link
             
             # update etag/modified
             etag = None
