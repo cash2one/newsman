@@ -21,7 +21,9 @@ from image_processor import thumbnail
 from data_processor import transcoder
 from data_processor import tts_provider
 
+from administration.config import DATABASE_ENTRY_EXPIRATION
 from administration.config import LANGUAGES
+from administration.config import MEMORY_ENTRY_EXPIRATION
 from administration.config import THUMBNAIL_SIZE
 
 
@@ -64,14 +66,14 @@ def _value_added_process(entries=None, language=None):
                     print k, '... cannot generate TTS for %s' % entry['link']
                     entry['mp3'] = "None"
 
+            # expiration information
+            entry['memory_expired'] = MEMORY_ENTRY_EXPIRATION
+            entry['database_expired'] = DATABASE_ENTRY_EXPIRATION
+
             entries_new.append(entry)
         except Exception as k:
             if k.startswith('ERROR'):
                 print k
-    except Exception as e:
-        print str(e)
-    added_entries.append((entry, REDIS_ENTRY_EXPIRATION))
-    added_entries.append((entry, MONGODB_ENTRY_EXPIRATION))
     return entries_new
 
 
