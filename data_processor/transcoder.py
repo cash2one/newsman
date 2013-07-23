@@ -146,25 +146,6 @@ def generate_path(content, relative_path):
     return web_path
 
 
-def find_big_images(content):
-    ''''''
-    if not content:
-        return None
-    soup = BeautifulSoup(content.decode('utf-8'))
-    images = []
-    for img in soup.findAll('img'):
-        # filter out thumbnails
-        try:
-            image = img['src']
-            if image.endswith('.jpg') or image.endswith('.JPG') or image.endswith('.jpeg') or image.endswith('.JPEG') or image.endswith('.png') or image.endswith('.PNG'):
-                current_size = thumnail.get_image_size(image)
-                if current_size > THUMBNAIL_SIZE:
-                    images.append(image)
-        except Exception as e:
-            pass
-    return images
-
-
 def transcode_by_readability(link):
     ''''''
     if not link:
@@ -202,8 +183,7 @@ def transcode(language, title, link, relative_path):
     if not transcoded:
         raise Exception('ERROR: Transcoder %s failed!' % 'UCK')
     # sanitizing work put here
-    images = find_big_images(transcoded)
     web_path = generate_path(transcoded, relative_path)
     if not web_path:
         raise Exception('ERROR: Cannot generate web path for %s properly!' % relative_path)
-    return web_path, images
+    return web_path
