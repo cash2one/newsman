@@ -13,3 +13,5 @@ from scraper import rss
 #entries = rss_parser.parse(feed_link='http://rss.cnn.com/rss/edition_sport.rss', language='en')
 entries = rss.update(feed_link='http://news.yahoo.com/rss/sports', feed_id='007', language='en')
 
+print len(entries)
+print entries[0]

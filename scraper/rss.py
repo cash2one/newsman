@@ -16,7 +16,7 @@ sys.path.append('..')
 import database
 import random
 import rss_parser
-from iamge_processor import image_helper
+from image_processor import image_helper
 from image_processor import thumbnail
 from data_processor import transcoder
 from data_processor import tts_provider
@@ -115,10 +115,10 @@ def update(feed_link=None, feed_id=None, feed_title=None, language=None, etag=No
     # each entry is added with _id
     entries = database.update(entries, language)
     # and some data, like feed_title, etag and modified to database
-    database.update_feed()
+    #database.update_feed()
 
     # store in memory
-    if entries:
-        updated_entries = memory.update(entries, language, feed_id)
-        return updated_entries
-    return None
+    #if entries:
+    #    updated_entries = memory.update(entries, language, feed_id)
+    #    return updated_entries
+    return entries

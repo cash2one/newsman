@@ -70,12 +70,10 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None):
         entry['updated_parsed'] = calendar.timegm(e.updated_parsed)
         entry['updated'] = e.updated
     except AttributeError as k:
-        print k, "... will try attribute 'published_parsed'"
         try:
             entry['updated_parsed'] = calendar.timegm(e.published_parsed)
             entry['updated'] = e.published
         except AttributeError as k:
-            print k, "... will try attibutes 'updated' and 'published'"
             entry['error'] = '%s\n%s' % (
                 entry['error'], "no 'updated_parsed' or 'published_parsed'")
             # then try unparsed time info
@@ -112,7 +110,7 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None):
     try:
         entry['summary'] = hparser.unescape(e.summary)
     except AttributeError as k:
-        print k, '... probably this has no summary'
+        pass
 
     def store_thumbnail(stored_at, image):
         """
@@ -139,11 +137,9 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None):
     try:
         entry['thumbnails'] = e.media_content
     except AttributeError as k:
-        print k, '... will try media_thumbnail'
         try:
             entry['thumbnails'] = e.media_thumbnail
         except AttributeError as k:
-            print k, '... will try thumbnail'
             try:
                 for attribute in e:
                     if 'thumbnail' in attribute:
@@ -160,9 +156,8 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None):
                     raise AttributeError(
                         "cannot find 'thumbnail'-like attribute")
             except AttributeError as k:
-                print k, '... will try summary, if available'
                 entry['thumbnails'] = []
-                if 'summary' in entry:
+                if entry.has_key('summary'):
                     soup = BeautifulStoneSoup(entry['summary'])
                     if soup.img:
                         if soup.img.get('src'):
@@ -173,7 +168,6 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None):
                                 for image in images:
                                     store_thumbnail(entry['thumbnails'], image)
                 if 'thumbnails' not in entry:
-                    print 'cannot find thumbnails in summary ... will try links!'
                     try:
                         links = e.links
                         for link in links:
@@ -185,14 +179,15 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None):
                             raise AttributeError("no image found in 'links'")
                     except AttributeError as k:
                         print k, '... Oooops! cannot find thumbnails!'
-    entry['thumbnails'] = None if not entry[
-        'thumbnails'] else entry['thumbnails']
+    entry['thumbnails'] = None if not entry.has_key('thumbnails') else entry['thumbnails']
 
     # article's big images
-    entry['big_images'] = []
-    if 'summary' in entry:
+    if entry.has_key('summary'):
         soup = BeautifulStoneSoup(entry['summary'])
-        entry['big_images'].extend(image_helper.find_images(entry['summary']))
+        images = image_helper.find_images(entry['entry'])
+        if images:
+            entry['big_images'] = entry['big_images'] if entry.has_key('big_images') else []
+            entry['big_images'].extend(images)
     try:
         links = e.links
         for link in links:
@@ -201,16 +196,15 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None):
                     width, height = thumbnail.get_image_size(link.href)
                     big_image = {
                         'url': link.href, 'width': width, 'height': height}
+                    entry['big_images'] = entry['big_images'] if entry.has_key('big_images') else []
                     if big_image not in entry['big_images']:
                         entry['big_images'].append(big_image)
         if 'big_images' not in entry:
             raise AttributeError("no image found in 'links'")
     except AttributeError as k:
-        if 'big_images' not in entry:
+        if not entry.has_key('big_images'):
             print k, '... probably this has no big images!'
-    entry['big_images'] = list(set(entry['big_images']))
-    entry['big_images'] = None if not entry[
-        'big_images'] else entry['big_images']
+    entry['big_images'] = None if not entry.has_key('big_images') else list(set(entry['big_images']))
 
     # article's author
     # e.g. Yuan Jin
@@ -218,14 +212,14 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None):
         # i guess this could be a string or a list
         entry['author'] = e.author
     except AttributeError as k:
-        print k, '... probably this has no author'
+        pass
 
     # article's source
     # e.g. {'href': u'http://www.reuters.com/', 'title': u'Reuters'}
     try:
         entry['source'] = e.source
     except AttributeError as k:
-        print k, '... probably this has no source'
+        pass
 
     # article's tags
     # e.g. [{'term': u'Campus Party Recife 2013', 'scheme': None, 'label': None}]
@@ -234,7 +228,7 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None):
     try:
         entry['tags'] = e.tag
     except AttributeError as k:
-        print k, '... probably this has no tags'
+        pass
 
     return entry
 
