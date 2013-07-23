@@ -13,19 +13,24 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
+import calendar
 import database
+from datetime import datetime, timedelta
 import random
 import rss_parser
 from image_processor import image_helper
 from image_processor import thumbnail
+import time
 from data_processor import transcoder
 from data_processor import tts_provider
 
 from administration.config import DATABASE_REMOVAL_DAYS
 from administration.config import LANGUAGES
-from administration.config import MEMORY_ENTRY_EXPIRATION
+from administration.config import MEMORY_EXPIRATION_DAYS
 from administration.config import THUMBNAIL_SIZE
 
+
+            
 
 def _value_added_process(entries=None, language=None):
     """
@@ -66,9 +71,17 @@ def _value_added_process(entries=None, language=None):
                     print k, '... cannot generate TTS for %s' % entry['link']
                     entry['mp3'] = "None"
 
-            # expiration information
-            entry['memory_expired'] = MEMORY_ENTRY_EXPIRATION
-            entry['database_expired'] = DATABASE_REMOVAL_DAYS
+            # add expiration data
+            def _expired(updated_parsed, days_to_deadline):
+                """
+                compute expiration information
+                return time string and unix time
+                """
+                deadline = datetime.utcfromtimestamp(updated_parsed) + timedelta(days=days_to_deadline)
+                return time.asctime(time.gmtime(calendar.timegm(deadline.timetuple()))) 
+
+            entry['memory_expired'] = _expired(entry['updated_parsed'], MEMORY_EXPIRATION_DAYS)
+            entry['database_expired'] = _expired(entry['updated_parsed'], DATABASE_REMOVAL_DAYS)
 
             entries_new.append(entry)
         except Exception as k:

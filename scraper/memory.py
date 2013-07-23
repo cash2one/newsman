@@ -10,7 +10,7 @@ sys.path.append('..')
 from datetime import datetime
 from administration.config import rclient
 from administration.config import MEMORY_RESTORATION_DAYS
-from administration.config import REDIS_ENTRY_EXPIRATION
+from administration.config import MEMORY_EXPIRATION_DAYS
 
 
 def update(added_items=None, language=None, category=None, feed_id=None):
