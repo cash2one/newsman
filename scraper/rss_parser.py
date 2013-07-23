@@ -20,7 +20,7 @@ from datetime import datetime, timedelta
 import feedparser
 from administration.config import hparser
 import random
-from image_processor import image_scraper
+from image_processor import image_helper
 from image_processor import thumbnail
 import time
 import urllib2
@@ -192,7 +192,7 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None):
     entry['big_images'] = []
     if 'summary' in entry:
         soup = BeautifulStoneSoup(entry['summary'])
-        entry['big_images'].extend(image_scraper.find_images(entry['summary']))
+        entry['big_images'].extend(image_helper.find_images(entry['summary']))
     try:
         links = e.links
         for link in links:
