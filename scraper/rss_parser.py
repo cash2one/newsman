@@ -208,6 +208,7 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None):
     except AttributeError as k:
         if 'big_images' not in entry:
             print k, '... probably this has no big images!'
+    entry['big_images'] = list(set(entry['big_images']))
     entry['big_images'] = None if not entry[
         'big_images'] else entry['big_images']
 
