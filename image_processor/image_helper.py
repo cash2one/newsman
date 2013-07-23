@@ -19,7 +19,7 @@ from administration.config import TRANSCODED_LOCAL_DIR
 
 def find_images(content):
     """
-    docs needed!
+    find out all images and its size info
     """
     if not content:
         return None
@@ -56,7 +56,7 @@ def find_images(content):
 
 def find_biggest_image(images):
     """
-    find the biggest in resolution from a pile of images
+    find the biggest in size from a pile of images
     """
     if entry['image'] == 'None' and entry['big_images'] != 'None':
         entry['image'] = []
