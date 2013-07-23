@@ -11,23 +11,28 @@
 import sys 
 reload(sys) 
 sys.setdefaultencoding('UTF-8')
+sys.path.append('..')
 
+from BeautifulSoup import BeautifulSoup
+from administration.config import THUMBNAIL_SIZE
 
-def find_big_images(content):
-    ''''''
+def find_images(content):
+    """
+    docs needed!
+    """
     if not content:
         return None
+
     soup = BeautifulSoup(content.decode('utf-8'))
     images = []
-    for img in soup.findAll('img'):
+    for img_tag in soup.findAll('img'):
         # filter out thumbnails
         try:
-            image = img['src']
-            if image.endswith('.jpg') or image.endswith('.JPG') or image.endswith('.jpeg') or image.endswith('.JPEG') or image.endswith('.png') or image.endswith('.PNG'):
-                current_size = thumnail.get_image_size(image)
-                if current_size > THUMBNAIL_SIZE:
-                    images.append(image)
-        except Exception as e:
+            image = img_tag['src']
+            # when opening an image, Image will tell if it is a valid image.
+            current_size = thumnail.get_image_size(image)
+            if current_size > THUMBNAIL_SIZE:
+                images.append(image)
+        except IOError as e:
             pass
     return images
-
