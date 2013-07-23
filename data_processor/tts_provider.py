@@ -47,7 +47,7 @@ class GoogleTranslateAPI(threading.Thread):
 # Todos
 # rename the file and variables
 # remove accepting command line calls
-def google(language='en', query='Service provided by Baidu', output_path='do_not_exist.mp3'):
+def google(language='en', query='Service provided by Baidu', relative_path='do_not_exist.mp3'):
     """
     1. download mp3 from google tts api
     2. convert it to wav
@@ -58,9 +58,14 @@ def google(language='en', query='Service provided by Baidu', output_path='do_not
     """
     # generate out.mp3
     tmp_file = _download(language, query, '%s-tmp.mp3' % output_path[:-4])
-    subprocess.Popen(
-        'lame -S --decode {0} - | sox -q -t wav - -t wav - speed 1.06 | lame -S - {1}; rm {0}'.format(tmp_file, output_path), stderr=subprocess.PIPE, shell=True)
+    # form paths
+    tts_local_path = '%s%s' % (THUMBNAIL_LOCAL_DIR, relative_path) 
+    tts_web_path = '%s%s' % (THUMBNAIL_WEB_DIR, relative_path) 
+
+    command = 'lame -S --decode {0} - | sox -q -t wav - -t wav - speed 1.06 | lame -S - {1}; rm {0}'.format(tmp_file, tts_local_path) 
+    subprocess.Popen(command, stderr=subprocess.PIPE, shell=True)
     print '----------- MISSION ACCOMPLISHED ----------'
+    return tts_web_path
 
 
 # Todos
