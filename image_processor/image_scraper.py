@@ -24,15 +24,24 @@ def find_images(content):
         return None
 
     soup = BeautifulSoup(content.decode('utf-8'))
-    images = []
-    for img_tag in soup.findAll('img'):
-        # filter out thumbnails
-        try:
-            image = img_tag['src']
-            # when opening an image, Image will tell if it is a valid image.
-            current_size = thumnail.get_image_size(image)
-            if current_size > THUMBNAIL_SIZE:
-                images.append(image)
-        except IOError as e:
-            pass
-    return images
+    images_new = []
+    if soup.img:
+        if soup.img.get('src'):
+            image_paths = soup.img['src']
+            if isinstance(image_paths, str):
+                try:
+                    if not thumbnail.is_thumbnail(image_paths):
+                        width, height = thumbnail.get_image_size(image_paths)
+                        images_new.append({'url': image_paths, 'width': width, 'height': height})
+                except IOError as k:
+                    print k
+            elif isinstance(image_paths, list):
+                for image_path in image_paths:
+                    try:
+                        if not thumbnail.is_thumbnail(image_path):
+                            width, height = thumbnail.get_image_size(image_path)
+                            image = {'url': image_path, 'width': width, 'height': height}
+                            images_new.append(image)
+                    except IOError as k:
+                        print k
+    return images_new
