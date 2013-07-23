@@ -4,6 +4,7 @@
 import sys
 reload(sys)
 sys.setdefaultencoding('UTF-8')
+sys.path.append('..')
 
 import nltk
 import os
@@ -14,6 +15,9 @@ import subprocess
 import time
 import threading
 import urllib2
+
+from administration.config import THUMBNAIL_LOCAL_DIR
+from administration.config import THUMBNAIL_WEB_DIR
 
 
 class GoogleTranslateAPI(threading.Thread):
