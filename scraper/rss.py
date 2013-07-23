@@ -36,19 +36,19 @@ def _value_added_process(entries=None, language=None):
     if not language or language not in LANGUAGES:
         raise Exception("ERROR: language not found or not supported!")
 
+    entries_new = []
     for entry in entries:
         # get a random int from 100 million possibilities
         try:
             rand = random.randint(0, 100000000)
             relative_path = '%s_%s_%s_%i' % (entry['language'], entry['feed_id'], entry['updated'], rand)
             # high chances transcoder cannot work properly
-            transcoded_web_path = transcoder.transcode(entry['language'], entry['title'], entry['link'], relative_path) 
+            entry['transcoded'] = transcoder.transcode(entry['language'], entry['title'], entry['link'], relative_path) 
+
+            entries_new.append(entry)
         except Exception as k:
             if k.startswith('ERROR'):
                 print k
-        else:
-            entry[
-                'transcoded'] = 'None' if not transcoded_web_path else transcoded_web_path
             entry[
                 'big_images'] = 'None' if not big_images else big_images
             if entry['image'] == 'None' and entry['big_images'] != 'None':
@@ -88,6 +88,7 @@ def _value_added_process(entries=None, language=None):
         print str(e)
     added_entries.append((entry, REDIS_ENTRY_EXPIRATION))
     added_entries.append((entry, MONGODB_ENTRY_EXPIRATION))
+    return entries_new
 
 
 def update(feed_link=None, feed_id=None, feed_title=None, language=None, etag=None, modified=None):
