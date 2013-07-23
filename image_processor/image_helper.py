@@ -54,27 +54,24 @@ def find_images(content):
     return images_new
 
 
-def find_biggest_image(conte):
+def find_biggest_image(images):
     """
-    docs needed!
+    find the biggest in resolution from a pile of images
     """
-    
-            if entry['image'] == 'None' and entry['big_images'] != 'None':
-                entry['image'] = []
-                bimage_max = 0, 0
-                for bimage in entry['big_images']:
-                    bimage_current = thumbnail.get_image_size(bimage)
-                    if bimage_current > bimage_max:
-                        thumbnail_relative_path = '%s.jpeg' % bimage
-                        if len(thumbnail_relative_path) > 200:
-                            thumbnail_relative_path = thumbnail_relative_path[
-                                -200:]
-                        try:
-                            thumbnail_url = thumbnail.get(
-                                bimage, thumbnail_relative_path)
-                            entry['image'] = thumbnail_url
-                            bimage_max = bimage_current
-                        except IOError as e:
-                            entry['big_images'].remove(bimage)
-            elif entry['image'] and isinstance(entry['image'], list):
-                entry['image'] = entry['image'][0]
+    if entry['image'] == 'None' and entry['big_images'] != 'None':
+        entry['image'] = []
+        bimage_max = 0, 0
+        for bimage in entry['big_images']:
+            bimage_current = thumbnail.get_image_size(bimage)
+            if bimage_current > bimage_max:
+                thumbnail_relative_path = '%s.jpeg' % bimage
+                if len(thumbnail_relative_path) > 200:
+                    thumbnail_relative_path = thumbnail_relative_path[-200:]
+                try:
+                    thumbnail_url = thumbnail.get(bimage, thumbnail_relative_path)
+                    entry['image'] = thumbnail_url
+                    bimage_max = bimage_current
+                except IOError as e:
+                    entry['big_images'].remove(bimage)
+    elif entry['image'] and isinstance(entry['image'], list):
+        entry['image'] = entry['image'][0]

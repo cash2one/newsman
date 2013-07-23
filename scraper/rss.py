@@ -55,9 +55,9 @@ def _value_added_process(entries=None, language=None):
             if entry['language'] == 'en':
                 try:
                     tts_relative_path = '%s_%s_%s_%i' % (entry['language'], entry['feed_id'], entry['updated'], rand)
-                    tts_provider.google(entry['language'], entry['title'], tts_relative_path)
-                    entry['mp3'] = tts_web_path
-                except Exception as e:
+                    entry['mp3'] = tts_provider.google(entry['language'], entry['title'], tts_relative_path)
+                except Exception as k:
+                    print k, '... cannot generate TTS for %s' % entry['link']
                     entry['mp3'] = "None"
 
             entries_new.append(entry)
