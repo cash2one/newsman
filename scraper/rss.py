@@ -51,7 +51,11 @@ def _value_added_process(entries=None, language=None):
                 entry['big_images'].extend(entry['transcoded'])
                 entry['big_images'] = list(set(entry['big_images']))
 
-            # only for English, at present
+            # find biggest image
+            if entry['big_images']:
+                entry['image'] = image_helper.find_biggest_image(entry['big_images'])
+
+            # tts only for English, at present
             if entry['language'] == 'en':
                 try:
                     tts_relative_path = '%s_%s_%s_%i' % (entry['language'], entry['feed_id'], entry['updated'], rand)
