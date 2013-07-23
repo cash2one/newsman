@@ -262,7 +262,7 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, etag=Non
     Etag and Modified are used to save rss http server's bandwidth
     Note: category should be added to feed table/database
     """
-    if not feed_link or not language:
+    if not feed_link or not feed_link or not language:
         raise Exception(
             "ERROR: Method signature not well formed for %s!" % feed_link)
     if language not in LANGUAGES:

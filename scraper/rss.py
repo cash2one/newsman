@@ -38,8 +38,7 @@ def _value_added_process(entries=None, language=None):
 
     for entry in entries:
         random_code = random.random()
-        # create a proper name for url encoding
-        transcoded_path, big_images = transcoder.transcode(entry['language'], entry['title'], entry['link'], '%s_%s_%s_%f' % (entry['language'], entry[feed], entry['updated'], random_code))
+        transcoded_path = transcoder.transcode(entry['language'], entry['title'], entry['link'], '%s_%s_%s_%f' % (entry['language'], entry[feed_id], entry['updated'], random_code))
         if not transcoded_path:
             raise Exception('cannot transcode %s' % entry['link'])
         else:
