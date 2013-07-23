@@ -45,6 +45,10 @@ def _value_added_process(entries=None, language=None):
             # high chances transcoder cannot work properly
             entry['transcoded'] = transcoder.transcode(entry['language'], entry['title'], entry['link'], relative_path) 
 
+            # find big images
+            entry['big_images'].extend(entry['transcoded'])
+            entry['big_images'] = list(set(entry['big_images']))
+
             entries_new.append(entry)
         except Exception as k:
             if k.startswith('ERROR'):
