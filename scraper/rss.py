@@ -42,26 +42,26 @@ def _value_added_process(entries=None, language=None):
         # get a random int from 100 million possibilities
         try:
             rand = random.randint(0, 100000000)
-            transcoded_relative_path = '%s_%s_%s_%i' % (entry['language'], entry['feed_id'], entry['updated'], rand)
+            transcoded_relative_path = '%s_%s_%s_%i' % (entry['language'], entry['feed_id'], entry['updated_parsed'], rand)
             # high chances transcoder cannot work properly
-            entry['transcoded'] = transcoder.transcode(entry['language'], entry['title'], entry['link'], transcoded_relative_path) 
+            entry['transcoded'], entry['transcoded_local'] = transcoder.transcode(entry['language'], entry['title'], entry['link'], transcoded_relative_path) 
 
             # find big images
-            big_images = image_helper.find_images(entry['transocded'])
+            big_images = image_helper.find_images(entry['transcoded_local'])
             if big_images:
                 entry['big_images'] = entry['big_images'] if entry.has_key('big_images') else []
                 entry['big_images'].extend(entry['transcoded'])
                 entry['big_images'] = list(set(entry['big_images']))
 
             # find biggest image
-            if entry['big_images']:
+            if entry.has_key('big_images'):
                 entry['image'] = image_helper.find_biggest_image(entry['big_images'])
 
             # tts only for English, at present
             if entry['language'] == 'en':
                 try:
-                    tts_relative_path = '%s_%s_%s_%i' % (entry['language'], entry['feed_id'], entry['updated'], rand)
-                    entry['mp3'] = tts_provider.google(entry['language'], entry['title'], tts_relative_path)
+                    tts_relative_path = '%s_%s_%s_%i.mp3' % (entry['language'], entry['feed_id'], entry['updated_parsed'], rand)
+                    entry['mp3'], entry['mp3_local'] = tts_provider.google(entry['language'], entry['title'], tts_relative_path)
                 except Exception as k:
                     print k, '... cannot generate TTS for %s' % entry['link']
                     entry['mp3'] = "None"
@@ -72,8 +72,7 @@ def _value_added_process(entries=None, language=None):
 
             entries_new.append(entry)
         except Exception as k:
-            if k.startswith('ERROR'):
-                print k
+            print k
     return entries_new
 
 
@@ -99,6 +98,7 @@ def update(feed_link=None, feed_id=None, feed_title=None, language=None, etag=No
             feed_link, feed_id, feed_title, language, etag, modified)
     except Exception as k:
         # deal with exceptions
+        print k.__class__
         if k.startswith('WARNING'):
             print k
         else:

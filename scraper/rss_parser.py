@@ -178,13 +178,12 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None):
                         if 'thumbnails' not in entry:
                             raise AttributeError("no image found in 'links'")
                     except AttributeError as k:
-                        print k, '... Oooops! cannot find thumbnails!'
+                        pass
     entry['thumbnails'] = None if not entry.has_key('thumbnails') else entry['thumbnails']
 
     # article's big images
     if entry.has_key('summary'):
-        soup = BeautifulStoneSoup(entry['summary'])
-        images = image_helper.find_images(entry['entry'])
+        images = image_helper.find_images(entry['summary'])
         if images:
             entry['big_images'] = entry['big_images'] if entry.has_key('big_images') else []
             entry['big_images'].extend(images)
@@ -203,7 +202,7 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None):
             raise AttributeError("no image found in 'links'")
     except AttributeError as k:
         if not entry.has_key('big_images'):
-            print k, '... probably this has no big images!'
+            pass
     entry['big_images'] = None if not entry.has_key('big_images') else list(set(entry['big_images']))
 
     # article's author
@@ -295,12 +294,12 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, etag=Non
                 try:
                     modified = d.modified
                 except AttributeError as k:
-                    print k, '... this server has no etag or modified'
+                    pass
 
             if 'entries' in d:
                 language = language if 'language' not in d else d.language
                 # an Exception might be raised from _read_entry
-                entries = [_read_entry(e, feed_id, feed_title, language) for e in d['entries']]
+                entries = [_read_entry(e, feed_id, feed_title, language) for e in d.entries]
                 return filter(_validate_time, entries), feed_title, etag, modified
             else:
                 raise Exception("ERROR: Feed %s has no items!" % feed_id)
