@@ -110,7 +110,7 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None):
     try:
         entry['summary'] = hparser.unescape(e.summary)
     except AttributeError as k:
-        pass
+        entry['summary'] = None
 
     def store_thumbnail(stored_at, image):
         """
@@ -211,14 +211,14 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None):
         # i guess this could be a string or a list
         entry['author'] = e.author
     except AttributeError as k:
-        pass
+        entry['author'] = None
 
     # article's source
     # e.g. {'href': u'http://www.reuters.com/', 'title': u'Reuters'}
     try:
         entry['source'] = e.source
     except AttributeError as k:
-        pass
+        entry['source'] = None
 
     # article's tags
     # e.g. [{'term': u'Campus Party Recife 2013', 'scheme': None, 'label': None}]
@@ -227,7 +227,7 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None):
     try:
         entry['tags'] = e.tag
     except AttributeError as k:
-        pass
+        entry['tags'] = None
 
     return entry
 
