@@ -175,6 +175,7 @@ def transcode_by_readability(link):
 
 # Todos
 # - should separate big_images from transcoding
+# - return an exception when fucked up
 def transcode(language, title, link, relative_path):
     ''''''
     if not link or not relative_path:
@@ -197,6 +198,10 @@ def transcode(language, title, link, relative_path):
         transcoded = strinfo.sub('.png" width=100% height="auto"', transcoded)
     '''
     transcoded = transcode_by_uck(language, title, link)
+    # demo to return an exception
+    if not transcoded:
+        raise Exception('ERROR: Transcoder %s failed!' % 'UCK')
+    # sanitizing work put here
     images = find_big_images(transcoded)
     web_path = generate_path(transcoded, relative_path)
     return web_path, images
