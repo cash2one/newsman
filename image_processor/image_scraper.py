@@ -15,6 +15,7 @@ sys.path.append('..')
 
 from BeautifulSoup import BeautifulSoup
 from administration.config import THUMBNAIL_SIZE
+from administration.config import TRANSCODED_LOCAL_DIR
 
 def find_images(content):
     """
@@ -23,6 +24,12 @@ def find_images(content):
     if not content:
         return None
 
+    # determine the type of content
+    if content.startswith(TRANSCODED_LOCAL_DIR):
+        # then its a file
+        f = open(content, 'r')
+        content = f.read()
+    
     soup = BeautifulSoup(content.decode('utf-8'))
     images_new = []
     if soup.img:

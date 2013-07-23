@@ -20,7 +20,7 @@ from datetime import datetime, timedelta
 import feedparser
 from administration.config import hparser
 import random
-from iamge_processor import image_scraper
+from image_processor import image_scraper
 from image_processor import thumbnail
 import time
 import urllib2
