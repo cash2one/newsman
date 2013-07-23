@@ -204,4 +204,6 @@ def transcode(language, title, link, relative_path):
     # sanitizing work put here
     images = find_big_images(transcoded)
     web_path = generate_path(transcoded, relative_path)
+    if not web_path:
+        raise Exception('ERROR: Cannot generate web path for %s properly!' % relative_path)
     return web_path, images
