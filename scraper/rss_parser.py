@@ -20,6 +20,7 @@ from datetime import datetime, timedelta
 import feedparser
 from administration.config import hparser
 import random
+from iamge_processor import image_scraper
 from image_processor import thumbnail
 import time
 import urllib2
@@ -191,22 +192,7 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None):
     entry['big_images'] = []
     if 'summary' in entry:
         soup = BeautifulStoneSoup(entry['summary'])
-        if soup.img:
-            if soup.img.get('src'):
-                images = soup.img['src']
-                if isinstance(images, str):
-                    if not thumbnail.is_thumbnail(images):
-                        width, height = thumbnail.get_image_size(images)
-                        entry['big_images'].append(
-                            {'url': images, 'width': width, 'height': height})
-                elif isinstance(images, list):
-                    for image in images:
-                        if not thumbnail.is_thumbnail(image):
-                            width, height = thumbnail.get_image_size(image)
-                            big_image = {
-                                'url': image, 'width': width, 'height': height}
-                            if big_image not in entry['big_images']:
-                                entry['big_images'].append(big_image)
+        entry['big_images'].extend(image_scraper.find_images(entry['summary']))
     try:
         links = e.links
         for link in links:
