@@ -21,7 +21,7 @@ from image_processor import thumbnail
 from data_processor import transcoder
 from data_processor import tts_provider
 
-from administration.config import DATABASE_ENTRY_EXPIRATION
+from administration.config import DATABASE_REMOVAL_DAYS
 from administration.config import LANGUAGES
 from administration.config import MEMORY_ENTRY_EXPIRATION
 from administration.config import THUMBNAIL_SIZE
@@ -68,7 +68,7 @@ def _value_added_process(entries=None, language=None):
 
             # expiration information
             entry['memory_expired'] = MEMORY_ENTRY_EXPIRATION
-            entry['database_expired'] = DATABASE_ENTRY_EXPIRATION
+            entry['database_expired'] = DATABASE_REMOVAL_DAYS
 
             entries_new.append(entry)
         except Exception as k:
@@ -112,15 +112,14 @@ def update(feed_link=None, feed_id=None, feed_title=None, language=None, etag=No
     entries = _value_added_process(entries, language)
 
     # update new entries to database
+    # each entry is added with _id
     entries = database.update(entries, language)
     # and some data, like feed_title, etag and modified to database
     database.update_feed()
 
     # store in both database and memory
     if entries_new:
-        added_entries = database.update(entries, language)
-        print 'Nothing updated' if not added_entries else '    2/3 .. updated %i database items' % len(added_entries)
-        if added_entries:
+        if entries:
             updated_entries = memory.update(
                 added_entries, language, category, feed_id)
             print '' '    3/3 .. updated memory'
