@@ -117,11 +117,8 @@ def update(feed_link=None, feed_id=None, feed_title=None, language=None, etag=No
     # and some data, like feed_title, etag and modified to database
     database.update_feed()
 
-    # store in both database and memory
-    if entries_new:
-        if entries:
-            updated_entries = memory.update(
-                added_entries, language, category, feed_id)
-            print '' '    3/3 .. updated memory'
-            return updated_entries
+    # store in memory
+    if entries:
+        updated_entries = memory.update(entries, language, feed_id)
+        return updated_entries
     return None
