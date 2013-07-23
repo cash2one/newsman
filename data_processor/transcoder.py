@@ -63,7 +63,7 @@ def uck_sanitize(content):
         if img_source:
             img_tuple = img_source.rpartition('src=')
             img['src'] = img_tuple[2]
-            width, height = get_image_size(img['src'])
+            width, height = thumbnail.get_image_size(img['src'])
             if width >= 480:
                 img['width'] = '100%'
                 img['height'] = 'auto'
@@ -116,7 +116,9 @@ def process_url(link):
 
 
 def transcode_by_uck(language, title, link):
-    ''''''
+    """
+    docs needed!
+    """
     link = process_url(link)
     uck_url = '%s%s' % (UCK_TRANSCODING, link)
     f = urllib2.urlopen(uck_url)
@@ -138,12 +140,12 @@ def generate_path(content, relative_path):
     ''''''
     if not content or not relative_path:
         return None
-    absolute_path = '%s%s.html' % (TRANSCODED_LOCAL_DIR, relative_path)
+    local_path = '%s%s.html' % (TRANSCODED_LOCAL_DIR, relative_path)
     web_path = '%s%s.html' % (TRANSCODED_WEB_DIR, relative_path)
-    f = open(absolute_path, 'w')
+    f = open(local_path, 'w')
     f.write(hparser.unescape(content))
     f.close()
-    return web_path
+    return web_path, local_path
 
 
 def transcode_by_readability(link):
@@ -181,9 +183,9 @@ def transcode(language, title, link, relative_path):
     transcoded = transcode_by_uck(language, title, link)
     # demo to return an exception
     if not transcoded:
-        raise Exception('ERROR: Transcoder %s failed!' % 'UCK')
+        raise Exception('ERROR: Transcoder %s failed for %s' % ('UCK', link))
     # sanitizing work put here
-    web_path = generate_path(transcoded, relative_path)
+    web_path, local_path = generate_path(transcoded, relative_path)
     if not web_path:
-        raise Exception('ERROR: Cannot generate web path for %s properly!' % relative_path)
-    return web_path
+        raise Exception('ERROR: Cannot generate web path for %s properly!' % link)
+    return web_path, local_path

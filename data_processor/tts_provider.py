@@ -19,6 +19,8 @@ import urllib2
 from administration.config import THUMBNAIL_LOCAL_DIR
 from administration.config import THUMBNAIL_WEB_DIR
 
+if not os.path.exists(THUMBNAIL_LOCAL_DIR):
+    os.mkdir(THUMBNAIL_LOCAL_DIR)
 
 class GoogleTranslateAPI(threading.Thread):
     """
@@ -57,7 +59,7 @@ def google(language='en', query='Service provided by Baidu', relative_path='do_n
     6. return the path
     """
     # generate out.mp3
-    tmp_file = _download(language, query, '%s-tmp.mp3' % output_path[:-4])
+    tmp_file = _download(language, query, '%s-tmp.mp3' % relative_path[:-4])
     # form paths
     tts_local_path = '%s%s' % (THUMBNAIL_LOCAL_DIR, relative_path) 
     tts_web_path = '%s%s' % (THUMBNAIL_WEB_DIR, relative_path) 
@@ -65,7 +67,7 @@ def google(language='en', query='Service provided by Baidu', relative_path='do_n
     command = 'lame -S --decode {0} - | sox -q -t wav - -t wav - speed 1.06 | lame -S - {1}; rm {0}'.format(tmp_file, tts_local_path) 
     subprocess.Popen(command, stderr=subprocess.PIPE, shell=True)
     print '----------- MISSION ACCOMPLISHED ----------'
-    return tts_web_path
+    return tts_web_path, tts_local_path
 
 
 # Todos
