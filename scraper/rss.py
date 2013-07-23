@@ -88,11 +88,11 @@ def _value_added_process(entries=None, language=None):
 def update(feed_link=None, feed_id=None, feed_title=None, language=None, etag=None, modified=None):
     """
     update could be called
-    1. from task procedure
-    2. after an rss is added
-    3. manually for testing purpose
+    1. from task procedure: all parameters included
+    2. after an rss is added: all parameters included
+    3. manually for testing purpose: feed_link, language
     """
-    if not feed_link or not language:
+    if not feed_link or not feed_link or not language:
         raise Exception(
             "ERROR: Method signature not well formed for %s!" % feed_link)
     if language not in LANGUAGES:
