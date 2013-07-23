@@ -174,7 +174,7 @@ def transcode_by_readability(link):
 
 
 # Todos
-# should separate big_images from transcoding
+# - should separate big_images from transcoding
 def transcode(language, title, link, relative_path):
     ''''''
     if not link or not relative_path:
