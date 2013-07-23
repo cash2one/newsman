@@ -17,11 +17,9 @@ import urllib2
 
 
 class GoogleTranslateAPI(threading.Thread):
-
     """
     doc to be made
     """
-
     def __init__(self, language='en', text='Service provided by Baidu'):
         threading.Thread.__init__(self)
         self.language = language
@@ -55,7 +53,7 @@ def google(language='en', query='Service provided by Baidu', output_path='do_not
     6. return the path
     """
     # generate out.mp3
-    tmp_file = download(language, query, '%s-tmp.mp3' % output_path[:-4])
+    tmp_file = _download(language, query, '%s-tmp.mp3' % output_path[:-4])
     subprocess.Popen(
         'lame -S --decode {0} - | sox -q -t wav - -t wav - speed 1.06 | lame -S - {1}; rm {0}'.format(tmp_file, output_path), stderr=subprocess.PIPE, shell=True)
     print '----------- MISSION ACCOMPLISHED ----------'
@@ -63,7 +61,7 @@ def google(language='en', query='Service provided by Baidu', output_path='do_not
 
 # Todos
 # to write some boundary checkers
-def query_segment(language='en', query='Service provided by Baidu'):
+def _query_segment(language='en', query='Service provided by Baidu'):
     '''
     remove after implementing line 91: the algorithm only now works for latins
     '''
@@ -127,14 +125,14 @@ def query_segment(language='en', query='Service provided by Baidu'):
 # Test! Test! Test!
 # boundary checkers
 # docs!
-def download(language='en', query='Service provided by Baidu', tmp_file='do_not_exist.mp3'):
+def _download(language='en', query='Service provided by Baidu', tmp_file='do_not_exist.mp3'):
     '''
     docs needed!
-    other ways to write download
+    other ways to write _download
     1. https://github.com/hungtruong/Google-Translate-TTS/blob/master/GoogleTTS.py
     2. https://github.com/gavinmh/tts-api/blob/master/text_segmenter.py
     '''
-    segments = query_segment(language, query)
+    segments = _query_segment(language, query)
 
     # download chunks and write them to the output file
     try:
