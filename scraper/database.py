@@ -26,7 +26,7 @@ def dedup(entries=None, language=None):
         # find duplicate in the form of the same link or title
         dup_link = col.find_one({'link': entry['link']})
         dup_title = col.find_one({'title': entry['title']})
-        if not dup_link or not dup_title:
+        if dup_link or dup_title:
             print 'Find a duplicate for %s' % entry['title']
             continue
         else:
