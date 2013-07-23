@@ -35,7 +35,7 @@ def dedup(entries=None, language=None):
 
 
 # Todos
-# break update_database into several shorter mthods
+# - break update_database into several shorter mthods
 def update(entries=None, language=None):
     """
     save entries
@@ -52,3 +52,10 @@ def update(entries=None, language=None):
         entry_id = col.save(entry)
         entry['_id'] = str(entry_id)
     return entries
+
+
+def update_feed():
+    """
+    docs needed!
+    """
+    pass

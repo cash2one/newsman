@@ -84,7 +84,7 @@ def update(feed_link=None, feed_id=None, feed_title=None, language=None, etag=No
     2. after an rss is added: all parameters included
     3. manually for testing purpose: feed_link, language
     """
-    if not feed_link or not feed_link or not language:
+    if not feed_link or not feed_id or not language:
         raise Exception(
             "ERROR: Method signature not well formed for %s!" % feed_link)
     if language not in LANGUAGES:
