@@ -40,6 +40,7 @@ ToDos - High Priority
 9. 加入朗读抓取代码
 10. 加入摘要代码
 11. 提供一个简单的RSS修改/添加/删除Web界面
+12. 添加自定义Exception类
 
 ToDos - Low Priority
 ---------------------

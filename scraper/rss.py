@@ -44,7 +44,8 @@ def _value_added_process(entries=None, language=None):
             # high chances transcoder cannot work properly
             transcoded_web_path = transcoder.transcode(entry['language'], entry['title'], entry['link'], relative_path) 
         except Exception as k:
-            print 'WARNING: Cannot transcode %s' % entry['link']
+            if k.startswith('ERROR'):
+                print 'WARNING: Cannot transcode %s' % entry['link']
         else:
             entry[
                 'transcoded'] = 'None' if not transcoded_web_path else transcoded_web_path
