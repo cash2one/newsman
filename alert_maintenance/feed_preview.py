@@ -46,38 +46,41 @@ def preview(language='en', rss_file=None):
             if not rss_file:
                 language, category, feed_id, feed_link = extract_task(line)
             else:
-                feed_id = line
+                feed_link = line.strip()
             feed = feedparser.parse(feed_link)
 
             if feed:
-                if feed.status == 200:
-                    output.write('::::: %s :::::\n' % feed_id)
-                    print feed.title
-                    print 'okay!'
-                    for f in feed:
-                        output.write(f + '\n')            
-                        if 'etag' in f or 'modified' in f or 'encoding' in f:
-                            output.write("    %s\n" % feed[f])
-                    output.write('-----------------\n')
+                try:
+                    if feed.status == 200:
+                        output.write('::::: %s :::::\n' % feed_id)
+                        print feed.title
+                        print 'okay!'
+                        for f in feed:
+                            output.write(f + '\n')            
+                            if 'etag' in f or 'modified' in f or 'encoding' in f:
+                                output.write("    %s\n" % feed[f])
+                        output.write('-----------------\n')
 
-                    if len(feed.entries):
-                        for e in feed.entries[0]:
-                            output.write(e + '\n')
-                            if 'author' in e or 'tag' in e or 'media' in e or 'thumbnail' in e or e == 'source' or 'link' in e or 'summary' in e or 'comment' in e or e == 'content':
-                                output.write('    %s\n' % feed.entries[0][e])
-                else:
-                    error.write('%s\n' % feed_id)
-                    print feed_id
+                        if len(feed.entries):
+                            for e in feed.entries[0]:
+                                output.write(e + '\n')
+                                if 'author' in e or 'tag' in e or 'media' in e or 'thumbnail' in e or e == 'source' or 'link' in e or 'summary' in e or 'comment' in e or e == 'content':
+                                    output.write('    %s\n' % feed.entries[0][e])
+                    else:
+                        error.write('%s\n' % feed_link)
+                        print feed_link
+                        print 'problem: %i' % feed.status
+                except Exception as k:
+                    error.write('%s\n' % feed_link)
+                    print feed_link
                     print 'problem: %i' % feed.status
-        error.write('\n')
-        output.write('\n')
+            error.write('\n')
+            output.write('\n')
     error.close()
     output.close()
 
 if __name__ == '__main__':
-    language = sys.argv[1]
     if len(sys.argv) > 2:
-        rss_file = sys.argv[2]
-        preview(language, rss_file)
+        preview(sys.argv[1], sys.argv[2])
     else:
-        preview(language)
+        preview(sys.argv[1])
