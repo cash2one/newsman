@@ -15,8 +15,7 @@ from administration.config import THUMBNAIL_LOCAL_DIR
 from administration.config import THUMBNAIL_WEB_DIR
 
 
-# Todos
-# boundary checker should not return None, instead probably an Exception 
+# TODO: boundary checker should not return None, instead probably an Exception 
 def is_thumbnail(image_url):
     """
     docs needed
@@ -27,9 +26,8 @@ def is_thumbnail(image_url):
     return True if image_pil.size < THUMBNAIL_SIZE else False
 
 
-# Todos
-# boundary checkers
-# relative path could be a url including its suffix like jpg/png
+# TODO: boundary checkers
+# TODO: relative path could be a url including its suffix like jpg/png
 def generate_thumbnail(image_url, relative_path):
     """
     docs needed!
