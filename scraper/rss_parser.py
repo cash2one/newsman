@@ -34,11 +34,11 @@ from administration.config import MEMORY_RESTORATION_DAYS
 # - [register unsupported date format](http://pythonhosted.org/feedparser/date-parsing.html#advanced-date)
 # - add tags
 # - add thumbnail limit(downward)
-def _read_entry(e=None, feed_id=None, feed_title=None, language=None):
+def _read_entry(e=None, feed_id=None, feed_title=None, categories=None, language=None):
     """
     read a specific entry item from a feed 
     """
-    if not e or not feed_title or not language:
+    if not e or not feed_title or not categories or not language:
         raise Exception(
             "ERROR: Method signature not well formed for %s!" % feed_title)
     if language not in LANGUAGES:
@@ -48,6 +48,7 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None):
     entry['feed_id'] = feed_id
     entry['feed_title'] = feed_title.strip()
     entry['language'] = language.strip()
+    entry['categories'] = categories
 
     # the easy part: the must-have
     try:
@@ -235,14 +236,14 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None):
 # Todos
 # boundary checkers
 # update parsing info to feed database
-def parse(feed_link=None, feed_id=None, feed_title=None, language=None, etag=None, modified=None):
+def parse(feed_link=None, feed_id=None, feed_title=None, categories=None, language=None, etag=None, modified=None):
     """
     read rss/atom data from a given feed
     feed_id is the feed ObjectId in MongoDB
     Etag and Modified are used to save rss http server's bandwidth
     Note: category should be added to feed table/database
     """
-    if not feed_link or not feed_id or not language:
+    if not feed_link or not feed_id or not categories or not language:
         raise Exception(
             "ERROR: Method signature not well formed for %s!" % feed_link)
     if language not in LANGUAGES:
@@ -299,7 +300,7 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, etag=Non
             if 'entries' in d:
                 language = language if 'language' not in d else d.language
                 # an Exception might be raised from _read_entry
-                entries = [_read_entry(e, feed_id, feed_title, language) for e in d.entries]
+                entries = [_read_entry(e, feed_id, feed_title, categories, language) for e in d.entries]
                 return filter(_validate_time, entries), feed_title, etag, modified
             else:
                 raise Exception("ERROR: Feed %s has no items!" % feed_id)
