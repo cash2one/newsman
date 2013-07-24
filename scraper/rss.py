@@ -90,6 +90,9 @@ def _value_added_process(entries=None, language=None):
     return entries_new
 
 
+
+# Todos
+# code to remove added items if things suck at database/memory
 def update(feed_link=None, feed_id=None, feed_title=None, language=None, etag=None, modified=None):
     """
     update could be called
@@ -123,7 +126,5 @@ def update(feed_link=None, feed_id=None, feed_title=None, language=None, etag=No
     #database.update_feed()
 
     # store in memory
-    #if entries:
-    #    updated_entries = memory.update(entries, language, feed_id)
-    #    return updated_entries
+    memory.update(entries, language, categories)
     return entries
