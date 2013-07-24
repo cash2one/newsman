@@ -114,7 +114,7 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
     except AttributeError as k:
         entry['summary'] = None
 
-    def store_thumbnail(stored_at, image):
+    def _store_thumbnail(stored_at, image):
         """
         docs needed!
         """
@@ -165,17 +165,17 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
                         if soup.img.get('src'):
                             images = soup.img['src']
                             if isinstance(images, str):
-                                store_thumbnail(entry['thumbnails'], images)
+                                _store_thumbnail(entry['thumbnails'], images)
                             elif isinstance(images, list):
                                 for image in images:
-                                    store_thumbnail(entry['thumbnails'], image)
+                                    _store_thumbnail(entry['thumbnails'], image)
                 if 'thumbnails' not in entry:
                     try:
                         links = e.links
                         for link in links:
                             if 'type' in link and 'image' in link.type:
                                 if 'href' in link:
-                                    store_thumbnail(
+                                    _store_thumbnail(
                                         entry['thumbnails'], link.href)
                         if 'thumbnails' not in entry:
                             raise AttributeError("no image found in 'links'")
