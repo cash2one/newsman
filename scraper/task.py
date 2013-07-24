@@ -2,12 +2,8 @@
 # -*- coding: utf-8 -*-
 
 #
-#
 #@created Jan 2, 2013
 #@updated Feb 8, 2013
-#
-# TODO
-#
 
 import sys
 reload(sys)
@@ -339,8 +335,7 @@ def scrape(language):
     updated_tasks = execute_task(lines)
 
 
-# Todos
-# put language in config file
+# TODO: put language in config file
 if __name__ == "__main__":
     command = sys.argv[1]
     if len(sys.argv) > 2:

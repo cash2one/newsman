@@ -10,9 +10,8 @@ from administration.config import rclient
 from administration.config import MEMORY_EXPIRATION_DAYS
 
 
-# Todos
-# - add more comments
-# - be precautious with possible redis adding failure
+# TODO: add more comments
+# TODO: be precautious with possible redis adding failure
 def update(entries=None, language=None, categories=None):
     """
     add news and its attributes to memory

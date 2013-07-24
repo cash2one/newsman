@@ -29,11 +29,10 @@ from administration.config import LANGUAGES
 from administration.config import MEMORY_RESTORATION_DAYS
 
 
-# Todos
-# - add more boundary checks
-# - [register unsupported date format](http://pythonhosted.org/feedparser/date-parsing.html#advanced-date)
-# - add tags
-# - add thumbnail limit(downward)
+# TODO: add more boundary checks
+# TODO: [register unsupported date format](http://pythonhosted.org/feedparser/date-parsing.html#advanced-date)
+# TODO: add tags
+# TODO: add thumbnail limit(downward)
 def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories=None):
     """
     read a specific entry item from a feed 
@@ -234,9 +233,8 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
     return entry
 
 
-# Todos
-# boundary checkers
-# update parsing info to feed database
+# TODO: boundary checkers
+# TODO: update parsing info to feed database
 def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categories=None, etag=None, modified=None):
     """
     read rss/atom data from a given feed
