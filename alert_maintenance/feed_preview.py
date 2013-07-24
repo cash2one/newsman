@@ -14,9 +14,10 @@ sys.setdefaultencoding('UTF-8')
 import feedparser
 
 file_suffix = '/home/jinyuan/Downloads/global-mobile-news/alert_maintenance/maintenance/'
+http_codes = {301:'RSS address is permanently moved to a new place.', 302:'RSS address is temporarily moved to a new place.', 304:'RSS has not published new content.', 410:'RSS server is gone.'}
 
 
-def extract_task(line):
+def _parse_task(line):
     """
     docs needed!
     """
@@ -26,10 +27,10 @@ def extract_task(line):
     else:
         return 1
 
-def preview(language='en', rss_file=None):
+def _preview(language='en', rss_file=None):
     """
     docs needed!
-    """
+    """jjjjjj
     print '---------- retrieving feed information ----------'
     feeds_list = None
     if not rss_file:
@@ -45,7 +46,7 @@ def preview(language='en', rss_file=None):
     for line in lines:
         if line.strip():
             if not rss_file:
-                language, category, feed_id, feed_link = extract_task(line)
+                language, category, feed_id, feed_link = _parse_task(line)
             else:
                 feed_link = line.strip()
             feed = feedparser.parse(feed_link)
@@ -89,6 +90,6 @@ def preview(language='en', rss_file=None):
 
 if __name__ == '__main__':
     if len(sys.argv) > 2:
-        preview(sys.argv[1], sys.argv[2])
+        _preview(sys.argv[1], sys.argv[2])
     else:
-        preview(sys.argv[1])
+        _preview(sys.argv[1])
