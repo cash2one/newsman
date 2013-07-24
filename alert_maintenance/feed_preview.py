@@ -76,11 +76,11 @@ def _preview(language='en', rss_file=None):
                         output.write('\n')
                     else:
                         print feed_link
-                        print 'Problem: %i' % feed.status
-                        error.write('%s PR:%i\n' % (feed_link, feed.status))
+                        print 'Problem: %i' % http_codes[feed.status]
+                        error.write('%s Problem: %s\n' % (feed_link, http_codes[feed.status]))
                         error.write('\n')
                 except Exception as k:
-                    error.write('%s  EX:%s\n' % (feed_link, str(k)))
+                    error.write('%s  Error: %s\n' % (feed_link, str(k)))
                     print feed_link
                     print k
                     error.write('\n')
