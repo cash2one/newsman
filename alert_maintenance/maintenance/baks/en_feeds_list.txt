@@ -1,0 +1,9 @@
+en*|*US/Canada*|*U.S. News Headlines - Yahoo! News*|*http://news.yahoo.com/rss/us
+en*|*International*|*BBC News - World*|*http://feeds.bbci.co.uk/news/world/rss.xml
+en*|*Technology*|*Engadget*|*http://www.engadget.com/rss.xml
+en*|*Business*|*Business News Headlines - Yahoo! News*|*http://news.yahoo.com/rss/business
+en*|*Health*|*Health News Headlines - Yahoo! News*|*http://news.yahoo.com/rss/health
+en*|*Sports*|*Sports News Headlines - Yahoo! News*|*http://news.yahoo.com/rss/sports
+en*|*Entertainment*|*CNN.com - Entertainment*|*http://rss.cnn.com/rss/edition_entertainment.rss
+en*|*Travel*|*CNN.com - Travel*|*http://rss.cnn.com/rss/edition_travel.rss
+en*|*Sports*|*CNN.com - Sport*|*http://rss.cnn.com/rss/edition_sport.rss

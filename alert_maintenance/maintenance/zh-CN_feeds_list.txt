@@ -1,0 +1,28 @@
+
+
+http://news.baidu.com/n?cmd=1&class=internews&tn=rss&sub=0
+http://news.baidu.com/n?cmd=1&class=civilnews&tn=rss&sub=0
+http://rss.xinhuanet.com/rss/native.xml
+http://rss.news.sohu.com/rss/guoji.xml
+http://rss.news.sohu.com/rss/guonei.xml
+http://rss.news.sohu.com/rss/focus.xml
+http://news.163.com/special/00011K6L/historyrss.xml
+http://news.163.com/special/r/00011K6L/rss_newstop.xml
+ http://www.naivix.com/it/rss.xml
+http://news.baidu.com/n?cmd=1&class=internet&tn=rss&sub=0
+http://news.baidu.com/n?cmd=4&class=gamenews&tn=rss
+http://news.baidu.com/n?cmd=4&class=film&tn=rss
+http://news.baidu.com/n?cmd=4&class=tv&tn=rss
+http://news.baidu.com/n?cmd=4&class=enternews&tn=rss
+ http://news.baidu.com/n?cmd=4&class=netgames&tn=rss
+ http://news.baidu.com/n?cmd=4&class=music&tn=rss
+http://news.baidu.com/n?cmd=4&class=othersports&tn=rss
+http://news.baidu.com/n?cmd=4&class=yingchao&tn=rss
+http://news.baidu.com/n?cmd=4&class=xijia&tn=rss
+ http://news.baidu.com/n?cmd=4&class=yijia&tn=rss
+http://news.baidu.com/n?cmd=4&class=nba&tn=rss
+http://news.baidu.com/n?cmd=4&class=zcfx&tn=rss
+http://news.baidu.com/n?cmd=4&class=fitment&tn=rss
+http://news.baidu.com/n?cmd=1&class=hqsy&tn=rss&sub=0
+ http://news.baidu.com/n?cmd=4&class=gangaotai&tn=rss
+http://news.baidu.com/n?cmd=4&class=mil&tn=rss
