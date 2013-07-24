@@ -45,6 +45,7 @@ def _value_added_process(entries=None, language=None):
     for entry in entries:
         # get a random int from 100 million possibilities
         try:
+            # [MUST-HAVE] transcoding
             rand = random.randint(0, 100000000)
             transcoded_relative_path = '%s_%s_%s_%i' % (
                 entry['language'], entry['feed_id'], entry['updated_parsed'], rand)
@@ -52,7 +53,7 @@ def _value_added_process(entries=None, language=None):
             entry['transcoded'], entry['transcoded_local'] = transcoder.transcode(
                 entry['language'], entry['title'], entry['link'], transcoded_relative_path)
 
-            # find big images
+            # [OPTIONAL] find big images
             big_images = image_helper.find_images(entry['transcoded_local'])
             if big_images:
                 entry['big_images'] = entry[
@@ -62,14 +63,14 @@ def _value_added_process(entries=None, language=None):
             entry['big_images'] = None if not entry.has_key(
                 'big_images') else entry['big_images']
 
-            # find biggest image
+            # [OPTIONAL] find biggest image
             if entry.has_key('big_images'):
                 entry['image'] = image_helper.find_biggest_image(
                     entry['big_images'])
             entry['image'] = None if not entry.has_key(
                 'image') else entry['image']
 
-            # tts only for English, at present
+            # [OPTIONAL] tts only for English, at present
             if entry['language'] == 'en':
                 try:
                     tts_relative_path = '%s_%s_%s_%i.mp3' % (
@@ -81,7 +82,7 @@ def _value_added_process(entries=None, language=None):
                     entry['mp3'] = None
                     entry['mp3_local'] = None
 
-            # add expiration data
+            # [MUST-HAVE] add expiration data
             def _expired(updated_parsed, days_to_deadline):
                 """
                 compute expiration information
