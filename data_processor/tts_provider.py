@@ -22,9 +22,11 @@ from administration.config import THUMBNAIL_WEB_DIR
 if not os.path.exists(THUMBNAIL_LOCAL_DIR):
     os.mkdir(THUMBNAIL_LOCAL_DIR)
 
+
+# TODO: write docs
 class GoogleTranslateAPI(threading.Thread):
     """
-    doc to be made
+    doc needed!
     """
     def __init__(self, language='en', text='Service provided by Baidu'):
         threading.Thread.__init__(self)
@@ -46,9 +48,8 @@ class GoogleTranslateAPI(threading.Thread):
             raise Exception
 
 
-# Todos
-# rename the file and variables
-# remove accepting command line calls
+# TODO: rename the file and variables
+# TODO: remove accepting command line calls
 def google(language='en', query='Service provided by Baidu', relative_path='do_not_exist.mp3'):
     """
     1. download mp3 from google tts api
@@ -70,8 +71,8 @@ def google(language='en', query='Service provided by Baidu', relative_path='do_n
     return tts_web_path, tts_local_path
 
 
-# Todos
-# to write some boundary checkers
+# TODO: write some boundary checkers
+# TODO: determine how do these languages separate words
 def _query_segment(language='en', query='Service provided by Baidu'):
     '''
     remove after implementing line 91: the algorithm only now works for latins
@@ -112,8 +113,6 @@ def _query_segment(language='en', query='Service provided by Baidu'):
                     # /           |           \  #
                     # -------------------------- #
                     else:  # ja, th, ar
-                        # Todos
-                        # determine how do these languages separate words
                         pass
     segments = []
     # a higher-level version of 'combined_words' algorithm
@@ -132,10 +131,9 @@ def _query_segment(language='en', query='Service provided by Baidu'):
     print '----------                     :                      -----------'
 
 
-# Todos
-# Test! Test! Test!
-# boundary checkers
-# docs!
+# TODO: Test! Test! Test!
+# TODO: boundary checkers
+# TODO: write docs!
 def _download(language='en', query='Service provided by Baidu', tmp_file='do_not_exist.mp3'):
     '''
     docs needed!

@@ -156,9 +156,8 @@ def transcode_by_readability(link):
     return Document(f.read()).summary()
 
 
-# Todos
-# - should separate big_images from transcoding
-# - return an exception when fucked up
+# TODO: should separate big_images from transcoding
+# TODO: return an exception when fucked up
 def transcode(language, title, link, relative_path):
     ''''''
     if not link or not relative_path:
