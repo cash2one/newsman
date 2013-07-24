@@ -11,8 +11,8 @@ from cStringIO import StringIO
 import urllib2
 
 from administration.config import THUMBNAIL_SIZE
-from administration.config import THUMBNAIL_LOCAL_DIR
-from administration.config import THUMBNAIL_WEB_DIR
+from administration.config import IMAGES_LOCAL_DIR
+from administration.config import IMAGES_WEB_DIR
 
 
 # TODO: boundary checker should not return None, instead probably an Exception 
@@ -39,9 +39,9 @@ def generate_thumbnail(image_url, relative_path):
     # generate thumbnail
     if image_pil.size > THUMBNAIL_SIZE:
         image_thumbnail_local_path = '%s%si.jpg' % (
-            THUMBNAIL_LOCAL_DIR, relative_path)
+            IMAGES_LOCAL_DIR, relative_path)
         image_thumbnail_web_path = '%s%s.jpg' % (
-            THUMBNAIL_WEB_DIR, relative_path)
+            IMAGES_WEB_DIR, relative_path)
         image_pil.thumbnail(config.THUMBNAIL_SIZE, Image.ANTIALIAS)
         image_pil = image_pil.convert('RGB')
         image_pil.save(image_thumbnail_local_path, 'JPEG')
