@@ -103,14 +103,14 @@ def _value_added_process(entries=None, language=None):
 
 # Todos
 # code to remove added items if things suck at database/memory
-def update(feed_link=None, feed_id=None, feed_title=None, categories=None, language=None, etag=None, modified=None):
+def update(feed_link=None, feed_id=None, feed_title=None, language=None, categories=None, etag=None, modified=None):
     """
     update could be called
     1. from task procedure: all parameters included
     2. after an rss is added: all parameters included
     3. manually for testing purpose: feed_link, language
     """
-    if not feed_link or not feed_id or not categories or not language:
+    if not feed_link or not feed_id or not language or not categories:
         raise Exception(
             "ERROR: Method signature not well formed for %s!" % feed_link)
     if language not in LANGUAGES:
@@ -121,7 +121,7 @@ def update(feed_link=None, feed_id=None, feed_title=None, categories=None, langu
 
     # parse rss reading from remote rss servers
     entries, feed_title_new, etag_new, modified_new = rss_parser.parse(
-        feed_link, feed_id, feed_title, categories, language, etag, modified)
+        feed_link, feed_id, feed_title, language, categories, etag, modified)
 
     # filter out existing entries in database
     # there are some possible exceptions -- yet let it be
