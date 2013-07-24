@@ -16,13 +16,13 @@ sys.path.append('..')
 import calendar
 import database
 from datetime import datetime, timedelta
-import random
-import rss_parser
-from image_processor import image_helper
-from image_processor import thumbnail
-import time
 from data_processor import transcoder
 from data_processor import tts_provider
+from image_processor import image_helper
+from image_processor import thumbnail
+import random
+import rss_parser
+import time
 
 from administration.config import DATABASE_REMOVAL_DAYS
 from administration.config import LANGUAGES
@@ -45,28 +45,36 @@ def _value_added_process(entries=None, language=None):
         # get a random int from 100 million possibilities
         try:
             rand = random.randint(0, 100000000)
-            transcoded_relative_path = '%s_%s_%s_%i' % (entry['language'], entry['feed_id'], entry['updated_parsed'], rand)
+            transcoded_relative_path = '%s_%s_%s_%i' % (
+                entry['language'], entry['feed_id'], entry['updated_parsed'], rand)
             # high chances transcoder cannot work properly
-            entry['transcoded'], entry['transcoded_local'] = transcoder.transcode(entry['language'], entry['title'], entry['link'], transcoded_relative_path) 
+            entry['transcoded'], entry['transcoded_local'] = transcoder.transcode(
+                entry['language'], entry['title'], entry['link'], transcoded_relative_path)
 
             # find big images
             big_images = image_helper.find_images(entry['transcoded_local'])
             if big_images:
-                entry['big_images'] = entry['big_images'] if entry.has_key('big_images') else []
+                entry['big_images'] = entry[
+                    'big_images'] if entry.has_key('big_images') else []
                 entry['big_images'].extend(entry['transcoded'])
                 entry['big_images'] = list(set(entry['big_images']))
-            entry['big_images'] = None if not entry.has_key('big_images') else entry['big_images']
+            entry['big_images'] = None if not entry.has_key(
+                'big_images') else entry['big_images']
 
             # find biggest image
             if entry.has_key('big_images'):
-                entry['image'] = image_helper.find_biggest_image(entry['big_images'])
-            entry['image'] = None if not entry.has_key('image') else entry['image']
+                entry['image'] = image_helper.find_biggest_image(
+                    entry['big_images'])
+            entry['image'] = None if not entry.has_key(
+                'image') else entry['image']
 
             # tts only for English, at present
             if entry['language'] == 'en':
                 try:
-                    tts_relative_path = '%s_%s_%s_%i.mp3' % (entry['language'], entry['feed_id'], entry['updated_parsed'], rand)
-                    entry['mp3'], entry['mp3_local'] = tts_provider.google(entry['language'], entry['title'], tts_relative_path)
+                    tts_relative_path = '%s_%s_%s_%i.mp3' % (
+                        entry['language'], entry['feed_id'], entry['updated_parsed'], rand)
+                    entry['mp3'], entry['mp3_local'] = tts_provider.google(
+                        entry['language'], entry['title'], tts_relative_path)
                 except Exception as k:
                     print k, '... cannot generate TTS for %s' % entry['link']
                     entry['mp3'] = None
@@ -78,11 +86,14 @@ def _value_added_process(entries=None, language=None):
                 compute expiration information
                 return time string and unix time
                 """
-                deadline = datetime.utcfromtimestamp(updated_parsed) + timedelta(days=days_to_deadline)
-                return time.asctime(time.gmtime(calendar.timegm(deadline.timetuple()))) 
+                deadline = datetime.utcfromtimestamp(
+                    updated_parsed) + timedelta(days=days_to_deadline)
+                return time.asctime(time.gmtime(calendar.timegm(deadline.timetuple())))
 
-            entry['memory_expired'] = _expired(entry['updated_parsed'], MEMORY_EXPIRATION_DAYS)
-            entry['database_expired'] = _expired(entry['updated_parsed'], DATABASE_REMOVAL_DAYS)
+            entry['memory_expired'] = _expired(
+                entry['updated_parsed'], MEMORY_EXPIRATION_DAYS)
+            entry['database_expired'] = _expired(
+                entry['updated_parsed'], DATABASE_REMOVAL_DAYS)
 
             entries_new.append(entry)
         except Exception as k:
@@ -90,17 +101,16 @@ def _value_added_process(entries=None, language=None):
     return entries_new
 
 
-
 # Todos
 # code to remove added items if things suck at database/memory
-def update(feed_link=None, feed_id=None, feed_title=None, language=None, etag=None, modified=None):
+def update(feed_link=None, feed_id=None, feed_title=None, categories=None, language=None, etag=None, modified=None):
     """
     update could be called
     1. from task procedure: all parameters included
     2. after an rss is added: all parameters included
     3. manually for testing purpose: feed_link, language
     """
-    if not feed_link or not feed_id or not language:
+    if not feed_link or not feed_id or not categories or not language:
         raise Exception(
             "ERROR: Method signature not well formed for %s!" % feed_link)
     if language not in LANGUAGES:
@@ -109,9 +119,9 @@ def update(feed_link=None, feed_id=None, feed_title=None, language=None, etag=No
     feed_link = feed_link.strip()
     language = language.strip()
 
-    # parse rss reading from remote rss servers 
+    # parse rss reading from remote rss servers
     entries, feed_title_new, etag_new, modified_new = rss_parser.parse(
-        feed_link, feed_id, feed_title, language, etag, modified)
+        feed_link, feed_id, feed_title, categories, language, etag, modified)
 
     # filter out existing entries in database
     # there are some possible exceptions -- yet let it be
@@ -123,7 +133,7 @@ def update(feed_link=None, feed_id=None, feed_title=None, language=None, etag=No
     # each entry is added with _id
     entries = database.update(entries, language)
     # and some data, like feed_title, etag and modified to database
-    #database.update_feed()
+    # database.update_feed()
 
     # store in memory
     memory.update(entries, language, categories)

@@ -31,10 +31,11 @@ def preview(language='en', rss_file=None):
     docs needed!
     """
     print '---------- retrieving feed information ----------'
+    feeds_list = None
     if not rss_file:
         feeds_list = open('%s%s_feeds_list.txt' % (file_suffix, language), 'r')
     else:
-        feed_list = open(rss_file, 'r')
+        feeds_list = open(rss_file, 'r')
     lines = feeds_list.readlines()
     feeds_list.close()
 
@@ -52,9 +53,14 @@ def preview(language='en', rss_file=None):
             if feed:
                 try:
                     if feed.status == 200:
-                        output.write('::::: %s :::::\n' % feed_id)
-                        print feed.title
-                        print 'okay!'
+                        if 'title' in feed.feed:
+                            print feed.feed.title
+                            print 'Okay!'
+                            output.write('::::: %s :::::\n' % feed.feed.title)
+                        else:
+                            print feed.feed.link
+                            print 'Okay! But it has no TITLE'
+                            output.write('::::: %s :::::\n' % feed.feed.link)
                         for f in feed:
                             output.write(f + '\n')            
                             if 'etag' in f or 'modified' in f or 'encoding' in f:
@@ -66,16 +72,18 @@ def preview(language='en', rss_file=None):
                                 output.write(e + '\n')
                                 if 'author' in e or 'tag' in e or 'media' in e or 'thumbnail' in e or e == 'source' or 'link' in e or 'summary' in e or 'comment' in e or e == 'content':
                                     output.write('    %s\n' % feed.entries[0][e])
+                        output.write('\n')
                     else:
-                        error.write('%s\n' % feed_link)
                         print feed_link
-                        print 'problem: %i' % feed.status
+                        print 'Problem: %i' % feed.status
+                        error.write('%s PR:%i\n' % (feed_link, feed.status))
+                        error.write('\n')
                 except Exception as k:
-                    error.write('%s\n' % feed_link)
+                    error.write('%s  EX:%s\n' % (feed_link, str(k)))
                     print feed_link
-                    print 'problem: %i' % feed.status
-            error.write('\n')
-            output.write('\n')
+                    print k
+                    error.write('\n')
+            print
     error.close()
     output.close()
 
