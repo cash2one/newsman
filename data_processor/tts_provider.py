@@ -16,11 +16,11 @@ import time
 import threading
 import urllib2
 
-from administration.config import IMAGES_LOCAL_DIR
-from administration.config import IMAGES_WEB_DIR
+from administration.config import MEDIA_LOCAL_DIR
+from administration.config import MEDIA_WEB_DIR
 
-if not os.path.exists(IMAGES_LOCAL_DIR):
-    os.mkdir(IMAGES_LOCAL_DIR)
+if not os.path.exists(MEDIA_LOCAL_DIR):
+    os.mkdir(MEDIA_LOCAL_DIR)
 
 
 # TODO: write docs
@@ -62,8 +62,8 @@ def google(language='en', query='Service provided by Baidu', relative_path='do_n
     # generate out.mp3
     tmp_file = _download(language, query, '%s-tmp.mp3' % relative_path[:-4])
     # form paths
-    tts_local_path = '%s%s' % (IMAGES_LOCAL_DIR, relative_path) 
-    tts_web_path = '%s%s' % (IMAGES_WEB_DIR, relative_path) 
+    tts_local_path = '%s%s' % (MEDIA_LOCAL_DIR, relative_path) 
+    tts_web_path = '%s%s' % (MEDIA_WEB_DIR, relative_path) 
 
     command = 'lame -S --decode {0} - | sox -q -t wav - -t wav - speed 1.06 | lame -S - {1}; rm {0}'.format(tmp_file, tts_local_path) 
     subprocess.Popen(command, stderr=subprocess.PIPE, shell=True)
