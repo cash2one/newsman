@@ -27,8 +27,8 @@ from administration.config import DATABASE_REMOVAL_DAYS
 from administration.config import LANGUAGES
 from administration.config import MAINTENANCE_DIR
 from administration.config import MEMORY_RESTORATION_DAYS
-from administration.config import THUMBNAIL_LOCAL_DIR
-from administration.config import THUMBNAIL_WEB_DIR
+from administration.config import IMAGES_LOCAL_DIR
+from administration.config import IMAGES_WEB_DIR
 from administration.config import TRANSCODED_LOCAL_DIR
 from administration.config import TRANSCODED_WEB_DIR
 from administration.config import RSS_UPDATE_LOG
@@ -110,13 +110,13 @@ def clear_thumbnail(removal_candidate):
     if isinstance(removal_candidate['image'], str):
         thumbnail_web_path = removal_candidate['image']
         thumbnail_local_path = thumbnail_web_path.replace(
-            THUMBNAIL_WEB_DIR, THUMBNAIL_LOCAL_DIR)
+            IMAGES_WEB_DIR, IMAGES_LOCAL_DIR)
         if os.path.exists(thumbnail_local_path):
             os.remove(thumbnail_local_path)
     elif isinstance(removal_candidate['image'], list):
         for thumbnail_web_path in removal_candidate['image']:
             thumbnail_local_path = thumbnail_web_path.replace(
-                THUMBNAIL_WEB_DIR, THUMBNAIL_LOCAL_DIR)
+                IMAGES_WEB_DIR, IMAGES_LOCAL_DIR)
             if os.path.exists(thumbnail_local_path):
                 os.remove(thumbnail_local_path)
 
