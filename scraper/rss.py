@@ -20,6 +20,7 @@ from data_processor import transcoder
 from data_processor import tts_provider
 from image_processor import image_helper
 from image_processor import thumbnail
+import memory
 import random
 import rss_parser
 import time
@@ -109,6 +110,7 @@ def update(feed_link=None, feed_id=None, feed_title=None, language=None, categor
     1. from task procedure: all parameters included
     2. after an rss is added: all parameters included
     3. manually for testing purpose: feed_link, language
+    Note. categories are ids of category item
     """
     if not feed_link or not feed_id or not language or not categories:
         raise Exception(

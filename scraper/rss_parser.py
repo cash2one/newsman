@@ -37,6 +37,7 @@ from administration.config import MEMORY_RESTORATION_DAYS
 def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories=None):
     """
     read a specific entry item from a feed 
+    Note. categories are ids of category item
     """
     if not e or not feed_title or not language or not categories:
         raise Exception(

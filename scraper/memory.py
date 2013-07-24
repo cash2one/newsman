@@ -16,6 +16,7 @@ from administration.config import MEMORY_EXPIRATION_DAYS
 def update(entries=None, language=None, categories=None):
     """
     add news and its attributes to memory
+    categories are ids of category item
     """
     if not entries:
         return None
