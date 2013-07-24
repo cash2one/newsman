@@ -30,17 +30,18 @@ modification page
 ToDos - High Priority
 ----------------------
 1. 去掉没用的代码
-2. 图片类的代码放在image_processor中
+2. [DONE]图片类的代码放在image_processor中
 3. 图片抓取代码加入
 4. task.py内容分解到各相应文件夹
 5. Feed取消文档，改为数据库
 6. Readability（decruft）代码整理出来
-7. 文件名生成方式修改 --> 语言-分类-源（objectId）-时间-随机码
+7. [DONE]文件名生成方式修改 --> 语言-分类-源（objectId）-时间-随机码
 8. image/big_image等修改
-9. 加入朗读抓取代码
-10. 加入摘要代码
-11. 提供一个简单的RSS修改/添加/删除Web界面
+9. [DONE]加入朗读抓取代码
+10. [Done]根据RSS提供者的元数据区分更新时间
+11. 加入摘要代码
 12. 添加自定义Exception类
+13. 返回类型理清（raise Exception/return None）
 
 ToDos - Low Priority
 ---------------------
@@ -56,6 +57,5 @@ ToDos - Low Priority
 10. Minerva代码转移
 11. 详情页增加夜间、字体大小、分享等代码
 12. 为PM提供RSS管理的Web界面
-13. 根据RSS提供者的元数据区分更新时间
-14. 根据Todos标签自动生成Markdown文档
-15. 增加在线生成临时图片和MP3的接口
+13. 根据Todos标签自动生成Markdown文档
+14. 增加在线生成临时图片和MP3的接口
