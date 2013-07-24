@@ -71,7 +71,7 @@ def _value_added_process(entries=None, language=None):
                 'image') else entry['image']
 
             # [OPTIONAL] tts only for English, at present
-            if entry['language'] == 'en':
+            if entry['language'] == 'en' | entry['language'] = 'pt' | entry['language'] = 'th':
                 try:
                     tts_relative_path = '%s_%s_%s_%i.mp3' % (
                         entry['language'], entry['feed_id'], entry['updated_parsed'], rand)
