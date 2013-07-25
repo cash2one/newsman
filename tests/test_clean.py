@@ -37,7 +37,7 @@ def _remove_dir(dir):
         except OSError as k:
             print k
     else:
-        print '%s does not exist!' % TRANSCODED_LOCAL_DIR
+        print '%s does not exist!' % dir
 
 _remove_dir(TRANSCODED_LOCAL_DIR)
 _remove_dir(IMAGES_LOCAL_DIR)

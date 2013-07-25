@@ -34,7 +34,7 @@ IMAGES_LOCAL_DIR = LOCAL % 'interface/images/'
 IMAGES_WEB_DIR = PUBLIC % 'img/'
 
 MEDIA_LOCAL_DIR = LOCAL % 'interface/media/'
-MEDIA_WEB_DIR = PUBLIC % 'interface/mid/'
+MEDIA_WEB_DIR = PUBLIC % 'mid/'
 
 MAINTENANCE_DIR = LOCAL % 'alert_maintenance/maintenance/'
 RSS_UPDATE_LOG = LOCAL % 'alert_maintenance/maintenance/rul.txt'

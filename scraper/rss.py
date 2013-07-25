@@ -70,8 +70,8 @@ def _value_added_process(entries=None, language=None):
             entry['image'] = None if not entry.has_key(
                 'image') else entry['image']
 
-            # [OPTIONAL] tts only for English, at present
-            if entry['language'] == 'en' | entry['language'] = 'pt' | entry['language'] = 'th':
+            # [OPTIONAL] google tts not for indonesian
+            if entry['language'] != 'ind':
                 try:
                     tts_relative_path = '%s_%s_%s_%i.mp3' % (
                         entry['language'], entry['feed_id'], entry['updated_parsed'], rand)
