@@ -29,36 +29,41 @@ modification page
 
 ToDos - High Priority
 ----------------------
-1. 去掉没用的代码
-2. [DONE]图片类的代码放在image_processor中
-3. 图片抓取代码加入
-4. task.py内容分解到各相应文件夹
-5. Feed取消文档，改为数据库
-6. Readability（decruft）代码整理出来
-7. [DONE]文件名生成方式修改 --> 语言-分类-源（objectId）-时间-随机码
-8. image/big_image等修改
-9. [DONE]加入朗读抓取代码
-10. [Done]根据RSS提供者的元数据区分更新时间
-11. 加入摘要代码
-12. 添加自定义Exception类
-13. 返回类型理清（raise Exception/return None）
+1. Feed相关代码重构
+2. Task相关代码分解、重构
+3. 转码代码清理、重构
+4. 对外接口重构
+5. Feed管理平台
+6. 摘要/首段抓取代码编写
+7. 自定义Exception类，并替换相应代码
+8. 预警代码整理、重构
+9. 数据整理代码整理、重构
+10. Readability代码整合、测试
+11. 减少参数调用（尽量从数据库中获取）
 
 ToDos - Low Priority
 ---------------------
 1. 图片判断是否是男人
 2. 判断图片是否是黄图
-3. 预警代码整理和修改
-4. 抓取Instagram/Flickr内容
-5. 社交账户好友信息抓取
-6. 热点新闻提取
-7. 新闻去重
-8. 类别类似新闻
-9. Bugu用户账户代码转移
-10. Minerva代码转移
-11. 详情页增加夜间、字体大小、分享等代码
-12. 为PM提供RSS管理的Web界面
-13. [DONE]根据TODO标签自动生成Markdown文档
-14. 增加在线生成临时图片和MP3的接口
+3. 抓取Instagram/Flickr内容
+4. 社交账户好友信息抓取
+5. 热点新闻提取
+6. 新闻去重
+7. 类别类似新闻
+8. Bugu用户账户代码转移
+9. Minerva代码转移
+10. 详情页增加夜间、字体大小、分享等代码
+11. 为PM提供RSS管理的Web界面
+12. 增加在线生成临时图片和MP3的接口
+
+Dones
+------
+1. 图片类的代码放在image_processor中
+2. 加入朗读抓取代码
+3. 文件名生成方式修改 --> 语言-分类-源（objectId）-时间-随机码
+4. 根据RSS提供者的元数据区分更新时间
+5. 根据TODO标签自动生成Markdown文档
+
 
 ToDos - Generated from docs
 --------------------------
