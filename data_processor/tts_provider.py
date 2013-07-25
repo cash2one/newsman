@@ -7,12 +7,14 @@ sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
 import nltk
+from nltk.tokenize import RegexpTokenizer
 import os
 import random
 import re
 import string
 import subprocess
 import time
+import tinysegmenter
 import threading
 import urllib2
 
@@ -36,8 +38,7 @@ class GoogleTranslateAPI(threading.Thread):
 
     def run(self):
         response = subprocess.Popen(
-            '''curl -A Mozilla "http://translate.google.com/translate_tts?tl=%s&q=%s"''' %
-            (self.language, urllib2.quote(self.text)), stdout=subprocess.PIPE, shell=True)
+            '''curl -A Mozilla "http://translate.google.com/translate_tts?ie=UTF-8&oe=UTF-8&tl=%s&q=%s"''' % (self.language, urllib2.quote(self.text)), stdout=subprocess.PIPE, shell=True)
         content, error = response.communicate()
         if not error and content:
             if 'error' not in content or 'permission' not in content:
@@ -73,47 +74,70 @@ def google(language='en', query='Service provided by Baidu', relative_path='do_n
 
 # TODO: write some boundary checkers
 # TODO: determine how do these languages separate words
+# TODO: get encoding of a feed. use that if indicated, else 'utf-8'
 def _query_segment(language='en', query='Service provided by Baidu'):
     '''
     remove after implementing line 91: the algorithm only now works for latins
     '''
-    query = query.strip()
-    sentences = nltk.sent_tokenize(query)
+    query = unicode(query.strip())
+    sentences = None
+    if language == 'ja':
+        jp_sent_tokenizer = nltk.RegexpTokenizer(u'[^ !?。．]*[!?。]')
+        sentences = jp_sent_tokenizer.tokenize(query)
+    else:
+        sentences = nltk.sent_tokenize(query)
+    # convert back to utf-8
+    # remove spaces
+    if sentences:
+        sentences = [str(sentence).strip() for sentence in sentences]
+
     parts = []
     for sentence in sentences:
         if len(sentence) < 99:
             # none of len(item) in parts will exceed 100
             parts.append(sentence.strip())  # parts: ['xxx, xxx', 'yyy zzz aaa bbb.']
         else:
+            phrases = None
             # phrases: ['xxx -- xxx', 'yyy zzz aaa']
-            phrases = sentence.split(',')
+            if language == 'ja':
+                phrases = sentence.split('、')
+            else:
+                phrases = sentence.split(',')
+            # remove spaces
+            if phrases:
+                phrases = [phrase.strip() for phrase in phrases]
+
             for phrase in phrases:
                 if len(phrase) < 99:
                     parts.append(phrase.strip())
                 else:
-                    if language == 'en' | language == 'pt' | language == 'id':
+                    words = None
+                    if language == 'ja':
+                        segmenter = tinysegmenter.TinySegmenter()
+                        words = segmenter.tokenize(unicode(phrase))
+                    else:
                         words = phrase.split(' ')
-                        # none of len(item) in combined_words will exceed 100
-                        # combined_words = ['yyy zzz. aaa bbb']
-                        combined_words = ""
-                        for word in words:
-                            # +1 for possible space
-                            if len(combined_words) + len(word) + 1 < 100:
-                                combined_words = ("""%s %s""" if word not in string.punctuation else """%s%s""") % (
-                                    combined_words, word)
+                    # convert back to utf-8
+                    # remove spaces
+                    if words:
+                        words = [str(word).strip() for word in words]
+
+                    # none of len(item) in combined_words will exceed 100
+                    # combined_words = ['yyy zzz. aaa bbb']
+                    combined_words = ""
+                    for word in words:
+                        # +1 for possible space
+                        if len(combined_words) + len(word) + 1 < 100:
+                            if language == 'ja':
+                                combined_words = ("""%s%s""" if word not in string.punctuation else """%s%s""") % (combined_words, word)
                             else:
-                                parts.append(combined_words.strip())
-                                combined_words = word
-                        if combined_words:
+                                combined_words = ("""%s %s""" if word not in string.punctuation else """%s%s""") % (combined_words, word)
+                            combined_words = combined_words.strip()
+                        else:
                             parts.append(combined_words.strip())
-                    # -------------------------- #
-                    # \           |           /  #
-                    # _  IMPLEMENT THIS PART _   #
-                    # AS SOON AS POSSIBLE!    #
-                    # /           |           \  #
-                    # -------------------------- #
-                    else:  # ja, th, ar
-                        pass
+                            combined_words = word
+                    if combined_words:
+                        parts.append(combined_words.strip())
     segments = []
     # a higher-level version of 'combined_words' algorithm
     segment = ""
