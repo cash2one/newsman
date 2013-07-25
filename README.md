@@ -59,3 +59,56 @@ ToDos - Low Priority
 12. 为PM提供RSS管理的Web界面
 13. 根据Todos标签自动生成Markdown文档
 14. 增加在线生成临时图片和MP3的接口
+
+ToDos - Generated from docs
+--------------------------
+* `scraper/database.py`
+    1. Line 38: update
+        - break update_database into several shorter mthods
+    2. Line 56: update_feed
+        - write docs
+
+* `data_processor/transcoder.py`
+    1. Line 161: transcode
+        - should separate big_images from transcoding
+        - return an exception when fucked up
+
+* `image_processor/thumbnail.py`
+    1. Line 19: is_thumbnail
+        - boundary checker should not return None, instead probably an Exception
+    2. Line 31: generate_thumbnail
+        - boundary checkers
+        - relative path could be a url including its suffix like jpg/png
+
+* `scraper/rss.py`
+    1. Line 107: update
+        - code to remove added items if things suck at database/memory
+
+* `scraper/memory.py`
+    1. Line 15: update
+        - add more comments
+        - be precautious with possible redis adding failure
+
+* `data_processor/tts_provider.py`
+    1. Line 76: _query_segment
+        - write some boundary checkers
+        - determine how do these languages separate words
+    2. Line 137: _download
+        - Test! Test! Test!
+        - boundary checkers
+        - write docs!
+    3. Line 53: google
+        - write docs
+        - rename the file and variables
+        - remove accepting command line calls
+
+* `scraper/rss_parser.py`
+    1. Line 238: parse
+        - boundary checkers
+        - update parsing info to feed database
+    2. Line 36: _read_entry
+        - add more boundary checks
+        - [register unsupported date format](http://pythonhosted.org/feedparser/date-parsing.html#advanced-date)
+        - add tags
+        - add thumbnail limit(downward)
+
