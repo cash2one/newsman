@@ -1,2 +1,0 @@
-http://rss.xinhuanet.com/rss/native.xml PR:302
-

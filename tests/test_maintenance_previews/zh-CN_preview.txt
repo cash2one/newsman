@@ -1,0 +1,899 @@
+::::: 百度国际焦点新闻 :::::
+feed
+status
+version
+encoding
+    gb18030
+bozo
+headers
+href
+namespaces
+entries
+bozo_exception
+-----------------
+summary_detail
+    {'base': u'http://news.baidu.com/n?cmd=1&class=internews&tn=rss&sub=0', 'type': u'text/html', 'value': u'\u65b0\u534e\u7f51\u5854\u67977\u670823\u65e5\u7535\uff08\u8bb0\u8005\u6c6a\u4e9a\u96c4\uff09\u7231\u6c99\u5c3c\u4e9a\u8b66\u65b9\u8fd1\u65e5\u5728\u9996\u90fd\u5854\u6797\u6700\u5927\u5c45\u6c11\u533a\u7684\u516c\u5bd3\u5185\u53d1\u73b0\u4e00\u5177\u7537\u5c38\u3002\u8c03\u67e5\u7ed3\u679c\u8868\u660e\uff0c\u8fd9\u540d\u7537\u5b509\u5e74\u524d\u8eab\u4ea1\u3002   \u7231\u6c99\u5c3c\u4e9a\u5e7f\u64ad\u516c\u53f823\u65e5\u63f4\u5f15\u6cd5\u533b\u7684\u8bdd\u62a5\u9053\uff0c\u8fd9\u5177\u7537\u5c38\u88ab\u53d1\u73b0\u65f6\u5df2\u7ecf\u8150\u70c2\uff0c\u623f\u4e2d\u65e5\u5386\u548c\u62a5\u7eb8\u90fd\u662f2004\u5e74\u7684\uff0c\u8d70\u8bbf\u8c03\u67e5\u65f6\uff0c\u5c0f\u533a\u5c45\u6c11\u8bf4\u6700\u540e\u4e00\u6b21\u770b\u89c1\u6b7b\u8005\u662f\u57282004\u5e74\u3002 ...<br />\n                        \t\t\t\t\t\t\t\t <a href="http://world.people.com.cn/n/2013/0724/c157278-22307494.html" style="font-size: 13px;" target="_blank">\u5947\u95fb\u5f02\u4e8b:\u7231\u6c99\u5c3c\u4e9a\u9996\u90fd\u5c45\u6c11\u533a\u53d1\u73b0\u6b7b\u4ea19\u5e74\u7537\u5b50</a><span style="padding-left: 10px; font-size: 12px; color: #666666;">\u4eba\u6c11\u7f51</font><br />\n\t\t\t\t\t\t\t\t                        \t\t\t\t\t - <a href="http://news.baidu.com/n?cmd=2&amp;page=http%3A%2F%2Fworld.people.com.cn%2Fn%2F2013%2F0724%2Fc157278-22307494.html&amp;pn=1&amp;clk=crel&amp;cls=internews&amp;where=focuspage&amp;class=internews"><font color="#008000">10\u6761\u76f8\u5173&gt;&gt;</font></a><br />', 'language': None}
+links
+    [{'href': u'http://world.people.com.cn/n/2013/0724/c157278-22307494.html', 'type': u'text/html', 'rel': u'alternate'}]
+published_parsed
+title
+authors
+    [{}]
+summary
+    新华网塔林7月23日电（记者汪亚雄）爱沙尼亚警方近日在首都塔林最大居民区的公寓内发现一具男尸。调查结果表明，这名男子9年前身亡。   爱沙尼亚广播公司23日援引法医的话报道，这具男尸被发现时已经腐烂，房中日历和报纸都是2004年的，走访调查时，小区居民说最后一次看见死者是在2004年。 ...<br />
+                        								 <a href="http://world.people.com.cn/n/2013/0724/c157278-22307494.html" style="font-size: 13px;" target="_blank">奇闻异事:爱沙尼亚首都居民区发现死亡9年男子</a><span style="padding-left: 10px; font-size: 12px; color: #666666;">人民网</font><br />
+								                        					 - <a href="http://news.baidu.com/n?cmd=2&amp;page=http%3A%2F%2Fworld.people.com.cn%2Fn%2F2013%2F0724%2Fc157278-22307494.html&amp;pn=1&amp;clk=crel&amp;cls=internews&amp;where=focuspage&amp;class=internews"><font color="#008000">10条相关&gt;&gt;</font></a><br />
+source
+    {'title': u'\u4eba\u6c11\u7f51'}
+title_detail
+link
+    http://world.people.com.cn/n/2013/0724/c157278-22307494.html
+author
+    人民网
+published
+author_detail
+    {'name': u'\u4eba\u6c11\u7f51'}
+
+::::: 百度国内焦点新闻 :::::
+feed
+status
+version
+encoding
+    gb18030
+bozo
+headers
+href
+namespaces
+entries
+bozo_exception
+-----------------
+summary_detail
+    {'base': u'http://news.baidu.com/n?cmd=1&class=civilnews&tn=rss&sub=0', 'type': u'text/html', 'value': u'\u6839\u636e\u4e2d\u592e\u7edf\u4e00\u90e8\u7f72\uff0c\u7531\u7ec4\u957f\u738b\u9e3f\u4e3e\u5e26\u961f\uff0c\u4e2d\u592e\u7b2c\u516b\u5de1\u89c6\u7ec45\u670827\u65e5\u8fdb\u9a7b\u6c5f\u897f\u7701\u3002\u4e0d\u5230\u4e24\u4e2a\u6708\uff0c\u6c5f\u897f\u5b98\u573a\u4e0a\u4e0b\u90fd\u5df2\u611f\u5230\u65e0\u5f62\u7684\u538b\u529b\u3002\u201c\u8fd9\u6bb5\u65f6\u95f4\uff0c\u62c5\u5fc3\u88ab\u7275\u8fde\u7684\u4eba\u5929\u5929\u63d0\u5fc3\u540a\u80c6\uff0c\u56db\u5904\u6253\u63a2\u6d88\u606f\uff0c\u6ca1\u88ab\u7275\u8fde\u7684\u4eba\u5219\u5728\u7b49\u7740\u770b\u70ed\u95f9\u3002\u201d\u6c5f\u897f\u7701\u4e00\u4f4d\u56fd\u4f01\u8d1f\u8d23\u4eba\u900f\u9732\u3002   \u8fd9\u4e2a\u590f\u5929\uff0c\u6c5f\u897f\u5404\u5730\u7684\u9ad8\u6863\u9910\u996e\u53ca\u5a31\u4e50\u573a\u6240\u666e\u904d\u51fa\u73b0\u8427\u6761\u3002  ...<br />\n                        \t\t\t\t\t\t\t\t <a href="http://www.chinadaily.com.cn/hqgj/jryw/2013-07-24/content_9664221.html" style="font-size: 13px;" target="_blank">\u91cd\u5927\u95ee\u9898\u63ea\u4e0d\u51fa\u5de1\u89c6\u7ec4\u5c31\u662f\u5931\u804c</a><span style="padding-left: 10px; font-size: 12px; color: #666666;">\u4e2d\u56fd\u65e5\u62a5\u7f51</font><br />\n\t\t\t\t\t\t\t\t                        \t\t\t\t\t\t\t\t <a href="http://news.gxnews.com.cn/staticpages/20130724/newgx51ef49a9-8109323.shtml" style="font-size: 13px;" target="_blank">\u6e2f\u5a92\u5173\u6ce8\u5de1\u89c6\u7ec4\u6539\u9769\uff1a\u529f\u80fd\u5b8c\u5584 \u91cd\u70b9\u76d1\u7763\u4e00\u628a\u624b</a><span style="padding-left: 10px; font-size: 12px; color: #666666;">\u5e7f\u897f\u65b0\u95fb\u7f51</font><br />\n\t\t\t\t\t\t\t\t                        \t\t\t\t\t\t\t\t <a href="http://news.gmw.cn/newspaper/2013-07/24/content_1838215.htm" style="font-size: 13px;" target="_blank">\u4e2d\u592e\u5de1\u89c6\u7ec4\u5df2\u5efa\u7ec4\u957f\u5e93</a><span style="padding-left: 10px; font-size: 12px; color: #666666;">\u5149\u660e\u7f51</font><br />\n\t\t\t\t\t\t\t\t                        \t\t\t\t\t\t\t\t <a href="http://tangshan.huanbohainews.com.cn/system/2013/07/23/011258509.shtml" style="font-size: 13px;" target="_blank">\u515a\u4e2d\u592e\u7684\u5343\u91cc\u773c\uff0c\u62cd\u4e86\u82cd\u8747\u6253\u8001\u864e </a><span style="padding-left: 10px; font-size: 12px; color: #666666;">\u73af\u6e24\u6d77\u65b0\u95fb\u7f51</font><br />\n\t\t\t\t\t\t\t\t                        \t\t\t\t\t\t\t\t <a href="http://pinglun.eastday.com/p/20130724/u1a7543127.html" style="font-size: 13px;" target="_blank">\u5343\u4e07\u522b\u628a"\u8001\u864e"\u5413\u6210"\u8001\u9f20"</a><span style="padding-left: 10px; font-size: 12px; color: #666666;">\u4e1c\u65b9\u7f51</font><br />\n\t\t\t\t\t\t\t\t                        \t\t\t\t\t\t\t\t <a href="http://news.gmw.cn/newspaper/2013-07/24/content_1836303.htm" style="font-size: 13px;" target="_blank">\u843d\u9a6c\u5b98\u5458\u4e3e\u62a5\u5b98\u573a\u4eba\u5fc3\u60f6\u60f6</a><span style="padding-left: 10px; font-size: 12px; color: #666666;">\u5149\u660e\u7f51</font><br />\n\t\t\t\t\t\t\t\t                        \t\t\t\t\t - <a href="http://news.baidu.com/n?cmd=2&amp;page=http%3A%2F%2Fnews.gmw.cn%2Fnewspaper%2F2013-07%2F24%2Fcontent_1836303.htm&amp;pn=1&amp;clk=crel&amp;cls=civilnews&amp;where=focuspage&amp;class=civilnews"><font color="#008000">498\u6761\u76f8\u5173&gt;&gt;</font></a><br />', 'language': None}
+links
+    [{'href': u'http://news.gmw.cn/newspaper/2013-07/24/content_1836303.htm', 'type': u'text/html', 'rel': u'alternate'}]
+published_parsed
+title
+authors
+    [{}]
+summary
+    根据中央统一部署，由组长王鸿举带队，中央第八巡视组5月27日进驻江西省。不到两个月，江西官场上下都已感到无形的压力。“这段时间，担心被牵连的人天天提心吊胆，四处打探消息，没被牵连的人则在等着看热闹。”江西省一位国企负责人透露。   这个夏天，江西各地的高档餐饮及娱乐场所普遍出现萧条。  ...<br />
+                        								 <a href="http://www.chinadaily.com.cn/hqgj/jryw/2013-07-24/content_9664221.html" style="font-size: 13px;" target="_blank">重大问题揪不出巡视组就是失职</a><span style="padding-left: 10px; font-size: 12px; color: #666666;">中国日报网</font><br />
+								                        								 <a href="http://news.gxnews.com.cn/staticpages/20130724/newgx51ef49a9-8109323.shtml" style="font-size: 13px;" target="_blank">港媒关注巡视组改革：功能完善 重点监督一把手</a><span style="padding-left: 10px; font-size: 12px; color: #666666;">广西新闻网</font><br />
+								                        								 <a href="http://news.gmw.cn/newspaper/2013-07/24/content_1838215.htm" style="font-size: 13px;" target="_blank">中央巡视组已建组长库</a><span style="padding-left: 10px; font-size: 12px; color: #666666;">光明网</font><br />
+								                        								 <a href="http://tangshan.huanbohainews.com.cn/system/2013/07/23/011258509.shtml" style="font-size: 13px;" target="_blank">党中央的千里眼，拍了苍蝇打老虎 </a><span style="padding-left: 10px; font-size: 12px; color: #666666;">环渤海新闻网</font><br />
+								                        								 <a href="http://pinglun.eastday.com/p/20130724/u1a7543127.html" style="font-size: 13px;" target="_blank">千万别把"老虎"吓成"老鼠"</a><span style="padding-left: 10px; font-size: 12px; color: #666666;">东方网</font><br />
+								                        								 <a href="http://news.gmw.cn/newspaper/2013-07/24/content_1836303.htm" style="font-size: 13px;" target="_blank">落马官员举报官场人心惶惶</a><span style="padding-left: 10px; font-size: 12px; color: #666666;">光明网</font><br />
+								                        					 - <a href="http://news.baidu.com/n?cmd=2&amp;page=http%3A%2F%2Fnews.gmw.cn%2Fnewspaper%2F2013-07%2F24%2Fcontent_1836303.htm&amp;pn=1&amp;clk=crel&amp;cls=civilnews&amp;where=focuspage&amp;class=civilnews"><font color="#008000">498条相关&gt;&gt;</font></a><br />
+source
+    {'title': u'\u5149\u660e\u7f51'}
+title_detail
+link
+    http://news.gmw.cn/newspaper/2013-07/24/content_1836303.htm
+author
+    光明网
+published
+author_detail
+    {'name': u'\u5149\u660e\u7f51'}
+
+::::: 国际新闻 :::::
+feed
+status
+updated
+updated_parsed
+encoding
+    utf-8
+bozo
+headers
+href
+version
+entries
+namespaces
+-----------------
+summary_detail
+    {'base': u'http://rss.news.sohu.com/rss/guoji.xml', 'type': u'text/html', 'value': u'\u4eba\u7c7b\u7684\u201c\u8fd4\u7956\u201d\u73b0\u8c61\u65f6\u6709\u542c\u8bf4\uff0c\u5177\u4f53\u8868\u73b0\u4e3a\u4f1a\u957f\u51fa\u5c0f\u5c3e\u5df4\u6216\u8005\u6bdb\u53d1\u751f\u957f\u65fa\u76db\uff0c\u5982\u4eca\u5370\u5ea6\u771f\u51fa\u4e86\u4e00\u4f4d\u201c\u8fd4\u7956\u201d\u7537\u7ae5\u3002\u636e\u82f1\u56fd\u300a\u592a\u9633\u62a5\u300b7\u670823\u65e5\u62a5\u9053\uff0c\u5370\u5ea612\u5c81\u7537\u5b69\u5df4\u814a\u5409\u540e\u810a\u690e\u957f\u51fa\u4e86\u4e00\u6761\u5c0f\u5c3e\u5df4\uff0c\u5f53\u5730\u4eba\u5c06\u5df4\u814a\u5409\u5949\u82e5\u795e\u7075\uff0c\u7eb7\u7eb7\u524d\u6765\u671d\u62dc\u3002\u7136\u800c\uff0c\u533b\u751f\u5374\u8ba4\u4e3a\u957f\u51fa\u5c3e\u5df4\u53ea\u662f\u810a\u690e\u975e\u6b63\u5e38\u53d1\u80b2\u6240\u81f4\uff0c\u5e76\u975e\u795e\u7075\u8f6c\u4e16\u3002\n\u3000\u3000\u5df4\u814a\u5409\u7684\u8ffd\u968f...', 'language': None}
+published_parsed
+author
+    sohu.com
+links
+    [{'href': u'http://news.sohu.com/20130724/n382438669.shtml', 'type': u'text/html', 'rel': u'alternate'}]
+title
+tags
+    [{'term': u'\u56fd\u9645\u65b0\u95fb', 'scheme': None, 'label': None}]
+comments
+    http://comment.news.sohu.com/comment/topic.jsp?id=382438669
+summary
+    人类的“返祖”现象时有听说，具体表现为会长出小尾巴或者毛发生长旺盛，如今印度真出了一位“返祖”男童。据英国《太阳报》7月23日报道，印度12岁男孩巴腊吉后脊椎长出了一条小尾巴，当地人将巴腊吉奉若神灵，纷纷前来朝拜。然而，医生却认为长出尾巴只是脊椎非正常发育所致，并非神灵转世。
+　　巴腊吉的追随...
+title_detail
+link
+    http://news.sohu.com/20130724/n382438669.shtml
+authors
+    [{}]
+author_detail
+    {'name': u'sohu.com'}
+published
+
+::::: 国内要闻 :::::
+feed
+status
+updated
+updated_parsed
+encoding
+    utf-8
+bozo
+headers
+href
+version
+entries
+namespaces
+-----------------
+summary_detail
+    {'base': u'http://rss.news.sohu.com/rss/guonei.xml', 'type': u'text/html', 'value': u'\u6cd5\u6cbb\u5468\u672b\u8bb0\u8005 \u6f58\u7426\n\u3000\u3000\u6765\u6e90\uff1a\u6cd5\u6cbb\u5468\u672b\n\u3000\u3000\u867d\u7136\u534e\u6da6\u96c6\u56e2\u9ad8\u7ba1\u88ab\u4e3e\u62a5\u6e0e\u804c\u4e00\u4e8b\u6682\u65e0\u5b9a\u8bba\uff0c\u4f46\u8bb0\u8005\u5b9e\u540d\u4e3e\u62a5\u8bdd\u9898\u5df2\u7136\u518d\u6b21\u6210\u4e3a\u70ed\u70b9\n\u3000\u3000\u8bb0\u8005\u5b9e\u540d\u4e3e\u62a5\u518d\u73b0\u3002\n\u3000\u30007\u670817\u65e5\uff0c\u65b0\u534e\u793e\u300a\u7ecf\u6d4e\u53c2\u8003\u62a5\u300b\u9996\u5e2d\u8bb0\u8005\u738b\u6587\u5fd7\u5fae\u535a\u5b9e\u540d\u4e3e\u62a5\u534e\u6da6\u96c6\u56e2\u9ad8\u7ba1\u6e0e\u804c\uff0c\u77ed\u65f6\u95f4\u5185\u5c31\u83b7\u5f97\u8fc7\u4e07\u8f6c\u53d1\uff0c\u5e76\u8fc5\u901f\u5f15\u7206\u8206\u8bba\u3002\n\u3000\u3000\u4e24\u5929\u4e4b\u540e\uff0c\u56fd\u8d44\u59d4\u6709\u5173...', 'language': None}
+published_parsed
+author
+    sohu.com
+links
+    [{'href': u'http://news.sohu.com/20130724/n382429892.shtml', 'type': u'text/html', 'rel': u'alternate'}]
+title
+tags
+    [{'term': u'\u56fd\u5185\u8981\u95fb', 'scheme': None, 'label': None}]
+comments
+    http://comment.news.sohu.com/comment/topic.jsp?id=382429892
+summary
+    法治周末记者 潘琦
+　　来源：法治周末
+　　虽然华润集团高管被举报渎职一事暂无定论，但记者实名举报话题已然再次成为热点
+　　记者实名举报再现。
+　　7月17日，新华社《经济参考报》首席记者王文志微博实名举报华润集团高管渎职，短时间内就获得过万转发，并迅速引爆舆论。
+　　两天之后，国资委有关...
+title_detail
+link
+    http://news.sohu.com/20130724/n382429892.shtml
+authors
+    [{}]
+author_detail
+    {'name': u'sohu.com'}
+published
+
+::::: 搜狐焦点新闻 :::::
+feed
+status
+updated
+updated_parsed
+encoding
+    utf-8
+bozo
+headers
+href
+version
+entries
+namespaces
+-----------------
+summary_detail
+    {'base': u'http://rss.news.sohu.com/rss/focus.xml', 'type': u'text/html', 'value': u'<a href="http://news.sohu.com/20090130/n261974920.shtml"><img src="http://photocdn.sohu.com/20090130/Img261974921_ss.jpg" style="border: 1px solid #000000;" /></a>\u56fe\u7247\uff1a\u5df4\u9ece\u7684\u6297\u8bae\u793a\u5a01\u573a\u9762\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\u3000\u3000\u4eba\u6c11\u7f511\u670830\u65e5\u8baf \n\u6cd5\u56fd\u5404\u5730\u6570\u5341\u4e07\u5fe7\u5fc3\u5fe1\u5fe1\u7684\u5de5\u4eba29\u65e5\u8d70\u4e0a\u8857\u5934\u4e3e\u884c\u6297\u8bae\u793a\u5a01\uff0c\u5f3a\u70c8\u8981\u6c42\u8428\u79d1\u5947\u603b\u7edf\u91c7\u53d6\u66f4\u591a\u63aa\u65bd\u6765\u5e94\u5bf9\u65e5\u76ca\u4e25\u91cd\u7684\u7ecf\u6d4e\u5371\u673a\u3002\u6765\u81ea\u516c\u5171\u548c\u670d\u52a1\u4e1a\u7684\u804c\u5de5\u5728\u8fd9\u4e2a\u201c\u9ed1\u8272\u661f\u671f\u56db\u201d\u96c6\u4f53\u8981\u6c42\u653f\u5e9c\u589e\u52a0\u5de5...', 'language': None}
+published_parsed
+author
+    sohu.com
+links
+    [{'href': u'http://news.sohu.com/20090130/n261974920.shtml', 'type': u'text/html', 'rel': u'alternate'}]
+title
+tags
+    [{'term': u'\u641c\u72d0\u7126\u70b9\u65b0\u95fb', 'scheme': None, 'label': None}]
+comments
+    http://comment.news.sohu.com/comment/topic.jsp?id=261974920
+summary
+    <a href="http://news.sohu.com/20090130/n261974920.shtml"><img src="http://photocdn.sohu.com/20090130/Img261974921_ss.jpg" style="border: 1px solid #000000;" /></a>图片：巴黎的抗议示威场面
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+　　人民网1月30日讯 
+法国各地数十万忧心忡忡的工人29日走上街头举行抗议示威，强烈要求萨科奇总统采取更多措施来应对日益严重的经济危机。来自公共和服务业的职工在这个“黑色星期四”集体要求政府增加工...
+title_detail
+link
+    http://news.sohu.com/20090130/n261974920.shtml
+authors
+    [{}]
+author_detail
+    {'name': u'sohu.com'}
+published
+
+::::: 网易历史新闻 :::::
+feed
+status
+updated
+updated_parsed
+encoding
+    GBK
+bozo
+headers
+href
+version
+entries
+namespaces
+-----------------
+summary_detail
+    {'base': u'http://news.163.com/special/00011K6L/historyrss.xml', 'type': u'text/html', 'value': u'\u300a\u535a\u89c8\u7fa4\u4e66\u300b 2009\u5e74\u7b2c12\u671f \u7531\u4e2d\u592e\u6587\u732e\u7814\u7a76\u5ba4\u539f\u526f\u4e3b\u4efb\u91d1\u51b2\u53ca\u64b0\u5199\u7684\u300a\u4e8c\u5341\u4e16\u7eaa\u4e2d\u56fd\u53f2\u7eb2\u300b\u7531\u793e\u4f1a\u79d1\u5b66\u6587\u732e\u51fa\u7248\u793e\u51fa\u7248\u3002\u8fd9\u90e8114\u4e07\u5b57\u7684\u56db\u5377\u672c\u8457\u4f5c\uff0c\u4ece1894\u5e74\u7684\u7532\u5348\u6218\u4e89\u4e2d\u56fd\u60e8\u8d25\u5199\u8d77\u3002\u4e00\u76f4\u5199\u52302000\u5e74\u3002\u8fd1\u65e5\uff0c\u672c\u520a\u5bf9\u4ed6\u8fdb\u884c\u4e86\u4e13\u8bbf\u3002 \u5173\u6ce8\u6c11\u65cf\u590d\u5174\u8d70\u8fc7\u7684\u9053\u8def \u95ee\uff1a\u60a8\u7684\u300a\u8f6c\u6298\u5e74\u4ee3\u2014\u2014\u4e2d\u56fd\u76841947\u5e74\u300b\u63a2\u8ba8\u7684\u662f\u4e2d\u5171\u5728\u89e3\u653e\u6218\u4e89\u4e2d\u4e3a\u4f55\u4ec5\u4ec5 ......', 'language': None}
+published_parsed
+links
+    [{'href': u'http://history.news.163.com/10/0103/20/5S4M6B6F00011247.html', 'type': u'text/html', 'rel': u'alternate'}]
+title
+summary
+    《博览群书》 2009年第12期 由中央文献研究室原副主任金冲及撰写的《二十世纪中国史纲》由社会科学文献出版社出版。这部114万字的四卷本著作，从1894年的甲午战争中国惨败写起。一直写到2000年。近日，本刊对他进行了专访。 关注民族复兴走过的道路 问：您的《转折年代——中国的1947年》探讨的是中共在解放战争中为何仅仅 ......
+title_detail
+link
+    http://history.news.163.com/10/0103/20/5S4M6B6F00011247.html
+published
+
+::::: 网易新闻频道 :::::
+feed
+status
+updated
+updated_parsed
+encoding
+    GBK
+bozo
+headers
+href
+version
+entries
+namespaces
+-----------------
+summary_detail
+    {'base': u'http://news.163.com/special/r/00011K6L/rss_newstop.xml', 'type': u'text/html', 'value': u'', 'language': None}
+published_parsed
+links
+    [{'href': u'http://news.163.com/special/00011NU3/renda19.html', 'type': u'text/html', 'rel': u'alternate'}]
+title
+summary
+    
+title_detail
+link
+    http://news.163.com/special/00011NU3/renda19.html
+published
+
+::::: 奶味网-IT人- 最新RSS订阅 :::::
+feed
+status
+updated
+updated_parsed
+encoding
+    utf-8
+bozo
+headers
+href
+version
+entries
+bozo_exception
+namespaces
+-----------------
+summary_detail
+    {'base': u'http://www.naivix.com/it/rss.xml', 'type': u'text/html', 'value': u'<img src="http://static.cnbetacdn.com/topics/google_glass.gif" title="Google GLASS" />\n                                                <p>\u5317\u4eac\u65f6\u95f47\u670824\u65e5\u6d88\u606f\uff0c\u636e\u56fd\u5916\u5a92\u4f53\u62a5\u9053\uff0c\u4e4b\u524d\u4e1a\u5185\u4eba\u58eb\u66fe\u7ecf\u5206\u6790\u4e86\u8c37\u6b4c\u773c\u955c\u5728\u8272\u60c5\u884c\u4e1a\u7684\u5de8\u5927\u6f5c\u529b\u3002\u6210\u4eba\u5185\u5bb9\u884c\u4e1a\u7684\u4eba\u58eb\uff0c\u5bf9\u4e8e\u65b0\u79d1\u6280\u5341\u5206\u654f\u611f\uff0c\u65e5\u524d\uff0c\u5168\u4e16\u754c\u7b2c\u4e00\u90e8\u7528\u8c37\u6b4c\u773c\u955c\u62cd\u6444\u7684\u6210\u4eba\u89c6\u9891\u5df2\u7ecf\u95ee\u4e16\u3002\u8fd9\u90e8\u7535\u5f71\u7684\u4e3b\u89d2\u662f\u77e5\u540d\u6210\u4eba\u7535\u5f71\u660e\u661fJames-Deen\uff0c\u5973\u4e3b\u89d2\u662fAndy-San-Dimas\uff08\u4e5f\u662f\u8c37\u6b4c\u773c\u955c\u9996\u6b3e\u6210\u4eba\u5e94\u7528MiKandi\u7684\u70ed\u95e8\u5973\u5b69\uff09\u3002</p>                    \n                    <p style="text-align: center;"><img alt="\u5168\u7403\u9996\u90e8\u7528\u8c37\u6b4c\u773c\u955c\u6210\u4eba\u89c6\u9891\u95ee\u4e16" src="http://static.cnbetacdn.com/newsimg/2013/0724/01374630439.gif" /></p><p style="text-align: center;"><img alt="\u5168\u7403\u9996\u90e8\u7528\u8c37\u6b4c\u773c\u955c\u6210\u4eba\u89c6\u9891\u95ee\u4e16" src="http://static.cnbetacdn.com/newsimg/2013/0724/11374630439.jpg" /></p><p><img alt="Xrayglass_medium" class="photo" src="http://cdn2.sbnation.com/imported_assets/1720235/xrayglass_medium.gif" />\n &nbsp; &nbsp;</p><p>\u76ee\u524d\uff0c\u8fd9\u90e8\u6210\u4eba\u5f71\u7247\u5728YouTube\u4e0a\u64ad\u51fa\u4e86\u201c\u8db3\u591f\u5b89\u5168\u201d\u7684\u7247\u82b1\u3002\u636e\u79f0\uff0c\u5f71\u7247\u4e2d\u8fd8\u4f7f\u7528\u4e86\u9762\u90e8\u8bc6\u522b\uff0c\u5f71\u7247\u4e2d\u8fd8\u8c08\u5230\u4e86APP\u3002</p><p>\u636e\u62a5\u9053\uff0c\u4e24\u4f4d\u4e3b\u6f14\u5728\u5f71\u7247\u62cd\u6444\u4e2d\u4f69\u6234\u4e86\u8c37\u6b4c\u773c\u955c\uff0c\u4e0d\u8fc7\u6709\u65f6\u5019\u753b\u9762\u5448\u73b0\u6b6a\u659c\u3002</p><p>\u53e6\u5916\uff0c\u8fd9\u90e8\u5f71\u7247\u4e2d\u8fd8\u6709\u5927\u91cf\u7684\u5546\u54c1\u690d\u5165\u5e7f\u544a\u3002<br />\u8ba2\u9605\u6765\u81ea\u5976\u5473\u7f51:<a href="http://www.naivix.com/it/2013-07-24/2560105.shtml">http://www.naivix.com/it/2013-07-24/2560105.shtml</a><br />\n\u5976\u5473\u7f51:\u4e13\u4e1a\u7684RSS\u5168\u6587\u65b0\u95fb\u63d0\u4f9b\u5546\uff0c\u4ee5\u540e\u4e0d\u518d\u6709\u5e7f\u544a\u4e86.\n<img src="http://img.tongji.linezing.com/254104/tongji.gif" />', 'language': None}
+published_parsed
+author
+    webmaster@naivix.com (jeff)
+links
+    [{'href': u'http://www.naivix.com/it/2013-07-24/2560105.shtml', 'type': u'text/html', 'rel': u'alternate'}]
+title
+tags
+    [{'term': u'IT\u4eba', 'scheme': None, 'label': None}]
+summary
+    <img src="http://static.cnbetacdn.com/topics/google_glass.gif" title="Google GLASS" />
+                                                <p>北京时间7月24日消息，据国外媒体报道，之前业内人士曾经分析了谷歌眼镜在色情行业的巨大潜力。成人内容行业的人士，对于新科技十分敏感，日前，全世界第一部用谷歌眼镜拍摄的成人视频已经问世。这部电影的主角是知名成人电影明星James-Deen，女主角是Andy-San-Dimas（也是谷歌眼镜首款成人应用MiKandi的热门女孩）。</p>                    
+                    <p style="text-align: center;"><img alt="全球首部用谷歌眼镜成人视频问世" src="http://static.cnbetacdn.com/newsimg/2013/0724/01374630439.gif" /></p><p style="text-align: center;"><img alt="全球首部用谷歌眼镜成人视频问世" src="http://static.cnbetacdn.com/newsimg/2013/0724/11374630439.jpg" /></p><p><img alt="Xrayglass_medium" class="photo" src="http://cdn2.sbnation.com/imported_assets/1720235/xrayglass_medium.gif" />
+ &nbsp; &nbsp;</p><p>目前，这部成人影片在YouTube上播出了“足够安全”的片花。据称，影片中还使用了面部识别，影片中还谈到了APP。</p><p>据报道，两位主演在影片拍摄中佩戴了谷歌眼镜，不过有时候画面呈现歪斜。</p><p>另外，这部影片中还有大量的商品植入广告。<br />订阅来自奶味网:<a href="http://www.naivix.com/it/2013-07-24/2560105.shtml">http://www.naivix.com/it/2013-07-24/2560105.shtml</a><br />
+奶味网:专业的RSS全文新闻提供商，以后不再有广告了.
+<img src="http://img.tongji.linezing.com/254104/tongji.gif" />
+guidislink
+    False
+title_detail
+link
+    http://www.naivix.com/it/2013-07-24/2560105.shtml
+authors
+    [{}]
+author_detail
+    {'name': u'jeff', 'email': u'webmaster@naivix.com'}
+id
+published
+
+::::: 百度互联网焦点新闻 :::::
+feed
+status
+version
+encoding
+    gb18030
+bozo
+headers
+href
+namespaces
+entries
+bozo_exception
+-----------------
+summary_detail
+    {'base': u'http://news.baidu.com/n?cmd=1&class=internet&tn=rss&sub=0', 'type': u'text/html', 'value': u'<a href="http://it.sohu.com/20130724/n382451275.shtml" target="_blank"><img border="0" src="http://t1.baidu.com/it/u=http%3A%2F%2Fphotocdn.sohu.com%2F20130724%2FImg382451276.jpg&amp;fm=30" /></a><br />\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\u6587/\u6797\u4e30\u857e   7\u670823\u65e5\uff0c\u5bf9\u4e8e\u76db\u5927\u6587\u5b66\u65d7\u4e0b\u4e91\u4e2d\u4e66\u57ce\u7684\u5458\u5de5\u6765\u8bf4\uff0c\u8fd9\u662f\u4e00\u4e2a\u9ed1\u8272\u7684\u65e5\u5b50\uff0c\u8fd9\u4e00\u5929\uff0c\u5927\u90e8\u5206\u7684\u5458\u5de5\u90fd\u88abHR\u53eb\u53bb\u4e86\u8c08\u8bdd\uff0c\u7136\u540e\u88ab\u544a\u77e5\u56e0\u4e3a\u4e1a\u52a1\u8c03\u6574\uff0c\u4ed6\u4eec\u5c06\u88ab\u88c1\u6389\u3002   \u65f6\u9488\u8df3\u8f6c\u81f37\u670824\u65e5\uff0c\u76db\u5927\u6587\u5b66\u7684\u4f1a\u8bae\u5ba4\u91cc\u4f9d\u7136\u6c14\u6c1b\u51dd\u91cd\u3001\u5927\u95e8\u7d27\u95ed\uff0c\u9648\u5929\u6865\u5df2\u7ecf\u4e0e\u76db\u5927\u6587\u5b66\u7684\u8bf8\u4f4d\u9ad8\u7ba1\u4eec\u6574\u6574\u5f00\u4e86\u4e00\u4e0a\u5348\u7684\u4f1a\u3002\u800c\u4f1a...<br />\n                        \t\t\t\t\t\t\t\t <a href="http://www.donews.com/net/201307/1558243.shtm" style="font-size: 13px;" target="_blank">\u76db\u5927\u6587\u5b66\u4e91\u4e2d\u4e66\u57ce\u7ed3\u6784\u8c03\u6574\uff1a\u5e76\u5165\u8d77\u70b9 \u6574\u5408\u79fb\u52a8\u7aef</a><span style="padding-left: 10px; font-size: 12px; color: #666666;">DoNews</font><br />\n\t\t\t\t\t\t\t\t                        \t\t\t\t\t\t\t\t <a href="http://tech.qq.com/a/20130724/013260.htm" style="font-size: 13px;" target="_blank">\u76db\u5927\u6587\u5b66\u4e1a\u52a1\u8c03\u6574\uff1a\u4e91\u57ceAPP\u548c\u8d77\u70b9\u8bfb\u4e66APP\u6574\u5408</a><span style="padding-left: 10px; font-size: 12px; color: #666666;">\u817e\u8baf\u7f51</font><br />\n\t\t\t\t\t\t\t\t                        \t\t\t\t\t\t\t\t <a href="http://it.sohu.com/20130724/n382451275.shtml" style="font-size: 13px;" target="_blank">\u76db\u5927\u4e91\u4e2d\u4e66\u57ce\u88c1\u5458 \u5e76\u5165\u8d77\u70b9</a><span style="padding-left: 10px; font-size: 12px; color: #666666;">\u641c\u72d0</font><br />\n\t\t\t\t\t\t\t\t                        \t\t\t\t\t\t\t\t <a href="http://www.techweb.com.cn/digi/voice/2013-07-24/1312071.shtml" style="font-size: 13px;" target="_blank">\u77e5\u540dIT\u8bc4\u8bba\u5bb6\u738b\u6613\u89c1\uff1a\u79fb\u52a8\u6536\u5165\u8d85PC\u7aef \u76db\u5927\u6587\u5b66\u6218..</a><span style="padding-left: 10px; font-size: 12px; color: #666666;">TechWeb</font><br />\n\t\t\t\t\t\t\t\t                        \t\t\t\t\t\t\t\t <a href="http://www.donews.com/net/201307/1555554.shtm" style="font-size: 13px;" target="_blank">\u770b\u597d\u76db\u5927\u6587\u5b66\u7684\u5f00\u653e\u3001\u79fb\u52a8\u6218\u7565</a><span style="padding-left: 10px; font-size: 12px; color: #666666;">DoNews</font><br />\n\t\t\t\t\t\t\t\t                        \t\t\t\t\t - <a href="http://news.baidu.com/n?cmd=2&amp;page=http%3A%2F%2Fit.sohu.com%2F20130724%2Fn382451275.shtml&amp;pn=1&amp;clk=crel&amp;cls=internet&amp;where=focuspage&amp;class=internet"><font color="#008000">12\u6761\u76f8\u5173&gt;&gt;</font></a><br />', 'language': None}
+links
+    [{'href': u'http://it.sohu.com/20130724/n382451275.shtml', 'type': u'text/html', 'rel': u'alternate'}]
+published_parsed
+title
+authors
+    [{}]
+summary
+    <a href="http://it.sohu.com/20130724/n382451275.shtml" target="_blank"><img border="0" src="http://t1.baidu.com/it/u=http%3A%2F%2Fphotocdn.sohu.com%2F20130724%2FImg382451276.jpg&amp;fm=30" /></a><br />
+																文/林丰蕾   7月23日，对于盛大文学旗下云中书城的员工来说，这是一个黑色的日子，这一天，大部分的员工都被HR叫去了谈话，然后被告知因为业务调整，他们将被裁掉。   时针跳转至7月24日，盛大文学的会议室里依然气氛凝重、大门紧闭，陈天桥已经与盛大文学的诸位高管们整整开了一上午的会。而会...<br />
+                        								 <a href="http://www.donews.com/net/201307/1558243.shtm" style="font-size: 13px;" target="_blank">盛大文学云中书城结构调整：并入起点 整合移动端</a><span style="padding-left: 10px; font-size: 12px; color: #666666;">DoNews</font><br />
+								                        								 <a href="http://tech.qq.com/a/20130724/013260.htm" style="font-size: 13px;" target="_blank">盛大文学业务调整：云城APP和起点读书APP整合</a><span style="padding-left: 10px; font-size: 12px; color: #666666;">腾讯网</font><br />
+								                        								 <a href="http://it.sohu.com/20130724/n382451275.shtml" style="font-size: 13px;" target="_blank">盛大云中书城裁员 并入起点</a><span style="padding-left: 10px; font-size: 12px; color: #666666;">搜狐</font><br />
+								                        								 <a href="http://www.techweb.com.cn/digi/voice/2013-07-24/1312071.shtml" style="font-size: 13px;" target="_blank">知名IT评论家王易见：移动收入超PC端 盛大文学战..</a><span style="padding-left: 10px; font-size: 12px; color: #666666;">TechWeb</font><br />
+								                        								 <a href="http://www.donews.com/net/201307/1555554.shtm" style="font-size: 13px;" target="_blank">看好盛大文学的开放、移动战略</a><span style="padding-left: 10px; font-size: 12px; color: #666666;">DoNews</font><br />
+								                        					 - <a href="http://news.baidu.com/n?cmd=2&amp;page=http%3A%2F%2Fit.sohu.com%2F20130724%2Fn382451275.shtml&amp;pn=1&amp;clk=crel&amp;cls=internet&amp;where=focuspage&amp;class=internet"><font color="#008000">12条相关&gt;&gt;</font></a><br />
+source
+    {'title': u'\u641c\u72d0'}
+title_detail
+link
+    http://it.sohu.com/20130724/n382451275.shtml
+author
+    搜狐
+published
+author_detail
+    {'name': u'\u641c\u72d0'}
+
+::::: 百度游戏最新新闻 :::::
+feed
+status
+version
+encoding
+    gb18030
+bozo
+headers
+href
+namespaces
+entries
+bozo_exception
+-----------------
+summary_detail
+    {'base': u'http://news.baidu.com/n?cmd=4&class=gamenews&tn=rss', 'type': u'text/html', 'value': u'<a href="http://www.ce.cn/xwzx/gnsz/gdxw/201307/24/t20130724_24602068.shtml" target="_blank"><img border="0" src="http://t1.baidu.com/it/u=http%3A%2F%2Fi1.ce.cn%2Fce%2Fxwzx%2Fgnsz%2Fgdxw%2F201307%2F24%2FW020130724530739674491.jpg&amp;fm=30" /></a><br />\u5f00\u5e55\u5f0f\u542f\u52a8\u7167   2013\u5e747\u670824\u65e5\uff0c\u4f5c\u4e3a\u7b2c\u5341\u4e00\u5c4a\u4e2d\u56fd\u56fd\u9645\u6570\u7801\u4e92\u52a8\u5a31\u4e50\u5c55\u89c8\u4f1a(ChinaJoy)\u7684\u4e1a\u754c\u6700\u91cd\u91cf\u7ea7\u6d3b\u52a8\uff0c\u4e2d\u56fd\u56fd\u9645\u6570\u7801\u4e92\u52a8\u5a31\u4e50\u4ea7\u4e1a\u9ad8\u5cf0\u8bba\u575b\u5982\u671f\u5f00\u5e55\u3002\u653f\u5e9c\u53ca\u6e38\u620f\u4e1a\u754c\u76f8\u5173\u9886\u519b\u4eba\u58eb\u7eb7\u7eb7\u5728\u4f1a\u4e0a\u7545...', 'language': None}
+published_parsed
+links
+    [{'href': u'http://www.ce.cn/xwzx/gnsz/gdxw/201307/24/t20130724_24602068.shtml', 'type': u'text/html', 'rel': u'alternate'}]
+title
+authors
+    [{}]
+summary
+    <a href="http://www.ce.cn/xwzx/gnsz/gdxw/201307/24/t20130724_24602068.shtml" target="_blank"><img border="0" src="http://t1.baidu.com/it/u=http%3A%2F%2Fi1.ce.cn%2Fce%2Fxwzx%2Fgnsz%2Fgdxw%2F201307%2F24%2FW020130724530739674491.jpg&amp;fm=30" /></a><br />开幕式启动照   2013年7月24日，作为第十一届中国国际数码互动娱乐展览会(ChinaJoy)的业界最重量级活动，中国国际数码互动娱乐产业高峰论坛如期开幕。政府及游戏业界相关领军人士纷纷在会上畅...
+source
+    {'title': u'\u4e2d\u56fd\u7ecf\u6d4e\u7f51'}
+title_detail
+link
+    http://www.ce.cn/xwzx/gnsz/gdxw/201307/24/t20130724_24602068.shtml
+author
+    中国经济网
+published
+author_detail
+    {'name': u'\u4e2d\u56fd\u7ecf\u6d4e\u7f51'}
+
+::::: 百度电影最新新闻 :::::
+feed
+status
+version
+encoding
+    gb18030
+bozo
+headers
+href
+namespaces
+entries
+bozo_exception
+-----------------
+summary_detail
+    {'base': u'http://news.baidu.com/n?cmd=4&class=film&tn=rss', 'type': u'text/html', 'value': u'<a href="http://news.youth.cn/yl/201307/t20130724_3585145.htm" target="_blank"><img border="0" src="http://t1.baidu.com/it/u=http%3A%2F%2Fnews.youth.cn%2Fyl%2F201307%2FW020130724532421439975.jpg&amp;fm=30" /></a><br />\u300a\u7231\xb7\u56de\u5bb6\u300b\u5267\u7167  \u300a\u7231\xb7\u56de\u5bb6\u300b\u89c2\u6469\u7814\u8ba8\u4f1a\u73b0\u573a   \u817e\u8baf\u5a31\u4e50\u8baf \u65e5\u524d\uff0c\u7531\u4e2d\u56fd\u7535\u5f71\u5bb6\u534f\u4f1a\u4e3b\u529e\u7684\u7535\u5f71\u300a\u7231\xb7\u56de\u5bb6\u300b\u89c2\u6469\u7814\u8ba8\u4f1a\u5728\u4eac\u4e3e\u884c\u3002\u7535\u5f71\u884c\u4e1a\u4e13\u5bb6\u3001\u4ee5\u53ca\u4e3b\u6d41\u5a92\u4f53\u7b49\uff0c\u5bf9\u6b64\u7247\u7684\u5b9a\u4f4d\u3001\u7acb\u610f\u3001\u6545\u4e8b\u3001\u7ed3\u6784\u3001\u8868\u73b0\u624b\u6cd5...', 'language': None}
+published_parsed
+links
+    [{'href': u'http://news.youth.cn/yl/201307/t20130724_3585145.htm', 'type': u'text/html', 'rel': u'alternate'}]
+title
+authors
+    [{}]
+summary
+    <a href="http://news.youth.cn/yl/201307/t20130724_3585145.htm" target="_blank"><img border="0" src="http://t1.baidu.com/it/u=http%3A%2F%2Fnews.youth.cn%2Fyl%2F201307%2FW020130724532421439975.jpg&amp;fm=30" /></a><br />《爱·回家》剧照  《爱·回家》观摩研讨会现场   腾讯娱乐讯 日前，由中国电影家协会主办的电影《爱·回家》观摩研讨会在京举行。电影行业专家、以及主流媒体等，对此片的定位、立意、故事、结构、表现手法...
+source
+    {'title': u'\u4e2d\u56fd\u9752\u5e74\u7f51'}
+title_detail
+link
+    http://news.youth.cn/yl/201307/t20130724_3585145.htm
+author
+    中国青年网
+published
+author_detail
+    {'name': u'\u4e2d\u56fd\u9752\u5e74\u7f51'}
+
+::::: 百度电视最新新闻 :::::
+feed
+status
+version
+encoding
+    gb18030
+bozo
+headers
+href
+namespaces
+entries
+bozo_exception
+-----------------
+summary_detail
+    {'base': u'http://news.baidu.com/n?cmd=4&class=tv&tn=rss', 'type': u'text/html', 'value': u'<a href="http://www.dzwww.com/yule/yulezhuanti/mtcbg/201307/t20130724_8710642.htm" target="_blank"><img border="0" src="http://t1.baidu.com/it/u=http%3A%2F%2Fwww.dzwww.com%2Fyule%2Fyulezhuanti%2Fmtcbg%2F201307%2FW020130724526968816570.jpg&amp;fm=30" /></a><br />\u6c6a\u5cf0\u3001\u5f20\u60e0\u59b9\u3001\u90a3\u82f1\u3001\u5ebe\u6f84\u5e86\u56db\u4f4d\u5bfc\u5e08\u56de\u5e94\u8d28\u7591 \u6668\u62a5\u8bb0\u8005 \u5434\u78ca  \u4eac\u534e\u65f6\u62a5\u8baf \u7531\u641c\u72d0\u89c6\u9891\u72ec\u5bb6\u64ad\u51fa\uff0c\u52a0\u591a\u5b9d\u5168\u7a0b\u7f51\u7edc\u9996\u5e2d\u8d5e\u52a9\uff0c\u4e09\u661f\u7535\u5b50\u3001\u767e\u96c0\u7f9a\u5168\u7a0b\u7f51\u7edc\u8054\u5408\u8d5e\u52a9\u7684\u7b2c\u4e8c\u5b63\u300a\u4e2d\u56fd\u597d\u58f0\u97f3\u300b\u518d\u6b21\u6765\u88ad\u3002\u641c\u72d0\u4e0d\u4ec5\u72ec\u5bb6\u4e70\u65ad...', 'language': None}
+published_parsed
+links
+    [{'href': u'http://www.dzwww.com/yule/yulezhuanti/mtcbg/201307/t20130724_8710642.htm', 'type': u'text/html', 'rel': u'alternate'}]
+title
+authors
+    [{}]
+summary
+    <a href="http://www.dzwww.com/yule/yulezhuanti/mtcbg/201307/t20130724_8710642.htm" target="_blank"><img border="0" src="http://t1.baidu.com/it/u=http%3A%2F%2Fwww.dzwww.com%2Fyule%2Fyulezhuanti%2Fmtcbg%2F201307%2FW020130724526968816570.jpg&amp;fm=30" /></a><br />汪峰、张惠妹、那英、庾澄庆四位导师回应质疑 晨报记者 吴磊  京华时报讯 由搜狐视频独家播出，加多宝全程网络首席赞助，三星电子、百雀羚全程网络联合赞助的第二季《中国好声音》再次来袭。搜狐不仅独家买断...
+source
+    {'title': u'\u5927\u4f17\u7f51'}
+title_detail
+link
+    http://www.dzwww.com/yule/yulezhuanti/mtcbg/201307/t20130724_8710642.htm
+author
+    大众网
+published
+author_detail
+    {'name': u'\u5927\u4f17\u7f51'}
+
+::::: 百度娱乐最新新闻 :::::
+feed
+status
+version
+encoding
+    gb18030
+bozo
+headers
+href
+namespaces
+entries
+bozo_exception
+-----------------
+summary_detail
+    {'base': u'http://news.baidu.com/n?cmd=4&class=enternews&tn=rss', 'type': u'text/html', 'value': u'<a href="http://news.fjnet.com/hwjj/hwnr/201307/t20130724_211219.htm" target="_blank"><img border="0" src="http://t1.baidu.com/it/u=http%3A%2F%2Fnews.fjnet.com%2Fhwjj%2Fhwnr%2F201307%2FW020130724533467341082.jpg&amp;fm=30" /></a><br />\u4f5b\u6559\u5728\u7ebf\u53f0\u6e7e\u8baf \u6148\u6d4e\u57fa\u91d1\u4f1a\u3001\u53f0\u201d\u5185\u653f\u90e8\u201c\u4e0e\u65b0\u5317\u5e02\u7b496\u53bf\uff08\u5e02\uff09\u5171\u540c\u529e\u7406\u201c\u60df\u5b5d\xb7\u5e78\u798f\u201d\u4eba\u6587\u8bb2\u5ea7\u7cfb\u5217\u6d3b\u52a8\uff0c\u901a\u8fc7\u6148\u6d4e\u5927\u7231\u7535\u89c6\u53f0\u62cd\u6444\u7684\u5b5d\u9053\u7535\u5f71\u300a\u6709\u4f60\u771f\u597d\u300b\uff0c\u4ee5\u5f71\u7247\u6b23\u8d4f\u66a8\u5ea7\u8c08\u4f1a\u65b9\u5f0f\uff0c\u4f20\u8fbe\u53ca\u65f6\u884c\u5b5d\u89c2\u5ff5\u3002\u7535\u5f71\u4e2d\u9970\u6f14...', 'language': None}
+published_parsed
+links
+    [{'href': u'http://news.fjnet.com/hwjj/hwnr/201307/t20130724_211219.htm', 'type': u'text/html', 'rel': u'alternate'}]
+title
+authors
+    [{}]
+summary
+    <a href="http://news.fjnet.com/hwjj/hwnr/201307/t20130724_211219.htm" target="_blank"><img border="0" src="http://t1.baidu.com/it/u=http%3A%2F%2Fnews.fjnet.com%2Fhwjj%2Fhwnr%2F201307%2FW020130724533467341082.jpg&amp;fm=30" /></a><br />佛教在线台湾讯 慈济基金会、台”内政部“与新北市等6县（市）共同办理“惟孝·幸福”人文讲座系列活动，通过慈济大爱电视台拍摄的孝道电影《有你真好》，以影片欣赏暨座谈会方式，传达及时行孝观念。电影中饰演...
+source
+    {'title': u'\u4f5b\u6559\u5728\u7ebf'}
+title_detail
+link
+    http://news.fjnet.com/hwjj/hwnr/201307/t20130724_211219.htm
+author
+    佛教在线
+published
+author_detail
+    {'name': u'\u4f5b\u6559\u5728\u7ebf'}
+
+::::: 百度网络游戏最新新闻 :::::
+feed
+status
+version
+encoding
+    gb18030
+bozo
+headers
+href
+namespaces
+entries
+bozo_exception
+-----------------
+summary_detail
+    {'base': u'http://news.baidu.com/n?cmd=4&class=netgames&tn=rss', 'type': u'text/html', 'value': u'<a href="http://www.ce.cn/xwzx/gnsz/gdxw/201307/24/t20130724_24602068.shtml" target="_blank"><img border="0" src="http://t1.baidu.com/it/u=http%3A%2F%2Fi1.ce.cn%2Fce%2Fxwzx%2Fgnsz%2Fgdxw%2F201307%2F24%2FW020130724530739674491.jpg&amp;fm=30" /></a><br />\u5f00\u5e55\u5f0f\u542f\u52a8\u7167   2013\u5e747\u670824\u65e5\uff0c\u4f5c\u4e3a\u7b2c\u5341\u4e00\u5c4a\u4e2d\u56fd\u56fd\u9645\u6570\u7801\u4e92\u52a8\u5a31\u4e50\u5c55\u89c8\u4f1a(ChinaJoy)\u7684\u4e1a\u754c\u6700\u91cd\u91cf\u7ea7\u6d3b\u52a8\uff0c\u4e2d\u56fd\u56fd\u9645\u6570\u7801\u4e92\u52a8\u5a31\u4e50\u4ea7\u4e1a\u9ad8\u5cf0\u8bba\u575b\u5982\u671f\u5f00\u5e55\u3002\u653f\u5e9c\u53ca\u6e38\u620f\u4e1a\u754c\u76f8\u5173\u9886\u519b\u4eba\u58eb\u7eb7\u7eb7\u5728\u4f1a\u4e0a\u7545...', 'language': None}
+published_parsed
+links
+    [{'href': u'http://www.ce.cn/xwzx/gnsz/gdxw/201307/24/t20130724_24602068.shtml', 'type': u'text/html', 'rel': u'alternate'}]
+title
+authors
+    [{}]
+summary
+    <a href="http://www.ce.cn/xwzx/gnsz/gdxw/201307/24/t20130724_24602068.shtml" target="_blank"><img border="0" src="http://t1.baidu.com/it/u=http%3A%2F%2Fi1.ce.cn%2Fce%2Fxwzx%2Fgnsz%2Fgdxw%2F201307%2F24%2FW020130724530739674491.jpg&amp;fm=30" /></a><br />开幕式启动照   2013年7月24日，作为第十一届中国国际数码互动娱乐展览会(ChinaJoy)的业界最重量级活动，中国国际数码互动娱乐产业高峰论坛如期开幕。政府及游戏业界相关领军人士纷纷在会上畅...
+source
+    {'title': u'\u4e2d\u56fd\u7ecf\u6d4e\u7f51'}
+title_detail
+link
+    http://www.ce.cn/xwzx/gnsz/gdxw/201307/24/t20130724_24602068.shtml
+author
+    中国经济网
+published
+author_detail
+    {'name': u'\u4e2d\u56fd\u7ecf\u6d4e\u7f51'}
+
+::::: 百度音乐最新新闻 :::::
+feed
+status
+version
+encoding
+    gb18030
+bozo
+headers
+href
+namespaces
+entries
+bozo_exception
+-----------------
+summary_detail
+    {'base': u'http://news.baidu.com/n?cmd=4&class=music&tn=rss', 'type': u'text/html', 'value': u'<a href="http://www.chinanews.com/yl/2013/07-24/5079535.shtml" target="_blank"><img border="0" src="http://t1.baidu.com/it/u=http%3A%2F%2Fwww.chinanews.com%2Fcr%2F2013%2F0724%2F575673505.jpg&amp;fm=30" /></a><br />\u5de6\u8d77\uff1a\u91d1\u5fd7\u6587\u3001\u8c2d\u6676\u3001\u7406\u67e5\u5fb7   \u8fd1\u65e5\u70ae\u8f70\u201c\u5f53\u4e0b\u9009\u79c0\u8282\u76ee\u592a\u529f\u5229\u201d\u5e76\u53f7\u79f0\u201c\u4e0d\u4f1a\u62c5\u4efb\u9009\u79c0\u8bc4\u59d4\u201d\u7684\u9ad8\u6653\u677e\uff0c22\u65e5\u665a\u5374\u51fa\u4efb\u4e86\u300a\u4e2d\u56fd\u7ea2\u6b4c\u4f1a\u300b\uff08\u4ee5\u4e0b\u7b80\u79f0\u7ea2\u6b4c\u4f1a\uff09\u8bc4\u59d4\uff0c\u800c\u4e14\u7591\u56e0\u53bb\u5357\u660c\u6e38\u73a9\u800c\u7f3a\u5e2d\u8bc4\u59d4\u89c1\u9762\u4f1a\u3002   \u4e0e\u9ad8...', 'language': None}
+published_parsed
+links
+    [{'href': u'http://www.chinanews.com/yl/2013/07-24/5079535.shtml', 'type': u'text/html', 'rel': u'alternate'}]
+title
+authors
+    [{}]
+summary
+    <a href="http://www.chinanews.com/yl/2013/07-24/5079535.shtml" target="_blank"><img border="0" src="http://t1.baidu.com/it/u=http%3A%2F%2Fwww.chinanews.com%2Fcr%2F2013%2F0724%2F575673505.jpg&amp;fm=30" /></a><br />左起：金志文、谭晶、理查德   近日炮轰“当下选秀节目太功利”并号称“不会担任选秀评委”的高晓松，22日晚却出任了《中国红歌会》（以下简称红歌会）评委，而且疑因去南昌游玩而缺席评委见面会。   与高...
+source
+    {'title': u'\u4e2d\u56fd\u65b0\u95fb\u7f51'}
+title_detail
+link
+    http://www.chinanews.com/yl/2013/07-24/5079535.shtml
+author
+    中国新闻网
+published
+author_detail
+    {'name': u'\u4e2d\u56fd\u65b0\u95fb\u7f51'}
+
+::::: 百度综合体育最新新闻 :::::
+feed
+status
+version
+encoding
+    gb18030
+bozo
+headers
+href
+namespaces
+entries
+bozo_exception
+-----------------
+summary_detail
+    {'base': u'http://news.baidu.com/n?cmd=4&class=othersports&tn=rss', 'type': u'text/html', 'value': u'<a href="http://sports.sina.com.cn/golf/2013-07-24/14446686404.shtml" target="_blank"><img border="0" src="http://t1.baidu.com/it/u=http%3A%2F%2Fi0.sinaimg.cn%2Fty%2Fgolf%2F2013-07-24%2FU364P6T12D6686404F44DT20130724144428.jpg&amp;fm=30" /></a><br />\u7c73\u514b\u5c14\u68ee\u6367\u676f   \u65b0\u6d6a\u4f53\u80b2\u8baf \u5317\u4eac\u65f6\u95f47\u670824\u65e5\u6d88\u606f\uff0c\u4e16\u9526\u8d5b-\u666e\u5229\u53f8\u901a\u9ad8\u5c14\u592b\u9080\u8bf7\u8d5b\u5373\u5c06\u4e8e7\u670831\u65e5\u81f38\u67084\u65e5\u5728\u7f8e\u56fd\u4fc4\u4ea5\u4fc4\u5dde\u963f\u514b\u4f26\u57ce\u7684\u706b\u77f3\u4e61\u6751\u4ff1\u4e50\u90e8\u4e3e\u884c\uff0c\u521a\u521a\u83b7\u5f97\u82f1\u56fd\u516c\u5f00\u8d5b\u51a0\u519b\u7684\u83f2\u5c14-\u7c73\u514b\u5c14\u68ee\u8fd1\u65e5\u786e\u8ba4...', 'language': None}
+published_parsed
+links
+    [{'href': u'http://sports.sina.com.cn/golf/2013-07-24/14446686404.shtml', 'type': u'text/html', 'rel': u'alternate'}]
+title
+authors
+    [{}]
+summary
+    <a href="http://sports.sina.com.cn/golf/2013-07-24/14446686404.shtml" target="_blank"><img border="0" src="http://t1.baidu.com/it/u=http%3A%2F%2Fi0.sinaimg.cn%2Fty%2Fgolf%2F2013-07-24%2FU364P6T12D6686404F44DT20130724144428.jpg&amp;fm=30" /></a><br />米克尔森捧杯   新浪体育讯 北京时间7月24日消息，世锦赛-普利司通高尔夫邀请赛即将于7月31日至8月4日在美国俄亥俄州阿克伦城的火石乡村俱乐部举行，刚刚获得英国公开赛冠军的菲尔-米克尔森近日确认...
+source
+    {'title': u'\u65b0\u6d6a'}
+title_detail
+link
+    http://sports.sina.com.cn/golf/2013-07-24/14446686404.shtml
+author
+    新浪
+published
+author_detail
+    {'name': u'\u65b0\u6d6a'}
+
+::::: 百度英超最新新闻 :::::
+feed
+status
+version
+encoding
+    gb18030
+bozo
+headers
+href
+namespaces
+entries
+bozo_exception
+-----------------
+summary_detail
+    {'base': u'http://news.baidu.com/n?cmd=4&class=yingchao&tn=rss', 'type': u'text/html', 'value': u'<a href="http://sports.163.com/13/0724/14/94IAU3OE00051CD5.html" target="_blank"><img border="0" src="http://t1.baidu.com/it/u=http%3A%2F%2Fimg4.cache.netease.com%2Fsports%2F2013%2F7%2F24%2F20130724144050cbb9b_550.png&amp;fm=30" /></a><br />\u7f51\u6613\u4f53\u80b27\u670824\u65e5\u62a5\u9053\uff1a  \u6765\u81ea\u300a\u7f57\u9a6c\u4f53\u80b2\u62a5\u300b\u7684\u6d88\u606f\u79f0\uff0c\u7f57\u9a6c\u4f53\u80b2\u603b\u76d1\u8428\u5df4\u8482\u5c3c\u5c06\u4eb2\u8d74\u4f26\u6566\u4e0e\u963f\u68ee\u7eb3\u5546\u8c08\u70ed\u5c14\u7ef4\u5c3c\u5965\u7684\u8f6c\u4f1a\uff0c\u7f57\u9a6c\u5e0c\u671b\u80fd\u4ee5\u4e0d\u8d85\u8fc7800\u4e07\u6b27\u5143\u7684\u4ef7\u683c\u62ff\u4e0b\u8fd9\u4f4d\u9c81\u8fea-\u52a0\u897f\u4e9a\u94a6\u70b9\u7684\u7403\u5458\u3002  \u300a\u7f57\u9a6c\u4f53\u80b2...', 'language': None}
+published_parsed
+links
+    [{'href': u'http://sports.163.com/13/0724/14/94IAU3OE00051CD5.html', 'type': u'text/html', 'rel': u'alternate'}]
+title
+authors
+    [{}]
+summary
+    <a href="http://sports.163.com/13/0724/14/94IAU3OE00051CD5.html" target="_blank"><img border="0" src="http://t1.baidu.com/it/u=http%3A%2F%2Fimg4.cache.netease.com%2Fsports%2F2013%2F7%2F24%2F20130724144050cbb9b_550.png&amp;fm=30" /></a><br />网易体育7月24日报道：  来自《罗马体育报》的消息称，罗马体育总监萨巴蒂尼将亲赴伦敦与阿森纳商谈热尔维尼奥的转会，罗马希望能以不超过800万欧元的价格拿下这位鲁迪-加西亚钦点的球员。  《罗马体育...
+source
+    {'title': u'\u7f51\u6613'}
+title_detail
+link
+    http://sports.163.com/13/0724/14/94IAU3OE00051CD5.html
+author
+    网易
+published
+author_detail
+    {'name': u'\u7f51\u6613'}
+
+::::: 百度西甲最新新闻 :::::
+feed
+status
+version
+encoding
+    gb18030
+bozo
+headers
+href
+namespaces
+entries
+bozo_exception
+-----------------
+summary_detail
+    {'base': u'http://news.baidu.com/n?cmd=4&class=xijia&tn=rss', 'type': u'text/html', 'value': u'\u4e0d\u662f\u6069\u91cc\u514b\u4e5f\u4e0d\u662f\u5e0c\u4e01\u514b\uff0c\u800c\u662f50\u5c81\u7684\u963f\u6839\u5ef7\u4eba\u9a6c\u8482\u8bfa\uff0c\u5df4\u585e\u7f57\u90a3\u65b0\u4e3b\u5e05\u6628\u665a\u6c34\u843d\u77f3\u51fa\u3002\u524d\u5df4\u62c9\u572d\u961f\u4e3b\u5e05\u9a6c\u8482\u8bfa\u5c06\u4e0e\u7ea2\u84dd\u519b\u56e2\u7b7e\u7ea6\u4e24\u5e74\u3002   \u9a6c\u8482\u8bfa1962\u5e7411\u670820\u65e5\u51fa\u751f\u4e8e\u963f\u6839\u5ef7\u7f57\u8428\u91cc\u5965\uff0c\u7ef0\u53f7\u201c\u5854\u5854\uff08Tata...', 'language': None}
+published_parsed
+links
+    [{'href': u'http://sports.sohu.com/20130724/n382457663.shtml', 'type': u'text/html', 'rel': u'alternate'}]
+title
+authors
+    [{}]
+summary
+    不是恩里克也不是希丁克，而是50岁的阿根廷人马蒂诺，巴塞罗那新主帅昨晚水落石出。前巴拉圭队主帅马蒂诺将与红蓝军团签约两年。   马蒂诺1962年11月20日出生于阿根廷罗萨里奥，绰号“塔塔（Tata...
+source
+    {'title': u'\u641c\u72d0'}
+title_detail
+link
+    http://sports.sohu.com/20130724/n382457663.shtml
+author
+    搜狐
+published
+author_detail
+    {'name': u'\u641c\u72d0'}
+
+::::: 百度意甲最新新闻 :::::
+feed
+status
+version
+encoding
+    gb18030
+bozo
+headers
+href
+namespaces
+entries
+bozo_exception
+-----------------
+summary_detail
+    {'base': u'http://news.baidu.com/n?cmd=4&class=yijia&tn=rss', 'type': u'text/html', 'value': u'<a href="http://sports.163.com/13/0724/14/94IAU3OE00051CD5.html" target="_blank"><img border="0" src="http://t1.baidu.com/it/u=http%3A%2F%2Fimg4.cache.netease.com%2Fsports%2F2013%2F7%2F24%2F20130724144050cbb9b_550.png&amp;fm=30" /></a><br />\u7f51\u6613\u4f53\u80b27\u670824\u65e5\u62a5\u9053\uff1a  \u6765\u81ea\u300a\u7f57\u9a6c\u4f53\u80b2\u62a5\u300b\u7684\u6d88\u606f\u79f0\uff0c\u7f57\u9a6c\u4f53\u80b2\u603b\u76d1\u8428\u5df4\u8482\u5c3c\u5c06\u4eb2\u8d74\u4f26\u6566\u4e0e\u963f\u68ee\u7eb3\u5546\u8c08\u70ed\u5c14\u7ef4\u5c3c\u5965\u7684\u8f6c\u4f1a\uff0c\u7f57\u9a6c\u5e0c\u671b\u80fd\u4ee5\u4e0d\u8d85\u8fc7800\u4e07\u6b27\u5143\u7684\u4ef7\u683c\u62ff\u4e0b\u8fd9\u4f4d\u9c81\u8fea-\u52a0\u897f\u4e9a\u94a6\u70b9\u7684\u7403\u5458\u3002  \u300a\u7f57\u9a6c\u4f53\u80b2...', 'language': None}
+published_parsed
+links
+    [{'href': u'http://sports.163.com/13/0724/14/94IAU3OE00051CD5.html', 'type': u'text/html', 'rel': u'alternate'}]
+title
+authors
+    [{}]
+summary
+    <a href="http://sports.163.com/13/0724/14/94IAU3OE00051CD5.html" target="_blank"><img border="0" src="http://t1.baidu.com/it/u=http%3A%2F%2Fimg4.cache.netease.com%2Fsports%2F2013%2F7%2F24%2F20130724144050cbb9b_550.png&amp;fm=30" /></a><br />网易体育7月24日报道：  来自《罗马体育报》的消息称，罗马体育总监萨巴蒂尼将亲赴伦敦与阿森纳商谈热尔维尼奥的转会，罗马希望能以不超过800万欧元的价格拿下这位鲁迪-加西亚钦点的球员。  《罗马体育...
+source
+    {'title': u'\u7f51\u6613'}
+title_detail
+link
+    http://sports.163.com/13/0724/14/94IAU3OE00051CD5.html
+author
+    网易
+published
+author_detail
+    {'name': u'\u7f51\u6613'}
+
+::::: 百度NBA最新新闻 :::::
+feed
+status
+version
+encoding
+    gb18030
+bozo
+headers
+href
+namespaces
+entries
+bozo_exception
+-----------------
+summary_detail
+    {'base': u'http://news.baidu.com/n?cmd=4&class=nba&tn=rss', 'type': u'text/html', 'value': u'\u7f51\u6613\u4f53\u80b27\u670824\u65e5\u62a5\u9053\uff1a  \u636eNBA\u5b98\u7f51\u6770\u592b-\u5361\u666e\u5170\u62a5\u9053\uff0c\u5317\u4eac\u65f6\u95f47\u670823\u65e5\uff0c\u706b\u7bad\u7bee\u7403\u8fd0\u8425\u526f\u603b\u88c1\u683c\u6851-\u7f57\u8428\u65af\u52a0\u76df\u5c0f\u725b\u62c5\u4efb\u603b\u7ecf\u7406\uff0c\u4f5c\u4e3a\u6253\u9020\u706b\u7bad\u5982\u4eca\u5f3a\u529b\u9635\u5bb9\u7684\u5173\u952e\u6210\u5458\u4e4b\u4e00\uff0c\u7f57\u8428\u65af\u5982\u4eca\u5374\u8f6c\u6295\u5c0f\u725b\uff0c\u6b64\u4e3e\u65e0\u7591...', 'language': None}
+published_parsed
+links
+    [{'href': u'http://sports.163.com/13/0724/14/94IB40S900051CA1.html', 'type': u'text/html', 'rel': u'alternate'}]
+title
+authors
+    [{}]
+summary
+    网易体育7月24日报道：  据NBA官网杰夫-卡普兰报道，北京时间7月23日，火箭篮球运营副总裁格桑-罗萨斯加盟小牛担任总经理，作为打造火箭如今强力阵容的关键成员之一，罗萨斯如今却转投小牛，此举无疑...
+source
+    {'title': u'\u7f51\u6613'}
+title_detail
+link
+    http://sports.163.com/13/0724/14/94IB40S900051CA1.html
+author
+    网易
+published
+author_detail
+    {'name': u'\u7f51\u6613'}
+
+::::: 百度政策风向最新新闻 :::::
+feed
+status
+version
+encoding
+    gb18030
+bozo
+headers
+href
+namespaces
+entries
+bozo_exception
+-----------------
+summary_detail
+    {'base': u'http://news.baidu.com/n?cmd=4&class=zcfx&tn=rss', 'type': u'text/html', 'value': u'\u623f\u4ea7\u7a0e\u6269\u56f4\u63d0\u4e0a\u65e5\u7a0b \u65b9\u6848\u843d\u5730\u60ac\u800c\u672a\u51b3   \u81ea\u4e0a\u6d77\u3001\u91cd\u5e86\u5728\u5168\u56fd\u7387\u5148\u65bd\u884c\u623f\u4ea7\u7a0e\u8bd5\u70b9\uff0c\u5df2\u5386\u7ecf\u4e24\u5e74\u3002\u671f\u95f4\u623f\u4ea7\u7a0e\u57ce\u5e02\u6269\u5bb9\u7684\u6d88\u606f\u59cb\u7ec8\u4e0d\u7edd\u4e8e\u8033\uff0c\u8206\u8bba\u731c\u6d4b\u4e0e\u5b98\u65b9\u8f9f\u8c23\u4e0d\u65ad\u3002\u4eca\u5e745\u6708\u4e2d\u592e\u7ecf\u6d4e\u4f53\u5236\u6539\u9769\u610f\u89c1\u51fa\u53f0\uff0c\u8d22\u7a0e\u4f53\u5236\u6539...', 'language': None}
+published_parsed
+links
+    [{'href': u'http://news.dichan.sina.com.cn/2013/07/24/805940.html', 'type': u'text/html', 'rel': u'alternate'}]
+title
+authors
+    [{}]
+summary
+    房产税扩围提上日程 方案落地悬而未决   自上海、重庆在全国率先施行房产税试点，已历经两年。期间房产税城市扩容的消息始终不绝于耳，舆论猜测与官方辟谣不断。今年5月中央经济体制改革意见出台，财税体制改...
+source
+    {'title': u'\u65b0\u6d6a\u5730\u4ea7\u7f51'}
+title_detail
+link
+    http://news.dichan.sina.com.cn/2013/07/24/805940.html
+author
+    新浪地产网
+published
+author_detail
+    {'name': u'\u65b0\u6d6a\u5730\u4ea7\u7f51'}
+
+::::: 百度家居最新新闻 :::::
+feed
+status
+version
+encoding
+    gb18030
+bozo
+headers
+href
+namespaces
+entries
+bozo_exception
+-----------------
+summary_detail
+    {'base': u'http://news.baidu.com/n?cmd=4&class=fitment&tn=rss', 'type': u'text/html', 'value': u'<a href="http://home.house365.com/html/2013/07/24/022366552.html" target="_blank"><img border="0" src="http://t1.baidu.com/it/u=http%3A%2F%2Fpic.house365.com%2Fnewcms%2F2013%2F04%2F23%2F136669042951760a7d541c4.jpg&amp;fm=30" /></a><br />\u7f16\u8005\u6309\uff1a\u53a8\u623f\u5728\u6211\u4eec\u751f\u6d3b\u4e2d\u7684\u4f5c\u7528\u4e0d\u53ef\u8a00\u55bb\uff0c\u6c11\u4ee5\u98df\u4e3a\u5929\u4e00\u53e5\u8bdd\u5c31\u80fd\u6982\u62ec\u51fa\u6765\u30022013\u53a8\u623f\u88c5\u4fee\u6548\u679c\u56fe\u5c31\u662f\u8981\u544a\u8bc9\u4f60\uff0c\u968f\u7740\u4eba\u4eec\u7ecf\u6d4e\u6c34\u5e73\u7684\u63d0\u9ad8\uff0c\u5bf9\u4e8e\u53a8\u623f\u4e0d\u518d\u53ea\u662f\u4e00\u4e2a\u70f9\u996a\u7684\u5730\u65b9\uff0c\u66f4\u662f\u4e00\u4e2a\u4eab\u53d7\u70f9\u996a\u7684\u5730\u65b9\uff0c\u7f8e\u89c2\u7684\u8bbe\u8ba1\u4e5f...', 'language': None}
+published_parsed
+links
+    [{'href': u'http://home.house365.com/html/2013/07/24/022366552.html', 'type': u'text/html', 'rel': u'alternate'}]
+title
+authors
+    [{}]
+summary
+    <a href="http://home.house365.com/html/2013/07/24/022366552.html" target="_blank"><img border="0" src="http://t1.baidu.com/it/u=http%3A%2F%2Fpic.house365.com%2Fnewcms%2F2013%2F04%2F23%2F136669042951760a7d541c4.jpg&amp;fm=30" /></a><br />编者按：厨房在我们生活中的作用不可言喻，民以食为天一句话就能概括出来。2013厨房装修效果图就是要告诉你，随着人们经济水平的提高，对于厨房不再只是一个烹饪的地方，更是一个享受烹饪的地方，美观的设计也...
+source
+    {'title': u'365\u5730\u4ea7\u5bb6\u5c45\u7f51'}
+title_detail
+link
+    http://home.house365.com/html/2013/07/24/022366552.html
+author
+    365地产家居网
+published
+author_detail
+    {'name': u'365\u5730\u4ea7\u5bb6\u5c45\u7f51'}
+
+::::: 百度环球视野焦点新闻 :::::
+feed
+status
+version
+encoding
+    gb18030
+bozo
+headers
+href
+namespaces
+entries
+bozo_exception
+-----------------
+summary_detail
+    {'base': u'http://news.baidu.com/n?cmd=1&class=hqsy&tn=rss&sub=0', 'type': u'text/html', 'value': u'\u636e\u7f8e\u56fd\u8457\u540d\u535a\u5ba2\u65b0\u95fb\u7f51\u7ad9\u201cgawker.com\u201d7\u670823\u65e5\u62a5\u9053\uff0c\u52a0\u62ff\u5927\u4e00\u540d47\u5c81\u7684\u7537\u5b50\u4e3a\u5411\u670b\u53cb\u8bc1\u660e\u81ea\u5df1\uff0c\u5728\u559d\u4e868\u74f6\u5564\u9152\u540e\uff0c\u6e38\u8fc7\u5e95\u7279\u5f8b\u6cb3\uff0c\u4e0d\u6599\u5f15\u53d1\u4e86\u56fd\u9645\u6027\u4e8b\u4ef6\uff0c\u5e76\u4e8e23\u65e5\u6b63\u5f0f\u9053\u6b49\u3002   \u8be5\u7537\u5b50\u540d\u53eb\u7ea6\u7ff0 \u83ab\u91cc\u6d1b\uff0c23\u65e9\u521a\u4ece\u76d1\u72f1\u4e2d\u88ab\u91ca\u653e\u51fa\u6765\uff0c\u4ed6\u5728\u63a5\u53d7\u300a\u6e29\u838e\u660e\u661f\u300b\u91c7\u8bbf\u65f6\u53cd\u601d\u4e86\u81ea\u5df1\u7684\u611a\u8822\u884c\u4e3a\uff0c\u4f46\u540c\u65f6...<br />\n                        \t\t\t\t\t\t\t\t <a href="http://fujian.people.com.cn/n/2013/0724/c181466-19147655.html" style="font-size: 13px;" target="_blank">\u52a0\u7537\u5b50\u4e3a\u663e\u6446\u996e8\u74f6\u5564\u9152\u5728\u6cb3\u4e2d\u6e38\u6cf3\u5f15\u56fd\u9645\u4e8b\u4ef6</a><span style="padding-left: 10px; font-size: 12px; color: #666666;">\u4eba\u6c11\u7f51</font><br />\n\t\t\t\t\t\t\t\t                        \t\t\t\t\t - <a href="http://news.baidu.com/n?cmd=2&amp;page=http%3A%2F%2Ffujian.people.com.cn%2Fn%2F2013%2F0724%2Fc181466-19147655.html&amp;pn=1&amp;clk=crel&amp;cls=hqsy&amp;where=focuspage&amp;class=hqsy"><font color="#008000">1\u6761\u76f8\u5173&gt;&gt;</font></a><br />', 'language': None}
+links
+    [{'href': u'http://fujian.people.com.cn/n/2013/0724/c181466-19147655.html', 'type': u'text/html', 'rel': u'alternate'}]
+published_parsed
+title
+authors
+    [{}]
+summary
+    据美国著名博客新闻网站“gawker.com”7月23日报道，加拿大一名47岁的男子为向朋友证明自己，在喝了8瓶啤酒后，游过底特律河，不料引发了国际性事件，并于23日正式道歉。   该男子名叫约翰 莫里洛，23早刚从监狱中被释放出来，他在接受《温莎明星》采访时反思了自己的愚蠢行为，但同时...<br />
+                        								 <a href="http://fujian.people.com.cn/n/2013/0724/c181466-19147655.html" style="font-size: 13px;" target="_blank">加男子为显摆饮8瓶啤酒在河中游泳引国际事件</a><span style="padding-left: 10px; font-size: 12px; color: #666666;">人民网</font><br />
+								                        					 - <a href="http://news.baidu.com/n?cmd=2&amp;page=http%3A%2F%2Ffujian.people.com.cn%2Fn%2F2013%2F0724%2Fc181466-19147655.html&amp;pn=1&amp;clk=crel&amp;cls=hqsy&amp;where=focuspage&amp;class=hqsy"><font color="#008000">1条相关&gt;&gt;</font></a><br />
+source
+    {'title': u'\u4eba\u6c11\u7f51'}
+title_detail
+link
+    http://fujian.people.com.cn/n/2013/0724/c181466-19147655.html
+author
+    人民网
+published
+author_detail
+    {'name': u'\u4eba\u6c11\u7f51'}
+
+::::: 百度港澳最新新闻 :::::
+feed
+status
+version
+encoding
+    gb18030
+bozo
+headers
+href
+namespaces
+entries
+bozo_exception
+-----------------
+summary_detail
+    {'base': u'http://news.baidu.com/n?cmd=4&class=gangaotai&tn=rss', 'type': u'text/html', 'value': u'\u539f\u6807\u9898[\u6e2f\u4e00\u7684\u58eb\u53f8\u673a\u5077\u4e58\u5ba2\u884c\u674e\u88ab\u5224\u76d1\u7981\u516b\u4e2a\u6708]  \u4eba\u6c11\u7f51\u9999\u6e2f7\u670824\u65e5\u7535\u65e5\u524d\uff0c\u4e00\u540d\u9999\u6e2f\u7684\u58eb\u53f8\u673a\u672a\u5f85\u4e58\u5ba2\u53d6\u56de\u884c\u674e\u4fbf\u9a7e\u8f66\u79bb\u5f00\u3002\u8fd1\u65e5\u8be5\u540d\u53f8\u673a\u88ab\u88c1\u5b9a\u76d7\u7a83\u7f6a\u6210\u7acb\uff0c\u88ab\u5224\u76d1\u79815\u4e2a\u6708\u5e76\u8d54\u507f\u4e58\u5ba2500\u6e2f\u5143\u3002   \u4e8b\u53d1...', 'language': None}
+published_parsed
+links
+    [{'href': u'http://life.gmw.cn/2013-07/24/content_8389615.htm', 'type': u'text/html', 'rel': u'alternate'}]
+title
+authors
+    [{}]
+summary
+    原标题[港一的士司机偷乘客行李被判监禁八个月]  人民网香港7月24日电日前，一名香港的士司机未待乘客取回行李便驾车离开。近日该名司机被裁定盗窃罪成立，被判监禁5个月并赔偿乘客500港元。   事发...
+source
+    {'title': u'\u5149\u660e\u7f51'}
+title_detail
+link
+    http://life.gmw.cn/2013-07/24/content_8389615.htm
+author
+    光明网
+published
+author_detail
+    {'name': u'\u5149\u660e\u7f51'}
+
+::::: 百度军事最新新闻 :::::
+feed
+status
+version
+encoding
+    gb18030
+bozo
+headers
+href
+namespaces
+entries
+bozo_exception
+-----------------
+summary_detail
+    {'base': u'http://news.baidu.com/n?cmd=4&class=mil&tn=rss', 'type': u'text/html', 'value': u'<a href="http://www.chinanews.com/mil/2013/07-24/5079548.shtml" target="_blank"><img border="0" src="http://t1.baidu.com/it/u=http%3A%2F%2Fwww.chinanews.com%2Fcr%2F2013%2F0724%2F2620637126.jpg&amp;fm=30" /></a><br />\u89e3\u653e\u519b\u76f4\u5347\u673a\u591c\u95f4\u98de\u4e34\u96c5\u9c81\u85cf\u5e03\u6c5f   \u5370\u5ea6\u591a\u5bb6\u5a92\u4f53\u5bf9\u4e2d\u56fd\u7a7a\u519b\u65e5\u524d\u5728\u897f\u85cf\u8fdb\u884c\u591c\u95f4\u98de\u884c\u8bad\u7ec3\u7684\u6d88\u606f\u8868\u8ff0\u5173\u6ce8\u3002\u5370\u5ea6\u62a5\u4e1a\u6258\u62c9\u65af7\u670823\u65e5\u62a5\u9053\u79f0\uff0c\u4e2d\u56fd\u5a92\u4f53\u516c\u5e03\u4e86\u6570\u5f20\u4e2d\u56fd\u7a7a\u519b\u5728\u62c9\u8428\u673a\u573a\u8fdb\u884c\u591c\u822a\u8bad\u7ec3\u7684\u7167\u7247\u3002   \u62a5\u9053...', 'language': None}
+published_parsed
+links
+    [{'href': u'http://www.chinanews.com/mil/2013/07-24/5079548.shtml', 'type': u'text/html', 'rel': u'alternate'}]
+title
+authors
+    [{}]
+summary
+    <a href="http://www.chinanews.com/mil/2013/07-24/5079548.shtml" target="_blank"><img border="0" src="http://t1.baidu.com/it/u=http%3A%2F%2Fwww.chinanews.com%2Fcr%2F2013%2F0724%2F2620637126.jpg&amp;fm=30" /></a><br />解放军直升机夜间飞临雅鲁藏布江   印度多家媒体对中国空军日前在西藏进行夜间飞行训练的消息表述关注。印度报业托拉斯7月23日报道称，中国媒体公布了数张中国空军在拉萨机场进行夜航训练的照片。   报道...
+source
+    {'title': u'\u4e2d\u56fd\u65b0\u95fb\u7f51'}
+title_detail
+link
+    http://www.chinanews.com/mil/2013/07-24/5079548.shtml
+author
+    中国新闻网
+published
+author_detail
+    {'name': u'\u4e2d\u56fd\u65b0\u95fb\u7f51'}
+
