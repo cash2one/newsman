@@ -29,4 +29,4 @@
 ### 词语连在一起
 [Austin claims first title in six years with playoff win](http://54.251.107.116/transcoded/en_007_1374447306_9588464.html)
 
-    `Championshipat`: (Reuters) - Woody Austinbirdied the first extra hole in a three-way playoff with Daniel Summerhaysand Cameron Beckmanto win the Sanderson Farms Championshipat Annandale Golf Clubin Madison, Mississippi on Sunday.
+    (Reuters) - Woody Austinbirdied the first extra hole in a three-way playoff with Daniel Summerhaysand Cameron Beckmanto win the Sanderson Farms `**Championshipat**` Annandale Golf Clubin Madison, Mississippi on Sunday.
