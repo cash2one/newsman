@@ -1,8 +1,6 @@
-首段问题
-=======
+# 首段问题
 
-没有正文，只有比赛结果
-------------------------------------
+## 没有正文，只有比赛结果
 [Golf-British Open scores](http://54.251.107.116/transcoded/en_007_1374426618_45792784.html)
 
     July 21 (Infostrada Sports) - Scores from the British Open at the par-71 course on Sunday in Gullane
@@ -12,7 +10,8 @@
 
 实际的第一段在很多内容后面
 ------------------------------------------
-    [Golf-Mickelson ends British Open hoodoo as Westwood falters](http://54.251.107.116/transcoded/en_007_1374429525_62330922.html)
+[Golf-Mickelson ends British Open hoodoo as Westwood falters](http://54.251.107.116/transcoded/en_007_1374429525_62330922.html)
+
     * American captures fifth major title
     * No joy for overnight leader Westwood
     * Woods also out of sorts on final day
