@@ -9,7 +9,7 @@
     285 Ian Poulter (Britain) 72 71 75 67
 
 ### 实际的第一段在很多内容后面
-[Golf-Mickelson ends British Open hoodoo as Westwood falters](http://54.251.107.116/transcoded/en_007_1374429525_62330922.html)
+[Golf-Mickelson ends British Open hoodoo as Westwood falters](http://54.251.107.116/transcoded/en_007_1374429525_62330922.html), [Analysis: Brewers' Braun first to fall in MLB doping sweep](http://54.251.107.116/transcoded/en_007_1374538099_19394265.html)
 
     * American captures fifth major title
     * No joy for overnight leader Westwood
@@ -18,15 +18,14 @@
     GULLANE, Scotland, July 21 (Reuters) - After huffing and puffing at the British Openso often in the past, Phil Mickelsonfinally blew the house down by romping to a three-shot victory over Swede Henrik Stensonin golf's oldest major on Sunday.
 
 ### 多余的内容（新闻发布者、时间、作者、地点等）
-[Austin claims first title in six years with playoff win](http://54.251.107.116/transcoded/en_007_1374447306_9588464.html)
+[Austin claims first title in six years with playoff win](http://54.251.107.116/transcoded/en_007_1374447306_9588464.html), [Golf-Thai protege swaps irons for textbooks after record win](http://54.251.107.116/transcoded/en_007_1374488148_67749452.html)
 
     (Reuters) - Woody Austinbirdied the first extra hole in a three-way playoff with Daniel Summerhaysand Cameron Beckmanto win the Sanderson Farms Championshipat Annandale Golf Clubin Madison, Mississippi on Sunday.
 
---------------------------------------------------------
 
 ## 转码问题
 
 ### 词语连在一起
 [Austin claims first title in six years with playoff win](http://54.251.107.116/transcoded/en_007_1374447306_9588464.html)
 
-    (Reuters) - Woody Austinbirdied the first extra hole in a three-way playoff with Daniel Summerhaysand Cameron Beckmanto win the Sanderson Farms `**Championshipat**` Annandale Golf Clubin Madison, Mississippi on Sunday.
+    (Reuters) - Woody Austinbirdied the first extra hole in a three-way playoff with Daniel Summerhaysand Cameron Beckmanto win the Sanderson Farms Championshipat Annandale Golf Clubin Madison, Mississippi on Sunday.
