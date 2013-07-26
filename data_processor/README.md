@@ -17,4 +17,16 @@
     By Tony Jimenez
     GULLANE, Scotland, July 21 (Reuters) - After huffing and puffing at the British Openso often in the past, Phil Mickelsonfinally blew the house down by romping to a three-shot victory over Swede Henrik Stensonin golf's oldest major on Sunday.
 
-###
+### 多余的内容（新闻发布者、时间、作者、地点等）
+[Austin claims first title in six years with playoff win](http://54.251.107.116/transcoded/en_007_1374447306_9588464.html)
+
+    (Reuters) - Woody Austinbirdied the first extra hole in a three-way playoff with Daniel Summerhaysand Cameron Beckmanto win the Sanderson Farms Championshipat Annandale Golf Clubin Madison, Mississippi on Sunday.
+
+--------------------------------------------------------
+
+## 转码问题
+
+### 词语连在一起
+[Austin claims first title in six years with playoff win](http://54.251.107.116/transcoded/en_007_1374447306_9588464.html)
+
+    `Championshipat`: (Reuters) - Woody Austinbirdied the first extra hole in a three-way playoff with Daniel Summerhaysand Cameron Beckmanto win the Sanderson Farms Championshipat Annandale Golf Clubin Madison, Mississippi on Sunday.
