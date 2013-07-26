@@ -32,6 +32,10 @@
     1. Boston 61 41 .598 -
     2. Tampa Bay59 42 .584 1 1/2
 
+### 没有内容/只有图片
+[Chicago approves $500 million revamp of Wsrigley Field](http://54.251.107.116/transcoded/en_007_1374710117_96775663.html)
+
+
 
 ## 转码问题
 
@@ -48,3 +52,6 @@
 
 ### 只有图片的文章图片没有被删除
 [Chicago approves $500 million revamp of Wsrigley Field](http://54.251.107.116/transcoded/en_007_1374710117_96775663.html)
+
+### 图片被拉扯变形
+[Doctor retained by A-Rod says leg uninjured](http://54.251.107.116/transcoded/en_007_1374715313_2769162.html)
