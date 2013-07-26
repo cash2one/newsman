@@ -3,7 +3,7 @@
 
 没有正文，只有比赛结果
 ------------------------------------
-    [Golf-British Open scores](http://54.251.107.116/transcoded/en_007_1374426618_45792784.html)
+    - [Golf-British Open scores](http://54.251.107.116/transcoded/en_007_1374426618_45792784.html)
     July 21 (Infostrada Sports) - Scores from the British Open at the par-71 course on Sunday in Gullane
     281 Phil Mickelson (U.S.) 69 74 72 66
     284 Henrik Stenson (Sweden) 70 70 74 70
