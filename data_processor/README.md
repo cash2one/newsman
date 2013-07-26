@@ -55,3 +55,4 @@
 
 ### 图片被拉扯变形
 [Doctor retained by A-Rod says leg uninjured](http://54.251.107.116/transcoded/en_007_1374715313_2769162.html)
+![Abnormal scaling](http://l3.yimg.com/bt/api/res/1.2/jQTpab9u_hOJXX3DpdTg5g--/YXBwaWQ9eW5ld3M7Y2g9MjkyODtjcj0xO2N3PTQwMjA7ZHg9MDtkeT0wO2ZpPXVsY3JvcDtoPTQ1OTtxPTg1O3c9NjMw/http:/media.zenfs.com/en_us/News/ap_webfeeds/0b22f443c2a58418380f6a706700b0ed.jpg)
