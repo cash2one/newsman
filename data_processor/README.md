@@ -1,7 +1,7 @@
 ## 首段问题
 
 ### 没有正文，只有比赛结果
-[Golf-British Open scores](http://54.251.107.116/transcoded/en_007_1374426618_45792784.html)
+[Golf-British Open scores](http://54.251.107.116/transcoded/en_007_1374426618_45792784.html), [Golf-U.S. PGA Tour Sanderson Farms Championship scores](http://54.251.107.116/transcoded/en_007_1374442523_52416824.html)
 
     July 21 (Infostrada Sports) - Scores from the British Open at the par-71 course on Sunday in Gullane
     281 Phil Mickelson (U.S.) 69 74 72 66
@@ -16,3 +16,5 @@
     * Woods also out of sorts on final day
     By Tony Jimenez
     GULLANE, Scotland, July 21 (Reuters) - After huffing and puffing at the British Openso often in the past, Phil Mickelsonfinally blew the house down by romping to a three-shot victory over Swede Henrik Stensonin golf's oldest major on Sunday.
+
+###
