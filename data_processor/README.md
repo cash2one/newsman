@@ -22,6 +22,16 @@
 
     (Reuters) - Woody Austinbirdied the first extra hole in a three-way playoff with Daniel Summerhaysand Cameron Beckmanto win the Sanderson Farms Championshipat Annandale Golf Clubin Madison, Mississippi on Sunday.
 
+### 首段内容太少，后文内容也不一定适合阅读/朗读
+[Baseball standings](http://54.251.107.116/transcoded/en_007_1374648155_92862326.html)
+
+    July 24 (Infostrada Sports) - Standings from the MLB on Tuesday
+    AMERICAN LEAGUE
+    EASTERN DIVISION
+    W L PCT GB
+    1. Boston 61 41 .598 -
+    2. Tampa Bay59 42 .584 1 1/2
+
 
 ## 转码问题
 
@@ -29,3 +39,12 @@
 [Austin claims first title in six years with playoff win](http://54.251.107.116/transcoded/en_007_1374447306_9588464.html)
 
     (Reuters) - Woody Austinbirdied the first extra hole in a three-way playoff with Daniel Summerhaysand Cameron Beckmanto win the Sanderson Farms Championshipat Annandale Golf Clubin Madison, Mississippi on Sunday.
+
+### 只有图片的文章中图片被删除，可是空问却被留下来
+[Belichick says Pats will learn from Hernandez case](http://54.251.107.116/transcoded/en_007_1374705723_16816904.html)
+
+### Original page按钮失效（或没有原文链接）
+[Belichick says Pats will learn from Hernandez case](http://54.251.107.116/transcoded/en_007_1374705723_16816904.html)
+
+### 只有图片的文章图片没有被删除
+[Chicago approves $500 million revamp of Wsrigley Field](http://54.251.107.116/transcoded/en_007_1374710117_96775663.html)
