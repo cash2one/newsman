@@ -30,7 +30,7 @@ from administration.config import TRANSCODING_BTN_PT
 from administration.config import TRANSCODING_BTN_IND
 from administration.config import TRANSCODED_ENCODING   # lijun
 from administration.config import TRANSCODED_LOCAL_DIR
-from administration.config import TRANSCODED_WEB_DIR
+from administration.config import TRANSCODED_PUBLIC_DIR
 from administration.config import UCK_TRANSCODING
 import urllib2
 
@@ -141,7 +141,7 @@ def generate_path(content, relative_path):
     if not content or not relative_path:
         return None
     local_path = '%s%s.html' % (TRANSCODED_LOCAL_DIR, relative_path)
-    web_path = '%s%s.html' % (TRANSCODED_WEB_DIR, relative_path)
+    web_path = '%s%s.html' % (TRANSCODED_PUBLIC_DIR, relative_path)
     f = open(local_path, 'w')
     f.write(hparser.unescape(content))
     f.close()
