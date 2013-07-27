@@ -61,3 +61,6 @@ FEED_REGISTRAR = 'feeds'
 
 LANGUAGES = ['en', 'th', 'ind', 'ja', 'pt', 'en-rIN', 'ar']
 MIN_IMAGE_SIZE = 150, 150
+THUMBNAIL_IMAGE_SIZE = 118, 88
+CATEGORY_IMAGE_SIZE = 189, 162
+HOT_IMAGE_SIZE = 388, 162

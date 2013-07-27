@@ -60,7 +60,7 @@ def _value_added_process(entries=None, language=None):
                 entry['images'].extend(images)
             entry['images'] = list(set(entry[images])) if entry.has_key['images'] and entry['images'] else None
 
-            # [OPTIONAL] find biggest image
+            # [OPTIONAL] generate 3 types of images: thumbnail, category image and hot news image
             if entry.has_key('images') and entry['images']:
                 biggest = image_helper.find_biggest_image(entry['images'])
             entry['image'] = None if not entry.has_key(
