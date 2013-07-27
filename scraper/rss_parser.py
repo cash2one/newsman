@@ -114,28 +114,9 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
         entry['summary'] = None
     entry['summary'] = None if not entry['summary'] else entry['summary']
 
-    def _store_thumbnail(stored_at, image):
-        """
-        docs needed!
-        """
-        if thumbnail.is_thumbnail(image):
-            width, height = thumbnail.get_image_size(image)
-            stored_at.append({'url': image, 'width': width, 'height': height})
-        else:
-            rand = random.randint(0, 1000000)
-            thumbnail_name = 'thumbnail_%s_%s_%i' % (
-                entry['language'], entry['updated'], rand)
-            image_shrinked = thumbnail.generate_thumbnail(
-                image, thumbnail_name)
-            width, height = thumbnail.get_image_size(image_shrinked)
-            stored_at.append(
-                {'url': image_shrinked, 'width': width, 'height': height})
-
-
-    # article's thumbnail
-    # e.g. [{'url':
-    # u'http://l.yimg.com/bt/api/res/1.2/SC7vBu0RS0PXeIctqYqbnw--/YXBwaWQ9eW5ld3M7Zmk9ZmlsbDtoPTg2O3E9ODU7dz0xMzA-/http://media.zenfs.com/pt_BR/News/AFP/photo_1374358063998-1-HD.jpg',
-    # 'width': u'130', 'type': u'image/jpeg', 'height': u'86'}]
+    # article's images
+    # e.g. [{'url':'http://image.com/test.jpg, 'width': u'130', 'height': u'86'}]
+    entry['images'] = {}
     try:
         entry['thumbnails'] = e.media_content
     except AttributeError as k:
@@ -164,17 +145,17 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
                 if soup.img.get('src'):
                     images = soup.img['src']
                     if isinstance(images, str):
-                        _store_thumbnail(entry['thumbnails'], images)
+                        _normalize(entry['thumbnails'], images)
                     elif isinstance(images, list):
                         for image in images:
-                            _store_thumbnail(entry['thumbnails'], image)
+                            _normalize(entry['thumbnails'], image)
         if 'thumbnails' not in entry:
             try:
                 links = e.links
                 for link in links:
                     if 'type' in link and 'image' in link.type:
                         if 'href' in link:
-                            _store_thumbnail(entry['thumbnails'], link.href)
+                            _normalize(entry['thumbnails'], link.href)
                 if 'thumbnails' not in entry:
                     raise AttributeError("no image found in 'links'")
             except AttributeError as k:

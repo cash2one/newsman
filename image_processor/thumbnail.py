@@ -10,20 +10,21 @@ import Image
 from cStringIO import StringIO
 import urllib2
 
-from administration.config import THUMBNAIL_SIZE
+from administration.config import MIN_IMAGE_SIZE
 from administration.config import IMAGES_LOCAL_DIR
 from administration.config import IMAGES_WEB_DIR
 
 
 # TODO: boundary checker should not return None, instead probably an Exception 
-def is_thumbnail(image_url):
+# TODO: this method should be moved to image_helper
+def is_valid_image(image_url):
     """
-    docs needed
+    find out if the image has a resolution larger than MIN_IMAGE_SIZE
     """
     if not image_url:
         return None
     image_pil = Image.open(StrinIO(urllib2.urlopen(image_url).read())) 
-    return True if image_pil.size[0]*image_pil.size[1] < THUMBNAIL_SIZE[0]*THUMBNAIL_SIZE[1] else False
+    return True if image_pil.size[0]*image_pil.size[1] > MIN_IMAGE_SIZE[0]*MIN_IMAGE_SIZE[1] else False
 
 
 # TODO: boundary checkers
@@ -37,12 +38,12 @@ def generate_thumbnail(image_url, relative_path):
     image_web = StringIO(urllib2.urlopen(image_url).read())
     image_pil = Image.open(image_web)
     # generate thumbnail
-    if image_pil.size > THUMBNAIL_SIZE:
+    if image_pil.size > MIN_IMAGE_SIZE:
         image_thumbnail_local_path = '%s%si.jpg' % (
             IMAGES_LOCAL_DIR, relative_path)
         image_thumbnail_web_path = '%s%s.jpg' % (
             IMAGES_WEB_DIR, relative_path)
-        image_pil.thumbnail(config.THUMBNAIL_SIZE, Image.ANTIALIAS)
+        image_pil.thumbnail(config.MIN_IMAGE_SIZE, Image.ANTIALIAS)
         image_pil = image_pil.convert('RGB')
         image_pil.save(image_thumbnail_local_path, 'JPEG')
         return image_thumbnail_web_path
