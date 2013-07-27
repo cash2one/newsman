@@ -70,7 +70,7 @@ def _value_added_process(entries=None, language=None):
                     try:
                     image_helper.scale_image(image=biggest, size_expected=(388, 162), resize_by_width=True, crop_by_center=True, relative_path='test')
                     except IOError as k:
-                        entry['error'].append(k+'\n')
+                        entry['error'].append(k + '\n')
             entry['image'] = None if not entry.has_key(
                 'image') else entry['image']
 
@@ -83,6 +83,7 @@ def _value_added_process(entries=None, language=None):
                         entry['language'], entry['title'], tts_relative_path)
                 except Exception as k:
                     print k, '... cannot generate TTS for %s' % entry['link']
+                    entry['error'].append(k + '\n')
                     entry['mp3'] = None
                     entry['mp3_local'] = None
 
@@ -101,6 +102,7 @@ def _value_added_process(entries=None, language=None):
             entry['database_expired'] = _expired(
                 entry['updated_parsed'], DATABASE_REMOVAL_DAYS)
 
+            entry['error'] = entry['error'] if entry['error'] else None
             entries_new.append(entry)
         except Exception as k:
             print k
