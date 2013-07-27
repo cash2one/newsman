@@ -155,7 +155,7 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
                     entry['images'].extend(images)
     entry['images'] = list(set(entry[images])) if entry['images'] else None
     # dedup images
-    entry['images'] = None if not entry.has_key('images') else list(set(entry['images']))
+    entry['images'] = list(set(entry['images'])) if entry.has_key('images') and entry['images'] else None
 
     # article's author
     # e.g. Yuan Jin
