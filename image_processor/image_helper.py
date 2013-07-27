@@ -20,7 +20,6 @@ from administration.config import TRANSCODED_LOCAL_DIR
 from BeautifulSoup import BeautifulSoup
 import Image
 import os
-import random
 
 if not os.path.exists(IMAGES_LOCAL_DIR):
     os.mkdir(IMAGES_LOCAL_DIR)
