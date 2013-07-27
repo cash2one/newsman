@@ -68,11 +68,12 @@ def _value_added_process(entries=None, language=None):
                 biggest = image_helper.find_biggest_image(entry['images'])
                 if biggest:
                     try:
-                    image_helper.scale_image(image=biggest, size_expected=(388, 162), resize_by_width=True, crop_by_center=True, relative_path='test')
+                        relative_path = ""
+                        hot_image = image_helper.scale_image(image=biggest, size_expected=HOT_IMAGE_SIZE, resize_by_width=True, crop_by_center=True, relative_path=xxx.jpg)
+                        category_image = image_helper.scale_image(image=biggest, size_expected=CATEGORY_IMAGE_SIZE, resize_by_width=True, crop_by_center=False, relative_path=xxx.jpg)
+                        thumbnail_image = image_helper.scale_image(image=biggest, size_expected=THUMBNAIL_IMAGE_SIZE, resize_by_width=True, crop_by_center=True, relative_path=xxx.jpg)
                     except IOError as k:
                         entry['error'].append(k + '\n')
-            entry['image'] = None if not entry.has_key(
-                'image') else entry['image']
 
             # [OPTIONAL] google tts not for indonesian
             if entry['language'] != 'ind':

@@ -112,7 +112,7 @@ def scale_image(image=None, size_expected=MIN_IMAGE_SIZE, resize_by_width=True, 
                 image_local_path = '%s%s' % (IMAGES_LOCAL_DIR, relative_path)
                 image_cropped = image_cropped.convert('RGB')
                 image_cropped.save(image_local_path, 'JPEG')
-                return image_web_path, image_local_path
+                return {'url':image_web_path, 'width':width_expected, 'height':height_expected}, {'url':image_local_path, 'width':width_expected, 'height':height_expected}
             else:
                 return None
         else:
