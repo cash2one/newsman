@@ -1,0 +1,3 @@
+www.posttoday.com/rss/src/district.xml
+  Error: object has no attribute 'status'
+

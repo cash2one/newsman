@@ -1,0 +1,572 @@
+::::: ANTARA News - Nasional - Kesehatan :::::
+feed
+status
+updated
+updated_parsed
+encoding
+    utf-8
+bozo
+headers
+etag
+    "2d49bb-3536-4e281c6deee80"
+href
+version
+entries
+bozo_exception
+namespaces
+-----------------
+summary_detail
+    {'base': u'http://www.antaranews.com/rss/nasional-kesehatan', 'type': u'text/html', 'value': u'<img align="left" border="0" src="http://img.antaranews.com/new/2011/10/thumb/20111020001.jpg" />Risiko penularan sindrom pernafasan coronavirus Timur Tengah (Middle East Respiratory Syndrome Coronavirus/MERS-CoV) pada jemaah yang menunaikan ibadah haji di Arab Saudi saat ini sangat rendah, kata Badan Kesehatan Dunia (WHO).', 'language': None}
+links
+    [{'href': u'http://www.antaranews.com/berita/387514/who-risiko-jemaah-haji-terjangkit-mers-sangat-rendah', 'type': u'text/html', 'rel': u'alternate'}]
+published_parsed
+title
+summary
+    <img align="left" border="0" src="http://img.antaranews.com/new/2011/10/thumb/20111020001.jpg" />Risiko penularan sindrom pernafasan coronavirus Timur Tengah (Middle East Respiratory Syndrome Coronavirus/MERS-CoV) pada jemaah yang menunaikan ibadah haji di Arab Saudi saat ini sangat rendah, kata Badan Kesehatan Dunia (WHO).
+guidislink
+    False
+title_detail
+link
+    http://www.antaranews.com/berita/387514/who-risiko-jemaah-haji-terjangkit-mers-sangat-rendah
+published
+id
+
+::::: Sindikasi news.okezone.com :::::
+feed
+status
+version
+encoding
+    UTF-8
+bozo
+headers
+href
+namespaces
+entries
+bozo_exception
+-----------------
+summary_detail
+    {'base': u'http://sindikasi.okezone.com/index.php/rss/1/RSS2.0', 'type': u'text/html', 'value': u'Ketua umum Partai Hati Nurani Rakyat (Hanura), Wiranto, menargetkan posisi ketiga dalam pemilihan umum 2014 mendatang.', 'language': u'en'}
+published_parsed
+links
+    [{'href': u'http://news.okezone.com/read/2013/07/27/339/843503/hanura-targetkan-masuk-tiga-besar-dalam-pemilu-2014', 'type': u'text/html', 'rel': u'alternate'}]
+title
+tags
+    [{'term': u'breaking news - Polhukam', 'scheme': None, 'label': None}]
+summary
+    Ketua umum Partai Hati Nurani Rakyat (Hanura), Wiranto, menargetkan posisi ketiga dalam pemilihan umum 2014 mendatang.
+guidislink
+    False
+title_detail
+link
+    http://news.okezone.com/read/2013/07/27/339/843503/hanura-targetkan-masuk-tiga-besar-dalam-pemilu-2014
+published
+id
+
+::::: Sindikasi international.okezone.com :::::
+feed
+status
+version
+encoding
+    UTF-8
+bozo
+headers
+href
+namespaces
+entries
+bozo_exception
+-----------------
+summary_detail
+    {'base': u'http://sindikasi.okezone.com/index.php/rss/18/RSS2.0', 'type': u'text/html', 'value': u'Ledakan dua buah bom melanda wilayah Parachinar, Pakistan. Ledakan tersebut menyebabkan 57 jiwa dilaporkan tewas.', 'language': u'en'}
+published_parsed
+links
+    [{'href': u'http://international.okezone.com/read/2013/07/27/413/843493/dua-bom-meledak-di-pakistan-menewaskan-57-jiwa', 'type': u'text/html', 'rel': u'alternate'}]
+title
+tags
+    [{'term': u'breaking news - Asia', 'scheme': None, 'label': None}]
+summary
+    Ledakan dua buah bom melanda wilayah Parachinar, Pakistan. Ledakan tersebut menyebabkan 57 jiwa dilaporkan tewas.
+guidislink
+    False
+title_detail
+link
+    http://international.okezone.com/read/2013/07/27/413/843493/dua-bom-meledak-di-pakistan-menewaskan-57-jiwa
+published
+id
+
+::::: Sindikasi techno.okezone.com :::::
+feed
+status
+version
+encoding
+    UTF-8
+bozo
+headers
+href
+namespaces
+entries
+bozo_exception
+-----------------
+summary_detail
+    {'base': u'http://sindikasi.okezone.com/index.php/rss/16/RSS2.0', 'type': u'text/html', 'value': u"4K merupakan empat kali lipat dari resolusi televisi HD yang ada di pasaran. Layar dengan resolusi tersebut memerlukan sokongan kinerja komputasi yang lebih tinggi sehingga cukup 'rakus' dalam menggunakan daya baterai.&nbsp;", 'language': u'en'}
+published_parsed
+links
+    [{'href': u'http://techno.okezone.com/read/2013/07/27/325/843399/android-4-3-mampu-suguhkan-resolusi-4k', 'type': u'text/html', 'rel': u'alternate'}]
+title
+tags
+    [{'term': u'breaking news - Software', 'scheme': None, 'label': None}]
+summary
+    4K merupakan empat kali lipat dari resolusi televisi HD yang ada di pasaran. Layar dengan resolusi tersebut memerlukan sokongan kinerja komputasi yang lebih tinggi sehingga cukup 'rakus' dalam menggunakan daya baterai.&nbsp;
+guidislink
+    False
+title_detail
+link
+    http://techno.okezone.com/read/2013/07/27/325/843399/android-4-3-mampu-suguhkan-resolusi-4k
+published
+id
+
+::::: Tempo.co News Site :::::
+feed
+status
+version
+encoding
+    iso-8859-1
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+    {'base': u'http://www.tempo.co/rss/olahraga', 'type': u'text/html', 'value': u'Pekan depan, Stramaccioni dilaporkan akan mengunjungi tempat latihan Manchester City di Carrington.', 'language': None}
+links
+    [{'href': u'http://www.tempo.co/read/news/2013/07/27/099500246/Stramaccioni-Timba-Ilmu-Kepelatihan-dari-Ancelotti', 'type': u'text/html', 'rel': u'alternate'}]
+published_parsed
+tags
+    [{'term': u'sepakbola', 'scheme': None, 'label': None}]
+title
+summary
+    Pekan depan, Stramaccioni dilaporkan akan mengunjungi tempat latihan Manchester City di Carrington.
+content
+    [{'base': u'http://www.tempo.co/rss/olahraga', 'type': u'text/html', 'value': u'<p><span style="color: #666666;"><strong>TEMPO.CO</strong></span>, <span style="color: #666666;"><strong>Madrid</strong></span> - Setelah didepak <a href="http://www.tempo.co/topik/lembaga/820/Inter-Milan" target="_blank">Inter Milan</a> dari kursi kepelatihan pada akhir musim lalu, Andrea Stramaccioni belum juga mendapatkan klub baru. Kini, Stramaccioni menghabiskan waktu luangnya dengan menimba ilmu kepelatihan dari para pelatih top dunia.<br /><br />Berdasarkan laporan <em>Calcionews24</em>, Sabtu, 27 Juli 2013, Stramaccioni belum diperbolehkan melatih klub-klub Seri-A Liga Italia oleh FIGC lantaran tidak memiliki lisensi UEFA Pro. Untuk mendapatkan lisensi itu, Stramaccioni harus mengikuti kursus kepelatihan.<br /><br />Selain itu, Stramaccioni juga harus menambah ilmunya dengan melihat pola-pola latihan klub-klub elit dunia. Karena itu, Jumat lalu, dia berada di Valdebebas, tempat latihan Real Madrid. Dia mengamati cara melatih Carlo Ancelotti lalu mencatatnya.<br /><br />Pekan depan, Stramaccioni dilaporkan akan mengunjungi tempat latihan Manchester City di Carrington. Sama seperti sebelumnya, ia akan menyaksikan lalu mencatat metode latihan Manuel Pellegrini. Pada September, Stramaccioni akan menjalani tes kepelatihan.<br /><br />Karier kepelatihan Stramaccioni dimulai di AS Roma pada 2005. Saat itu, dia masuk dalam staf kepelatihan Roma yunior. Selang enam tahun, dia melatih Inter Primavera dan berhasil mempersembahkan satu trofi. Setelah itu, dia ditunjuk untuk menangani Javier Zanetti dkk.<strong><br /><br />FOOTBALL ITALIA | CALCIONEWS24| SINGGIH SOARES</strong><br /><br /><br /><strong>Baca Juga:</strong><a href="http://www.tempo.co/read/news/2013/07/27/233500213/Wenger-Arsenal-Bisa-Juara-tanpa-Pemain-Baru" title="Wenger: Arsenal Bisa Juara tanpa Pemain Baru &nbsp;"><br />Wenger: Arsenal Bisa Juara tanpa Pemain Baru&nbsp; </a><a href="http://www.tempo.co/read/news/2013/07/27/233500204/MU-Siasati-Penolakan-Ketiga-Barca-untuk-Fabregas" title="MU Siasati Penolakan Ketiga Barca untuk Fabregas &nbsp;"><br />MU Siasati Penolakan Ketiga Barca untuk Fabregas&nbsp; </a><a href="http://www.tempo.co/read/news/2013/07/27/234500200/Hernanes-Abaikan-Rumor-PSG" title="Hernanes Abaikan Rumor PSG &nbsp;"><br />Hernanes Abaikan Rumor PSG&nbsp; </a><a href="http://www.tempo.co/read/news/2013/07/27/233500196/Dijual-Liverpool-Rp-5526-Triliun" title="Dijual! Liverpool Rp 5,526 Triliun &nbsp;"><br />Dijual! Liverpool Rp 5,526 Triliun &nbsp;</a></p>', 'language': None}]
+guidislink
+    True
+title_detail
+href
+link
+    http://www.tempo.co/read/news/2013/07/27/099500246/Stramaccioni-Timba-Ilmu-Kepelatihan-dari-Ancelotti
+published
+id
+
+::::: ANTARA News - Hiburan :::::
+feed
+status
+updated
+updated_parsed
+encoding
+    us-ascii
+bozo
+headers
+etag
+    "2d51d2-3440-4e281dc541880"
+href
+version
+entries
+namespaces
+-----------------
+summary_detail
+    {'base': u'http://www.antaranews.com/rss/hiburan', 'type': u'text/html', 'value': u'Festival Film Internasional Venice mengumumkan sejumlah film yang akan berpartisipasi pada acara kali ini.', 'language': None}
+links
+    [{'href': u'http://www.antaranews.com/berita/387686/festival-film-venice-umumkan-peserta', 'type': u'text/html', 'rel': u'alternate'}]
+published_parsed
+title
+summary
+    Festival Film Internasional Venice mengumumkan sejumlah film yang akan berpartisipasi pada acara kali ini.
+guidislink
+    False
+title_detail
+link
+    http://www.antaranews.com/berita/387686/festival-film-venice-umumkan-peserta
+published
+id
+
+::::: Tempo.co News Site :::::
+feed
+status
+version
+encoding
+    iso-8859-1
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+    {'base': u'http://www.tempo.co/rss/travel', 'type': u'text/html', 'value': u'Makin banyak masyarakat menganggap kue bukan lagi makanan musiman tapi pendamping sehari-hari.', 'language': None}
+links
+    [{'href': u'http://www.tempo.co/read/news/2013/07/27/201500135/Jitu-Berbisnis-Kue-Lebaran', 'type': u'text/html', 'rel': u'alternate'}]
+published_parsed
+tags
+    [{'term': u'travel_kuliner', 'scheme': None, 'label': None}]
+title
+summary
+    Makin banyak masyarakat menganggap kue bukan lagi makanan musiman tapi pendamping sehari-hari.
+content
+    [{'base': u'http://www.tempo.co/rss/travel', 'type': u'text/html', 'value': u'<p><span style="color: #666666;"><strong>TEMPO.CO</strong></span>, <span style="color: #666666;"><strong>Jakarta</strong></span>--Bisnis kue lebaran selalu marak hanya sebulan saja dalam setahun. Di luar masa puncak, kue-kue kering khas seperti nastar, kastangel dan putri salju seakan menghilang dari muka bumi. Padahal, peluang itu ada, bahkan menurut Ina Widayanti, pemilik Ina Cookies, pasar di Indonesia sangat besar.<br /><br />"Semakin tahun, makin banyak masyarakat yang menganggap kue bukan lagi sebagai makanan musiman tapi sebagai makanan pendamping sehari-hari," ujar dia dalam acara Berbisnis Pastri dan Kue secara inovatif dan Kompetitif yang digelar Fonterra Foodservices, Kamis 25 Juli 2013.<br /><br />Diakui Ina, peminatnya memang tidak banyak. Bahkan Ina pun harus memutar otak untuk memberdayakan 1000 karyawan. Seluruh karyawan itu bisa bekerja hingga tiga shift selama ramadan. Karena pesenan yang melonjak. Tapi di luar itu, maka Ina mengerahkan tenaga mereka untuk membantu di kafe dan toko-toko kue yang lain.<br /><br />"Saya juga biasa menciptakan aneka kue baru di masa jeda," ujar pemilik 135 jenis kue kering ini. Ina mengakui awalnya hanya ada lima seri kue yang dibuatnya, nastar, kastangel, putri salju, lidah kucing dan sagu. Tapi seiring mulai dikenalnya bahan-bahan makanan baru seperti aneka macam keju, sereal, coklat, Ina pun mulai tertantang untuk berkreasi. "Termasuk dari bahan lokal, kaya oncom, jengkol, peuyeum hingga tempe," ujar perempuan yang mengawali usahanya dari Cirebon ini sejak 23 tahun silam.<br /><br />Pada umumnya, menurut Ina, masyarakat Indonesia menyukai kue yang berasa asin. "Maka di tempat saya wajibnya semua bahan pakai keju," kata perempuan berlogat sunda yang kental ini. Selain rasa asin, kreasi baru juga menjadi daya tarik pembeli di Indonesia. Setiap ada varian, banyak orang yang tertarik untuk mencoba. Apalagi kalau rasanya enak, Ina menuturkan, bahwa penyebaran mulut ke mulut jauh lebih cepat.<br /><br />"Intinya adalah menjaga kualitas bahan," kata Ina. Bahannya yang berkualitas tidak hanya membuat rasa yang lezat tapi juga ketahanan kue. Advisory Chef, Pastri, Fonterra Foodservices Yus Andriana sepakat dengan pendapat tersebut. "Kalau untuk rasa, mentega memang lebih bagus daripada margarin," ujar dia dalam kesempatan yang sama.<br /><br />Sebab kandungan susu dalam mentega membuat rasa kue lebih gurih dan juga membantu tekstur kue. "Memang harganya lebih mahal, tapi untuk menjaga kualitas saya sih menyarankan mentega," kata dia.<br /><br /><strong>DIANING SARI</strong><br /><br /><strong>Baca juga:</strong><a href="http://www.tempo.co/read/news/2013/06/05/200485896/Panitia-Solo-Batik-Carnival-Ingin-Jual-Tiket" target="_blank"><br />Panitia Solo Batik Carnival Ingin Jual Tiket</a><a href="http://www.tempo.co/read/news/2013/07/26/203499882/Payung-payung-Cantik-Warnai-Langit-Agueda-Portugal" target="_blank"><br />Payung-payung Cantik Warnai Langit Agueda Portugal</a><a href="http://www.tempo.co/read/news/2013/07/21/201498318/Empuk-Maknyus-Kambing-Oven-Kawasan-Ampel" target="_blank"><br />Empuk Maknyus Kambing Oven Kawasan Ampel</a><a href="http://www.tempo.co/read/news/2013/07/06/198493955/Melirik-Wayang-Kertas-Borobudur" target="_blank"><br />Melirik Wayang Kertas Borobudur</a></p>', 'language': None}]
+guidislink
+    True
+title_detail
+href
+link
+    http://www.tempo.co/read/news/2013/07/27/201500135/Jitu-Berbisnis-Kue-Lebaran
+published
+id
+
+::::: Sindikasi economy.okezone.com :::::
+feed
+status
+version
+encoding
+    UTF-8
+bozo
+headers
+href
+namespaces
+entries
+bozo_exception
+-----------------
+summary_detail
+    {'base': u'http://sindikasi.okezone.com/index.php/rss/11/RSS2.0', 'type': u'text/html', 'value': u'Ekonomi Amerika Serikat tengah goncang, akibat krisis berkepanjangan  sejak 2008. Kendati demikian, IMF tetap  mempertahankan proyeksi Negeri Paman Sam pada&nbsp;2013 sebesar 1,7 persen.', 'language': u'en'}
+published_parsed
+links
+    [{'href': u'http://economy.okezone.com/read/2013/07/27/213/843434/imf-pertahankan-ekonomi-as-tumbuh-1-7', 'type': u'text/html', 'rel': u'alternate'}]
+title
+tags
+    [{'term': u'breaking news - ekonomi global', 'scheme': None, 'label': None}]
+summary
+    Ekonomi Amerika Serikat tengah goncang, akibat krisis berkepanjangan  sejak 2008. Kendati demikian, IMF tetap  mempertahankan proyeksi Negeri Paman Sam pada&nbsp;2013 sebesar 1,7 persen.
+guidislink
+    False
+title_detail
+link
+    http://economy.okezone.com/read/2013/07/27/213/843434/imf-pertahankan-ekonomi-as-tumbuh-1-7
+published
+id
+
+::::: Inilah.com - Nasional :::::
+feed
+status
+version
+encoding
+    UTF-8
+bozo
+headers
+href
+namespaces
+entries
+bozo_exception
+-----------------
+summary_detail
+    {'base': u'http://www.inilah.com/rss/feed/nasional/', 'type': u'text/html', 'value': u'<img align="left" hspace="5" src="http://static.inilah.com/data/berita/thumbnail/2014725.jpg" /> Pernyataan Jokowi yang mengatakan heran dengan tokoh yang saat ini sudah mendeklarasikan sebagai pasangan Capres, dianggap oleh beberapa pihak menyindir Partai Hanura.', 'language': None}
+published_parsed
+links
+    [{'href': u'http://nasional.inilah.com/read/detail/2014725/hanura-tak-permasalahkan-sindiran-jokowi', 'type': u'text/html', 'rel': u'alternate'}]
+title
+tags
+    [{'term': u'nasional', 'scheme': None, 'label': None}]
+summary
+    <img align="left" hspace="5" src="http://static.inilah.com/data/berita/thumbnail/2014725.jpg" /> Pernyataan Jokowi yang mengatakan heran dengan tokoh yang saat ini sudah mendeklarasikan sebagai pasangan Capres, dianggap oleh beberapa pihak menyindir Partai Hanura.
+guidislink
+    False
+title_detail
+link
+    http://nasional.inilah.com/read/detail/2014725/hanura-tak-permasalahkan-sindiran-jokowi
+published
+id
+
+::::: Tempo.co News Site :::::
+feed
+status
+version
+encoding
+    iso-8859-1
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+    {'base': u'http://www.tempo.co/rss/nasional', 'type': u'text/html', 'value': u'Tommy tak menemukan dokumen atau surat-surat resmi dari Hotma Sitompul and Associate, kantor resmi Hotma yang berhubungan dengan masalah ini.', 'language': None}
+links
+    [{'href': u'http://www.tempo.co/read/news/2013/07/27/078500226/Hotma-Sitompul-Tak-Tahu-Perbuatan-Mario', 'type': u'text/html', 'rel': u'alternate'}]
+published_parsed
+tags
+    [{'term': u'politik', 'scheme': None, 'label': None}]
+title
+summary
+    Tommy tak menemukan dokumen atau surat-surat resmi dari Hotma Sitompul and Associate, kantor resmi Hotma yang berhubungan dengan masalah ini.
+content
+    [{'base': u'http://www.tempo.co/rss/nasional', 'type': u'text/html', 'value': u'<p><span style="color: #666666;"><strong>TEMPO.CO</strong></span>, <span style="color: #666666;"><strong>Jakarta</strong></span> - Tommy Sihotang, pengacara Mario C. Bernardo, menyebut perbuatan kliennya dengan memberikan sejumlah duit kepada pegawai Badan Pendidikan dan Pelatihan Mahkamah Agung, Djodi Supratman, dilakukan sendiri. <a href="http://www.tempo.co/read/news/2013/07/25/063499716/Keponakan-Hotma-Sitompoel-Ditangkap-KPK">Paman Mario yang juga bosnya, Hotma Sitompul, tak tahu-menahu soal transaksi ini.</a><br /> <br /> "Saya sudah bicara dengan Hotma, dia mengaku tak tahu," kata Tommy saat ditemui wartawan di Cikini, Jakarta Pusat, Sabtu, 27 Juli 2013.<br /> <br /> Sebagai bukti, Tommy tak menemukan dokumen atau surat-surat resmi dari Hotma Sitompul and Associate, kantor resmi Hotma yang berhubungan dengan masalah ini. "Ada beberapa surat saya lihat, tapi tidak ada kepala surat resmi Hotma, tidak ada tanda tangan Hotma juga."<br /> <br /> Tommy juga mengklaim Hotma tak tahu-menahu soal kasus sewa tanah dengan terdakwa Hutomo Wijaya Ongo Warsito. Kasus ini yang menjadi dugaan KPK dalam suap Mario. Dia pun menduga jika benar suap dilakukan Mario, pasti menyangkut kasus lama yang pernah ditanganinya. "Sebelum bekerja dengan Hotma, Mario sempat kerja sendiri."<br /> <br /> Untuk memperoleh kepastian, <a href="http://www.tempo.co/read/news/2013/07/26/063500008/Keponakan-Hotma-Sitompul-Resmi-Jadi-Tersangka">Tommy bakal menemui Mario </a>pada Senin, 29 Juli 2013, di rumah tahanan KPK. Selain untuk meminta tandatangan kuasa hukum, Tommy ingin menggali informasi dan fakta dari mulut Mario. <br /> <br /> Sebelumnya, KPK menetapkan Mario C. Bernardo dan Djodi Supratman sebagai tersangka tindak pidana penyuapan. Penetapan tersangka ini merupakan hasil dari operasi tangkap tangan yang dilakukan KPK. Penyidik menjerat Mario dan Djodi Supratman dengan Pasal 5 ayat 2 atau Pasal 11 Undang-Undang Tindak Pidana Korupsi sebagaimana diubah Undang-Undang Pemberantasan Tindak Pidana Korupsi. Komisi antirasuah juga menyita barang bukti berupa uang Rp 50 juta dan sekitar 78 juta. Duit itu ditemukan di tas dan di dalam rumah Djodi.<br /> <br /> <strong>INDRA WIJAYA<br /><br />Berita Lain:</strong><a href="http://www.tempo.co/read/news/2013/07/27/083500218/Saran-Pengamat-Transportasi-untuk-Jokowi" title="Saran Pengamat Transportasi untuk Jokowi &nbsp;"><br />Saran Pengamat Transportasi untuk Jokowi&nbsp; </a><a href="http://www.tempo.co/read/news/2013/07/27/219500216/Berantem-Ini-Luka-Memar-di-Tubuh-Nikita-Mirzani" title="Berantem, Ini Luka Memar di Tubuh Nikita Mirzani &nbsp;"><br />Berantem, Ini Luka Memar di Tubuh Nikita Mirzani&nbsp; </a><a href="http://www.tempo.co/read/news/2013/07/27/113500215/Dua-Penyanyi-Indonesia-Wakili-Festival-di-Hanoi" title="Dua Penyanyi Indonesia Wakili Festival di Hanoi &nbsp;"><br />Dua Penyanyi Indonesia Wakili Festival di Hanoi&nbsp; </a><a href="http://www.tempo.co/read/news/2013/07/27/219500214/Alya-Rohali-Mau-Membuka-Kantor-Notaris" title="Alya Rohali Mau Membuka Kantor Notaris"><br />Alya Rohali Mau Membuka Kantor Notaris</a></p><br /><br />\n<br /><br /><br />\n<p>&nbsp;</p>', 'language': None}]
+guidislink
+    True
+title_detail
+href
+link
+    http://www.tempo.co/read/news/2013/07/27/078500226/Hotma-Sitompul-Tak-Tahu-Perbuatan-Mario
+published
+id
+
+::::: ANTARA News - Internasional :::::
+feed
+status
+updated
+updated_parsed
+encoding
+    us-ascii
+bozo
+headers
+etag
+    "2d49ce-34f9-4e281dc541880"
+href
+version
+entries
+namespaces
+-----------------
+summary_detail
+    {'base': u'http://www.antaranews.com/rss/internasional', 'type': u'text/html', 'value': u'<img align="left" border="0" src="http://img.antaranews.com/new/2013/06/thumb/20130618penembakan2.jpg" />Kelompok bersenjata menyerang pos penjaga pantai di barat daya Pakistan pada Sabtu menyebabkan tujuh petugas terbunuh dan melukai tujuh orang lain, kata petugas.', 'language': None}
+links
+    [{'href': u'http://www.antaranews.com/berita/387702/tujuh-penjaga-pantai-pakistan-terbunuh', 'type': u'text/html', 'rel': u'alternate'}]
+published_parsed
+title
+summary
+    <img align="left" border="0" src="http://img.antaranews.com/new/2013/06/thumb/20130618penembakan2.jpg" />Kelompok bersenjata menyerang pos penjaga pantai di barat daya Pakistan pada Sabtu menyebabkan tujuh petugas terbunuh dan melukai tujuh orang lain, kata petugas.
+guidislink
+    False
+title_detail
+link
+    http://www.antaranews.com/berita/387702/tujuh-penjaga-pantai-pakistan-terbunuh
+published
+id
+
+::::: Tempo.co News Site :::::
+feed
+status
+version
+encoding
+    iso-8859-1
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+    {'base': u'http://www.tempo.co/rss/internasional', 'type': u'text/html', 'value': u'Dalam sidang di Pengadilan Maryland, pengacara David Coombs menyatakan ada bentrokan moral dan hukum dalam pencitraan Manning oleh pemerintah AS.', 'language': None}
+links
+    [{'href': u'http://www.tempo.co/read/news/2013/07/27/116500191/Pengacara-Dakwaan-pada-Bradley-Manning-Ngarang', 'type': u'text/html', 'rel': u'alternate'}]
+published_parsed
+tags
+    [{'term': u'amerika', 'scheme': None, 'label': None}]
+title
+summary
+    Dalam sidang di Pengadilan Maryland, pengacara David Coombs menyatakan ada bentrokan moral dan hukum dalam pencitraan Manning oleh pemerintah AS.
+content
+    [{'base': u'http://www.tempo.co/rss/internasional', 'type': u'text/html', 'value': u'<p><span style="color: #666666;"><strong>TEMPO.CO</strong></span>, <span style="color: #666666;"><strong>Maryland</strong></span> - Para pengacara yang mewakili informan WikiLeaks, Bradley Manning, meminta hakim yang memimpin pengadilan prajurit itu untuk memutuskan satu di antara dua penggambaran nyata dari terdakwa: yaitu sebagai pengkhianat dan pencari ketenaran, atau pembela kebenaran yang termotivasi oleh keinginan untuk membuat perbedaan di dunia dan menyelamatkan lebih banyak nyawa.<br /><br />Dalam sidang di Pengadilan Maryland, pengacara David Coombs menyatakan ada bentrokan moral dan hukum dalam pencitraan Manning oleh pemerintah AS. Manning disebut sebagai tak berperasaan dan terobsesi dengan ketenaran. ""Apakah dia adalah pengkhianat tanpa loyalitas pada negara ini? Atau dia tentara muda dan naif yang bermaksud baik yang memiliki keyakinan untuk membuat perbedaan?" katanya dengan nada tanya. <br /><br />Coombs menjawab pertanyaan retorisnya sendiri dengan menyatakan bahwa semua bukti yang diberikan ke pengadilan selama tujuh minggu terakhir menunjuk ke satu arah. "Semua forensik membuktikan dia memiliki motif yang baik: untuk memicu reformasi, memicu perubahan, dan membuat perbedaan. Dia tidak memiliki niat jahat," katanya. <br /><br />Coombs mengejek kasus penuntutan ini sebagai bentuk "cacian" dan mengatakan bahwa dakwaan bahwa kliennya adalah seseorang yang hanya peduli pada dirinya sendiri adalah&nbsp; kebalikan dari kebenaran. "Ia khawatir pada nasib semua orang. Ia peduli untuk menyelamatkan nyawa."<br /><br />Manning mengaku melakukan transmisi ratusan ribu dokumen ke WikiLeaks dan versi lebih rendah dari dakwaan membawa hukuman maksimal 20 tahun penjara.<br /><br />Tuduhan paling serius terhadap Manning, yang konsekuensinya adalah hukuman seumur hidup, adalah bahwa dia "membantu musuh", khususnya al-Qaeda, karena informasi yang dibocorkannya dapat dengan mudah diakses di Internet. <br /><br />Melawan pandangan ini, Coombs berpendapat bahwa WikiLeaks adalah organisasi berita yang sah setara dengan <em>outlet</em> berita internasional lainnya. "WikiLeaks tidak berbeda dari <em>New York Times,</em> tidak berbeda dari <em>Guardian,</em> tidak berbeda dari <em>Der Spiegel</em> dalam memberikan informasi," katanya. "Itulah fungsi pengawas pers. Itulah yang memang seharusnya dilakukan lembaga pers."<br /><br />Ia menyatakan tuduhan "membantu musuh" adalah preseden yang berbahaya. Menurut dia, Manning berhati-hati dan selektif dalam pilihannya memberikan dokumen dan bahwa pengungkapan WikiLeaks memiliki dampak yang sangat terbatas pada kepentingan AS. <br /><br />Sebaliknya, dia mengungkapkan fakta yang semestinya tak terjadi di kemudian hari. Coombs meminta hakim untuk menonton video yang dibocorkannya, tentang bagaimana helikopter Apache salah tembak dan membunuh fotografer media AS. <br /><br />"Dari sudut pandang seorang pemuda melihat delapan orang dibantai dan apa yang sekarang kita ketahui sebagai kebenaran. Ada dua wartawan di sana, berdiri di sudut jalan dan ditembak seperti ikan. Anda harus melihat melalui mata seorang anak muda yang peduli tentang kehidupan manusia," katanya. <br /><br />Argumentasi ini disampai selama dua hari persidangan di ruang sidang di Fort Meade. Selama persidangan, Manning yang tampil berseragam lebih banyak diam. <br /><br />Dalam pengadilan tanpa juri atas permintaan Manning sendiri, pria 25 tahun menghadapi hukuman penjara di tahanan militer tanpa kemungkinan pembebasan bersyarat, ditambah total 154 tahun untuk rincian dakwaan lain. <br /><br /><strong>GUARDIAN | TRIP B</strong><br /><br /></p>', 'language': None}]
+guidislink
+    True
+title_detail
+href
+link
+    http://www.tempo.co/read/news/2013/07/27/116500191/Pengacara-Dakwaan-pada-Bradley-Manning-Ngarang
+published
+id
+
+::::: Inilah.com - Duniahariini :::::
+feed
+status
+version
+encoding
+    us-ascii
+bozo
+headers
+href
+namespaces
+entries
+bozo_exception
+-----------------
+summary_detail
+    {'base': u'http://www.inilah.com/rss/feed/duniahariini/', 'type': u'text/html', 'value': u'<img align="left" hspace="5" src="http://static.inilah.com/data/berita/thumbnail/2014705.jpg" /> Lebih dari 100 orang tewas dalam bentrokan antara pendukung Presiden terguling Mohamed Morsi dengan tentara sejak Sabtu (27/7/013) dini hari.', 'language': None}
+published_parsed
+links
+    [{'href': u'http://web.inilah.com/read/detail/2014705/100-lebih-tewas-dalam-bentrokan-di-mesir', 'type': u'text/html', 'rel': u'alternate'}]
+title
+tags
+    [{'term': u'dunia', 'scheme': None, 'label': None}]
+summary
+    <img align="left" hspace="5" src="http://static.inilah.com/data/berita/thumbnail/2014705.jpg" /> Lebih dari 100 orang tewas dalam bentrokan antara pendukung Presiden terguling Mohamed Morsi dengan tentara sejak Sabtu (27/7/013) dini hari.
+guidislink
+    False
+title_detail
+link
+    http://web.inilah.com/read/detail/2014705/100-lebih-tewas-dalam-bentrokan-di-mesir
+published
+id
+
+::::: Inilah.com - Teknologi :::::
+feed
+status
+version
+encoding
+    us-ascii
+bozo
+headers
+href
+namespaces
+entries
+bozo_exception
+-----------------
+summary_detail
+    {'base': u'http://www.inilah.com/rss/feed/teknologi/', 'type': u'text/html', 'value': u'<img align="left" hspace="5" src="http://static.inilah.com/data/berita/thumbnail/2014709.jpg" /> Menyambut Hari Raya Idul Fitri 1434 H, Astra Daihatsu Motor (ADM) kembali melaksanakan mudik bersama komunitas Daihatsu bertajuk \'Sahabat Daihatsu Pulang Kampung\'.', 'language': None}
+published_parsed
+links
+    [{'href': u'http://teknologi.inilah.com/read/detail/2014709/8-komunitas-daihatsu-mudik-bersama', 'type': u'text/html', 'rel': u'alternate'}]
+title
+tags
+    [{'term': u'teknologi', 'scheme': None, 'label': None}]
+summary
+    <img align="left" hspace="5" src="http://static.inilah.com/data/berita/thumbnail/2014709.jpg" /> Menyambut Hari Raya Idul Fitri 1434 H, Astra Daihatsu Motor (ADM) kembali melaksanakan mudik bersama komunitas Daihatsu bertajuk 'Sahabat Daihatsu Pulang Kampung'.
+guidislink
+    False
+title_detail
+link
+    http://teknologi.inilah.com/read/detail/2014709/8-komunitas-daihatsu-mudik-bersama
+published
+id
+
+::::: ANTARA News - Olahraga :::::
+feed
+status
+updated
+updated_parsed
+encoding
+    us-ascii
+bozo
+headers
+etag
+    "2d51d1-3574-4e281dc541880"
+href
+version
+entries
+namespaces
+-----------------
+summary_detail
+    {'base': u'http://www.antaranews.com/rss/olahraga', 'type': u'text/html', 'value': u'Jagoan sepak bola putri Jerman akan mendapat ujian apakah mampu meraih gelar juara sepak bola putri Eropa secara berurutan, saat Minggu berhadapan dengan saingan utama mereka dan juara dua kali Norwegia di Solna, Swedia.  \n    ...', 'language': None}
+links
+    [{'href': u'http://www.antaranews.com/berita/387672/jerman-dan-norwegia-akan-uji-kehebatan-di-euro-putri', 'type': u'text/html', 'rel': u'alternate'}]
+published_parsed
+title
+summary
+    Jagoan sepak bola putri Jerman akan mendapat ujian apakah mampu meraih gelar juara sepak bola putri Eropa secara berurutan, saat Minggu berhadapan dengan saingan utama mereka dan juara dua kali Norwegia di Solna, Swedia.  
+    ...
+guidislink
+    False
+title_detail
+link
+    http://www.antaranews.com/berita/387672/jerman-dan-norwegia-akan-uji-kehebatan-di-euro-putri
+published
+id
+
+::::: Inilah.com - Olahraga :::::
+feed
+status
+version
+encoding
+    us-ascii
+bozo
+headers
+href
+namespaces
+entries
+bozo_exception
+-----------------
+summary_detail
+    {'base': u'http://www.inilah.com/rss/feed/olahraga/', 'type': u'text/html', 'value': u'<img align="left" hspace="5" src="http://static.inilah.com/data/berita/thumbnail/2014649.jpg" /> Minimnya dana untuk berpartisipasi di SEA Games XXVII, Myanmar, Desember mendatang, membuat Kemenpora mengurangi cabang olahraga yang akan diikuti.', 'language': None}
+published_parsed
+links
+    [{'href': u'http://olahraga.inilah.com/read/detail/2014649/dana-minim-atlet-peserta-sea-games-dikurangi', 'type': u'text/html', 'rel': u'alternate'}]
+title
+tags
+    [{'term': u'olahraga', 'scheme': None, 'label': None}]
+summary
+    <img align="left" hspace="5" src="http://static.inilah.com/data/berita/thumbnail/2014649.jpg" /> Minimnya dana untuk berpartisipasi di SEA Games XXVII, Myanmar, Desember mendatang, membuat Kemenpora mengurangi cabang olahraga yang akan diikuti.
+guidislink
+    False
+title_detail
+link
+    http://olahraga.inilah.com/read/detail/2014649/dana-minim-atlet-peserta-sea-games-dikurangi
+published
+id
+
+::::: Inilah.com - Artis :::::
+feed
+status
+version
+encoding
+    us-ascii
+bozo
+headers
+href
+namespaces
+entries
+bozo_exception
+-----------------
+summary_detail
+    {'base': u'http://www.inilah.com/rss/feed/artis/', 'type': u'text/html', 'value': u'<img align="left" hspace="5" src="http://static.inilah.com/data/berita/thumbnail/2014623.jpg" /> Julia Roberts khawatir keponakannya, Emma Roberts, terus bermasalah dan berada di luar kendali. Julia takut Emma seperti Lindsay Lohan.', 'language': None}
+published_parsed
+links
+    [{'href': u'http://artis.inilah.com/read/detail/2014623/julia-takut-emma-roberts-seperti-lindsay-lohan', 'type': u'text/html', 'rel': u'alternate'}]
+title
+tags
+    [{'term': u'artis', 'scheme': None, 'label': None}]
+summary
+    <img align="left" hspace="5" src="http://static.inilah.com/data/berita/thumbnail/2014623.jpg" /> Julia Roberts khawatir keponakannya, Emma Roberts, terus bermasalah dan berada di luar kendali. Julia takut Emma seperti Lindsay Lohan.
+guidislink
+    False
+title_detail
+link
+    http://artis.inilah.com/read/detail/2014623/julia-takut-emma-roberts-seperti-lindsay-lohan
+published
+id
+
+::::: Inilah.com - Ekonomi :::::
+feed
+status
+version
+encoding
+    us-ascii
+bozo
+headers
+href
+namespaces
+entries
+bozo_exception
+-----------------
+summary_detail
+    {'base': u'http://www.inilah.com/rss/feed/ekonomi/', 'type': u'text/html', 'value': u'<img align="left" hspace="5" src="http://static.inilah.com/data/berita/thumbnail/2014702.jpg" /> Pelemahan harga emas berjangka yang telah menyentuh level terendah di US$1.179 per troy ounce pada 28 Juni lalu akan membenamkan harga emas dalam waktu cukup lama.', 'language': None}
+published_parsed
+links
+    [{'href': u'http://ekonomi.inilah.com/read/detail/2014702/nasib-harga-emas-tunggu-hasil-fed', 'type': u'text/html', 'rel': u'alternate'}]
+title
+tags
+    [{'term': u'ekonomi', 'scheme': None, 'label': None}]
+summary
+    <img align="left" hspace="5" src="http://static.inilah.com/data/berita/thumbnail/2014702.jpg" /> Pelemahan harga emas berjangka yang telah menyentuh level terendah di US$1.179 per troy ounce pada 28 Juni lalu akan membenamkan harga emas dalam waktu cukup lama.
+guidislink
+    False
+title_detail
+link
+    http://ekonomi.inilah.com/read/detail/2014702/nasib-harga-emas-tunggu-hasil-fed
+published
+id
+

@@ -1,0 +1,3 @@
+http://rss.detik.com/index.php/sport
+  Error: %d format: a number is required, not str
+

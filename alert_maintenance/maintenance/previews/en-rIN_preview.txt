@@ -1,0 +1,674 @@
+::::: Deccan Herald - Business :::::
+feed
+status
+updated
+updated_parsed
+encoding
+    iso-8859-1
+bozo
+headers
+etag
+    "51f3a13d-1e4b"
+href
+version
+entries
+namespaces
+-----------------
+summary_detail
+    {'base': u'http://www.deccanherald.com/rss/business.rss', 'type': u'text/html', 'value': u'<strong>Passenger car market leader Maruti Suzuki Saturday said it would enter the commercial vehicle segment by developing a diesel-powered light commercial vehicle (LCV).</strong><br /><br />According to the company, it will develop a new version of Suzukis LCV Carry which will be powered by a diesel and compressed natural gas (CNG) engine option. <br /><br />The company further said that its engineers would require a time period of two years to develop the new product from the existing Carry platform. <br /><br />The announcement assumes significance as the company is known for its passenger vehicle and vans.<br />', 'language': None}
+published_parsed
+links
+    [{'href': u'http://www.deccanherald.com/content/347422/maruti-suzuki-make-commercial-vehicles.html', 'type': u'text/html', 'rel': u'alternate'}]
+title
+summary
+    <strong>Passenger car market leader Maruti Suzuki Saturday said it would enter the commercial vehicle segment by developing a diesel-powered light commercial vehicle (LCV).</strong><br /><br />According to the company, it will develop a new version of Suzukis LCV Carry which will be powered by a diesel and compressed natural gas (CNG) engine option. <br /><br />The company further said that its engineers would require a time period of two years to develop the new product from the existing Carry platform. <br /><br />The announcement assumes significance as the company is known for its passenger vehicle and vans.<br />
+guidislink
+    False
+title_detail
+link
+    http://www.deccanherald.com/content/347422/maruti-suzuki-make-commercial-vehicles.html
+source
+    {'href': u'http://www.deccanherald.com/', 'title': u'New Delhi, July 27, 2013 (IANS):'}
+published
+id
+
+::::: BusinessLine - Industry :::::
+feed
+status
+version
+encoding
+    UTF-8
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+    {'base': u'http://www.thehindubusinessline.com/industry-and-economy/?service=rss', 'type': u'text/html', 'value': u'Uttar Pradesh Public Service Commission today cancelled results of examinations, declared on the basis of a controversial reservation policy, evoking sharp reactions from pro-reservation students...', 'language': u'en'}
+published_parsed
+links
+    [{'href': u'http://www.thehindubusinessline.com/industry-and-economy/education/uppsc-cancels-exam-results-declared-on-basis-of-quota-policy/article4959801.ece', 'type': u'text/html', 'rel': u'alternate'}]
+tags
+    [{'term': u'Education', 'scheme': None, 'label': None}]
+title
+summary
+    Uttar Pradesh Public Service Commission today cancelled results of examinations, declared on the basis of a controversial reservation policy, evoking sharp reactions from pro-reservation students...
+title_detail
+link
+    http://www.thehindubusinessline.com/industry-and-economy/education/uppsc-cancels-exam-results-declared-on-basis-of-quota-policy/article4959801.ece
+published
+
+::::: NDTV Business News :::::
+feed
+status
+version
+encoding
+    windows-1252
+bozo
+headers
+href
+namespaces
+entries
+bozo_exception
+-----------------
+summary_detail
+    {'base': u'http://www.ndtv.com/convergence/ndtv/rssbus.asp', 'type': u'text/html', 'value': u'<p><a href="http://www.ndtv.com/convergence/ndtv/processarchive.aspx?id=BUSEN20100139988"><img align="left" alt="Apple chief makes case against Adobe Flash software" border="0" src="http://www.ndtv.com/convergence/images/thumbnail/ver1/a/apple.jpg" style="margin-right: 5px; margin-top: 5px; width: 70px; height: 70px;" /></a>Apple CEO Steve Jobs took his case against Flash software public, arguing that Adobe product is a flop on touchscreen iPad and iPhone.&amp;quot;Flash was created during the PC (personal computer) era for PCs and mice,&amp;quot; Jobs said in a long message posted at the Cupertino, California-based firm\'s website.&lt;br&gt;\xa0</p><br clear="all" />', 'language': None}
+links
+    [{'href': u'http://www.ndtv.com/convergence/ndtv/processarchive.aspx?id=BUSEN20100139988', 'type': u'text/html', 'rel': u'alternate'}]
+published_parsed
+title
+tags
+    [{'term': u'apple,fash,software', 'scheme': None, 'label': None}]
+summary
+    <p><a href="http://www.ndtv.com/convergence/ndtv/processarchive.aspx?id=BUSEN20100139988"><img align="left" alt="Apple chief makes case against Adobe Flash software" border="0" src="http://www.ndtv.com/convergence/images/thumbnail/ver1/a/apple.jpg" style="margin-right: 5px; margin-top: 5px; width: 70px; height: 70px;" /></a>Apple CEO Steve Jobs took his case against Flash software public, arguing that Adobe product is a flop on touchscreen iPad and iPhone.&amp;quot;Flash was created during the PC (personal computer) era for PCs and mice,&amp;quot; Jobs said in a long message posted at the Cupertino, California-based firm's website.&lt;br&gt; </p><br clear="all" />
+title_detail
+link
+    http://www.ndtv.com/convergence/ndtv/processarchive.aspx?id=BUSEN20100139988
+published
+
+::::: Deccan Herald - Entertainment :::::
+feed
+status
+updated
+updated_parsed
+encoding
+    iso-8859-1
+bozo
+headers
+etag
+    "51f3a13f-95c"
+href
+version
+entries
+namespaces
+-----------------
+summary_detail
+    {'base': u'http://www.deccanherald.com/rss/entertainment.rss', 'type': u'text/html', 'value': u'<strong>Actor Shahid Kapoor says his character in the forthcoming film "Phata Poster Nikla Hero" is a fan of Bollywood star Salman Khan, who has also done a cameo in the movie.<br /></strong><br />"Theres a little scene in the film where Salman sir is there...Salman sir was kind enough to do a special appearance in the film," the 32-year-old said here Friday at a press meet for the film.<br /><br />"Phata Poster Nikla Hero" is directed by Rajkumar Santoshi, who had earlier roped in Salman for a special appearance in his film "Ajab Prem Ki Ghazab Kahani" as well.<br /><br />Talking about his characters fascination with Salman, Shahid said: "He (Shahids <br />character) is a very big fan of Salman Khan and in one scene we have even worn a Being Human t-shirt and in another scene, the character has gone to buy vegetables with his mother and his hands are full and he is eating a banana standing and watching the poster of Dabangg 2." Being Human is Salmans NGO.<br /><br />"Phata Poster Nikla Hero" also stars Ileana DCruz and is slated to release Aug 23.', 'language': None}
+published_parsed
+links
+    [{'href': u'http://www.deccanherald.com/content/347416/shahid-plays-salman-khan-fan.html', 'type': u'text/html', 'rel': u'alternate'}]
+title
+summary
+    <strong>Actor Shahid Kapoor says his character in the forthcoming film "Phata Poster Nikla Hero" is a fan of Bollywood star Salman Khan, who has also done a cameo in the movie.<br /></strong><br />"Theres a little scene in the film where Salman sir is there...Salman sir was kind enough to do a special appearance in the film," the 32-year-old said here Friday at a press meet for the film.<br /><br />"Phata Poster Nikla Hero" is directed by Rajkumar Santoshi, who had earlier roped in Salman for a special appearance in his film "Ajab Prem Ki Ghazab Kahani" as well.<br /><br />Talking about his characters fascination with Salman, Shahid said: "He (Shahids <br />character) is a very big fan of Salman Khan and in one scene we have even worn a Being Human t-shirt and in another scene, the character has gone to buy vegetables with his mother and his hands are full and he is eating a banana standing and watching the poster of Dabangg 2." Being Human is Salmans NGO.<br /><br />"Phata Poster Nikla Hero" also stars Ileana DCruz and is slated to release Aug 23.
+guidislink
+    False
+title_detail
+link
+    http://www.deccanherald.com/content/347416/shahid-plays-salman-khan-fan.html
+source
+    {'href': u'http://www.deccanherald.com/', 'title': u'Mumbai, July 27, 2013 (IANS):'}
+published
+id
+
+::::: Rediff Sports :::::
+feed
+status
+updated
+updated_parsed
+encoding
+    iso-8859-1
+bozo
+headers
+href
+version
+entries
+namespaces
+-----------------
+summary_detail
+    {'base': u'http://www.rediff.com/rss/sportsrss.xml', 'type': u'text/html', 'value': u'Usain Bolt returned to the scene of his triple Olympic glory and duly delivered for 60,000 camera-flashing fans as he overcame a slow start to win the 100 metres and give the London Anniversary Games the Friday finale it demanded.', 'language': None}
+published_parsed
+links
+    [{'href': u'http://www.rediff.com/sports/slide-show/slide-show-1-photos-bolt-blazes-at-london-olympic-anniversary-games/20130727.htm', 'type': u'text/html', 'rel': u'alternate'}]
+title
+summary
+    Usain Bolt returned to the scene of his triple Olympic glory and duly delivered for 60,000 camera-flashing fans as he overcame a slow start to win the 100 metres and give the London Anniversary Games the Friday finale it demanded.
+guidislink
+    False
+title_detail
+link
+    http://www.rediff.com/sports/slide-show/slide-show-1-photos-bolt-blazes-at-london-olympic-anniversary-games/20130727.htm
+published
+id
+
+::::: Deccan Herald - Sports :::::
+feed
+status
+updated
+updated_parsed
+encoding
+    iso-8859-1
+bozo
+headers
+etag
+    "51f3a142-7fe8"
+href
+version
+entries
+namespaces
+-----------------
+summary_detail
+    {'base': u'http://www.deccanherald.com/rss/sports.rss', 'type': u'text/html', 'value': u'<strong>Usain Bolt recovered from a slow start to win the 100 metres in his best time this season at the London Diamond League here.<br /></strong><br />Bolt failed to leave the blocks promptly, but powered through the field to finish in 9.85 seconds Friday at the stadium where he won three gold medals last year in the London Games.<br /><br />"It (the start) was horrifying for me. I think it is just race rust and I just need to get a few races in," said Bolt who holds the world records in the 100 and 200m.<br /><br />"The rounds in the world championships will help that and get my legs freer and a bit lighter. Hopefully the coach will figure out what I need to do to get me more explosive out of the blocks, I guess."<br /><br />American Michael Rodgers was second in 9.98, and Jamaica\'s Nesta Carter was third.<br />Kim Collins of Saint Kitts and Nevis faded to finish fourth after a fantastic start.<br />"For the first time, I think, in a long while I was slightly nervous. Initially, I was excited to come out because I knew it was going to be a big crowd," said Bolt.<br /><br />"But when I got out there and I saw that it was jam-packed and the energy was still like the Olympics, it was just wonderful, so I was slightly nervous but I loved the energy of the crowd."<br /><br />In the 200, Warren Weir of Jamaica, who won bronze a year ago, edged compatriot Jason Young by 0.1 to win in 19.89. Wallace Spearmon of the US was third in 20.18.<br />And, Olympic champion Kirani James of Grenada comfortably won the 400m in 44.65, beating Tony McQuay and Jonathan Borlee.<br />', 'language': None}
+published_parsed
+links
+    [{'href': u'http://www.deccanherald.com/content/347423/bolt-recovers-slow-start-win.html', 'type': u'text/html', 'rel': u'alternate'}]
+title
+summary
+    <strong>Usain Bolt recovered from a slow start to win the 100 metres in his best time this season at the London Diamond League here.<br /></strong><br />Bolt failed to leave the blocks promptly, but powered through the field to finish in 9.85 seconds Friday at the stadium where he won three gold medals last year in the London Games.<br /><br />"It (the start) was horrifying for me. I think it is just race rust and I just need to get a few races in," said Bolt who holds the world records in the 100 and 200m.<br /><br />"The rounds in the world championships will help that and get my legs freer and a bit lighter. Hopefully the coach will figure out what I need to do to get me more explosive out of the blocks, I guess."<br /><br />American Michael Rodgers was second in 9.98, and Jamaica's Nesta Carter was third.<br />Kim Collins of Saint Kitts and Nevis faded to finish fourth after a fantastic start.<br />"For the first time, I think, in a long while I was slightly nervous. Initially, I was excited to come out because I knew it was going to be a big crowd," said Bolt.<br /><br />"But when I got out there and I saw that it was jam-packed and the energy was still like the Olympics, it was just wonderful, so I was slightly nervous but I loved the energy of the crowd."<br /><br />In the 200, Warren Weir of Jamaica, who won bronze a year ago, edged compatriot Jason Young by 0.1 to win in 19.89. Wallace Spearmon of the US was third in 20.18.<br />And, Olympic champion Kirani James of Grenada comfortably won the 400m in 44.65, beating Tony McQuay and Jonathan Borlee.<br />
+guidislink
+    False
+title_detail
+link
+    http://www.deccanherald.com/content/347423/bolt-recovers-slow-start-win.html
+source
+    {'href': u'http://www.deccanherald.com/', 'title': u'London, July 27, 2013 (IANS/CMC):'}
+published
+id
+
+::::: The Hindu - Other Sports :::::
+feed
+status
+version
+encoding
+    UTF-8
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+    {'base': u'http://www.thehindu.com/sport/other-sports/?service=rss', 'type': u'text/html', 'value': u'Sprinter <a href="http://www.thehindu.com/sport/other-sports/tyson-gay-tested-positive-at-us-nationals/article4959336.ece">Tyson Gay</a> failed more than one drug test this year, recording one of...', 'language': u'en'}
+published_parsed
+links
+    [{'href': u'http://www.thehindu.com/sport/other-sports/tyson-gay-tested-positive-at-us-nationals/article4959336.ece', 'type': u'text/html', 'rel': u'alternate'}]
+author
+    AP
+tags
+    [{'term': u'Other Sports', 'scheme': None, 'label': None}]
+summary
+    Sprinter <a href="http://www.thehindu.com/sport/other-sports/tyson-gay-tested-positive-at-us-nationals/article4959336.ece">Tyson Gay</a> failed more than one drug test this year, recording one of...
+title_detail
+link
+    http://www.thehindu.com/sport/other-sports/tyson-gay-tested-positive-at-us-nationals/article4959336.ece
+authors
+    [{}]
+title
+author_detail
+    {'name': u'AP'}
+published
+
+::::: Cricket news from ESPN Cricinfo.com :::::
+feed
+status
+version
+encoding
+    us-ascii
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+    {'base': u'http://www.espncricinfo.com/rss/content/story/feeds/0.xml', 'type': u'text/html', 'value': u'The dearth of international matches means Zimbabwe spend a considerable amount of time practising. But their inexperience shows during matches, when their skills seem to desert them', 'language': None}
+published_parsed
+links
+    [{'href': u'http://www.espncricinfo.com/zimbabwe-v-india-2013/content/story/655757.html?CMP=OTC-RSS', 'type': u'text/html', 'rel': u'alternate'}]
+title
+summary
+    The dearth of international matches means Zimbabwe spend a considerable amount of time practising. But their inexperience shows during matches, when their skills seem to desert them
+guidislink
+    False
+title_detail
+link
+    http://www.espncricinfo.com/zimbabwe-v-india-2013/content/story/655757.html?CMP=OTC-RSS
+published
+id
+
+::::: DNA - Popular News - Daily News & Analysis :::::
+feed
+status
+version
+encoding
+    ISO-8859-1
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+    {'base': u'http://www.dnaindia.com/syndication/rss_popular.xml', 'type': u'text/html', 'value': u'Natarajan has not yet reacted on this issue even though she was present on the dais when Digvijay Singh eulogised her.', 'language': None}
+published_parsed
+links
+    [{'href': u'http://www.dnaindia.com/india/1865882/report-digvijay-singh-makes-sexist-remarks-against-congress-mp-meenakshi-natrajan-calls-her-tunch-maal', 'type': u'text/html', 'rel': u'alternate'}]
+title
+summary
+    Natarajan has not yet reacted on this issue even though she was present on the dais when Digvijay Singh eulogised her.
+guidislink
+    False
+title_detail
+link
+    http://www.dnaindia.com/india/1865882/report-digvijay-singh-makes-sexist-remarks-against-congress-mp-meenakshi-natrajan-calls-her-tunch-maal
+published
+id
+
+::::: Deccan Herald - National :::::
+feed
+status
+updated
+updated_parsed
+encoding
+    iso-8859-1
+bozo
+headers
+etag
+    "51f3a84f-13db1"
+href
+version
+entries
+namespaces
+-----------------
+summary_detail
+    {'base': u'http://www.deccanherald.com/rss/national.rss', 'type': u'text/html', 'value': u'<strong>Opposing Andhra Pradeshs division, which looks imminent, protestors Saturday took to streets in Rayalaseema and Andhra regions of the state.</strong><br /><br />Students and activists of various political and non-political groups took out rallies, formed human chains and observed shutdown in some parts of Seemandhra, as the two regions are generally referred to.<br /><br />Educational institutions remained closed in several towns on a call given by Samaikhya Andhra or United Andhra students Joint Action Committee.<br /><br />A day after indications that Congress core group at its meeting Friday decided in principle to give separate statehood to Telangana, protests broke out in different towns of coastal Andhra and Rayalaseema.<br /><br />Hundreds of students participated in a rally in Nellore, demanding the central government to drop any move to split the state. Congress legislator Anam Vivekananda Reddy also addressed the rally.<br /><br />In Anantapur, protestors laid siege to the house of Telugu Desam Party (TDP) legislator P. Keshav, demanding his resignation in support of the united state. <br />He assured the protestors that he would announce his decision after the proposed meeting of Congress Working Committee (CWC), which is expected to take a final call on Telangana.<br /><br />Opposing the states division, protestors also surrounded the house of state Endowments Minister C. Ramachandraiah in Kadapa.<br /><br />Shops, business establishments and educational institutions were closed in Bapatla town of Guntur district. Addressing a rally, Senior Congress leader P. Goverdhan Reddy said states division would have serious repercussions.<br />', 'language': None}
+published_parsed
+links
+    [{'href': u'http://www.deccanherald.com/content/347428/protests-seemandhra-against-statehood-telangana.html', 'type': u'text/html', 'rel': u'alternate'}]
+title
+summary
+    <strong>Opposing Andhra Pradeshs division, which looks imminent, protestors Saturday took to streets in Rayalaseema and Andhra regions of the state.</strong><br /><br />Students and activists of various political and non-political groups took out rallies, formed human chains and observed shutdown in some parts of Seemandhra, as the two regions are generally referred to.<br /><br />Educational institutions remained closed in several towns on a call given by Samaikhya Andhra or United Andhra students Joint Action Committee.<br /><br />A day after indications that Congress core group at its meeting Friday decided in principle to give separate statehood to Telangana, protests broke out in different towns of coastal Andhra and Rayalaseema.<br /><br />Hundreds of students participated in a rally in Nellore, demanding the central government to drop any move to split the state. Congress legislator Anam Vivekananda Reddy also addressed the rally.<br /><br />In Anantapur, protestors laid siege to the house of Telugu Desam Party (TDP) legislator P. Keshav, demanding his resignation in support of the united state. <br />He assured the protestors that he would announce his decision after the proposed meeting of Congress Working Committee (CWC), which is expected to take a final call on Telangana.<br /><br />Opposing the states division, protestors also surrounded the house of state Endowments Minister C. Ramachandraiah in Kadapa.<br /><br />Shops, business establishments and educational institutions were closed in Bapatla town of Guntur district. Addressing a rally, Senior Congress leader P. Goverdhan Reddy said states division would have serious repercussions.<br />
+guidislink
+    False
+title_detail
+link
+    http://www.deccanherald.com/content/347428/protests-seemandhra-against-statehood-telangana.html
+source
+    {'href': u'http://www.deccanherald.com/', 'title': u'Hyderabad, July 27, 2013 (IANS):'}
+published
+id
+
+::::: The Hindu - National :::::
+feed
+status
+version
+encoding
+    UTF-8
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+    {'base': u'http://www.thehindu.com/news/national/?service=rss', 'type': u'text/html', 'value': u'The land of rolling hills, forests, lakes, rivers and folklore is made for tourism. Quaint Wayanad is determined to tap this immense potential, to find a place in premium itineraries.The To...', 'language': u'en'}
+published_parsed
+links
+    [{'href': u'http://www.thehindu.com/news/national/kerala/wayanad-dreams-big-eyes-top-tourism-spot/article4959872.ece', 'type': u'text/html', 'rel': u'alternate'}]
+author
+    E. M. Manoj
+tags
+    [{'term': u'Kerala', 'scheme': None, 'label': None}]
+summary
+    The land of rolling hills, forests, lakes, rivers and folklore is made for tourism. Quaint Wayanad is determined to tap this immense potential, to find a place in premium itineraries.The To...
+title_detail
+link
+    http://www.thehindu.com/news/national/kerala/wayanad-dreams-big-eyes-top-tourism-spot/article4959872.ece
+authors
+    [{}]
+title
+author_detail
+    {'name': u'E. M. Manoj'}
+published
+
+::::: Top Headlines :::::
+feed
+status
+version
+encoding
+    iso-8859-1
+bozo
+headers
+href
+namespaces
+entries
+bozo_exception
+-----------------
+updated
+published_parsed
+updated_parsed
+links
+    [{'href': u'http://www.indianexpress.com/news/capgemini-first-half-net-profit-up-by-31-percent/1147028/', 'type': u'text/html', 'rel': u'alternate'}]
+title
+summary_detail
+    {'base': u'http://syndication.indianexpress.com/rss/795/corporate.xml', 'type': u'text/html', 'value': u'The emerging countries of Asia Pacific and Latin America reported strong growth.', 'language': None}
+summary
+    The emerging countries of Asia Pacific and Latin America reported strong growth.
+guidislink
+    False
+title_detail
+link
+    http://www.indianexpress.com/news/capgemini-first-half-net-profit-up-by-31-percent/1147028/
+published
+id
+
+::::: Indlawnews RSS Feed :::::
+feed
+status
+version
+encoding
+    utf-8
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+    {'base': u'http://www.indlawnews.com/rss/rss.ashx?id=2', 'type': u'text/html', 'value': u'', 'language': None}
+published_parsed
+links
+    [{'href': u'http://www.indlawnews.com/Newsdisplay.aspx?uid=b816c9ef-87e9-4789-b5c2-7927ca24bd51&type=2', 'type': u'text/html', 'rel': u'alternate'}]
+title
+summary
+    
+guidislink
+    False
+title_detail
+link
+    http://www.indlawnews.com/Newsdisplay.aspx?uid=b816c9ef-87e9-4789-b5c2-7927ca24bd51&type=2
+published
+id
+
+::::: The New Indian Express - Nation - http://newindianexpress.com/nation/ :::::
+feed
+status
+version
+encoding
+    UTF-8
+bozo
+headers
+href
+namespaces
+entries
+bozo_exception
+-----------------
+summary_detail
+    {'base': u'http://newindianexpress.com/nation/?widgetName=rssfeed&widgetId=276210&getXmlFeed=true', 'type': u'text/html', 'value': u'', 'language': None}
+published_parsed
+links
+    [{'href': u'http://newindianexpress.com/nation/Case-lodged-against-6-BJP-leaders-in-UP-for-hate-speech/2013/07/27/article1704873.ece', 'type': u'text/html', 'rel': u'alternate'}]
+title
+summary
+    
+guidislink
+    False
+title_detail
+link
+    http://newindianexpress.com/nation/Case-lodged-against-6-BJP-leaders-in-UP-for-hate-speech/2013/07/27/article1704873.ece
+published
+id
+
+::::: India News Update :::::
+feed
+status
+version
+encoding
+    iso-8859-1
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+    {'base': u'http://www.newkerala.com/india-news.xml', 'type': u'text/html', 'value': u'Washington, July 27 : Four Indian American professors are among the 13 mathematicians, theoretical physicists and theoretical computer scientists who have won 2013 Simons Investigators awards.', 'language': None}
+published_parsed
+links
+    [{'href': u'http://www.newkerala.com/news/story/47032/four-indian-americans-win-top-science-and-maths-awards.html', 'type': u'text/html', 'rel': u'alternate'}]
+title
+summary
+    Washington, July 27 : Four Indian American professors are among the 13 mathematicians, theoretical physicists and theoretical computer scientists who have won 2013 Simons Investigators awards.
+guidislink
+    False
+title_detail
+link
+    http://www.newkerala.com/news/story/47032/four-indian-americans-win-top-science-and-maths-awards.html
+published
+id
+
+::::: The Hindu - Technology :::::
+feed
+status
+version
+encoding
+    UTF-8
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+    {'base': u'http://www.thehindu.com/sci-tech/technology/?service=rss', 'type': u'text/html', 'value': u'The story of how technology made the world tremble each time a spelling mistake was made...', 'language': u'en'}
+published_parsed
+links
+    [{'href': u'http://www.thehindu.com/sci-tech/technology/you-err-it-stirs/article4955950.ece', 'type': u'text/html', 'rel': u'alternate'}]
+author
+    L. Suresh
+tags
+    [{'term': u'Technology', 'scheme': None, 'label': None}]
+summary
+    The story of how technology made the world tremble each time a spelling mistake was made...
+title_detail
+link
+    http://www.thehindu.com/sci-tech/technology/you-err-it-stirs/article4955950.ece
+authors
+    [{}]
+title
+author_detail
+    {'name': u'L. Suresh'}
+published
+
+::::: Campaign India  - Advertising :::::
+feed
+status
+version
+encoding
+    utf-8
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+    {'base': u'http://www.campaignindia.in/RSS/rss.ashx?type=Category&ID=470', 'type': u'text/html', 'value': u'If a brewery launched &#8216;Heir Raiser&#8217; in honour of the &#8216;Royal Baby&#8217;, Coca-Cola asked people to share a Coke with parents to open happiness', 'language': None}
+published_parsed
+links
+    [{'href': u'http://www.campaignindia.in/Article/351409,weekend-fun-riding-the-8216royal-baby8217-wave.aspx', 'type': u'text/html', 'rel': u'alternate'}]
+title
+imagelink
+    http://cdn.i.haymarket.net.au/Utils/ImageResizer.ashx?n=http%3a%2f%2fi.haymarket.net.au%2fNews%2f20130726094708_coke.JPG&h=55&w=83&c=1
+summary
+    If a brewery launched &#8216;Heir Raiser&#8217; in honour of the &#8216;Royal Baby&#8217;, Coca-Cola asked people to share a Coke with parents to open happiness
+title_detail
+link
+    http://www.campaignindia.in/Article/351409,weekend-fun-riding-the-8216royal-baby8217-wave.aspx
+published
+
+::::: Campaign India  - Marketing :::::
+feed
+status
+version
+encoding
+    utf-8
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+    {'base': u'http://www.campaignindia.in/RSS/rss.ashx?type=Category&ID=473', 'type': u'text/html', 'value': u"Prior to the move to Draftfcb-Ulka Group's consulting arm, she was with the Aditya Birla Group for five years", 'language': None}
+published_parsed
+links
+    [{'href': u'http://www.campaignindia.in/Article/351112,mahuya-chaturvedi-joins-cogito-consulting-as-managing-partner.aspx', 'type': u'text/html', 'rel': u'alternate'}]
+title
+imagelink
+    http://cdn.i.haymarket.net.au/Utils/ImageResizer.ashx?n=http%3a%2f%2fi.haymarket.net.au%2fNews%2fMahuya.JPG&h=55&w=83&c=1
+summary
+    Prior to the move to Draftfcb-Ulka Group's consulting arm, she was with the Aditya Birla Group for five years
+title_detail
+link
+    http://www.campaignindia.in/Article/351112,mahuya-chaturvedi-joins-cogito-consulting-as-managing-partner.aspx
+published
+
+::::: Campaign India  - Creativity :::::
+feed
+status
+version
+encoding
+    utf-8
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+    {'base': u'http://www.campaignindia.in/RSS/rss.ashx?type=Category&ID=475', 'type': u'text/html', 'value': u'If a brewery launched &#8216;Heir Raiser&#8217; in honour of the &#8216;Royal Baby&#8217;, Coca-Cola asked people to share a Coke with parents to open happiness', 'language': None}
+published_parsed
+links
+    [{'href': u'http://www.campaignindia.in/Article/351409,weekend-fun-riding-the-8216royal-baby8217-wave.aspx', 'type': u'text/html', 'rel': u'alternate'}]
+title
+imagelink
+    http://cdn.i.haymarket.net.au/Utils/ImageResizer.ashx?n=http%3a%2f%2fi.haymarket.net.au%2fNews%2f20130726094708_coke.JPG&h=55&w=83&c=1
+summary
+    If a brewery launched &#8216;Heir Raiser&#8217; in honour of the &#8216;Royal Baby&#8217;, Coca-Cola asked people to share a Coke with parents to open happiness
+title_detail
+link
+    http://www.campaignindia.in/Article/351409,weekend-fun-riding-the-8216royal-baby8217-wave.aspx
+published
+
+::::: The Hindu - International :::::
+feed
+status
+version
+encoding
+    UTF-8
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+    {'base': u'http://www.thehindu.com/news/international/?service=rss', 'type': u'text/html', 'value': u'Saudi Arabia says one more man has died from a new respiratory virus related to SARS, bringing to 39 the number of deadly cases in the kingdom at the centre of the growing outbreak.\nThe S...', 'language': u'en'}
+published_parsed
+links
+    [{'href': u'http://www.thehindu.com/news/international/world/new-virus-claims-one-more-life-in-saudi/article4959825.ece', 'type': u'text/html', 'rel': u'alternate'}]
+author
+    AP
+tags
+    [{'term': u'World', 'scheme': None, 'label': None}]
+summary
+    Saudi Arabia says one more man has died from a new respiratory virus related to SARS, bringing to 39 the number of deadly cases in the kingdom at the centre of the growing outbreak.
+The S...
+title_detail
+link
+    http://www.thehindu.com/news/international/world/new-virus-claims-one-more-life-in-saudi/article4959825.ece
+authors
+    [{}]
+title
+author_detail
+    {'name': u'AP'}
+published
+
+::::: ABC News: Top Stories :::::
+feed
+status
+updated
+updated_parsed
+encoding
+    UTF-8
+bozo
+headers
+etag
+    1374922067000
+href
+version
+entries
+namespaces
+-----------------
+summary_detail
+    {'base': u'http://feeds.abcnews.com/abcnews/topstories', 'type': u'text/html', 'value': u'<img border="0" height="1" src="http://feeds.abcnews.com/c/35229/f/654824/s/2f371846/sc/20/mf.gif" width="1" /><div class="mf-viral"><table border="0"><tr><td valign="middle"><a href="http://share.feedsportal.com/share/twitter/?u=http%3A%2F%2Fabcnews.go.com%2FInternational%2FwireStory%2Fegypt-accuses-ousted-president-2011-jailbreak-19780098&amp;t=Dozens+Killed+Near+Pro-Morsi+Rally+in+Egypt" target="_blank"><img border="0" src="http://res3.feedsportal.com/social/twitter.png" /></a>&nbsp;<a href="http://share.feedsportal.com/share/facebook/?u=http%3A%2F%2Fabcnews.go.com%2FInternational%2FwireStory%2Fegypt-accuses-ousted-president-2011-jailbreak-19780098&amp;t=Dozens+Killed+Near+Pro-Morsi+Rally+in+Egypt" target="_blank"><img border="0" src="http://res3.feedsportal.com/social/facebook.png" /></a>&nbsp;<a href="http://share.feedsportal.com/share/linkedin/?u=http%3A%2F%2Fabcnews.go.com%2FInternational%2FwireStory%2Fegypt-accuses-ousted-president-2011-jailbreak-19780098&amp;t=Dozens+Killed+Near+Pro-Morsi+Rally+in+Egypt" target="_blank"><img border="0" src="http://res3.feedsportal.com/social/linkedin.png" /></a>&nbsp;<a href="http://share.feedsportal.com/share/gplus/?u=http%3A%2F%2Fabcnews.go.com%2FInternational%2FwireStory%2Fegypt-accuses-ousted-president-2011-jailbreak-19780098&amp;t=Dozens+Killed+Near+Pro-Morsi+Rally+in+Egypt" target="_blank"><img border="0" src="http://res3.feedsportal.com/social/googleplus.png" /></a>&nbsp;<a href="http://share.feedsportal.com/share/email/?u=http%3A%2F%2Fabcnews.go.com%2FInternational%2FwireStory%2Fegypt-accuses-ousted-president-2011-jailbreak-19780098&amp;t=Dozens+Killed+Near+Pro-Morsi+Rally+in+Egypt" target="_blank"><img border="0" src="http://res3.feedsportal.com/social/email.png" /></a></td></tr></table></div><br /><br /><a href="http://da.feedsportal.com/r/172487397300/u/57/f/654824/c/35229/s/2f371846/a2.htm"><img border="0" src="http://da.feedsportal.com/r/172487397300/u/57/f/654824/c/35229/s/2f371846/a2.img" /></a><img border="0" height="1" src="http://pi.feedsportal.com/r/172487397300/u/57/f/654824/c/35229/s/2f371846/a2t.img" width="1" />', 'language': None}
+published_parsed
+links
+    [{'href': u'http://feeds.abcnews.com/c/35229/f/654824/s/2f371846/sc/20/l/0Labcnews0Bgo0N0CInternational0CwireStory0Cegypt0Eaccuses0Eousted0Epresident0E20A110Ejailbreak0E19780A0A98/story01.htm', 'type': u'text/html', 'rel': u'alternate'}]
+title
+tags
+    [{'term': u'International', 'scheme': None, 'label': None}]
+media_thumbnail
+    [{'url': u'http://a.abcnews.com/images/International/AP_egypt_protest_lt_130727_4x3t_384.jpg', 'width': u'384', 'height': u'288'}, {'url': u'http://a.abcnews.com/images/International/AP_egypt_protest_lt_130727_4x3t_144.jpg', 'width': u'144', 'height': u'108'}, {'url': u'http://a.abcnews.com/images/International/AP_egypt_protest_lt_130727_4x3t_384.jpg', 'width': u'384', 'height': u'288'}, {'url': u'http://a.abcnews.com/images/International/AP_egypt_protest_lt_130727_16x9t_240.jpg', 'width': u'240', 'height': u'135'}, {'url': u'http://a.abcnews.com/images/International/AP_egypt_protest_lt_130727_4x3_608.jpg', 'width': u'608', 'height': u'456'}, {'url': u'http://a.abcnews.com/images/International/AP_egypt_protest_lt_130727_16x9_992.jpg', 'width': u'992', 'height': u'558'}]
+summary
+    <img border="0" height="1" src="http://feeds.abcnews.com/c/35229/f/654824/s/2f371846/sc/20/mf.gif" width="1" /><div class="mf-viral"><table border="0"><tr><td valign="middle"><a href="http://share.feedsportal.com/share/twitter/?u=http%3A%2F%2Fabcnews.go.com%2FInternational%2FwireStory%2Fegypt-accuses-ousted-president-2011-jailbreak-19780098&amp;t=Dozens+Killed+Near+Pro-Morsi+Rally+in+Egypt" target="_blank"><img border="0" src="http://res3.feedsportal.com/social/twitter.png" /></a>&nbsp;<a href="http://share.feedsportal.com/share/facebook/?u=http%3A%2F%2Fabcnews.go.com%2FInternational%2FwireStory%2Fegypt-accuses-ousted-president-2011-jailbreak-19780098&amp;t=Dozens+Killed+Near+Pro-Morsi+Rally+in+Egypt" target="_blank"><img border="0" src="http://res3.feedsportal.com/social/facebook.png" /></a>&nbsp;<a href="http://share.feedsportal.com/share/linkedin/?u=http%3A%2F%2Fabcnews.go.com%2FInternational%2FwireStory%2Fegypt-accuses-ousted-president-2011-jailbreak-19780098&amp;t=Dozens+Killed+Near+Pro-Morsi+Rally+in+Egypt" target="_blank"><img border="0" src="http://res3.feedsportal.com/social/linkedin.png" /></a>&nbsp;<a href="http://share.feedsportal.com/share/gplus/?u=http%3A%2F%2Fabcnews.go.com%2FInternational%2FwireStory%2Fegypt-accuses-ousted-president-2011-jailbreak-19780098&amp;t=Dozens+Killed+Near+Pro-Morsi+Rally+in+Egypt" target="_blank"><img border="0" src="http://res3.feedsportal.com/social/googleplus.png" /></a>&nbsp;<a href="http://share.feedsportal.com/share/email/?u=http%3A%2F%2Fabcnews.go.com%2FInternational%2FwireStory%2Fegypt-accuses-ousted-president-2011-jailbreak-19780098&amp;t=Dozens+Killed+Near+Pro-Morsi+Rally+in+Egypt" target="_blank"><img border="0" src="http://res3.feedsportal.com/social/email.png" /></a></td></tr></table></div><br /><br /><a href="http://da.feedsportal.com/r/172487397300/u/57/f/654824/c/35229/s/2f371846/a2.htm"><img border="0" src="http://da.feedsportal.com/r/172487397300/u/57/f/654824/c/35229/s/2f371846/a2.img" /></a><img border="0" height="1" src="http://pi.feedsportal.com/r/172487397300/u/57/f/654824/c/35229/s/2f371846/a2t.img" width="1" />
+guidislink
+    False
+title_detail
+href
+link
+    http://feeds.abcnews.com/c/35229/f/654824/s/2f371846/sc/20/l/0Labcnews0Bgo0N0CInternational0CwireStory0Cegypt0Eaccuses0Eousted0Epresident0E20A110Ejailbreak0E19780A0A98/story01.htm
+published
+id
+media_keywords
+    1
+
+::::: Health News :::::
+feed
+status
+version
+encoding
+    iso-8859-1
+bozo
+headers
+href
+namespaces
+entries
+-----------------
+summary_detail
+    {'base': u'http://www.newkerala.com/health-news.xml', 'type': u'text/html', 'value': u'Washington, July 26 : A new stem cell-based approach to studying epilepsy has yielded a surprising discovery about what causes one form of the disease.', 'language': None}
+published_parsed
+links
+    [{'href': u'http://www.newkerala.com/news/story/46970/epilepsy-in-a-dish-may-aid-search-for-better-drugs.html', 'type': u'text/html', 'rel': u'alternate'}]
+title
+summary
+    Washington, July 26 : A new stem cell-based approach to studying epilepsy has yielded a surprising discovery about what causes one form of the disease.
+guidislink
+    False
+title_detail
+link
+    http://www.newkerala.com/news/story/46970/epilepsy-in-a-dish-may-aid-search-for-better-drugs.html
+published
+id
+
