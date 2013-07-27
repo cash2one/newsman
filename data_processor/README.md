@@ -52,6 +52,26 @@
     11.3 million handsets. If you're craving for more stats, hit the break for
     a trio of press releases
 
+### 首段并未带常规<p>标签
+[Google+ Local for iOS has one foot in the grave, will rest in peace August 7th](http://54.251.107.116/transcoded/en_008_1374818700_21732031.html)
+
+    <div class="new-content">
+    Hello,We're emailing to announce that the Google+ Local
+    app for iOS will be retired on August 7th, 2013.The good news is that all
+    features in the Google+ Local app are now available in Google Maps for Mobile
+    on iOS devices:<p>• Search by categories of places, like "restaurants" or
+    "coffee shops"<br />• Read place information, including written reviews,
+    average price, address and Street View (where available)<br />• See what people
+    in your Google+ circles have to say about their favorite places around the
+    world<br />• Rate and review places you've been to<br />• Share places,
+    locations and businesses you find</p><p>Learn more about Google Maps for
+    iOS.<br />This means that after August 7th, you'll no longer be able to access
+    the Google+ Local app through your iOS device. Any reviews and ratings that you
+    created will be available on your Google+ profile and in the Google Maps iOS
+    app.<br />Thank you for using Google+ Local for iOS.</p><p>Sincerely,<br />The
+    Google Maps Team</p>
+    </div>
+
 
 ## 转码问题
 
