@@ -59,5 +59,5 @@ STRATEGY_WITH_WEIGHTS = 2
 
 FEED_REGISTRAR = 'feeds'
 
-LANGUAGES = ['en', 'th', 'ind', 'ja', 'pt', 'en-rIN']
-THUMBNAIL_SIZE = 150, 150   # banner filter for indonesia : lijun
+LANGUAGES = ['en', 'th', 'ind', 'ja', 'pt', 'en-rIN', 'ar']
+MIN_IMAGE_SIZE = 150, 150
