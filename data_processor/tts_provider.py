@@ -85,7 +85,19 @@ def _query_segment(language='en', query='Service provided by Baidu'):
     '''
     remove after implementing line 91: the algorithm only now works for latins
     '''
+
+    def _remove_brackets(text):
+        """
+        remove brackets, latin or japanese from a sentence
+        """
+        no_bracket_parts = re.split(u"[\（\(].+?[\）\)]", text)
+        return ''.join(no_bracket_parts)
+
+    # pre-process
     query = unicode(query.strip())
+    # remove content within a () or （）
+    query = _remove_brackets(query)
+
     sentences = None
     if language == 'ja':
         #jp_sent_tokenizer = nltk.RegexpTokenizer(u'^ !?.！？。．]*[!?.！？。]*')
@@ -95,15 +107,8 @@ def _query_segment(language='en', query='Service provided by Baidu'):
         sentences = nltk.sent_tokenize(query)
 
     if sentences:
-        # remove content within a () or （）
-        def _remove_brackets(sentence):
-            """
-            remove brackets, latin or japanese from a sentence
-            """
-            no_bracket_parts = re.split(u"[\（\(].+?[\）\)]", sentence)
-            return ''.join(no_bracket_parts)
-
-        sentences = filter(lambda x:x, [_remove_brackets(sentence).strip().encode('utf-8') for sentence in sentences])
+        # convert to utf-8 and remove spaces
+        sentences = filter(lambda x:x, [sentence.strip().encode('utf-8') for sentence in sentences])
 
     parts = []
     for sentence in sentences:
