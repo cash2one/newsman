@@ -16,7 +16,6 @@ sys.path.append('..')
 from administration.config import IMAGES_LOCAL_DIR
 from administration.config import IMAGES_PUBLIC_DIR
 from administration.config import MIN_IMAGE_SIZE
-from administration.config import THUMBNAIL_SIZE
 from administration.config import TRANSCODED_LOCAL_DIR
 from BeautifulSoup import BeautifulSoup
 import Image
@@ -69,7 +68,6 @@ def find_biggest_image(images=None):
 def scale_image(image=None, size_expected=MIN_IMAGE_SIZE, resize_by_width=True, crop_by_center=True, relative_path=None):
     """
     resize an image as requested
-    crop_by: center, width, height
     """
     if not image or not size_expected or not relative_path:
         return None
@@ -80,7 +78,7 @@ def scale_image(image=None, size_expected=MIN_IMAGE_SIZE, resize_by_width=True, 
     width_expected = size_expected[0]
     height_expected = size_expected[1]
 
-    if width > width_expected and height > height_expected:
+    if width >= width_expected and height >= height_expected:
         if resize_by_width:
             height_new = int(width_expected / width * height)
             width_new = width_expected
@@ -117,10 +115,10 @@ def scale_image(image=None, size_expected=MIN_IMAGE_SIZE, resize_by_width=True, 
             except IOError as k:
                 raise Exception('ERROR: %s is not an image' % image_url)
         else:
-            return scale_image((image, size_expected, not resize_by_width, not crop_by_center, relative_path)
+            return scale_image(image, size_expected, not resize_by_width, crop_by_center, relative_path)
     else:
         return None
-        
+
 
 def normalize(images):
     """
