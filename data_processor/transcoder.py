@@ -22,7 +22,7 @@ from administration.config import NEWS_TEMPLATE
 import os
 from cStringIO import StringIO
 from image_processor import thumbnail
-from administration.config import THUMBNAIL_SIZE
+from administration.config import MIN_IMAGE_SIZE
 from administration.config import TRANSCODING_BTN_EN
 from administration.config import TRANSCODING_BTN_JA
 from administration.config import TRANSCODING_BTN_TH

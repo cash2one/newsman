@@ -28,7 +28,7 @@ import time
 from administration.config import DATABASE_REMOVAL_DAYS
 from administration.config import LANGUAGES
 from administration.config import MEMORY_EXPIRATION_DAYS
-from administration.config import THUMBNAIL_SIZE
+from administration.config import MIN_IMAGE_SIZE
 
 
 def _value_added_process(entries=None, language=None):
