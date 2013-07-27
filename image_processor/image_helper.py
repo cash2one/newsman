@@ -20,6 +20,12 @@ from administration.config import THUMBNAIL_SIZE
 from administration.config import TRANSCODED_LOCAL_DIR
 from BeautifulSoup import BeautifulSoup
 import Image
+import os
+import random
+
+if not os.path.exists(IMAGES_LOCAL_DIR):
+    os.mkdir(IMAGES_LOCAL_DIR)
+
 
 def find_images(content=None):
     """
@@ -103,8 +109,10 @@ def scale_image(image=None, size_expected=MIN_IMAGE_SIZE, resize_by_width=True, 
                     bottom = height_expected
                     image_pil.crop(left, top, right, bottom)
                 # storing
+                image_web_path = '%s%s' % (IMAGES_PUBLIC_DIR, relative_path)
+                image_local_path = '%s%s' % (IMAGES_PUBLIC_DIR, relative_path)
                 image_pil = image_pil.convert('RGB')
-                image_pil.save(xxxxxxxxxxxx, 'JPEG')
+                image_pil.save(image_local_path, 'JPEG')
                 return image_web_path, image_local_path
             except IOError as k:
                 raise Exception('ERROR: %s is not an image' % image_url)
