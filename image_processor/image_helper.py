@@ -79,40 +79,40 @@ def scale_image(image=None, size_expected=MIN_IMAGE_SIZE, resize_by_width=True, 
 
     if width >= width_expected and height >= height_expected:
         if resize_by_width:
-            height_new = int(width_expected / width * height)
+            height_new = width_expected * height / width
             width_new = width_expected
         else:
-            width_new = int(height_expected / height * width)
+            width_new = height_expected * width / height
             height_new = height_expected
 
         # larger and equal than is important here
         if width_new >= width_expected and height_new >= height_expected:
-            try:
-                # resize
-                image_pil = Image.open(image_url)
-                size_new = width_new, height_new
-                image_pil.thumbnail(size_new, Image.ANTIALIAS)
-                # crop
-                if crop_by_center:
-                    left = (width_new - width_expected) / 2
-                    top = (height_new - height_expected) / 2
-                    right = (width_new + width_expected) / 2
-                    bottom = (height_new + height_expected) / 2
-                    image_pil.crop(left, top, right, bottom)
-                else:
-                    left = 0
-                    top = 0
-                    right = width_expected
-                    bottom = height_expected
-                    image_pil.crop(left, top, right, bottom)
-                # storing
+            # resize
+            image_pil = Image.open(image_url)
+            size_new = width_new, height_new
+            image_pil.thumbnail(size_new, Image.ANTIALIAS)
+            # crop
+            if crop_by_center:
+                left = (width_new - width_expected) / 2
+                top = (height_new - height_expected) / 2
+                right = (width_new + width_expected) / 2
+                bottom = (height_new + height_expected) / 2
+                image_cropped = image_pil.crop((left, top, right, bottom))
+            else:
+                left = 0
+                top = 0
+                right = width_expected
+                bottom = height_expected
+                image_cropped = image_pil.crop((left, top, right, bottom))
+            # storing
+            if image_cropped:
                 image_web_path = '%s%s' % (IMAGES_PUBLIC_DIR, relative_path)
-                image_local_path = '%s%s' % (IMAGES_PUBLIC_DIR, relative_path)
-                image_pil = image_pil.convert('RGB')
-                image_pil.save(image_local_path, 'JPEG')
+                image_local_path = '%s%s' % (IMAGES_LOCAL_DIR, relative_path)
+                image_cropped = image_cropped.convert('RGB')
+                image_cropped.save(image_local_path, 'JPEG')
                 return image_web_path, image_local_path
-            except IOError as k:
-                raise Exception('ERROR: %s is not an image' % image_url)
+            else:
+                return None
         else:
             return scale_image(image, size_expected, not resize_by_width, crop_by_center, relative_path)
     else:
