@@ -37,6 +37,7 @@
 
 ### 首段太长了/疑似全文输出
 [Apple hits three-year low in smartphone marketshare, shipment figures reveal](http://54.251.107.116/transcoded/en_008_1374815520_3489369.html)
+
     Fresh reports on the state of the cellphone market during Q2 2013 have
     blown through the barn door, and industry analysts are flaunting some fairly
     impressive figures. Smartphones have outsold their less-intelligent brethren
