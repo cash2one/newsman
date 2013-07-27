@@ -35,6 +35,21 @@
 ### 没有内容/只有图片
 [Chicago approves $500 million revamp of Wsrigley Field](http://54.251.107.116/transcoded/en_007_1374710117_96775663.html)
 
+### 首段太长了/疑似全文输出
+[Apple hits three-year low in smartphone marketshare, shipment figures reveal](http://54.251.107.116/transcoded/en_008_1374815520_3489369.html)
+    Fresh reports on the state of the cellphone market during Q2 2013 have
+    blown through the barn door, and industry analysts are flaunting some fairly
+    impressive figures. Smartphones have outsold their less-intelligent brethren
+    for the second quarter in a row, and Strategy Analytics says shipments hit
+    a record-breaking 237.9 million. According to IDC, Samsung managed to ship
+    a total of 72.4 million smartphones during Q2 -- a 43.9% boost year-over-year
+    -- with help of the Galaxy S 4and price cuts to the GS3. To put that in
+    perspective, that's more than double the 31.2 million iPhones Apple managed to
+    ship, and Strategy Analytics claims this marks a three-year low in Cook and
+    Co.'s marketshare. While LG and ZTE each occupy third and fifth place,
+    respectively, Lenovo pushed Huawei out of the number four slot by sending out
+    11.3 million handsets. If you're craving for more stats, hit the break for
+    a trio of press releases
 
 
 ## 转码问题
