@@ -53,6 +53,7 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
     # the easy part: the must-have
     try:
         # article original link
+        entry['error'] = []
         entry['link'] = e.link.strip()
         # article title
         if e.title_detail.type != 'text/plain':
@@ -61,7 +62,7 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
             entry['title'] = e.title.strip()
     except AttributeError as k:
         print k
-        entry['error'] = k
+        entry['error'].append(k + '\n')
         raise Exception(
             'ERROR: No title or link found for %s!' % entry['feed_id'])
 
@@ -102,8 +103,7 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
                     'ERROR: entry %s has no publication info!' % entry['title'])
             except AttributeError as k:
                 print k
-                entry['error'] = '%s\n%s' % (
-                    entry['error'], 'no update or published')
+                entry['error'].append('no update or published\n')
                 raise Exception(
                     'ERROR: entry %s has no publication info!' % entry['title'])
 

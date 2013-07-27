@@ -25,10 +25,13 @@ import random
 import rss_parser
 import time
 
+from administration.config import CATEGORY_IMAGE_SIZE
 from administration.config import DATABASE_REMOVAL_DAYS
+from administration.config import HOT_IMAGE_SIZE
 from administration.config import LANGUAGES
 from administration.config import MEMORY_EXPIRATION_DAYS
 from administration.config import MIN_IMAGE_SIZE
+from administration.config import THUMBNAIL_IMAGE_SIZE
 
 
 def _value_added_process(entries=None, language=None):
@@ -63,6 +66,11 @@ def _value_added_process(entries=None, language=None):
             # [OPTIONAL] generate 3 types of images: thumbnail, category image and hot news image
             if entry.has_key('images') and entry['images']:
                 biggest = image_helper.find_biggest_image(entry['images'])
+                if biggest:
+                    try:
+                    image_helper.scale_image(image=biggest, size_expected=(388, 162), resize_by_width=True, crop_by_center=True, relative_path='test')
+                    except IOError as k:
+                        entry['error'].append(k+'\n')
             entry['image'] = None if not entry.has_key(
                 'image') else entry['image']
 
