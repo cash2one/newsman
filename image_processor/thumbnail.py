@@ -23,7 +23,7 @@ def is_valid_image(image_url):
     """
     if not image_url:
         return None
-    image_pil = Image.open(StrinIO(urllib2.urlopen(image_url).read())) 
+    image_pil = Image.open(StringIO(urllib2.urlopen(image_url).read())) 
     return True if image_pil.size[0]*image_pil.size[1] > MIN_IMAGE_SIZE[0]*MIN_IMAGE_SIZE[1] else False
 
 
