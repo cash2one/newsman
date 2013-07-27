@@ -56,14 +56,13 @@ def _value_added_process(entries=None, language=None):
             # [OPTIONAL] find images
             images = image_helper.find_images(entry['transcoded_local'])
             if images:
-                entry['images'] = entry['images'] if 'images' in entry and entry['images'] else []
+                entry['images'] = entry['images'] if entry.has_key['images'] and entry['images'] else []
                 entry['images'].extend(images)
-            entry['images'] = list(set(entry[images])) if 'images' in entry and entry['images'] else None
+            entry['images'] = list(set(entry[images])) if entry.has_key['images'] and entry['images'] else None
 
             # [OPTIONAL] find biggest image
-            if entry.has_key('big_images') and entry['big_images']:
-                entry['image'] = image_helper.find_biggest_image(
-                    entry['big_images'])
+            if entry.has_key('images') and entry['images']:
+                biggest = image_helper.find_biggest_image(entry['images'])
             entry['image'] = None if not entry.has_key(
                 'image') else entry['image']
 

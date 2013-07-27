@@ -14,12 +14,13 @@ sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
 from BeautifulSoup import BeautifulSoup
+from administration.config import MIN_IMAGE_SIZE
 from administration.config import THUMBNAIL_SIZE
 from administration.config import TRANSCODED_LOCAL_DIR
 
 def find_images(content):
     """
-    find out all images and its size info
+    find out all images from content and its size info
     """
     if not content:
         return None
@@ -40,18 +41,18 @@ def find_images(content):
 
 def find_biggest_image(images):
     """
-    find the biggest in size from a pile of images
+    find the biggest in resolution from a pile of images
     """
     if not images:
         return None
     
     biggest = None
     for current, image in enumerate(images):
-        size_max = 0, 0
-        size_current = image['width'], image['height']
-        if size_current > size_max:
-            biggest = current
-            size_max = size_current
+        resolution_max = MIN_IMAGE_SIZE[0]*MIN_IMAGE_SIZE[1] 
+        resolution_current = image['width']*image['height']
+        if resolution_current > resolution_max:
+            biggest = image
+            resolution_max = resolution_current
     return biggest 
 
 
