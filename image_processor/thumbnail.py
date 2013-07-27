@@ -23,7 +23,7 @@ def is_thumbnail(image_url):
     if not image_url:
         return None
     image_pil = Image.open(StrinIO(urllib2.urlopen(image_url).read())) 
-    return True if image_pil.size < THUMBNAIL_SIZE else False
+    return True if image_pil.size[0]*image_pil.size[1] < THUMBNAIL_SIZE[0]*THUMBNAIL_SIZE[1] else False
 
 
 # TODO: boundary checkers

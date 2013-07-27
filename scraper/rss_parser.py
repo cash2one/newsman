@@ -112,6 +112,7 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
         entry['summary'] = hparser.unescape(e.summary)
     except AttributeError as k:
         entry['summary'] = None
+    entry['summary'] = None if not entry['summary'] else entry['summary']
 
     def _store_thumbnail(stored_at, image):
         """
@@ -129,7 +130,7 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
             width, height = thumbnail.get_image_size(image_shrinked)
             stored_at.append(
                 {'url': image_shrinked, 'width': width, 'height': height})
-    entry['summary'] = None if not entry['summary'] else entry['summary']
+
 
     # article's thumbnail
     # e.g. [{'url':
@@ -138,56 +139,54 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
     try:
         entry['thumbnails'] = e.media_content
     except AttributeError as k:
-        try:
-            entry['thumbnails'] = e.media_thumbnail
-        except AttributeError as k:
+        pass
+    try:
+        entry['thumbnails'] = e.media_thumbnail
+    except AttributeError as k:
+        pass
+    try:
+        for attribute in e:
+            if 'thumbnail' in attribute:
+                # currently set thumbnail to None if its a dictionary
+                thumbnail_embedded = e.attribute if isinstance(e.attribute, str) else None
+                if thumbnail_embedded:
+                    width, height = thumbnail.get_image_size(thumbnail_embedded)
+                    entry['thumbnails'] = [{'url': thumbnail_embedded, 'width': width, 'height': height}]
+                    break
+        if 'thumbnails' not in entry:
+            raise AttributeError(
+                "cannot find 'thumbnail'-like attribute")
+    except AttributeError as k:
+        entry['thumbnails'] = []
+        if entry.has_key('summary') and entry['summary']:
+            soup = BeautifulStoneSoup(entry['summary'])
+            if soup.img:
+                if soup.img.get('src'):
+                    images = soup.img['src']
+                    if isinstance(images, str):
+                        _store_thumbnail(entry['thumbnails'], images)
+                    elif isinstance(images, list):
+                        for image in images:
+                            _store_thumbnail(entry['thumbnails'], image)
+        if 'thumbnails' not in entry:
             try:
-                for attribute in e:
-                    if 'thumbnail' in attribute:
-                        # currently set thumbnail to None if its a dictionary
-                        thumbnail_embedded = e.attribute if isinstance(
-                            e.attribute, str) else None
-                        if thumbnail_embedded:
-                            width, height = thumbnail.get_image_size(
-                                thumbnail_embedded)
-                            entry['thumbnails'] = [
-                                {'url': thumbnail_embedded, 'width': width, 'height': height}]
-                            break
+                links = e.links
+                for link in links:
+                    if 'type' in link and 'image' in link.type:
+                        if 'href' in link:
+                            _store_thumbnail(entry['thumbnails'], link.href)
                 if 'thumbnails' not in entry:
-                    raise AttributeError(
-                        "cannot find 'thumbnail'-like attribute")
+                    raise AttributeError("no image found in 'links'")
             except AttributeError as k:
-                entry['thumbnails'] = []
-                if entry.has_key('summary') and entry['summary']:
-                    soup = BeautifulStoneSoup(entry['summary'])
-                    if soup.img:
-                        if soup.img.get('src'):
-                            images = soup.img['src']
-                            if isinstance(images, str):
-                                _store_thumbnail(entry['thumbnails'], images)
-                            elif isinstance(images, list):
-                                for image in images:
-                                    _store_thumbnail(entry['thumbnails'], image)
-                if 'thumbnails' not in entry:
-                    try:
-                        links = e.links
-                        for link in links:
-                            if 'type' in link and 'image' in link.type:
-                                if 'href' in link:
-                                    _store_thumbnail(
-                                        entry['thumbnails'], link.href)
-                        if 'thumbnails' not in entry:
-                            raise AttributeError("no image found in 'links'")
-                    except AttributeError as k:
-                        pass
+                pass
     entry['thumbnails'] = None if not entry.has_key('thumbnails') else entry['thumbnails']
 
-    # article's big images
+    # article's images
     if entry.has_key('summary') and entry['summary']:
         images = image_helper.find_images(entry['summary'])
         if images:
-            entry['big_images'] = entry['big_images'] if entry.has_key('big_images') and entry['big_images'] else []
-            entry['big_images'].extend(images)
+            entry['images'] = entry['images'] if entry.has_key('images') and entry['images'] else []
+            entry['images'].extend(images)
     try:
         links = e.links
         for link in links:
@@ -196,15 +195,15 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
                     width, height = thumbnail.get_image_size(link.href)
                     big_image = {
                         'url': link.href, 'width': width, 'height': height}
-                    entry['big_images'] = entry['big_images'] if entry.has_key('big_images') and entry['big_images'] else []
-                    if big_image not in entry['big_images']:
-                        entry['big_images'].append(big_image)
-        if 'big_images' not in entry:
+                    entry['images'] = entry['images'] if entry.has_key('images') and entry['images'] else []
+                    if big_image not in entry['images']:
+                        entry['images'].append(big_image)
+        if 'images' not in entry:
             raise AttributeError("no image found in 'links'")
     except AttributeError as k:
-        if not entry.has_key('big_images'):
+        if not entry.has_key('images'):
             pass
-    entry['big_images'] = None if not entry.has_key('big_images') else list(set(entry['big_images']))
+    entry['images'] = None if not entry.has_key('images') else list(set(entry['images']))
 
     # article's author
     # e.g. Yuan Jin
