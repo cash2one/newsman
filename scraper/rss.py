@@ -58,9 +58,9 @@ def _value_added_process(entries=None, language=None):
             # [OPTIONAL] find images
             images = image_helper.find_images(entry['transcoded_local'])
             if images:
-                entry['images'] = entry['images'] if entry.has_key['images'] and entry['images'] else []
+                entry['images'] = entry['images'] if entry.has_key('images') and entry['images'] else []
                 entry['images'].extend(images)
-            entry['images'] = list(set(entry[images])) if entry.has_key['images'] and entry['images'] else None
+            entry['images'] = list(set(entry['images'])) if entry.has_key('images') and entry['images'] else None
 
             # [OPTIONAL] generate 3 types of images: thumbnail, category image and hot news image
             if entry.has_key('images') and entry['images']:

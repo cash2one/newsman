@@ -92,6 +92,17 @@ def uck_reformat(language, title, data):
     successful = int(data['STRUCT_PAGE_TYPE'])
     if successful == 0:
         return None
+
+    # images
+    images = []
+    if 'image_list' in data and data['image_list']:
+        for image in data['image_list']:
+            image_url = hparser.unescape(image['src'].strip())
+            width, height = thumbnail.get_image_size(image_url)
+            images.append({'url':image_url, 'width':width, 'height':height})
+    images = images if images else None
+
+    # content
     content = data['content'].replace("\\", "")
     new_content = uck_sanitize(content)
     if new_content:
@@ -99,7 +110,7 @@ def uck_reformat(language, title, data):
         template = str(f.read())
         news = template % (
             title, title, new_content, transcoding_button_language[language])
-        return news
+        return news, images
     else:
         return None
 
@@ -179,7 +190,7 @@ def transcode(language, title, link, relative_path):
         strinfo = re.compile('.png"')
         transcoded = strinfo.sub('.png" width=100% height="auto"', transcoded)
     '''
-    transcoded = transcode_by_uck(language, title, link)
+    transcoded, images = transcode_by_uck(language, title, link)
     # demo to return an exception
     if not transcoded:
         raise Exception('ERROR: Transcoder %s failed for %s' % ('UCK', link))
@@ -187,4 +198,4 @@ def transcode(language, title, link, relative_path):
     web_path, local_path = generate_path(transcoded, relative_path)
     if not web_path:
         raise Exception('ERROR: Cannot generate web path for %s properly!' % link)
-    return web_path, local_path
+    return web_path, local_path, images
