@@ -13,6 +13,8 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
+from administration.config import IMAGES_LOCAL_DIR
+from administration.config import IMAGES_PUBLIC_DIR
 from administration.config import MIN_IMAGE_SIZE
 from administration.config import THUMBNAIL_SIZE
 from administration.config import TRANSCODED_LOCAL_DIR
@@ -58,14 +60,12 @@ def find_biggest_image(images=None):
 
 
 # TODO: boundary checker
-def scale_image(image=None, size_expected=MIN_IMAGE_SIZE, resize_by_width=True, crop_by='center', relative_path=None):
+def scale_image(image=None, size_expected=MIN_IMAGE_SIZE, resize_by_width=True, crop_by_center=True, relative_path=None):
     """
     resize an image as requested
     crop_by: center, width, height
     """
-    if not image or not size_expected or not crop_by or not relative_path:
-        return None
-    if crop_by != 'center' or crop_by != 'width' or cropy_by != 'height':
+    if not image or not size_expected or not relative_path:
         return None
 
     width = int(image['width'])
@@ -90,23 +90,26 @@ def scale_image(image=None, size_expected=MIN_IMAGE_SIZE, resize_by_width=True, 
                 size_new = width_new, height_new
                 image_pil.thumbnail(size_new, Image.ANTIALIAS)
                 # crop
-                if crop_by == 'width':
-                    image_pil.crop()
-                elif crop_by == 'height':
-                    image_pil.crop()
-                else: # center
-                    left = (width - width_expected) / 2
-                    top = (height - height_expected) / 2
-                    right = (width + width_expected) / 2
-                    bottom = (height + height_expected) / 2
+                if crop_by_center:
+                    left = (width_new - width_expected) / 2
+                    top = (height_new - height_expected) / 2
+                    right = (width_new + width_expected) / 2
+                    bottom = (height_new + height_expected) / 2
+                    image_pil.crop(left, top, right, bottom)
+                else:
+                    left = 0
+                    top = 0
+                    right = width_expected
+                    bottom = height_expected
                     image_pil.crop(left, top, right, bottom)
                 # storing
                 image_pil = image_pil.convert('RGB')
                 image_pil.save(xxxxxxxxxxxx, 'JPEG')
+                return image_web_path, image_local_path
             except IOError as k:
                 raise Exception('ERROR: %s is not an image' % image_url)
         else:
-            pass
+            return scale_image((image, size_expected, not resize_by_width, not crop_by_center, relative_path)
     else:
         return None
         

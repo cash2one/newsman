@@ -28,13 +28,13 @@ PUBLIC = 'http://54.251.107.116/%s'
 LOCAL = '/home/jinyuan/Downloads/global-mobile-news/%s'
 
 TRANSCODED_LOCAL_DIR = LOCAL % 'interface/transcoded/'
-TRANSCODED_WEB_DIR = PUBLIC % 'ts/'
+TRANSCODED_PUBLIC_DIR = PUBLIC % 'ts/'
 
 IMAGES_LOCAL_DIR = LOCAL % 'interface/images/'
-IMAGES_WEB_DIR = PUBLIC % 'img/'
+IMAGES_PUBLIC_DIR = PUBLIC % 'img/'
 
 MEDIA_LOCAL_DIR = LOCAL % 'interface/media/'
-MEDIA_WEB_DIR = PUBLIC % 'mid/'
+MEDIA_PUBLIC_DIR = PUBLIC % 'mid/'
 
 MAINTENANCE_DIR = LOCAL % 'alert_maintenance/maintenance/'
 RSS_UPDATE_LOG = LOCAL % 'alert_maintenance/maintenance/rul.txt'
