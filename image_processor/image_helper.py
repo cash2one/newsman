@@ -47,12 +47,12 @@ def find_biggest_image(images):
         return None
     
     biggest = None
-    for current, image in enumerate(images):
-        resolution_max = MIN_IMAGE_SIZE[0]*MIN_IMAGE_SIZE[1] 
-        resolution_current = image['width']*image['height']
-        if resolution_current > resolution_max:
+    for image in images:
+        resolution_max = MIN_IMAGE_SIZE[0] * MIN_IMAGE_SIZE[1] 
+        resolution_image = image['width'] * image['height']
+        if resolution_image > resolution_max:
             biggest = image
-            resolution_max = resolution_current
+            resolution_max = resolution_image
     return biggest 
 
 
