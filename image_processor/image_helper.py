@@ -13,12 +13,13 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
-from BeautifulSoup import BeautifulSoup
 from administration.config import MIN_IMAGE_SIZE
 from administration.config import THUMBNAIL_SIZE
 from administration.config import TRANSCODED_LOCAL_DIR
+from BeautifulSoup import BeautifulSoup
+import Image
 
-def find_images(content):
+def find_images(content=None):
     """
     find out all images from content and its size info
     """
@@ -39,7 +40,7 @@ def find_images(content):
     return None
              
 
-def find_biggest_image(images):
+def find_biggest_image(images=None):
     """
     find the biggest in resolution from a pile of images
     """
@@ -49,12 +50,66 @@ def find_biggest_image(images):
     biggest = None
     for image in images:
         resolution_max = MIN_IMAGE_SIZE[0] * MIN_IMAGE_SIZE[1] 
-        resolution_image = image['width'] * image['height']
+        resolution_image = int(image['width']) * int(image['height'])
         if resolution_image > resolution_max:
             biggest = image
             resolution_max = resolution_image
     return biggest 
 
+
+# TODO: boundary checker
+def scale_image(image=None, size_expected=MIN_IMAGE_SIZE, resize_by_width=True, crop_by='center', relative_path=None):
+    """
+    resize an image as requested
+    crop_by: center, width, height
+    """
+    if not image or not size_expected or not crop_by or not relative_path:
+        return None
+    if crop_by != 'center' or crop_by != 'width' or cropy_by != 'height':
+        return None
+
+    width = int(image['width'])
+    height = int(image['height'])
+    image_url = image['url']
+    width_expected = size_expected[0]
+    height_expected = size_expected[1]
+
+    if width > width_expected and height > height_expected:
+        if resize_by_width:
+            height_new = int(width_expected / width * height)
+            width_new = width_expected
+        else:
+            width_new = int(height_expected / height * width)
+            height_new = height_expected
+
+        # larger and equal than is important here
+        if width_new >= width_expected and height_new >= height_expected:
+            try:
+                # resize
+                image_pil = Image.open(image_url)
+                size_new = width_new, height_new
+                image_pil.thumbnail(size_new, Image.ANTIALIAS)
+                # crop
+                if crop_by == 'width':
+                    image_pil.crop()
+                elif crop_by == 'height':
+                    image_pil.crop()
+                else: # center
+                    left = (width - width_expected) / 2
+                    top = (height - height_expected) / 2
+                    right = (width + width_expected) / 2
+                    bottom = (height + height_expected) / 2
+                    image_pil.crop(left, top, right, bottom)
+                # storing
+                image_pil = image_pil.convert('RGB')
+                image_pil.save(xxxxxxxxxxxx, 'JPEG')
+            except IOError as k:
+                raise Exception('ERROR: %s is not an image' % image_url)
+        else:
+            pass
+    else:
+        return None
+        
 
 def normalize(images):
     """
@@ -71,7 +126,7 @@ def normalize(images):
         try:
             if thumbnail.is_valid_image(image):
                 width, height = thumbnail.get_image_size(image)
-                return {'url':image, 'width':widht, 'height':height}
+                return {'url':image, 'width':width, 'height':height}
             else:
                 return None
         except IOError as k:
