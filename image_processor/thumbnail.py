@@ -12,7 +12,7 @@ import urllib2
 
 from administration.config import MIN_IMAGE_SIZE
 from administration.config import IMAGES_LOCAL_DIR
-from administration.config import IMAGES_WEB_DIR
+from administration.config import IMAGES_PUBLIC_DIR
 
 
 # TODO: boundary checker should not return None, instead probably an Exception 
@@ -42,7 +42,7 @@ def generate_thumbnail(image_url, relative_path):
         image_thumbnail_local_path = '%s%si.jpg' % (
             IMAGES_LOCAL_DIR, relative_path)
         image_thumbnail_web_path = '%s%s.jpg' % (
-            IMAGES_WEB_DIR, relative_path)
+            IMAGES_PUBLIC_DIR, relative_path)
         image_pil.thumbnail(config.MIN_IMAGE_SIZE, Image.ANTIALIAS)
         image_pil = image_pil.convert('RGB')
         image_pil.save(image_thumbnail_local_path, 'JPEG')
