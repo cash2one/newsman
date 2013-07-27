@@ -20,6 +20,7 @@ import urllib2
 
 from administration.config import MEDIA_LOCAL_DIR
 from administration.config import MEDIA_WEB_DIR
+from administration.config import LANGUAGES
 
 if not os.path.exists(MEDIA_LOCAL_DIR):
     os.mkdir(MEDIA_LOCAL_DIR)
@@ -60,6 +61,11 @@ def google(language='en', query='Service provided by Baidu', relative_path='do_n
     5. store in some location
     6. return the path
     """
+    if not language or not query or not relative_path:
+        raise Exception('ERROR: Method not well formed!')
+    if language not in LANGUAGES:
+        raise Exception('ERROR: %s not supported!' % language)
+
     # generate out.mp3
     tmp_file = _download(language, query, '%s-tmp.mp3' % relative_path[:-4])
     # form paths
@@ -82,14 +88,22 @@ def _query_segment(language='en', query='Service provided by Baidu'):
     query = unicode(query.strip())
     sentences = None
     if language == 'ja':
-        jp_sent_tokenizer = nltk.RegexpTokenizer(u'[^ !?。．]*[!?。]')
+        #jp_sent_tokenizer = nltk.RegexpTokenizer(u'^ !?.！？。．]*[!?.！？。]*')
+        jp_sent_tokenizer = nltk.RegexpTokenizer(u'[^!?.！？。．]*[!?.！？。]*')
         sentences = jp_sent_tokenizer.tokenize(query)
     else:
         sentences = nltk.sent_tokenize(query)
-    # convert back to utf-8
-    # remove spaces
+
     if sentences:
-        sentences = [str(sentence).strip() for sentence in sentences]
+        # remove content within a () or （）
+        def _remove_brackets(sentence):
+            """
+            remove brackets, latin or japanese from a sentence
+            """
+            no_bracket_parts = re.split(u"[\（\(].+?[\）\)]", sentence)
+            return ''.join(no_bracket_parts)
+
+        sentences = filter(lambda x:x, [_remove_brackets(sentence).strip().encode('utf-8') for sentence in sentences])
 
     parts = []
     for sentence in sentences:
@@ -105,7 +119,7 @@ def _query_segment(language='en', query='Service provided by Baidu'):
                 phrases = sentence.split(',')
             # remove spaces
             if phrases:
-                phrases = [phrase.strip() for phrase in phrases]
+                phrases = filter(lambda x:x, [phrase.strip().encode('utf-8') for phrase in phrases])
 
             for phrase in phrases:
                 if len(phrase) < 99:
@@ -116,11 +130,11 @@ def _query_segment(language='en', query='Service provided by Baidu'):
                         segmenter = tinysegmenter.TinySegmenter()
                         words = segmenter.tokenize(unicode(phrase))
                     else:
-                        words = phrase.split(' ')
+                        words = phrase.split()
                     # convert back to utf-8
                     # remove spaces
                     if words:
-                        words = [str(word).strip() for word in words]
+                        words = filter(lambda x:x, [word.strip().encode('utf-8') for word in words])
 
                     # none of len(item) in combined_words will exceed 100
                     # combined_words = ['yyy zzz. aaa bbb']

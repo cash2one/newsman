@@ -30,7 +30,7 @@ def _parse_task(line):
 def _preview(language='en', rss_file=None):
     """
     docs needed!
-    """jjjjjj
+    """
     print '---------- retrieving feed information ----------'
     feeds_list = None
     if not rss_file:

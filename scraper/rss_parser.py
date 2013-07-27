@@ -158,7 +158,7 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
                         "cannot find 'thumbnail'-like attribute")
             except AttributeError as k:
                 entry['thumbnails'] = []
-                if entry.has_key('summary') & entry['summary']:
+                if entry.has_key('summary') and entry['summary']:
                     soup = BeautifulStoneSoup(entry['summary'])
                     if soup.img:
                         if soup.img.get('src'):

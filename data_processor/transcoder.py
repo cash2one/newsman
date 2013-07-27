@@ -160,8 +160,8 @@ def transcode_by_readability(link):
 # TODO: return an exception when fucked up
 def transcode(language, title, link, relative_path):
     ''''''
-    if not link or not relative_path:
-        return None
+    if not language or not title or not link or not relative_path:
+        raise Exception('ERROR: Method not well formed!')
     '''
     #transcoded = transcode_by_readability(link)
     transcoded = TRANSCODED_ENCODING + transcode_by_readability(link)   # lijun

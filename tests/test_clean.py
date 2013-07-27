@@ -8,7 +8,7 @@ sys.path.append('..')
 
 # remove collection
 from administration.config import db
-db.drop_collection('en')
+db.drop_collection('ja')
 print 'Database cleaned!'
 
 # clean memory
