@@ -158,7 +158,7 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
                         "cannot find 'thumbnail'-like attribute")
             except AttributeError as k:
                 entry['thumbnails'] = []
-                if entry.has_key('summary'):
+                if entry.has_key('summary') & entry['summary']:
                     soup = BeautifulStoneSoup(entry['summary'])
                     if soup.img:
                         if soup.img.get('src'):
@@ -183,10 +183,10 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
     entry['thumbnails'] = None if not entry.has_key('thumbnails') else entry['thumbnails']
 
     # article's big images
-    if entry.has_key('summary'):
+    if entry.has_key('summary') and entry['summary']:
         images = image_helper.find_images(entry['summary'])
         if images:
-            entry['big_images'] = entry['big_images'] if entry.has_key('big_images') else []
+            entry['big_images'] = entry['big_images'] if entry.has_key('big_images') and entry['big_images'] else []
             entry['big_images'].extend(images)
     try:
         links = e.links
@@ -196,7 +196,7 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
                     width, height = thumbnail.get_image_size(link.href)
                     big_image = {
                         'url': link.href, 'width': width, 'height': height}
-                    entry['big_images'] = entry['big_images'] if entry.has_key('big_images') else []
+                    entry['big_images'] = entry['big_images'] if entry.has_key('big_images') and entry['big_images'] else []
                     if big_image not in entry['big_images']:
                         entry['big_images'].append(big_image)
         if 'big_images' not in entry:
