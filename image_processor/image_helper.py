@@ -34,25 +34,9 @@ def find_images(content):
     images_new = []
     if soup.img:
         if soup.img.get('src'):
-            image_paths = soup.img['src']
-            if isinstance(image_paths, str):
-                try:
-                    if not thumbnail.is_valid_image(image_paths):
-                        width, height = thumbnail.get_image_size(image_paths)
-                        images_new.append({'url': image_paths, 'width': width, 'height': height})
-                except IOError as k:
-                    print k
-            elif isinstance(image_paths, list):
-                for image_path in image_paths:
-                    try:
-                        if not thumbnail.is_valid_image(image_path):
-                            width, height = thumbnail.get_image_size(image_path)
-                            image = {'url': image_path, 'width': width, 'height': height}
-                            images_new.append(image)
-                    except IOError as k:
-                        print k
-    return images_new
-
+            return normalize(soup.img['src'])
+    return None
+             
 
 def find_biggest_image(images):
     """
@@ -83,15 +67,18 @@ def normalize(images):
         if not image:
             raise Exception('ERROR: Method not well formed!')
 
-        if thumbnail.is_valid_image(image):
-            width, height = thumbnail.get_image_size(image)
-            return {'url':image, 'width':widht, 'height':height}
-        else:
+        try:
+            if thumbnail.is_valid_image(image):
+                width, height = thumbnail.get_image_size(image)
+                return {'url':image, 'width':widht, 'height':height}
+            else:
+                return None
+        except IOError as k:
             return None
 
     if isinstance(images, str):
         image = _check_image(images)
-        return [image]
+        return [image] if image else None
     elif isinstance(images, list):
         images_new = []
         for image in images:
