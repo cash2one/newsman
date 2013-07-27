@@ -118,72 +118,43 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
     # e.g. [{'url':'http://image.com/test.jpg, 'width': u'130', 'height': u'86'}]
     entry['images'] = {}
     try:
-        entry['thumbnails'] = e.media_content
-    except AttributeError as k:
-        pass
-    try:
-        entry['thumbnails'] = e.media_thumbnail
-    except AttributeError as k:
-        pass
-    try:
-        for attribute in e:
-            if 'thumbnail' in attribute:
-                # currently set thumbnail to None if its a dictionary
-                thumbnail_embedded = e.attribute if isinstance(e.attribute, str) else None
-                if thumbnail_embedded:
-                    width, height = thumbnail.get_image_size(thumbnail_embedded)
-                    entry['thumbnails'] = [{'url': thumbnail_embedded, 'width': width, 'height': height}]
-                    break
-        if 'thumbnails' not in entry:
-            raise AttributeError(
-                "cannot find 'thumbnail'-like attribute")
-    except AttributeError as k:
-        entry['thumbnails'] = []
-        if entry.has_key('summary') and entry['summary']:
-            soup = BeautifulStoneSoup(entry['summary'])
-            if soup.img:
-                if soup.img.get('src'):
-                    images = soup.img['src']
-                    if isinstance(images, str):
-                        _normalize(entry['thumbnails'], images)
-                    elif isinstance(images, list):
-                        for image in images:
-                            _normalize(entry['thumbnails'], image)
-        if 'thumbnails' not in entry:
-            try:
-                links = e.links
-                for link in links:
-                    if 'type' in link and 'image' in link.type:
-                        if 'href' in link:
-                            _normalize(entry['thumbnails'], link.href)
-                if 'thumbnails' not in entry:
-                    raise AttributeError("no image found in 'links'")
-            except AttributeError as k:
-                pass
-    entry['thumbnails'] = None if not entry.has_key('thumbnails') else entry['thumbnails']
-
-    # article's images
-    if entry.has_key('summary') and entry['summary']:
-        images = image_helper.find_images(entry['summary'])
+        images = image_helper.normalize(e.media_content)
         if images:
-            entry['images'] = entry['images'] if entry.has_key('images') and entry['images'] else []
             entry['images'].extend(images)
+    except AttributeError as k:
+        pass
+    try:
+        images = image_helper.normalize(e.media_thumbnail)
+        if images:
+            entry['images'].extend(images)
+    except AttributeError as k:
+        pass
+    for attribute in e:
+        if 'thumbnail' in attribute:
+            # currently set thumbnail to None if its a dictionary
+            image = e.attribute if isinstance(e.attribute, str) else None
+            image = image_helper.normalize(image)
+            if image:
+                entry['images'].extend(image)
     try:
         links = e.links
         for link in links:
             if 'type' in link and 'image' in link.type:
                 if 'href' in link:
-                    width, height = thumbnail.get_image_size(link.href)
-                    big_image = {
-                        'url': link.href, 'width': width, 'height': height}
-                    entry['images'] = entry['images'] if entry.has_key('images') and entry['images'] else []
-                    if big_image not in entry['images']:
-                        entry['images'].append(big_image)
-        if 'images' not in entry:
-            raise AttributeError("no image found in 'links'")
+                    image = normalize(link.href)
+                    if image:
+                        entry['images'].extend(image)
     except AttributeError as k:
-        if not entry.has_key('images'):
-            pass
+        pass
+    if entry.has_key('summary') and entry['summary']:
+        soup = BeautifulStoneSoup(entry['summary'])
+        if soup.img:
+            if soup.img.get('src'):
+                images = image_helper.normalize(soup.img['src'])
+                if images:
+                    entry['images'].extend(images)
+    entry['images'] = list(set(entry[images])) if entry['images'] else None
+    # dedup images
     entry['images'] = None if not entry.has_key('images') else list(set(entry['images']))
 
     # article's author

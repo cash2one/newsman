@@ -91,7 +91,7 @@ def normalize(images):
 
     if isinstance(images, str):
         image = _check_image(images)
-        return image
+        return [image]
     elif isinstance(images, list):
         images_new = []
         for image in images:
