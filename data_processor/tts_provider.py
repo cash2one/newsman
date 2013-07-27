@@ -19,7 +19,7 @@ import threading
 import urllib2
 
 from administration.config import MEDIA_LOCAL_DIR
-from administration.config import MEDIA_WEB_DIR
+from administration.config import MEDIA_PUBLIC_DIR
 from administration.config import LANGUAGES
 
 if not os.path.exists(MEDIA_LOCAL_DIR):
@@ -70,7 +70,7 @@ def google(language='en', query='Service provided by Baidu', relative_path='do_n
     tmp_file = _download(language, query, '%s-tmp.mp3' % relative_path[:-4])
     # form paths
     tts_local_path = '%s%s' % (MEDIA_LOCAL_DIR, relative_path) 
-    tts_web_path = '%s%s' % (MEDIA_WEB_DIR, relative_path) 
+    tts_web_path = '%s%s' % (MEDIA_PUBLIC_DIR, relative_path) 
 
     command = 'lame -S --decode {0} - | sox -q -t wav - -t wav - speed 1.06 | lame -S - {1}; rm {0}'.format(tmp_file, tts_local_path) 
     subprocess.Popen(command, stderr=subprocess.PIPE, shell=True)
