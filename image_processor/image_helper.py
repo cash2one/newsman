@@ -72,14 +72,22 @@ def dedupe_images(images):
     image: {'url':xxx, 'width':yyy, 'height':zzz}
     images = [image, image, image]
     """
+    if not images:
+        return None
+
     image_urls = []
     def _exists(image):
         """
         return boolean if image exists in list image_urls
         """
-        return image['url'] in image_urls
+        exists = image['url'] in image_urls
+        if not exists:
+            image_urls.append(image['url'])
+            return False
+        else:
+            return True
     
-    return filter(lambda x:_exists(image), images)
+    return filter(lambda x:not _exists(x), images)
 
 
 # TODO: boundary checker
