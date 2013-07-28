@@ -52,10 +52,15 @@ def _value_added_process(entries=None, language=None):
             rand = random.randint(0, 100000000)
             transcoded_relative_path = '%s_%s_%s_%i' % (entry['language'], entry['feed_id'], entry['updated_parsed'], rand)
             # high chances transcoder cannot work properly
-            entry['transcoded'], entry['transcoded_local'] = transcoder.transcode(
-                entry['language'], entry['title'], entry['link'], transcoded_relative_path)
+            entry['transcoded'], entry['transcoded_local'], images_from_transcoded = transcoder.transcode(entry['language'], entry['title'], entry['link'], transcoded_relative_path)
 
             # [OPTIONAL] find images
+            # process images found in the image_list tag of transcoded page
+            images = image_helper.normalize(images_from_transcoded)
+            if images:
+                entry['images'] = entry['images'] if entry.has_key('images') and entry['images'] else []
+                entry['images'].extend(images)
+            # or find the image directly from the content of transcoded page
             images = image_helper.find_images(entry['transcoded_local'])
             if images:
                 entry['images'] = entry['images'] if entry.has_key('images') and entry['images'] else []

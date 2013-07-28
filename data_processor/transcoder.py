@@ -20,6 +20,7 @@ from administration.config import hparser
 import Image
 from administration.config import NEWS_TEMPLATE
 import os
+import re
 from cStringIO import StringIO
 from image_processor import thumbnail
 from administration.config import MIN_IMAGE_SIZE
@@ -33,6 +34,8 @@ from administration.config import TRANSCODED_LOCAL_DIR
 from administration.config import TRANSCODED_PUBLIC_DIR
 from administration.config import UCK_TRANSCODING
 import urllib2
+import urlparse
+
 
 if not os.path.exists(TRANSCODED_LOCAL_DIR):
     os.mkdir(TRANSCODED_LOCAL_DIR)
@@ -89,29 +92,48 @@ def uck_sanitize(content):
 
 def uck_reformat(language, title, data):
     ''''''
-    successful = int(data['STRUCT_PAGE_TYPE'])
-    if successful == 0:
-        return None
+    if data:
+        successful = int(data['STRUCT_PAGE_TYPE'])
+        if successful == 0:
+            return None
 
-    # images
-    images = []
-    if 'image_list' in data and data['image_list']:
-        for image in data['image_list']:
-            image_url = hparser.unescape(image['src'].strip())
-            width, height = thumbnail.get_image_size(image_url)
-            images.append({'url':image_url, 'width':width, 'height':height})
-    images = images if images else None
+        # images
+        images = []
+        if 'image_list' in data and data['image_list']:
+            for image in data['image_list']:
+                image_url_complex = urllib2.unquote(image['src'].strip())
+                last_http_index = image_url_complex.rfind['http:/']
+                image_url = image_url_complex[last_http_index:]
+                # response is the signal of a valid image
+                response = None
+                try:
+                    response = urllib2.urlopen(image_url)
+                except urllib2.URLError as k
+                    print '[WARNING]', k.reason, image_url
+                    path = re.split('https?://?', image)[-1]
+                    scheme = urlparse.urlparse(image).scheme
+                    image_url = '%s://%s' % (schem, path)
+                    try:
+                        response = urllib2.urlopen(image_url)
+                    except urllib2.URLError as k
+                        print '[WARNING]', k.reason, image_url
+                if response:
+                    width, height = thumbnail.get_image_size(image_url)
+                    images.append({'url':image_url, 'width':width, 'height':height})
+        images = images if images else None
 
-    # content
-    content = data['content'].replace("\\", "")
-    new_content = uck_sanitize(content)
-    if new_content:
-        f = open(NEWS_TEMPLATE, 'r')
-        template = str(f.read())
-        news = template % (
-            title, title, new_content, transcoding_button_language[language])
-        return news, images
+        # content
+        content = data['content'].replace("\\", "")
+        new_content = uck_sanitize(content)
+        if new_content:
+            f = open(NEWS_TEMPLATE, 'r')
+            template = str(f.read())
+            news = template % (title, title, new_content, transcoding_button_language[language])
+            return news, images
+        else:
+            return None
     else:
+        # no data found
         return None
 
 
