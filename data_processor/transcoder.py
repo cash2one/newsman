@@ -90,6 +90,7 @@ def uck_sanitize(content):
     return ''.join([str(item) for item in soup.contents])
 
 
+# TODO: extract image_list part into a new method
 def uck_reformat(language, title, data):
     ''''''
     if data:
@@ -99,27 +100,35 @@ def uck_reformat(language, title, data):
 
         # images
         images = []
-        if 'image_list' in data and data['image_list']:
-            for image in data['image_list']:
-                image_url_complex = urllib2.unquote(image['src'].strip())
-                last_http_index = image_url_complex.rfind['http:/']
-                image_url = image_url_complex[last_http_index:]
-                # response is the signal of a valid image
-                response = None
-                try:
-                    response = urllib2.urlopen(image_url)
-                except urllib2.URLError as k
-                    print '[WARNING]', k.reason, image_url
-                    path = re.split('https?://?', image)[-1]
-                    scheme = urlparse.urlparse(image).scheme
-                    image_url = '%s://%s' % (schem, path)
-                    try:
-                        response = urllib2.urlopen(image_url)
-                    except urllib2.URLError as k
-                        print '[WARNING]', k.reason, image_url
-                if response:
-                    width, height = thumbnail.get_image_size(image_url)
-                    images.append({'url':image_url, 'width':width, 'height':height})
+        if 'image_list' in data and data.get('image_list'):
+            for image in data.get('image_list'):
+                if 'src' in image and image['src']:
+                    image_url_complex = urllib2.unquote(image['src'].strip())
+                    if image_url_complex:
+                        last_http_index = image_url_complex.rfind('http:/')
+                        image_url = image_url_complex[last_http_index:]
+                        # response is the signal of a valid image
+                        response = None
+                        try:
+                            response = urllib2.urlopen(image_url)
+                        except urllib2.URLError as k:
+                            print '[WARNING]', k.reason, image_url
+                            path = re.split('https?://?', image_url)[-1]
+                            scheme = urlparse.urlparse(image_url).scheme
+                            image_url = '%s://%s' % (scheme, path)
+                            try:
+                                response = urllib2.urlopen(image_url)
+                            except urllib2.URLError as k:
+                                print '[WARNING]', k.reason, image_url
+                            except Exception as e:
+                                print e
+                        if response:
+                            width, height = thumbnail.get_image_size(image_url)
+                            images.append({'url':image_url, 'width':width, 'height':height})
+                    else:
+                        print 'Cannot find enought content in src tag'
+                else:
+                    print 'Nothing found in image_list'
         images = images if images else None
 
         # content
@@ -212,12 +221,17 @@ def transcode(language, title, link, relative_path):
         strinfo = re.compile('.png"')
         transcoded = strinfo.sub('.png" width=100% height="auto"', transcoded)
     '''
-    transcoded, images = transcode_by_uck(language, title, link)
-    # demo to return an exception
-    if not transcoded:
+    results = transcode_by_uck(language, title, link)
+    if results:
+        transcoded, images = results
+        # demo to return an exception
+        if not transcoded:
+            raise Exception('ERROR: Transcoder %s failed for %s' % ('UCK', link))
+        # sanitizing work put here
+        web_path, local_path = generate_path(transcoded, relative_path)
+        if not web_path:
+            raise Exception('ERROR: Cannot generate web path for %s properly!' % link)
+        print '11111111111111111', images
+        return web_path, local_path, images
+    else:
         raise Exception('ERROR: Transcoder %s failed for %s' % ('UCK', link))
-    # sanitizing work put here
-    web_path, local_path = generate_path(transcoded, relative_path)
-    if not web_path:
-        raise Exception('ERROR: Cannot generate web path for %s properly!' % link)
-    return web_path, local_path, images

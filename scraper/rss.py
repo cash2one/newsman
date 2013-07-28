@@ -58,24 +58,28 @@ def _value_added_process(entries=None, language=None):
             # process images found in the image_list tag of transcoded page
             images = image_helper.normalize(images_from_transcoded)
             if images:
-                entry['images'] = entry['images'] if entry.has_key('images') and entry['images'] else []
                 entry['images'].extend(images)
+            print '4444444444444444444', entry['images']
             # or find the image directly from the content of transcoded page
-            images = image_helper.find_images(entry['transcoded_local'])
-            if images:
-                entry['images'] = entry['images'] if entry.has_key('images') and entry['images'] else []
-                entry['images'].extend(images)
+            # images = image_helper.find_images(entry['transcoded_local'])
+            # print '3333333333333333333333', images
+            #if images:
+            #    entry['images'] = entry['images'] if entry.has_key('images') and entry['images'] else []
+            #    entry['images'].extend(images)
             entry['images'] = list(set(entry['images'])) if entry.has_key('images') and entry['images'] else None
+            print '2222222222222222222', entry['images']
 
             # [OPTIONAL] generate 3 types of images: thumbnail, category image and hot news image
             if entry.has_key('images') and entry['images']:
                 biggest = image_helper.find_biggest_image(entry['images'])
                 if biggest:
                     try:
+                        print '333333333333333333333', biggest
                         rand = random.randint(0, 100000000)
                         image_relative_path = '%s_%s_%s_%i' % (entry['language'], entry['feed_id'], entry['updated_parsed'], rand)
                         # hot news image
                         hot_web, hot_local = image_helper.scale_image(image=biggest, size_expected=HOT_IMAGE_SIZE, resize_by_width=True, crop_by_center=True, relative_path='%s_hotnews' % image_relative_path)
+                        print '4444444444444444444', hot_local
                         entry['hot_news_image'] = hot_web if hot_web else None
                         entry['hot_news_image_local'] = hot_local if hot_local else None
                         # category image
@@ -89,6 +93,7 @@ def _value_added_process(entries=None, language=None):
                         entry['thumbnail_image_local'] = thumbnail_local if thumbnail_local else None 
                     except IOError as k:
                         entry['error'].append(k + '\n')
+            print '33333333333333333'
 
             # [OPTIONAL] google tts not for indonesian
             if entry['language'] != 'ind':
@@ -120,6 +125,8 @@ def _value_added_process(entries=None, language=None):
 
             entry['error'] = entry['error'] if entry['error'] else None
             entries_new.append(entry)
+            print
+            print
         except Exception as k:
             print k
     return entries_new

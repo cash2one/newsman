@@ -153,9 +153,7 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
                 images = image_helper.normalize(soup.img['src'])
                 if images:
                     entry['images'].extend(images)
-    entry['images'] = list(set(entry[images])) if entry['images'] else None
-    # dedup images
-    entry['images'] = list(set(entry['images'])) if entry.has_key('images') and entry['images'] else None
+    # dedup images is processed at rss.py
 
     # article's author
     # e.g. Yuan Jin

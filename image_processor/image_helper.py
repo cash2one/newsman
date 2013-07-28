@@ -43,6 +43,7 @@ def find_images(content=None):
     images_new = []
     if soup.img:
         if soup.img.get('src'):
+            print 'NORMALIZE', soup.img['src']
             return normalize(soup.img['src'])
     return None
              
@@ -61,7 +62,24 @@ def find_biggest_image(images=None):
         if resolution_image > resolution_max:
             biggest = image
             resolution_max = resolution_image
+    print 'biggest:', biggest
     return biggest 
+
+
+def dedupe_images(images):
+    """
+    remove same images
+    image: {'url':xxx, 'width':yyy, 'height':zzz}
+    images = [image, image, image]
+    """
+    image_urls = []
+    def _exists(image):
+        """
+        return boolean if image exists in list image_urls
+        """
+        return image['url'] in image_urls
+    
+    return filter(lambda x:_exists(image), images)
 
 
 # TODO: boundary checker
@@ -135,11 +153,15 @@ def normalize(images):
             raise Exception('ERROR: Method not well formed!')
 
         try:
-            if thumbnail.is_valid_image(image):
-                width, height = thumbnail.get_image_size(image)
-                return {'url':image, 'width':width, 'height':height}
+            if 'url' in image:
+                image_url = image['url']
+                if thumbnail.is_valid_image(image_url):
+                    return image
             else:
-                return None
+                if thumbnail.is_valid_image(image):
+                    width, height = thumbnail.get_image_size(image)
+                    return {'url':image, 'width':width, 'height':height}
+            return None
         except IOError as k:
             return None
 
