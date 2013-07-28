@@ -116,7 +116,7 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
 
     # article's images
     # e.g. [{'url':'http://image.com/test.jpg, 'width': u'130', 'height': u'86'}]
-    entry['images'] = {}
+    entry['images'] = []
     try:
         images = image_helper.normalize(e.media_content)
         if images:

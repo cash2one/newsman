@@ -231,7 +231,6 @@ def transcode(language, title, link, relative_path):
         web_path, local_path = generate_path(transcoded, relative_path)
         if not web_path:
             raise Exception('ERROR: Cannot generate web path for %s properly!' % link)
-        print '11111111111111111', images
         return web_path, local_path, images
     else:
         raise Exception('ERROR: Transcoder %s failed for %s' % ('UCK', link))

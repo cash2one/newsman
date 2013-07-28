@@ -56,6 +56,7 @@ def _value_added_process(entries=None, language=None):
 
             # [OPTIONAL] find images
             # process images found in the image_list tag of transcoded page
+            print '1111111111111111111', images_from_transcoded
             images = image_helper.normalize(images_from_transcoded)
             if images:
                 entry['images'].extend(images)
@@ -66,7 +67,7 @@ def _value_added_process(entries=None, language=None):
             #if images:
             #    entry['images'] = entry['images'] if entry.has_key('images') and entry['images'] else []
             #    entry['images'].extend(images)
-            entry['images'] = list(set(entry['images'])) if entry.has_key('images') and entry['images'] else None
+            entry['images'] = image_helper.dedupe_images(entry['images']) if entry.has_key('images') and entry['images'] else None
             print '2222222222222222222', entry['images']
 
             # [OPTIONAL] generate 3 types of images: thumbnail, category image and hot news image
