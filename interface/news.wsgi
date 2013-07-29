@@ -18,41 +18,41 @@ sys.setdefaultencoding('UTF-8')
 sys.path.append('/var/www/wsgi')
 
 import cgi
-import hao123.interface
+from hao123 import interface
 import json
 
 
 def get_categories_by_language(*bundle):
     ''''''
-    return hao123.interface.get_categories_by_language(bundle[0]['language'])
+    return news.interface.get_categories_by_language(bundle[0]['language'])
 
 def get_latest_entries_by_language(*bundle):
     ''''''
     LIMIT = 10 if 'limit' not in bundle[0] else bundle[0]['limit']
     START_ID = None if 'start_id' not in bundle[0] else bundle[0]['start_id']
     STRATEGY = 1 if 'strategy' not in bundle[0] else bundle[0]['strategy']
-    return hao123.interface.get_latest_entries_by_language(bundle[0]['language'], limit=LIMIT, start_id=START_ID, strategy=STRATEGY)
+    return news.interface.get_latest_entries_by_language(bundle[0]['language'], limit=LIMIT, start_id=START_ID, strategy=STRATEGY)
 
 def get_previous_entries_by_language(*bundle):
     '''get the latest entries of a feed'''
     LIMIT = 10 if 'limit' not in bundle[0] else bundle[0]['limit']
     END_ID = None if 'end_id' not in bundle[0] else bundle[0]['end_id']
     STRATEGY = 1 if 'strategy' not in bundle[0] else bundle[0]['strategy']
-    return hao123.interface.get_previous_entries_by_language(bundle[0]['language'], limit=LIMIT, end_id=END_ID, strategy=STRATEGY)
+    return news.interface.get_previous_entries_by_language(bundle[0]['language'], limit=LIMIT, end_id=END_ID, strategy=STRATEGY)
 
 def get_latest_entries_by_category(*bundle):
     ''''''
     LIMIT = 10 if 'limit' not in bundle[0] else bundle[0]['limit']
     START_ID = None if 'start_id' not in bundle[0] else bundle[0]['start_id']
     STRATEGY = 1 if 'strategy' not in bundle[0] else bundle[0]['strategy']
-    return hao123.interface.get_latest_entries_by_category(bundle[0]['language'], bundle[0]['category'], limit=LIMIT, start_id=START_ID, strategy=STRATEGY)
+    return news.interface.get_latest_entries_by_category(bundle[0]['language'], bundle[0]['category'], limit=LIMIT, start_id=START_ID, strategy=STRATEGY)
 
 def get_previous_entries_by_category(*bundle):
     '''get the latest entries of a feed'''
     LIMIT = 10 if 'limit' not in bundle[0] else bundle[0]['limit']
     END_ID = None if 'end_id' not in bundle[0] else bundle[0]['end_id']
     STRATEGY = 1 if 'strategy' not in bundle[0] else bundle[0]['strategy']
-    return hao123.interface.get_previous_entries_by_category(bundle[0]['language'], bundle[0]['category'], limit=LIMIT, end_id=END_ID, strategy=STRATEGY)
+    return news.interface.get_previous_entries_by_category(bundle[0]['language'], bundle[0]['category'], limit=LIMIT, end_id=END_ID, strategy=STRATEGY)
 
 def read_http(environ):
     'read binary image file and write to local disk'
