@@ -116,22 +116,21 @@ def scale_image(image=None, image_data=None, size_expected=MIN_IMAGE_SIZE, resiz
         # larger and equal than is important here
         if width_new >= width_expected and height_new >= height_expected:
             # resize
-            image_pil = Image.open(image_data)
             size_new = width_new, height_new
-            image_pil.thumbnail(size_new, Image.ANTIALIAS)
+            image_data.thumbnail(size_new, Image.ANTIALIAS)
             # crop
             if crop_by_center:
                 left = (width_new - width_expected) / 2
                 top = (height_new - height_expected) / 2
                 right = (width_new + width_expected) / 2
                 bottom = (height_new + height_expected) / 2
-                image_cropped = image_pil.crop((left, top, right, bottom))
+                image_cropped = image_data.crop((left, top, right, bottom))
             else:
                 left = 0
                 top = 0
                 right = width_expected
                 bottom = height_expected
-                image_cropped = image_pil.crop((left, top, right, bottom))
+                image_cropped = image_data.crop((left, top, right, bottom))
             # storing
             if image_cropped:
                 image_web_path = '%s%s.jpg' % (IMAGES_PUBLIC_DIR, relative_path)

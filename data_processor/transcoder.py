@@ -112,14 +112,13 @@ def uck_reformat(language, title, data):
                         try:
                             response = urllib2.urlopen(image_url)
                         except urllib2.URLError as k:
-                            print '[WARNING]', k.reason, image_url
                             path = re.split('https?://?', image_url)[-1]
                             scheme = urlparse.urlparse(image_url).scheme
                             image_url = '%s://%s' % (scheme, path)
                             try:
                                 response = urllib2.urlopen(image_url)
                             except urllib2.URLError as k:
-                                print '[WARNING]', k.reason, image_url
+                                print '[WARNING]', k, image_url
                             except Exception as e:
                                 print e
                         if response:
@@ -163,7 +162,7 @@ def transcode_by_uck(language, title, link):
     """
     link = process_url(link)
     uck_url = '%s%s' % (UCK_TRANSCODING, link)
-    f = urllib2.urlopen(uck_url, timeout=3)
+    f = urllib2.urlopen(uck_url, timeout=5)
     recv = urllib2.unquote(f.read())
     return uck_reformat(language, title, eval(recv))
 
