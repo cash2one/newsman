@@ -34,7 +34,7 @@ def create_language_collection(feed_info=None):
         return feed_id
     return None
 
-def register_source(feed_info=None):
+def _register_source(feed_info=None):
     ''''''
     if not feed_info:
         return 1
@@ -73,12 +73,20 @@ def _read_source(d=None, feed_link=None, language=None, categories=None, weight_
     return feed_info
 
 
+def _link_cleaner(link):
+    """
+    remove unnecessary parameters and the like
+    """
+    pass
+
+
 def add(feed_link=None, language=None, categories=None):
     """
     read rss/atom meta information from a given feed
     """
     if not feed_link or not language:
-        return 1
+        raise Exception("ERROR: Method not well formed!")
+    
     feed_link = feed_link.strip()
     language = language.strip()
     categories = categories.strip()
@@ -87,7 +95,7 @@ def add(feed_link=None, language=None, categories=None):
     if d:
         # feed level
         feed_info = _read_source(d, feed_link, language, categories, weight_categories, weight_source)
-        register_source(feed_info)
+        _register_source(feed_info)
         feed_id = create_language_collection(feed_info)
         print '1/4 .. created entry in database'
         # ToDos
@@ -96,15 +104,6 @@ def add(feed_link=None, language=None, categories=None):
         # add entries of this feed
         entry.add_entries(feed_id, feed_info['feed_link'], feed_info['language'], feed_info['categories']) 
         print '2/4 .. added all rss entries'
-
-        # add weights to memory
-        if not rclient.hexists('%s-weights' % feed_info['language'], feed_info['categories']):
-            language_weights = {feed_info['categories']:feed_info['weight_categories']}
-            rclient.hmset('%s-weights' % feed_info['language'], language_weights)
-        if not rclient.hexists('%s-%s-weights' % (feed_info['language'], feed_info['categories']), feed_id):
-            categories_weights = {feed_id:feed_info['weight_source']}
-            rclient.hmset('%s-%s-weights' % (feed_info['language'], feed_info['categories']), categories_weights)
-        print '3/4 .. updated memory structure'
 
         # add to update list
         task.add_task(feed_id, feed_info['feed_link'], feed_info['language'], feed_info['categories'])
