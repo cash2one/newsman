@@ -55,6 +55,9 @@ ToDos - Low Priority
 10. 详情页增加夜间、字体大小、分享等代码
 11. 为PM提供RSS管理的Web界面
 12. 增加在线生成临时图片和MP3的接口
+13. 参照谷歌编码风格
+    [中文](http://zh-google-styleguide.readthedocs.org/en/latest/google-python-styleguide/)
+    [EN](http://google-styleguide.googlecode.com/svn/trunk/pyguide.html)
 
 Dones
 ------

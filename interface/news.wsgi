@@ -18,6 +18,7 @@ sys.setdefaultencoding('UTF-8')
 sys.path.append('/home/work/apache/wsgi')
 
 import cgi
+from config import CGI_PATH
 from news import interface
 import json
 
