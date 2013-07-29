@@ -163,7 +163,7 @@ def transcode_by_uck(language, title, link):
     """
     link = process_url(link)
     uck_url = '%s%s' % (UCK_TRANSCODING, link)
-    f = urllib2.urlopen(uck_url)
+    f = urllib2.urlopen(uck_url, timeout=3)
     recv = urllib2.unquote(f.read())
     return uck_reformat(language, title, eval(recv))
 

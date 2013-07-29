@@ -1,11 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-##
-#@created Jan 17, 2013
-#@updated Feb 8, 2013
-#@updated Jul 13, 2013
-#
+# @author Jin Yuan
+# @contact jinyuan@baidu.com
+# @created Jan 17, 2013
 
 import sys 
 reload(sys)
@@ -17,7 +15,7 @@ from pymongo.database import Database
 from pymongo.collection import Collection
 from pymongo.errors import CollectionInvalid
 con = Connection('127.0.0.1:27017')
-db = Database(con, 'hao123')
+db = Database(con, 'news')
 
 import redis
 rclient = redis.StrictRedis('127.0.0.1')
@@ -26,20 +24,23 @@ from HTMLParser import HTMLParser
 hparser = HTMLParser()
 
 # CONSTANTS
-HOST_ADDR = 'http://54.251.107.116/%s'
-HOME = '/home/jinyuan/Downloads/global-mobile-news/%s'
+PUBLIC = 'http://54.251.107.116/%s'
+LOCAL = '/home/jinyuan/Downloads/global-mobile-news/%s'
 
-TRANSCODED_LOCAL_DIR = HOME % 'interface/transcoded/'
-TRANSCODED_WEB_DIR = HOST_ADDR % 'tr/'
+TRANSCODED_LOCAL_DIR = LOCAL % 'interface/transcoded/'
+TRANSCODED_PUBLIC_DIR = PUBLIC % 'ts/'
 
-THUMBNAIL_LOCAL_DIR = HOME % 'interface/thumbnails/'
-THUMBNAIL_WEB_DIR = HOST_ADDR % 'th/'
+IMAGES_LOCAL_DIR = LOCAL % 'interface/images/'
+IMAGES_PUBLIC_DIR = PUBLIC % 'img/'
 
-MAINTENANCE_DIR = HOME % 'alert_maintenance/maintenance/'
-RSS_UPDATE_LOG = HOME % 'alert_maintenance/maintenance/rul.txt'
-DATA_CLEAR_LOG = HOME % 'alert_maintenance/maintenance/dcl.txt'
+MEDIA_LOCAL_DIR = LOCAL % 'interface/media/'
+MEDIA_PUBLIC_DIR = PUBLIC % 'mid/'
 
-NEWS_TEMPLATE = HOME % 'template/index.html'
+MAINTENANCE_DIR = LOCAL % 'alert_maintenance/maintenance/'
+RSS_UPDATE_LOG = LOCAL % 'alert_maintenance/maintenance/rul.txt'
+DATA_CLEAR_LOG = LOCAL % 'alert_maintenance/maintenance/dcl.txt'
+
+NEWS_TEMPLATE = LOCAL % 'template/index.html'
 UCK_TRANSCODING = 'http://gate.baidu.com/tc?m=8&from=bdpc_browser&src='
 TRANSCODED_ENCODING = '<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>\n'   # lijun
 
@@ -58,5 +59,8 @@ STRATEGY_WITH_WEIGHTS = 2
 
 FEED_REGISTRAR = 'feeds'
 
-LANGUAGES = ['en', 'th', 'ind', 'ja', 'pt', 'en-rIN']
-THUMBNAIL_SIZE = 150, 150   # banner filter for indonesia : lijun
+LANGUAGES = ['en', 'th', 'ind', 'ja', 'pt', 'en-rIN', 'ar']
+MIN_IMAGE_SIZE = 150, 150
+THUMBNAIL_IMAGE_SIZE = 118, 88
+CATEGORY_IMAGE_SIZE = 189, 162
+HOT_IMAGE_SIZE = 388, 162

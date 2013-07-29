@@ -24,7 +24,7 @@ from HTMLParser import HTMLParser
 hparser = HTMLParser()
 
 # CONSTANTS
-PUBLIC = 'http://54.251.107.116/%s'
+PUBLIC = 'http://180.76.4.17/%s'
 LOCAL = '/home/jinyuan/Downloads/global-mobile-news/%s'
 
 TRANSCODED_LOCAL_DIR = LOCAL % 'interface/transcoded/'
