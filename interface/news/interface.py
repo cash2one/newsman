@@ -23,7 +23,6 @@ from config import Collection
 from config import db
 from config import rclient
 from config import LANGUAGES
-from config import FEED_REGISTRAR
 from config import STRATEGY_WITHOUT_WEIGHTS
 from config import STRATEGY_WITH_WEIGHTS
 
@@ -36,20 +35,40 @@ def get_categories_by_language(language=None):
     """
     if not language:
         return None
+    search_limit = 30
+    images_limit = 5
 
-    col = Collection(db, FEED_REGISTRAR)
-    items = col.find({'language':language})
-    if items:
-        categories = {}
-        for item in items:
-            # items categories could have multiple categories
-            for category in item['categories']:
-                if category not in categories:
-                categories[item['category']] = []
-            categories[item['category']].append(item['feed_name'])
-        return categories 
+    category_images = {}
+    # find category_images for each category
+    key_wildcard = '%s::*' % language
+    categories_composite = rclient.keys(key_wildcard)
+    if categories_composite:
+        categories = [cc.replace(key_wildcard, "") for cc in categories_composite]
+        for category in categories:
+            entries = get_latest_entries_by_category(language=language, category=category, limit=search_limit)
+            # 'category A': [{'title':'xxx', 'image':'http://yyy.com/zzz.jpg'}]
+            # image: category_image
+            category_images[category] = []
+            for entry in entries:
+                if 'category_image' in entry:
+                    item = {'title':entry['title'], 'image':entry['category_image']}
+                    category_images[category].append(item)
+                    # limit the number of category_image to  
+                    if len(category_images[category]) == image_limit:
+                        break
     else:
         raise Exception("ERROR: %s not supported! Or database is corrupted!" % language)
+    # find hot_news_image from hot news
+    # category_images['hot_news']
+    entries = get_latest_entries_by_language(language=language, limit=search_limit)
+    for entry in entries:
+        if 'hot_news_image' in entry:
+            item = {'title':entry['title'], 'image':entry['hot_news_image']}
+            category_images['hot_news'].append(item)
+            if len(category_images['hot_news']) == image_limit:
+                break
+    return category_images
+
 
 def get_latest_entries_by_language(language=None, limit=10, start_id=None, strategy=1):
     ''''''

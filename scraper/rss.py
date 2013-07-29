@@ -85,7 +85,7 @@ def _value_added_process(entries=None, language=None):
                         # category image
                             
                         category_web, category_local = image_helper.scale_image(image=biggest, image_data=image_data, size_expected=CATEGORY_IMAGE_SIZE, resize_by_width=True, crop_by_center=False, relative_path='%s_category' % image_relative_path)
-                        entry['cateogry_image'] = category_web if category_web else None
+                        entry['category_image'] = category_web if category_web else None
                         entry['category_image_local'] = category_local if category_local else None
                         # new item thumbnail image
                         thumbnail_web, thumbnail_local = image_helper.scale_image(image=biggest, image_data=image_data, size_expected=THUMBNAIL_IMAGE_SIZE, resize_by_width=True, crop_by_center=True, relative_path='%s_thumbnail' % image_relative_path)
