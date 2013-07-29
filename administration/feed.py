@@ -1,28 +1,28 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-##
-#@created Jan 1, 2013
-#@updated Jan 17, 2013
-#@updated Jul 13, 2013
+# feed works to get feed meta info into database
 #
-#
+# @author Jin Yuan
+# @contact jinyuan@baidu.com
+# @created Jan 1, 2013
 
 import sys
 reload(sys)
 sys.setdefaultencoding('UTF-8')
+sys.path.append("..")
 
+from administration.config import Collection
+from administration.config import db
+from administration.config import rclient
 from BeautifulSoup import BeautifulStoneSoup
-from config import Collection
-from config import db
 import entry
 import feedparser
-from config import rclient
 import task
 import time
 
-from config import FEED_REGISTRAR
-from config import LANGUAGES
+from administration.config import FEED_REGISTRAR
+from administration.config import LANGUAGES
 
 
 def create_language_collection(feed_info=None):
@@ -49,13 +49,13 @@ def register_source(feed_info=None):
         col.save(feed_info)
     return 0
 
-def read_source(d=None, source_address=None, language=None, category=None, weight_category=10, weight_source=10):
+def _read_source(d=None, feed_link=None, language=None, categories=None, weight_categories=10, weight_source=10):
     feed_info = {}
     if 'feed' in d:
         if 'title' in d.feed:
             feed_info['feed_name'] = d.feed.title.strip()
         else:
-            feed_info['feed_name'] = raw_input('Cannot find name for %s, input new:\n' % source_address).strip()
+            feed_info['feed_name'] = raw_input('Cannot find name for %s, input new:\n' % feed_link).strip()
         if 'subtitle' in d.feed:
             feed_info['subtitle'] = d.feed.subtitle.strip()
         if 'rights' in d.feed:
@@ -63,31 +63,30 @@ def read_source(d=None, source_address=None, language=None, category=None, weigh
         #if 'image' in d.feed:
         #    feed_info['image'] = d.feed.image.href
     else:
-        feed_info['feed_name'] = raw_input('Invalid format of %s, input name:\n' % source_address).strip()
+        feed_info['feed_name'] = raw_input('Invalid format of %s, input name:\n' % feed_link).strip()
     # read in passed values
-    feed_info['feed_link'] = source_address
-    feed_info['category'] = category
+    feed_info['feed_link'] = feed_link
+    feed_info['categories'] = categories
     feed_info['language'] = language
-    feed_info['weight_category'] = weight_category
+    feed_info['weight_categories'] = weight_categories
     feed_info['weight_source'] = weight_source
     return feed_info
 
-def add_feed(source_address=None, language=None, category=None, weight_category=10, weight_source=10):
-    '''read rss/atom information from a given feed'''
-    if not source_address or not language or not category:
-        return 1
-    source_address = source_address.strip()
-    language = language.strip()
-    category = category.strip()
-    if language not in LANGUAGES:
-        return 2
-    if category.count(' '):
-        return 3
 
-    d = feedparser.parse(source_address)
+def add(feed_link=None, language=None, categories=None):
+    """
+    read rss/atom meta information from a given feed
+    """
+    if not feed_link or not language:
+        return 1
+    feed_link = feed_link.strip()
+    language = language.strip()
+    categories = categories.strip()
+
+    d = feedparser.parse(feed_link)
     if d:
         # feed level
-        feed_info = read_source(d, source_address, language, category, weight_category, weight_source)
+        feed_info = _read_source(d, feed_link, language, categories, weight_categories, weight_source)
         register_source(feed_info)
         feed_id = create_language_collection(feed_info)
         print '1/4 .. created entry in database'
@@ -95,20 +94,20 @@ def add_feed(source_address=None, language=None, category=None, weight_category=
         # add feed_id checking procedure
 
         # add entries of this feed
-        entry.add_entries(feed_id, feed_info['feed_link'], feed_info['language'], feed_info['category']) 
+        entry.add_entries(feed_id, feed_info['feed_link'], feed_info['language'], feed_info['categories']) 
         print '2/4 .. added all rss entries'
 
         # add weights to memory
-        if not rclient.hexists('%s-weights' % feed_info['language'], feed_info['category']):
-            language_weights = {feed_info['category']:feed_info['weight_category']}
+        if not rclient.hexists('%s-weights' % feed_info['language'], feed_info['categories']):
+            language_weights = {feed_info['categories']:feed_info['weight_categories']}
             rclient.hmset('%s-weights' % feed_info['language'], language_weights)
-        if not rclient.hexists('%s-%s-weights' % (feed_info['language'], feed_info['category']), feed_id):
-            category_weights = {feed_id:feed_info['weight_source']}
-            rclient.hmset('%s-%s-weights' % (feed_info['language'], feed_info['category']), category_weights)
+        if not rclient.hexists('%s-%s-weights' % (feed_info['language'], feed_info['categories']), feed_id):
+            categories_weights = {feed_id:feed_info['weight_source']}
+            rclient.hmset('%s-%s-weights' % (feed_info['language'], feed_info['categories']), categories_weights)
         print '3/4 .. updated memory structure'
 
         # add to update list
-        task.add_task(feed_id, feed_info['feed_link'], feed_info['language'], feed_info['category'])
+        task.add_task(feed_id, feed_info['feed_link'], feed_info['language'], feed_info['categories'])
         print '4/4 .. added to task list'
         return 0
     else:
