@@ -67,26 +67,38 @@ Dones
 
 ToDos - Generated from docs
 --------------------------
+* `image_processor/image_helper.py`
+    1. Line 94: scale_image
+        - boundary checker
+
 * `scraper/database.py`
     1. Line 38: update
         - break update_database into several shorter mthods
     2. Line 56: update_feed
         - write docs
 
+* `interface/news/interface.py`
+    1. Line 32: get_categories_by_language
+        - need to refactor this method after sorting out feed.py
+        - added database inquire if language cannot be found in memory
+
 * `data_processor/transcoder.py`
-    1. Line 161: transcode
+    1. Line 94: uck_reformat
+        - extract image_list part into a new method
+    2. Line 203: transcode
         - should separate big_images from transcoding
         - return an exception when fucked up
 
 * `image_processor/thumbnail.py`
-    1. Line 19: is_thumbnail
+    1. Line 20: is_valid_image
         - boundary checker should not return None, instead probably an Exception
-    2. Line 31: generate_thumbnail
+        - this method should be moved to image_helper
+    2. Line 32: generate_thumbnail
         - boundary checkers
         - relative path could be a url including its suffix like jpg/png
 
 * `scraper/rss.py`
-    1. Line 107: update
+    1. Line 135: update
         - code to remove added items if things suck at database/memory
 
 * `scraper/memory.py`
@@ -94,21 +106,26 @@ ToDos - Generated from docs
         - add more comments
         - be precautious with possible redis adding failure
 
+* `interface/task.py`
+    1. Line 328: scrape
+        - configuration should be read from database, not a file anymore
+
 * `data_processor/tts_provider.py`
-    1. Line 76: _query_segment
+    1. Line 84: _query_segment
         - write some boundary checkers
         - determine how do these languages separate words
-    2. Line 137: _download
+        - get encoding of a feed. use that if indicated, else 'utf-8'
+    2. Line 180: _download
         - Test! Test! Test!
         - boundary checkers
         - write docs!
-    3. Line 53: google
+    3. Line 55: google
         - write docs
         - rename the file and variables
         - remove accepting command line calls
 
 * `scraper/rss_parser.py`
-    1. Line 238: parse
+    1. Line 187: parse
         - boundary checkers
         - update parsing info to feed database
     2. Line 36: _read_entry
