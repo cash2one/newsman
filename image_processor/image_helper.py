@@ -142,7 +142,7 @@ def scale_image(image=None, image_data=None, size_expected=MIN_IMAGE_SIZE, resiz
             else:
                 return None
         else:
-            return scale_image(image, size_expected, not resize_by_width, crop_by_center, relative_path)
+            return scale_image(image, image_data, size_expected, not resize_by_width, crop_by_center, relative_path)
     else:
         return None
 
