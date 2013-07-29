@@ -303,7 +303,7 @@ def execute_task(lines):
             print language, category, feed_id
             updated_entries = rss.update(feed_link=feed_link, feed_id=feed_id, language=language, categories=category)
             if updated_entries:
-                f.write("%s: %s %i\n" % (time.asctime(time.gmtime()), feed_id, len(updated_tasks)))
+                f.write("%s: %s %i\n" % (time.asctime(time.gmtime()), feed_id, len(updated_entries)))
         f.write('\n')
         f.close()
         print

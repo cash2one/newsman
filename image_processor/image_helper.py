@@ -20,9 +20,7 @@ from administration.config import TRANSCODED_LOCAL_DIR
 from BeautifulSoup import BeautifulSoup
 import Image
 import os
-from cStringIO import StringIO
 import thumbnail
-import urllib2
 
 
 if not os.path.exists(IMAGES_LOCAL_DIR):
@@ -93,7 +91,7 @@ def dedupe_images(images):
 
 
 # TODO: boundary checker
-def scale_image(image=None, size_expected=MIN_IMAGE_SIZE, resize_by_width=True, crop_by_center=True, relative_path=None):
+def scale_image(image=None, image_data=image_data, size_expected=MIN_IMAGE_SIZE, resize_by_width=True, crop_by_center=True, relative_path=None):
     """
     resize an image as requested
     resize_by_width: resize the image according to its width(True) or height(False)
@@ -104,7 +102,6 @@ def scale_image(image=None, size_expected=MIN_IMAGE_SIZE, resize_by_width=True, 
 
     width = int(image['width'])
     height = int(image['height'])
-    image_url = image['url']
     width_expected = size_expected[0]
     height_expected = size_expected[1]
 
@@ -119,7 +116,6 @@ def scale_image(image=None, size_expected=MIN_IMAGE_SIZE, resize_by_width=True, 
         # larger and equal than is important here
         if width_new >= width_expected and height_new >= height_expected:
             # resize
-            image_data = StringIO(urllib2.urlopen(image_url).read())
             image_pil = Image.open(image_data)
             size_new = width_new, height_new
             image_pil.thumbnail(size_new, Image.ANTIALIAS)
