@@ -24,14 +24,14 @@ from administration.config import DATA_CLEAR_LOG
 from administration.config import DATABASE_REMOVAL_DAYS
 from administration.config import db
 from administration.config import IMAGES_LOCAL_DIR
-from administration.config import IMAGES_WEB_DIR
+from administration.config import IMAGES_PUBLIC_DIR
 from administration.config import LANGUAGES
 from administration.config import MAINTENANCE_DIR
 from administration.config import MEMORY_RESTORATION_DAYS
 from administration.config import rclient
 from administration.config import RSS_UPDATE_LOG
 from administration.config import TRANSCODED_LOCAL_DIR
-from administration.config import TRANSCODED_WEB_DIR
+from administration.config import TRANSCODED_PUBLIC_DIR
 
 if not os.path.exists(MAINTENANCE_DIR):
     os.mkdir(MAINTENANCE_DIR)
@@ -111,13 +111,13 @@ def clear_thumbnail(removal_candidate):
     if isinstance(removal_candidate['image'], str):
         thumbnail_web_path = removal_candidate['image']
         thumbnail_local_path = thumbnail_web_path.replace(
-            IMAGES_WEB_DIR, IMAGES_LOCAL_DIR)
+            IMAGES_PUBLIC_DIR, IMAGES_LOCAL_DIR)
         if os.path.exists(thumbnail_local_path):
             os.remove(thumbnail_local_path)
     elif isinstance(removal_candidate['image'], list):
         for thumbnail_web_path in removal_candidate['image']:
             thumbnail_local_path = thumbnail_web_path.replace(
-                IMAGES_WEB_DIR, IMAGES_LOCAL_DIR)
+                IMAGES_PUBLIC_DIR, IMAGES_LOCAL_DIR)
             if os.path.exists(thumbnail_local_path):
                 os.remove(thumbnail_local_path)
 
@@ -126,7 +126,7 @@ def clear_transcoded(removal_candidate):
     '''convert web path to local path'''
     transcoded_web_path = removal_candidate['transcoded']
     transcoded_local_path = transcoded_web_path.replace(
-        TRANSCODED_WEB_DIR, TRANSCODED_LOCAL_DIR)
+        TRANSCODED_PUBLIC_DIR, TRANSCODED_LOCAL_DIR)
     if os.path.exists(transcoded_local_path):
         os.remove(transcoded_local_path)
 
@@ -339,7 +339,7 @@ def scrape(language):
 if __name__ == "__main__":
     command = sys.argv[1]
     if len(sys.argv) > 2:
-        language = '/home/jinyuan/Downloads/global-mobile-news/alert_maintenance/maintenance/%s_feeds_list.txt' % sys.argv[2]
+        language = '/home/work/global-mobile-news/alert_maintenance/maintenance/%s_feeds_list.txt' % sys.argv[2]
         eval(command)(language)
     else:
         eval(command)()
