@@ -132,7 +132,7 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
     for attribute in e:
         if 'thumbnail' in attribute:
             # currently set thumbnail to None if its a dictionary
-            image = e.attribute if isinstance(e.attribute, str) else None
+            image = e[attribute] if isinstance(e[attribute], str) else None
             image = image_helper.normalize(image)
             if image:
                 entry['images'].extend(image)
