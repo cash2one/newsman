@@ -54,18 +54,19 @@ def get_categories_by_language(language=None):
                     item = {'title':entry['title'], 'image':entry['category_image']}
                     category_images[category].append(item)
                     # limit the number of category_image to  
-                    if len(category_images[category]) == image_limit:
+                    if len(category_images[category]) == images_limit:
                         break
     else:
         raise Exception("ERROR: %s not supported! Or database is corrupted!" % language)
     # find hot_news_image from hot news
     # category_images['hot_news']
     entries = get_latest_entries_by_language(language=language, limit=search_limit)
+    category_images['hot_news'] = []
     for entry in entries:
         if 'hot_news_image' in entry:
             item = {'title':entry['title'], 'image':entry['hot_news_image']}
             category_images['hot_news'].append(item)
-            if len(category_images['hot_news']) == image_limit:
+            if len(category_images['hot_news']) == images_limit:
                 break
     return category_images
 
