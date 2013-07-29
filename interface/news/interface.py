@@ -43,7 +43,7 @@ def get_categories_by_language(language=None):
     key_wildcard = '%s::*' % language
     categories_composite = rclient.keys(key_wildcard)
     if categories_composite:
-        categories = [cc.replace(key_wildcard, "") for cc in categories_composite]
+        categories = [cc.replace('%s::' % language, "") for cc in categories_composite]
         for category in categories:
             entries = get_latest_entries_by_category(language=language, category=category, limit=search_limit)
             # 'category A': [{'title':'xxx', 'image':'http://yyy.com/zzz.jpg'}]

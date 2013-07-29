@@ -15,7 +15,7 @@
 import sys
 reload(sys)
 sys.setdefaultencoding('UTF-8')
-sys.path.append('.')
+sys.path.append('/home/work/apache/wsgi')
 
 import cgi
 from news import interface
