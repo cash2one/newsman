@@ -11,27 +11,27 @@ sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
 import calendar
-from administration.config import Collection
 from datetime import datetime, timedelta
-from administration.config import db
 import feedparser
 import memory
+from bson.objectid import ObjectId
 import os
-from administration.config import rclient
-import rss_parser
+import rss
 import time
 
-from bson.objectid import ObjectId
+from administration.config import Collection
 from administration.config import DATA_CLEAR_LOG
 from administration.config import DATABASE_REMOVAL_DAYS
+from administration.config import db
+from administration.config import IMAGES_LOCAL_DIR
+from administration.config import IMAGES_WEB_DIR
 from administration.config import LANGUAGES
 from administration.config import MAINTENANCE_DIR
 from administration.config import MEMORY_RESTORATION_DAYS
-from administration.config import IMAGES_LOCAL_DIR
-from administration.config import IMAGES_WEB_DIR
+from administration.config import rclient
+from administration.config import RSS_UPDATE_LOG
 from administration.config import TRANSCODED_LOCAL_DIR
 from administration.config import TRANSCODED_WEB_DIR
-from administration.config import RSS_UPDATE_LOG
 
 if not os.path.exists(MAINTENANCE_DIR):
     os.mkdir(MAINTENANCE_DIR)
@@ -45,6 +45,7 @@ if not os.path.exists(DATA_CLEAR_LOG):
     f.close()
 
 
+"""
 def restore():
     '''if memory failed, restore items from database'''
     def get_expiration(updated):
@@ -280,13 +281,13 @@ def add_task(feed_id, feed_link, language, category):
     f.write(line + '\n')
     f.close()
     return 0
-
+"""
 
 def extract_task(line):
     ''''''
     if line:
         task = line.split('*|*')
-        return task[0], task[1], task[2], task[3]
+        return task[0], [task[1]], task[2], task[3]
     else:
         return 1
 
@@ -300,11 +301,9 @@ def execute_task(lines):
             # etag/modified should also be read out
             language, category, feed_id, feed_link = extract_task(line)
             print language, category, feed_id
-            updated_tasks = .add_entries(
-                feed_id, feed_link, language, category)
-            if updated_tasks:
-                f.write("%s: %s %i\n" %
-                        (time.asctime(time.gmtime()), feed_id, updated_tasks))
+            updated_entries = rss.update(feed_link=feed_link, feed_id=feed_id, language=language, categories=category)
+            if updated_entries:
+                f.write("%s: %s %i\n" % (time.asctime(time.gmtime()), feed_id, len(updated_tasks)))
         f.write('\n')
         f.close()
         print
@@ -325,6 +324,7 @@ def read_task_directory():
         return 0
 
 
+# TODO: configuration should be read from database, not a file anymore
 def scrape(language):
     ''''''
     print '----------------------scraping-------------------------'
@@ -339,8 +339,7 @@ def scrape(language):
 if __name__ == "__main__":
     command = sys.argv[1]
     if len(sys.argv) > 2:
-        language = '/home/ubuntu/hao123/maintenance/%s_feeds_list.txt' % sys.argv[
-            2]
+        language = '/home/jinyuan/Downloads/global-mobile-news/alert_maintenance/maintenance/%s_feeds_list.txt' % sys.argv[2]
         eval(command)(language)
     else:
         eval(command)()
