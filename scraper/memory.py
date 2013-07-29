@@ -37,4 +37,4 @@ def update(entries=None, language=None, categories=None):
 
         # add entry ids to the category list
         for category in categories: 
-            c = rclient.zadd('%s-%s' % (language, category), entry['updated_parsed'], entry['_id'])
+            c = rclient.zadd('%s::%s' % (language, category), entry['updated_parsed'], entry['_id'])

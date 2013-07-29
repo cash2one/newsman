@@ -16,35 +16,40 @@ import sys
 reload(sys)
 sys.setdefaultencoding('UTF-8')
 
-from config import Collection
-from config import db
 import feedparser
 from bson.objectid import ObjectId
-from config import rclient
 
+from config import Collection
+from config import db
+from config import rclient
 from config import LANGUAGES
 from config import FEED_REGISTRAR
 from config import STRATEGY_WITHOUT_WEIGHTS
 from config import STRATEGY_WITH_WEIGHTS
 
 
-# Todos
-# need to refactor this method after sorting out feed.py
+# TODO: need to refactor this method after sorting out feed.py
+# TODO: added database inquire if language cannot be found in memory
 def get_categories_by_language(language=None):
-    '''get a list of categories and lists of feeds in a language'''
+    """
+    get a list of categories and hot news by language
+    """
     if not language:
         return None
+
     col = Collection(db, FEED_REGISTRAR)
     items = col.find({'language':language})
-    if not items:
-        return None
-    else:
+    if items:
         categories = {}
         for item in items:
-            if item['category'] not in categories:
+            # items categories could have multiple categories
+            for category in item['categories']:
+                if category not in categories:
                 categories[item['category']] = []
             categories[item['category']].append(item['feed_name'])
         return categories 
+    else:
+        raise Exception("ERROR: %s not supported! Or database is corrupted!" % language)
 
 def get_latest_entries_by_language(language=None, limit=10, start_id=None, strategy=1):
     ''''''
