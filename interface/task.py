@@ -13,10 +13,10 @@ sys.path.append('..')
 import calendar
 from datetime import datetime, timedelta
 import feedparser
-import memory
+from scraper import memory
 from bson.objectid import ObjectId
 import os
-import rss
+from scraper import rss
 import time
 
 from administration.config import Collection
