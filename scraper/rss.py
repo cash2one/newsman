@@ -145,10 +145,14 @@ def update(feed_link=None, feed_id=None, language=None, categories=None):
     3. manually for testing purpose: feed_link, language
     Note. categories are ids of category item
     """
-    if feed_id:
+    if not feed_id or not (feed_link and language) :
         raise Exception(
-            "ERROR: Method signature not well formed for %s!" % feed_link)
-    feed = db_feeds.get(feed_id)
+            "ERROR: Method signature not well formed!")
+
+    if not feed_id:
+        feed = db_feeds.get(feed_link=feed_link, language=language)
+    else 
+        feed = db_feeds.get(feed_id)
     feed_link = feed['feed_link'] if feed else feed_link
     language = feed['language'] if feed else language
     categories = feed['categories'] if feed else categories
@@ -170,6 +174,7 @@ def update(feed_link=None, feed_id=None, language=None, categories=None):
     # each entry is added with _id
     entries = db_news.update(entries, language)
     # and some data, like feed_title, etag and modified to db_feeds
+    # only feed_id is necessary, others are optional **kwargs
     db_feeds.update(feed_id, status_new, feed_title_new, etag_new, modified_new)
 
     # store in memory
