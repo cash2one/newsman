@@ -19,6 +19,15 @@ from bson.objectid import ObjectId
 from administration.config import FEED_REGISTRAR
 
 
+def get(feed_id):
+    """
+    get all feed info in database:feeds
+    """
+    col = Collection(db, FEED_REGISTRAR)
+    item = col.find_one({'_id':ObjectId(feed_id)})
+    return item
+
+
 def update(feed_id, **kwargs):
     """
     update feed info
@@ -28,7 +37,7 @@ def update(feed_id, **kwargs):
     if item:
         col.update({'_id':ObjectId(feed_id)}, kwargs)
     else:
-        pass
+        raise Exception("ERROR: No such a _id %s in feeds" % feed_id)
 
 
 def save(feed_info=None):
