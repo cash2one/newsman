@@ -25,13 +25,11 @@ def insert_feed(feed_info=None):
     if not feed_info:
         raise Exception("ERROR: Nothing found in feed!")
 
-    col = None
-    if FEED_REGISTRAR not in db.collection_names():
-        col = db.create_collection(FEED_REGISTRAR)
-    else:
-        col = Collection(db, FEED_REGISTRAR)
+    # if the collection does not exist, it will be created
+    col = Collection(db, FEED_REGISTRAR)
     # make a record in the feeds table
-    item = col.find_one({'feed_link':feed_info['feed_link']})
+    item = col.find_one({'feed_link':feed_info['feed_link'], 'language':feed_info['language']})
     if not item:
-        col.save(feed_info)
-    return 0
+        return col.save(feed_info)
+    else:
+        return None

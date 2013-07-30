@@ -31,8 +31,6 @@ def create_language_collection(feed_info=None):
         return feed_id
     return None
 
-def _register_source(feed_info=None):
-    ''''''
 
 def _read_source(d=None, feed_link=None, language=None, categories=None):
     if 'feed' in d:
