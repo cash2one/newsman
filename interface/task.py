@@ -26,7 +26,6 @@ from administration.config import db
 from administration.config import IMAGES_LOCAL_DIR
 from administration.config import IMAGES_PUBLIC_DIR
 from administration.config import LANGUAGES
-from administration.config import MAINTENANCE_DIR
 from administration.config import MEMORY_RESTORATION_DAYS
 from administration.config import rclient
 from administration.config import TRANSCODED_LOCAL_DIR

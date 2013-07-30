@@ -36,10 +36,6 @@ IMAGES_PUBLIC_DIR = PUBLIC % 'img/'
 MEDIA_LOCAL_DIR = LOCAL % 'interface/media/'
 MEDIA_PUBLIC_DIR = PUBLIC % 'mid/'
 
-MAINTENANCE_DIR = LOCAL % 'alert_maintenance/maintenance/'
-RSS_UPDATE_LOG = LOCAL % 'alert_maintenance/maintenance/rul.txt'
-DATA_CLEAR_LOG = LOCAL % 'alert_maintenance/maintenance/dcl.txt'
-
 NEWS_TEMPLATE = LOCAL % 'template/index.html'
 UCK_TRANSCODING = 'http://gate.baidu.com/tc?m=8&from=bdpc_browser&src='
 TRANSCODED_ENCODING = '<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>\n'   # lijun
