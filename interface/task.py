@@ -289,40 +289,35 @@ def extract_task(line):
         return 1
 
 
-def execute_task(lines):
-    ''''''
-    if lines:
-        f = open(RSS_UPDATE_LOG, 'a')
-        for line in lines:
-            # this should be modified to read from the database
-            # etag/modified should also be read out
-            language, categories, feed_id, feed_link = extract_task(line)
-            print language, categories, feed_id
-            updated_entries = rss.update(feed_link=feed_link, feed_id=feed_id, language=language, categories=categories)
-            if updated_entries:
-                f.write("%s: %s %i\n" % (time.asctime(time.gmtime()), feed_id, len(updated_entries)))
-        f.write('\n')
-        f.close()
-        print
-        return 0
+def _update(feed_ids):
+    """
+    update links find in feeds
+    """
+    if not feeds:
+        raise Exception("ERROR: No feed found!")
     else:
-        return 1
+        for feed_id in feed_ids:
+            rss.update(feed_id=feed_id)
 
 
 def _read_feeds(language='en'):
     """
     read feed information from database feeds
     """
-    db_feeds = Collection(db, CATEGORIES_REGISTRAR)
-    db_feeds.
+    db_feeds = Collection(db, FEED_REGISTRAR)
+    items = db_feeds.find({'language':language})
+    if items:
+        return [str(item['_id']) for item in items]
+    else:
+        raise Exception("ERROR: Cannot find any feeds of language %s!" % language)
 
 
-# TODO: configuration should be read from database, not a file anymore
 def scrape(language):
-    ''''''
+    """
+    update news from stored feeds
+    """
     print '----------------------scraping-------------------------'
-    feeds = _read_feeds(language)
-    updated_tasks = execute_task(feeds)
+    _update(_read_feeds(language))
 
 
 # TODO: put language in config file
