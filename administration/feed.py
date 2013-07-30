@@ -12,7 +12,7 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append("..")
 
-from administration import database as db_feed
+from administration import database as db_feeds
 from BeautifulSoup import BeautifulStoneSoup
 import feedparser
 from scraper import rss
@@ -67,7 +67,7 @@ def add(feed_link=None, language=None, categories=None):
     if d:
         # feed level
         feed_info = _read_source(d, feed_link, language, categories)
-        feed_id = db_feed.insert_feed(feed_info)
+        feed_id = db_feeds.insert_feed(feed_info)
         # add entries of this feed
         rss.update(str(feed_id), feed_info['feed_link'], feed_info['language'], feed_info['categories']) 
     else:

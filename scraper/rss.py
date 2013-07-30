@@ -155,7 +155,7 @@ def update(feed_link=None, feed_id=None, feed_title=None, language=None, categor
     language = language.strip()
 
     # parse rss reading from remote rss servers
-    entries, status, feed_title_new, etag_new, modified_new = rss_parser.parse(
+    entries, status_new, feed_title_new, etag_new, modified_new = rss_parser.parse(
         feed_link, feed_id, feed_title, language, categories, etag, modified)
 
     # filter out existing entries in db_news
@@ -167,8 +167,8 @@ def update(feed_link=None, feed_id=None, feed_title=None, language=None, categor
     # update new entries to db_news
     # each entry is added with _id
     entries = db_news.update(entries, language)
-    # and some data, like feed_title, etag and modified to db_news
-    # db_news.update_feed()
+    # and some data, like feed_title, etag and modified to db_feeds
+    db_feeds.update_feed(feed_id, status_new, feed_title_new, etag_new, modified_new)
 
     # store in memory
     memory.update(entries, language, categories)

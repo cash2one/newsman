@@ -14,11 +14,24 @@ sys.path.append("..")
 
 from administration.config import Collection
 from administration.config import db
+from bson.objectid import ObjectId
 
 from administration.config import FEED_REGISTRAR
 
 
-def insert_feed(feed_info=None):
+def update(feed_id, **kwargs):
+    """
+    update feed info
+    """
+    col = Collection(db, FEED_REGISTRAR)
+    item = col.find_one({'_id': ObjectId(feed_id)})
+    if item:
+        col.update({'_id':ObjectId(feed_id)}, kwargs)
+    else:
+        pass
+
+
+def save(feed_info=None):
     """
     add a new record of feed
     """
