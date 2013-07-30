@@ -146,7 +146,7 @@ def update(feed_link=None, feed_id=None, language=None, categories=None):
     Note. categories are ids of category item
     Notel categories are kept for manual testing
     """
-    if not feed_id or not (feed_link and language) :
+    if not feed_id and not (feed_link and language) :
         raise Exception(
             "ERROR: Method signature not well formed!")
 

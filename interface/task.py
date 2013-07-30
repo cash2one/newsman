@@ -21,7 +21,6 @@ import time
 
 from administration.config import Collection
 from administration.config import FEED_REGISTRAR
-from administration.config import DATA_CLEAR_LOG
 from administration.config import DATABASE_REMOVAL_DAYS
 from administration.config import db
 from administration.config import IMAGES_LOCAL_DIR
@@ -30,20 +29,8 @@ from administration.config import LANGUAGES
 from administration.config import MAINTENANCE_DIR
 from administration.config import MEMORY_RESTORATION_DAYS
 from administration.config import rclient
-from administration.config import RSS_UPDATE_LOG
 from administration.config import TRANSCODED_LOCAL_DIR
 from administration.config import TRANSCODED_PUBLIC_DIR
-
-if not os.path.exists(MAINTENANCE_DIR):
-    os.mkdir(MAINTENANCE_DIR)
-if not os.path.exists(RSS_UPDATE_LOG):
-    f = open(RSS_UPDATE_LOG, 'w')
-    f.write('')
-    f.close()
-if not os.path.exists(DATA_CLEAR_LOG):
-    f = open(DATA_CLEAR_LOG, 'w')
-    f.write('')
-    f.close()
 
 
 """
@@ -285,7 +272,7 @@ def _update(feed_ids):
     """
     update links find in feeds
     """
-    if not feeds:
+    if not feed_ids:
         raise Exception("ERROR: No feed found!")
     else:
         for feed_id in feed_ids:
@@ -301,7 +288,7 @@ def _read_feeds(language='en'):
     if items:
         return [str(item['_id']) for item in items]
     else:
-        raise Exception("ERROR: Cannot find any feeds of language %s!" % language)
+        raise Exception("ERROR: Cannot find any feeds for language %s!" % language)
 
 
 def scrape(language):
@@ -316,7 +303,6 @@ def scrape(language):
 if __name__ == "__main__":
     command = sys.argv[1]
     if len(sys.argv) > 2:
-        language = '/home/work/global-mobile-news/alert_maintenance/maintenance/%s_feeds_list.txt' % sys.argv[2]
-        eval(command)(language)
+        eval(command)(sys.argv[2])
     else:
         eval(command)()
