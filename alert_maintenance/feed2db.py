@@ -26,7 +26,8 @@ def _parse_task(line):
     """
     if line:
         task = line.split('*|*')
-        return task[0], task[1], task[2], task[3]
+        # task[1] refers to categories
+        return task[0], task[1].split(','), task[2], task[3]
     else:
         return None
 
