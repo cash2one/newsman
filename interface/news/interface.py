@@ -20,7 +20,7 @@ import feedparser
 from bson.objectid import ObjectId
 
 from config import Collection
-from config import db_news
+from config import db
 from config import rclient
 from config import LANGUAGES
 from config import STRATEGY_WITHOUT_WEIGHTS
@@ -104,7 +104,7 @@ def get_latest_entries_by_language(language=None, limit=10, start_id=None, strat
             last_entry_in_memory_updated = last_entry_in_memory['updated_parsed']
             limit_in_database = limit - entry_ids_total
             # database
-            col = Collection(db_news, language)
+            col = Collection(db, language)
             items = col.find({'updated_parsed':{'$lt':last_entry_in_memory_updated}}).sort('updated_parsed', -1).limit(limit_in_database)
             for item in items:
                 if start_id and str(item['_id']) == start_id:
@@ -116,7 +116,7 @@ def get_latest_entries_by_language(language=None, limit=10, start_id=None, strat
                 entries.append(item)
     else: # query the database
         entries = []
-        col = Collection(db_news, language)
+        col = Collection(db, language)
         items = col.find().sort('updated_parsed', -1).limit(limit)
         for item in items:
             if start_id and str(item['_id']) == start_id:
@@ -181,7 +181,7 @@ def get_previous_entries_by_language(language=None, limit=10, end_id=None, strat
                 limit_in_database = limit - limit_in_memory
                 last_entry_in_memory_updated = last_entry_in_memory['updated_parsed']
                 # find the remaining items in database
-                col = Collection(db_news, language)
+                col = Collection(db, language)
                 items = col.find({'updated_parsed':{'$lt':last_entry_in_memory_updated}}).sort('updated_parsed', -1).limit(limit_in_database)
                 for item in items:
                     # string-ify all the values: ObjectId
@@ -192,7 +192,7 @@ def get_previous_entries_by_language(language=None, limit=10, end_id=None, strat
             return entries
         else: # no memory or data in memory are not enough, so query database
             entries = []
-            col = Collection(db_news, language)
+            col = Collection(db, language)
             if end_id:
                 end_id_entry = col.find_one({'_id':ObjectId(end_id)})
                 if end_id_entry:
@@ -248,7 +248,7 @@ def get_latest_entries_by_category(language=None, category=None, limit=10, start
             last_entry_in_memory_updated = last_entry_in_memory['updated_parsed']
             limit_in_database = limit - entry_ids_total
             # database
-            col = Collection(db_news, language)
+            col = Collection(db, language)
             # query categories array with only one of its values
             items = col.find({'updated_parsed':{'$lt':last_entry_in_memory_updated}, 'categories':category}).sort('updated_parsed', -1).limit(limit_in_database)
             for item in items:
@@ -261,7 +261,7 @@ def get_latest_entries_by_category(language=None, category=None, limit=10, start
                 entries.append(item)
     else: # query the database
         entries = []
-        col = Collection(db_news, collection_name)
+        col = Collection(db, collection_name)
         items = col.find({'categories':category}).sort('updated_parsed', -1).limit(limit)
         for item in items:
             if start_id and item['_id'] == start_id:
@@ -328,7 +328,7 @@ def get_previous_entries_by_category(language=None, category=None, limit=10, end
                 limit_in_database = limit - limit_in_memory
                 last_entry_in_memory_updated = last_entry_in_memory['updated_parsed']
                 # find the remaining items in database
-                col = Collection(db_news, language)
+                col = Collection(db, language)
                 items = col.find({'updated_parsed':{'$lt':last_entry_in_memory_updated}, 'categories':category}).sort('updated_parsed', -1).limit(limit_in_database)
                 for item in items:
                     # string-ify all the values: ObjectId
@@ -339,7 +339,7 @@ def get_previous_entries_by_category(language=None, category=None, limit=10, end
             return entries
         else: # no memory or data in memory are not enough, so query database
             entries = []
-            col = Collection(db_news, language)
+            col = Collection(db, language)
             if end_id:
                 end_id_entry = col.find_one({'_id':ObjectId(end_id)})
                 if end_id_entry:
