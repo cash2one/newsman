@@ -15,8 +15,7 @@ from pymongo.database import Database
 from pymongo.collection import Collection
 from pymongo.errors import CollectionInvalid
 con = Connection('127.0.0.1:27017')
-db_news = Database(con, 'news')
-db_feeds = Database(con, 'feeds')
+db = Database(con, 'news')
 
 import redis
 rclient = redis.StrictRedis('127.0.0.1')
