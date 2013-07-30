@@ -20,6 +20,7 @@ from scraper import rss
 import time
 
 from administration.config import Collection
+from administration.config import FEED_REGISTRAR
 from administration.config import DATA_CLEAR_LOG
 from administration.config import DATABASE_REMOVAL_DAYS
 from administration.config import db
@@ -132,7 +133,6 @@ def clear_transcoded(removal_candidate):
 
 
 def clear_short_dated(language, category, feed_id):
-    ''''''
     if not language or not category or not feed_id:
         return None
     else:
@@ -191,7 +191,6 @@ def clear_zombies(language):
 
 
 def clear_long_dated(language):
-    ''''''
     if not language:
         return None
     else:
@@ -216,7 +215,6 @@ def clear_long_dated(language):
 
 
 def clear():
-    ''''''
     print '----------------------clearing-------------------------'
     # clear memory
     f = open(DATA_CLEAR_LOG, 'a')
@@ -255,7 +253,6 @@ def clear():
 
 
 def add_task(feed_id, feed_link, language, category):
-    ''''''
     if not feed_id or not feed_link or not language or not category:
         return 1
     feed_link = feed_link.strip()
@@ -287,7 +284,7 @@ def extract_task(line):
     ''''''
     if line:
         task = line.split('*|*')
-        return task[0], [task[1]], task[2], task[3]
+        return task[0], task[1].split(','), task[2], task[3]
     else:
         return 1
 
@@ -299,9 +296,9 @@ def execute_task(lines):
         for line in lines:
             # this should be modified to read from the database
             # etag/modified should also be read out
-            language, category, feed_id, feed_link = extract_task(line)
-            print language, category, feed_id
-            updated_entries = rss.update(feed_link=feed_link, feed_id=feed_id, language=language, categories=category)
+            language, categories, feed_id, feed_link = extract_task(line)
+            print language, categories, feed_id
+            updated_entries = rss.update(feed_link=feed_link, feed_id=feed_id, language=language, categories=categories)
             if updated_entries:
                 f.write("%s: %s %i\n" % (time.asctime(time.gmtime()), feed_id, len(updated_entries)))
         f.write('\n')
@@ -312,27 +309,20 @@ def execute_task(lines):
         return 1
 
 
-def read_task_directory():
-    ''''''
-    if os.path.exists(MAINTENANCE_DIR):
-        files = []
-        for file_name in os.listdir(MAINTENANCE_DIR):
-            if file_name.endswith('_feeds_list.txt'):
-                files.append('%s%s' % (MAINTENANCE_DIR, file_name))
-        return files
-    else:
-        return 0
+def _read_feeds(language='en'):
+    """
+    read feed information from database feeds
+    """
+    db_feeds = Collection(db, CATEGORIES_REGISTRAR)
+    db_feeds.
 
 
 # TODO: configuration should be read from database, not a file anymore
 def scrape(language):
     ''''''
     print '----------------------scraping-------------------------'
-    #languages = read_task_directory()
-    # for language in languages:
-    f = open(language, 'r')
-    lines = f.readlines()
-    updated_tasks = execute_task(lines)
+    feeds = _read_feeds(language)
+    updated_tasks = execute_task(feeds)
 
 
 # TODO: put language in config file

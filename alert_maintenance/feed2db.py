@@ -15,7 +15,7 @@ sys.path.append('..')
 from administration.config import Collection
 from administration.config import db
 from administration.config import FEED_REGISTRAR
-from administration.config import CATEGORIES_REGISTRAR
+from administration.config import CATEGORY_REGISTRAR
 
 file_suffix = '/home/jinyuan/Downloads/global-mobile-news/alert_maintenance/maintenance/'
 
@@ -43,7 +43,7 @@ def _convert(language='en'):
 
     # open datbase
     db_feeds = Collection(db, FEED_REGISTRAR)
-    db_categories = Collection(db, CATEGORIES_REGISTRAR)
+    db_categories = Collection(db, CATEGORY_REGISTRAR)
 
     for line in lines:
         if line.strip():
