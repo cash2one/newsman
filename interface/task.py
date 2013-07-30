@@ -280,14 +280,6 @@ def add_task(feed_id, feed_link, language, category):
     return 0
 """
 
-def extract_task(line):
-    ''''''
-    if line:
-        task = line.split('*|*')
-        return task[0], task[1].split(','), task[2], task[3]
-    else:
-        return 1
-
 
 def _update(feed_ids):
     """

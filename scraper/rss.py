@@ -140,8 +140,8 @@ def _value_added_process(entries=None, language=None):
 def update(feed_link=None, feed_id=None, language=None, categories=None):
     """
     update could be called
-    1. from task procedure: all parameters included
-    2. after an rss is added: all parameters included
+    1. from task procedure: feed_id
+    2. after an rss is added: feed_id
     3. manually for testing purpose: feed_link, language
     Note. categories are ids of category item
     Notel categories are kept for manual testing
