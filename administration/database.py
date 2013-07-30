@@ -38,8 +38,9 @@ def update(feed_id, **kwargs):
     col = Collection(db, FEED_REGISTRAR)
     item = col.find_one({'_id': ObjectId(feed_id)})
     if item:
+        kwargs['updated_times'] = kwargs['updated_times'] + 1
+        kwargs['latest_update'] = time.asctime(time.gmtime())
         col.update({'_id':ObjectId(feed_id)}, kwargs)
-        col.update({'_id': ObjectId(feed_id), {'$inc': {'updated_times':1}}})
     else:
         raise Exception("ERROR: No such a _id %s in feeds" % feed_id)
 
@@ -56,6 +57,8 @@ def save(feed_info=None):
     # make a record in the feeds table
     item = col.find_one({'feed_link':feed_info['feed_link'], 'language':feed_info['language']})
     if not item:
+        feed_info['updated_times'] = 0
+        feed_info['latest_update'] = None
         return str(col.save(feed_info))
     else:
         return None

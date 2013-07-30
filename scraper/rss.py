@@ -178,7 +178,7 @@ def update(feed_link=None, feed_id=None, language=None, categories=None):
     entries = db_news.update(entries, language)
     # and some data, like feed_title, etag and modified to db_feeds
     # only feed_id is necessary, others are optional **kwargs
-    db_feeds.update(feed_id, status_new, feed_title_new, etag_new, modified_new)
+    db_feeds.update(feed_id=feed_id, status=status_new, feed_title=feed_title_new, etag=etag_new, modified=modified_new)
 
     # store in memory
     memory.update(entries, language, categories)
