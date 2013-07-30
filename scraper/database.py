@@ -7,7 +7,7 @@ sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
 from administration.config import Collection
-from administration.config import db_news
+from administration.config import db
 from administration.config import LANGUAGES
 
 
@@ -21,7 +21,7 @@ def dedup(entries=None, language=None):
         raise Exception("ERROR: language not found or not supported!")
 
     entries_new = []
-    col = Collection(db_news, language)
+    col = Collection(db, language)
     for entry in entries:
         # find duplicate in the form of the same link or title
         dup_link = col.find_one({'link': entry['link']})
@@ -45,7 +45,7 @@ def update(entries=None, language=None):
         raise Exception("ERROR: language not found or not supported!")
 
     # collection was created by the feed
-    col = Collection(db_news, language)
+    col = Collection(db, language)
     for entry in entries:
         # then save to database
         entry_id = col.save(entry)
