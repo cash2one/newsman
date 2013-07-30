@@ -12,9 +12,6 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append("..")
 
-from administration.config import Collection
-from administration.config import db
-from administration.config import rclient
 from BeautifulSoup import BeautifulStoneSoup
 import entry
 import feedparser
@@ -36,41 +33,26 @@ def create_language_collection(feed_info=None):
 
 def _register_source(feed_info=None):
     ''''''
-    if not feed_info:
-        return 1
-    col = None
-    if FEED_REGISTRAR not in db.collection_names():
-        col = db.create_collection(FEED_REGISTRAR)
-    else:
-        col = Collection(db, FEED_REGISTRAR)
-    # make a record in the feeds table
-    item = col.find_one({'feed_link':feed_info['feed_link']})
-    if not item:
-        col.save(feed_info)
-    return 0
 
-def _read_source(d=None, feed_link=None, language=None, categories=None, weight_categories=10, weight_source=10):
-    feed_info = {}
+def _read_source(d=None, feed_link=None, language=None, categories=None):
     if 'feed' in d:
+        feed_info = {}
+        # read in passed values
+        feed_info['feed_link'] = feed_link
+        feed_info['categories'] = categories
+        feed_info['language'] = language
+
         if 'title' in d.feed:
-            feed_info['feed_name'] = d.feed.title.strip()
-        else:
-            feed_info['feed_name'] = raw_input('Cannot find name for %s, input new:\n' % feed_link).strip()
-        if 'subtitle' in d.feed:
-            feed_info['subtitle'] = d.feed.subtitle.strip()
+            feed_info['feed_title'] = d.feed.title.strip()
         if 'rights' in d.feed:
             feed_info['rights'] = d.feed.rights.strip()
-        #if 'image' in d.feed:
-        #    feed_info['image'] = d.feed.image.href
+        if 'etag' in d.feed:
+            feed_info['etag'] = d.feed.etag.strip()
+        if 'modified' in d.feed:
+            feed_info['modified'] = d.feed.modified.strip()
+        return feed_info
     else:
-        feed_info['feed_name'] = raw_input('Invalid format of %s, input name:\n' % feed_link).strip()
-    # read in passed values
-    feed_info['feed_link'] = feed_link
-    feed_info['categories'] = categories
-    feed_info['language'] = language
-    feed_info['weight_categories'] = weight_categories
-    feed_info['weight_source'] = weight_source
-    return feed_info
+        raise Exception('ERROR: Feed %s malformed!' % feed_link)
 
 
 def _link_cleaner(link):
@@ -87,14 +69,10 @@ def add(feed_link=None, language=None, categories=None):
     if not feed_link or not language:
         raise Exception("ERROR: Method not well formed!")
     
-    feed_link = feed_link.strip()
-    language = language.strip()
-    categories = categories.strip()
-
     d = feedparser.parse(feed_link)
     if d:
         # feed level
-        feed_info = _read_source(d, feed_link, language, categories, weight_categories, weight_source)
+        feed_info = _read_source(d, feed_link, language, categories)
         _register_source(feed_info)
         feed_id = create_language_collection(feed_info)
         print '1/4 .. created entry in database'
