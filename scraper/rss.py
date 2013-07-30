@@ -13,8 +13,9 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
+from administration import db_news as db_feeds
 import calendar
-import database
+import database as db_news
 from datetime import datetime, timedelta
 from data_processor import transcoder
 from data_processor import tts_provider
@@ -29,7 +30,7 @@ import time
 import urllib2
 
 from administration.config import CATEGORY_IMAGE_SIZE
-from administration.config import DATABASE_REMOVAL_DAYS
+from administration.config import db_news_REMOVAL_DAYS
 from administration.config import HOT_IMAGE_SIZE
 from administration.config import LANGUAGES
 from administration.config import MEMORY_EXPIRATION_DAYS
@@ -40,7 +41,7 @@ from administration.config import THUMBNAIL_IMAGE_SIZE
 def _value_added_process(entries=None, language=None):
     """
     add more value to an entry
-    tts, transcode, images, redis_entry_expiration, database_entry_expiration
+    tts, transcode, images, redis_entry_expiration, db_news_entry_expiration
     """
     if not entries:
         return None
@@ -123,8 +124,8 @@ def _value_added_process(entries=None, language=None):
 
             entry['memory_expired'] = _expired(
                 entry['updated_parsed'], MEMORY_EXPIRATION_DAYS)
-            entry['database_expired'] = _expired(
-                entry['updated_parsed'], DATABASE_REMOVAL_DAYS)
+            entry['db_news_expired'] = _expired(
+                entry['updated_parsed'], db_news_REMOVAL_DAYS)
 
             entry['error'] = entry['error'] if entry['error'] else None
             entries_new.append(entry)
@@ -135,7 +136,7 @@ def _value_added_process(entries=None, language=None):
     return entries_new
 
 
-# TODO: code to remove added items if things suck at database/memory
+# TODO: code to remove added items if things suck at db_news/memory
 def update(feed_link=None, feed_id=None, feed_title=None, language=None, categories=None, etag=None, modified=None):
     """
     update could be called
@@ -154,20 +155,20 @@ def update(feed_link=None, feed_id=None, feed_title=None, language=None, categor
     language = language.strip()
 
     # parse rss reading from remote rss servers
-    entries, feed_title_new, etag_new, modified_new = rss_parser.parse(
+    entries, status, feed_title_new, etag_new, modified_new = rss_parser.parse(
         feed_link, feed_id, feed_title, language, categories, etag, modified)
 
-    # filter out existing entries in database
+    # filter out existing entries in db_news
     # there are some possible exceptions -- yet let it be
-    entries = database.dedup(entries, language)
+    entries = db_news.dedup(entries, language)
     # and do tts, big_images, image as well as transcode.
     entries = _value_added_process(entries, language)
 
-    # update new entries to database
+    # update new entries to db_news
     # each entry is added with _id
-    entries = database.update(entries, language)
-    # and some data, like feed_title, etag and modified to database
-    # database.update_feed()
+    entries = db_news.update(entries, language)
+    # and some data, like feed_title, etag and modified to db_news
+    # db_news.update_feed()
 
     # store in memory
     memory.update(entries, language, categories)
