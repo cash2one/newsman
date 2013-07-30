@@ -58,6 +58,7 @@ STRATEGY_WITHOUT_WEIGHTS = 1
 STRATEGY_WITH_WEIGHTS = 2
 
 FEED_REGISTRAR = 'feeds'
+CATEGORY_REGISTRAR = 'categories'
 
 LANGUAGES = ['en', 'th', 'ind', 'ja', 'pt', 'en-rIN', 'ar']
 MIN_IMAGE_SIZE = 150, 150
