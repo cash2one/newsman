@@ -7,7 +7,7 @@ sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
 # remove collection
-from administration.config import db
+from administration.config import database
 db.drop_collection('en')
 print 'Database cleaned!'
 
