@@ -59,3 +59,10 @@ def _convert(language='en'):
                     category_ids.append(category_id)
             # save feed
             db_feeds.save({'language':language, 'feed_link':feed_link, 'categories':category_ids, 'feed_title':feed_title})
+
+
+if __name__ == "__main__":
+    if len(sys.argv) > 0:
+        _convert(sys.argv[1])
+    else:
+        print 'Please indicate a language'
