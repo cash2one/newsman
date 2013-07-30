@@ -25,7 +25,7 @@ def _parse_task(line):
         task = line.split('*|*')
         return task[0], task[1], task[2], task[3]
     else:
-        return 1
+        return None
 
 def _preview(language='en', rss_file=None):
     """
