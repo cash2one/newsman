@@ -136,7 +136,7 @@ def _value_added_process(entries=None, language=None):
     return entries_new
 
 
-# TODO: code to remove added items if things suck at db_news/memory
+# TODO: code to remove added items if things suck at database/memory
 def update(feed_link=None, feed_id=None, language=None, categories=None):
     """
     update could be called
