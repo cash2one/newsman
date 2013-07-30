@@ -69,7 +69,7 @@ def add(feed_link=None, language=None, categories=None):
         feed = _read_source(d, feed_link, language, categories)
         feed_id = db_feeds.save(feed)
         # add entries of this feed
-        rss.update(feed_id, feed['feed_link'], feed['language'], feed['categories']) 
+        rss.update(feed_id) 
     else:
         raise Exception("ERROR: RSS source %s cannot be interpreted!" % feed_link)
         

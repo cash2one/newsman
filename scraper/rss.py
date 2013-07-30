@@ -168,7 +168,7 @@ def update(feed_link=None, feed_id=None, feed_title=None, language=None, categor
     # each entry is added with _id
     entries = db_news.update(entries, language)
     # and some data, like feed_title, etag and modified to db_feeds
-    db_feeds.update_feed(feed_id, status_new, feed_title_new, etag_new, modified_new)
+    db_feeds.update(feed_id, status_new, feed_title_new, etag_new, modified_new)
 
     # store in memory
     memory.update(entries, language, categories)

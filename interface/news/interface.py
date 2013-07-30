@@ -68,7 +68,12 @@ def get_categories_by_language(language=None):
             category_images['hot_news'].append(item)
             if len(category_images['hot_news']) == images_limit:
                 break
-    return category_images
+
+    # special formatting for android-end
+    output = []
+    for k, v in category_images.iteritems():
+        output.append({'Category':k, 'Images':v})
+    return {'Categories':output}
 
 
 def get_latest_entries_by_language(language=None, limit=10, start_id=None, strategy=1):
