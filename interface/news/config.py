@@ -24,7 +24,7 @@ from HTMLParser import HTMLParser
 hparser = HTMLParser()
 
 # CONSTANTS
-PUBLIC = 'http://54.251.107.116/%s'
+PUBLIC = 'http://180.76.2.34/%s'
 LOCAL = '/home/jinyuan/Downloads/global-mobile-news/%s'
 
 TRANSCODED_LOCAL_DIR = LOCAL % 'interface/transcoded/'
@@ -58,6 +58,7 @@ STRATEGY_WITHOUT_WEIGHTS = 1
 STRATEGY_WITH_WEIGHTS = 2
 
 FEED_REGISTRAR = 'feeds'
+CATEGORY_REGISTRAR = 'categories'
 
 LANGUAGES = ['en', 'th', 'ind', 'ja', 'pt', 'en-rIN', 'ar']
 MIN_IMAGE_SIZE = 150, 150
