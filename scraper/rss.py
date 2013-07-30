@@ -137,7 +137,7 @@ def _value_added_process(entries=None, language=None):
 
 
 # TODO: code to remove added items if things suck at db_news/memory
-def update(feed_link=None, feed_id=None, feed_title=None, language=None, categories=None, etag=None, modified=None):
+def update(feed_link=None, feed_id=None, language=None, categories=None):
     """
     update could be called
     1. from task procedure: all parameters included
@@ -145,14 +145,16 @@ def update(feed_link=None, feed_id=None, feed_title=None, language=None, categor
     3. manually for testing purpose: feed_link, language
     Note. categories are ids of category item
     """
-    if not feed_link or not feed_id or not language or not categories:
+    if feed_id:
         raise Exception(
             "ERROR: Method signature not well formed for %s!" % feed_link)
-    if language not in LANGUAGES:
-        raise Exception("ERROR: Language not supported for %s!" % feed_link)
-    # parameters striped
-    feed_link = feed_link.strip()
-    language = language.strip()
+    feed = db_feeds.get(feed_id)
+    feed_link = feed['feed_link'] if feed else feed_link
+    language = feed['language'] if feed else language
+    categories = feed['categories'] if feed else categories
+    feed_title = feed['feed_title'] if feed and 'feed_title' in feed else None
+    etag = feed['etag'] if feed and 'etag' in feed else None
+    modified = feed['modified'] if feed and 'modified' in feed else None
 
     # parse rss reading from remote rss servers
     entries, status_new, feed_title_new, etag_new, modified_new = rss_parser.parse(
