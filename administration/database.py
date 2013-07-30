@@ -39,6 +39,7 @@ def update(feed_id, **kwargs):
     item = col.find_one({'_id': ObjectId(feed_id)})
     if item:
         col.update({'_id':ObjectId(feed_id)}, kwargs)
+        col.update({'_id': ObjectId(feed_id), {'$inc': {'updated_times':1}}})
     else:
         raise Exception("ERROR: No such a _id %s in feeds" % feed_id)
 
