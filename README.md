@@ -29,16 +29,15 @@ modification page
 
 ToDos - High Priority
 ----------------------
-1. Feed相关代码重构
-2. Task相关代码分解、重构
+1. Task相关代码分解、重构
+2. 预警代码整理、重构
 3. 转码代码清理、重构
-4. Feed管理平台
-5. 摘要/首段抓取代码编写
-6. 自定义Exception类，并替换相应代码
-7. 预警代码整理、重构
+4. Readability代码整合、测试
+5. Feed管理平台
+6. 摘要/首段抓取代码编写
+7. 自定义Exception类，并替换相应代码
 8. 数据整理代码整理、重构
-9. Readability代码整合、测试
-10. 减少参数调用（尽量从数据库中获取）
+9. 包结构合理化
 
 ToDos - Low Priority
 ---------------------
@@ -66,6 +65,8 @@ Dones
 4. 根据RSS提供者的元数据区分更新时间
 5. 根据TODO标签自动生成Markdown文档
 6. 对外接口重构
+7. Feed相关代码重构
+8. 减少参数调用（尽量从数据库中获取）
 
 
 ToDos - Generated from docs
@@ -88,9 +89,13 @@ ToDos - Generated from docs
 * `data_processor/transcoder.py`
     1. Line 94: uck_reformat
         - extract image_list part into a new method
-    2. Line 203: transcode
+    2. Line 202: transcode
         - should separate big_images from transcoding
         - return an exception when fucked up
+
+* `administration/feed.py`
+    1. Line 60: add
+        - implement _link_cleaner!
 
 * `image_processor/thumbnail.py`
     1. Line 20: is_valid_image
@@ -101,17 +106,13 @@ ToDos - Generated from docs
         - relative path could be a url including its suffix like jpg/png
 
 * `scraper/rss.py`
-    1. Line 135: update
+    1. Line 140: update
         - code to remove added items if things suck at database/memory
 
 * `scraper/memory.py`
     1. Line 15: update
         - add more comments
         - be precautious with possible redis adding failure
-
-* `interface/task.py`
-    1. Line 328: scrape
-        - configuration should be read from database, not a file anymore
 
 * `data_processor/tts_provider.py`
     1. Line 84: _query_segment
