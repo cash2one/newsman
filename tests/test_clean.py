@@ -7,8 +7,11 @@ sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
 # remove collection
-from administration.config import database
-db.drop_collection('en')
+from administration.config import db
+collections = db.collection_names()
+for collection in collections:
+    if collection != 'system.indexes':
+        db.drop_collection(collection)
 print 'Database cleaned!'
 
 # clean memory
