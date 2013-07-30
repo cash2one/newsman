@@ -56,6 +56,7 @@ def _link_cleaner(link):
     pass
 
 
+# TODO: implement _link_cleaner!
 def add(feed_link=None, language=None, categories=None):
     """
     read rss/atom meta information from a given feed
