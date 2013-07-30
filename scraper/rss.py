@@ -30,7 +30,7 @@ import time
 import urllib2
 
 from administration.config import CATEGORY_IMAGE_SIZE
-from administration.config import db_news_REMOVAL_DAYS
+from administration.config import DATABASE_REMOVAL_DAYS
 from administration.config import HOT_IMAGE_SIZE
 from administration.config import LANGUAGES
 from administration.config import MEMORY_EXPIRATION_DAYS
