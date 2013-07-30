@@ -144,16 +144,18 @@ def update(feed_link=None, feed_id=None, language=None, categories=None):
     2. after an rss is added: all parameters included
     3. manually for testing purpose: feed_link, language
     Note. categories are ids of category item
+    Notel categories are kept for manual testing
     """
     if not feed_id or not (feed_link and language) :
         raise Exception(
             "ERROR: Method signature not well formed!")
 
-    if not feed_id:
-        feed = db_feeds.get(feed_link=feed_link, language=language)
-    else 
+    if feed_id:
         feed = db_feeds.get(feed_id=feed_id)
-    feed_id = feed['_id'] if feed else feed_id
+    else 
+        feed = db_feeds.get(feed_link=feed_link, language=language)
+
+    feed_id = str(feed['_id']) if feed else feed_id
     feed_link = feed['feed_link'] if feed else feed_link
     language = feed['language'] if feed else language
     categories = feed['categories'] if feed else categories
