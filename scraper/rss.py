@@ -41,7 +41,7 @@ from administration.config import THUMBNAIL_IMAGE_SIZE
 def _value_added_process(entries=None, language=None):
     """
     add more value to an entry
-    tts, transcode, images, redis_entry_expiration, db_news_entry_expiration
+    tts, transcode, images, redis_entry_expiration, database_entry_expiration
     """
     if not entries:
         return None
@@ -124,8 +124,8 @@ def _value_added_process(entries=None, language=None):
 
             entry['memory_expired'] = _expired(
                 entry['updated_parsed'], MEMORY_EXPIRATION_DAYS)
-            entry['db_news_expired'] = _expired(
-                entry['updated_parsed'], db_news_REMOVAL_DAYS)
+            entry['database_expired'] = _expired(
+                entry['updated_parsed'], DATABASE_REMOVAL_DAYS)
 
             entry['error'] = entry['error'] if entry['error'] else None
             entries_new.append(entry)
