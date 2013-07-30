@@ -152,7 +152,8 @@ def update(feed_link=None, feed_id=None, language=None, categories=None):
     if not feed_id:
         feed = db_feeds.get(feed_link=feed_link, language=language)
     else 
-        feed = db_feeds.get(feed_id)
+        feed = db_feeds.get(feed_id=feed_id)
+    feed_id = feed['_id'] if feed else feed_id
     feed_link = feed['feed_link'] if feed else feed_link
     language = feed['language'] if feed else language
     categories = feed['categories'] if feed else categories

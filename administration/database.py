@@ -19,12 +19,15 @@ from bson.objectid import ObjectId
 from administration.config import FEED_REGISTRAR
 
 
-def get(feed_id):
+def get(feed_id=None, feed_link=None, language=None):
     """
     get all feed info in database:feeds
     """
     col = Collection(db, FEED_REGISTRAR)
-    item = col.find_one({'_id':ObjectId(feed_id)})
+    if feed_id:
+        item = col.find_one({'_id':ObjectId(feed_id)})
+    else:
+        item = col.find_one({'feed_link':feed_link, 'language':language})
     return item
 
 
@@ -52,6 +55,6 @@ def save(feed_info=None):
     # make a record in the feeds table
     item = col.find_one({'feed_link':feed_info['feed_link'], 'language':feed_info['language']})
     if not item:
-        return col.save(feed_info)
+        return str(col.save(feed_info))
     else:
         return None
