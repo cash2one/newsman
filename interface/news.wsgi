@@ -64,7 +64,7 @@ def read_http(environ):
     # call corresponding method
     result = eval(bundle['function'])(bundle)
     if result:
-        return json.dumps(result)
+        return json.dumps(result, encoding="utf-8")
     else:
         return 'null'
 

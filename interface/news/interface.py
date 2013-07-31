@@ -82,7 +82,7 @@ def get_latest_entries_by_language(language=None, limit=10, start_id=None, strat
         return None
     if not limit:
         return None
-    if limit < 0:
+    if limit < 0 or limit > 100:
         return None
     language = language.strip()
     if language not in LANGUAGES:
@@ -141,7 +141,7 @@ def get_previous_entries_by_language(language=None, limit=10, end_id=None, strat
         return None
     if not limit:
         return None
-    if limit < 0:
+    if limit < 0 or limit > 100:
         return None
     language = language.strip()
     if language not in LANGUAGES:
@@ -224,7 +224,7 @@ def get_latest_entries_by_category(language=None, category=None, limit=10, start
         return None
     if not limit:
         return None
-    if limit < 0:
+    if limit < 0 or limit > 100:
         return None
     language = language.strip()
     category = category.strip()
@@ -286,7 +286,7 @@ def get_previous_entries_by_category(language=None, category=None, limit=10, end
         return None
     if not limit:
         return None
-    if limit < 0:
+    if limit < 0 or limit > 100:
         return None
     language = language.strip()
     category = category.strip()
