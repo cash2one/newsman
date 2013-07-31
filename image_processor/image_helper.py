@@ -171,7 +171,7 @@ def normalize(images):
         except IOError as k:
             return None
 
-    if isinstance(images, str):
+    if isinstance(images, str) or isinstance(images, unicode):
         image = _check_image(images)
         return [image] if image else None
     elif isinstance(images, list):

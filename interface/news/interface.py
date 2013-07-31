@@ -40,10 +40,10 @@ def get_categories_by_language(language=None):
 
     category_images = {}
     # find category_images for each category
-    key_wildcard = '%s::*' % language
+    key_wildcard = 'news::%s::*' % language
     categories_composite = rclient.keys(key_wildcard)
     if categories_composite:
-        categories = [cc.replace('%s::' % language, "") for cc in categories_composite]
+        categories = [cc.replace('news::%s::' % language, "") for cc in categories_composite]
         for category in categories:
             entries = get_latest_entries_by_category(language=language, category=category, limit=search_limit)
             # 'category A': [{'title':'xxx', 'image':'http://yyy.com/zzz.jpg'}]
@@ -89,17 +89,17 @@ def get_latest_entries_by_language(language=None, limit=10, start_id=None, strat
         return None
     limit = int(limit)
     # get the latest entries
-    entry_ids_total = rclient.zcard(language)
+    entry_ids_total = rclient.zcard("news::%s" % language)
     entries = []
     if entry_ids_total: # memory (partially) meets the limit
         if entry_ids_total >= limit:
-            entry_ids = rclient.zrevrange(language, 0, limit - 1) 
+            entry_ids = rclient.zrevrange("news::%s" % language, 0, limit - 1) 
             for entry_id in entry_ids:
                 if start_id and entry_id == start_id:
                     return entries
                 entries.append(eval(rclient.get(entry_id)))
         else:
-            entry_ids = rclient.zrevrange(language, 0, entry_ids_total - 1)
+            entry_ids = rclient.zrevrange("news::%s" % language, 0, entry_ids_total - 1)
             last_entry_in_memory = None
             for entry_id in entry_ids:
                 if start_id and entry_id == start_id:
@@ -153,32 +153,32 @@ def get_previous_entries_by_language(language=None, limit=10, end_id=None, strat
     END_ID_IN_MEMORY = False
     limit_in_memory = 0
     if not end_id:
-        entry_ids_total = rclient.zcard(language)
+        entry_ids_total = rclient.zcard("news::%s" % language)
         end_id_index = entry_ids_total
         if entry_ids_total:
             # end_id is assign the most recent one
-            end_id = rclient.zrevrange(language, 0, 0)[0]
+            end_id = rclient.zrevrange("news::%s" % language, 0, 0)[0]
             END_ID_IN_MEMORY = True
             limit_in_memory = entry_ids_total
         else:
             end_id = None # which is in most cases, pointless
             END_ID_IN_MEMORY = False
     else:
-        end_id_index = rclient.zrank(language, end_id)
+        end_id_index = rclient.zrank("news::%s" % language, end_id)
         END_ID_IN_MEMORY = True if end_id_index > 0 else False
         if END_ID_IN_MEMORY:
-            limit_in_memory = rclient.zrank(language, end_id)
+            limit_in_memory = rclient.zrank("news::%s" % language, end_id)
     # implement according to strategy
     if strategy == STRATEGY_WITHOUT_WEIGHTS:
         entries = []
         if END_ID_IN_MEMORY: # see if data in memory suffice
             if limit_in_memory >= limit: # purely get from memory
-                entry_ids = rclient.zrevrange(language, entry_ids_total - end_id_index, entry_ids_total - end_id_index + limit - 1)
+                entry_ids = rclient.zrevrange("news::%s" % language, entry_ids_total - end_id_index, entry_ids_total - end_id_index + limit - 1)
                 for entry_id in entry_ids:
                     entries.append(eval(rclient.get(entry_id)))
             else: # memory + database
                 # memory
-                entry_ids = rclient.zrevrange(language, entry_ids_total - end_id_index, entry_ids_total - end_id_index + limit_in_memory - 1)
+                entry_ids = rclient.zrevrange("news::%s" % language, entry_ids_total - end_id_index, entry_ids_total - end_id_index + limit_in_memory - 1)
                 last_entry_in_memory = None
                 for entry_id in entry_ids:
                     last_entry_in_memory = eval(rclient.get(entry_id))
@@ -231,7 +231,7 @@ def get_latest_entries_by_category(language=None, category=None, limit=10, start
     if language not in LANGUAGES:
         return None
     limit = int(limit)
-    collection_name = '%s::%s' % (language, category)
+    collection_name = 'news::%s::%s' % (language, category)
     # get the latest entries
     entry_ids_total = rclient.zcard(collection_name)
     entries = []
@@ -293,7 +293,7 @@ def get_previous_entries_by_category(language=None, category=None, limit=10, end
     if language not in LANGUAGES:
         return None
     limit = int(limit)
-    collection_name = '%s::%s' % (language, category)
+    collection_name = 'news::%s::%s' % (language, category)
     # preprocess end_id
     entry_ids_total = 0
     end_id_index = 0
