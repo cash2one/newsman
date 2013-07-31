@@ -46,7 +46,7 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
 
     entry = {}
     entry['feed_id'] = feed_id
-    entry['feed_title'] = feed_title.strip()
+    entry['feed'] = feed_title.strip()
     entry['language'] = language.strip()
     entry['categories'] = categories
 
@@ -69,12 +69,12 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
     # article published time
     # first try parsed time info
     try:
-        entry['updated_parsed'] = calendar.timegm(e.updated_parsed)
-        entry['updated'] = e.updated
+        entry['updated'] = calendar.timegm(e.updated_parsed)
+        entry['updated_human'] = e.updated
     except AttributeError as k:
         try:
-            entry['updated_parsed'] = calendar.timegm(e.published_parsed)
-            entry['updated'] = e.published
+            entry['updated'] = calendar.timegm(e.published_parsed)
+            entry['updated_human'] = e.published
         except AttributeError as k:
             entry['error'] = '%s\n%s' % (
                 entry['error'], "no 'updated_parsed' or 'published_parsed'")
@@ -92,7 +92,7 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
                     else:
                         updated = datetime.strptime(updated[:-9], format)
                     updated -= delta
-                    entry['updated_parsed'] = time.mktime(updated.timetuple())
+                    entry['updated'] = time.mktime(updated.timetuple())
                 else:
                     raise ValueError(
                         "attribute updated/published has no value")

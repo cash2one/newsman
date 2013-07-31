@@ -32,9 +32,9 @@ def update(entries=None, language=None, categories=None):
         rclient.expire(entry['_id'], expiration)
 
         # add entry ids to the language list
-        b = rclient.zadd(language, entry['updated_parsed'], entry['_id'])
+        b = rclient.zadd(language, entry['updated'], entry['_id'])
         # print entry['_id'], 'is added to memory', rclient.zcard(language)
 
         # add entry ids to the category list
         for category in categories: 
-            c = rclient.zadd('%s::%s' % (language, category), entry['updated_parsed'], entry['_id'])
+            c = rclient.zadd('%s::%s' % (language, category), entry['updated'], entry['_id'])

@@ -96,6 +96,8 @@ def _value_added_process(entries=None, language=None):
                         thumbnail_web, thumbnail_local = image_helper.scale_image(image=biggest, image_data=image_data_thumbnail, size_expected=THUMBNAIL_IMAGE_SIZE, resize_by_width=True, crop_by_center=True, relative_path='%s_thumbnail' % image_relative_path)
                         entry['thumbnail_image'] = thumbnail_web if thumbnail_web else None
                         entry['thumbnail_image_local'] = thumbnail_local if thumbnail_local else None 
+                        # for older version users
+                        entry['image'] = entry['thumbnail_image']['url'] if thumbnail_web else None
                     except IOError as k:
                         entry['error'].append(str(k) + '\n')
 
@@ -113,19 +115,19 @@ def _value_added_process(entries=None, language=None):
                     entry['mp3_local'] = None
 
             # [MUST-HAVE] add expiration data
-            def _expired(updated_parsed, days_to_deadline):
+            def _expired(updated, days_to_deadline):
                 """
                 compute expiration information
                 return time string and unix time
                 """
                 deadline = datetime.utcfromtimestamp(
-                    updated_parsed) + timedelta(days=days_to_deadline)
+                    updated) + timedelta(days=days_to_deadline)
                 return time.asctime(time.gmtime(calendar.timegm(deadline.timetuple())))
 
             entry['memory_expired'] = _expired(
-                entry['updated_parsed'], MEMORY_EXPIRATION_DAYS)
+                entry['updated'], MEMORY_EXPIRATION_DAYS)
             entry['database_expired'] = _expired(
-                entry['updated_parsed'], DATABASE_REMOVAL_DAYS)
+                entry['updated'], DATABASE_REMOVAL_DAYS)
 
             entry['error'] = entry['error'] if entry['error'] else None
             entries_new.append(entry)
