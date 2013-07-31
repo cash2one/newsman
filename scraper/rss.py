@@ -54,7 +54,7 @@ def _value_added_process(entries=None, language=None):
         try:
             # [MUST-HAVE] transcoding
             rand = random.randint(0, 100000000)
-            transcoded_relative_path = '%s_%s_%s_%i' % (entry['language'], entry['feed_id'], entry['updated_parsed'], rand)
+            transcoded_relative_path = '%s_%s_%s_%i' % (entry['language'], entry['feed_id'], entry['updated'], rand)
             # high chances transcoder cannot work properly
             entry['transcoded'], entry['transcoded_local'], images_from_transcoded = transcoder.transcode(entry['language'], entry['title'], entry['link'], transcoded_relative_path)
 
@@ -77,7 +77,7 @@ def _value_added_process(entries=None, language=None):
                 if biggest:
                     try:
                         rand = random.randint(0, 100000000)
-                        image_relative_path = '%s_%s_%s_%i' % (entry['language'], entry['feed_id'], entry['updated_parsed'], rand)
+                        image_relative_path = '%s_%s_%s_%i' % (entry['language'], entry['feed_id'], entry['updated'], rand)
                         image_downloaded = StringIO(urllib2.urlopen(biggest['url']).read())
                         image_data = Image.open(image_downloaded)
                         image_data_category = image_data
@@ -105,7 +105,7 @@ def _value_added_process(entries=None, language=None):
             if entry['language'] != 'ind':
                 try:
                     tts_relative_path = '%s_%s_%s_%i.mp3' % (
-                        entry['language'], entry['feed_id'], entry['updated_parsed'], rand)
+                        entry['language'], entry['feed_id'], entry['updated'], rand)
                     entry['mp3'], entry['mp3_local'] = tts_provider.google(
                         entry['language'], entry['title'], tts_relative_path)
                 except Exception as k:

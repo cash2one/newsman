@@ -106,29 +106,29 @@ def get_latest_entries_by_language(language=None, limit=10, start_id=None, strat
                     return entries
                 last_entry_in_memory = eval(rclient.get(entry_id))
                 entries.append(last_entry_in_memory)
-            last_entry_in_memory_updated = last_entry_in_memory['updated_parsed']
+            last_entry_in_memory_updated = last_entry_in_memory['updated']
             limit_in_database = limit - entry_ids_total
             # database
             col = Collection(db, language)
-            items = col.find({'updated_parsed':{'$lt':last_entry_in_memory_updated}}).sort('updated_parsed', -1).limit(limit_in_database)
+            items = col.find({'updated':{'$lt':last_entry_in_memory_updated}}).sort('updated', -1).limit(limit_in_database)
             for item in items:
                 if start_id and str(item['_id']) == start_id:
                     return entries
                 # string-ify all the values: ObjectId
                 for x, y in item.iteritems():
-                    if x != 'updated_parsed':
+                    if x != 'updated':
                         item[x] = str(y)
                 entries.append(item)
     else: # query the database
         entries = []
         col = Collection(db, language)
-        items = col.find().sort('updated_parsed', -1).limit(limit)
+        items = col.find().sort('updated', -1).limit(limit)
         for item in items:
             if start_id and str(item['_id']) == start_id:
                 return entries
             # string-ify all the values: ObjectId
             for x, y in item.iteritems():
-                if x != 'updated_parsed':
+                if x != 'updated':
                     item[x] = str(y)
             entries.append(item)
     return entries
@@ -184,14 +184,14 @@ def get_previous_entries_by_language(language=None, limit=10, end_id=None, strat
                     last_entry_in_memory = eval(rclient.get(entry_id))
                     entries.append(last_entry_in_memory)
                 limit_in_database = limit - limit_in_memory
-                last_entry_in_memory_updated = last_entry_in_memory['updated_parsed']
+                last_entry_in_memory_updated = last_entry_in_memory['updated']
                 # find the remaining items in database
                 col = Collection(db, language)
-                items = col.find({'updated_parsed':{'$lt':last_entry_in_memory_updated}}).sort('updated_parsed', -1).limit(limit_in_database)
+                items = col.find({'updated':{'$lt':last_entry_in_memory_updated}}).sort('updated', -1).limit(limit_in_database)
                 for item in items:
                     # string-ify all the values: ObjectId
                     for x, y in item.iteritems():
-                        if x != 'updated_parsed':
+                        if x != 'updated':
                             item[x] = str(y)
                     entries.append(item)
             return entries
@@ -201,17 +201,17 @@ def get_previous_entries_by_language(language=None, limit=10, end_id=None, strat
             if end_id:
                 end_id_entry = col.find_one({'_id':ObjectId(end_id)})
                 if end_id_entry:
-                    end_id_updated = end_id_entry['updated_parsed']
-                    items = col.find({'updated_parsed':{'$lt':end_id_updated}}).sort('updated_parsed', -1).limit(limit)
+                    end_id_updated = end_id_entry['updated']
+                    items = col.find({'updated':{'$lt':end_id_updated}}).sort('updated', -1).limit(limit)
                 else:
                     return None
             # get the most recent limit number of entries
             else:
-                items = col.find().sort('updated_parsed', -1).limit(limit)
+                items = col.find().sort('updated', -1).limit(limit)
             for item in items:
                 # string-ify all the values: ObjectId
                 for x, y in item.iteritems():
-                    if x != 'updated_parsed':
+                    if x != 'updated':
                         item[x] = str(y)
                 entries.append(item)
             return entries
@@ -250,30 +250,30 @@ def get_latest_entries_by_category(language=None, category=None, limit=10, start
                     return entries
                 last_entry_in_memory = eval(rclient.get(entry_id))
                 entries.append(last_entry_in_memory)
-            last_entry_in_memory_updated = last_entry_in_memory['updated_parsed']
+            last_entry_in_memory_updated = last_entry_in_memory['updated']
             limit_in_database = limit - entry_ids_total
             # database
             col = Collection(db, language)
             # query categories array with only one of its values
-            items = col.find({'updated_parsed':{'$lt':last_entry_in_memory_updated}, 'categories':category}).sort('updated_parsed', -1).limit(limit_in_database)
+            items = col.find({'updated':{'$lt':last_entry_in_memory_updated}, 'categories':category}).sort('updated', -1).limit(limit_in_database)
             for item in items:
                 if start_id and item['_id'] == start_id:
                     return entries
                 # string-ify all the values: ObjectId
                 for x, y in item.iteritems():
-                    if x != 'updated_parsed':
+                    if x != 'updated':
                         item[x] = str(y)
                 entries.append(item)
     else: # query the database
         entries = []
         col = Collection(db, collection_name)
-        items = col.find({'categories':category}).sort('updated_parsed', -1).limit(limit)
+        items = col.find({'categories':category}).sort('updated', -1).limit(limit)
         for item in items:
             if start_id and item['_id'] == start_id:
                 return entries
             # string-ify all the values: ObjectId
             for x, y in item.iteritems():
-                if x != 'updated_parsed':
+                if x != 'updated':
                     item[x] = str(y)
             entries.append(item)
     return entries
@@ -331,14 +331,14 @@ def get_previous_entries_by_category(language=None, category=None, limit=10, end
                     last_entry_in_memory = eval(rclient.get(entry_id))
                     entries.append(last_entry_in_memory)
                 limit_in_database = limit - limit_in_memory
-                last_entry_in_memory_updated = last_entry_in_memory['updated_parsed']
+                last_entry_in_memory_updated = last_entry_in_memory['updated']
                 # find the remaining items in database
                 col = Collection(db, language)
-                items = col.find({'updated_parsed':{'$lt':last_entry_in_memory_updated}, 'categories':category}).sort('updated_parsed', -1).limit(limit_in_database)
+                items = col.find({'updated':{'$lt':last_entry_in_memory_updated}, 'categories':category}).sort('updated', -1).limit(limit_in_database)
                 for item in items:
                     # string-ify all the values: ObjectId
                     for x, y in item.iteritems():
-                        if x != 'updated_parsed':
+                        if x != 'updated':
                             item[x] = str(y)
                     entries.append(item)
             return entries
@@ -348,17 +348,17 @@ def get_previous_entries_by_category(language=None, category=None, limit=10, end
             if end_id:
                 end_id_entry = col.find_one({'_id':ObjectId(end_id)})
                 if end_id_entry:
-                    end_id_updated = end_id_entry['updated_parsed']
-                    items = col.find({'updated_parsed':{'$lt':end_id_updated}, 'categories':category}).sort('updated_parsed', -1).limit(limit)
+                    end_id_updated = end_id_entry['updated']
+                    items = col.find({'updated':{'$lt':end_id_updated}, 'categories':category}).sort('updated', -1).limit(limit)
                 else:
                     return None
             # get the most recent limit number of entries
             else:
-                items = col.find({'categories':category}).sort('updated_parsed', -1).limit(limit)
+                items = col.find({'categories':category}).sort('updated', -1).limit(limit)
             for item in items:
                 # string-ify all the values: ObjectId
                 for x, y in item.iteritems():
-                    if x != 'updated_parsed':
+                    if x != 'updated':
                         item[x] = str(y)
                 entries.append(item)
             return entries

@@ -205,7 +205,7 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
         see if the entry's updated time is earlier than needed
         """
         deadline = datetime.utcfromtimestamp(
-            entry['updated_parsed']) + timedelta(days=MEMORY_RESTORATION_DAYS)
+            entry['updated']) + timedelta(days=MEMORY_RESTORATION_DAYS)
         return True if deadline > datetime.now() else False
 
     # variables d and e follow feedparser tradition
