@@ -19,6 +19,7 @@ from decruft import Document
 from administration.config import hparser
 import Image
 from administration.config import NEWS_TEMPLATE
+from administration.config import NEWS_TEMPLATE_ARABIC
 import os
 import re
 from cStringIO import StringIO
@@ -47,6 +48,8 @@ transcoding_button_language = {
 }
 
 
+# TODO: test the code
+# TODO: remove code that sanitize too much
 def uck_sanitize(content):
     ''''''
     soup = BeautifulSoup(content.decode('utf-8'))
@@ -87,7 +90,16 @@ def uck_sanitize(content):
             if component.name == 'div':
                 if not component.find('p'):
                     component.extract()
-    return ''.join([str(item) for item in soup.contents])
+    # filter item by lijun
+    img_count = 0
+    for item in soup.contents:
+        if isinstance(item, Tag):
+            if item.name == 'img':
+                img_count = img_count + 1
+    if img_count == len(soup.contents):
+        return None
+    else:
+        return ''.join([str(item) for item in soup.contents])
 
 
 # TODO: extract image_list part into a new method
@@ -134,10 +146,19 @@ def uck_reformat(language, title, data):
         content = data['content'].replace("\\", "")
         new_content = uck_sanitize(content)
         if new_content:
-            f = open(NEWS_TEMPLATE, 'r')
-            template = str(f.read())
-            news = template % (title, title, new_content, transcoding_button_language[language])
-            return news, images
+            # f reads the template
+            f = None
+            if language == 'ar':
+                f = open(NEWS_TEMPLATE_ARABIC, 'r')
+            else:
+                f = open(NEWS_TEMPLATE, 'r')
+            if f:
+                template = str(f.read())
+                f.close()
+                news = template % (title, title, new_content, transcoding_button_language[language])
+                return news, images
+            else:
+                return None
         else:
             return None
     else:
