@@ -37,6 +37,7 @@ MEDIA_LOCAL_DIR = LOCAL % 'mid/'
 MEDIA_PUBLIC_DIR = PUBLIC % 'mid/'
 
 NEWS_TEMPLATE = LOCAL % 'template/index.html'
+NEWS_TEMPLATE_ARABIC = LOCAL % 'template/index_arabic.html'
 UCK_TRANSCODING = 'http://gate.baidu.com/tc?m=8&from=bdpc_browser&src='
 TRANSCODED_ENCODING = '<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>\n'   # lijun
 

@@ -37,6 +37,7 @@ MEDIA_LOCAL_DIR = LOCAL % 'mid/'
 MEDIA_PUBLIC_DIR = PUBLIC % 'mid/'
 
 NEWS_TEMPLATE = LOCAL % 'template/index.html'
+NEWS_TEMPLATE_ARABIC = LOCAL % 'template/index_arabic.html'
 UCK_TRANSCODING = 'http://gate.baidu.com/tc?m=8&from=bdpc_browser&src='
 TRANSCODED_ENCODING = '<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>\n'   # lijun
 
@@ -45,6 +46,7 @@ TRANSCODING_BTN_PT = 'Página original'
 TRANSCODING_BTN_JA = '元のページ'
 TRANSCODING_BTN_IND = 'Laman Asli'
 TRANSCODING_BTN_TH = 'หน้าเดิม'
+TRANSCODING_BTN_AR = 'ﺎﻠﻤﺻﺩﺭ'
 
 DATABASE_REMOVAL_DAYS = 90
 MEMORY_RESTORATION_DAYS = 10

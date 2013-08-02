@@ -5,7 +5,7 @@
 # processing and storing.
 #
 # @author Jin Yuan
-# @email jinyuan@baidu.com
+# @contact jinyuan@baidu.com
 # @created Jul. 20, 2013
 
 import sys
