@@ -17,7 +17,7 @@ from administration.config import db
 from administration.config import FEED_REGISTRAR
 from administration.config import CATEGORY_REGISTRAR
 
-file_suffix = '/home/jinyuan/Downloads/global-mobile-news/alert_maintenance/maintenance/'
+file_suffix = '/home/work/global-mobile-news/alert_maintenance/maintenance/'
 
 
 def _parse_task(line):
