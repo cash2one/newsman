@@ -54,8 +54,8 @@ def get_categories_by_language(language=None):
                     if len(category_images[category]) == images_limit:
                         break
     else:
-        raise Exception(
-            "ERROR: %s not supported! Or database is corrupted!" % language)
+        print "ERROR: %s not supported! Or database is corrupted!" % language
+
     # find hot_news_image from hot news
     # category_images['hot_news']
     entries = get_latest_entries_by_language(
