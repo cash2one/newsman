@@ -2,15 +2,9 @@
 # -*- coding: utf-8 -*-
 
 #
-#
 #@author Yuan JIN
 #@contact jinyuan@baidu.com
 #@created Jan 2, 2013
-#
-#@updated Jan 17, 2013
-#
-# TODO
-#
 
 import sys
 reload(sys)
@@ -19,7 +13,7 @@ sys.path.append('/home/work/uwsgi/news-uwsgi')
 
 import cgi
 from config import CGI_PATH
-from news import interface
+import interface
 import json
 
 
@@ -60,8 +54,10 @@ def get_previous_entries_by_category(*bundle):
     return interface.get_previous_entries_by_category(bundle[0]['language'], bundle[0]['category'], limit=LIMIT, end_id=END_ID, strategy=STRATEGY)
 
 
-def read_http(environ):
-    'read binary image file and write to local disk'
+def _read_http(environ):
+    """
+    read binary image file and write to local disk
+    """
     bin_data = cgi.FieldStorage(fp=environ['wsgi.input'], environ=environ)
     bundle = {}
     for key in bin_data.keys():
@@ -76,7 +72,7 @@ def read_http(environ):
 
 def application(environ, start_response):
     try:
-        output = read_http(environ)
+        output = _read_http(environ)
         if output is None:
             raise Exception('Void output!')
         header = [('Content-type', 'text/html'),
