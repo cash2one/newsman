@@ -18,22 +18,22 @@ con = Connection('127.0.0.1:27017')
 db = Database(con, 'news')
 
 import redis
-rclient = redis.StrictRedis('127.0.0.1')
+rclient = redis.StrictRedis(host='10.240.35.40', port=6379)
 
 from HTMLParser import HTMLParser
 hparser = HTMLParser()
 
 # CONSTANTS
-PUBLIC = 'http://180.76.2.34/%s'
-LOCAL = '/home/jinyuan/Downloads/global-mobile-news/%s'
+PUBLIC = 'http://mobile-global.baidu.com/news/%s'
+LOCAL = '/home/work/STATIC/news/%s'
 
-TRANSCODED_LOCAL_DIR = LOCAL % 'interface/transcoded/'
+TRANSCODED_LOCAL_DIR = LOCAL % 'ts/'
 TRANSCODED_PUBLIC_DIR = PUBLIC % 'ts/'
 
-IMAGES_LOCAL_DIR = LOCAL % 'interface/images/'
+IMAGES_LOCAL_DIR = LOCAL % 'img/'
 IMAGES_PUBLIC_DIR = PUBLIC % 'img/'
 
-MEDIA_LOCAL_DIR = LOCAL % 'interface/media/'
+MEDIA_LOCAL_DIR = LOCAL % 'mid/'
 MEDIA_PUBLIC_DIR = PUBLIC % 'mid/'
 
 NEWS_TEMPLATE = LOCAL % 'template/index.html'

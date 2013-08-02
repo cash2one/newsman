@@ -15,6 +15,7 @@ sys.path.append("..")
 from administration.config import Collection
 from administration.config import db
 from bson.objectid import ObjectId
+import time
 
 from administration.config import FEED_REGISTRAR
 
@@ -38,7 +39,7 @@ def update(feed_id, **kwargs):
     col = Collection(db, FEED_REGISTRAR)
     item = col.find_one({'_id': ObjectId(feed_id)})
     if item:
-        kwargs['updated_times'] = kwargs['updated_times'] + 1
+        kwargs['updated_times'] = int(item['updated_times']) + 1
         kwargs['latest_update'] = time.asctime(time.gmtime())
         col.update({'_id':ObjectId(feed_id)}, kwargs)
     else:

@@ -61,7 +61,7 @@ def get_categories_by_language(language=None):
     # find hot_news_image from hot news
     # category_images['hot_news']
     entries = get_latest_entries_by_language(language=language, limit=search_limit)
-    category_images['HOT_NEWS'] = []
+    category_images['hot_news'] = []
     for entry in entries:
         if 'hot_news_image' in entry:
             item = {'title':entry['title'], 'image':entry['hot_news_image']}
