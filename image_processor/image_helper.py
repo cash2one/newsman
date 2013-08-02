@@ -44,7 +44,6 @@ def find_images(content=None):
     images_new = []
     if soup.img:
         if soup.img.get('src'):
-            print 'NORMALIZE', soup.img['src']
             return normalize(soup.img['src'])
     return None
              
