@@ -362,11 +362,3 @@ def get_previous_entries_by_category(language=None, category=None, limit=10, end
                         item[x] = str(y)
                 entries.append(item)
             return entries
-
-def get_latest_entries_by_source(language=None, category=None, source_name=None, limit=10, start_id=None):
-    ''''''
-    pass
-
-def get_previous_entries_by_source(language=None, category=None, source_name=None, limit=10, end_id=None):
-    '''get a list of latest entries of a feed'''
-    pass
