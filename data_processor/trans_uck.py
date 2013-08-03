@@ -129,7 +129,9 @@ def uck_reformat(language, title, data):
                 if 'src' in image and image['src']:
                     image_url_complex = urllib2.unquote(image['src'].strip())
                     if image_url_complex:
-                        last_http_index = image_url_complex.rfind('http:/')
+                        # as the name could be http://xxx.com/yyy--http://zzz.jpg
+                        # or http://xxx.com/yyy--https://zzz.jpg
+                        last_http_index = image_url_complex.rfind('http')
                         image_url = image_url_complex[last_http_index:]
                         # response is the signal of a valid image
                         response = None
@@ -179,6 +181,12 @@ def uck_reformat(language, title, data):
 
 
 def process_url(link):
+    last_http_index = image_url_complex.rfind('http:/')
+    image_url = image_url_complex[last_http_index:]
+    path = re.split('https?://?', image_url)[-1]
+    scheme = urlparse.urlparse(image_url).scheme
+    image_url = '%s://%s' % (scheme, path)
+
     if link and link.count('http') > 1:
         p = link.rpartition('http')
         if p:
@@ -189,26 +197,29 @@ def process_url(link):
         return link
 
 
-def transcode_by_uck(language, title, link):
+def _transcode(language, title, link):
     """
-    docs needed!
+    send link to uck server
     """
     link = process_url(link)
     uck_url = '%s%s' % (UCK_TRANSCODING, link)
     f = urllib2.urlopen(uck_url, timeout=5)
     recv = urllib2.unquote(f.read())
-    return uck_reformat(language, title, eval(recv))
+    return recv
 
 
 # TODO: should separate images from transcoding
 # TODO: return an exception when fucked up
 def uck(language, title, link, relative_path):
     """
+    send link to uck api and reformat the content
     """
     if not language or not title or not link or not relative_path:
         raise Exception('ERROR: Method not well formed!')
 
-    results = transcode_by_uck(language, title, link)
+    transcoded_raw = _trasncode(language, title, link)
+    results = _uck_reformat(language, title, eval(transcoded_raw))
+
     if results:
         transcoded, images = results
         # demo to return an exception
