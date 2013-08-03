@@ -177,7 +177,8 @@ def _extract(data):
                                 print k
                         if response:
                             width, height = thumbnail.get_image_size(image_url)
-                            images.append({'url':image_url, 'width':width, 'height':height})
+                            images.append(
+                                {'url': image_url, 'width': width, 'height': height})
                     else:
                         print 'Cannot find enough content in src tag'
                 else:
@@ -191,7 +192,8 @@ def _extract(data):
         return new_content, images
     else:
         # no data found
-        raise Exception('ERROR: Have not received data from transcoding server.')
+        raise Exception(
+            'ERROR: Have not received data from transcoding server.')
 
 
 def _transcode(link):
@@ -234,10 +236,10 @@ def uck(language, title, link, relative_path):
         if news:
             web_path, local_path = _generate_path(news, relative_path)
             if not web_path:
-                raise Exception('ERROR: Cannot generate web path for %s properly!' % link)
+                raise Exception(
+                    'ERROR: Cannot generate web path for %s properly!' % link)
             return web_path, local_path, images
         else:
             raise Exception('ERROR: Cannot generate news from template.')
     else:
         raise Exception('ERROR: Nothing found in return.')
-
