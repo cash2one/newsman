@@ -144,7 +144,7 @@ def _extract(data):
     if data:
         successful = int(data['STRUCT_PAGE_TYPE'])
         if successful == 0:
-            return None
+            raise Exception('ERROR: Cannot interpret the page!')
 
         # images
         images = []
@@ -187,7 +187,7 @@ def _extract(data):
         return new_content, images
     else:
         # no data found
-        return None
+        raise Exception('ERROR: Have not received data from transcoding server.')
 
 
 
@@ -205,9 +205,12 @@ def _transcode(link):
 
     uck_url = '%s%s' % (UCK_TRANSCODING, _url_extract(link))
     # timeout set to 10, currently
-    f = urllib2.urlopen(uck_url, timeout=10)
-    # free data from html encoding
-    return urllib2.unquote(f.read())
+    try:
+        f = urllib2.urlopen(uck_url, timeout=10)
+        # free data from html encoding
+        return urllib2.unquote(f.read())
+    except IOError as k:
+        raise Exception('ERROR: Transcoder %s failed for %s' % ('UCK', link))
 
 
 # TODO: should separate images from transcoding
@@ -225,8 +228,7 @@ def uck(language, title, link, relative_path):
     transcoded, images = _extract(eval(raw_data))
     news = _combine_template(transcoded, language, title)
 
-    if results:
-        transcoded, images = results
+    if news:
         # demo to return an exception
         if not transcoded:
             raise Exception('ERROR: Transcoder %s failed for %s' % ('UCK', link))
