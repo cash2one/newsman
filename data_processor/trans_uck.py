@@ -25,6 +25,7 @@ import re
 from cStringIO import StringIO
 from image_processor import thumbnail
 from administration.config import MIN_IMAGE_SIZE
+from administration.config import TRANSCODING_BTN_AR
 from administration.config import TRANSCODING_BTN_EN
 from administration.config import TRANSCODING_BTN_JA
 from administration.config import TRANSCODING_BTN_TH
@@ -44,7 +45,7 @@ if not os.path.exists(TRANSCODED_LOCAL_DIR):
 transcoding_button_language = {
     'en': TRANSCODING_BTN_EN, 'ja': TRANSCODING_BTN_JA,
     'th': TRANSCODING_BTN_TH, 'pt': TRANSCODING_BTN_PT,
-    'ind': TRANSCODING_BTN_IND, 'en-rIN': TRANSCODING_BTN_EN
+    'ind': TRANSCODING_BTN_IND, 'en-rIN': TRANSCODING_BTN_EN, 'ar': TRANSCODING_BTN_AR
 }
 
 
@@ -191,7 +192,6 @@ def _extract(data):
     else:
         # no data found
         raise Exception('ERROR: Have not received data from transcoding server.')
-
 
 
 def _transcode(link):
