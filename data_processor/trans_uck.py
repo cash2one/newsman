@@ -48,10 +48,13 @@ transcoding_button_language = {
 }
 
 
-def generate_path(content, relative_path):
-    ''''''
+def _generate_path(content, relative_path):
+    """
+    create local and web path
+    """
     if not content or not relative_path:
         return None
+
     local_path = '%s%s.html' % (TRANSCODED_LOCAL_DIR, relative_path)
     web_path = '%s%s.html' % (TRANSCODED_PUBLIC_DIR, relative_path)
     f = open(local_path, 'w')
@@ -195,7 +198,6 @@ def _transcode(link):
     """
     send link to uck server
     """
-
     def _url_extract(url):
         """
         find the real link in a composite url address
@@ -224,18 +226,18 @@ def uck(language, title, link, relative_path):
 
     # send link to uck server and get data back
     raw_data = _transcode(link)
-    # text is sanitized, images are found from image_list
-    transcoded, images = _extract(eval(raw_data))
-    news = _combine_template(transcoded, language, title)
+    if raw_data:
+        # text is sanitized, images are found from image_list
+        transcoded, images = _extract(eval(raw_data))
+        news = _combine_template(transcoded, language, title)
 
-    if news:
-        # demo to return an exception
-        if not transcoded:
-            raise Exception('ERROR: Transcoder %s failed for %s' % ('UCK', link))
-        # sanitizing work put here
-        web_path, local_path = generate_path(transcoded, relative_path)
-        if not web_path:
-            raise Exception('ERROR: Cannot generate web path for %s properly!' % link)
-        return web_path, local_path, images
+        if news:
+            web_path, local_path = _generate_path(news, relative_path)
+            if not web_path:
+                raise Exception('ERROR: Cannot generate web path for %s properly!' % link)
+            return web_path, local_path, images
+        else:
+            raise Exception('ERROR: Cannot generate news from template.')
     else:
-        raise Exception('ERROR: Transcoder %s failed for %s' % ('UCK', link))
+        raise Exception('ERROR: Nothing found in return.')
+
