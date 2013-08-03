@@ -60,9 +60,31 @@ def generate_path(content, relative_path):
     return web_path, local_path
 
 
+def _combine_template(content, language, title):
+    """
+    find a suitable template and embed content in it
+    """
+    if not content or not language or not title:
+        return None
+
+    # f reads the template
+    f = None
+    if language == 'ar':
+        f = open(NEWS_TEMPLATE_ARABIC, 'r')
+    else:
+        f = open(NEWS_TEMPLATE, 'r')
+    # a template is found
+    if f:
+        template = str(f.read())
+        f.close()
+        return template % (title, title, content, transcoding_button_language[language])
+    else:
+        return None
+
+
 # TODO: test the code
 # TODO: remove code that sanitize too much
-def uck_sanitize(content):
+def _sanitize(content):
     ''''''
     soup = BeautifulSoup(content.decode('utf-8'))
     # remove all <span>
@@ -115,8 +137,10 @@ def uck_sanitize(content):
 
 
 # TODO: extract image_list part into a new method
-def uck_reformat(language, title, data):
-    ''''''
+def _extract(data):
+    """
+    extract images and text content
+    """
     if data:
         successful = int(data['STRUCT_PAGE_TYPE'])
         if successful == 0:
@@ -144,68 +168,46 @@ def uck_reformat(language, title, data):
                             try:
                                 response = urllib2.urlopen(image_url)
                             except urllib2.URLError as k:
-                                print '[WARNING]', k, image_url
-                            except Exception as e:
-                                print e
+                                pass
+                            except Exception as k:
+                                print k
                         if response:
                             width, height = thumbnail.get_image_size(image_url)
                             images.append({'url':image_url, 'width':width, 'height':height})
                     else:
-                        print 'Cannot find enought content in src tag'
+                        print 'Cannot find enough content in src tag'
                 else:
                     print 'Nothing found in image_list'
         images = images if images else None
 
         # content
         content = data['content'].replace("\\", "")
-        new_content = uck_sanitize(content)
-        if new_content:
-            # f reads the template
-            f = None
-            if language == 'ar':
-                f = open(NEWS_TEMPLATE_ARABIC, 'r')
-            else:
-                f = open(NEWS_TEMPLATE, 'r')
-            if f:
-                template = str(f.read())
-                f.close()
-                news = template % (title, title, new_content, transcoding_button_language[language])
-                return news, images
-            else:
-                return None
-        else:
-            return None
+        new_content = _sanitize(content)
+
+        return new_content, images
     else:
         # no data found
         return None
 
 
-def process_url(link):
-    last_http_index = image_url_complex.rfind('http:/')
-    image_url = image_url_complex[last_http_index:]
-    path = re.split('https?://?', image_url)[-1]
-    scheme = urlparse.urlparse(image_url).scheme
-    image_url = '%s://%s' % (scheme, path)
 
-    if link and link.count('http') > 1:
-        p = link.rpartition('http')
-        if p:
-            return '%s%s' % (p[1], p[2])
-        else:
-            return None
-    else:
-        return link
-
-
-def _transcode(language, title, link):
+def _transcode(link):
     """
     send link to uck server
     """
-    link = process_url(link)
-    uck_url = '%s%s' % (UCK_TRANSCODING, link)
-    f = urllib2.urlopen(uck_url, timeout=5)
-    recv = urllib2.unquote(f.read())
-    return recv
+
+    def _url_extract(url):
+        """
+        find the real link in a composite url address
+        """
+        last_http_index = url.rfind('http')
+        return url[last_http_index:]
+
+    uck_url = '%s%s' % (UCK_TRANSCODING, _url_extract(link))
+    # timeout set to 10, currently
+    f = urllib2.urlopen(uck_url, timeout=10)
+    # free data from html encoding
+    return urllib2.unquote(f.read())
 
 
 # TODO: should separate images from transcoding
@@ -217,8 +219,11 @@ def uck(language, title, link, relative_path):
     if not language or not title or not link or not relative_path:
         raise Exception('ERROR: Method not well formed!')
 
-    transcoded_raw = _trasncode(language, title, link)
-    results = _uck_reformat(language, title, eval(transcoded_raw))
+    # send link to uck server and get data back
+    raw_data = _transcode(link)
+    # text is sanitized, images are found from image_list
+    transcoded, images = _extract(eval(raw_data))
+    news = _combine_template(transcoded, language, title)
 
     if results:
         transcoded, images = results
