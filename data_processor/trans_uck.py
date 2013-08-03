@@ -48,6 +48,18 @@ transcoding_button_language = {
 }
 
 
+def generate_path(content, relative_path):
+    ''''''
+    if not content or not relative_path:
+        return None
+    local_path = '%s%s.html' % (TRANSCODED_LOCAL_DIR, relative_path)
+    web_path = '%s%s.html' % (TRANSCODED_PUBLIC_DIR, relative_path)
+    f = open(local_path, 'w')
+    f.write(hparser.unescape(content))
+    f.close()
+    return web_path, local_path
+
+
 # TODO: test the code
 # TODO: remove code that sanitize too much
 def uck_sanitize(content):
@@ -188,59 +200,14 @@ def transcode_by_uck(language, title, link):
     return uck_reformat(language, title, eval(recv))
 
 
-def remove_transcoded(absolute_path):
-    ''''''
-    import os
-    if os.path.exists(absolute_path):
-        os.remove(absolute_path)
-        return 0
-    else:
-        return 1
-
-
-def generate_path(content, relative_path):
-    ''''''
-    if not content or not relative_path:
-        return None
-    local_path = '%s%s.html' % (TRANSCODED_LOCAL_DIR, relative_path)
-    web_path = '%s%s.html' % (TRANSCODED_PUBLIC_DIR, relative_path)
-    f = open(local_path, 'w')
-    f.write(hparser.unescape(content))
-    f.close()
-    return web_path, local_path
-
-
-def transcode_by_readability(link):
-    ''''''
-    if not link:
-        return None
-    f = urllib2.urlopen(link)
-    return Document(f.read()).summary()
-
-
-# TODO: should separate big_images from transcoding
+# TODO: should separate images from transcoding
 # TODO: return an exception when fucked up
-def transcode(language, title, link, relative_path):
-    ''''''
+def uck(language, title, link, relative_path):
+    """
+    """
     if not language or not title or not link or not relative_path:
         raise Exception('ERROR: Method not well formed!')
-    '''
-    #transcoded = transcode_by_readability(link)
-    transcoded = TRANSCODED_ENCODING + transcode_by_readability(link)   # lijun
-    
-    import re
 
-    # adding attribute for htmls : lijun
-    jpgindex = transcoded.find('jpg')
-    if jpgindex != -1:
-        strinfo = re.compile('.jpg"')
-        transcoded = strinfo.sub('.jpg" width=100% height="auto"', transcoded)
-
-    pngindex = transcoded.find('png')
-    if pngindex != -1:
-        strinfo = re.compile('.png"')
-        transcoded = strinfo.sub('.png" width=100% height="auto"', transcoded)
-    '''
     results = transcode_by_uck(language, title, link)
     if results:
         transcoded, images = results
