@@ -187,9 +187,9 @@ def _extract(data):
 
         # content
         content = data['content'].replace("\\", "")
-        new_content = _sanitize(content)
+        content = _sanitize(content)
 
-        return new_content, images
+        return content, images
     else:
         # no data found
         raise Exception(
