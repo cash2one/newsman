@@ -48,60 +48,6 @@ transcoding_button_language = {
 }
 
 
-# TODO: test the code
-# TODO: remove code that sanitize too much
-def uck_sanitize(content):
-    ''''''
-    soup = BeautifulSoup(content.decode('utf-8'))
-    # remove all <span>
-    for span in soup.findAll('span'):
-        span.extract()
-    # sanitize <a>
-    for a in soup.findAll('a'):
-        img = a.find('img')
-        if img:
-            a.replaceWith(img)
-        else:  # it might be a simple href
-            a.replaceWith(a.text)
-    # remove img prefix
-    for img in soup.findAll('img'):
-        img_source = img.get('src')
-        if img_source:
-            img_tuple = img_source.rpartition('src=')
-            img['src'] = img_tuple[2]
-            width, height = thumbnail.get_image_size(img['src'])
-            if width >= 480:
-                img['width'] = '100%'
-                img['height'] = 'auto'
-    # clear away useless style : lijun
-    for style in soup.findAll('div', style='border-top:none;'):
-        img = style.find('img')
-        if not img:
-            if not style.find('p'):
-                style.extract()
-        else:
-            style.replaceWith(img)
-    # remove navigble strings and <div>
-    for component in soup.contents:
-        if isinstance(component, NavigableString):
-            if len(component.string.split()) < 10:
-                component.extract()
-        elif isinstance(component, Tag):
-            if component.name == 'div':
-                if not component.find('p'):
-                    component.extract()
-    # filter item by lijun
-    img_count = 0
-    for item in soup.contents:
-        if isinstance(item, Tag):
-            if item.name == 'img':
-                img_count = img_count + 1
-    if img_count == len(soup.contents):
-        return None
-    else:
-        return ''.join([str(item) for item in soup.contents])
-
-
 # TODO: extract image_list part into a new method
 def uck_reformat(language, title, data):
     ''''''
@@ -177,7 +123,7 @@ def process_url(link):
         return link
 
 
-def transcode_by_uck(language, title, link):
+def transcode_by_readability(language, title, link):
     """
     docs needed!
     """
@@ -186,16 +132,6 @@ def transcode_by_uck(language, title, link):
     f = urllib2.urlopen(uck_url, timeout=5)
     recv = urllib2.unquote(f.read())
     return uck_reformat(language, title, eval(recv))
-
-
-def remove_transcoded(absolute_path):
-    ''''''
-    import os
-    if os.path.exists(absolute_path):
-        os.remove(absolute_path)
-        return 0
-    else:
-        return 1
 
 
 def generate_path(content, relative_path):
@@ -208,14 +144,6 @@ def generate_path(content, relative_path):
     f.write(hparser.unescape(content))
     f.close()
     return web_path, local_path
-
-
-def transcode_by_readability(link):
-    ''''''
-    if not link:
-        return None
-    f = urllib2.urlopen(link)
-    return Document(f.read()).summary()
 
 
 # TODO: should separate big_images from transcoding
