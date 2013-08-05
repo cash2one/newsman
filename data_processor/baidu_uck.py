@@ -120,7 +120,9 @@ def _collect_images(data, content):
         images = image_helper.normalize(images) if images else None
 
     # then try to find images in the content
-    images.extend(image_helper.find_images(content))
+    images_from_content = image_helper.find_images(content)
+    if images_from_content:
+        images.extend(image_from_content)
 
     # remove duplicated ones
     images = image_helper.dedupe_images(images) if images else None

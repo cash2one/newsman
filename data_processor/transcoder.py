@@ -125,12 +125,16 @@ def _transcode(url, transcoders):
         transcoding_request.join(10 * 1000)
 
     # after a while ... put data in the proper variables
+    uck_content = simplr_content = burify_content = None
+    uck_images = simplr_images = burify_images = None
+    simplr_title = burify_title = None
+    
     if 'baidu_uck' in transcoders and 'baidu_uck' in threads:
         if threads['baidu_uck'].result:
             uck_content, uck_images = threads['baidu_uck'].result
     if 'simplr' in transcoders and 'simplr' in threads:
         if threads['simplr'].result:
-            simplr.title, simplr_content, simplr_images = threads['simplr'].result
+            simplr_title, simplr_content, simplr_images = threads['simplr'].result
     if 'burify' in transcoders and 'burify' in threads:
         if threads['burify'].result:
             burify_title, burify_content, burify_images = threads['burify'].result
