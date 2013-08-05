@@ -145,12 +145,13 @@ def generate_path(content, relative_path):
     return web_path, local_path
 
 
-# TODO: should separate big_images from transcoding
-# TODO: return an exception when fucked up
-def transcode(language, title, link, relative_path):
-    ''''''
-    if not language or not title or not link or not relative_path:
-        raise Exception('ERROR: Method not well formed!')
+def convert(link):
+    """
+    use burify's readability implementation to transcode a web page
+    and return the transcoded page and images found in it
+    """
+    if not link:
+        raise Exception('ERROR: Cannot transcode nothing!')
     '''
     #transcoded = transcode_by_readability(link)
     transcoded = TRANSCODED_ENCODING + transcode_by_readability(link)   # lijun

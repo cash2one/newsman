@@ -2,11 +2,7 @@
 # -*- coding: utf-8 -*-
 
 #
-#
-#@created Jan 2, 2013
-#@updated Feb 5, 2013
-#@updated Jul 13, 2013
-#
+# @created Jan 2, 2013
 #
 
 import sys

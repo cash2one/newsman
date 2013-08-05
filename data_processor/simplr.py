@@ -324,5 +324,8 @@ def convert(url):
     """
     an interface to expose Simplr
     """
+    if not url:
+        raise Exception("ERROR: Cannot transcode nothing!")
+
     readable = Simplr(url)
     return r.title, r.content, r.images
