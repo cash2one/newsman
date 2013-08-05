@@ -38,6 +38,7 @@ ToDos - High Priority
 7. 自定义Exception类，并替换相应代码
 8. 数据整理代码整理、重构
 9. 包结构合理化
+10. 为PM提供一个Simplr, Readability, UCK比较的页面
 
 ToDos - Low Priority
 ---------------------
