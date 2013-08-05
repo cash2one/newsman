@@ -79,7 +79,7 @@ def _sanitize(content):
         return ''.join([str(item) for item in soup.contents])
 
 
-def _collect_images(data, content):
+def _collect_images(data):
     """
     find all possible images
     1. image_list
@@ -120,7 +120,7 @@ def _collect_images(data, content):
         images = image_helper.normalize(images) if images else None
 
     # then try to find images in the content
-    images_from_content = image_helper.find_images(content)
+    images_from_content = image_helper.find_images(data['content'])
     if images_from_content:
         images.extend(image_from_content)
 
@@ -143,7 +143,7 @@ def _extract(data):
         content = _sanitize(content)
 
         # images
-        images = _collect_images(data, content)
+        images = _collect_images(data)
         images = images if images else None
 
         return content, images
@@ -178,6 +178,7 @@ def convert(link):
     if raw_data:
         # text is sanitized, images are found from image_list
         transcoded, images = _extract(eval(raw_data))
+        print images
         return transcoded, images
     else:
         raise Exception('ERROR: Nothing found in return.')
