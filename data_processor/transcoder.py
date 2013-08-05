@@ -13,9 +13,12 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
+import baidu_uck
+import burify
 from administration.config import hparser
 from image_processor import image_helper
 import os
+import simplr
 import threading
 
 from administration.config import NEWS_TEMPLATE
@@ -35,11 +38,9 @@ if not os.path.exists(TRANSCODED_LOCAL_DIR):
 
 
 class TranscoderAPI(threading.Thread):
-
     """
     call a transcoder
     """
-
     def __init__(self, url="this should not exist", transcoder="simplr"):
         threading.Thread.__init__(self)
         self.transcoder = transcoder
@@ -47,7 +48,7 @@ class TranscoderAPI(threading.Thread):
         self.result = None
 
     def run(self):
-        self.result = eval(self.transcoder)(self.url)
+        self.result = eval(self.transcoder).convert(self.url)
 
 
 def _save(data, path):
