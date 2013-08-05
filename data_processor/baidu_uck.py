@@ -15,52 +15,15 @@ sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
 from BeautifulSoup import BeautifulSoup, NavigableString, Tag
-from administration.config import hparser
 import Image
-from administration.config import NEWS_TEMPLATE
-from administration.config import NEWS_TEMPLATE_ARABIC
 import os
 import re
 from cStringIO import StringIO
 from image_processor import thumbnail
 from administration.config import MIN_IMAGE_SIZE
-from administration.config import TRANSCODING_BTN_AR
-from administration.config import TRANSCODING_BTN_EN
-from administration.config import TRANSCODING_BTN_JA
-from administration.config import TRANSCODING_BTN_TH
-from administration.config import TRANSCODING_BTN_PT
-from administration.config import TRANSCODING_BTN_IND
-from administration.config import TRANSCODED_ENCODING   # lijun
-from administration.config import TRANSCODED_LOCAL_DIR
-from administration.config import TRANSCODED_PUBLIC_DIR
 from administration.config import UCK_TRANSCODING
 import urllib2
 import urlparse
-
-
-if not os.path.exists(TRANSCODED_LOCAL_DIR):
-    os.mkdir(TRANSCODED_LOCAL_DIR)
-
-transcoding_button_language = {
-    'en': TRANSCODING_BTN_EN, 'ja': TRANSCODING_BTN_JA,
-    'th': TRANSCODING_BTN_TH, 'pt': TRANSCODING_BTN_PT,
-    'ind': TRANSCODING_BTN_IND, 'en-rIN': TRANSCODING_BTN_EN, 'ar': TRANSCODING_BTN_AR
-}
-
-
-def _generate_path(content, relative_path):
-    """
-    create local and web path
-    """
-    if not content or not relative_path:
-        return None
-
-    local_path = '%s%s.html' % (TRANSCODED_LOCAL_DIR, relative_path)
-    web_path = '%s%s.html' % (TRANSCODED_PUBLIC_DIR, relative_path)
-    f = open(local_path, 'w')
-    f.write(hparser.unescape(content))
-    f.close()
-    return web_path, local_path
 
 
 def _combine_template(content, language, title):
