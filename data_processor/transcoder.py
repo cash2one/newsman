@@ -28,20 +28,6 @@ class TranscoderAPI(threading.Thread):
         pass
 
 
-def generate_path(content, relative_path):
-    ''''''
-    if not content or not relative_path:
-        return None
-    local_path = '%s%s.html' % (TRANSCODED_LOCAL_DIR, relative_path)
-    web_path = '%s%s.html' % (TRANSCODED_PUBLIC_DIR, relative_path)
-    f = open(local_path, 'w')
-    f.write(hparser.unescape(content))
-    f.close()
-    return web_path, local_path
-
-
-
-
 def _organize_transcoders(transcoder="chengdujin"):
     """
     get data from different transcoders
