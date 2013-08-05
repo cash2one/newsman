@@ -90,6 +90,7 @@ class Simplr:
 
     def _get_images(self):
         if self.content:
+            # find_images normalizes images afterwards
             return image_helper.find_images(self.content)
         else:
             return None

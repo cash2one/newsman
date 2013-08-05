@@ -114,19 +114,14 @@ def _collect_images(data, content):
                     if response:
                         width, height = thumbnail.get_image_size(image_url)
                         images.append({'url': image_url, 'width': width, 'height': height})
-                else:
-                    print 'Cannot find enough content in src tag'
-            else:
-                print 'Nothing found in image_list'
+        # remove images of which size does not satisfy MIN_IMAGE_SIZE
+        images = image_helper.normalize(images) if images else None
 
     # then try to find images in the content
     images.extend(image_helper.find_images(content))
 
     # remove duplicated ones
     images = image_helper.dedupe_images(images) if images else None
-
-    # remove images of which size does not satisfy MIN_IMAGE_SIZE
-    images = image_helper.normalize(images) if images else None
     return images
 
 
