@@ -58,17 +58,11 @@ def _value_added_process(entries=None, language=None):
             # high chances transcoder cannot work properly
             entry['transcoded'], entry['transcoded_local'], images_from_transcoded = transcoder.transcode(entry['language'], entry['title'], entry['link'], transcoded_relative_path)
 
-            # [OPTIONAL] find images
-            # process images found in the image_list tag of transcoded page
-            images = image_helper.normalize(images_from_transcoded)
-            if images:
-                entry['images'].extend(images)
-
-            # or find the image directly from the content of transcoded page
-            images_content = image_helper.find_images(entry['transcoded_local'])
-            if images_content:
-                entry['images'].extend(images_content)
-            entry['images'] = image_helper.dedupe_images(entry['images']) if entry.has_key('images') and entry['images'] else None
+            # process images found in the transcoded data
+            if images_from_transcoded:
+                entry['images'].extend(images_from_transcoded)
+                # remove duplicated images
+                entry['images'] = image_helper.dedupe_images(entry['images']) if entry.has_key('images') and entry['images'] else None
 
             # [OPTIONAL] generate 3 types of images: thumbnail, category image and hot news image
             if entry.has_key('images') and entry['images']:
