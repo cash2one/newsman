@@ -58,8 +58,22 @@ class Simplr:
         self.candidates = {}
         self.url = url
 
-        f = urllib2.urlopen(self.url).read()
-        self.data = f.decode(chardet.detect(f)['encoding'])
+        def _prepare_link(url):
+            """
+            decode with the correct encoding
+            """
+            html = urllib2.urlopen(url).read()
+            if html:
+                detected = chardet.detect(html)
+                if detected:
+                    data = html.decode(detected['encoding'])
+                else:
+                    data = html.decode('utf-8')
+                return data
+            else:
+                raise Exception("ERROR: Cannot read %s" % url)
+
+        self.data = _prepare_link(self.url)
         self.data = self.regexps['replace_brs'].sub("</p><p>",self.data)
         self.data = self.regexps['replace_fonts'].sub("<\g<1>span>",self.data)
 
