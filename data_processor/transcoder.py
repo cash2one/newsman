@@ -15,8 +15,15 @@ sys.path.append('..')
 
 import threading
 from image_processor import image_helper
+
 from administration.config import NEWS_TEMPLATE
 from administration.config import NEWS_TEMPLATE_ARABIC
+from administration.config import TRANSCODING_BTN_AR
+from administration.config import TRANSCODING_BTN_EN
+from administration.config import TRANSCODING_BTN_IND
+from administration.config import TRANSCODING_BTN_JA
+from administration.config import TRANSCODING_BTN_PT
+from administration.config import TRANSCODING_BTN_TH
 
 
 class TranscoderAPI(threading.Thread):
@@ -40,6 +47,8 @@ def _compose(language, title, content):
     if not content or not language or not title:
         raise Exception("ERROR: Method not well formed!")
 
+    transcode_button = {'en': TRANSCODING_BTN_EN, 'ja': TRANSCODING_BTN_JA, 'th': TRANSCODING_BTN_TH, 'pt': TRANSCODING_BTN_PT, 'ind': TRANSCODING_BTN_IND, 'en-rIN': TRANSCODING_BTN_EN, 'ar': TRANSCODING_BTN_AR}
+
     # f reads the template
     f = None
     if language == 'ar':
@@ -50,9 +59,9 @@ def _compose(language, title, content):
     if f:
         template = str(f.read())
         f.close()
-        return template % (title, title, content, transcoding_button_language[language])
+        return template % (title, title, content, transcode_button[language])
     else:
-        return None
+        raise Exception("ERROR: Cannot find a template!")
 
 
 def _combine(content, images):
