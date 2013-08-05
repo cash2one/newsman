@@ -44,6 +44,7 @@ def _combine(content, images):
     image = IMAGE_TAG % (biggest['url'], str(biggest['width']), str(biggest['height']))
     return "%s %s" % (image, content), images
 
+
 # TODO: add http string checkers
 def _transcode(url, transcoders):
     """
