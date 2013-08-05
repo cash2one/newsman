@@ -12,7 +12,6 @@ sys.setdefaultencoding("utf-8")
 
 from BeautifulSoup import BeautifulSoup
 import chardet
-import HTMLParser
 import math
 import os
 import posixpath
