@@ -1,0 +1,2 @@
+http://rss.appleactionews.com/rss.xml  Error: object has no attribute 'status'
+
