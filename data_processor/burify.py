@@ -15,7 +15,15 @@ sys.path.append('..')
 
 import chardet
 from readability import Document
+from image_processor import image_helper
 import urllib2
+
+
+def _collect_images(content):
+    """
+    find all images from the content
+    """
+    return image_helper.find_images(content)
 
 
 def _prepare_link(url):
@@ -29,6 +37,7 @@ def _prepare_link(url):
             data = html.decode(detected['encoding'])
         else:
             data = html.decode('utf-8')
+        return data
     else:
         raise Exception("ERROR: Cannot read %s" % url)
 
@@ -40,3 +49,8 @@ def convert(link):
     """
     if not link:
         raise Exception('ERROR: Cannot transcode nothing!')
+
+    data = _prepare_link(link)
+    article = Document(data)
+    images = _collect_images(article.summary())
+    return article.short_title, article.summary(html_partial=False), images
