@@ -21,11 +21,11 @@ class TranscoderAPI(threading.Thread):
     docs needed!
     """
     def __init__(self):
+        threading.Thread.__init__(self)
         pass
 
     def run(self):
         pass
-
 
 
 def generate_path(content, relative_path):
@@ -38,6 +38,8 @@ def generate_path(content, relative_path):
     f.write(hparser.unescape(content))
     f.close()
     return web_path, local_path
+
+
 
 
 def _organize_transcoders(transcoder="chengdujin"):
@@ -78,6 +80,7 @@ def convert(language="en", title=None, link=None, transcoder="chengdujin", relat
     
     link = _preprocess(link)
     transcoders = _organize_transcoders(transcoder)
+    _transcode(transcoders)
 
     '''
     #transcoded = transcode_by_readability(link)
