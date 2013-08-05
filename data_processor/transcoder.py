@@ -1,13 +1,12 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+# transcoder is the main interface for several transcoders
 #
-#
-#@created Jan 2, 2013
-#@updated Feb 5, 2013
-#@updated Jul 13, 2013
-#
-#
+# @author Jin Yuan
+# @contact jinyuan@baidu.com
+# @created Jan 2, 2013
+
 
 import sys
 reload(sys)
@@ -79,12 +78,45 @@ def transcode_by_readability(link):
     return Document(f.read()).summary()
 
 
-# TODO: should separate big_images from transcoding
-# TODO: return an exception when fucked up
-def transcode(language, title, link, relative_path):
-    ''''''
+def _organize_transcoders(transcoder="chengdujin"):
+    """
+    get data from different transcoders
+    """
+    transcoders = []
+    if transcoder == 'chengdujin':
+        transcoders.append("simplr")
+        transcoders.append("uck")
+    elif transcoder == 'burify':
+        transcoders.append("readability")
+        transcoders.append("uck")
+    else:
+        transcoders.append("uck")
+    return transcoders
+
+
+def _preprocess(link):
+    """
+    get the real address out
+    """
+    last_http_index = link.rfind('http')
+    return link[last_http_index:].strip()
+
+
+def convert(language="en", title=None, link=None, transcoder="chengdujin", relative_path=None):
+    """
+    select a transcoder
+    send the link
+    gather the data
+    combine them with the template
+    generate paths
+    return news and images
+    """
     if not language or not title or not link or not relative_path:
         raise Exception('ERROR: Method not well formed!')
+    
+    link = _preprocess(link)
+    transcoders = _organize_transcoders(transcoder)
+
     '''
     #transcoded = transcode_by_readability(link)
     transcoded = TRANSCODED_ENCODING + transcode_by_readability(link)   # lijun
