@@ -30,6 +30,13 @@ class TranscoderAPI(threading.Thread):
         self.result = eval(self.transcoder)(self.url)
 
 
+def _combine():
+    """
+    combine results from transcoders
+    """
+    pass
+
+
 # TODO: add http string checkers
 def _transcode(url, transcoders):
     """
