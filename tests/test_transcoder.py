@@ -8,14 +8,14 @@ sys.path.append("..")
 
 from data_processor import transcoder
 
-def _main(url, transcoder):
-    print transcoder.convert('en', '123 test', url, transcoder, 'test')
+def _main(url, trans):
+    print transcoder.convert('en', '123 test', url, trans, 'test')
 
 if __name__ == "__main__":
     url = sys.argv[1]
 
-    transcoder = "chengdujin"
+    trans = "chengdujin"
     if len(sys.argv) > 2:
-        transcoder = sys.argv[2]
-    _main(url, transcoder)
+        trans = sys.argv[2]
+    _main(url, trans)
 
