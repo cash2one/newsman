@@ -47,16 +47,6 @@ transcoding_button_language = {
 }
 
 
-def process_url(link):
-    if link and link.count('http') > 1:
-        p = link.rpartition('http')
-        if p:
-            return '%s%s' % (p[1], p[2])
-        else:
-            return None
-    else:
-        return link
-
 
 def generate_path(content, relative_path):
     ''''''
@@ -68,14 +58,6 @@ def generate_path(content, relative_path):
     f.write(hparser.unescape(content))
     f.close()
     return web_path, local_path
-
-
-def transcode_by_readability(link):
-    ''''''
-    if not link:
-        return None
-    f = urllib2.urlopen(link)
-    return Document(f.read()).summary()
 
 
 def _organize_transcoders(transcoder="chengdujin"):
