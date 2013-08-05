@@ -15,12 +15,9 @@ sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
 from BeautifulSoup import BeautifulSoup, NavigableString, Tag
-import Image
-import os
 import re
-from cStringIO import StringIO
+from image_processor import image_helper
 from image_processor import thumbnail
-from administration.config import MIN_IMAGE_SIZE
 from administration.config import UCK_TRANSCODING
 import urllib2
 import urlparse
@@ -80,7 +77,59 @@ def _sanitize(content):
         return ''.join([str(item) for item in soup.contents])
 
 
-# TODO: extract image_list part into a new method
+def _collect_images(data, content):
+    """
+    find all possible images
+    1. image_list
+    2. images in the new content
+    """
+    if not data or not content:
+        return None
+
+    images = []
+    # first try to find images in image_list
+    if 'image_list' in data and data.get('image_list'):
+        for image in data.get('image_list'):
+            if 'src' in image and image['src']:
+                image_url_complex = urllib2.unquote(image['src'].strip())
+                if image_url_complex:
+                    # as the name could be http://xxx.com/yyy--http://zzz.jpg
+                    # or http://xxx.com/yyy--https://zzz.jpg
+                    last_http_index = image_url_complex.rfind('http')
+                    image_url = image_url_complex[last_http_index:]
+                    # response is the signal of a valid image
+                    response = None
+                    try:
+                        response = urllib2.urlopen(image_url)
+                    except urllib2.URLError as k:
+                        path = re.split('https?://?', image_url)[-1]
+                        scheme = urlparse.urlparse(image_url).scheme
+                        image_url = '%s://%s' % (scheme, path)
+                        try:
+                            response = urllib2.urlopen(image_url)
+                        except urllib2.URLError as k:
+                            pass
+                        except Exception as k:
+                            print k
+                    if response:
+                        width, height = thumbnail.get_image_size(image_url)
+                        images.append({'url': image_url, 'width': width, 'height': height})
+                else:
+                    print 'Cannot find enough content in src tag'
+            else:
+                print 'Nothing found in image_list'
+
+    # then try to find images in the content
+    images.extend(image_helper.find_images(content))
+
+    # remove duplicated ones
+    images = image_helper.dedupe_images(images) if images else None
+
+    # remove images of which size does not satisfy MIN_IMAGE_SIZE
+    images = image_helper.normalize(images) if images else None
+    return images
+
+
 def _extract(data):
     """
     extract images and text content
@@ -90,64 +139,25 @@ def _extract(data):
         if successful == 0:
             raise Exception('ERROR: Cannot interpret the page!')
 
-        # images
-        images = []
-        if 'image_list' in data and data.get('image_list'):
-            for image in data.get('image_list'):
-                if 'src' in image and image['src']:
-                    image_url_complex = urllib2.unquote(image['src'].strip())
-                    if image_url_complex:
-                        # as the name could be http://xxx.com/yyy--http://zzz.jpg
-                        # or http://xxx.com/yyy--https://zzz.jpg
-                        last_http_index = image_url_complex.rfind('http')
-                        image_url = image_url_complex[last_http_index:]
-                        # response is the signal of a valid image
-                        response = None
-                        try:
-                            response = urllib2.urlopen(image_url)
-                        except urllib2.URLError as k:
-                            path = re.split('https?://?', image_url)[-1]
-                            scheme = urlparse.urlparse(image_url).scheme
-                            image_url = '%s://%s' % (scheme, path)
-                            try:
-                                response = urllib2.urlopen(image_url)
-                            except urllib2.URLError as k:
-                                pass
-                            except Exception as k:
-                                print k
-                        if response:
-                            width, height = thumbnail.get_image_size(image_url)
-                            images.append(
-                                {'url': image_url, 'width': width, 'height': height})
-                    else:
-                        print 'Cannot find enough content in src tag'
-                else:
-                    print 'Nothing found in image_list'
-        images = images if images else None
-
         # content
         content = data['content'].replace("\\", "")
         content = _sanitize(content)
 
+        # images
+        images = _collect_images(data, content)
+        images = images if images else None
+
         return content, images
     else:
         # no data found
-        raise Exception(
-            'ERROR: Have not received data from transcoding server.')
+        raise Exception('ERROR: Have not received data from transcoding server.')
 
 
 def _transcode(link):
     """
     send link to uck server
     """
-    def _url_extract(url):
-        """
-        find the real link in a composite url address
-        """
-        last_http_index = url.rfind('http')
-        return url[last_http_index:]
-
-    uck_url = '%s%s' % (UCK_TRANSCODING, _url_extract(link))
+    uck_url = '%s%s' % (UCK_TRANSCODING, link)
     # timeout set to 10, currently
     try:
         f = urllib2.urlopen(uck_url, timeout=10)
@@ -157,29 +167,18 @@ def _transcode(link):
         raise Exception('ERROR: Transcoder %s failed for %s' % ('UCK', link))
 
 
-# TODO: should separate images from transcoding
-# TODO: return an exception when fucked up
-def uck(language, title, link, relative_path):
+def convert(link):
     """
     send link to uck api and reformat the content
     """
-    if not language or not title or not link or not relative_path:
-        raise Exception('ERROR: Method not well formed!')
+    if not link:
+        raise Exception('ERROR: Cannot transcode nothing!')
 
     # send link to uck server and get data back
     raw_data = _transcode(link)
     if raw_data:
         # text is sanitized, images are found from image_list
         transcoded, images = _extract(eval(raw_data))
-        news = _combine_template(transcoded, language, title)
-
-        if news:
-            web_path, local_path = _generate_path(news, relative_path)
-            if not web_path:
-                raise Exception(
-                    'ERROR: Cannot generate web path for %s properly!' % link)
-            return web_path, local_path, images
-        else:
-            raise Exception('ERROR: Cannot generate news from template.')
+        return transcoded, images
     else:
         raise Exception('ERROR: Nothing found in return.')
