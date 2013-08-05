@@ -18,29 +18,60 @@ import threading
 
 class TranscoderAPI(threading.Thread):
     """
-    docs needed!
+    call a transcoder
     """
-    def __init__(self):
+    def __init__(self, url="this should not exist", transcoder="simplr"):
         threading.Thread.__init__(self)
-        pass
+        self.transcoder = transcoder
+        self.url = url
+        self.result = None
 
     def run(self):
-        pass
+        self.result = eval(self.transcoder)(self.url)
+
+
+# TODO: add http string checkers
+def _transcode(url, transcoders):
+    """
+    organize different transcoders
+    """
+    if not url or not transcoders:
+        raise Exception("ERROR: Method not well formed!")
+
+    threads = {}
+    for transcoder in transcoders:
+        transcoding_request = TranscoderAPI(url, transcoder)
+        # thread could be found via transcoder name
+        threads[transcoder] = transcoding_request
+        transcoding_request.start()
+        # 10 second to wait UCK server
+        transcoding_request.join(10 * 1000)
+
+    # after a while ...
+    if 'baidu_uck' in transcoders and 'baidu_uck' in threads:
+        uck_content, uck_images = threads['baidu_uck'].result
+    if 'simplr' in transcoders and 'simplr' in threads:
+        simplr_content, simplr_images = threads['simplr'].result
+    if 'burify' in transcoders and 'burify' in threads:
+        readability_content, readability_images = threads['burify'].result
 
 
 def _organize_transcoders(transcoder="chengdujin"):
     """
     get data from different transcoders
+    chengdujin: simplr.py
+    readability: burify.py
+    uck: baidu_uck.py
     """
     transcoders = []
     if transcoder == 'chengdujin':
         transcoders.append("simplr")
-        transcoders.append("uck")
-    elif transcoder == 'burify':
-        transcoders.append("readability")
-        transcoders.append("uck")
+        transcoders.append("baidu_uck")
+    elif transcoder == 'readability':
+        transcoders.append("burify")
+        transcoders.append("baidu_uck")
     else:
-        transcoders.append("uck")
+        transcoders.append("baidu_uck")
     return transcoders
 
 
@@ -66,7 +97,7 @@ def convert(language="en", title=None, link=None, transcoder="chengdujin", relat
     
     link = _preprocess(link)
     transcoders = _organize_transcoders(transcoder)
-    _transcode(transcoders)
+    _transcode(link, transcoders)
 
     '''
     #transcoded = transcode_by_readability(link)
