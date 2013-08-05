@@ -14,6 +14,7 @@ sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
 import threading
+from image_processor import image_helper
 
 
 class TranscoderAPI(threading.Thread):
@@ -34,8 +35,14 @@ def _combine(content, images):
     """
     combine results from transcoders
     """
-    pass
+    if not content or not images:
+        return content, images
 
+    # for now, if there are more than one image, take only one of them
+    biggest = image_helper.find_biggest_image(images)
+    IMAGE_TAG = '<img src="%s" width="%s" height="%s">'
+    image = IMAGE_TAG % (biggest['url'], str(biggest['width']), str(biggest['height']))
+    return "%s %s" % (image, content), images
 
 # TODO: add http string checkers
 def _transcode(url, transcoders):
