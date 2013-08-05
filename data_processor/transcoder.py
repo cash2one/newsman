@@ -13,17 +13,25 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
-import threading
+from administration.config import hparser
 from image_processor import image_helper
+import os
+import threading
 
 from administration.config import NEWS_TEMPLATE
 from administration.config import NEWS_TEMPLATE_ARABIC
+from administration.config import TRANSCODED_LOCAL_DIR
+from administration.config import TRANSCODED_PUBLIC_DIR
 from administration.config import TRANSCODING_BTN_AR
 from administration.config import TRANSCODING_BTN_EN
 from administration.config import TRANSCODING_BTN_IND
 from administration.config import TRANSCODING_BTN_JA
 from administration.config import TRANSCODING_BTN_PT
 from administration.config import TRANSCODING_BTN_TH
+
+# create a local dir for transcoded content if dir does not exist
+if not os.path.exists(TRANSCODED_LOCAL_DIR):
+    os.mkdir(TRANSCODED_LOCAL_DIR)
 
 
 class TranscoderAPI(threading.Thread):
@@ -38,6 +46,22 @@ class TranscoderAPI(threading.Thread):
 
     def run(self):
         self.result = eval(self.transcoder)(self.url)
+
+
+def _save(data, path):
+    """
+    save the file on local disk and return web and local path
+    """
+    if not data or not path:
+        return None
+
+    local_path = '%s%s.html' % (TRANSCODED_LOCAL_DIR, path)
+    web_path = '%s%s.html' % (TRANSCODED_PUBLIC_DIR, path)
+
+    f = open(local_path, 'w')
+    f.write(hparser.unescape(content))
+    f.close()
+    return web_path, local_path
 
 
 def _compose(language, title, content):
@@ -175,7 +199,7 @@ def convert(language="en", title=None, link=None, transcoder="chengdujin", relat
     content, images = _transcode(link, transcoders)
     if content:
         # embed content in template
-        news = _compose(content)
+        news = _compose(language, title, content)
         # create web/local path
         web_path, local_path = _save(news, relative_path)
         return web_path, local_path, images
