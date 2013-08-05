@@ -15,7 +15,6 @@ sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
 from BeautifulSoup import BeautifulSoup, NavigableString, Tag
-from decruft import Document
 from administration.config import hparser
 import Image
 from administration.config import NEWS_TEMPLATE
