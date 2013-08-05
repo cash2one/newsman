@@ -15,6 +15,8 @@ sys.path.append('..')
 
 import threading
 from image_processor import image_helper
+from administration.config import NEWS_TEMPLATE
+from administration.config import NEWS_TEMPLATE_ARABIC
 
 
 class TranscoderAPI(threading.Thread):
@@ -29,6 +31,28 @@ class TranscoderAPI(threading.Thread):
 
     def run(self):
         self.result = eval(self.transcoder)(self.url)
+
+
+def _compose(language, title, content):
+    """
+    combine content with a template
+    """
+    if not content or not language or not title:
+        raise Exception("ERROR: Method not well formed!")
+
+    # f reads the template
+    f = None
+    if language == 'ar':
+        f = open(NEWS_TEMPLATE_ARABIC, 'r')
+    else:
+        f = open(NEWS_TEMPLATE, 'r')
+    # a template is found
+    if f:
+        template = str(f.read())
+        f.close()
+        return template % (title, title, content, transcoding_button_language[language])
+    else:
+        return None
 
 
 def _combine(content, images):
@@ -139,35 +163,12 @@ def convert(language="en", title=None, link=None, transcoder="chengdujin", relat
     
     link = _preprocess(link)
     transcoders = _organize_transcoders(transcoder)
-    _transcode(link, transcoders)
-
-    '''
-    #transcoded = transcode_by_readability(link)
-    transcoded = TRANSCODED_ENCODING + transcode_by_readability(link)   # lijun
-    
-    import re
-
-    # adding attribute for htmls : lijun
-    jpgindex = transcoded.find('jpg')
-    if jpgindex != -1:
-        strinfo = re.compile('.jpg"')
-        transcoded = strinfo.sub('.jpg" width=100% height="auto"', transcoded)
-
-    pngindex = transcoded.find('png')
-    if pngindex != -1:
-        strinfo = re.compile('.png"')
-        transcoded = strinfo.sub('.png" width=100% height="auto"', transcoded)
-    '''
-    results = transcode_by_uck(language, title, link)
-    if results:
-        transcoded, images = results
-        # demo to return an exception
-        if not transcoded:
-            raise Exception('ERROR: Transcoder %s failed for %s' % ('UCK', link))
-        # sanitizing work put here
-        web_path, local_path = generate_path(transcoded, relative_path)
-        if not web_path:
-            raise Exception('ERROR: Cannot generate web path for %s properly!' % link)
+    content, images = _transcode(link, transcoders)
+    if content:
+        # embed content in template
+        news = _compose(content)
+        # create web/local path
+        web_path, local_path = _save(news, relative_path)
         return web_path, local_path, images
     else:
-        raise Exception('ERROR: Transcoder %s failed for %s' % ('UCK', link))
+        raise Exception("ERROR: Transcoder %s failed for %s" % (transcoder, link))
