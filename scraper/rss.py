@@ -60,6 +60,7 @@ def _value_added_process(entries=None, language=None):
 
             # process images found in the transcoded data
             if images_from_transcoded:
+                # images from transcoded are already normalized
                 entry['images'].extend(images_from_transcoded)
                 # remove duplicated images
                 entry['images'] = image_helper.dedupe_images(entry['images']) if entry.has_key('images') and entry['images'] else None
