@@ -35,9 +35,11 @@ if not os.path.exists(TRANSCODED_LOCAL_DIR):
 
 
 class TranscoderAPI(threading.Thread):
+
     """
     call a transcoder
     """
+
     def __init__(self, url="this should not exist", transcoder="simplr"):
         threading.Thread.__init__(self)
         self.transcoder = transcoder
@@ -71,7 +73,8 @@ def _compose(language, title, content):
     if not content or not language or not title:
         raise Exception("ERROR: Method not well formed!")
 
-    transcode_button = {'en': TRANSCODING_BTN_EN, 'ja': TRANSCODING_BTN_JA, 'th': TRANSCODING_BTN_TH, 'pt': TRANSCODING_BTN_PT, 'ind': TRANSCODING_BTN_IND, 'en-rIN': TRANSCODING_BTN_EN, 'ar': TRANSCODING_BTN_AR}
+    transcode_button = {'en': TRANSCODING_BTN_EN, 'ja': TRANSCODING_BTN_JA, 'th': TRANSCODING_BTN_TH, 'pt':
+                        TRANSCODING_BTN_PT, 'ind': TRANSCODING_BTN_IND, 'en-rIN': TRANSCODING_BTN_EN, 'ar': TRANSCODING_BTN_AR}
 
     # f reads the template
     f = None
@@ -98,7 +101,8 @@ def _combine(content, images):
     # for now, if there are more than one image, take only one of them
     biggest = image_helper.find_biggest_image(images)
     IMAGE_TAG = '<img src="%s" width="%s" height="%s">'
-    image = IMAGE_TAG % (biggest['url'], str(biggest['width']), str(biggest['height']))
+    image = IMAGE_TAG % (
+        biggest['url'], str(biggest['width']), str(biggest['height']))
     return "%s %s" % (image, content), images
 
 
@@ -136,17 +140,17 @@ def _transcode(url, transcoders):
             # if simplr found any image
             if simplr_images:
                 return simplr_content, simplr_images
-            elif uck_images: # add images from uck
+            elif uck_images:  # add images from uck
                 return _combine(simplr_content, uck_images)
-            else: # no image at all
+            else:  # no image at all
                 return simplr_content, simplr_images
         elif 'burify' in transcoders and burify_content:
             # if burify found any image
             if burify_images:
                 return burify_content, burify_images
-            elif uck_images: # add images from uck
+            elif uck_images:  # add images from uck
                 return _combine(burify_content, uck_images)
-            else: # no image at all
+            else:  # no image at all
                 return burify_content, burify_images
     # only uck
     if uck_content:
@@ -193,7 +197,7 @@ def convert(language="en", title=None, link=None, transcoder="chengdujin", relat
     """
     if not language or not title or not link or not relative_path:
         raise Exception('ERROR: Method not well formed!')
-    
+
     link = _preprocess(link)
     transcoders = _organize_transcoders(transcoder)
     content, images = _transcode(link, transcoders)
@@ -204,4 +208,5 @@ def convert(language="en", title=None, link=None, transcoder="chengdujin", relat
         web_path, local_path = _save(news, relative_path)
         return web_path, local_path, images
     else:
-        raise Exception("ERROR: Transcoder %s failed for %s" % (transcoder, link))
+        raise Exception("ERROR: Transcoder %s failed for %s" %
+                        (transcoder, link))
