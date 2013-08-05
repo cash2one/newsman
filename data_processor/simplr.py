@@ -1,17 +1,21 @@
 #!/usr/bin/env python 
 #-*- coding: utf-8 -*- 
 
+# simplr is a simplified readability implementation in python
 #
 # @author Jin Yuan
 # @contact jinyuan@baidu.com
 # @created Aug. 4, 2013
 
+
 import sys
 reload(sys)
 sys.setdefaultencoding("utf-8")
+sys.path.append("..")
 
 from BeautifulSoup import BeautifulSoup
 import chardet
+from image_processor import image_helper
 import math
 import os
 import posixpath
@@ -21,7 +25,7 @@ import urllib2
 import urlparse
 
 
-class Readability:
+class Simplr:
     regexps = {
         'unlikely_candidates': re.compile("combx|comment|community|disqus|extra|foot|header|menu|"
                                          "remark|rss|shoutbox|sidebar|sponsor|ad-break|agegate|"
@@ -66,6 +70,7 @@ class Readability:
 
         self.title = self._get_title()
         self.content = self._get_article()
+        self.images = self._get_images()
 
 
     def _remove_script(self):
@@ -81,6 +86,13 @@ class Readability:
     def _remove_link(self):
         for elem in self.html.findAll("link"):
             elem.extract()
+
+
+    def _get_images(self):
+        if self.content:
+            return image_helper.find_images(self.content)
+        else:
+            return None
 
 
     def _get_article(self):
@@ -292,7 +304,7 @@ class Readability:
     def _fix_images_path(self, node):
         imgs = node.findAll('img')
         for img in imgs:
-            src = img.get('src',None)
+            src = img.get('src', None)
             if not src:
                 img.extract()
                 continue
@@ -305,3 +317,11 @@ class Readability:
                 new_src = urlparse.urlunparse((new_src_arr.scheme, new_src_arr.netloc, new_path,
                                               new_src_arr.params, new_src_arr.query, new_src_arr.fragment))
                 img['src'] = new_src
+
+
+def convert(url):
+    """
+    an interface to expose Simplr
+    """
+    readable = Simplr(url)
+    return r.title, r.content, r.images
