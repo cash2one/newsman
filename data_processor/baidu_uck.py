@@ -14,13 +14,16 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
-from BeautifulSoup import BeautifulSoup, NavigableString, Tag
-import re
+from BeautifulSoup import BeautifulSoup
+from BeautifulSoup import NavigableString
+from BeautifulSoup import Tag
 from image_processor import image_helper
 from image_processor import thumbnail
-from administration.config import UCK_TRANSCODING
+import re
 import urllib2
 import urlparse
+
+from administration.config import UCK_TRANSCODING
 
 
 # TODO: test the code
