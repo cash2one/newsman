@@ -30,7 +30,7 @@ class TranscoderAPI(threading.Thread):
         self.result = eval(self.transcoder)(self.url)
 
 
-def _combine():
+def _combine(content, images):
     """
     combine results from transcoders
     """
@@ -54,13 +54,40 @@ def _transcode(url, transcoders):
         # 10 second to wait UCK server
         transcoding_request.join(10 * 1000)
 
-    # after a while ...
+    # after a while ... put data in the proper variables
     if 'baidu_uck' in transcoders and 'baidu_uck' in threads:
-        uck_content, uck_images = threads['baidu_uck'].result
+        if threads['baidu_uck'].result:
+            uck_content, uck_images = threads['baidu_uck'].result
     if 'simplr' in transcoders and 'simplr' in threads:
-        simplr_content, simplr_images = threads['simplr'].result
+        if threads['simplr'].result:
+            simplr_content, simplr_images = threads['simplr'].result
     if 'burify' in transcoders and 'burify' in threads:
-        readability_content, readability_images = threads['burify'].result
+        if threads['burify'].result:
+            readability_content, readability_images = threads['burify'].result
+
+    # use different combinations to create a news page with pictures
+    if 'simplr' in transcoders or 'burify' in transcoders:
+        if 'simplr' in transcoders and simplr_content:
+            # if simplr found any image
+            if simplr_images:
+                return simplr_content, simplr_images
+            elif uck_images: # add images from uck
+                return _combine(simplr_content, uck_images)
+            else: # no image at all
+                return simplr_content, simplr_images
+        elif 'burify' in transcoders and burify_content:
+            # if burify found any image
+            if burify_images:
+                return burify_content, burify_images
+            elif uck_images: # add images from uck
+                return _combine(burify_content, uck_images)
+            else: # no image at all
+                return burify_content, burify_images
+    # only uck
+    if uck_content:
+        return uck_content, uck_images
+    else:
+        raise Exception("ERROR: UCK failed!")
 
 
 def _organize_transcoders(transcoder="chengdujin"):
