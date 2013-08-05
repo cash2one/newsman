@@ -53,4 +53,4 @@ def convert(link):
     data = _prepare_link(link)
     article = Document(data)
     images = _collect_images(article.summary())
-    return article.short_title, article.summary(html_partial=False), images
+    return article.short_title(), article.summary(html_partial=False), images
