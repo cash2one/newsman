@@ -1,9 +1,12 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+# call baidu uck's api to transcode a web page
 #
+# @author Jin Yuan
+# @contact jinyuan@baidu.com
 # @created Jan 2, 2013
-#
+
 
 import sys
 reload(sys)
