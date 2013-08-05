@@ -26,28 +26,6 @@ import urllib2
 import urlparse
 
 
-def _combine_template(content, language, title):
-    """
-    find a suitable template and embed content in it
-    """
-    if not content or not language or not title:
-        return None
-
-    # f reads the template
-    f = None
-    if language == 'ar':
-        f = open(NEWS_TEMPLATE_ARABIC, 'r')
-    else:
-        f = open(NEWS_TEMPLATE, 'r')
-    # a template is found
-    if f:
-        template = str(f.read())
-        f.close()
-        return template % (title, title, content, transcoding_button_language[language])
-    else:
-        return None
-
-
 # TODO: test the code
 # TODO: remove code that sanitize too much
 def _sanitize(content):
