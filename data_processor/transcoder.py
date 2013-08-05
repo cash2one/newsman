@@ -13,38 +13,18 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
-from BeautifulSoup import BeautifulSoup, NavigableString, Tag
-from decruft import Document
-from administration.config import hparser
-import Image
-from administration.config import NEWS_TEMPLATE
-from administration.config import NEWS_TEMPLATE_ARABIC
-import os
-import re
-from cStringIO import StringIO
-from image_processor import thumbnail
-from administration.config import MIN_IMAGE_SIZE
-from administration.config import TRANSCODING_BTN_EN
-from administration.config import TRANSCODING_BTN_JA
-from administration.config import TRANSCODING_BTN_TH
-from administration.config import TRANSCODING_BTN_PT
-from administration.config import TRANSCODING_BTN_IND
-from administration.config import TRANSCODED_ENCODING   # lijun
-from administration.config import TRANSCODED_LOCAL_DIR
-from administration.config import TRANSCODED_PUBLIC_DIR
-from administration.config import UCK_TRANSCODING
-import urllib2
-import urlparse
+import threading
 
 
-if not os.path.exists(TRANSCODED_LOCAL_DIR):
-    os.mkdir(TRANSCODED_LOCAL_DIR)
+class TranscoderAPI(threading.Thread):
+    """
+    docs needed!
+    """
+    def __init__(self):
+        pass
 
-transcoding_button_language = {
-    'en': TRANSCODING_BTN_EN, 'ja': TRANSCODING_BTN_JA,
-    'th': TRANSCODING_BTN_TH, 'pt': TRANSCODING_BTN_PT,
-    'ind': TRANSCODING_BTN_IND, 'en-rIN': TRANSCODING_BTN_EN
-}
+    def run(self):
+        pass
 
 
 
