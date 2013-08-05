@@ -8,4 +8,14 @@ sys.path.append("..")
 
 from data_processor import transcoder
 
-print transcoder.convert('en', '旅情そそるクルーズ列車大ヒット　ＪＲ九州「ななつ星」来春まで満席　東西も追随へ', 'http://sankei.jp.msn.com/economy/news/130803/biz13080321140003-n1.htm', 'readability', 'test')
+def _main(url, transcoder):
+    print transcoder.convert('en', '123 test', url, transcoder, 'test')
+
+if __name__ == "__main__":
+    url = sys.argv[1]
+
+    transcoder = "chengdujin"
+    if len(sys.argv) > 2:
+        transcoder = sys.argv[2]
+    _main(url, transcoder)
+
