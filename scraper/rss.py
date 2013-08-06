@@ -38,7 +38,7 @@ from administration.config import MIN_IMAGE_SIZE
 from administration.config import THUMBNAIL_IMAGE_SIZE
 
 
-def _value_added_process(entries=None, language=None):
+def _value_added_process(entries=None, language=None, transcoder_type='chengdujin'):
     """
     add more value to an entry
     tts, transcode, images, redis_entry_expiration, database_entry_expiration
@@ -56,7 +56,7 @@ def _value_added_process(entries=None, language=None):
             rand = random.randint(0, 100000000)
             transcoded_relative_path = '%s_%s_%s_%i' % (entry['language'], entry['feed_id'], entry['updated'], rand)
             # high chances transcoder cannot work properly
-            entry['transcoded'], entry['transcoded_local'], images_from_transcoded = transcoder.transcode(entry['language'], entry['title'], entry['link'], transcoded_relative_path)
+            entry['transcoded'], entry['transcoded_local'], images_from_transcoded = transcoder.convert(entry['language'], entry['title'], entry['link'], transcoder_type, transcoded_relative_path)
 
             # process images found in the transcoded data
             if images_from_transcoded:
@@ -133,7 +133,7 @@ def _value_added_process(entries=None, language=None):
 
 
 # TODO: code to remove added items if things suck at database/memory
-def update(feed_link=None, feed_id=None, language=None, categories=None):
+def update(feed_link=None, feed_id=None, language=None, categories=None, transcoder_type='chengdujin'):
     """
     update could be called
     1. from task procedure: feed_id
@@ -156,6 +156,7 @@ def update(feed_link=None, feed_id=None, language=None, categories=None):
     language = feed['language'] if feed else language
     categories = feed['categories'] if feed else categories
     feed_title = feed['feed_title'] if feed and 'feed_title' in feed else None
+    transcoder_type = feed['transcoder'] if feed else transcoder
     etag = feed['etag'] if feed and 'etag' in feed else None
     modified = feed['modified'] if feed and 'modified' in feed else None
 
@@ -167,7 +168,7 @@ def update(feed_link=None, feed_id=None, language=None, categories=None):
     # there are some possible exceptions -- yet let it be
     entries = db_news.dedup(entries, language)
     # and do tts, big_images, image as well as transcode.
-    entries = _value_added_process(entries, language)
+    entries = _value_added_process(entries, language, transcoder_type)
 
     # update new entries to db_news
     # each entry is added with _id
