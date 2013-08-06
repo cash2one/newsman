@@ -1,7 +1,7 @@
 #!/usr/bin/env python 
 #-*- coding: utf-8 -*- 
 
-# summarizer extracts summary or first paragraph from news
+# first_paragraph  extracts summary or first paragraph from news
 #
 # @author Jin Yuan
 # @contact jinyuan@baidu.com
