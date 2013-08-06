@@ -156,7 +156,7 @@ def update(feed_link=None, feed_id=None, language=None, categories=None, transco
     language = feed['language'] if feed else language
     categories = feed['categories'] if feed else categories
     feed_title = feed['feed_title'] if feed and 'feed_title' in feed else None
-    transcoder_type = feed['transcoder'] if feed else transcoder
+    transcoder_type = feed['transcoder'] if feed else transcoder_type
     etag = feed['etag'] if feed and 'etag' in feed else None
     modified = feed['modified'] if feed and 'modified' in feed else None
 
