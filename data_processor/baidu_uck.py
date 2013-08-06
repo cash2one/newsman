@@ -85,7 +85,7 @@ def _collect_images(data):
     1. image_list
     2. images in the new content
     """
-    if not data or not content:
+    if not data:
         return None
 
     images = []
@@ -122,7 +122,7 @@ def _collect_images(data):
     # then try to find images in the content
     images_from_content = image_helper.find_images(data['content'])
     if images_from_content:
-        images.extend(image_from_content)
+        images.extend(images_from_content)
 
     # remove duplicated ones
     images = image_helper.dedupe_images(images) if images else None

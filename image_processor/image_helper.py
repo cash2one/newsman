@@ -21,10 +21,52 @@ from BeautifulSoup import BeautifulSoup
 import Image
 import os
 import thumbnail
+import urllib2
 
 
 if not os.path.exists(IMAGES_LOCAL_DIR):
     os.mkdir(IMAGES_LOCAL_DIR)
+
+
+def _link_process(link):
+    """
+    get rid of cdn prefix
+    """
+    link = link.replace("\/", "/")
+    image_url_complex = urllib2.unquote(link.strip())
+    if image_url_complex:
+        # as the name could be http://xxx.com/yyy--http://zzz.jpg
+        # or http://xxx.com/yyy--https://zzz.jpg
+        last_http_index = image_url_complex.rfind('http')
+        image_url = image_url_complex[last_http_index:]
+        # response is the signal of a valid image
+        response = None
+        try:
+            response = urllib2.urlopen(image_url)
+        except urllib2.URLError as k:
+            path = re.split('https?://?', image_url)[-1]
+            scheme = urlparse.urlparse(image_url).scheme
+            image_url = '%s://%s' % (scheme, path)
+            try:
+                response = urllib2.urlopen(image_url)
+            except urllib2.URLError as k:
+                pass
+            except Exception as k:
+                print k
+        if response:
+            return image_url
+
+
+def find_image(link=None):
+    """
+    find an image from the link
+    """
+    if not link:
+        return None
+
+    link = _link_process(link)
+    image_normalized = normalize(link)
+    return image_normalized[0] if image_normalized else None 
 
 
 def find_images(content=None):
@@ -34,33 +76,6 @@ def find_images(content=None):
     if not content:
         return None
 
-    def _link_process(link):
-        """
-        get rid of cdn prefix
-        """
-        image_url_complex = urllib2.unquote(link.strip())
-        if image_url_complex:
-            # as the name could be http://xxx.com/yyy--http://zzz.jpg
-            # or http://xxx.com/yyy--https://zzz.jpg
-            last_http_index = image_url_complex.rfind('http')
-            image_url = image_url_complex[last_http_index:]
-            # response is the signal of a valid image
-            response = None
-            try:
-                response = urllib2.urlopen(image_url)
-            except urllib2.URLError as k:
-                path = re.split('https?://?', image_url)[-1]
-                scheme = urlparse.urlparse(image_url).scheme
-                image_url = '%s://%s' % (scheme, path)
-                try:
-                    response = urllib2.urlopen(image_url)
-                except urllib2.URLError as k:
-                    pass
-                except Exception as k:
-                    print k
-            if response:
-                return image_url
-
     # determine the type of content
     if isinstance(content, str) and content.startswith(TRANSCODED_LOCAL_DIR):
         # then its a file
@@ -68,13 +83,14 @@ def find_images(content=None):
         content = f.read()
     
     soup = BeautifulSoup(content.decode('utf-8'))
-    images_new = []
+    images_normalized = []
     images = soup.findAll('img')
     for image in images:
         if image.get('src'):
-            link = _link_process(image.get('src'))
-            return normalize(link)
-    return None
+            image_normalized = find_image(image.get('src'))
+            if image_normalized:
+                images_normalized.append(image_normalized)
+    return images_normalized
              
 
 def find_biggest_image(images=None):
