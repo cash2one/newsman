@@ -49,7 +49,7 @@ class TranscoderAPI(threading.Thread):
         self.result = None
 
     def run(self):
-        if self.language:
+        if self.transcoder == 'simplr':
             self.result = eval(self.transcoder).convert(self.url, self.language)
         else:
             self.result = eval(self.transcoder).convert(self.url)
