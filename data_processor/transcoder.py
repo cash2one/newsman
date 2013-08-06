@@ -41,14 +41,18 @@ class TranscoderAPI(threading.Thread):
     """
     call a transcoder
     """
-    def __init__(self, url="this should not exist", transcoder="simplr"):
+    def __init__(self, url="this should not exist", transcoder="simplr", language=None):
         threading.Thread.__init__(self)
         self.transcoder = transcoder
         self.url = url
+        self.language = language
         self.result = None
 
     def run(self):
-        self.result = eval(self.transcoder).convert(self.url)
+        if self.language:
+            self.result = eval(self.transcoder).convert(self.url, self.language)
+        else:
+            self.result = eval(self.transcoder).convert(self.url)
 
 
 def _save(data, path):
@@ -108,7 +112,7 @@ def _combine(content, images):
 
 
 # TODO: add http string checkers
-def _transcode(url, transcoders):
+def _transcode(url, transcoders, language=None):
     """
     organize different transcoders
     """
@@ -117,7 +121,10 @@ def _transcode(url, transcoders):
 
     threads = {}
     for transcoder in transcoders:
-        transcoding_request = TranscoderAPI(url, transcoder)
+        if transcoder == 'simplr':
+            transcoding_request = TranscoderAPI(url, transcoder, language)
+        else:
+            transcoding_request = TranscoderAPI(url, transcoder)
         # thread could be found via transcoder name
         threads[transcoder] = transcoding_request
         transcoding_request.start()
@@ -207,7 +214,7 @@ def convert(language="en", title=None, link=None, transcoder="chengdujin", relat
 
     link = _preprocess(link)
     transcoders = _organize_transcoders(transcoder)
-    title_new, content, images = _transcode(link, transcoders)
+    title_new, content, images = _transcode(link, transcoders, language)
     # in case uck cannot find a proper title
     if title_new:
         title = title_new

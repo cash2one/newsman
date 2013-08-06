@@ -21,6 +21,7 @@ import os
 import posixpath
 import re
 import sys
+import tinysegmenter
 import urllib2
 import urlparse
 
@@ -51,12 +52,13 @@ class Simplr:
     }
 
 
-    def __init__(self, url):
+    def __init__(self, url, language):
         """
         docs needed!
         """
         self.candidates = {}
         self.url = url
+        self.language = language
 
         def _prepare_link(url):
             """
@@ -274,25 +276,45 @@ class Simplr:
     def _get_short_title(self):
         title = ''
         try:
-            title = self.html.find('title').text
-            orig = title
+            orig = self.html.find('title').text
+            segmenter = tinysegmenter.TinySegmenter()
             # remove unnecessary parts
             for delimiter in [' | ', ' - ', ' :: ', ' / ']:
-                if delimiter in title:
+                if delimiter in orig:
                     parts = orig.split(delimiter)
-                    if len(parts[0].split()) >= 4:
-                        title = parts[0]
-                        break
-                    elif len(parts[-1].split()) >= 4:
-                        title = parts[-1]
-                        break
+                    if self.language.startswith('zh') or self.language == 'ja':
+                        words_head = segmenter.tokenize(unicode(parts[0]))
+                        words_tail = segmenter.tokenize(unicode(parts[-1]))
+                        if len(words_head) >= 4:
+                            title = parts[0]
+                            break
+                        elif len(words_tail) >= 4:
+                            title = parts[-1]
+                            break
                     else:
-                        if ': ' in title:
-                            parts = orig.split(': ')
-                            if len(parts[-1].split()) >= 4:
-                                title = parts[-1]
-                            else:
-                                title = orig.split(': ', 1)[1]
+                        if len(parts[0].split()) >= 4:
+                            title = parts[0]
+                            break
+                        elif len(parts[-1].split()) >= 4:
+                            title = parts[-1]
+                            break
+            if not title:
+                orig = title
+            if ': ' in orig:
+                parts = orig.split(': ')
+                if self.language.startswith('zh') or self.language == 'ja':
+                    words_tail = segmenter.tokenize(unicode(parts[-1]))
+                    if len(words_tail) >= 4:
+                        title = parts[-1]
+                    else:
+                        title = orig.split(': ', 1)[1]
+                else:
+                    if len(parts[-1].split()) >= 4:
+                        title = parts[-1]
+                    else:
+                        title = orig.split(': ', 1)[1]
+            if not title:
+                return orig
         except:
             pass
         return title
@@ -362,7 +384,7 @@ class Simplr:
                 img['src'] = new_src
 
 
-def convert(url):
+def convert(url, language):
     """
     an interface to expose Simplr
     """
@@ -370,8 +392,8 @@ def convert(url):
         raise Exception("ERROR: Cannot transcode nothing!")
 
     try:
-        readable = Simplr(url)
-        return readable.title, readable.content, readable.images
+        readable = Simplr(url, language)
+        return readable.short_title, readable.content, readable.images
     except Exception as k:
         print k
         return None, None, None
