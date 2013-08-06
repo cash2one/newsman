@@ -341,5 +341,9 @@ def convert(url):
     if not url:
         raise Exception("ERROR: Cannot transcode nothing!")
 
-    readable = Simplr(url)
-    return readable.title, readable.content, readable.images
+    try:
+        readable = Simplr(url)
+        return readable.title, readable.content, readable.images
+    except Exception as k:
+        print k
+        return None, None, None
