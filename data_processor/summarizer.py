@@ -1,7 +1,7 @@
 #!/usr/bin/env python 
 #-*- coding: utf-8 -*- 
 
-# first_paragraph  extracts summary or first paragraph from news
+# summarizer extracts summary or first paragraph from news
 #
 # @author Jin Yuan
 # @contact jinyuan@baidu.com
@@ -15,7 +15,7 @@ sys.path.append('..')
 
 def extract():
     """
-    get the first paragraph, only text
+    get the summary/first paragraph, text only
     """
     # if summary from rss provider is found
     #     use summary, but limit the number of words
@@ -23,4 +23,5 @@ def extract():
     #     use summary, limit the number of words
     # else find first paragraph from transcoded
     #     also limit the number of words
+    pass
 
