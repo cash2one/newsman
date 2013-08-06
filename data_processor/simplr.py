@@ -83,6 +83,7 @@ class Simplr:
         self._remove_link()
 
         self.title = self._get_title()
+        self.short_title = self._get_short_title()
         self.content = self._get_article()
         self.images = self._get_images()
 
