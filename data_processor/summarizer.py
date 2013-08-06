@@ -2,6 +2,7 @@
 #-*- coding: utf-8 -*- 
 
 # summarizer extracts summary or first paragraph from news
+#
 # @author Jin Yuan
 # @contact jinyuan@baidu.com
 # #created Jul. 29, 2013
