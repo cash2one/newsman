@@ -152,11 +152,15 @@ def convert(link):
         raise Exception('ERROR: Cannot transcode nothing!')
 
     # send link to uck server and get data back
-    raw_data = _transcode(link)
-    if raw_data:
-        # text is sanitized, images are found from image_list
-        transcoded, images = _extract(eval(raw_data))
-        print images
-        return transcoded, images
-    else:
-        raise Exception('ERROR: Nothing found in return.')
+    try:
+        raw_data = _transcode(link)
+        if raw_data:
+            # text is sanitized, images are found from image_list
+            transcoded, images = _extract(eval(raw_data))
+            print images
+            return transcoded, images
+        else:
+            raise Exception('ERROR: Nothing found in return.')
+    except Exception as k:
+        print k
+        return None, None
