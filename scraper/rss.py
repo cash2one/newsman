@@ -58,12 +58,17 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
             # high chances transcoder cannot work properly
             entry['transcoded'], entry['transcoded_local'], images_from_transcoded = transcoder.convert(entry['language'], entry['title'], entry['link'], transcoder_type, transcoded_relative_path)
 
+            # [MUST-HAVE] summary
+            
+
             # process images found in the transcoded data
             if images_from_transcoded:
                 # images from transcoded are already normalized
                 entry['images'].extend(images_from_transcoded)
                 # remove duplicated images
                 entry['images'] = image_helper.dedupe_images(entry['images']) if entry.has_key('images') and entry['images'] else None
+            # make images none if nothing's there, instead of a []
+            entry['images'] = entry['images'] if entry.has_key('images') and entry['images'] else None
 
             # [OPTIONAL] generate 3 types of images: thumbnail, category image and hot news image
             if entry.has_key('images') and entry['images']:
