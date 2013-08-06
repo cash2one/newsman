@@ -19,9 +19,11 @@ from administration.config import MIN_IMAGE_SIZE
 from administration.config import TRANSCODED_LOCAL_DIR
 from BeautifulSoup import BeautifulSoup
 import Image
+import re
 import os
 import thumbnail
 import urllib2
+import urlparse
 
 
 if not os.path.exists(IMAGES_LOCAL_DIR):

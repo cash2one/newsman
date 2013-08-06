@@ -10,7 +10,7 @@ sys.path.append('..')
 from administration.config import db
 collections = db.collection_names()
 for collection in collections:
-    if collection != 'system.indexes':
+    if collection != 'system.indexes' and collection != 'feeds' and collection != 'categories':
         db.drop_collection(collection)
 print 'Database cleaned!'
 

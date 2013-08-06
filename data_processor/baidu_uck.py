@@ -20,7 +20,6 @@ from image_processor import image_helper
 from image_processor import thumbnail
 import re
 import urllib2
-import urlparse
 
 from administration.config import UCK_TRANSCODING
 
