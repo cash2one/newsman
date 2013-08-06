@@ -31,14 +31,12 @@ ToDos - High Priority
 ----------------------
 1. Task相关代码分解、重构
 2. 预警代码整理、重构
-3. 转码代码清理、重构
-4. Readability代码整合、测试
-5. Feed管理平台
-6. 摘要/首段抓取代码编写
-7. 自定义Exception类，并替换相应代码
-8. 数据整理代码整理、重构
-9. 包结构合理化
-10. 为PM提供一个Simplr, Readability, UCK比较的页面
+3. Feed管理平台
+4. 摘要/首段抓取代码编写
+5. 自定义Exception类，并替换相应代码
+6. 数据整理代码整理、重构
+7. 包结构合理化
+8. 为PM提供一个Simplr, Readability, UCK比较的页面
 
 ToDos - Low Priority
 ---------------------
@@ -68,6 +66,8 @@ Dones
 6. 对外接口重构
 7. Feed相关代码重构
 8. 减少参数调用（尽量从数据库中获取）
+9. Readability代码整合、测试
+10. 转码代码清理、重构
 
 
 ToDos - Generated from docs
