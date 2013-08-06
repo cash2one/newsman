@@ -157,7 +157,6 @@ def convert(link):
         if raw_data:
             # text is sanitized, images are found from image_list
             transcoded, images = _extract(eval(raw_data))
-            print images
             return transcoded, images
         else:
             raise Exception('ERROR: Nothing found in return.')
