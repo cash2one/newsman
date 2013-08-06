@@ -50,7 +50,11 @@ def convert(link):
     if not link:
         raise Exception('ERROR: Cannot transcode nothing!')
 
-    data = _prepare_link(link)
-    article = Document(data)
-    images = _collect_images(article.summary())
-    return article.short_title(), article.summary(html_partial=False), images
+    try:
+        data = _prepare_link(link)
+        article = Document(data)
+        images = _collect_images(article.summary())
+        return article.short_title(), article.summary(html_partial=False), images
+    except Exception as k:
+        print k
+        return None, None, None
