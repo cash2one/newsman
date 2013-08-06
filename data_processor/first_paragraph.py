@@ -13,5 +13,14 @@ sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
 
-if __name__ == '__main__':
-    pass
+def extract():
+    """
+    get the first paragraph, only text
+    """
+    # if summary from rss provider is found
+    #     use summary, but limit the number of words
+    # else if summary could be generated
+    #     use summary, limit the number of words
+    # else find first paragraph from transcoded
+    #     also limit the number of words
+
