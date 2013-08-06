@@ -270,6 +270,33 @@ class Simplr:
         return title
 
 
+    def _get_short_title(self):
+        title = ''
+        try:
+            title = self.html.find('title').text
+            orig = title
+            # remove unnecessary parts
+            for delimiter in [' | ', ' - ', ' :: ', ' / ']:
+                if delimiter in title:
+                    parts = orig.split(delimiter)
+                    if len(parts[0].split()) >= 4:
+                        title = parts[0]
+                        break
+                    elif len(parts[-1].split()) >= 4:
+                        title = parts[-1]
+                        break
+                    else:
+                        if ': ' in title:
+                            parts = orig.split(': ')
+                            if len(parts[-1].split()) >= 4:
+                                title = parts[-1]
+                            else:
+                                title = orig.split(': ', 1)[1]
+        except:
+            pass
+        return title
+
+
     def _initialize_node(self, node):
         content_score = 0
 
