@@ -93,31 +93,9 @@ def _collect_images(data):
     if 'image_list' in data and data.get('image_list'):
         for image in data.get('image_list'):
             if 'src' in image and image['src']:
-                image_url_complex = urllib2.unquote(image['src'].strip())
-                if image_url_complex:
-                    # as the name could be http://xxx.com/yyy--http://zzz.jpg
-                    # or http://xxx.com/yyy--https://zzz.jpg
-                    last_http_index = image_url_complex.rfind('http')
-                    image_url = image_url_complex[last_http_index:]
-                    # response is the signal of a valid image
-                    response = None
-                    try:
-                        response = urllib2.urlopen(image_url)
-                    except urllib2.URLError as k:
-                        path = re.split('https?://?', image_url)[-1]
-                        scheme = urlparse.urlparse(image_url).scheme
-                        image_url = '%s://%s' % (scheme, path)
-                        try:
-                            response = urllib2.urlopen(image_url)
-                        except urllib2.URLError as k:
-                            pass
-                        except Exception as k:
-                            print k
-                    if response:
-                        width, height = thumbnail.get_image_size(image_url)
-                        images.append({'url': image_url, 'width': width, 'height': height})
-        # remove images of which size does not satisfy MIN_IMAGE_SIZE
-        images = image_helper.normalize(images) if images else None
+                image_normalized = image_helper.find_image(image['src'].strip())
+                if image_normalized:
+                    images.append(image_normalized)
 
     # then try to find images in the content
     images_from_content = image_helper.find_images(data['content'])
