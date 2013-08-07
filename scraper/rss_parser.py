@@ -109,6 +109,7 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
 
     # article's summary
     try:
+        # its possible summary is html-based
         entry['summary'] = hparser.unescape(e.summary)
     except AttributeError as k:
         entry['summary'] = None
