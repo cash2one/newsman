@@ -114,6 +114,9 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
     try:
         # its possible summary is html-based
         summary = hparser.unescape(e.summary)
+        if isinstance(summary, str):
+            summary_encoding = chardet.detect(summary)['encoding']
+            summary = summary.decode(summary_encoding)
         # a <div, for example, and a </div
         is_html = True if len(re.findall(u'</?a|</?p|</?strong|</?img|</?html|</?div', summary)) > 1 else False
         if is_html:
@@ -123,12 +126,10 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
             h.ignore_emphasis = True
             paragraphs = (h.handle(summary)).split('\n\n')
             paragraphs_above_limit = []
-            summary_encoding = chardet.detect(summary)['encoding']
             # remove paragraphs that contain less than x number of words
             for paragraph in paragraphs:
                 if entry['language'].startswith('zh') or entry['language'] == 'ja':
-                    paragraph_unicode = paragraph.decode(summary_encoding)
-                    if len(paragraph_unicode) > 18:
+                    if len(paragraph) > 18:
                         paragraphs_above_limit.append(paragraph)
                 else:
                     words = paragraph.split()
