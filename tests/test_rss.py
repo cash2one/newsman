@@ -14,7 +14,7 @@ from scraper import rss
 #categories = ['Sports']
 #entries = rss.update(feed_link='http://news.yahoo.com/rss/sports', feed_id='5200a0551d41c81fbdf83dad', language='en', categories=categories, transcoder_type='readability')
 categories = ['Technology', 'Internet']
-entries = rss.update(feed_link='http://www.engadget.com/rss.xml', feed_id='008', language='en', categories=categories)
+entries = rss.update(feed_link='http://www.engadget.com/rss.xml', feed_id="52020d6c680ccf157f3178fc", language='en', categories=categories)
 #categories = ['BBC', 'News']
 #entries = rss.update(feed_link='http://feeds.bbci.co.uk/news/world/rss.xml', feed_id='008', language='en', categories=categories)
 
