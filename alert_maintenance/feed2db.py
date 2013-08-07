@@ -57,7 +57,7 @@ def _convert(language='en'):
                     category_ids.append(str(item['_id']))
                 else:
                     category_id = db_categories.save({'name':category, 'language':language})
-                    category_ids.append(category_id)
+                    category_ids.append({'category_name':category, 'category_id':str(category_id)})
             # save feed
             db_feeds.save({'language':language, 'feed_link':feed_link, 'categories':category_ids, 'feed_title':feed_title, 'latest_update':None, 'updated_times':0, 'transcoder':'chengdujin'})
 
