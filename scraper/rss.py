@@ -101,6 +101,7 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
                         entry['error'].append(str(k) + '\n')
 
             # [OPTIONAL] google tts not for indonesian
+            """
             if entry['language'] != 'ind':
                 try:
                     tts_relative_path = '%s_%s_%s_%i.mp3' % (
@@ -112,6 +113,7 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
                     entry['error'].append(k + '\n')
                     entry['mp3'] = None
                     entry['mp3_local'] = None
+            """
 
             # [MUST-HAVE] add expiration data
             def _expired(updated, days_to_deadline):
