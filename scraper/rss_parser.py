@@ -16,10 +16,13 @@ sys.path.append('..')
 
 from BeautifulSoup import BeautifulStoneSoup
 import calendar
+import chardet
 from datetime import datetime, timedelta
 import feedparser
 from administration.config import hparser
+import html2text
 import random
+import re
 from image_processor import image_helper
 from image_processor import thumbnail
 import time
@@ -110,7 +113,30 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
     # article's summary
     try:
         # its possible summary is html-based
-        entry['summary'] = hparser.unescape(e.summary)
+        summary = hparser.unescape(e.summary)
+        # a <div, for example, and a </div
+        is_html = True if len(re.findall(u'</?a|</?p|</?strong|</?img|</?html|</?div', summary)) > 1 else False
+        if is_html:
+            h = html2text.HTML2Text()
+            h.ignore_images = True
+            h.ignore_links = True
+            h.ignore_emphasis = True
+            paragraphs = (h.handle(summary)).split('\n\n')
+            paragraphs_above_limit = []
+            summary_encoding = chardet.detect(summary)['encoding']
+            # remove paragraphs that contain less than x number of words
+            for paragraph in paragraphs:
+                if entry['language'].startswith('zh') or entry['language'] == 'ja':
+                    paragraph_unicode = paragraph.decode(summary_encoding)
+                    if len(paragraph_unicode) > 18:
+                        paragraphs_above_limit.append(paragraph)
+                else:
+                    words = paragraph.split()
+                    if len(words) > 12:
+                        paragraphs_above_limit.append(paragraph)
+            entry['summary'] = '\n\n'.join(paragraphs_above_limit)
+        else:
+            entry['summary'] = summary
     except AttributeError as k:
         entry['summary'] = None
     entry['summary'] = None if not entry['summary'] else entry['summary']
