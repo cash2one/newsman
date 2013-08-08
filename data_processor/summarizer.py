@@ -47,7 +47,7 @@ def _get_shorter_text(content, languagei, limit):
     # remove lines of space and change encoding back to utf-8 now
     if enough_sentences:
         enough_sentences = filter(lambda x:x, [sentenc:e.strip().encode('utf-8') for sentence in enough_sentences])
-    return enough_sentences
+    return " ".join(enough_sentences)
 
 def _is_valid(content, language):
     """
