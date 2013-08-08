@@ -17,6 +17,7 @@ import html2text
 import nltk
 from nltk.tokenize import RegexpTokenizer
 
+from administration.config import PARAGRAPH_CRITERIA
 from administration.config import SUMMARY_LENGTH_LIMIT
 
 
@@ -64,7 +65,7 @@ def _is_valid(content, language):
     else:
         words = content.split()
 
-    if len(words) < 10:
+    if len(words) < PARAGRAPH_CRITERIA:
         return False
     else:
         return True
