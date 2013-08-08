@@ -224,7 +224,7 @@ def convert(language="en", title=None, link=None, transcoder="chengdujin", relat
         news = _compose(language, title, content)
         # create web/local path
         web_path, local_path = _save(news, relative_path)
-        return web_path, local_path, images
+        return web_path, local_path, content, images
     else:
         raise Exception("ERROR: Transcoder %s failed for %s" %
                         (transcoder, link))

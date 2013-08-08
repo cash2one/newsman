@@ -49,6 +49,7 @@ def _get_shorter_text(content, languagei, limit):
         enough_sentences = filter(lambda x:x, [sentenc:e.strip().encode('utf-8') for sentence in enough_sentences])
     return " ".join(enough_sentences)
 
+
 def _is_valid(content, language):
     """
     check if the content meets the need
@@ -85,7 +86,7 @@ def extract(entry):
 
     # else if summary could be generated
     #     use summary, limit the number of words
+
     # else find first paragraph from transcoded
     #     also limit the number of words
-    pass
 

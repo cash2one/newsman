@@ -17,6 +17,7 @@ from administration import database as db_feeds
 import calendar
 import database as db_news
 from datetime import datetime, timedelta
+from data_processor import summarizer
 from data_processor import transcoder
 from data_processor import tts_provider
 import Image
