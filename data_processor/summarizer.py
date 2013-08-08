@@ -17,6 +17,8 @@ import html2text
 import nltk
 from nltk.tokenize import RegexpTokenizer
 
+from administration.config import SUMMARY_LENGTH_LIMIT
+
 
 def _get_first_paragraph(content):
     """
@@ -83,6 +85,16 @@ def _is_valid(content, language):
         return True
 
 
+def _get_summary(content, language):
+    """
+    find out readable summary
+    """
+    paragraphs = content.split("\n\n")
+    for paragraph in paragraphs:
+        if _is_valid(paragraph, language):
+            return _get_shorter_text(paragraph, language, 500)
+
+
 def extract(summary, transcoded, language):
     """
     get the summary/first paragraph, text only
@@ -93,10 +105,7 @@ def extract(summary, transcoded, language):
     # if summary from rss provider is found
     #     use summary, but limit the number of words
     if summary:
-        paragraphs = summary.split("\n\n")
-        for paragraph in paragraphs:
-            if _is_valid(paragraph, language):
-                return _get_shorter_text(paragraph, language, 500)
+        return _get_summary(summary, language)
 
     # else if summary could be generated
     #     use summary, limit the number of words
