@@ -22,7 +22,12 @@ def _get_first_paragraph(content):
     """
     find the first paragraph from transcoded text
     """
-    pass
+    # strip off html code
+    h = html2text.HTML2Text()
+    h.ignore_links = True
+    h.ignore_images = True
+    h.ignore_emphasis = True
+    paragraphs = (h.handle(content)).split("\n\n")
 
 
 def _get_shorter_text(content, languagei, limit):
@@ -67,6 +72,8 @@ def _is_valid(content, language):
     if language.startswith('zh') or language == 'ja':
         if isinstance(content, str):
             words = content.decode(chardet.detect(content)['encoding'])
+        else:
+            words = content
     else:
         words = content.split()
 
