@@ -18,6 +18,13 @@ import nltk
 from nltk.tokenize import RegexpTokenizer
 
 
+def _get_first_paragraph(content):
+    """
+    find the first paragraph from transcoded text
+    """
+    pass
+
+
 def _get_shorter_text(content, languagei, limit):
     """
     limit the number of words to 500
@@ -89,4 +96,5 @@ def extract(summary, transcoded, language):
 
     # else find first paragraph from transcoded
     #     also limit the number of words
-
+    if transcoded:
+        return _get_first_paragraph(transcoded)
