@@ -61,7 +61,7 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
 
             # [MUST-HAVE] summary
             print entry['title']
-            print summarizer.extract(None, raw_transcoded_content, entry['language'])
+            print summarizer.extract(entry['summary'], raw_transcoded_content, entry['language'])
 
             # process images found in the transcoded data
             if images_from_transcoded:
