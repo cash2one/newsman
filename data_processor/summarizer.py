@@ -36,17 +36,18 @@ def _get_shorter_text(content, languagei, limit):
     else: # supports latin-based, thai and arabic
         sentences = nltk.sent_tokenize(content)
 
-    # remove lines of space
-    # dont need to changed encoding back to utf-8 now
-    if sentences:
-        sentences = filter(lambda x:x, [sentence.strip() for sentence in sentences])
-
     enough_sentences = []
     for sentence in sentences:
         # sentence is in unicode, len() then applies to CJK
-        if len(enough_sentences) + len(sentence) + 1 <= limit:
-            enough_sentences.append(sentence)
+        sentence = sentence.strip()
+        if sentence:
+            if len(enough_sentences) + len(sentence) + 1 <= limit:
+                enough_sentences.append(sentence)
 
+    # remove lines of space and change encoding back to utf-8 now
+    if enough_sentences:
+        enough_sentences = filter(lambda x:x, [sentenc:e.strip().encode('utf-8') for sentence in enough_sentences])
+    return enough_sentences
 
 def _is_valid(content, language):
     """
