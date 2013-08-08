@@ -20,18 +20,6 @@ from nltk.tokenize import RegexpTokenizer
 from administration.config import SUMMARY_LENGTH_LIMIT
 
 
-def _get_first_paragraph(content):
-    """
-    find the first paragraph from transcoded text
-    """
-    # strip off html code
-    h = html2text.HTML2Text()
-    h.ignore_links = True
-    h.ignore_images = True
-    h.ignore_emphasis = True
-    paragraphs = (h.handle(content)).split("\n\n")
-
-
 def _get_shorter_text(content, languagei, limit):
     """
     limit the number of words to 500
@@ -85,14 +73,29 @@ def _is_valid(content, language):
         return True
 
 
+def _get_first_paragraph(content, language):
+    """
+    find the first paragraph from transcoded text
+    """
+    # strip off html code
+    h = html2text.HTML2Text()
+    h.ignore_links = True
+    h.ignore_images = True
+    h.ignore_emphasis = True
+    paragraphs = (h.handle(content)).split("\n\n")
+    for paragraph in paragraphs:
+        if _is_valid(paragraph, language):
+            return _get_shorter_text(paragraph, language, SUMMARY_LENGTH_LIMIT)
+
+
 def _get_summary(content, language):
     """
-    find out readable summary
+    find out the first readable summary
     """
     paragraphs = content.split("\n\n")
     for paragraph in paragraphs:
         if _is_valid(paragraph, language):
-            return _get_shorter_text(paragraph, language, 500)
+            return _get_shorter_text(paragraph, language, SUMMARY_LENGTH_LIMIT)
 
 
 def extract(summary, transcoded, language):
@@ -113,4 +116,4 @@ def extract(summary, transcoded, language):
     # else find first paragraph from transcoded
     #     also limit the number of words
     if transcoded:
-        return _get_first_paragraph(transcoded)
+        return _get_first_paragraph(transcoded, language)
