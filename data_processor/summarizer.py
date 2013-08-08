@@ -43,6 +43,7 @@ def _get_shorter_text(content, languagei, limit):
 
     enough_sentences = []
     for sentence in sentences:
+        # sentence is in unicode, len() then applies to CJK
         if len(enough_sentences) + len(sentence) + 1 <= limit:
             enough_sentences.append(sentence)
 
