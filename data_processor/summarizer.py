@@ -20,7 +20,7 @@ from nltk.tokenize import RegexpTokenizer
 from administration.config import SUMMARY_LENGTH_LIMIT
 
 
-def _get_shorter_text(content, languagei, limit):
+def _get_shorter_text(content, language, limit):
     """
     limit the number of words to 500
     """
@@ -38,18 +38,15 @@ def _get_shorter_text(content, languagei, limit):
     else: # supports latin-based, thai and arabic
         sentences = nltk.sent_tokenize(content)
 
-    enough_sentences = []
+    enough_sentences = u""
     for sentence in sentences:
         # sentence is in unicode, len() then applies to CJK
         sentence = sentence.strip()
         if sentence:
             if len(enough_sentences) + len(sentence) + 1 <= limit:
-                enough_sentences.append(sentence)
+                enough_sentences = "%s %s" % (enough_sentences, sentence)
 
-    # remove lines of space and change encoding back to utf-8 now
-    if enough_sentences:
-        enough_sentences = filter(lambda x:x, [sentenc:e.strip().encode('utf-8') for sentence in enough_sentences])
-    return " ".join(enough_sentences)
+    return str(enough_sentences.strip())
 
 
 def _is_valid(content, language):
