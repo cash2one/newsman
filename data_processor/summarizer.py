@@ -56,11 +56,11 @@ def _is_valid(content, language):
     if not content or not language:
         return False
 
+    if isinstance(content, str):
+        content = content.decode(chardet.detect(content)['encoding'])
+
     if language.startswith('zh') or language == 'ja':
-        if isinstance(content, str):
-            words = content.decode(chardet.detect(content)['encoding'])
-        else:
-            words = content
+        words = content
     else:
         words = content.split()
 
