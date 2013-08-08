@@ -60,6 +60,8 @@ STRATEGY_WITH_WEIGHTS = 2
 FEED_REGISTRAR = 'feeds'
 CATEGORY_REGISTRAR = 'categories'
 
+SUMMARY_MAX_LENGTH = 500
+
 LANGUAGES = ['en', 'th', 'ind', 'ja', 'pt', 'en-rIN', 'ar']
 MIN_IMAGE_SIZE = 150, 150
 THUMBNAIL_IMAGE_SIZE = 118, 88
