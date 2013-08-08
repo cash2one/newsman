@@ -15,20 +15,36 @@ sys.path.append('..')
 import chardet
 import html2text
 import nltk
+from nltk.tokenize import RegexpTokenizer
 
 
-def _get_shorter_text(content, language):
+def _get_shorter_text(content, languagei, limit):
     """
     limit the number of words to 500
     """
     if not content or not language:
         return False
 
+    # data should be processed as unicode, so
+    if isinstance(content, str):
+        content = content.decode(chardet.detect(content)['encoding'])
+    
     # break text by sentence
     if language.startswith('zh') or language == 'ja':
-        pass
+        jp_sent_tokenizer = nltk.RegexpTokenizer(u'[^!?.！？。．]*[!?.！？。]*')
+        sentences = jp_sent_tokenizer.tokenize(query)
     else: # supports latin-based, thai and arabic
         sentences = nltk.sent_tokenize(content)
+
+    # remove lines of space
+    # dont need to changed encoding back to utf-8 now
+    if sentences:
+        sentences = filter(lambda x:x, [sentence.strip() for sentence in sentences])
+
+    enough_sentences = []
+    for sentence in sentences:
+        if len(enough_sentences) + len(sentence) + 1 <= limit:
+            enough_sentences.append(sentence)
 
 
 def _is_valid(content, language):
@@ -63,7 +79,7 @@ def extract(entry):
         paragraphs = entry['summary'].split("\n\n")
         for paragraph in paragraphs:
             if _is_valid(paragraph, entry['language']):
-                return _get_shorter_text(paragraph, entry['language'])
+                return _get_shorter_text(paragraph, entry['language'], 500)
 
     # else if summary could be generated
     #     use summary, limit the number of words
