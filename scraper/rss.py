@@ -57,7 +57,7 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
             rand = random.randint(0, 100000000)
             transcoded_relative_path = '%s_%s_%s_%i' % (entry['language'], entry['feed_id'], entry['updated'], rand)
             # high chances transcoder cannot work properly
-            entry['transcoded'], entry['transcoded_local'], images_from_transcoded = transcoder.convert(entry['language'], entry['title'], entry['link'], transcoder_type, transcoded_relative_path)
+            entry['transcoded'], entry['transcoded_local'], raw_transcoded_content, images_from_transcoded = transcoder.convert(entry['language'], entry['title'], entry['link'], transcoder_type, transcoded_relative_path)
 
             # [MUST-HAVE] summary
             
