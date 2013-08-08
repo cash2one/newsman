@@ -69,20 +69,20 @@ def _is_valid(content, language):
         return True
 
 
-def extract(entry):
+def extract(summary, transcoded, language):
     """
     get the summary/first paragraph, text only
     """
-    if not entry:
+    if not summary and not transcoded:
         raise Exception('ERROR: No data is found!')
 
     # if summary from rss provider is found
     #     use summary, but limit the number of words
-    if entry['summary']:
-        paragraphs = entry['summary'].split("\n\n")
+    if summary:
+        paragraphs = summary.split("\n\n")
         for paragraph in paragraphs:
-            if _is_valid(paragraph, entry['language']):
-                return _get_shorter_text(paragraph, entry['language'], 500)
+            if _is_valid(paragraph, language):
+                return _get_shorter_text(paragraph, language, 500)
 
     # else if summary could be generated
     #     use summary, limit the number of words
