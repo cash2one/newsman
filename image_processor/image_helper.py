@@ -144,7 +144,7 @@ def scale_image(image=None, image_data=None, size_expected=MIN_IMAGE_SIZE, resiz
     crop_by_center: crop the image from its center(True) or by point(0, 0)(False)
     """
     if not image or not image_data or not size_expected or not relative_path:
-        return None
+        return None, None
 
     width = int(image['width'])
     height = int(image['height'])
@@ -185,11 +185,11 @@ def scale_image(image=None, image_data=None, size_expected=MIN_IMAGE_SIZE, resiz
                 image_cropped.save(image_local_path, 'JPEG')
                 return {'url':image_web_path, 'width':width_expected, 'height':height_expected}, {'url':image_local_path, 'width':width_expected, 'height':height_expected}
             else:
-                return None
+                return None, None
         else:
             return scale_image(image, image_data, size_expected, not resize_by_width, crop_by_center, relative_path)
     else:
-        return None
+        return None, None
 
 
 def normalize(images):
