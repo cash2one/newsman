@@ -102,11 +102,14 @@ def extract(summary, transcoded, language):
     """
     if not summary and not transcoded:
         raise Exception('ERROR: No data is found!')
+    result_summary = result_first_paragraph = ""
 
     # if summary from rss provider is found
     #     use summary, but limit the number of words
     if summary:
-        return _get_summary(summary, language)
+        result_summary = _get_summary(summary, language)
+        if result_summary:
+            print '  SUMMARY:', len(result_summary), result_summary
 
     # else if summary could be generated
     #     use summary, limit the number of words
@@ -114,4 +117,8 @@ def extract(summary, transcoded, language):
     # else find first paragraph from transcoded
     #     also limit the number of words
     if transcoded:
-        return _get_first_paragraph(transcoded, language)
+        result_first_paragraph = _get_first_paragraph(transcoded, language)
+        if result_first_paragraph:
+            print '  FIRST PARAGRAPH:', len(result_first_paragraph), result_first_paragraph
+
+    return result_summary if result_summary else result_first_paragraph if result_first_paragraph else None

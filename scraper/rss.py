@@ -53,7 +53,6 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
     for entry in entries:
         # get a random int from 100 million possibilities
         try:
-            print '  working on transcoding ...'
             # [MUST-HAVE] transcoding
             rand = random.randint(0, 100000000)
             transcoded_relative_path = '%s_%s_%s_%i' % (entry['language'], entry['feed_id'], entry['updated'], rand)
@@ -62,7 +61,7 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
 
             # [MUST-HAVE] summary
             print entry['title']
-            print summarizer.extract(entry['summary'], raw_transcoded_content, entry['language'])
+            summarizer.extract(entry['summary'], raw_transcoded_content, entry['language'])
 
             # process images found in the transcoded data
             if images_from_transcoded:
