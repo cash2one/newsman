@@ -80,7 +80,7 @@ def _get_first_paragraph(content, language):
     h.ignore_links = True
     h.ignore_images = True
     h.ignore_emphasis = True
-    paragraphs = (h.handle(content)).split("\n\n")
+    paragraphs = (h.handle(content)).strip('#').split("\n\n")
     for paragraph in paragraphs:
         if _is_valid(paragraph, language):
             return _get_shorter_text(paragraph, language, SUMMARY_LENGTH_LIMIT)

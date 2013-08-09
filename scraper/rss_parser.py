@@ -124,7 +124,7 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
             h.ignore_images = True
             h.ignore_links = True
             h.ignore_emphasis = True
-            paragraphs = (h.handle(summary)).split('\n\n')
+            paragraphs = (h.handle(summary)).strip('#').split('\n\n')
             paragraphs_above_limit = []
             # remove paragraphs that contain less than x number of words
             for paragraph in paragraphs:
