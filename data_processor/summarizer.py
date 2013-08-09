@@ -108,8 +108,8 @@ def extract(summary, transcoded, language):
     #     use summary, but limit the number of words
     if summary:
         result_summary = _get_summary(summary, language)
-        if result_summary:
-            print '  SUMMARY:', len(result_summary), result_summary
+    #    if result_summary:
+    #        print '  SUMMARY:', len(result_summary), result_summary
 
     # else if summary could be generated
     #     use summary, limit the number of words
@@ -118,7 +118,7 @@ def extract(summary, transcoded, language):
     #     also limit the number of words
     if transcoded:
         result_first_paragraph = _get_first_paragraph(transcoded, language)
-        if result_first_paragraph:
-            print '  FIRST PARAGRAPH:', len(result_first_paragraph), result_first_paragraph
+    #    if result_first_paragraph:
+    #        print '  FIRST PARAGRAPH:', len(result_first_paragraph), result_first_paragraph
 
     return result_summary if result_summary else result_first_paragraph if result_first_paragraph else None
