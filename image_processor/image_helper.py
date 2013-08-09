@@ -84,7 +84,7 @@ def find_images(content=None):
         f = open(content, 'r')
         content = f.read()
     
-    soup = BeautifulSoup(content.decode('utf-8'))
+    soup = BeautifulSoup(content.decode('utf-8', 'ignore'))
     images_normalized = []
     images = soup.findAll('img')
     for image in images:

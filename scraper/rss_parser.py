@@ -116,7 +116,7 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
         summary = hparser.unescape(e.summary)
         if isinstance(summary, str):
             summary_encoding = chardet.detect(summary)['encoding']
-            summary = summary.decode(summary_encoding)
+            summary = summary.decode(summary_encoding, 'ignore')
         # a <div, for example, and a </div
         is_html = True if len(re.findall(u'</?a|</?p|</?strong|</?img|</?html|</?div', summary)) > 1 else False
         if is_html:

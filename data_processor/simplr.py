@@ -68,9 +68,9 @@ class Simplr:
             if html:
                 detected = chardet.detect(html)
                 if detected:
-                    data = html.decode(detected['encoding'])
+                    data = html.decode(detected['encoding'], 'ignore')
                 else:
-                    data = html.decode('utf-8')
+                    data = html.decode('utf-8', 'ignore')
                 return data
             else:
                 raise Exception("ERROR: Cannot read %s" % url)

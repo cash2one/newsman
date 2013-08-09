@@ -29,7 +29,7 @@ from administration.config import UCK_TRANSCODING
 # TODO: remove code that sanitize too much
 def _sanitize(content):
     ''''''
-    soup = BeautifulSoup(content.decode('utf-8'))
+    soup = BeautifulSoup(content.decode('utf-8', 'ignore'))
     # remove all <span>
     for span in soup.findAll('span'):
         span.extract()

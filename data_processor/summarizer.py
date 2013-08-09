@@ -30,7 +30,7 @@ def _get_shorter_text(content, language, limit):
 
     # data should be processed as unicode, so
     if isinstance(content, str):
-        content = content.decode(chardet.detect(content)['encoding'])
+        content = content.decode(chardet.detect(content)['encoding'], 'ignore')
     
     # break text by sentence
     if language.startswith('zh') or language == 'ja':
@@ -58,7 +58,7 @@ def _is_valid(content, language):
         return False
 
     if isinstance(content, str):
-        content = content.decode(chardet.detect(content)['encoding'])
+        content = content.decode(chardet.detect(content)['encoding'], 'ignore')
 
     if language.startswith('zh') or language == 'ja':
         words = content
