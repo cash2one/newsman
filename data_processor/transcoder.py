@@ -31,6 +31,8 @@ from administration.config import TRANSCODING_BTN_IND
 from administration.config import TRANSCODING_BTN_JA
 from administration.config import TRANSCODING_BTN_PT
 from administration.config import TRANSCODING_BTN_TH
+from administration.config import UCK_TIMEOUT
+
 
 # create a local dir for transcoded content if dir does not exist
 if not os.path.exists(TRANSCODED_LOCAL_DIR):
@@ -128,8 +130,8 @@ def _transcode(url, transcoders, language=None):
         # thread could be found via transcoder name
         threads[transcoder] = transcoding_request
         transcoding_request.start()
-        # 10 second to wait UCK server
-        transcoding_request.join(10 * 1000)
+        # UCK_TIMEOUT seconds to wait UCK server
+        transcoding_request.join(UCK_TIMEOUT * 1000)
 
     # after a while ... put data in the proper variables
     uck_content = simplr_content = burify_content = None

@@ -21,6 +21,7 @@ from image_processor import thumbnail
 import re
 import urllib2
 
+from administration.config import UCK_TIMEOUT
 from administration.config import UCK_TRANSCODING
 
 
@@ -134,9 +135,9 @@ def _transcode(link):
     send link to uck server
     """
     uck_url = '%s%s' % (UCK_TRANSCODING, link)
-    # timeout set to 10, currently
+    # timeout set to UCK_TIMEOUT, currently
     try:
-        f = urllib2.urlopen(uck_url, timeout=10)
+        f = urllib2.urlopen(uck_url, timeout=UCK_TIMEOUT)
         # free data from html encoding
         return urllib2.unquote(f.read())
     except IOError as k:
