@@ -8,11 +8,10 @@ sys.path.append('..')
 
 from scraper import rss
 
-#entries = rss_parser.parse(feed_link='http://news.yahoo.com/rss/us', language='en')
-#entries = rss_parser.parse(feed_link='http://www.engadget.com/rss.xml', language='en')
-#entries = rss_parser.parse(feed_link='http://rss.cnn.com/rss/edition_sport.rss', language='en')
-#categories = ['Sports']
-#entries = rss.update(feed_link='http://news.yahoo.com/rss/sports', feed_id='5200a0551d41c81fbdf83dad', language='en', categories=categories, transcoder_type='readability')
+entries = rss.update(feed_link='http://news.yahoo.com/rss/us', feed_id='52020d6c680ccf157f3178f8', language='en')
+#entries = rss.update(feed_link='http://www.engadget.com/rss.xml', feed_id='52020d6c680ccf157f3178fc', language='en')
+#entries = rss.parse(feed_link='http://rss.cnn.com/rss/edition_sport.rss', language='en')
+#entries = rss.update(feed_link='http://news.yahoo.com/rss/sports', feed_id='52020d6c680ccf157f317902', language='en')
 #categories = ['Technology', 'Internet']
 #entries = rss.update(feed_link='http://www.engadget.com/rss.xml', feed_id="52020d6c680ccf157f3178fc", language='en', categories=categories)
 #categories = ['BBC', 'News']
@@ -22,4 +21,4 @@ from scraper import rss
 
 #entries = rss.update(feed_link='http://sankei.jp.msn.com/rss/news/politics.xml', feed_id='5203d468680ccf6430d7ab7a', language='ja')
 #entries = rss.update(feed_link='http://news.goo.ne.jp/rss/topstories/world/index.rdf', feed_id='5203d468680ccf6430d7ab7d', language='ja', categories=categories)
-entries = rss.update(feed_link='http://community.travel.yahoo.co.jp/domestic/blog.html?m=rss', feed_id='5203d468680ccf6430d7ab75', language='ja')
+#entries = rss.update(feed_link='http://community.travel.yahoo.co.jp/domestic/blog.html?m=rss', feed_id='5203d468680ccf6430d7ab75', language='ja')

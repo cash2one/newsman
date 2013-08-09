@@ -21,6 +21,7 @@ from BeautifulSoup import BeautifulSoup
 import Image
 import re
 import os
+from cStringIO import StringIO
 import thumbnail
 import urllib2
 import urlparse
@@ -137,13 +138,13 @@ def dedupe_images(images):
 
 
 # TODO: boundary checker
-def scale_image(image=None, image_data=None, size_expected=MIN_IMAGE_SIZE, resize_by_width=True, crop_by_center=True, relative_path=None):
+def scale_image(image=None, size_expected=MIN_IMAGE_SIZE, resize_by_width=True, crop_by_center=True, relative_path=None):
     """
     resize an image as requested
     resize_by_width: resize the image according to its width(True) or height(False)
     crop_by_center: crop the image from its center(True) or by point(0, 0)(False)
     """
-    if not image or not image_data or not size_expected or not relative_path:
+    if not image or not size_expected or not relative_path:
         return None, None
 
     width = int(image['width'])
@@ -163,6 +164,8 @@ def scale_image(image=None, image_data=None, size_expected=MIN_IMAGE_SIZE, resiz
         if width_new >= width_expected and height_new >= height_expected:
             # resize
             size_new = width_new, height_new
+            image_downloaded = StringIO(urllib2.urlopen(image['url']).read())
+            image_data = Image.open(image_downloaded)
             image_data.thumbnail(size_new, Image.ANTIALIAS)
             # crop
             if crop_by_center:
@@ -187,7 +190,7 @@ def scale_image(image=None, image_data=None, size_expected=MIN_IMAGE_SIZE, resiz
             else:
                 return None, None
         else:
-            return scale_image(image, image_data, size_expected, not resize_by_width, crop_by_center, relative_path)
+            return scale_image(image, size_expected, not resize_by_width, crop_by_center, relative_path)
     else:
         return None, None
 
