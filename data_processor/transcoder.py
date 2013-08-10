@@ -31,8 +31,8 @@ from administration.config import TRANSCODING_BTN_IND
 from administration.config import TRANSCODING_BTN_JA
 from administration.config import TRANSCODING_BTN_PT
 from administration.config import TRANSCODING_BTN_TH
-from administration.config import TRANSCODING_BTN_ZH-CN
-from administration.config import TRANSCODING_BTN_ZH-HK
+from administration.config import TRANSCODING_BTN_ZH_CN
+from administration.config import TRANSCODING_BTN_ZH_HK
 from administration.config import UCK_TIMEOUT
 
 
@@ -83,7 +83,7 @@ def _compose(language, title, content):
         raise Exception("ERROR: Method not well formed!")
 
     transcode_button = {'en': TRANSCODING_BTN_EN, 'ja': TRANSCODING_BTN_JA, 'th': TRANSCODING_BTN_TH, 'pt':
-                        TRANSCODING_BTN_PT, 'ind': TRANSCODING_BTN_IND, 'en-rIN': TRANSCODING_BTN_EN, 'ar': TRANSCODING_BTN_AR}
+            TRANSCODING_BTN_PT, 'ind': TRANSCODING_BTN_IND, 'en-rIN': TRANSCODING_BTN_EN, 'ar': TRANSCODING_BTN_AR, 'zh-CN':TRANSCODING_BTN_ZH_CN, 'zh-HK':TRANSCODING_BTN_ZH_HK}
 
     # f reads the template
     f = None
