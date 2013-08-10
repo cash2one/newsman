@@ -32,19 +32,11 @@ class Transcoders:
         """
         call each transcoder
         """
-        transcoded_simplr = transcoder.convert(language=language, link=url, transcoder='chengdujin', stdout=True)
-        #transcoded_burify = transcoder.convert(language=language, link=url, transcoder='readability', stdout=True)
-        #transcoded_baidu_uck = transcoder.convert(language=language, link=url, transcoder='uck', stdout=True)
-        #return self._combine(transcoded_simplr, transcoded_burify, transcoded_baidu_uck)
-        return transcoded_simplr
+        title_simplr, content_simplr = transcoder.convert(language=language, link=url, transcoder='chengdujin', stdout=True)
+        title_burify, content_burify = transcoder.convert(language=language, link=url, transcoder='readability', stdout=True)
+        title_uck, content_uck = transcoder.convert(language=language, link=url, transcoder='uck', stdout=True)
+        return render.combiner(title_simplr, content_simplr, title_burify, content_burify, title_uck, content_uck, 'Original Webpage')
 
-    
-    def _combine(self, s, r, u):
-        """
-        combine results from each transcoder
-        """
-        return render.combiner(s, r, u)
-    
 
 if __name__ == "__main__":
     app = web.application(urls, globals())

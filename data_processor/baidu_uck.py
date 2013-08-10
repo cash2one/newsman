@@ -169,4 +169,4 @@ def convert(link):
             raise Exception('ERROR: Nothing found in return.')
     except Exception as k:
         print k
-        return None, None
+        return None, None, None

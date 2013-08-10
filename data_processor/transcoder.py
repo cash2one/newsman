@@ -232,14 +232,17 @@ def convert(language="en", title=None, link=None, transcoder="chengdujin", relat
         title = title_new
 
     if content:
-        # embed content in template
-        news = _compose(language, title, content)
         if not stdout:
+            # embed content in template
+            news = _compose(language, title, content)
             # create web/local path
             web_path, local_path = _save(news, relative_path)
             return web_path, local_path, content, images
         else:
-            return news
+            return title, content
     else:
-        raise Exception("ERROR: Transcoder %s failed for %s" %
-                        (transcoder, link))
+        print "ERROR: Transcoder %s failed for %s" % (transcoder, link)
+        if not stdout:
+            return None, None, None, None
+        else:
+            return None, None
