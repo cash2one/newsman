@@ -1,16 +1,22 @@
 #!/usr/bin/env python 
 #-*- coding: utf-8 -*- 
 
+# transcoder_web provides a web interface for three transcoders
+#
+# @author Jin Yuan
+# @contact jinyuan@baidu.com
+# @created Aug. 10, 2013
+
+
 import sys 
 reload(sys) 
 sys.setdefaultencoding('UTF-8')
 sys.path.append('../..')
 
 import web
-render = web.template.render('templates/')
-
 from data_processor import transcoder
 
+render = web.template.render('templates/')
 urls = (
     "/transcode/(.*)", "Transcoders"
 )
@@ -35,7 +41,7 @@ class Transcoders:
         """
         combine results from each transcoder
         """
-        return render.combine(s, r, u)
+        return render.combiner(s, r, u)
     
 
 if __name__ == "__main__":
