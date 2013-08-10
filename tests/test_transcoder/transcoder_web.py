@@ -9,7 +9,7 @@ sys.path.append('../..')
 import web
 render = web.template.render('templates/')
 
-from data_processor import simplr, baidu_uck, readability
+from data_processor import transcoder
 
 urls = (
     "/transcode/(.*)", "Transcoders"
@@ -24,7 +24,7 @@ class Transcoders:
         """
         call each transcoder
         """
-        transcoded_simplr = render.simplr(url)
+        transcoded_simplr = transcoder.convert(language=language, link=url, transcoder='chengdujin', stdout=True)
         transcoded_readability = render.readability(url)
         transcoded_baidu_uck = render.baidu_uck(url)
         return
@@ -33,6 +33,7 @@ class Transcoders:
         """
         combine results from each transcoder
         """
+        transcoded_simplr = render.simplr(url)
         pass
 
 if __name__ == "__main__":
