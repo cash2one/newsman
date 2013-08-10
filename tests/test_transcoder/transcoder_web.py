@@ -19,22 +19,24 @@ urls = (
 class Transcoders:
     def GET(self, url):
         return _transcode(url)
+
     
-    def _transcode(self, url):
+    def _transcode(self, language, url):
         """
         call each transcoder
         """
         transcoded_simplr = transcoder.convert(language=language, link=url, transcoder='chengdujin', stdout=True)
-        transcoded_readability = render.readability(url)
-        transcoded_baidu_uck = render.baidu_uck(url)
-        return
+        transcoded_burify = transcoder.convert(language=language, link=url, transcoder='readability', stdout=True)
+        transcoded_baidu_uck = transcoder.convert(language=language, link=url, transcoder='uck', stdout=True)
+        return _combine(transcoded_simplr, transcoded_burify, transcoded_baidu_uck)
+
     
     def _combine(self, s, r, u):
         """
         combine results from each transcoder
         """
-        transcoded_simplr = render.simplr(url)
-        pass
+        return render.combine(s, r, u)
+    
 
 if __name__ == "__main__":
     app = web.application(urls, globals())
