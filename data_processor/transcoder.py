@@ -172,7 +172,7 @@ def _transcode(url, transcoders, language=None):
     if uck_content:
         return "", uck_content, uck_images
     else:
-        raise Exception("ERROR: UCK failed!")
+        return None, None, None
 
 
 def _organize_transcoders(transcoder="chengdujin"):
@@ -219,6 +219,7 @@ def convert(language="en", title=None, link=None, transcoder="chengdujin", relat
     link = _preprocess(link)
     transcoders = _organize_transcoders(transcoder)
     title_new, content, images = _transcode(link, transcoders, language)
+    return title_new
     # in case uck cannot find a proper title
     if title_new:
         title = title_new

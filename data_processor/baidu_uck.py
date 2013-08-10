@@ -124,7 +124,14 @@ def _extract(data):
         images = _collect_images(data)
         images = images if images else None
 
-        return content, images
+        # title
+        title = None
+        if 'title' in data:
+            title = data['title']
+        else:
+            title = None
+
+        return title, content, images
     else:
         # no data found
         raise Exception('ERROR: Have not received data from transcoding server.')
@@ -156,8 +163,8 @@ def convert(link):
         raw_data = _transcode(link)
         if raw_data:
             # text is sanitized, images are found from image_list
-            transcoded, images = _extract(eval(raw_data))
-            return transcoded, images
+            title, transcoded, images = _extract(eval(raw_data))
+            return title, transcoded, images
         else:
             raise Exception('ERROR: Nothing found in return.')
     except Exception as k:

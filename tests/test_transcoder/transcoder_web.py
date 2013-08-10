@@ -25,7 +25,7 @@ urls = (
 class Transcoders:
     def GET(self):
         data = web.input(url="this should not be seen", language='no language')
-        return _transcode(data.language, data.url)
+        return self._transcode(data.language, data.url)
 
     
     def _transcode(self, language, url):
@@ -33,9 +33,10 @@ class Transcoders:
         call each transcoder
         """
         transcoded_simplr = transcoder.convert(language=language, link=url, transcoder='chengdujin', stdout=True)
-        transcoded_burify = transcoder.convert(language=language, link=url, transcoder='readability', stdout=True)
-        transcoded_baidu_uck = transcoder.convert(language=language, link=url, transcoder='uck', stdout=True)
-        return _combine(transcoded_simplr, transcoded_burify, transcoded_baidu_uck)
+        #transcoded_burify = transcoder.convert(language=language, link=url, transcoder='readability', stdout=True)
+        #transcoded_baidu_uck = transcoder.convert(language=language, link=url, transcoder='uck', stdout=True)
+        #return self._combine(transcoded_simplr, transcoded_burify, transcoded_baidu_uck)
+        return transcoded_simplr
 
     
     def _combine(self, s, r, u):
