@@ -49,6 +49,8 @@ TRANSCODING_BTN_JA = '元のページ'
 TRANSCODING_BTN_IND = 'Laman Asli'
 TRANSCODING_BTN_TH = 'หน้าเดิม'
 TRANSCODING_BTN_AR = 'ﺎﻠﻤﺻﺩﺭ'
+TRANSCODING_BTN_ZH-CN = '查看原始网页'
+TRANSCODING_BTN_ZH-HK = '查看原始鏈接'
 
 DATABASE_REMOVAL_DAYS = 90
 MEMORY_RESTORATION_DAYS = 10
@@ -64,7 +66,7 @@ PARAGRAPH_CRITERIA = 40
 SUMMARY_LENGTH_LIMIT = 500
 UCK_TIMEOUT = 3 # 3 seconds timeout
 
-LANGUAGES = ['en', 'th', 'ind', 'ja', 'pt', 'en-rIN', 'ar']
+LANGUAGES = ['en', 'th', 'ind', 'ja', 'pt', 'en-rIN', 'ar', 'zh-CN', 'zh-HK']
 MIN_IMAGE_SIZE = 150, 150
 THUMBNAIL_STYLE = 1.4
 THUMBNAIL_LANDSCAPE_SIZE = 451, 170
