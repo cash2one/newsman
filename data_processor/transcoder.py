@@ -31,6 +31,8 @@ from administration.config import TRANSCODING_BTN_IND
 from administration.config import TRANSCODING_BTN_JA
 from administration.config import TRANSCODING_BTN_PT
 from administration.config import TRANSCODING_BTN_TH
+from administration.config import TRANSCODING_BTN_ZH-CN
+from administration.config import TRANSCODING_BTN_ZH-HK
 from administration.config import UCK_TIMEOUT
 
 

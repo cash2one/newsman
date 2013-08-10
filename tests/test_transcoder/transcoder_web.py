@@ -32,7 +32,7 @@ class Transcoders:
         """
         call each transcoder
         """
-        transcoded_simplr = transcoder.convert(language=language, link=url, transcoder='chengdujin', stdout=True)
+        transcoded_simplr = transcoder.convert(language=language, link=url, transcoder='uck', stdout=True)
         #transcoded_burify = transcoder.convert(language=language, link=url, transcoder='readability', stdout=True)
         #transcoded_baidu_uck = transcoder.convert(language=language, link=url, transcoder='uck', stdout=True)
         #return self._combine(transcoded_simplr, transcoded_burify, transcoded_baidu_uck)
