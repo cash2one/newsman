@@ -202,7 +202,7 @@ def _preprocess(link):
     return link[last_http_index:].strip()
 
 
-def convert(language="en", title=None, link=None, transcoder="chengdujin", relative_path=None):
+def convert(language="en", title=None, link=None, transcoder="chengdujin", relative_path=None, stdout=False):
     """
     select a transcoder
     send the link
@@ -210,6 +210,8 @@ def convert(language="en", title=None, link=None, transcoder="chengdujin", relat
     combine them with the template
     generate paths
     return news and images
+    * stdout is to print the result directly, no saving to physical disk related
+    * stdout default value False
     """
     if not language or not title or not link or not relative_path:
         raise Exception('ERROR: Method not well formed!')
@@ -224,9 +226,12 @@ def convert(language="en", title=None, link=None, transcoder="chengdujin", relat
     if content:
         # embed content in template
         news = _compose(language, title, content)
-        # create web/local path
-        web_path, local_path = _save(news, relative_path)
-        return web_path, local_path, content, images
+        if not stdout:
+            # create web/local path
+            web_path, local_path = _save(news, relative_path)
+            return web_path, local_path, content, images
+        else:
+            return news
     else:
         raise Exception("ERROR: Transcoder %s failed for %s" %
                         (transcoder, link))
