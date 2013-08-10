@@ -140,7 +140,7 @@ def _transcode(url, transcoders, language=None):
     
     if 'baidu_uck' in transcoders and 'baidu_uck' in threads:
         if threads['baidu_uck'].result:
-            uck_content, uck_images = threads['baidu_uck'].result
+            uck_title, uck_content, uck_images = threads['baidu_uck'].result
     if 'simplr' in transcoders and 'simplr' in threads:
         if threads['simplr'].result:
             simplr_title, simplr_content, simplr_images = threads['simplr'].result
@@ -151,6 +151,9 @@ def _transcode(url, transcoders, language=None):
     # use different combinations to create a news page with pictures
     if 'simplr' in transcoders or 'burify' in transcoders:
         if 'simplr' in transcoders and simplr_content:
+            # handle cases title cannot be retrieved
+            simplr_title = simplr_title if simplr_title else uck_title
+
             # if simplr found any image
             if simplr_images:
                 return simplr_title, simplr_content, simplr_images
@@ -160,6 +163,9 @@ def _transcode(url, transcoders, language=None):
             else:  # no image at all
                 return simplr_title, simplr_content, simplr_images
         elif 'burify' in transcoders and burify_content:
+            # handle cases title cannot be retrieved
+            burify_title = burify_title if burify_title else uck_title
+
             # if burify found any image
             if burify_images:
                 return burify_title, burify_content, burify_images
@@ -170,7 +176,7 @@ def _transcode(url, transcoders, language=None):
                 return burify_title, burify_content, burify_images
     # only uck
     if uck_content:
-        return "", uck_content, uck_images
+        return uck_title, uck_content, uck_images
     else:
         return None, None, None
 
@@ -219,7 +225,6 @@ def convert(language="en", title=None, link=None, transcoder="chengdujin", relat
     link = _preprocess(link)
     transcoders = _organize_transcoders(transcoder)
     title_new, content, images = _transcode(link, transcoders, language)
-    return title_new
     # in case uck cannot find a proper title
     if title_new:
         title = title_new
