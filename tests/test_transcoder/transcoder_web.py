@@ -18,13 +18,14 @@ from data_processor import transcoder
 
 render = web.template.render('templates/')
 urls = (
-    "/transcode/(.*)", "Transcoders"
+    "/transcode", "Transcoders"
 )
 
 
 class Transcoders:
-    def GET(self, url):
-        return _transcode(url)
+    def GET(self):
+        data = web.input(url="this should not be seen", language='no language')
+        return _transcode(data.language, data.url)
 
     
     def _transcode(self, language, url):
