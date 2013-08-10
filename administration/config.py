@@ -62,7 +62,7 @@ CATEGORY_REGISTRAR = 'categories'
 
 PARAGRAPH_CRITERIA = 40
 SUMMARY_LENGTH_LIMIT = 500
-UCK_TIMEOUT = 6 # 6 seconds timeout
+UCK_TIMEOUT = 3 # 3 seconds timeout
 
 LANGUAGES = ['en', 'th', 'ind', 'ja', 'pt', 'en-rIN', 'ar']
 MIN_IMAGE_SIZE = 150, 150
