@@ -48,7 +48,7 @@ class TranscoderAPI(threading.Thread):
     call a transcoder
     """
 
-    def __init__(self, url="this should not exist", transcoder="simplr", language=None):
+    def __init__(self, url="this_doesnt_exist", transcoder="simplr", language=None):
         threading.Thread.__init__(self)
         self.transcoder = transcoder
         self.url = url
@@ -86,8 +86,11 @@ def _compose(language, title, content):
     if not content or not language or not title:
         raise Exception("ERROR: Method not well formed!")
 
-    transcode_button = {'en': TRANSCODING_BTN_EN, 'ja': TRANSCODING_BTN_JA, 'th': TRANSCODING_BTN_TH, 'pt':
-                        TRANSCODING_BTN_PT, 'ind': TRANSCODING_BTN_IND, 'en-rIN': TRANSCODING_BTN_EN, 'ar': TRANSCODING_BTN_AR, 'zh-CN': TRANSCODING_BTN_ZH_CN, 'zh-HK': TRANSCODING_BTN_ZH_HK}
+    transcode_button = {'en': TRANSCODING_BTN_EN, 'ja': TRANSCODING_BTN_JA,
+                        'th': TRANSCODING_BTN_TH, 'pt': TRANSCODING_BTN_PT,
+                        'ind': TRANSCODING_BTN_IND, 'en-rIN': TRANSCODING_BTN_EN,
+                        'ar': TRANSCODING_BTN_AR, 'zh-CN': TRANSCODING_BTN_ZH_CN,
+                        'zh-HK': TRANSCODING_BTN_ZH_HK}
 
     # f reads the template
     f = None
