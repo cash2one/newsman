@@ -1,8 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# config.py contains most CONSTANTS in the project
-
+"""
+config.py contains most CONSTANTS in the project
+"""
 # @author chengdujin
 # @contact chengdujin@gmail.com
 # @created Jan 17, 2013
