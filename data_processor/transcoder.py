@@ -54,7 +54,7 @@ class TranscoderAPI(threading.Thread):
     call a transcoder
     """
 
-    def __init__(self, url="this_doesnt_exist", transcoder="simplr", language=None):
+    def __init__(self, url="no_url", transcoder="simplr", language=None):
         threading.Thread.__init__(self)
         self.transcoder = transcoder
         self.url = url
@@ -219,7 +219,8 @@ def _preprocess(link):
     return link[last_http_index:].strip()
 
 
-def convert(language="en", title=None, link=None, transcoder="chengdujin", relative_path=None, stdout=False):
+def convert(language="en", title=None, link=None, transcoder="chengdujin", 
+        relative_path=None, stdout=False):
     """
     select a transcoder
     send the link
