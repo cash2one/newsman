@@ -19,7 +19,7 @@ import calendar
 import chardet
 from datetime import datetime, timedelta
 import feedparser
-from administration.config import hparser
+from config import hparser
 import html2text
 import random
 import re
@@ -28,8 +28,8 @@ from image_processor import thumbnail
 import time
 import urllib2
 
-from administration.config import LANGUAGES
-from administration.config import MEMORY_RESTORATION_DAYS
+from config import LANGUAGES
+from config import MEMORY_RESTORATION_DAYS
 
 
 # TODO: add more boundary checks
