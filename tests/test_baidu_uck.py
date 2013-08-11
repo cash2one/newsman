@@ -1,12 +1,13 @@
-#!/usr/bin/env python 
-#-*- coding: utf-8 -*- 
+#!/usr/bin/env python
+#-*- coding: utf-8 -*-
 
-import sys 
-reload(sys) 
+import sys
+reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append("..")
 
 from data_processor import baidu_uck
+
 
 def _main(url):
     baidu_uck.convert(url)
@@ -14,4 +15,3 @@ def _main(url):
 if __name__ == "__main__":
     url = sys.argv[1]
     _main(url)
-
