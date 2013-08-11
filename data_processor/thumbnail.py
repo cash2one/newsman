@@ -16,6 +16,7 @@ import Image
 from cStringIO import StringIO
 import urllib2
 
+# CONSTANTS
 from config import MIN_IMAGE_SIZE
 from config import IMAGES_LOCAL_DIR
 from config import IMAGES_PUBLIC_DIR
