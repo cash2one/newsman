@@ -39,6 +39,7 @@ ToDos - High Priority
 8. 抓取Instagram/Flickr内容
 9. URL处理换成gruns/furl
 10. 测试标题提取使用Lassie(多国语言)
+11. qrconverter类似脚本使用docopt/docopt
 
 ToDos - Low Priority
 ---------------------
