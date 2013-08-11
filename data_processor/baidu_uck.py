@@ -30,7 +30,9 @@ from config import UCK_TRANSCODING
 # TODO: test the code
 # TODO: remove code that sanitize too much
 def _sanitize(content):
-    ''''''
+    """
+    modified uck content to suit news needs
+    """
     soup = BeautifulSoup(content.decode('utf-8', 'ignore'))
     # remove all <span>
     for span in soup.findAll('span'):
