@@ -1,8 +1,10 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# @author Jin Yuan
-# @contact jinyuan@baidu.com
+# config.py contains most CONSTANTS in the project
+
+# @author chengdujin
+# @contact chengdujin@gmail.com
 # @created Jan 17, 2013
 
 import sys
