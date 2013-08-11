@@ -13,10 +13,10 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
-from administration.config import IMAGES_LOCAL_DIR
-from administration.config import IMAGES_PUBLIC_DIR
-from administration.config import MIN_IMAGE_SIZE
-from administration.config import TRANSCODED_LOCAL_DIR
+from config import IMAGES_LOCAL_DIR
+from config import IMAGES_PUBLIC_DIR
+from config import MIN_IMAGE_SIZE
+from config import TRANSCODED_LOCAL_DIR
 from BeautifulSoup import BeautifulSoup
 import Image
 import re
