@@ -1,14 +1,15 @@
-#!/usr/bin/env python 
-#-*- coding: utf-8 -*- 
+#!/usr/bin/env python
+#-*- coding: utf-8 -*-
 
-import sys 
-reload(sys) 
+import sys
+reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
 from scraper import rss
 
-entries = rss.update(feed_link='http://news.yahoo.com/rss/us', feed_id='52020d6c680ccf157f3178f8', language='en')
+entries = rss.update(feed_link='http://news.yahoo.com/rss/us',
+                     feed_id='52020d6c680ccf157f3178f8', language='en')
 #entries = rss.update(feed_link='http://www.engadget.com/rss.xml', feed_id='52020d6c680ccf157f3178fc', language='en')
 #entries = rss.parse(feed_link='http://rss.cnn.com/rss/edition_sport.rss', language='en')
 #entries = rss.update(feed_link='http://news.yahoo.com/rss/sports', feed_id='52020d6c680ccf157f317902', language='en')
