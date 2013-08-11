@@ -21,8 +21,8 @@ from image_processor import thumbnail
 import re
 import urllib2
 
-from administration.config import UCK_TIMEOUT
-from administration.config import UCK_TRANSCODING
+from config import UCK_TIMEOUT
+from config import UCK_TRANSCODING
 
 
 # TODO: test the code
