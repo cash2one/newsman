@@ -13,10 +13,10 @@ sys.setdefaultencoding('UTF-8')
 
 import feedparser
 
-#file_suffix = '/home/work/bgm_news/tools/text_based_feeds/feed_lists/'
-file_suffix = '/home/jinyuan/Downloads/bgm_news/tools/text_based_feeds/feed_lists/'
-
-http_codes = {301:'RSS address is permanently moved to a new place.', 302:'RSS address is temporarily moved to a new place.', 304:'RSS has not published new content.', 410:'RSS server is gone.'}
+# CONSTANTS
+#FILE_SUFFIX = '/home/work/bgm_news/tools/text_based_feeds/feed_lists/'
+FILE_SUFFIX = '/home/jinyuan/Downloads/bgm_news/tools/text_based_feeds/feed_lists/'
+HTTP_CODES = {301:'RSS address is permanently moved to a new place.', 302:'RSS address is temporarily moved to a new place.', 304:'RSS has not published new content.', 410:'RSS server is gone.'}
 
 
 def _parse_task(line):
@@ -36,14 +36,14 @@ def _preview(language='en', rss_file=None):
     print '---------- retrieving feed information ----------'
     feeds_list = None
     if not rss_file:
-        feeds_list = open('%s%s_feeds_list.txt' % (file_suffix, language), 'r')
+        feeds_list = open('%s%s_feeds_list.txt' % (FILE_SUFFIX, language), 'r')
     else:
         feeds_list = open(rss_file, 'r')
     lines = feeds_list.readlines()
     feeds_list.close()
 
-    output = open('%s%s_preview.txt' % (file_suffix, language), 'w')
-    error = open('%s%s_error.txt' % (file_suffix, language), 'w')
+    output = open('%s%s_preview.txt' % (FILE_SUFFIX, language), 'w')
+    error = open('%s%s_error.txt' % (FILE_SUFFIX, language), 'w')
 
     for line in lines:
         if line.strip():
@@ -78,8 +78,8 @@ def _preview(language='en', rss_file=None):
                         output.write('\n')
                     else:
                         print feed_link
-                        print 'Problem: %i' % http_codes[feed.status]
-                        error.write('%s Problem: %s\n' % (feed_link, http_codes[feed.status]))
+                        print 'Problem: %i' % HTTP_CODES[feed.status]
+                        error.write('%s Problem: %s\n' % (feed_link, HTTP_CODES[feed.status]))
                         error.write('\n')
                 except Exception as k:
                     error.write('%s  Error: %s\n' % (feed_link, str(k)))
