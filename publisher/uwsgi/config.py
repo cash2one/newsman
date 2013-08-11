@@ -21,8 +21,6 @@ import redis
 #rclient = redis.StrictRedis(host='10.240.35.40', port=6379)
 rclient = redis.StrictRedis(host='127.0.0.1')
 
-from HTMLParser import HTMLParser
-hparser = HTMLParser()
 
 # CONSTANTS
 PUBLIC = 'http://mobile-global.baidu.com/news/%s'
