@@ -27,15 +27,15 @@ import random
 import rss_parser
 import time
 
-from administration.config import CATEGORY_IMAGE_SIZE
-from administration.config import DATABASE_REMOVAL_DAYS
-from administration.config import HOT_IMAGE_SIZE
-from administration.config import LANGUAGES
-from administration.config import MEMORY_EXPIRATION_DAYS
-from administration.config import MIN_IMAGE_SIZE
-from administration.config import THUMBNAIL_LANDSCAPE_SIZE
-from administration.config import THUMBNAIL_PORTRAIT_SIZE
-from administration.config import THUMBNAIL_STYLE
+from config import CATEGORY_IMAGE_SIZE
+from config import DATABASE_REMOVAL_DAYS
+from config import HOT_IMAGE_SIZE
+from config import LANGUAGES
+from config import MEMORY_EXPIRATION_DAYS
+from config import MIN_IMAGE_SIZE
+from config import THUMBNAIL_LANDSCAPE_SIZE
+from config import THUMBNAIL_PORTRAIT_SIZE
+from config import THUMBNAIL_STYLE
 
 
 def _value_added_process(entries=None, language=None, transcoder_type='chengdujin'):
