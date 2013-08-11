@@ -1,5 +1,5 @@
-#!/usr/bin/env python 
-#-*- coding: utf-8 -*- 
+#!/usr/bin/env python
+#-*- coding: utf-8 -*-
 
 # image_scraper is used to find all images from
 # a web page
@@ -8,8 +8,8 @@
 # @contact jinyuan@baidu.com
 # @created Jul. 23, 2013
 
-import sys 
-reload(sys) 
+import sys
+reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
@@ -69,7 +69,7 @@ def find_image(link=None):
 
     link = _link_process(link)
     image_normalized = normalize(link)
-    return image_normalized[0] if image_normalized else None 
+    return image_normalized[0] if image_normalized else None
 
 
 def find_images(content=None):
@@ -84,7 +84,7 @@ def find_images(content=None):
         # then its a file
         f = open(content, 'r')
         content = f.read()
-    
+
     soup = BeautifulSoup(content.decode('utf-8', 'ignore'))
     images_normalized = []
     images = soup.findAll('img')
@@ -94,7 +94,7 @@ def find_images(content=None):
             if image_normalized:
                 images_normalized.append(image_normalized)
     return images_normalized
-             
+
 
 def find_biggest_image(images=None):
     """
@@ -102,15 +102,15 @@ def find_biggest_image(images=None):
     """
     if not images:
         return None
-    
+
     biggest = None
     for image in images:
-        resolution_max = MIN_IMAGE_SIZE[0] * MIN_IMAGE_SIZE[1] 
+        resolution_max = MIN_IMAGE_SIZE[0] * MIN_IMAGE_SIZE[1]
         resolution_image = int(image['width']) * int(image['height'])
         if resolution_image > resolution_max:
             biggest = image
             resolution_max = resolution_image
-    return biggest 
+    return biggest
 
 
 def dedupe_images(images):
@@ -123,6 +123,7 @@ def dedupe_images(images):
         return None
 
     image_urls = []
+
     def _exists(image):
         """
         return boolean if image exists in list image_urls
@@ -133,8 +134,8 @@ def dedupe_images(images):
             return False
         else:
             return True
-    
-    return filter(lambda x:not _exists(x), images)
+
+    return filter(lambda x: not _exists(x), images)
 
 
 # TODO: boundary checker
@@ -182,11 +183,13 @@ def scale_image(image=None, size_expected=MIN_IMAGE_SIZE, resize_by_width=True, 
                 image_cropped = image_data.crop((left, top, right, bottom))
             # storing
             if image_cropped:
-                image_web_path = '%s%s.jpg' % (IMAGES_PUBLIC_DIR, relative_path)
-                image_local_path = '%s%s.jpg' % (IMAGES_LOCAL_DIR, relative_path)
+                image_web_path = '%s%s.jpg' % (
+                    IMAGES_PUBLIC_DIR, relative_path)
+                image_local_path = '%s%s.jpg' % (
+                    IMAGES_LOCAL_DIR, relative_path)
                 image_cropped = image_cropped.convert('RGB')
                 image_cropped.save(image_local_path, 'JPEG')
-                return {'url':image_web_path, 'width':width_expected, 'height':height_expected}, {'url':image_local_path, 'width':width_expected, 'height':height_expected}
+                return {'url': image_web_path, 'width': width_expected, 'height': height_expected}, {'url': image_local_path, 'width': width_expected, 'height': height_expected}
             else:
                 return None, None
         else:
@@ -215,7 +218,7 @@ def normalize(images):
             else:
                 if thumbnail.is_valid_image(image):
                     width, height = thumbnail.get_image_size(image)
-                    return {'url':image, 'width':width, 'height':height}
+                    return {'url': image, 'width': width, 'height': height}
             return None
         except IOError as k:
             return None
