@@ -14,11 +14,12 @@ sys.path.append('..')
 
 from config import Collection
 from config import db
+
+# CONSTANTS
 from config import FEED_REGISTRAR
 from config import CATEGORY_REGISTRAR
-
-#file_suffix = '/home/work/global-mobile-news/alert_maintenance/maintenance/'
-file_suffix = '/home/jinyuan/Downloads/global-mobile-news/alert_maintenance/maintenance/'
+#FILE_SUFFIX = '/home/work/bgm_news/tools/text_based_feeds/feed_lists/'
+FILE_SUFFIX = '/home/jinyuan/Downloads/bgm_news/tools/text_based_feeds/feed_lists/'
 
 
 def _parse_task(line):
@@ -38,7 +39,7 @@ def _convert(language='en'):
     turn text-based feed infor into database items
     """
     # read in file content
-    feeds_list = open('%s%s_feeds_list.txt' % (file_suffix, language), 'r')
+    feeds_list = open('%s%s_feeds_list.txt' % (FILE_SUFFIX, language), 'r')
     lines = feeds_list.readlines()
     feeds_list.close()
 
