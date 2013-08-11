@@ -13,7 +13,7 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
-from administration import database as db_feeds
+from feed_manager import database as db_feeds
 import calendar
 import database as db_news
 from datetime import datetime, timedelta
