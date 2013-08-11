@@ -19,8 +19,8 @@ from scraper import rss
 import task
 import time
 
-from administration.config import FEED_REGISTRAR
-from administration.config import LANGUAGES
+from config import FEED_REGISTRAR
+from config import LANGUAGES
 
 
 def _read_source(d=None, feed_link=None, language=None, categories=None):
