@@ -26,7 +26,7 @@ def _convert(data, output):
     img = qr.make_image()
     img.save(output, 'PNG')
     # for debugging
-    print 'done!'
+    print 'QR image saved to %s!' % output
     
     
 if __name__ == "__main__":

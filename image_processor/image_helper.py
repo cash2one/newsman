@@ -22,7 +22,7 @@ import Image
 import re
 import os
 from cStringIO import StringIO
-import thumbnail
+from image_processor import thumbnail
 import urllib2
 import urlparse
 
