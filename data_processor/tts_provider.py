@@ -18,9 +18,9 @@ import tinysegmenter
 import threading
 import urllib2
 
-from administration.config import MEDIA_LOCAL_DIR
-from administration.config import MEDIA_PUBLIC_DIR
-from administration.config import LANGUAGES
+from config import MEDIA_LOCAL_DIR
+from config import MEDIA_PUBLIC_DIR
+from config import LANGUAGES
 
 if not os.path.exists(MEDIA_LOCAL_DIR):
     os.mkdir(MEDIA_LOCAL_DIR)
