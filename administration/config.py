@@ -5,7 +5,7 @@
 # @contact jinyuan@baidu.com
 # @created Jan 17, 2013
 
-import sys 
+import sys
 reload(sys)
 sys.setdefaultencoding('UTF-8')
 
@@ -41,7 +41,8 @@ MEDIA_PUBLIC_DIR = PUBLIC % 'mid/'
 NEWS_TEMPLATE = LOCAL % 'template/index.html'
 NEWS_TEMPLATE_ARABIC = LOCAL % 'template/index_arabic.html'
 UCK_TRANSCODING = 'http://gate.baidu.com/tc?m=8&from=bdpc_browser&src='
-TRANSCODED_ENCODING = '<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>\n'   # lijun
+# lijun
+TRANSCODED_ENCODING = '<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>\n'
 
 TRANSCODING_BTN_EN = 'Original page'
 TRANSCODING_BTN_PT = 'Página original'
@@ -64,7 +65,7 @@ CATEGORY_REGISTRAR = 'categories'
 
 PARAGRAPH_CRITERIA = 40
 SUMMARY_LENGTH_LIMIT = 500
-UCK_TIMEOUT = 3 # 3 seconds timeout
+UCK_TIMEOUT = 3  # 3 seconds timeout
 
 LANGUAGES = ['en', 'th', 'ind', 'ja', 'pt', 'en-rIN', 'ar', 'zh-CN', 'zh-HK']
 MIN_IMAGE_SIZE = 150, 150
