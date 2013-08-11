@@ -1,5 +1,5 @@
-#!/usr/bin/env python 
-#-*- coding: utf-8 -*- 
+#!/usr/bin/env python
+#-*- coding: utf-8 -*-
 
 # database works to manage interaction with the feed database
 #
@@ -7,8 +7,8 @@
 # @contact jinyuan@baidu.com
 # @created Jul. 29, 2013
 
-import sys 
-reload(sys) 
+import sys
+reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append("..")
 
@@ -26,9 +26,9 @@ def get(feed_id=None, feed_link=None, language=None):
     """
     col = Collection(db, FEED_REGISTRAR)
     if feed_id:
-        item = col.find_one({'_id':ObjectId(feed_id)})
+        item = col.find_one({'_id': ObjectId(feed_id)})
     else:
-        item = col.find_one({'feed_link':feed_link, 'language':language})
+        item = col.find_one({'feed_link': feed_link, 'language': language})
     return item
 
 
@@ -44,7 +44,7 @@ def update(feed_id, **kwargs):
             item.update(kwargs)
         item['updated_times'] = int(item['updated_times']) + 1
         item['latest_update'] = time.asctime(time.gmtime())
-        col.update({'_id':ObjectId(feed_id)}, item)
+        col.update({'_id': ObjectId(feed_id)}, item)
     else:
         raise Exception("ERROR: No such a _id %s in feeds" % feed_id)
 
@@ -59,7 +59,8 @@ def save(feed_info=None):
     # if the collection does not exist, it will be created
     col = Collection(db, FEED_REGISTRAR)
     # make a record in the feeds table
-    item = col.find_one({'feed_link':feed_info['feed_link'], 'language':feed_info['language']})
+    item = col.find_one(
+        {'feed_link': feed_info['feed_link'], 'language': feed_info['language']})
     if not item:
         feed_info['updated_times'] = 0
         feed_info['latest_update'] = None
