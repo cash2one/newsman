@@ -1,6 +1,13 @@
 #!/usr/bin/env python 
 #-*- coding: utf-8 -*- 
 
+"""
+"""
+# @author chengdujin
+# @contact chengdujin@gmail.com
+# @created Jul., 2013
+
+
 import sys 
 reload(sys) 
 sys.setdefaultencoding('UTF-8')
@@ -8,9 +15,12 @@ sys.path.append('..')
 
 import os
 import re
+
+# CONSTANTS
 from config import LOCAL
 HOME = LOCAL % ''
 OUTPUT = LOCAL % 'README.md'
+
 
 def docs_output(docs, output):
     """

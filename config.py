@@ -28,19 +28,19 @@ rclient = redis.StrictRedis(host='127.0.0.1')
 # CONSTANTS
 PUBLIC = 'http://mobile-global.baidu.com/news/%s'
 #LOCAL = '/home/work/STATIC/news/%s'
-LOCAL = '/home/jinyuan/Downloads/news/%s'
+LOCAL = '/home/jinyuan/Downloads/%s'
 
-TRANSCODED_LOCAL_DIR = LOCAL % 'ts/'
+TRANSCODED_LOCAL_DIR = LOCAL % 'news/ts/'
 TRANSCODED_PUBLIC_DIR = PUBLIC % 'ts/'
 
-IMAGES_LOCAL_DIR = LOCAL % 'img/'
+IMAGES_LOCAL_DIR = LOCAL % 'news/img/'
 IMAGES_PUBLIC_DIR = PUBLIC % 'img/'
 
-MEDIA_LOCAL_DIR = LOCAL % 'mid/'
+MEDIA_LOCAL_DIR = LOCAL % 'news/mid/'
 MEDIA_PUBLIC_DIR = PUBLIC % 'mid/'
 
-NEWS_TEMPLATE = LOCAL % 'templates/index.html'
-NEWS_TEMPLATE_ARABIC = LOCAL % 'templates/index_arabic.html'
+NEWS_TEMPLATE = LOCAL % 'news/templates/index.html'
+NEWS_TEMPLATE_ARABIC = LOCAL % 'news/templates/index_arabic.html'
 UCK_TRANSCODING = 'http://gate.baidu.com/tc?m=8&from=bdpc_browser&src='
 TRANSCODED_ENCODING = '<meta http-equiv="Content-Type" content="text/html; \
 charset=utf-8"/>\n'
