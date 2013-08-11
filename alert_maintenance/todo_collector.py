@@ -8,7 +8,7 @@ sys.path.append('..')
 
 import os
 import re
-from administration.config import LOCAL
+from config import LOCAL
 HOME = LOCAL % ''
 OUTPUT = LOCAL % 'README.md'
 
