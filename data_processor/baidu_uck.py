@@ -19,7 +19,6 @@ from BeautifulSoup import NavigableString
 from BeautifulSoup import Tag
 from data_processor import image_helper
 from data_processor import thumbnail
-import re
 import urllib2
 
 # CONSTANTS
@@ -154,6 +153,7 @@ def _transcode(link):
         # free data from html encoding
         return urllib2.unquote(f.read())
     except IOError as k:
+        print k
         raise Exception('ERROR: Transcoder %s failed for %s' % ('UCK', link))
 
 
