@@ -15,13 +15,10 @@ sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
 import nltk
-from nltk.tokenize import RegexpTokenizer
 import os
-import random
 import re
 import string
 import subprocess
-import time
 import tinysegmenter
 import threading
 import urllib2
@@ -198,8 +195,8 @@ def _query_segment(language='en', query='Service provided by Baidu'):
     print '---------- after some serious thoughts, we get these: -----------'
     for segment in segments:
         print segment
-    return segments
     print '----------                     :                      -----------'
+    return segments
 
 
 # TODO: Test! Test! Test!
@@ -235,8 +232,8 @@ def _download(language='en', query='Service provided by Baidu', \
                 raise Exception
         out.close()
         return tmp_file
-    except Exception as e:
-        print '!Exception: removing file ...'
+    except Exception as k:
+        print '!Exception: removing file ...', k
         if os.path.exists(tmp_file):
             os.remove(tmp_file)
         return None
