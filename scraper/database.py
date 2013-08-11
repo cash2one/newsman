@@ -1,8 +1,8 @@
-#!/usr/bin/env python 
-#-*- coding: utf-8 -*- 
+#!/usr/bin/env python
+#-*- coding: utf-8 -*-
 
-import sys 
-reload(sys) 
+import sys
+reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
@@ -31,7 +31,7 @@ def dedup(entries=None, language=None):
             continue
         else:
             entries_new.append(entry)
-    return entries_new if entries_new else None 
+    return entries_new if entries_new else None
 
 
 # TODO: break update_database into several shorter mthods
@@ -53,6 +53,8 @@ def update(entries=None, language=None):
     return entries
 
 # TODO: write docs
+
+
 def update_feed():
     """
     docs needed!
