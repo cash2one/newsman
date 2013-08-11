@@ -1,5 +1,5 @@
-#!/usr/bin/env python 
-#-*- coding: utf-8 -*- 
+#!/usr/bin/env python
+#-*- coding: utf-8 -*-
 
 # feed_preview works to get entry and feed structure
 #
@@ -7,8 +7,8 @@
 # @contact jinyuan@baidu.com
 # @created Jul. 21, 2013
 
-import sys 
-reload(sys) 
+import sys
+reload(sys)
 sys.setdefaultencoding('UTF-8')
 
 import feedparser
@@ -16,7 +16,8 @@ import feedparser
 # CONSTANTS
 #FILE_SUFFIX = '/home/work/bgm_news/tools/text_based_feeds/feed_lists/'
 FILE_SUFFIX = '/home/jinyuan/Downloads/bgm_news/tools/text_based_feeds/feed_lists/'
-HTTP_CODES = {301:'RSS address is permanently moved to a new place.', 302:'RSS address is temporarily moved to a new place.', 304:'RSS has not published new content.', 410:'RSS server is gone.'}
+HTTP_CODES = {301: 'RSS address is permanently moved to a new place.', 302:
+              'RSS address is temporarily moved to a new place.', 304: 'RSS has not published new content.', 410: 'RSS server is gone.'}
 
 
 def _parse_task(line):
@@ -28,6 +29,7 @@ def _parse_task(line):
         return task[0], task[1], task[2], task[3]
     else:
         return None
+
 
 def _preview(language='en', rss_file=None):
     """
@@ -65,7 +67,7 @@ def _preview(language='en', rss_file=None):
                             print 'Okay! But it has no TITLE'
                             output.write('::::: %s :::::\n' % feed.feed.link)
                         for f in feed:
-                            output.write(f + '\n')            
+                            output.write(f + '\n')
                             if 'etag' in f or 'modified' in f or 'encoding' in f:
                                 output.write("    %s\n" % feed[f])
                         output.write('-----------------\n')
@@ -74,12 +76,14 @@ def _preview(language='en', rss_file=None):
                             for e in feed.entries[0]:
                                 output.write(e + '\n')
                                 if 'author' in e or 'tag' in e or 'media' in e or 'thumbnail' in e or e == 'source' or 'link' in e or 'summary' in e or 'comment' in e or e == 'content':
-                                    output.write('    %s\n' % feed.entries[0][e])
+                                    output.write(
+                                        '    %s\n' % feed.entries[0][e])
                         output.write('\n')
                     else:
                         print feed_link
                         print 'Problem: %i' % HTTP_CODES[feed.status]
-                        error.write('%s Problem: %s\n' % (feed_link, HTTP_CODES[feed.status]))
+                        error.write('%s Problem: %s\n' %
+                                    (feed_link, HTTP_CODES[feed.status]))
                         error.write('\n')
                 except Exception as k:
                     error.write('%s  Error: %s\n' % (feed_link, str(k)))
