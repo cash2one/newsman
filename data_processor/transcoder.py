@@ -15,25 +15,25 @@ sys.path.append('..')
 
 import baidu_uck
 import burify
-from administration.config import hparser
+from config import hparser
 from image_processor import image_helper
 import os
 import simplr
 import threading
 
-from administration.config import NEWS_TEMPLATE
-from administration.config import NEWS_TEMPLATE_ARABIC
-from administration.config import TRANSCODED_LOCAL_DIR
-from administration.config import TRANSCODED_PUBLIC_DIR
-from administration.config import TRANSCODING_BTN_AR
-from administration.config import TRANSCODING_BTN_EN
-from administration.config import TRANSCODING_BTN_IND
-from administration.config import TRANSCODING_BTN_JA
-from administration.config import TRANSCODING_BTN_PT
-from administration.config import TRANSCODING_BTN_TH
-from administration.config import TRANSCODING_BTN_ZH_CN
-from administration.config import TRANSCODING_BTN_ZH_HK
-from administration.config import UCK_TIMEOUT
+from config import NEWS_TEMPLATE
+from config import NEWS_TEMPLATE_ARABIC
+from config import TRANSCODED_LOCAL_DIR
+from config import TRANSCODED_PUBLIC_DIR
+from config import TRANSCODING_BTN_AR
+from config import TRANSCODING_BTN_EN
+from config import TRANSCODING_BTN_IND
+from config import TRANSCODING_BTN_JA
+from config import TRANSCODING_BTN_PT
+from config import TRANSCODING_BTN_TH
+from config import TRANSCODING_BTN_ZH_CN
+from config import TRANSCODING_BTN_ZH_HK
+from config import UCK_TIMEOUT
 
 
 # create a local dir for transcoded content if dir does not exist
