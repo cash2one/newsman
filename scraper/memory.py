@@ -6,8 +6,8 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
-from administration.config import rclient
-from administration.config import MEMORY_EXPIRATION_DAYS
+from config import rclient
+from config import MEMORY_EXPIRATION_DAYS
 
 
 # TODO: add more comments
