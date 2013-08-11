@@ -36,6 +36,12 @@ from config import TRANSCODING_BTN_ZH_CN
 from config import TRANSCODING_BTN_ZH_HK
 from config import UCK_TIMEOUT
 
+TRANSCODE_BUTTON = {'en': TRANSCODING_BTN_EN, 'ja': TRANSCODING_BTN_JA,
+                    'th': TRANSCODING_BTN_TH, 'pt': TRANSCODING_BTN_PT,
+                    'ind': TRANSCODING_BTN_IND, 'en-rIN': TRANSCODING_BTN_EN,
+                    'ar': TRANSCODING_BTN_AR, 'zh-CN': TRANSCODING_BTN_ZH_CN,
+                    'zh-HK': TRANSCODING_BTN_ZH_HK}
+
 
 # create a local dir for transcoded content if dir does not exist
 if not os.path.exists(TRANSCODED_LOCAL_DIR):
@@ -86,12 +92,6 @@ def _compose(language, title, content):
     if not content or not language or not title:
         raise Exception("ERROR: Method not well formed!")
 
-    transcode_button = {'en': TRANSCODING_BTN_EN, 'ja': TRANSCODING_BTN_JA,
-                        'th': TRANSCODING_BTN_TH, 'pt': TRANSCODING_BTN_PT,
-                        'ind': TRANSCODING_BTN_IND, 'en-rIN': TRANSCODING_BTN_EN,
-                        'ar': TRANSCODING_BTN_AR, 'zh-CN': TRANSCODING_BTN_ZH_CN,
-                        'zh-HK': TRANSCODING_BTN_ZH_HK}
-
     # f reads the template
     f = None
     if language == 'ar':
@@ -102,7 +102,7 @@ def _compose(language, title, content):
     if f:
         template = str(f.read())
         f.close()
-        return template % (title, title, content, transcode_button[language])
+        return template % (title, title, content, TRANSCODE_BUTTON[language])
     else:
         raise Exception("ERROR: Cannot find a template!")
 
