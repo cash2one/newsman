@@ -13,20 +13,21 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
-from feed_manager import database as db_feeds
 import calendar
-import database as db_news
 from datetime import datetime, timedelta
 from data_processor import summarizer
 from data_processor import transcoder
 from data_processor import tts_provider
-from image_processor import image_helper
-from image_processor import thumbnail
-import memory
+from data_processor import image_helper
+from data_processor import thumbnail
+from feed_manager import database as db_feeds
 import random
-import rss_parser
+from scraper import database as db_news
+from scraper import memory
+from scraper import rss_parser
 import time
 
+# CONSTANTS
 from config import CATEGORY_IMAGE_SIZE
 from config import DATABASE_REMOVAL_DAYS
 from config import HOT_IMAGE_SIZE
