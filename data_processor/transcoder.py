@@ -13,13 +13,13 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
-from config import hparser
 from data_processor import baidu_uck
 from data_processor import burify
 from data_processor import image_helper
 from data_processor import simplr
 import os
 import threading
+import urllib2
 
 # CONSTANTS
 from config import NEWS_TEMPLATE
@@ -74,7 +74,7 @@ def _save(data, path):
     web_path = '%s%s.html' % (TRANSCODED_PUBLIC_DIR, path)
 
     f = open(local_path, 'w')
-    f.write(hparser.unescape(data))
+    f.write(urllib2.unquote(data))
     f.close()
     return web_path, local_path
 
