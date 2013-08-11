@@ -1,9 +1,0 @@
-http://rss.cnn.com/rss/edition_entertainment.rss
-  Error: object has no attribute 'status'
-
-http://rss.cnn.com/rss/edition_travel.rss
-  Error: object has no attribute 'status'
-
-http://rss.cnn.com/rss/edition_sport.rss
-  Error: object has no attribute 'status'
-

@@ -1,3 +1,0 @@
-http://g1.globo.com/dynamo/rss2.xml
-  Error: %d format: a number is required, not str
-
