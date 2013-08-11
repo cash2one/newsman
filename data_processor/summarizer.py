@@ -1,14 +1,14 @@
-#!/usr/bin/env python 
-#-*- coding: utf-8 -*- 
+#!/usr/bin/env python
+#-*- coding: utf-8 -*-
 
 # summarizer extracts summary or first paragraph from news
 #
 # @author Jin Yuan
 # @contact jinyuan@baidu.com
-# #created Jul. 29, 2013
+# created Jul. 29, 2013
 
-import sys 
-reload(sys) 
+import sys
+reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
@@ -31,12 +31,12 @@ def _get_shorter_text(content, language, limit):
     # data should be processed as unicode, so
     if isinstance(content, str):
         content = content.decode(chardet.detect(content)['encoding'], 'ignore')
-    
+
     # break text by sentence
     if language.startswith('zh') or language == 'ja':
         jp_sent_tokenizer = nltk.RegexpTokenizer(u'[^!?.！？。．]*[!?.！？。]*')
         sentences = jp_sent_tokenizer.tokenize(content)
-    else: # supports latin-based, thai and arabic
+    else:  # supports latin-based, thai and arabic
         sentences = nltk.sent_tokenize(content)
 
     enough_sentences = u""
@@ -119,6 +119,7 @@ def extract(summary, transcoded, language):
     if transcoded:
         result_first_paragraph = _get_first_paragraph(transcoded, language)
     #    if result_first_paragraph:
-    #        print '  FIRST PARAGRAPH:', len(result_first_paragraph), result_first_paragraph
+    # print '  FIRST PARAGRAPH:', len(result_first_paragraph),
+    # result_first_paragraph
 
     return result_summary if result_summary else result_first_paragraph if result_first_paragraph else None
