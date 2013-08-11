@@ -12,7 +12,7 @@ sys.setdefaultencoding('UTF-8')
 sys.path.append('/home/work/uwsgi/news-uwsgi')
 
 import cgi
-import interface
+from uwsgi import interface
 import json
 
 
