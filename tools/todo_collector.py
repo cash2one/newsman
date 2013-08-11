@@ -18,8 +18,8 @@ import re
 
 # CONSTANTS
 from config import LOCAL
-HOME = LOCAL % ''
-OUTPUT = LOCAL % 'README.md'
+HOME = LOCAL % 'bgm_news'
+OUTPUT = LOCAL % 'bgm_news/README.md'
 
 
 def docs_output(docs, output):
