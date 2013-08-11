@@ -1,5 +1,5 @@
-#!/usr/bin/env python 
-#-*- coding: utf-8 -*- 
+#!/usr/bin/env python
+#-*- coding: utf-8 -*-
 
 # simplr is a simplified readability implementation in python
 #
@@ -29,28 +29,27 @@ import urlparse
 class Simplr:
     regexps = {
         'unlikely_candidates': re.compile("combx|comment|community|disqus|extra|foot|header|menu|"
-                                         "remark|rss|shoutbox|sidebar|sponsor|ad-break|agegate|"
-                                         "pagination|pager|popup|tweet|twitter",re.I),
+                                          "remark|rss|shoutbox|sidebar|sponsor|ad-break|agegate|"
+                                          "pagination|pager|popup|tweet|twitter", re.I),
         'ok_maybe_its_a_candidate': re.compile("and|article|body|column|main|shadow", re.I),
         'positive': re.compile("article|body|content|entry|hentry|main|page|pagination|post|text|"
-                               "blog|story",re.I),
+                               "blog|story", re.I),
         'negative': re.compile("combx|comment|com|contact|foot|footer|footnote|masthead|media|"
                                "meta|outbrain|promo|related|scroll|shoutbox|sidebar|sponsor|"
                                "shopping|tags|tool|widget", re.I),
         'extraneous': re.compile("print|archive|comment|discuss|e[\-]?mail|share|reply|all|login|"
-                                 "sign|single",re.I),
-        'div_to_p_elements': re.compile("<(a|blockquote|dl|div|img|ol|p|pre|table|ul)",re.I),
-        'replace_brs': re.compile("(<br[^>]*>[ \n\r\t]*){2,}",re.I),
-        'replace_fonts': re.compile("<(/?)font[^>]*>",re.I),
-        'trim': re.compile("^\s+|\s+$",re.I),
-        'normalize': re.compile("\s{2,}",re.I),
-        'kill_breaks': re.compile("(<br\s*/?>(\s|&nbsp;?)*)+",re.I),
-        'videos': re.compile("http://(www\.)?(youtube|vimeo)\.com",re.I),
-        'skip_footbote_link': re.compile("^\s*(\[?[a-z0-9]{1,2}\]?|^|edit|citation needed)\s*$",re.I),
-        'next_link': re.compile("(next|weiter|continue|>([^\|]|$)|»([^\|]|$))",re.I),
-        'prev_link': re.compile("(prev|earl|old|new|<|«)",re.I)
+                                 "sign|single", re.I),
+        'div_to_p_elements': re.compile("<(a|blockquote|dl|div|img|ol|p|pre|table|ul)", re.I),
+        'replace_brs': re.compile("(<br[^>]*>[ \n\r\t]*){2,}", re.I),
+        'replace_fonts': re.compile("<(/?)font[^>]*>", re.I),
+        'trim': re.compile("^\s+|\s+$", re.I),
+        'normalize': re.compile("\s{2,}", re.I),
+        'kill_breaks': re.compile("(<br\s*/?>(\s|&nbsp;?)*)+", re.I),
+        'videos': re.compile("http://(www\.)?(youtube|vimeo)\.com", re.I),
+        'skip_footbote_link': re.compile("^\s*(\[?[a-z0-9]{1,2}\]?|^|edit|citation needed)\s*$", re.I),
+        'next_link': re.compile("(next|weiter|continue|>([^\|]|$)|»([^\|]|$))", re.I),
+        'prev_link': re.compile("(prev|earl|old|new|<|«)", re.I)
     }
-
 
     def __init__(self, url, language):
         """
@@ -76,8 +75,8 @@ class Simplr:
                 raise Exception("ERROR: Cannot read %s" % url)
 
         self.data = _prepare_link(self.url)
-        self.data = self.regexps['replace_brs'].sub("</p><p>",self.data)
-        self.data = self.regexps['replace_fonts'].sub("<\g<1>span>",self.data)
+        self.data = self.regexps['replace_brs'].sub("</p><p>", self.data)
+        self.data = self.regexps['replace_fonts'].sub("<\g<1>span>", self.data)
 
         self.html = BeautifulSoup(self.data)
         self._remove_script()
@@ -89,21 +88,17 @@ class Simplr:
         self.content = self._get_article()
         self.images = self._get_images()
 
-
     def _remove_script(self):
         for elem in self.html.findAll("script"):
             elem.extract()
-
 
     def _remove_style(self):
         for elem in self.html.findAll("style"):
             elem.extract()
 
-
     def _remove_link(self):
         for elem in self.html.findAll("link"):
             elem.extract()
-
 
     def _get_images(self):
         if self.content:
@@ -112,14 +107,13 @@ class Simplr:
         else:
             return None
 
-
     def _get_article(self):
         for elem in self.html.findAll(True):
-            unlikely_match_string = elem.get('id','') + elem.get('class','')
+            unlikely_match_string = elem.get('id', '') + elem.get('class', '')
 
             if self.regexps['unlikely_candidates'].search(unlikely_match_string) and \
                 not self.regexps['ok_maybe_its_a_candidate'].search(unlikely_match_string) and \
-                elem.name != 'body':
+                    elem.name != 'body':
                 elem.extract()
                 continue
 
@@ -140,26 +134,30 @@ class Simplr:
             grand_parent_hash = hash(str(grand_parent_node))
 
             if parent_hash not in self.candidates:
-                self.candidates[parent_hash] = self._initialize_node(parent_node)
+                self.candidates[
+                    parent_hash] = self._initialize_node(parent_node)
 
             if grand_parent_node and grand_parent_hash not in self.candidates:
-                self.candidates[grand_parent_hash] = self._initialize_node(grand_parent_node)
+                self.candidates[grand_parent_hash] = self._initialize_node(
+                    grand_parent_node)
 
             content_score = 1
             content_score += inner_text.count(',')
             content_score += inner_text.count(u'，')
-            content_score +=  min(math.floor(len(inner_text) / 100), 3)
+            content_score += min(math.floor(len(inner_text) / 100), 3)
 
             self.candidates[parent_hash]['score'] += content_score
 
             if grand_parent_node:
-                self.candidates[grand_parent_hash]['score'] += content_score / 2
+                self.candidates[grand_parent_hash][
+                    'score'] += content_score / 2
 
         top_candidate = None
 
         for key in self.candidates:
             self.candidates[key]['score'] = self.candidates[key]['score'] * \
-                                            (1 - self._get_link_density(self.candidates[key]['node']))
+                (1 - self._get_link_density(
+                 self.candidates[key]['node']))
             if not top_candidate or self.candidates[key]['score'] > top_candidate['score']:
                 top_candidate = self.candidates[key]
 
@@ -168,7 +166,6 @@ class Simplr:
             content = top_candidate['node']
             content = self._clean_article(content)
         return content
-
 
     def _clean_article(self, content):
         self._clean_style(content)
@@ -191,11 +188,10 @@ class Simplr:
         content = self.regexps['kill_breaks'].sub("<br />", content)
         return content
 
-
-    def _clean(self,e ,tag):
+    def _clean(self, e, tag):
         target_list = e.findAll(tag)
         is_embed = 0
-        if tag =='object' or tag == 'embed':
+        if tag == 'object' or tag == 'embed':
             is_embed = 1
 
         for target in target_list:
@@ -210,13 +206,11 @@ class Simplr:
                 continue
             target.extract()
 
-
     def _clean_style(self, e):
         for elem in e.findAll(True):
             del elem['class']
             del elem['id']
             del elem['style']
-
 
     def _clean_conditionally(self, e, tag):
         tags_list = e.findAll(tag)
@@ -234,7 +228,7 @@ class Simplr:
             else:
                 p = len(node.findAll("p"))
                 img = len(node.findAll("img"))
-                li = len(node.findAll("li"))-100
+                li = len(node.findAll("li")) - 100
                 input = len(node.findAll("input"))
                 embed_count = 0
                 embeds = node.findAll("embed")
@@ -249,9 +243,9 @@ class Simplr:
                     to_remove = True
                 elif li > p and tag != "ul" and tag != "ol":
                     to_remove = True
-                elif input > math.floor(p/3):
+                elif input > math.floor(p / 3):
                     to_remove = True
-                elif content_length < 25 and (img==0 or img>2):
+                elif content_length < 25 and (img == 0 or img > 2):
                     to_remove = True
                 elif weight < 25 and link_density > 0.2:
                     to_remove = True
@@ -263,7 +257,6 @@ class Simplr:
                 if to_remove:
                     node.extract()
 
-
     def _get_title(self):
         title = ''
         try:
@@ -271,7 +264,6 @@ class Simplr:
         except:
             pass
         return title
-
 
     def _get_short_title(self):
         title = ''
@@ -319,22 +311,20 @@ class Simplr:
             pass
         return title
 
-
     def _initialize_node(self, node):
         content_score = 0
 
         if node.name == 'div':
-            content_score += 5;
+            content_score += 5
         elif node.name == 'blockquote':
-            content_score += 3;
+            content_score += 3
         elif node.name == 'form':
-            content_score -= 3;
+            content_score -= 3
         elif node.name == 'th':
-            content_score -= 5;
+            content_score -= 5
 
         content_score += self._get_class_weight(node)
-        return {'score':content_score, 'node': node}
-
+        return {'score': content_score, 'node': node}
 
     def _get_class_weight(self, node):
         weight = 0
@@ -352,7 +342,6 @@ class Simplr:
 
         return weight
 
-
     def _get_link_density(self, node):
         links = node.findAll('a')
         text_length = len(node.text)
@@ -364,7 +353,6 @@ class Simplr:
             link_length += len(link.text)
 
         return link_length / text_length
-
 
     def _fix_images_path(self, node):
         imgs = node.findAll('img')
@@ -379,8 +367,9 @@ class Simplr:
 
                 new_src_arr = urlparse.urlparse(new_src)
                 new_path = posixpath.normpath(new_src_arr[2])
-                new_src = urlparse.urlunparse((new_src_arr.scheme, new_src_arr.netloc, new_path,
-                                              new_src_arr.params, new_src_arr.query, new_src_arr.fragment))
+                new_src = urlparse.urlunparse(
+                    (new_src_arr.scheme, new_src_arr.netloc, new_path,
+                     new_src_arr.params, new_src_arr.query, new_src_arr.fragment))
                 img['src'] = new_src
 
 
