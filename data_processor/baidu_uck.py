@@ -16,11 +16,12 @@ sys.path.append('..')
 from BeautifulSoup import BeautifulSoup
 from BeautifulSoup import NavigableString
 from BeautifulSoup import Tag
-from image_processor import image_helper
-from image_processor import thumbnail
+from data_processor import image_helper
+from data_processor import thumbnail
 import re
 import urllib2
 
+# CONSTANTS
 from config import UCK_TIMEOUT
 from config import UCK_TRANSCODING
 
