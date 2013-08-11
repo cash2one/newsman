@@ -76,70 +76,72 @@ Dones
 
 ToDos - Generated from docs
 --------------------------
-* `image_processor/image_helper.py`
-    1. Line 94: scale_image
-        - boundary checker
+* `data_processor/transcoder.py`
+    1. Line 127: _transcode
+        - add http string checkers
+
+* `scraper/rss.py`
+    1. Line 162: update
+        - code to remove added items if things suck at database/memory
+
+* `publisher/uwsgi/inquirer.py`
+    1. Line 26: get_categories_by_language
+        - need to refactor this method after sorting out feed.py
+        - added database inquire if language cannot be found in memory
+
+* `data_processor/tts_provider.py`
+    1. Line 98: _query_segment
+        - write some boundary checkers
+        - determine how do these languages separate words
+        - get encoding of a feed. use that if indicated, else 'utf-8'
+    2. Line 205: _download
+        - Test! Test! Test!
+        - boundary checkers
+        - write docs!
+    3. Line 67: google
+        - write docs
+        - rename the file and variables
+        - remove accepting command line calls
+
+* `scraper/rss_parser.py`
+    1. Line 217: parse
+        - boundary checkers
+        - update parsing info to feed database
+    2. Line 39: _read_entry
+        - add more boundary checks
+        - [register unsupported date format](http://pythonhosted.org/feedparser/date-parsing.html#advanced-date)
+        - add tags
+        - add thumbnail limit(downward)
+
+* `data_processor/baidu_uck.py`
+    1. Line 31: _sanitize
+        - test the code
+        - remove code that sanitize too much
 
 * `scraper/database.py`
     1. Line 38: update
         - break update_database into several shorter mthods
-    2. Line 56: update_feed
+    2. Line 58: update_feed
         - write docs
 
-* `interface/news/interface.py`
-    1. Line 32: get_categories_by_language
-        - need to refactor this method after sorting out feed.py
-        - added database inquire if language cannot be found in memory
+* `data_processor/image_helper.py`
+    1. Line 145: scale_image
+        - boundary checker
 
-* `data_processor/transcoder.py`
-    1. Line 94: uck_reformat
-        - extract image_list part into a new method
-    2. Line 202: transcode
-        - should separate big_images from transcoding
-        - return an exception when fucked up
-
-* `administration/feed.py`
-    1. Line 60: add
-        - implement _link_cleaner!
-
-* `image_processor/thumbnail.py`
-    1. Line 20: is_valid_image
+* `data_processor/thumbnail.py`
+    1. Line 29: is_valid_image
         - boundary checker should not return None, instead probably an Exception
         - this method should be moved to image_helper
-    2. Line 32: generate_thumbnail
+    2. Line 46: generate_thumbnail
         - boundary checkers
         - relative path could be a url including its suffix like jpg/png
-
-* `scraper/rss.py`
-    1. Line 140: update
-        - code to remove added items if things suck at database/memory
 
 * `scraper/memory.py`
     1. Line 15: update
         - add more comments
         - be precautious with possible redis adding failure
 
-* `data_processor/tts_provider.py`
-    1. Line 84: _query_segment
-        - write some boundary checkers
-        - determine how do these languages separate words
-        - get encoding of a feed. use that if indicated, else 'utf-8'
-    2. Line 180: _download
-        - Test! Test! Test!
-        - boundary checkers
-        - write docs!
-    3. Line 55: google
-        - write docs
-        - rename the file and variables
-        - remove accepting command line calls
-
-* `scraper/rss_parser.py`
-    1. Line 187: parse
-        - boundary checkers
-        - update parsing info to feed database
-    2. Line 36: _read_entry
-        - add more boundary checks
-        - [register unsupported date format](http://pythonhosted.org/feedparser/date-parsing.html#advanced-date)
-        - add tags
-        - add thumbnail limit(downward)
+* `feed_manager/feed.py`
+    1. Line 60: add
+        - implement _link_cleaner!
 
