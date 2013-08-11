@@ -12,8 +12,8 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
-import Image
 from cStringIO import StringIO
+import Image
 import urllib2
 
 # CONSTANTS
