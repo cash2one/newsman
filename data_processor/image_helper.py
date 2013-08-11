@@ -13,18 +13,20 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
+from BeautifulSoup import BeautifulSoup
+from cStringIO import StringIO
+from data_processor import thumbnail
+import Image
+import os
+import re
+import urllib2
+import urlparse
+
+# CONSTANTS
 from config import IMAGES_LOCAL_DIR
 from config import IMAGES_PUBLIC_DIR
 from config import MIN_IMAGE_SIZE
 from config import TRANSCODED_LOCAL_DIR
-from BeautifulSoup import BeautifulSoup
-import Image
-import re
-import os
-from cStringIO import StringIO
-from image_processor import thumbnail
-import urllib2
-import urlparse
 
 
 if not os.path.exists(IMAGES_LOCAL_DIR):
