@@ -1,8 +1,8 @@
-#!/usr/bin/env python 
-#-*- coding: utf-8 -*- 
+#!/usr/bin/env python
+#-*- coding: utf-8 -*-
 
-import sys 
-reload(sys) 
+import sys
+reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append("..")
 
@@ -13,7 +13,7 @@ from data_processor import summarizer
 
 def main():
     col = Collection(db, 'en')
-    items = col.find({}, {'summary':1, 'transcoded':1})
+    items = col.find({}, {'summary': 1, 'transcoded': 1})
     if items:
         for item in items:
             summary = summarizer.extract(item['summary'], None, 'en')
