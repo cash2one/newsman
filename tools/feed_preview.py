@@ -13,8 +13,8 @@ sys.setdefaultencoding('UTF-8')
 
 import feedparser
 
-#file_suffix = '/home/work/global-mobile-news/alert_maintenance/maintenance/'
-file_suffix = '/home/jinyuan/Downloads/global-mobile-news/alert_maintenance/maintenance/'
+#file_suffix = '/home/work/bgm_news/tools/text_based_feeds/feed_lists/'
+file_suffix = '/home/jinyuan/Downloads/bgm_news/tools/text_based_feeds/feed_lists/'
 
 http_codes = {301:'RSS address is permanently moved to a new place.', 302:'RSS address is temporarily moved to a new place.', 304:'RSS has not published new content.', 410:'RSS server is gone.'}
 
