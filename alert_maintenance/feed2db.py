@@ -12,10 +12,10 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
-from administration.config import Collection
-from administration.config import db
-from administration.config import FEED_REGISTRAR
-from administration.config import CATEGORY_REGISTRAR
+from config import Collection
+from config import db
+from config import FEED_REGISTRAR
+from config import CATEGORY_REGISTRAR
 
 #file_suffix = '/home/work/global-mobile-news/alert_maintenance/maintenance/'
 file_suffix = '/home/jinyuan/Downloads/global-mobile-news/alert_maintenance/maintenance/'
