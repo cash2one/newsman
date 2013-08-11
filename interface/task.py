@@ -19,17 +19,17 @@ import os
 from scraper import rss
 import time
 
-from administration.config import Collection
-from administration.config import FEED_REGISTRAR
-from administration.config import DATABASE_REMOVAL_DAYS
-from administration.config import db
-from administration.config import IMAGES_LOCAL_DIR
-from administration.config import IMAGES_PUBLIC_DIR
-from administration.config import LANGUAGES
-from administration.config import MEMORY_RESTORATION_DAYS
-from administration.config import rclient
-from administration.config import TRANSCODED_LOCAL_DIR
-from administration.config import TRANSCODED_PUBLIC_DIR
+from config import Collection
+from config import FEED_REGISTRAR
+from config import DATABASE_REMOVAL_DAYS
+from config import db
+from config import IMAGES_LOCAL_DIR
+from config import IMAGES_PUBLIC_DIR
+from config import LANGUAGES
+from config import MEMORY_RESTORATION_DAYS
+from config import rclient
+from config import TRANSCODED_LOCAL_DIR
+from config import TRANSCODED_PUBLIC_DIR
 
 
 """
