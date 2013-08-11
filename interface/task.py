@@ -283,11 +283,12 @@ def _read_feeds(language='en'):
     read feed information from database feeds
     """
     db_feeds = Collection(db, FEED_REGISTRAR)
-    items = db_feeds.find({'language':language})
+    items = db_feeds.find({'language': language})
     if items:
         return [str(item['_id']) for item in items]
     else:
-        raise Exception("ERROR: Cannot find any feeds for language %s!" % language)
+        raise Exception(
+            "ERROR: Cannot find any feeds for language %s!" % language)
 
 
 def scrape(language):
