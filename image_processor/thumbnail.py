@@ -16,9 +16,9 @@ import Image
 from cStringIO import StringIO
 import urllib2
 
-from administration.config import MIN_IMAGE_SIZE
-from administration.config import IMAGES_LOCAL_DIR
-from administration.config import IMAGES_PUBLIC_DIR
+from config import MIN_IMAGE_SIZE
+from config import IMAGES_LOCAL_DIR
+from config import IMAGES_PUBLIC_DIR
 
 
 # TODO: boundary checker should not return None, instead probably an Exception
