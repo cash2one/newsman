@@ -142,7 +142,8 @@ def dedupe_images(images):
 
 
 # TODO: boundary checker
-def scale_image(image=None, size_expected=MIN_IMAGE_SIZE, resize_by_width=True, crop_by_center=True, relative_path=None):
+def scale_image(image=None, size_expected=MIN_IMAGE_SIZE, \
+        resize_by_width=True, crop_by_center=True, relative_path=None):
     """
     resize an image as requested
     resize_by_width: resize the image according to its width(True) or height(False)
@@ -192,11 +193,14 @@ def scale_image(image=None, size_expected=MIN_IMAGE_SIZE, resize_by_width=True, 
                     IMAGES_LOCAL_DIR, relative_path)
                 image_cropped = image_cropped.convert('RGB')
                 image_cropped.save(image_local_path, 'JPEG')
-                return {'url': image_web_path, 'width': width_expected, 'height': height_expected}, {'url': image_local_path, 'width': width_expected, 'height': height_expected}
+                return {'url': image_web_path, 'width': width_expected, \
+                        'height': height_expected}, {'url': image_local_path, \
+                        'width': width_expected, 'height': height_expected}
             else:
                 return None, None
         else:
-            return scale_image(image, size_expected, not resize_by_width, crop_by_center, relative_path)
+            return scale_image(image, size_expected, not resize_by_width, \
+                    crop_by_center, relative_path)
     else:
         return None, None
 
@@ -224,6 +228,7 @@ def normalize(images):
                     return {'url': image, 'width': width, 'height': height}
             return None
         except IOError as k:
+            print k
             return None
 
     if isinstance(images, str) or isinstance(images, unicode):
