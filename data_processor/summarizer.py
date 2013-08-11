@@ -17,8 +17,8 @@ import html2text
 import nltk
 from nltk.tokenize import RegexpTokenizer
 
-from administration.config import PARAGRAPH_CRITERIA
-from administration.config import SUMMARY_LENGTH_LIMIT
+from config import PARAGRAPH_CRITERIA
+from config import SUMMARY_LENGTH_LIMIT
 
 
 def _get_shorter_text(content, language, limit):
