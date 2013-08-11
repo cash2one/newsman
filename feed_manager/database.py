@@ -12,12 +12,12 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append("..")
 
-from administration.config import Collection
-from administration.config import db
+from config import Collection
+from config import db
 from bson.objectid import ObjectId
 import time
 
-from administration.config import FEED_REGISTRAR
+from config import FEED_REGISTRAR
 
 
 def get(feed_id=None, feed_link=None, language=None):
