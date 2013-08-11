@@ -10,15 +10,16 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
+from bson.objectid import ObjectId
 import calendar
 from datetime import datetime, timedelta
 import feedparser
-from scraper import memory
-from bson.objectid import ObjectId
 import os
+from scraper import memory
 from scraper import rss
 import time
 
+# CONSTANTS
 from config import Collection
 from config import FEED_REGISTRAR
 from config import DATABASE_REMOVAL_DAYS
