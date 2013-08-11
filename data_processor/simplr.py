@@ -15,12 +15,11 @@ sys.path.append("..")
 
 from BeautifulSoup import BeautifulSoup
 import chardet
-from image_processor import image_helper
+from data_processor import image_helper
 import math
 import os
 import posixpath
 import re
-import sys
 import tinysegmenter
 import urllib2
 import urlparse
