@@ -34,7 +34,8 @@ def is_valid_image(image_url):
         return None
     image_pil = Image.open(StringIO(urllib2.urlopen(image_url).read()))
     # to avoid line length limit
-    if image_pil.size[0] * image_pil.size[1] > MIN_IMAGE_SIZE[0] * MIN_IMAGE_SIZE[1]:
+    if image_pil.size[0] * image_pil.size[1] > \
+            MIN_IMAGE_SIZE[0] * MIN_IMAGE_SIZE[1]:
         return True
     else:
         return False
@@ -56,7 +57,7 @@ def generate_thumbnail(image_url, relative_path):
             IMAGES_LOCAL_DIR, relative_path)
         image_thumbnail_web_path = '%s%s.jpg' % (
             IMAGES_PUBLIC_DIR, relative_path)
-        image_pil.thumbnail(config.MIN_IMAGE_SIZE, Image.ANTIALIAS)
+        image_pil.thumbnail(MIN_IMAGE_SIZE, Image.ANTIALIAS)
         image_pil = image_pil.convert('RGB')
         image_pil.save(image_thumbnail_local_path, 'JPEG')
         return image_thumbnail_web_path
