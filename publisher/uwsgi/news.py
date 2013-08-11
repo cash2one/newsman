@@ -12,8 +12,8 @@ sys.setdefaultencoding('UTF-8')
 sys.path.append('/home/work/uwsgi/news-uwsgi')
 
 import cgi
-from uwsgi import interface
 import json
+from uwsgi import interface
 
 
 def get_categories_by_language(*bundle):
