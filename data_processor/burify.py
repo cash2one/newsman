@@ -14,8 +14,8 @@ sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
 import chardet
+from data_processor import image_helper
 from readability import Document
-from image_processor import image_helper
 import urllib2
 
 
