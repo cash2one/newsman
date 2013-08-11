@@ -1,8 +1,8 @@
-#!/usr/bin/env python 
-#-*- coding: utf-8 -*- 
+#!/usr/bin/env python
+#-*- coding: utf-8 -*-
 
-import sys 
-reload(sys) 
+import sys
+reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
@@ -24,6 +24,7 @@ import os
 from administration.config import IMAGES_LOCAL_DIR
 from administration.config import MEDIA_LOCAL_DIR
 from administration.config import TRANSCODED_LOCAL_DIR
+
 
 def _remove_dir(dir):
     if os.path.exists(dir):
