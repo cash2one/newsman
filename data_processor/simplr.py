@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 #-*- coding: utf-8 -*-
 
-# simplr is a simplified readability implementation in python
-#
-# @author Jin Yuan
-# @contact jinyuan@baidu.com
+"""
+simplr is a simplified readability implementation in python
+"""
+# @author chengdujin
+# @contact chengdujin@gmail.com
 # @created Aug. 4, 2013
 
 

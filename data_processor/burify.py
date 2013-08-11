@@ -1,10 +1,11 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# call burify's implementation of readability code to transcode a web page
-#
-# @author Jin Yuan
-# @contact jinyuan@baidu.com
+"""
+call burify's implementation of readability code to transcode a web page
+"""
+# @author chengdujin
+# @contact chengdujin@gmail.com
 # @created Aug. 6, 2013
 
 

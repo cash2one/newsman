@@ -1,6 +1,14 @@
 #!/usr/bin/env python
 #-*- coding: utf-8 -*-
 
+"""
+tts_provider breaks text into paragraphs and grabs text-to-speech from google
+"""
+# @author chengdujin
+# @contact chengdujin@gmail.com
+# @created Jul., 2013
+
+
 import sys
 reload(sys)
 sys.setdefaultencoding('UTF-8')
@@ -22,6 +30,7 @@ import urllib2
 from config import MEDIA_LOCAL_DIR
 from config import MEDIA_PUBLIC_DIR
 from config import LANGUAGES
+
 
 if not os.path.exists(MEDIA_LOCAL_DIR):
     os.mkdir(MEDIA_LOCAL_DIR)

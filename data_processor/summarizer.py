@@ -1,11 +1,13 @@
 #!/usr/bin/env python
 #-*- coding: utf-8 -*-
 
-# summarizer extracts summary or first paragraph from news
-#
-# @author Jin Yuan
-# @contact jinyuan@baidu.com
+""" 
+summarizer extracts summary or first paragraph from news
+"""
+# @author chengdujin
+# @contact chengdujin@gmail.com
 # created Jul. 29, 2013
+
 
 import sys
 reload(sys)

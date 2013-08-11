@@ -1,12 +1,13 @@
 #!/usr/bin/env python
 #-*- coding: utf-8 -*-
 
-# image_scraper is used to find all images from
-# a web page
-#
-# @author Jin Yuan
-# @contact jinyuan@baidu.com
+"""
+image_scraper is used to find all images from a web page
+"""
+# @author chengdujin
+# @contact chengdujin@gmail.com
 # @created Jul. 23, 2013
+
 
 import sys
 reload(sys)

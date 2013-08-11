@@ -4,8 +4,8 @@
 """
 transcoder is the main interface for several transcoders
 """
-# @author Jin Yuan
-# @contact jinyuan@baidu.com
+# @author chengdujin
+# @contact chengdujin@gmail.com
 # @created Jan 2, 2013
 
 

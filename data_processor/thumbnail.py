@@ -1,11 +1,13 @@
 #!/usr/bin/env python
 #-*- coding: utf-8 -*-
 
-# thumbnail used to make thumbnails
-#
-# @author Jin Yuan
+"""
+thumbnail used to make thumbnails
+"""
+# @author chengdujin
 # @contact chengdujin@gmail.com
 # @created Jul., 2013
+
 
 import sys
 reload(sys)
