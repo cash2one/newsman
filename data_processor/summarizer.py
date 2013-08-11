@@ -17,7 +17,6 @@ sys.path.append('..')
 import chardet
 import html2text
 import nltk
-from nltk.tokenize import RegexpTokenizer
 
 # CONSTANTS
 from config import PARAGRAPH_CRITERIA
@@ -125,4 +124,5 @@ def extract(summary, transcoded, language):
     # print '  FIRST PARAGRAPH:', len(result_first_paragraph),
     # result_first_paragraph
 
-    return result_summary if result_summary else result_first_paragraph if result_first_paragraph else None
+    return result_summary if result_summary else result_first_paragraph \
+            if result_first_paragraph else None
