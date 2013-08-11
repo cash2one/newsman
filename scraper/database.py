@@ -6,9 +6,9 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
-from administration.config import Collection
-from administration.config import db
-from administration.config import LANGUAGES
+from config import Collection
+from config import db
+from config import LANGUAGES
 
 
 def dedup(entries=None, language=None):
