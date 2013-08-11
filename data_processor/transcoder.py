@@ -42,9 +42,11 @@ if not os.path.exists(TRANSCODED_LOCAL_DIR):
 
 
 class TranscoderAPI(threading.Thread):
+
     """
     call a transcoder
     """
+
     def __init__(self, url="this should not exist", transcoder="simplr", language=None):
         threading.Thread.__init__(self)
         self.transcoder = transcoder
@@ -54,7 +56,8 @@ class TranscoderAPI(threading.Thread):
 
     def run(self):
         if self.transcoder == 'simplr':
-            self.result = eval(self.transcoder).convert(self.url, self.language)
+            self.result = eval(self.transcoder).convert(
+                self.url, self.language)
         else:
             self.result = eval(self.transcoder).convert(self.url)
 
@@ -83,7 +86,7 @@ def _compose(language, title, content):
         raise Exception("ERROR: Method not well formed!")
 
     transcode_button = {'en': TRANSCODING_BTN_EN, 'ja': TRANSCODING_BTN_JA, 'th': TRANSCODING_BTN_TH, 'pt':
-            TRANSCODING_BTN_PT, 'ind': TRANSCODING_BTN_IND, 'en-rIN': TRANSCODING_BTN_EN, 'ar': TRANSCODING_BTN_AR, 'zh-CN':TRANSCODING_BTN_ZH_CN, 'zh-HK':TRANSCODING_BTN_ZH_HK}
+                        TRANSCODING_BTN_PT, 'ind': TRANSCODING_BTN_IND, 'en-rIN': TRANSCODING_BTN_EN, 'ar': TRANSCODING_BTN_AR, 'zh-CN': TRANSCODING_BTN_ZH_CN, 'zh-HK': TRANSCODING_BTN_ZH_HK}
 
     # f reads the template
     f = None
@@ -139,16 +142,18 @@ def _transcode(url, transcoders, language=None):
     uck_content = simplr_content = burify_content = None
     uck_images = simplr_images = burify_images = None
     simplr_title = burify_title = None
-    
+
     if 'baidu_uck' in transcoders and 'baidu_uck' in threads:
         if threads['baidu_uck'].result:
             uck_title, uck_content, uck_images = threads['baidu_uck'].result
     if 'simplr' in transcoders and 'simplr' in threads:
         if threads['simplr'].result:
-            simplr_title, simplr_content, simplr_images = threads['simplr'].result
+            simplr_title, simplr_content, simplr_images = threads[
+                'simplr'].result
     if 'burify' in transcoders and 'burify' in threads:
         if threads['burify'].result:
-            burify_title, burify_content, burify_images = threads['burify'].result
+            burify_title, burify_content, burify_images = threads[
+                'burify'].result
 
     # use different combinations to create a news page with pictures
     if 'simplr' in transcoders or 'burify' in transcoders:
