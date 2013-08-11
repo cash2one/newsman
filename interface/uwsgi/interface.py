@@ -48,7 +48,7 @@ def get_categories_by_language(language=None):
             for entry in entries:
                 if 'category_image' in entry:
                     item = {
-                            'title': entry['title'], 'image': entry['category_image'], 'updated': entry['updated']}
+                        'title': entry['title'], 'image': entry['category_image'], 'updated': entry['updated']}
                     category_images[category].append(item)
                     # limit the number of category_image to
                     if len(category_images[category]) == images_limit:
@@ -63,7 +63,8 @@ def get_categories_by_language(language=None):
     category_images['hot_news'] = []
     for entry in entries:
         if 'hot_news_image' in entry:
-            item = {'title': entry['title'], 'image': entry['hot_news_image'], 'updated': entry['updated']}
+            item = {'title': entry['title'], 'image': entry[
+                'hot_news_image'], 'updated': entry['updated']}
             category_images['hot_news'].append(item)
             if len(category_images['hot_news']) == images_limit:
                 break
