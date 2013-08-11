@@ -1,8 +1,8 @@
-#!/usr/bin/env python 
-#-*- coding: utf-8 -*- 
+#!/usr/bin/env python
+#-*- coding: utf-8 -*-
 
-import sys 
-reload(sys) 
+import sys
+reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
@@ -21,7 +21,7 @@ def update(entries=None, language=None, categories=None):
         return None
     if not language or not categories:
         raise Exception("ERROR: Method signature not well formed!")
-    
+
     # add entry objects to memory
     for entry in entries:
         # add a piece of news into memory
@@ -36,5 +36,6 @@ def update(entries=None, language=None, categories=None):
         # print entry['_id'], 'is added to memory', rclient.zcard(language)
 
         # add entry ids to the category list
-        for category in categories: 
-            c = rclient.zadd('news::%s::%s' % (language, category), entry['updated'], entry['_id'])
+        for category in categories:
+            c = rclient.zadd('news::%s::%s' %
+                             (language, category), entry['updated'], entry['_id'])
