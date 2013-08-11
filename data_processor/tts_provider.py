@@ -51,7 +51,10 @@ class GoogleTranslateAPI(threading.Thread):
 
     def run(self):
         response = subprocess.Popen(
-            '''curl -A Mozilla "http://translate.google.com/translate_tts?ie=UTF-8&oe=UTF-8&tl=%s&q=%s"''' % (self.language, urllib2.quote(self.text)), stdout=subprocess.PIPE, shell=True)
+            '''curl -A Mozilla "http://translate.google.com/translate_tts? \
+                    ie=UTF-8&oe=UTF-8&tl=%s&q=%s"''' % (self.language, \
+                    urllib2.quote(self.text)), stdout=subprocess.PIPE, \
+                    shell=True)
         content, error = response.communicate()
         if not error and content:
             if 'error' not in content or 'permission' not in content:
@@ -64,7 +67,8 @@ class GoogleTranslateAPI(threading.Thread):
 
 # TODO: rename the file and variables
 # TODO: remove accepting command line calls
-def google(language='en', query='Service provided by Baidu', relative_path='do_not_exist.mp3'):
+def google(language='en', query='Service provided by Baidu', \
+        relative_path='do_not_exist.mp3'):
     """
     1. download mp3 from google tts api
     2. convert it to wav
@@ -84,8 +88,8 @@ def google(language='en', query='Service provided by Baidu', relative_path='do_n
     tts_local_path = '%s%s' % (MEDIA_LOCAL_DIR, relative_path)
     tts_web_path = '%s%s' % (MEDIA_PUBLIC_DIR, relative_path)
 
-    command = 'lame -S --decode {0} - | sox -q -t wav - -t wav - speed 1.06 | lame -S - {1}; rm {0}'.format(
-        tmp_file, tts_local_path)
+    command = 'lame -S --decode {0} - | sox -q -t wav - -t wav - speed 1.06 | \
+            lame -S - {1}; rm {0}'.format(tmp_file, tts_local_path)
     subprocess.Popen(command, stderr=subprocess.PIPE, shell=True)
     print '----------- MISSION ACCOMPLISHED ----------'
     return tts_web_path, tts_local_path
@@ -122,7 +126,8 @@ def _query_segment(language='en', query='Service provided by Baidu'):
     if sentences:
         # convert to utf-8 and remove spaces
         sentences = filter(
-            lambda x: x, [sentence.strip().encode('utf-8') for sentence in sentences])
+            lambda x:x, [sentence.strip().encode('utf-8') \
+                    for sentence in sentences])
 
     parts = []
     for sentence in sentences:
@@ -140,7 +145,8 @@ def _query_segment(language='en', query='Service provided by Baidu'):
             # remove spaces
             if phrases:
                 phrases = filter(
-                    lambda x: x, [phrase.strip().encode('utf-8') for phrase in phrases])
+                    lambda x: x, [phrase.strip().encode('utf-8') \
+                            for phrase in phrases])
 
             for phrase in phrases:
                 if len(phrase) < 99:
@@ -156,7 +162,8 @@ def _query_segment(language='en', query='Service provided by Baidu'):
                     # remove spaces
                     if words:
                         words = filter(
-                            lambda x: x, [word.strip().encode('utf-8') for word in words])
+                            lambda x:x, [word.strip().encode('utf-8') \
+                                    for word in words])
 
                     # none of len(item) in combined_words will exceed 100
                     # combined_words = ['yyy zzz. aaa bbb']
@@ -165,11 +172,13 @@ def _query_segment(language='en', query='Service provided by Baidu'):
                         # +1 for possible space
                         if len(combined_words) + len(word) + 1 < 100:
                             if language == 'ja':
-                                combined_words = ("""%s%s""" if word not in string.punctuation else """%s%s""") % (
-                                    combined_words, word)
+                                combined_words = ("""%s%s""" if word not in \
+                                        string.punctuation else """%s%s""") \
+                                        % (combined_words, word)
                             else:
-                                combined_words = ("""%s %s""" if word not in string.punctuation else """%s%s""") % (
-                                    combined_words, word)
+                                combined_words = ("""%s %s""" if word not in \
+                                        string.punctuation else """%s%s""") \
+                                        % (combined_words, word)
                             combined_words = combined_words.strip()
                         else:
                             parts.append(combined_words.strip())
@@ -196,7 +205,8 @@ def _query_segment(language='en', query='Service provided by Baidu'):
 # TODO: Test! Test! Test!
 # TODO: boundary checkers
 # TODO: write docs!
-def _download(language='en', query='Service provided by Baidu', tmp_file='do_not_exist.mp3'):
+def _download(language='en', query='Service provided by Baidu', \
+        tmp_file='do_not_exist.mp3'):
     '''
     docs needed!
     other ways to write _download
