@@ -18,6 +18,7 @@ import tinysegmenter
 import threading
 import urllib2
 
+# CONSTANTS
 from config import MEDIA_LOCAL_DIR
 from config import MEDIA_PUBLIC_DIR
 from config import LANGUAGES
