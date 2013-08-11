@@ -1,6 +1,12 @@
 #!/usr/bin/env python
 #-*- coding: utf-8 -*-
 
+# thumbnail used to make thumbnails
+#
+# @author Jin Yuan
+# @contact chengdujin@gmail.com
+# @created Jul., 2013
+
 import sys
 reload(sys)
 sys.setdefaultencoding('UTF-8')
@@ -24,7 +30,11 @@ def is_valid_image(image_url):
     if not image_url:
         return None
     image_pil = Image.open(StringIO(urllib2.urlopen(image_url).read()))
-    return True if image_pil.size[0] * image_pil.size[1] > MIN_IMAGE_SIZE[0] * MIN_IMAGE_SIZE[1] else False
+    # to avoid line length limit
+    if image_pil.size[0] * image_pil.size[1] > MIN_IMAGE_SIZE[0] * MIN_IMAGE_SIZE[1]:
+        return True
+    else:
+        return False
 
 
 # TODO: boundary checkers
