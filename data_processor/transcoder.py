@@ -13,14 +13,15 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
-import baidu_uck
-import burify
 from config import hparser
-from image_processor import image_helper
+from data_processor import baidu_uck
+from data_processor import burify
+from data_processor import image_helper
+from data_processor import simplr
 import os
-import simplr
 import threading
 
+# CONSTANTS
 from config import NEWS_TEMPLATE
 from config import NEWS_TEMPLATE_ARABIC
 from config import TRANSCODED_LOCAL_DIR
