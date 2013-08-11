@@ -17,6 +17,7 @@ import html2text
 import nltk
 from nltk.tokenize import RegexpTokenizer
 
+# CONSTANTS
 from config import PARAGRAPH_CRITERIA
 from config import SUMMARY_LENGTH_LIMIT
 
