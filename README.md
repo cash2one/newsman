@@ -35,23 +35,22 @@ ToDos - High Priority
 4. 自定义Exception类，并替换相应代码
 5. 服务器质量监控
 6. 数据整理代码整理、重构
-7. 包结构合理化
-8. 抓取Instagram/Flickr内容
-9. URL处理换成gruns/furl
-10. 测试标题提取使用Lassie(多国语言)
-11. qrconverter类似脚本使用docopt/docopt
+8. URL处理换成gruns/furl
+9. 测试标题提取使用Lassie(多国语言)
+10. qrconverter类似脚本使用docopt/docopt
 
 ToDos - Low Priority
 ---------------------
-1. 图片判断是否是男人
-2. 判断图片是否是黄图
-3. 社交账户好友信息抓取
-4. 热点新闻提取
-5. 新闻去重
-6. 类别类似新闻
-7. Bugu用户账户代码转移
-8. Minerva代码转移
-9. 详情页增加夜间、字体大小、分享等代码
+1. 抓取Instagram/Flickr内容
+2. 图片判断是否是男人
+3. 判断图片是否是黄图
+4. 社交账户好友信息抓取
+5. 热点新闻提取
+6. 新闻去重
+7. 类别类似新闻
+8. Bugu用户账户代码转移
+9. Minerva代码转移
+10. 详情页增加夜间、字体大小、分享等代码
 11. 为PM提供RSS管理的Web界面
 12. 增加在线生成临时图片和MP3的接口
 13. 参照谷歌编码风格
@@ -72,6 +71,7 @@ Dones
 10. 转码代码清理、重构
 11. 摘要/首段抓取代码编写
 12. 为PM提供一个Simplr, Readability, UCK比较的页面
+13. 包结构合理化
 
 
 ToDos - Generated from docs
