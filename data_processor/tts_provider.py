@@ -28,9 +28,11 @@ if not os.path.exists(MEDIA_LOCAL_DIR):
 
 # TODO: write docs
 class GoogleTranslateAPI(threading.Thread):
+
     """
     doc needed!
     """
+
     def __init__(self, language='en', text='Service provided by Baidu'):
         threading.Thread.__init__(self)
         self.language = language
@@ -69,10 +71,11 @@ def google(language='en', query='Service provided by Baidu', relative_path='do_n
     # generate out.mp3
     tmp_file = _download(language, query, '%s-tmp.mp3' % relative_path[:-4])
     # form paths
-    tts_local_path = '%s%s' % (MEDIA_LOCAL_DIR, relative_path) 
-    tts_web_path = '%s%s' % (MEDIA_PUBLIC_DIR, relative_path) 
+    tts_local_path = '%s%s' % (MEDIA_LOCAL_DIR, relative_path)
+    tts_web_path = '%s%s' % (MEDIA_PUBLIC_DIR, relative_path)
 
-    command = 'lame -S --decode {0} - | sox -q -t wav - -t wav - speed 1.06 | lame -S - {1}; rm {0}'.format(tmp_file, tts_local_path) 
+    command = 'lame -S --decode {0} - | sox -q -t wav - -t wav - speed 1.06 | lame -S - {1}; rm {0}'.format(
+        tmp_file, tts_local_path)
     subprocess.Popen(command, stderr=subprocess.PIPE, shell=True)
     print '----------- MISSION ACCOMPLISHED ----------'
     return tts_web_path, tts_local_path
@@ -108,13 +111,15 @@ def _query_segment(language='en', query='Service provided by Baidu'):
 
     if sentences:
         # convert to utf-8 and remove spaces
-        sentences = filter(lambda x:x, [sentence.strip().encode('utf-8') for sentence in sentences])
+        sentences = filter(
+            lambda x: x, [sentence.strip().encode('utf-8') for sentence in sentences])
 
     parts = []
     for sentence in sentences:
         if len(sentence) < 99:
             # none of len(item) in parts will exceed 100
-            parts.append(sentence.strip())  # parts: ['xxx, xxx', 'yyy zzz aaa bbb.']
+            # parts: ['xxx, xxx', 'yyy zzz aaa bbb.']
+            parts.append(sentence.strip())
         else:
             phrases = None
             # phrases: ['xxx -- xxx', 'yyy zzz aaa']
@@ -124,7 +129,8 @@ def _query_segment(language='en', query='Service provided by Baidu'):
                 phrases = sentence.split(',')
             # remove spaces
             if phrases:
-                phrases = filter(lambda x:x, [phrase.strip().encode('utf-8') for phrase in phrases])
+                phrases = filter(
+                    lambda x: x, [phrase.strip().encode('utf-8') for phrase in phrases])
 
             for phrase in phrases:
                 if len(phrase) < 99:
@@ -139,7 +145,8 @@ def _query_segment(language='en', query='Service provided by Baidu'):
                     # convert back to utf-8
                     # remove spaces
                     if words:
-                        words = filter(lambda x:x, [word.strip().encode('utf-8') for word in words])
+                        words = filter(
+                            lambda x: x, [word.strip().encode('utf-8') for word in words])
 
                     # none of len(item) in combined_words will exceed 100
                     # combined_words = ['yyy zzz. aaa bbb']
@@ -148,9 +155,11 @@ def _query_segment(language='en', query='Service provided by Baidu'):
                         # +1 for possible space
                         if len(combined_words) + len(word) + 1 < 100:
                             if language == 'ja':
-                                combined_words = ("""%s%s""" if word not in string.punctuation else """%s%s""") % (combined_words, word)
+                                combined_words = ("""%s%s""" if word not in string.punctuation else """%s%s""") % (
+                                    combined_words, word)
                             else:
-                                combined_words = ("""%s %s""" if word not in string.punctuation else """%s%s""") % (combined_words, word)
+                                combined_words = ("""%s %s""" if word not in string.punctuation else """%s%s""") % (
+                                    combined_words, word)
                             combined_words = combined_words.strip()
                         else:
                             parts.append(combined_words.strip())
