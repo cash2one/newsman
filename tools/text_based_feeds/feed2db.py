@@ -1,5 +1,5 @@
-#!/usr/bin/env python 
-#-*- coding: utf-8 -*- 
+#!/usr/bin/env python
+#-*- coding: utf-8 -*-
 
 # feed2db works to turn text-based feed list into database
 #
@@ -7,8 +7,8 @@
 # @contact jinyuan@baidu.com
 # @created Jul. 30, 2013
 
-import sys 
-reload(sys) 
+import sys
+reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
@@ -53,14 +53,18 @@ def _convert(language='en'):
             # save categories
             category_ids = []
             for category in categories:
-                item = db_categories.find_one({'name':category, 'language':language})
+                item = db_categories.find_one(
+                    {'name': category, 'language': language})
                 if item:
                     category_ids.append(str(item['_id']))
                 else:
-                    category_id = db_categories.save({'name':category, 'language':language})
+                    category_id = db_categories.save(
+                        {'name': category, 'language': language})
                     category_ids.append(str(category_id))
             # save feed
-            db_feeds.save({'language':language, 'feed_link':feed_link, 'categories':category_ids, 'feed_title':feed_title, 'latest_update':None, 'updated_times':0, 'transcoder':'chengdujin'})
+            db_feeds.save(
+                {'language': language, 'feed_link': feed_link, 'categories': category_ids,
+                 'feed_title': feed_title, 'latest_update': None, 'updated_times': 0, 'transcoder': 'chengdujin'})
 
 
 if __name__ == "__main__":
