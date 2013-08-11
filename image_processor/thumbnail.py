@@ -15,7 +15,7 @@ from administration.config import IMAGES_LOCAL_DIR
 from administration.config import IMAGES_PUBLIC_DIR
 
 
-# TODO: boundary checker should not return None, instead probably an Exception 
+# TODO: boundary checker should not return None, instead probably an Exception
 # TODO: this method should be moved to image_helper
 def is_valid_image(image_url):
     """
@@ -23,8 +23,8 @@ def is_valid_image(image_url):
     """
     if not image_url:
         return None
-    image_pil = Image.open(StringIO(urllib2.urlopen(image_url).read())) 
-    return True if image_pil.size[0]*image_pil.size[1] > MIN_IMAGE_SIZE[0]*MIN_IMAGE_SIZE[1] else False
+    image_pil = Image.open(StringIO(urllib2.urlopen(image_url).read()))
+    return True if image_pil.size[0] * image_pil.size[1] > MIN_IMAGE_SIZE[0] * MIN_IMAGE_SIZE[1] else False
 
 
 # TODO: boundary checkers
