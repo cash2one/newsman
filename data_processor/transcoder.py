@@ -1,8 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# transcoder is the main interface for several transcoders
-#
+"""
+transcoder is the main interface for several transcoders
+"""
 # @author Jin Yuan
 # @contact jinyuan@baidu.com
 # @created Jan 2, 2013
