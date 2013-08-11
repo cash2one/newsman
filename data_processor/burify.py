@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # call burify's implementation of readability code to transcode a web page
-# 
+#
 # @author Jin Yuan
 # @contact jinyuan@baidu.com
 # @created Aug. 6, 2013
