@@ -17,17 +17,18 @@ sys.path.append('..')
 from BeautifulSoup import BeautifulStoneSoup
 import calendar
 import chardet
+from config import hparser
+from data_processor import image_helper
+from data_processor import thumbnail
 from datetime import datetime, timedelta
 import feedparser
-from config import hparser
 import html2text
 import random
 import re
-from image_processor import image_helper
-from image_processor import thumbnail
 import time
 import urllib2
 
+# CONSTANTS
 from config import LANGUAGES
 from config import MEMORY_RESTORATION_DAYS
 
