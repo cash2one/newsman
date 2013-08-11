@@ -32,13 +32,13 @@ ToDos - High Priority
 1. Task相关代码分解、重构
 2. 预警代码整理、重构
 3. Feed管理平台
-4. 摘要/首段抓取代码编写
-5. 自定义Exception类，并替换相应代码
+4. 自定义Exception类，并替换相应代码
+5. 服务器质量监控
 6. 数据整理代码整理、重构
 7. 包结构合理化
-8. 为PM提供一个Simplr, Readability, UCK比较的页面
-9. 抓取Instagram/Flickr内容
-10. 服务器质量监控
+8. 抓取Instagram/Flickr内容
+9. URL处理换成gruns/furl
+10. 测试标题提取使用Lassie(多国语言)
 
 ToDos - Low Priority
 ---------------------
@@ -69,6 +69,8 @@ Dones
 8. 减少参数调用（尽量从数据库中获取）
 9. Readability代码整合、测试
 10. 转码代码清理、重构
+11. 摘要/首段抓取代码编写
+12. 为PM提供一个Simplr, Readability, UCK比较的页面
 
 
 ToDos - Generated from docs
