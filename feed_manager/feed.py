@@ -14,16 +14,9 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append("..")
 
-from BeautifulSoup import BeautifulStoneSoup
 from feed_manager import database as db_feeds
 import feedparser
 from scraper import rss
-import task
-import time
-
-# CONSTANTS
-from config import FEED_REGISTRAR
-from config import LANGUAGES
 
 
 def _read_source(d=None, feed_link=None, language=None, categories=None):
@@ -50,13 +43,6 @@ def _read_source(d=None, feed_link=None, language=None, categories=None):
         return feed
     else:
         raise Exception('ERROR: Feed %s malformed!' % feed_link)
-
-
-def _link_cleaner(link):
-    """
-    remove unnecessary parameters and the like
-    """
-    pass
 
 
 # TODO: implement _link_cleaner!
