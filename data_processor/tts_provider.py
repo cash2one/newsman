@@ -90,7 +90,7 @@ def google(language='en', query='Service provided by Baidu', \
     lame -S - {1}; rm {0}'.format(tmp_file, tts_local_path)
 
     subprocess.Popen(command, stderr=subprocess.PIPE, shell=True)
-    print '----------- MISSION ACCOMPLISHED ----------'
+    print '... MP3 acceleration is successfully completed!'
     return tts_web_path, tts_local_path
 
 
@@ -194,10 +194,9 @@ def _query_segment(language='en', query='Service provided by Baidu'):
             segments.append(segment.strip())
             segment = part
     segments.append(segment.strip())
-    print '---------- after some serious thoughts, we get these: -----------'
+    print '... after serious thoughts, we break sentence into these:'
     for segment in segments:
-        print segment
-    print '----------                     :                      -----------'
+        print '    ', segment
     return segments
 
 
