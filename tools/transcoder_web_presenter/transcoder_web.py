@@ -14,8 +14,8 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('../..')
 
-import web
 from data_processor import transcoder
+import web
 
 render = web.template.render('templates/')
 urls = (
