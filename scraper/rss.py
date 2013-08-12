@@ -1,12 +1,13 @@
 #!/usr/bin/env python
 #-*- coding: utf-8 -*-
 
-# rss is the interface to rss parsing,
-# processing and storing.
-#
-# @author Jin Yuan
-# @contact jinyuan@baidu.com
+"""
+rss is the interface to rss parsing, processing and storing.
+"""
+# @author chengdujin
+# @contact chengdujin@gmail.com
 # @created Jul. 20, 2013
+
 
 import sys
 reload(sys)
@@ -77,8 +78,8 @@ def _value_added_process(entries=None, language=None, \
                             entry['images'] else None
 
             # make images none if nothing's there, instead of a []
-            entry['images'] = entry['images'] if entry.has_key('images') and \
-                    entry['images'] else None
+            entry['images'] = entry['images'] \
+                    if entry.has_key('images') and entry['images'] else None
 
             # [OPTIONAL] generate 3 types of images: thumbnail, 
             # category image and hot news image
@@ -121,7 +122,8 @@ def _value_added_process(entries=None, language=None, \
                             thumbnail_web, thumbnail_local = \
                                     image_helper.scale_image(image=biggest, \
                                     size_expected=THUMBNAIL_LANDSCAPE_SIZE, \
-                                    resize_by_width=True, crop_by_center=False, \
+                                    resize_by_width=True, \
+                                    crop_by_center=False, \
                                     relative_path='%s_thumbnail' % \
                                     image_relative_path)
                         else:  # else thumbnail_portrait_size
