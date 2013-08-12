@@ -33,8 +33,13 @@ def is_valid_image(image_url):
     """
     if not image_url:
         return None
-    image_pil = Image.open(
-        StringIO(urllib2.urlopen(image_url, timeout=UCK_TIMEOUT).read()))
+    image_downloaded = None
+    try:
+        image_downloaded = urllib2.urlopen(image_url, timeout=UCK_TIMEOUT).read()
+    except urllib2.URLError:
+        urllib2.install_opener(urllib2.build_opener(urllib2.ProxyHandler({'http':'127.0.0.1:8087'})))
+        image_downloaded = urllib2.urlopen(image_url, timeout=UCK_TIMEOUT).read()
+    image_pil = Image.open(StringIO(image_downloaded))
     # to avoid line length limit
     if image_pil.size[0] * image_pil.size[1] > MIN_IMAGE_SIZE[0] * MIN_IMAGE_SIZE[1]:
         return True

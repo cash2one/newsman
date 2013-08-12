@@ -148,13 +148,9 @@ def _transcode(link):
     """
     uck_url = '%s%s' % (UCK_TRANSCODING, link)
     # timeout set to UCK_TIMEOUT, currently
-    try:
-        f = urllib2.urlopen(uck_url, timeout=UCK_TIMEOUT)
-        # free data from html encoding
-        return urllib2.unquote(f.read())
-    except IOError as k:
-        print k
-        raise Exception('ERROR: %s cannot open %s' % ('UCK', link))
+    html = urllib2.urlopen(uck_url, timeout=UCK_TIMEOUT).read()
+    # free data from html encoding
+    return urllib2.unquote(html)
 
 
 def convert(link):
