@@ -8,6 +8,7 @@ config.py contains most CONSTANTS in the project
 # @contact chengdujin@gmail.com
 # @created Jan 17, 2013
 
+
 import sys
 reload(sys)
 sys.setdefaultencoding('UTF-8')
