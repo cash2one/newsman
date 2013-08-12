@@ -279,10 +279,10 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, \
             modified = None
             try:
                 etag = d.etag
-            except AttributeError as k:
+            except AttributeError:
                 try:
                     modified = d.modified
-                except AttributeError as k:
+                except AttributeError:
                     pass
 
             if 'entries' in d:
