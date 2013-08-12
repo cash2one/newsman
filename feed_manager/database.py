@@ -62,8 +62,8 @@ def save(feed_info=None):
     # if the collection does not exist, it will be created
     col = Collection(db, FEED_REGISTRAR)
     # make a record in the feeds table
-    item = col.find_one({'feed_link': feed_info['feed_link'], \
-            'language': feed_info['language']})
+    item = col.find_one(
+        {'feed_link': feed_info['feed_link'], 'language': feed_info['language']})
     if not item:
         feed_info['updated_times'] = 0
         feed_info['latest_update'] = None

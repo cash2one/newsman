@@ -46,8 +46,7 @@ def _read_source(d=None, feed_link=None, language=None, categories=None):
 
 
 # TODO: implement _link_cleaner!
-def add(feed_link=None, language=None, categories=None, \
-        transcoder_type="chengdujin"):
+def add(feed_link=None, language=None, categories=None, transcoder_type="chengdujin"):
     """
     read rss/atom meta information from a given feed
     """
