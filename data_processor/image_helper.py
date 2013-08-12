@@ -146,8 +146,8 @@ def scale_image(image=None, size_expected=MIN_IMAGE_SIZE, \
         resize_by_width=True, crop_by_center=True, relative_path=None):
     """
     resize an image as requested
-    resize_by_width: resize the image according to its width(True) or height(False)
-    crop_by_center: crop the image from its center(True) or by point(0, 0)(False)
+    resize_by_width: resize image according to its width(True)/height(False)
+    crop_by_center: crop image from its center(True) or by point(0, 0)(False)
     """
     if not image or not size_expected or not relative_path:
         return None, None
