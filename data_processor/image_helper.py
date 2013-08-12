@@ -28,6 +28,7 @@ from config import IMAGES_LOCAL_DIR
 from config import IMAGES_PUBLIC_DIR
 from config import MIN_IMAGE_SIZE
 from config import TRANSCODED_LOCAL_DIR
+from config import UCK_TIMEOUT
 
 
 if not os.path.exists(IMAGES_LOCAL_DIR):
@@ -48,13 +49,13 @@ def _link_process(link):
         # response is the signal of a valid image
         response = None
         try:
-            response = urllib2.urlopen(image_url)
+            response = urllib2.urlopen(image_url, timeout=UCK_TIMEOUT)
         except urllib2.URLError as k:
             path = re.split('https?://?', image_url)[-1]
             scheme = urlparse.urlparse(image_url).scheme
             image_url = '%s://%s' % (scheme, path)
             try:
-                response = urllib2.urlopen(image_url)
+                response = urllib2.urlopen(image_url, timeout=UCK_TIMEOUT)
             except urllib2.URLError as k:
                 pass
             except Exception as k:
@@ -169,7 +170,7 @@ def scale_image(image=None, size_expected=MIN_IMAGE_SIZE,
         if width_new >= width_expected and height_new >= height_expected:
             # resize
             size_new = width_new, height_new
-            image_downloaded = StringIO(urllib2.urlopen(image['url']).read())
+            image_downloaded = StringIO(urllib2.urlopen(image['url'], timeout=UCK_TIMEOUT).read())
             image_data = Image.open(image_downloaded)
             image_data.thumbnail(size_new, Image.ANTIALIAS)
             # crop
