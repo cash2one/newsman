@@ -1,21 +1,25 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-#
-#@author Yuan JIN
-#@contact jinyuan@baidu.com
+"""
+inquirer find news from memory and database
+"""
+#@author chengdujin
+#@contact chengdujin@gmail.com
 #@created Jan 12, 2013
+
 
 import sys
 reload(sys)
 sys.setdefaultencoding('UTF-8')
 
-import feedparser
 from bson.objectid import ObjectId
-
 from config import Collection
 from config import db
 from config import rclient
+import feedparser
+
+# CONSTANTS
 from config import LANGUAGES
 from config import STRATEGY_WITHOUT_WEIGHTS
 from config import STRATEGY_WITH_WEIGHTS
