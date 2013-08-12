@@ -252,8 +252,7 @@ def convert(language="en", title=None, link=None, transcoder="chengdujin",
         else:
             return title, content
     else:
-        print "ERROR: Transcoder %s failed for %s" % (transcoder, link)
         if not stdout:
-            return None, None, None, None
+            raise Exception('ERROR: Transcoder %s failed for %s' % (transcoder, link))
         else:
             return None, None
