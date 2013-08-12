@@ -153,8 +153,10 @@ def _value_added_process(entries=None, language=None, \
                             (entry['language'], entry['feed_id'], \
                             entry['updated'], rand)
                     entry['mp3'], entry['mp3_local'] = \
-                            tts_provider.google(entry['language'], \
-                            entry['title'], tts_relative_path)
+                            tts_provider.google(entry['language'], '%s. %s' % \
+                            (entry['title'], entry['summary'] \
+                            if entry.has_key('summary') and entry['summary'] \
+                            else ""), tts_relative_path)
                 except Exception as k:
                     print k, '... cannot generate TTS for %s' % entry['link']
                     entry['error'].append(k + '\n')
