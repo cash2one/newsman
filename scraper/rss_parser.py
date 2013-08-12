@@ -248,19 +248,15 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, \
         # http://pythonhosted.org/feedparser/http-etag.html#http-etag
         status = d.status
         if status == 301:
-            raise Exception('ERROR: %s has been permantently moved to \
-            a %s!' % (feed_link, d.href))
+            raise Exception('ERROR: %s has been permantently moved to a %s!' % (feed_link, d.href))
         elif status == 304:
             print 'WARNING: %s server has not updated its feeds' % feed_link
         elif status == 410:
-            raise Exception(
-                'ERROR: %s is gone! Admin should check the feed \
-                availability!' % feed_link)
+            raise Exception('ERROR: %s is gone! Admin should check the feed availability!' % feed_link)
         elif status == 200 or status == 302:
             # no need to worry.
             if status == 302:
-                print 'WARNING: %s url has been temp moved to \
-                a new place' % feed_link
+                print 'WARNING: %s url has been temp moved to a new place' % feed_link
 
             if not feed_title:
                 # if title were not found in feed, an AttributeError would be
@@ -270,8 +266,7 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, \
                 feed_title = feed_title.strip()
                 feed_title_latest = urllib2.unquote(d.feed.title).strip()
                 if feed_title != feed_title_latest:
-                    print 'WARNING: %s title changed! Please update feed \
-                    table/database' % feed_link
+                    print 'WARNING: %s title changed! Please update feed table/database' % feed_link
 
             # update etag/modified
             etag = None
