@@ -47,11 +47,12 @@ class GoogleTranslateAPI(threading.Thread):
         self.result = None
 
     def run(self):
-        response = subprocess.Popen(
-            '''curl -A Mozilla "http://translate.google.com/translate_tts? \
-                    ie=UTF-8&oe=UTF-8&tl=%s&q=%s"''' % (self.language, \
-                    urllib2.quote(self.text)), stdout=subprocess.PIPE, \
-                    shell=True)
+        response = subprocess.Popen('''curl -A Mozilla \
+        "http://translate.google.com/translate_tts?\
+        ie=UTF-8&oe=UTF-8&tl=%s&q=%s"''' % \
+        (self.language, urllib2.quote(self.text)), \
+        stdout=subprocess.PIPE, shell=True)
+
         content, error = response.communicate()
         if not error and content:
             if 'error' not in content or 'permission' not in content:
@@ -86,7 +87,8 @@ def google(language='en', query='Service provided by Baidu', \
     tts_web_path = '%s%s' % (MEDIA_PUBLIC_DIR, relative_path)
 
     command = 'lame -S --decode {0} - | sox -q -t wav - -t wav - speed 1.06 | \
-            lame -S - {1}; rm {0}'.format(tmp_file, tts_local_path)
+    lame -S - {1}; rm {0}'.format(tmp_file, tts_local_path)
+
     subprocess.Popen(command, stderr=subprocess.PIPE, shell=True)
     print '----------- MISSION ACCOMPLISHED ----------'
     return tts_web_path, tts_local_path
@@ -96,9 +98,9 @@ def google(language='en', query='Service provided by Baidu', \
 # TODO: determine how do these languages separate words
 # TODO: get encoding of a feed. use that if indicated, else 'utf-8'
 def _query_segment(language='en', query='Service provided by Baidu'):
-    '''
+    """
     remove after implementing line 91: the algorithm only now works for latins
-    '''
+    """
 
     def _remove_brackets(text):
         """
@@ -204,12 +206,12 @@ def _query_segment(language='en', query='Service provided by Baidu'):
 # TODO: write docs!
 def _download(language='en', query='Service provided by Baidu', \
         tmp_file='do_not_exist.mp3'):
-    '''
+    """
     docs needed!
     other ways to write _download
     1. https://github.com/hungtruong/Google-Translate-TTS/blob/master/GoogleTTS.py
     2. https://github.com/gavinmh/tts-api/blob/master/text_segmenter.py
-    '''
+    """
     segments = _query_segment(language, query)
 
     # download chunks and write them to the output file
