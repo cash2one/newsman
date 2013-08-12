@@ -19,6 +19,9 @@ from data_processor import image_helper
 from readability import Document
 import urllib2
 
+# CONSTANTS
+from config import UCK_TIMEOUT
+
 
 def _collect_images(content):
     """
@@ -31,7 +34,7 @@ def _prepare_link(url):
     """
     decode with the correct encoding
     """
-    html = urllib2.urlopen(url).read()
+    html = urllib2.urlopen(url, timeout=UCK_TIMEOUT).read()
     if html:
         detected = chardet.detect(html)
         if detected:

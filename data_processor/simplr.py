@@ -24,6 +24,9 @@ import tinysegmenter
 import urllib2
 import urlparse
 
+# CONSTANTS
+from config import UCK_TIMEOUT
+
 
 class Simplr:
     regexps = {
@@ -56,7 +59,7 @@ class Simplr:
             """
             decode with the correct encoding
             """
-            html = urllib2.urlopen(url).read()
+            html = urllib2.urlopen(url, timeout=UCK_TIMEOUT).read()
             if html:
                 detected = chardet.detect(html)
                 if detected:
