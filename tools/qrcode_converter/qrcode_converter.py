@@ -20,9 +20,8 @@ def _convert(data, output):
     """
     well, convert the data to a jpeg-based image
     """
-    qr = qrcode.QRCode(version=1, \
-            error_correction=qrcode.constants.ERROR_CORRECT_L, \
-            box_size=10, border=4,)
+    qr = qrcode.QRCode(
+        version=1, error_correction=qrcode.constants.ERROR_CORRECT_L, box_size=10, border=4,)
     qr.add_data(data)
     qr.make(fit=True)
 
