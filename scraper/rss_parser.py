@@ -18,11 +18,9 @@ from BeautifulSoup import BeautifulStoneSoup
 import calendar
 import chardet
 from data_processor import image_helper
-from data_processor import thumbnail
 from datetime import datetime, timedelta
 import feedparser
 import html2text
-import random
 import re
 import time
 import urllib2
