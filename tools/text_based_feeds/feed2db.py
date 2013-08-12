@@ -21,8 +21,7 @@ from config import db
 from config import FEED_REGISTRAR
 from config import CATEGORY_REGISTRAR
 #FILE_SUFFIX = '/home/work/bgm_news/tools/text_based_feeds/feed_lists/'
-FILE_SUFFIX = '/home/jinyuan/Downloads/bgm_news/tools/\
-text_based_feeds/feed_lists/'
+FILE_SUFFIX = '/home/jinyuan/Downloads/bgm_news/tools/text_based_feeds/feed_lists/'
 
 
 def _parse_task(line):
@@ -32,8 +31,7 @@ def _parse_task(line):
     if line:
         task = line.split('*|*')
         # task[1] refers to categories
-        return task[0].strip(), task[1].split(','), \
-            task[2].strip(), task[3].strip()
+        return task[0].strip(), task[1].split(','), task[2].strip(), task[3].strip()
     else:
         return None
 
