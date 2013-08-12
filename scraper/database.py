@@ -1,6 +1,14 @@
 #!/usr/bin/env python
 #-*- coding: utf-8 -*-
 
+"""
+database deals with saving, updating and deleting rss items to/from database
+"""
+# @author chengdujin
+# @contact chengdujin@gmail.com
+# @created Jul., 2013
+
+
 import sys
 reload(sys)
 sys.setdefaultencoding('UTF-8')
@@ -8,6 +16,8 @@ sys.path.append('..')
 
 from config import Collection
 from config import db
+
+# CONSTANTS
 from config import LANGUAGES
 
 
