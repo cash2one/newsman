@@ -61,12 +61,3 @@ def update(entries=None, language=None):
         entry_id = col.save(entry)
         entry['_id'] = str(entry_id)
     return entries
-
-# TODO: write docs
-
-
-def update_feed():
-    """
-    docs needed!
-    """
-    pass
