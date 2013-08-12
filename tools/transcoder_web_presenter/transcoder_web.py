@@ -39,8 +39,9 @@ class Transcoders:
             language=language, link=url, transcoder='readability', stdout=True)
         title_uck, content_uck = transcoder.convert(
             language=language, link=url, transcoder='uck', stdout=True)
-        return render.combiner(title_simplr, content_simplr, title_burify,
-                               content_burify, title_uck, content_uck, 'Original Webpage')
+        return render.combiner(title_simplr, content_simplr, \
+                title_burify, content_burify, title_uck, content_uck, \
+                'Original Webpage')
 
 
 if __name__ == "__main__":
