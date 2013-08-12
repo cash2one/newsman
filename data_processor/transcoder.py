@@ -229,7 +229,7 @@ def convert(language="en", title=None, link=None, transcoder="chengdujin",
     combine them with the template
     generate paths
     return news and images
-    * stdout is to print the result directly, no saving to physical disk related
+    * stdout is to print result directly, no saving to physical disk related
     * stdout default value False
     """
     if not language or not link:
