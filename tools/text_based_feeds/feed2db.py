@@ -12,7 +12,7 @@ feed2db works to turn text-based feed list into database
 import sys
 reload(sys)
 sys.setdefaultencoding('UTF-8')
-sys.path.append('..')
+sys.path.append('../..')
 
 from config import Collection
 from config import db
