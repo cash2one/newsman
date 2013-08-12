@@ -1,11 +1,13 @@
 #!/usr/bin/env python
 #-*- coding: utf-8 -*-
 
-# database works to manage interaction with the feed database
-#
-# @author Jin Yuan
-# @contact jinyuan@baidu.com
+"""
+database works to manage interaction with the feed database
+"""
+# @author chengdujin
+# @contact chengdujin@gmail.com
 # @created Jul. 29, 2013
+
 
 import sys
 reload(sys)
@@ -17,6 +19,7 @@ from config import db
 from bson.objectid import ObjectId
 import time
 
+# CONSTANTS
 from config import FEED_REGISTRAR
 
 
@@ -59,8 +62,8 @@ def save(feed_info=None):
     # if the collection does not exist, it will be created
     col = Collection(db, FEED_REGISTRAR)
     # make a record in the feeds table
-    item = col.find_one(
-        {'feed_link': feed_info['feed_link'], 'language': feed_info['language']})
+    item = col.find_one({'feed_link': feed_info['feed_link'], \
+            'language': feed_info['language']})
     if not item:
         feed_info['updated_times'] = 0
         feed_info['latest_update'] = None
