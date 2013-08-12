@@ -1,11 +1,13 @@
 #!/usr/bin/env python
 #-*- coding: utf-8 -*-
 
-# feed2db works to turn text-based feed list into database
-#
-# @author Jin Yuan
-# @contact jinyuan@baidu.com
+"""
+feed2db works to turn text-based feed list into database
+"""
+# @author chengdujin
+# @contact chengdujin@gmail.com
 # @created Jul. 30, 2013
+
 
 import sys
 reload(sys)
