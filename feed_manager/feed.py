@@ -1,24 +1,27 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# feed works to get feed meta info into database
-#
-# @author Jin Yuan
-# @contact jinyuan@baidu.com
+"""
+feed works to get feed meta info into database
+"""
+# @author chengdujin
+# @contact chengdujin@gmail.com
 # @created Jan 1, 2013
+
 
 import sys
 reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append("..")
 
-from feed_manager import database as db_feeds
 from BeautifulSoup import BeautifulStoneSoup
+from feed_manager import database as db_feeds
 import feedparser
 from scraper import rss
 import task
 import time
 
+# CONSTANTS
 from config import FEED_REGISTRAR
 from config import LANGUAGES
 
@@ -57,7 +60,8 @@ def _link_cleaner(link):
 
 
 # TODO: implement _link_cleaner!
-def add(feed_link=None, language=None, categories=None, transcoder_type="chengdujin"):
+def add(feed_link=None, language=None, categories=None, \
+        transcoder_type="chengdujin"):
     """
     read rss/atom meta information from a given feed
     """
