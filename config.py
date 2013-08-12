@@ -43,8 +43,7 @@ MEDIA_PUBLIC_DIR = PUBLIC % 'mid/'
 NEWS_TEMPLATE = LOCAL % 'news/templates/index.html'
 NEWS_TEMPLATE_ARABIC = LOCAL % 'news/templates/index_arabic.html'
 UCK_TRANSCODING = 'http://gate.baidu.com/tc?m=8&from=bdpc_browser&src='
-TRANSCODED_ENCODING = '<meta http-equiv="Content-Type" content="text/html; \
-charset=utf-8"/>\n'
+TRANSCODED_ENCODING = '<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>\n'
 
 TRANSCODING_BTN_EN = 'Original page'
 TRANSCODING_BTN_PT = 'Página original'
