@@ -24,6 +24,7 @@ import threading
 import urllib2
 
 # CONSTANTS
+from config import GOOGLE_TTS_TIMEOUT
 from config import MEDIA_LOCAL_DIR
 from config import MEDIA_PUBLIC_DIR
 from config import LANGUAGES
@@ -47,11 +48,7 @@ class GoogleTranslateAPI(threading.Thread):
         self.result = None
 
     def run(self):
-        response = subprocess.Popen('''curl -A Mozilla \
-        "http://translate.google.com/translate_tts?\
-        ie=UTF-8&oe=UTF-8&tl=%s&q=%s"''' % \
-        (self.language, urllib2.quote(self.text)), \
-        stdout=subprocess.PIPE, shell=True)
+        response = subprocess.Popen('''curl -A Mozilla "http://translate.google.com/translate_tts?ie=UTF-8&oe=UTF-8&tl=%s&q=%s"''' % (self.language, urllib2.quote(self.text)), stdout=subprocess.PIPE, shell=True)
 
         content, error = response.communicate()
         if not error and content:
@@ -86,8 +83,7 @@ def google(language='en', query='Service provided by Baidu', \
     tts_local_path = '%s%s' % (MEDIA_LOCAL_DIR, relative_path)
     tts_web_path = '%s%s' % (MEDIA_PUBLIC_DIR, relative_path)
 
-    command = 'lame -S --decode {0} - | sox -q -t wav - -t wav - speed 1.06 | \
-    lame -S - {1}; rm {0}'.format(tmp_file, tts_local_path)
+    command = 'lame -S --decode {0} - | sox -q -t wav - -t wav - speed 1.06 | lame -S - {1}; rm {0}'.format(tmp_file, tts_local_path)
 
     subprocess.Popen(command, stderr=subprocess.PIPE, shell=True)
     print '... MP3 acceleration is successfully completed!'
@@ -113,6 +109,8 @@ def _query_segment(language='en', query='Service provided by Baidu'):
     query = unicode(query.strip())
     # remove content within a () or （）
     query = _remove_brackets(query)
+    # remove \n
+    query = query.replace('\n', ' ')
 
     sentences = None
     if language == 'ja':
@@ -194,9 +192,6 @@ def _query_segment(language='en', query='Service provided by Baidu'):
             segments.append(segment.strip())
             segment = part
     segments.append(segment.strip())
-    print '... after serious thoughts, we break sentence into these:'
-    for segment in segments:
-        print '    ', segment
     return segments
 
 
@@ -222,7 +217,7 @@ def _download(language='en', query='Service provided by Baidu', \
                 gt_request = GoogleTranslateAPI(language, segment)
                 threads.append(gt_request)
                 gt_request.start()
-                gt_request.join(2 * 1000)
+                gt_request.join(GOOGLE_TTS_TIMEOUT)
         out = open(tmp_file, 'a')
         for th in threads:
             sys.stdout.write('.')

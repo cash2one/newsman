@@ -141,7 +141,7 @@ def _transcode(url, transcoders, language=None):
         threads[transcoder] = transcoding_request
         transcoding_request.start()
         # UCK_TIMEOUT seconds to wait UCK server
-        transcoding_request.join(UCK_TIMEOUT * 1000)
+        transcoding_request.join(UCK_TIMEOUT + 2)
 
     # after a while ... put data in the proper variables
     uck_content = simplr_content = burify_content = None
