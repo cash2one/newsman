@@ -20,12 +20,16 @@ from uwsgi import inquirer
 
 
 def get_categories_by_language(*bundle):
-    ''''''
+    """
+    get hot news and other categories images and titles
+    """
     return inquirer.get_categories_by_language(bundle[0]['language'])
 
 
 def get_latest_entries_by_language(*bundle):
-    ''''''
+    """
+    get the latest entries by language
+    """
     LIMIT = 10 if 'limit' not in bundle[0] else bundle[0]['limit']
     START_ID = None if 'start_id' not in bundle[0] else bundle[0]['start_id']
     STRATEGY = 1 if 'strategy' not in bundle[0] else bundle[0]['strategy']
@@ -33,7 +37,9 @@ def get_latest_entries_by_language(*bundle):
 
 
 def get_previous_entries_by_language(*bundle):
-    '''get the latest entries of a feed'''
+    """
+    get the latest entries of a feed
+    """
     LIMIT = 10 if 'limit' not in bundle[0] else bundle[0]['limit']
     END_ID = None if 'end_id' not in bundle[0] else bundle[0]['end_id']
     STRATEGY = 1 if 'strategy' not in bundle[0] else bundle[0]['strategy']
@@ -41,7 +47,9 @@ def get_previous_entries_by_language(*bundle):
 
 
 def get_latest_entries_by_category(*bundle):
-    ''''''
+    """
+    get the latest entries by category
+    """
     LIMIT = 10 if 'limit' not in bundle[0] else bundle[0]['limit']
     START_ID = None if 'start_id' not in bundle[0] else bundle[0]['start_id']
     STRATEGY = 1 if 'strategy' not in bundle[0] else bundle[0]['strategy']
@@ -49,7 +57,9 @@ def get_latest_entries_by_category(*bundle):
 
 
 def get_previous_entries_by_category(*bundle):
-    '''get the latest entries of a feed'''
+    """
+    get the latest entries of a feed
+    """
     LIMIT = 10 if 'limit' not in bundle[0] else bundle[0]['limit']
     END_ID = None if 'end_id' not in bundle[0] else bundle[0]['end_id']
     STRATEGY = 1 if 'strategy' not in bundle[0] else bundle[0]['strategy']
@@ -73,6 +83,9 @@ def _read_http(environ):
 
 
 def application(environ, start_response):
+    """
+    WSGI interface
+    """
     try:
         output = _read_http(environ)
         if output is None:
