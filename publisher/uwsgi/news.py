@@ -33,8 +33,7 @@ def get_latest_entries_by_language(*bundle):
     LIMIT = 10 if 'limit' not in bundle[0] else bundle[0]['limit']
     START_ID = None if 'start_id' not in bundle[0] else bundle[0]['start_id']
     STRATEGY = 1 if 'strategy' not in bundle[0] else bundle[0]['strategy']
-    return inquirer.get_latest_entries_by_language(bundle[0]['language'], \
-            limit=LIMIT, start_id=START_ID, strategy=STRATEGY)
+    return inquirer.get_latest_entries_by_language(bundle[0]['language'], limit=LIMIT, start_id=START_ID, strategy=STRATEGY)
 
 
 def get_previous_entries_by_language(*bundle):
@@ -44,8 +43,7 @@ def get_previous_entries_by_language(*bundle):
     LIMIT = 10 if 'limit' not in bundle[0] else bundle[0]['limit']
     END_ID = None if 'end_id' not in bundle[0] else bundle[0]['end_id']
     STRATEGY = 1 if 'strategy' not in bundle[0] else bundle[0]['strategy']
-    return inquirer.get_previous_entries_by_language(bundle[0]['language'], \
-            limit=LIMIT, end_id=END_ID, strategy=STRATEGY)
+    return inquirer.get_previous_entries_by_language(bundle[0]['language'], limit=LIMIT, end_id=END_ID, strategy=STRATEGY)
 
 
 def get_latest_entries_by_category(*bundle):
@@ -55,9 +53,7 @@ def get_latest_entries_by_category(*bundle):
     LIMIT = 10 if 'limit' not in bundle[0] else bundle[0]['limit']
     START_ID = None if 'start_id' not in bundle[0] else bundle[0]['start_id']
     STRATEGY = 1 if 'strategy' not in bundle[0] else bundle[0]['strategy']
-    return inquirer.get_latest_entries_by_category(bundle[0]['language'], \
-            bundle[0]['category'], limit=LIMIT, start_id=START_ID, \
-            strategy=STRATEGY)
+    return inquirer.get_latest_entries_by_category(bundle[0]['language'], bundle[0]['category'], limit=LIMIT, start_id=START_ID, strategy=STRATEGY)
 
 
 def get_previous_entries_by_category(*bundle):
@@ -67,9 +63,7 @@ def get_previous_entries_by_category(*bundle):
     LIMIT = 10 if 'limit' not in bundle[0] else bundle[0]['limit']
     END_ID = None if 'end_id' not in bundle[0] else bundle[0]['end_id']
     STRATEGY = 1 if 'strategy' not in bundle[0] else bundle[0]['strategy']
-    return inquirer.get_previous_entries_by_category(bundle[0]['language'], \
-            bundle[0]['category'], limit=LIMIT, end_id=END_ID, \
-            strategy=STRATEGY)
+    return inquirer.get_previous_entries_by_category(bundle[0]['language'], bundle[0]['category'], limit=LIMIT, end_id=END_ID, strategy=STRATEGY)
 
 
 def _read_http(environ):

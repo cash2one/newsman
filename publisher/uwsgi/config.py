@@ -28,7 +28,7 @@ rclient = redis.StrictRedis(host='127.0.0.1')
 
 # CONSTANTS
 PUBLIC = 'http://mobile-global.baidu.com/news/%s'
-#LOCAL = '/home/work/STATIC/news/%s'
+#LOCAL = '/home/work/STATIC/%s'
 LOCAL = '/home/jinyuan/Downloads/%s'
 
 TRANSCODED_LOCAL_DIR = LOCAL % 'news/ts/'
@@ -43,8 +43,7 @@ MEDIA_PUBLIC_DIR = PUBLIC % 'mid/'
 NEWS_TEMPLATE = LOCAL % 'news/templates/index.html'
 NEWS_TEMPLATE_ARABIC = LOCAL % 'news/templates/index_arabic.html'
 UCK_TRANSCODING = 'http://gate.baidu.com/tc?m=8&from=bdpc_browser&src='
-TRANSCODED_ENCODING = '<meta http-equiv="Content-Type" content="text/html; \
-charset=utf-8"/>\n'
+TRANSCODED_ENCODING = '<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>\n'
 
 TRANSCODING_BTN_EN = 'Original page'
 TRANSCODING_BTN_PT = 'Página original'
@@ -68,6 +67,7 @@ CATEGORY_REGISTRAR = 'categories'
 PARAGRAPH_CRITERIA = 40
 SUMMARY_LENGTH_LIMIT = 500
 UCK_TIMEOUT = 3  # 3 seconds timeout
+GOOGLE_TTS_TIMEOUT = 5
 
 LANGUAGES = ['en', 'th', 'ind', 'ja', 'pt', 'en-rIN', 'ar', 'zh-CN', 'zh-HK']
 MIN_IMAGE_SIZE = 150, 150

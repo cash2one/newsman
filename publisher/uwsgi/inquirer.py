@@ -51,9 +51,8 @@ def get_categories_by_language(language=None):
             category_images[category] = []
             for entry in entries:
                 if 'category_image' in entry:
-                    item = {'title': entry['title'], \
-                            'image': entry['category_image'], \
-                            'updated': entry['updated']}
+                    item = {'title': entry['title'], 'image': entry[
+                        'category_image'], 'updated': entry['updated']}
                     category_images[category].append(item)
                     # limit the number of category_image to
                     if len(category_images[category]) == images_limit:
@@ -81,8 +80,7 @@ def get_categories_by_language(language=None):
     return {'Categories': output}
 
 
-def get_latest_entries_by_language(language=None, limit=10, start_id=None, \
-        strategy=1):
+def get_latest_entries_by_language(language=None, limit=10, start_id=None, strategy=1):
     """
     find out latest news items by language
     """
@@ -119,10 +117,8 @@ def get_latest_entries_by_language(language=None, limit=10, start_id=None, \
             limit_in_database = limit - entry_ids_total
             # database
             col = Collection(db, language)
-            items = col.find({'updated': \
-                    {'$lt': last_entry_in_memory_updated}}).\
-                    sort('updated', -1).limit(limit_in_database)
-
+            items = col.find({'updated': {'$lt': last_entry_in_memory_updated}}).sort(
+                'updated', -1).limit(limit_in_database)
             for item in items:
                 if start_id and str(item['_id']) == start_id:
                     return entries
@@ -146,8 +142,7 @@ def get_latest_entries_by_language(language=None, limit=10, start_id=None, \
     return entries
 
 
-def get_previous_entries_by_language(language=None, limit=10, end_id=None, \
-        strategy=1):
+def get_previous_entries_by_language(language=None, limit=10, end_id=None, strategy=1):
     """
     strategy 1.query without considering weights 2.query with considering weights
     """
@@ -187,17 +182,14 @@ def get_previous_entries_by_language(language=None, limit=10, end_id=None, \
         entries = []
         if END_ID_IN_MEMORY:  # see if data in memory suffice
             if limit_in_memory >= limit:  # purely get from memory
-                entry_ids = rclient.zrevrange("news::%s" % language, \
-                        entry_ids_total - end_id_index, \
-                        entry_ids_total - end_id_index + limit - 1)
+                entry_ids = rclient.zrevrange(
+                    "news::%s" % language, entry_ids_total - end_id_index, entry_ids_total - end_id_index + limit - 1)
                 for entry_id in entry_ids:
                     entries.append(eval(rclient.get(entry_id)))
             else:  # memory + database
                 # memory
                 entry_ids = rclient.zrevrange(
-                    "news::%s" % language, entry_ids_total - end_id_index, \
-                            entry_ids_total - end_id_index + \
-                            limit_in_memory - 1)
+                    "news::%s" % language, entry_ids_total - end_id_index, entry_ids_total - end_id_index + limit_in_memory - 1)
                 last_entry_in_memory = None
                 for entry_id in entry_ids:
                     last_entry_in_memory = eval(rclient.get(entry_id))
@@ -206,10 +198,8 @@ def get_previous_entries_by_language(language=None, limit=10, end_id=None, \
                 last_entry_in_memory_updated = last_entry_in_memory['updated']
                 # find the remaining items in database
                 col = Collection(db, language)
-                items = col.find({'updated': \
-                        {'$lt': last_entry_in_memory_updated}}).\
-                        sort('updated', -1).limit(limit_in_database)
-
+                items = col.find({'updated': {'$lt': last_entry_in_memory_updated}}).sort(
+                    'updated', -1).limit(limit_in_database)
                 for item in items:
                     # string-ify all the values: ObjectId
                     for x, y in item.iteritems():
@@ -224,9 +214,8 @@ def get_previous_entries_by_language(language=None, limit=10, end_id=None, \
                 end_id_entry = col.find_one({'_id': ObjectId(end_id)})
                 if end_id_entry:
                     end_id_updated = end_id_entry['updated']
-                    items = col.find({'updated': \
-                            {'$lt': end_id_updated}}).\
-                            sort('updated', -1).limit(limit)
+                    items = col.find({'updated': {'$lt': end_id_updated}}).sort(
+                        'updated', -1).limit(limit)
                 else:
                     return None
             # get the most recent limit number of entries
@@ -243,8 +232,7 @@ def get_previous_entries_by_language(language=None, limit=10, end_id=None, \
         pass
 
 
-def get_latest_entries_by_category(language=None, category=None, limit=10, \
-        start_id=None, strategy=1):
+def get_latest_entries_by_category(language=None, category=None, limit=10, start_id=None, strategy=1):
     """
     find out latest news items by category and language
     """
@@ -284,10 +272,8 @@ def get_latest_entries_by_category(language=None, category=None, limit=10, \
             # database
             col = Collection(db, language)
             # query categories array with only one of its values
-            items = col.find({'updated': \
-                    {'$lt': last_entry_in_memory_updated}, \
-                    'categories': category}).sort('updated', \
-                    -1).limit(limit_in_database)
+            items = col.find({'updated': {'$lt': last_entry_in_memory_updated}, 'categories': category}).sort(
+                'updated', -1).limit(limit_in_database)
 
             for item in items:
                 if start_id and item['_id'] == start_id:
@@ -313,8 +299,8 @@ def get_latest_entries_by_category(language=None, category=None, limit=10, \
     return entries
 
 
-def get_previous_entries_by_category(language=None, category=None, limit=10, \
-        end_id=None, strategy=1):
+def get_previous_entries_by_category(language=None, category=None, limit=10,
+                                     end_id=None, strategy=1):
     """
     strategy 
         1.query without considering weights 
@@ -358,16 +344,14 @@ def get_previous_entries_by_category(language=None, category=None, limit=10, \
         entries = []
         if END_ID_IN_MEMORY:  # see if data in memory suffice
             if limit_in_memory >= limit:  # purely get from memory
-                entry_ids = rclient.zrevrange(collection_name, \
-                        entry_ids_total - end_id_index, \
-                        entry_ids_total - end_id_index + limit - 1)
+                entry_ids = rclient.zrevrange(
+                    collection_name, entry_ids_total - end_id_index, entry_ids_total - end_id_index + limit - 1)
                 for entry_id in entry_ids:
                     entries.append(eval(rclient.get(entry_id)))
             else:  # memory + database
                 # memory
-                entry_ids = rclient.zrevrange(collection_name, \
-                        entry_ids_total - end_id_index, \
-                        entry_ids_total - end_id_index + limit_in_memory - 1)
+                entry_ids = rclient.zrevrange(
+                    collection_name, entry_ids_total - end_id_index, entry_ids_total - end_id_index + limit_in_memory - 1)
                 last_entry_in_memory = None
                 for entry_id in entry_ids:
                     last_entry_in_memory = eval(rclient.get(entry_id))
@@ -377,10 +361,8 @@ def get_previous_entries_by_category(language=None, category=None, limit=10, \
 
                 # find the remaining items in database
                 col = Collection(db, language)
-                items = col.find({'updated': {'$lt': \
-                        last_entry_in_memory_updated}, \
-                        'categories': category}).sort('updated', \
-                        -1).limit(limit_in_database)
+                items = col.find({'updated': {'$lt': last_entry_in_memory_updated}, 'categories': category}).sort(
+                    'updated', -1).limit(limit_in_database)
                 for item in items:
                     # string-ify all the values: ObjectId
                     for x, y in item.iteritems():
@@ -395,9 +377,8 @@ def get_previous_entries_by_category(language=None, category=None, limit=10, \
                 end_id_entry = col.find_one({'_id': ObjectId(end_id)})
                 if end_id_entry:
                     end_id_updated = end_id_entry['updated']
-                    items = col.find({'updated': {'$lt': end_id_updated}, \
-                            'categories': category}).sort('updated', \
-                            -1).limit(limit)
+                    items = col.find({'updated': {'$lt': end_id_updated}, 'categories': category}).sort(
+                        'updated', -1).limit(limit)
                 else:
                     return None
             # get the most recent limit number of entries
