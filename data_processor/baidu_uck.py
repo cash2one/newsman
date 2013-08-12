@@ -154,7 +154,7 @@ def _transcode(link):
         return urllib2.unquote(f.read())
     except IOError as k:
         print k
-        raise Exception('ERROR: Transcoder %s failed for %s' % ('UCK', link))
+        raise Exception('ERROR: %s cannot open %s' % ('UCK', link))
 
 
 def convert(link):
