@@ -36,8 +36,7 @@ def _get_shorter_text(content, language, limit):
 
     # break text by sentence
     if language.startswith('zh') or language == 'ja':
-        jp_sent_tokenizer = nltk.RegexpTokenizer(\
-                u'[^!?.！？。．]*[!?.！？。]*')
+        jp_sent_tokenizer = nltk.RegexpTokenizer(u'[^!?.！？。．]*[!?.！？。]*')
         sentences = jp_sent_tokenizer.tokenize(content)
     else:  # supports latin-based, thai and arabic
         sentences = nltk.sent_tokenize(content)
@@ -125,5 +124,4 @@ def extract(summary, transcoded, language):
     # print '  FIRST PARAGRAPH:', len(result_first_paragraph),
     # result_first_paragraph
 
-    return result_summary if result_summary else result_first_paragraph \
-            if result_first_paragraph else None
+    return result_summary if result_summary else result_first_paragraph if result_first_paragraph else None

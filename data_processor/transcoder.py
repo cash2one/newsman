@@ -220,8 +220,8 @@ def _preprocess(link):
     return link[last_http_index:].strip()
 
 
-def convert(language="en", title=None, link=None, transcoder="chengdujin", 
-        relative_path=None, stdout=False):
+def convert(language="en", title=None, link=None, transcoder="chengdujin",
+            relative_path=None, stdout=False):
     """
     select a transcoder
     send the link

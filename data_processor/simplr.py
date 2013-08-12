@@ -26,22 +26,23 @@ import urlparse
 
 
 class Simplr:
-    regexps = {'unlikely_candidates': re.compile("combx|comment|community|disqus|extra|foot|header|menu|remark|rss|shoutbox|sidebar|sponsor|ad-break|agegate|pagination|pager|popup|tweet|twitter", re.I),
-               'ok_maybe_its_a_candidate': re.compile("and|article|body|column|main|shadow", re.I),
-               'positive': re.compile("article|body|content|entry|hentry|main|page|pagination|post|text|blog|story", re.I),
-               'negative': re.compile("combx|comment|com|contact|foot|footer|footnote|masthead|media|meta|outbrain|promo|related|scroll|shoutbox|sidebar|sponsor|shopping|tags|tool|widget", re.I),
-               'extraneous': re.compile("print|archive|comment|discuss|e[\-]?mail|share|reply|all|login|sign|single", re.I),
-               'div_to_p_elements': re.compile("<(a|blockquote|dl|div|img|ol|p|pre|table|ul)", re.I),
-               'replace_brs': re.compile("(<br[^>]*>[ \n\r\t]*){2,}", re.I),
-               'replace_fonts': re.compile("<(/?)font[^>]*>", re.I),
-               'trim': re.compile("^\s+|\s+$", re.I),
-               'normalize': re.compile("\s{2,}", re.I),
-               'kill_breaks': re.compile("(<br\s*/?>(\s|&nbsp;?)*)+", re.I),
-               'videos': re.compile("http://(www\.)?(youtube|vimeo)\.com", re.I),
-               'skip_footbote_link': re.compile("^\s*(\[?[a-z0-9]{1,2}\]?|^|edit|citation needed)\s*$", re.I),
-               'next_link': re.compile("(next|weiter|continue|>([^\|]|$)|»([^\|]|$))", re.I),
-               'prev_link': re.compile("(prev|earl|old|new|<|«)", re.I)
-               }
+    regexps = {
+        'unlikely_candidates': re.compile("combx|comment|community|disqus|extra|foot|header|menu|remark|rss|shoutbox|sidebar|sponsor|ad-break|agegate|pagination|pager|popup|tweet|twitter", re.I),
+        'ok_maybe_its_a_candidate': re.compile("and|article|body|column|main|shadow", re.I),
+        'positive': re.compile("article|body|content|entry|hentry|main|page|pagination|post|text|blog|story", re.I),
+        'negative': re.compile("combx|comment|com|contact|foot|footer|footnote|masthead|media|meta|outbrain|promo|related|scroll|shoutbox|sidebar|sponsor|shopping|tags|tool|widget", re.I),
+        'extraneous': re.compile("print|archive|comment|discuss|e[\-]?mail|share|reply|all|login|sign|single", re.I),
+        'div_to_p_elements': re.compile("<(a|blockquote|dl|div|img|ol|p|pre|table|ul)", re.I),
+        'replace_brs': re.compile("(<br[^>]*>[ \n\r\t]*){2,}", re.I),
+        'replace_fonts': re.compile("<(/?)font[^>]*>", re.I),
+        'trim': re.compile("^\s+|\s+$", re.I),
+        'normalize': re.compile("\s{2,}", re.I),
+        'kill_breaks': re.compile("(<br\s*/?>(\s|&nbsp;?)*)+", re.I),
+        'videos': re.compile("http://(www\.)?(youtube|vimeo)\.com", re.I),
+        'skip_footbote_link': re.compile("^\s*(\[?[a-z0-9]{1,2}\]?|^|edit|citation needed)\s*$", re.I),
+        'next_link': re.compile("(next|weiter|continue|>([^\|]|$)|»([^\|]|$))", re.I),
+        'prev_link': re.compile("(prev|earl|old|new|<|«)", re.I)
+    }
 
     def __init__(self, url, language):
         """
@@ -103,10 +104,7 @@ class Simplr:
         for elem in self.html.findAll(True):
             unlikely_match_string = elem.get('id', '') + elem.get('class', '')
 
-            if self.regexps['unlikely_candidates']. \
-                    search(unlikely_match_string) and not self. \
-                    regexps['ok_maybe_its_a_candidate']. \
-                    search(unlikely_match_string) and elem.name != 'body':
+            if self.regexps['unlikely_candidates'].search(unlikely_match_string) and not self.regexps['ok_maybe_its_a_candidate'].search(unlikely_match_string) and elem.name != 'body':
                 elem.extract()
                 continue
 
@@ -148,11 +146,9 @@ class Simplr:
         top_candidate = None
 
         for key in self.candidates:
-            self.candidates[key]['score'] = self.candidates[key]['score'] * \
-                (1 - self._get_link_density(
-                 self.candidates[key]['node']))
-            if not top_candidate or self.candidates[key]['score'] \
-                    > top_candidate['score']:
+            self.candidates[key]['score'] = self.candidates[key][
+                'score'] * (1 - self._get_link_density(self.candidates[key]['node']))
+            if not top_candidate or self.candidates[key]['score'] > top_candidate['score']:
                 top_candidate = self.candidates[key]
 
         content = ''
@@ -196,8 +192,7 @@ class Simplr:
             if is_embed and self.regexps['videos'].search(attribute_values):
                 continue
 
-            if is_embed and self.regexps['videos'].search(target.
-                                                          renderContents(encoding=None)):
+            if is_embed and self.regexps['videos'].search(target.renderContents(encoding=None)):
                 continue
             target.extract()
 
@@ -246,8 +241,7 @@ class Simplr:
                     to_remove = True
                 elif weight >= 25 and link_density > 0.5:
                     to_remove = True
-                elif (embed_count == 1 and content_length < 35) \
-                        or embed_count > 1:
+                elif (embed_count == 1 and content_length < 35) or embed_count > 1:
                     to_remove = True
 
                 if to_remove:
