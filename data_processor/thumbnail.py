@@ -22,6 +22,7 @@ import urllib2
 from config import MIN_IMAGE_SIZE
 from config import IMAGES_LOCAL_DIR
 from config import IMAGES_PUBLIC_DIR
+from config import UCK_TIMEOUT
 
 
 # TODO: boundary checker should not return None, instead probably an Exception
@@ -32,7 +33,7 @@ def is_valid_image(image_url):
     """
     if not image_url:
         return None
-    image_pil = Image.open(StringIO(urllib2.urlopen(image_url).read()))
+    image_pil = Image.open(StringIO(urllib2.urlopen(image_url, timeout=UCK_TIMEOUT).read()))
     # to avoid line length limit
     if image_pil.size[0] * image_pil.size[1] > \
             MIN_IMAGE_SIZE[0] * MIN_IMAGE_SIZE[1]:
@@ -49,7 +50,7 @@ def generate_thumbnail(image_url, relative_path):
     """
     if not image_url or not relative_path:
         return None
-    image_web = StringIO(urllib2.urlopen(image_url).read())
+    image_web = StringIO(urllib2.urlopen(image_url, timeout=UCK_TIMEOUT).read())
     image_pil = Image.open(image_web)
     # generate thumbnail
     if image_pil.size > MIN_IMAGE_SIZE:
@@ -70,7 +71,7 @@ def get_image_size(image_url):
     docs needed
     """
     try:
-        image_web = StringIO(urllib2.urlopen(image_url).read())
+        image_web = StringIO(urllib2.urlopen(image_url, timeout=UCK_TIMEOUT).read())
     except Exception as e:
         print e
         image_web = image_url
