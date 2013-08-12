@@ -220,8 +220,7 @@ def _preprocess(link):
     return link[last_http_index:].strip()
 
 
-def convert(language="en", title=None, link=None, transcoder="chengdujin",
-            relative_path=None, stdout=False):
+def convert(language="en", title=None, link=None, transcoder="chengdujin", relative_path=None, stdout=False):
     """
     select a transcoder
     send the link
@@ -238,9 +237,10 @@ def convert(language="en", title=None, link=None, transcoder="chengdujin",
     link = _preprocess(link)
     transcoders = _organize_transcoders(transcoder)
     title_new, content, images = _transcode(link, transcoders, language)
+
     # in case uck cannot find a proper title
-    if title_new:
-        title = title_new
+    # if title_new:
+    #    title = title_new
 
     if content:
         if not stdout:
@@ -253,6 +253,7 @@ def convert(language="en", title=None, link=None, transcoder="chengdujin",
             return title, content
     else:
         if not stdout:
-            raise Exception('ERROR: Transcoder %s failed for %s' % (transcoder, link))
+            raise Exception(
+                'ERROR: Transcoder %s failed for %s' % (transcoder, link))
         else:
             return None, None
