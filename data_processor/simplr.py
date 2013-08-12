@@ -26,30 +26,20 @@ import urlparse
 
 
 class Simplr:
-    regexps = {'unlikely_candidates': re.compile("combx|comment|community|\
-    disqus|extra|foot|header|menu|remark|rss|shoutbox|sidebar|sponsor|\
-    ad-break|agegate|pagination|pager|popup|tweet|twitter", re.I),
-               'ok_maybe_its_a_candidate': re.compile("and|article|body|\
-    column|main|shadow", re.I),
-               'positive': re.compile("article|body|content|entry|hentry|\
-    main|page|pagination|post|text|blog|story", re.I),
-               'negative': re.compile("combx|comment|com|contact|foot|footer|\
-    footnote|masthead|media|meta|outbrain|promo|related|scroll|shoutbox|\
-    sidebar|sponsor|shopping|tags|tool|widget", re.I),
-               'extraneous': re.compile("print|archive|comment|discuss|\
-    e[\-]?mail|share|reply|all|login|sign|single", re.I),
-               'div_to_p_elements': re.compile("<(a|blockquote|dl|div|img|\
-    ol|p|pre|table|ul)", re.I),
+    regexps = {'unlikely_candidates': re.compile("combx|comment|community|disqus|extra|foot|header|menu|remark|rss|shoutbox|sidebar|sponsor|ad-break|agegate|pagination|pager|popup|tweet|twitter", re.I),
+               'ok_maybe_its_a_candidate': re.compile("and|article|body|column|main|shadow", re.I),
+               'positive': re.compile("article|body|content|entry|hentry|main|page|pagination|post|text|blog|story", re.I),
+               'negative': re.compile("combx|comment|com|contact|foot|footer|footnote|masthead|media|meta|outbrain|promo|related|scroll|shoutbox|sidebar|sponsor|shopping|tags|tool|widget", re.I),
+               'extraneous': re.compile("print|archive|comment|discuss|e[\-]?mail|share|reply|all|login|sign|single", re.I),
+               'div_to_p_elements': re.compile("<(a|blockquote|dl|div|img|ol|p|pre|table|ul)", re.I),
                'replace_brs': re.compile("(<br[^>]*>[ \n\r\t]*){2,}", re.I),
                'replace_fonts': re.compile("<(/?)font[^>]*>", re.I),
                'trim': re.compile("^\s+|\s+$", re.I),
                'normalize': re.compile("\s{2,}", re.I),
                'kill_breaks': re.compile("(<br\s*/?>(\s|&nbsp;?)*)+", re.I),
                'videos': re.compile("http://(www\.)?(youtube|vimeo)\.com", re.I),
-               'skip_footbote_link': re.compile("^\s*(\[?[a-z0-9]{1,2}\]?|^|\
-    edit|citation needed)\s*$", re.I),
-               'next_link': re.compile("(next|weiter|continue|>([^\|]|$)|\
-    »([^\|]|$))", re.I),
+               'skip_footbote_link': re.compile("^\s*(\[?[a-z0-9]{1,2}\]?|^|edit|citation needed)\s*$", re.I),
+               'next_link': re.compile("(next|weiter|continue|>([^\|]|$)|»([^\|]|$))", re.I),
                'prev_link': re.compile("(prev|earl|old|new|<|«)", re.I)
                }
 
