@@ -1,13 +1,13 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-#
-#
-#@created Jan 2, 2013
-#@updated Feb 8, 2013
-#@updated Jul 14, 2013
-#
-#
+"""
+rss_parser finds all information in an rss item
+"""
+# @author chengdujin
+# @contact chengdujin@gmail.com
+# @created Jan 2, 2013
+
 
 import sys
 reload(sys)
