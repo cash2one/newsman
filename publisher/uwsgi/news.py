@@ -1,10 +1,13 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-#
-#@author Yuan JIN
-#@contact jinyuan@baidu.com
+"""
+news.py is the wsgi interface to connect the request and the backend
+"""
+#@author chengdujin
+#@contact chengdujin@gmail.com
 #@created Jan 2, 2013
+
 
 import sys
 reload(sys)
