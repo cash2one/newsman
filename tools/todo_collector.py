@@ -1,15 +1,16 @@
-#!/usr/bin/env python 
-#-*- coding: utf-8 -*- 
+#!/usr/bin/env python
+#-*- coding: utf-8 -*-
 
 """
+todo_collector finds all lines with todo and adds them to readme
 """
 # @author chengdujin
 # @contact chengdujin@gmail.com
 # @created Jul., 2013
 
 
-import sys 
-reload(sys) 
+import sys
+reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
@@ -39,10 +40,11 @@ def docs_output(docs, output):
                     new_lines.append('* `%s`\n' % path)
                     for index, method in enumerate(docs[path]):
                         method_line, method_docs = docs[path][method]
-                        new_lines.append('    %i. Line %i: %s\n' % (index+1, int(method_line), method))
+                        new_lines.append('    %i. Line %i: %s\n' %
+                                        (index + 1, int(method_line), method))
                         for method_doc in method_docs:
                             new_lines.append('        - %s\n' % method_doc)
-                    new_lines.append('\n') 
+                    new_lines.append('\n')
                 break
             else:
                 new_lines.append(line)
@@ -70,7 +72,7 @@ def pattern_scrape(path, pattern):
         elif line.startswith('def '):
             if todos:
                 method = re.split('\(', line)[0].lstrip('def ').strip()
-                methods[method] = index+1, todos
+                methods[method] = index + 1, todos
                 todos = []
     return methods
 
@@ -100,6 +102,7 @@ def tree_digg(directory):
             print k
     else:
         print '%s does not exist!' % HOME
+
 
 if __name__ == '__main__':
     docs = tree_digg(HOME)
