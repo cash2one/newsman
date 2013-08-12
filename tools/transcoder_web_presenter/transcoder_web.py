@@ -33,6 +33,9 @@ class Transcoders:
         pass
 
     def GET(self):
+        """
+        web.py default get method
+        """
         data = web.input(url="this should not be seen", language='no language')
         return self._transcode(data.language, data.url)
 
