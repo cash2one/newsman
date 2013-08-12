@@ -25,6 +25,13 @@ urls = (
 
 class Transcoders:
 
+    """
+    Class to call different transcoders
+    """
+
+    def __init__(self):
+        pass
+
     def GET(self):
         data = web.input(url="this should not be seen", language='no language')
         return self._transcode(data.language, data.url)
@@ -39,9 +46,9 @@ class Transcoders:
             language=language, link=url, transcoder='readability', stdout=True)
         title_uck, content_uck = transcoder.convert(
             language=language, link=url, transcoder='uck', stdout=True)
-        return render.combiner(title_simplr, content_simplr, \
-                title_burify, content_burify, title_uck, content_uck, \
-                'Original Webpage')
+        return render.combiner(title_simplr, content_simplr,
+                               title_burify, content_burify, title_uck, content_uck,
+                               'Original Webpage')
 
 
 if __name__ == "__main__":
