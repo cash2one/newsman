@@ -18,7 +18,7 @@ import feedparser
 # CONSTANTS
 #FILE_SUFFIX = '/home/work/bgm_news/tools/text_based_feeds/feed_lists/'
 FILE_SUFFIX = '/home/jinyuan/Downloads/bgm_news/tools/\
-        text_based_feeds/feed_lists/'
+text_based_feeds/feed_lists/'
 HTTP_CODES = {301: 'RSS address is permanently moved to a new place.',
               302: 'RSS address is temporarily moved to a new place.',
               304: 'RSS has not published new content.',
