@@ -185,7 +185,8 @@ def _value_added_process(entries=None, language=None, \
 
 
 # TODO: code to remove added items if things suck at database/memory
-def update(feed_link=None, feed_id=None, language=None, categories=None, transcoder_type='chengdujin'):
+def update(feed_link=None, feed_id=None, language=None, categories=None, \
+        transcoder_type='chengdujin'):
     """
     update could be called
     1. from task procedure: feed_id
@@ -207,14 +208,16 @@ def update(feed_link=None, feed_id=None, language=None, categories=None, transco
     feed_link = feed['feed_link'] if feed else feed_link
     language = feed['language'] if feed else language
     categories = feed['categories'] if feed else categories
-    feed_title = feed['feed_title'] if feed and 'feed_title' in feed else None
+    feed_title = feed['feed_title'] \
+            if feed and 'feed_title' in feed else None
     transcoder_type = feed['transcoder'] if feed else transcoder_type
     etag = feed['etag'] if feed and 'etag' in feed else None
     modified = feed['modified'] if feed and 'modified' in feed else None
 
     # parse rss reading from remote rss servers
-    entries, status_new, feed_title_new, etag_new, modified_new = rss_parser.parse(
-        feed_link, feed_id, feed_title, language, categories, etag, modified)
+    entries, status_new, feed_title_new, etag_new, modified_new = \
+            rss_parser.parse(feed_link, feed_id, feed_title, language, \
+            categories, etag, modified)
 
     # filter out existing entries in db_news
     # there are some possible exceptions -- yet let it be
@@ -227,8 +230,8 @@ def update(feed_link=None, feed_id=None, language=None, categories=None, transco
     entries = db_news.update(entries, language)
     # and some data, like feed_title, etag and modified to db_feeds
     # only feed_id is necessary, others are optional **kwargs
-    db_feeds.update(feed_id=feed_id, status=status_new,
-                    feed_title=feed_title_new, etag=etag_new, modified=modified_new)
+    db_feeds.update(feed_id=feed_id, status=status_new, \
+            feed_title=feed_title_new, etag=etag_new, modified=modified_new)
 
     # store in memory
     memory.update(entries, language, categories)
