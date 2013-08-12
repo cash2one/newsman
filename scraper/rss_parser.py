@@ -79,8 +79,8 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, \
             entry['updated'] = calendar.timegm(e.published_parsed)
             entry['updated_human'] = e.published
         except AttributeError as k:
-            entry['error'] = '%s\n%s' % (
-                entry['error'], "no 'updated_parsed' or 'published_parsed'")
+            entry['error'] = '%s\n%s' % (entry['error'], \
+                    "no 'updated_parsed' or 'published_parsed'")
             # then try unparsed time info
             # this is rarely possible.
             try:
@@ -118,8 +118,9 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, \
             summary_encoding = chardet.detect(summary)['encoding']
             summary = summary.decode(summary_encoding, 'ignore')
         # a <div, for example, and a </div
-        is_html = True if len(re.findall(u'</?a|</?p|</?strong|</?img| \
-                </?html|</?div', summary)) > 1 else False
+        is_html = True if len(re.findall(\
+                u'</?a|</?p|</?strong|</?img|</?html|</?div', \
+                summary)) > 1 else False
         if is_html:
             h = html2text.HTML2Text()
             h.ignore_images = True
@@ -248,18 +249,18 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, \
         status = d.status
         if status == 301:
             raise Exception('ERROR: %s has been permantently moved to \
-                    a %s!' % (feed_link, d.href))
+            a %s!' % (feed_link, d.href))
         elif status == 304:
             print 'WARNING: %s server has not updated its feeds' % feed_link
         elif status == 410:
             raise Exception(
                 'ERROR: %s is gone! Admin should check the feed \
-                        availability!' % feed_link)
+                availability!' % feed_link)
         elif status == 200 or status == 302:
             # no need to worry.
             if status == 302:
                 print 'WARNING: %s url has been temp moved to \
-                        a new place' % feed_link
+                a new place' % feed_link
 
             if not feed_title:
                 # if title were not found in feed, an AttributeError would be
@@ -270,7 +271,7 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, \
                 feed_title_latest = urllib2.unquote(d.feed.title).strip()
                 if feed_title != feed_title_latest:
                     print 'WARNING: %s title changed! Please update feed \
-                            table/database' % feed_link
+                    table/database' % feed_link
 
             # update etag/modified
             etag = None
