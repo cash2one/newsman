@@ -40,6 +40,7 @@ ToDos - High Priority
 9. 测试标题提取使用Lassie(多国语言)
 10. qrconverter类似脚本使用docopt/docopt
 11. 抓取改为每处理完一个存储数据库和内存
+12. 为每个文件增加开源声明
 
 ToDos - Low Priority
 ---------------------
