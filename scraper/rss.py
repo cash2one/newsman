@@ -189,6 +189,8 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
             print
         except Exception as k:
             print '[rss._value_added_process:191L]', k
+            print
+            print
 
 
 # TODO: code to remove added items if things suck at database/memory

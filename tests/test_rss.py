@@ -8,8 +8,8 @@ sys.path.append('..')
 
 from scraper import rss
 
-# entries = rss.update(feed_link='http://news.yahoo.com/rss/us', feed_id='52020d6c680ccf157f3178f8', language='en')
-entries = rss.update(feed_link='http://www.engadget.com/rss.xml', feed_id='520a4340680ccf0b71e58946', language='en')
+entries = rss.update(feed_link='http://news.yahoo.com/rss/us', feed_id='520a4340680ccf0b71e58944', language='en')
+#entries = rss.update(feed_link='http://www.engadget.com/rss.xml', feed_id='520a4340680ccf0b71e58946', language='en')
 #entries = rss.update(feed_link='http://news.yahoo.com/rss/sports', feed_id='52020d6c680ccf157f317902', language='en')
 #categories = ['BBC', 'News']
 #entries = rss.update(feed_link='http://feeds.bbci.co.uk/news/world/rss.xml', feed_id='008', language='en', categories=categories)
