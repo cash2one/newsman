@@ -38,6 +38,7 @@ ToDos - High Priority
 8. URL处理换成gruns/furl
 9. 测试标题提取使用Lassie(多国语言)
 10. qrconverter类似脚本使用docopt/docopt
+11. 抓取改为每处理完一个存储数据库和内存
 
 ToDos - Low Priority
 ---------------------

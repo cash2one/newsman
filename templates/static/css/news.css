@@ -77,16 +77,16 @@ html,body{font-family:STHeiti-Light,'Hiragino Sans GB','Microsoft Yahei',Arial;}
 }
 .new-content {
 	color: #585858;
-	font-size: 18px;
-	line-height: 27px;
-	word-wrap:break-word;
+	font-size: 13px;
+	line-height: 23px;
+	word-wrap:normal;
 }
 .new-content p,.new-content div {
 	margin-bottom: 20px;
 	color: #585858;
-	font-size: 14px;
-	line-height: 27px;
-	word-wrap:break-word;
+	font-size: 13px;
+	line-height: 23px;
+	word-wrap:normal;
 }
 .font-small .new-content,.font-small .new-content p,.font-small .new-content div {
 	font-size: 16px;

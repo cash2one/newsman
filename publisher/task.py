@@ -33,7 +33,6 @@ from config import TRANSCODED_LOCAL_DIR
 from config import TRANSCODED_PUBLIC_DIR
 
 
-"""
 def restore():
     '''if memory failed, restore items from database'''
     def get_expiration(updated):
@@ -265,7 +264,6 @@ def add_task(feed_id, feed_link, language, category):
     f.write(line + '\n')
     f.close()
     return 0
-"""
 
 
 def _update(feed_ids):

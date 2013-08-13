@@ -60,6 +60,7 @@ class Simplr:
             decode with the correct encoding
             """
             html = urllib2.urlopen(url, timeout=UCK_TIMEOUT).read()
+            print '.. preparing link'
             if html:
                 detected = chardet.detect(html)
                 if detected:
