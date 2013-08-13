@@ -194,31 +194,35 @@ def update(feed_link=None, feed_id=None, language=None, categories=None, transco
         raise Exception(
             "ERROR: Method signature not well formed!")
 
+    # try to find the feed in database
     if feed_id:
         feed = db_feeds.get(feed_id=feed_id)
     else:
         feed = db_feeds.get(feed_link=feed_link, language=language)
 
-    feed_id = str(feed['_id']) if feed else feed_id
-    feed_link = feed['feed_link'] if feed else feed_link
-    language = feed['language'] if feed else language
-    categories = feed['categories'] if feed else categories
-    feed_title = feed['feed_title'] if feed and 'feed_title' in feed else None
-    transcoder_type = feed['transcoder'] if feed else transcoder_type
-    etag = feed['etag'] if feed and 'etag' in feed else None
-    modified = feed['modified'] if feed and 'modified' in feed else None
+    if feed:
+        # read latest feed info from database
+        feed_id = str(feed['_id'])
+        feed_link = feed['feed_link']
+        language = feed['language']
+        categories = feed['categories']
+        transcoder_type = feed['transcoder']
+        feed_title = feed['feed_title'] if 'feed_title' in feed else None
+        etag = feed['etag'] if 'etag' in feed else None
+        modified = feed['modified'] if 'modified' in feed else None
 
-    # parse rss reading from remote rss servers
-    entries, status_new, feed_title_new, etag_new, modified_new = rss_parser.parse(
-        feed_link, feed_id, feed_title, language, categories, etag, modified)
+        # parse rss reading from remote rss servers
+        entries, status_new, feed_title_new, etag_new, modified_new = rss_parser.parse(feed_link, feed_id, feed_title, language, categories, etag, modified)
 
-    # filter out existing entries in db_news
-    # there are some possible exceptions -- yet let it be
-    entries = db_news.dedup(entries, language)
-    # and do tts, big_images, image as well as transcode.
-    _value_added_process(entries, language, transcoder_type)
+        # filter out existing entries in db_news
+        # there are some possible exceptions -- yet let it be
+        entries = db_news.dedup(entries, language)
 
-    # feed_title, etag and modified to db_feeds
-    # only feed_id is necessary, others are optional **kwargs
-    db_feeds.update(feed_id=feed_id, status=status_new,
-                    feed_title=feed_title_new, etag=etag_new, modified=modified_new)
+        # and do tts, big_images, image as well as transcode.
+        _value_added_process(entries, language, transcoder_type)
+
+        # feed_title, etag and modified to db_feeds
+        # only feed_id is necessary, others are optional **kwargs
+        db_feeds.update(feed_id=feed_id, status=status_new, feed_title=feed_title_new, etag=etag_new, modified=modified_new)
+    else:
+        raise Exception('ERROR: Register feed in database before updating!')
