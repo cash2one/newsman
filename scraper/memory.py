@@ -22,12 +22,11 @@ from config import MEMORY_EXPIRATION_DAYS
 
 # TODO: add more comments
 # TODO: be precautious with possible redis adding failure
-def update(entries=None, language=None, categories=None):
+def update(entry=None, language=None, categories=None):
     """
     add news and its attributes to memory
-    categories are ids of category item
     """
-    if not entries:
+    if not entry:
         return None
     if not language or not categories:
         raise Exception("ERROR: Method signature not well formed!")

@@ -33,8 +33,9 @@ ToDos - High Priority
 2. 预警代码整理、重构
 3. Feed管理平台
 4. 自定义Exception类，并替换相应代码
-5. 服务器质量监控
-6. 数据整理代码整理、重构
+5. 理清每个函数的返回类型（raise Exception or None?）
+6. 服务器质量监控
+7. 数据整理代码整理、重构
 8. URL处理换成gruns/furl
 9. 测试标题提取使用Lassie(多国语言)
 10. qrconverter类似脚本使用docopt/docopt

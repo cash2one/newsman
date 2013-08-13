@@ -50,11 +50,11 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
 
     entries_new = []
     for entry in entries:
-        # get a random int from 100 million possibilities
         try:
             print entry['title']
             print entry['link']
             # [MUST-HAVE] transcoding
+            # get a random int from 100 million possibilities
             rand = random.randint(0, 100000000)
             transcoded_relative_path = '%s_%s_%s_%i' % (
                 entry['language'], entry['feed_id'], entry['updated'], rand)
