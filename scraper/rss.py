@@ -38,6 +38,62 @@ from config import THUMBNAIL_PORTRAIT_SIZE
 from config import THUMBNAIL_STYLE
 
 
+def _generate_images(image=None, entry=None, rand=None):
+    """
+    generate hot news, category and thumbnail images, and maybe more sizes
+    """
+    if not image or not entry:
+        raise Exception('ERROR: Cannot generate images from void content!')
+    if not rand:
+        # get a new rand
+        rand = random.randint(0, 100000000)
+    
+    image_relative_path = '%s_%s_%s_%i' % (entry['language'], entry['feed_id'], entry['updated'], rand)
+
+    # hot news image
+    hot_web, hot_local = image_helper.scale_image(image=image, size_expected=HOT_IMAGE_SIZE, resize_by_width=True, crop_by_center=False, relative_path='%s_hotnews' % image_relative_path)
+    entry['hot_news_image'] = hot_web if hot_web else None
+    entry['hot_news_image_local'] = hot_local if hot_local else None
+
+    # category image
+    category_web, category_local = image_helper.scale_image(image=image, size_expected=CATEGORY_IMAGE_SIZE, resize_by_width=True, crop_by_center=False, relative_path='%s_category' % image_relative_path)
+    entry['category_image'] = category_web if category_web else None
+    entry['category_image_local'] = category_local if category_local else None
+
+    # thumbnail image
+    if float(image['width']) / float(image['height']) >= THUMBNAIL_STYLE:  # landscape
+        thumbnail_web, thumbnail_local = image_helper.scale_image(image=image, size_expected=THUMBNAIL_LANDSCAPE_SIZE, resize_by_width=True, crop_by_center=False, relative_path='%s_thumbnail' % image_relative_path)
+    else:  # portrait
+        thumbnail_web, thumbnail_local = image_helper.scale_image(image=image, size_expected=THUMBNAIL_PORTRAIT_SIZE, resize_by_width=True, crop_by_center=False, relative_path='%s_thumbnail' % image_relative_path)
+    entry['thumbnail_image'] = thumbnail_web if thumbnail_web else None
+    entry['thumbnail_image_local'] = thumbnail_local if thumbnail_local else None
+
+    return entry
+
+
+# TODO: replace primitive exception recording with logging
+def _get_tts(entry=None, rand=None):
+    """
+    get tts from the provider
+    """
+    if not entry:
+        raise Exception('ERROR: Cannot generate tts from void content!')
+    if not rand:
+        # get a new rand
+        rand = random.randint(0, 100000000)
+
+    try:
+        tts_relative_path = '%s_%s_%s_%i.mp3' % (entry['language'], entry['feed_id'], entry['updated'], rand)
+        read_content = '%s. %s' % (entry['title'], entry['summary'] if entry.has_key('summary') and entry['summary'] else "")
+        entry['mp3'], entry['mp3_local'] = tts_provider.google(entry['language'], read_content, tts_relative_path)
+    except Exception as k:
+        print k, '... Cannot generate TTS for %s' % entry['link']
+        entry['error'].append(k + '\n')
+        entry['mp3'] = None
+        entry['mp3_local'] = None
+    return entry
+
+
 def _value_added_process(entries=None, language=None, transcoder_type='chengdujin'):
     """
     add more value to an entry
@@ -48,7 +104,6 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
     if not language or language not in LANGUAGES:
         raise Exception("ERROR: language not found or not supported!")
 
-    entries_new = []
     for entry in entries:
         try:
             print entry['title']
@@ -85,59 +140,15 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
                 biggest = image_helper.find_biggest_image(entry['images'])
                 if biggest:
                     try:
-                        rand = random.randint(0, 100000000)
-                        image_relative_path = '%s_%s_%s_%i' % (
-                            entry['language'], entry['feed_id'], entry['updated'], rand)
-
-                        # hot news image
-                        hot_web, hot_local = image_helper.scale_image(
-                            image=biggest, size_expected=HOT_IMAGE_SIZE, resize_by_width=True, crop_by_center=False, relative_path='%s_hotnews' % image_relative_path)
-
-                        entry['hot_news_image'] = hot_web if hot_web else None
-                        entry[
-                            'hot_news_image_local'] = hot_local if hot_local else None
-
-                        # category image
-                        category_web, category_local = image_helper.scale_image(
-                            image=biggest, size_expected=CATEGORY_IMAGE_SIZE, resize_by_width=True, crop_by_center=False, relative_path='%s_category' % image_relative_path)
-
-                        entry[
-                            'category_image'] = category_web if category_web else None
-                        entry[
-                            'category_image_local'] = category_local if category_local else None
-
-                        # thumbnail image
-                        # thumbnail_landscape_size
-                        if float(biggest['width']) / float(biggest['height']) >= THUMBNAIL_STYLE:
-                            thumbnail_web, thumbnail_local = image_helper.scale_image(
-                                image=biggest, size_expected=THUMBNAIL_LANDSCAPE_SIZE, resize_by_width=True, crop_by_center=False, relative_path='%s_thumbnail' % image_relative_path)
-                        else:  # else thumbnail_portrait_size
-                            thumbnail_web, thumbnail_local = image_helper.scale_image(
-                                image=biggest, size_expected=THUMBNAIL_PORTRAIT_SIZE, resize_by_width=True, crop_by_center=False, relative_path='%s_thumbnail' % image_relative_path)
-
-                        entry[
-                            'thumbnail_image'] = thumbnail_web if thumbnail_web else None
-                        entry[
-                            'thumbnail_image_local'] = thumbnail_local if thumbnail_local else None
-
+                        entry = _generate_images(biggest, entry, rand)
                         # for older version users
-                        entry['image'] = entry['thumbnail_image'][
-                            'url'] if thumbnail_web else None
+                        entry['image'] = entry['thumbnail_image']['url'] if entry.has_key('thumbnail_image') and entry['thumbnail_image'] else None
                     except IOError as k:
                         entry['error'].append(str(k) + '\n')
 
             # [OPTIONAL] google tts not for indonesian
             if entry['language'] != 'ind':
-                try:
-                    tts_relative_path = '%s_%s_%s_%i.mp3' % (
-                        entry['language'], entry['feed_id'], entry['updated'], rand)
-                    entry['mp3'], entry['mp3_local'] = tts_provider.google(entry['language'], '%s. %s' % (
-                        entry['title'], entry['summary'] if entry.has_key('summary') and entry['summary'] else ""), tts_relative_path)
-                except Exception as k:
-                    print k, '... cannot generate TTS for %s' % entry['link']
-                    entry['error'].append(k + '\n')
-                    entry['mp3'] = None
-                    entry['mp3_local'] = None
+                entry = _get_tts(entry, rand)
 
             # [MUST-HAVE] add expiration data
             def _expired(updated, days_to_deadline):
@@ -154,18 +165,20 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
             entry['database_expired'] = _expired(
                 entry['updated'], DATABASE_REMOVAL_DAYS)
 
+            # [OPTIONAL] if logging is used, this could be removed
             entry['error'] = entry['error'] if entry['error'] else None
-            entries_new.append(entry)
 
-            # update new entries to db_news
+            # [MUST-HAVE] update new entry to db_news
             # each entry is added with _id
-            entries = db_news.update(entry)
+            entry = db_news.update(entry)
+
+            # [MUST-HAVE] store in memory
+            memory.update(entry)
 
             print
             print
         except Exception as k:
             print k
-    return entries_new
 
 
 # TODO: code to remove added items if things suck at database/memory
@@ -203,13 +216,9 @@ def update(feed_link=None, feed_id=None, language=None, categories=None, transco
     # there are some possible exceptions -- yet let it be
     entries = db_news.dedup(entries, language)
     # and do tts, big_images, image as well as transcode.
-    entries = _value_added_process(entries, language, transcoder_type)
+    _value_added_process(entries, language, transcoder_type)
 
-    # and some data, like feed_title, etag and modified to db_feeds
+    # feed_title, etag and modified to db_feeds
     # only feed_id is necessary, others are optional **kwargs
     db_feeds.update(feed_id=feed_id, status=status_new,
                     feed_title=feed_title_new, etag=etag_new, modified=modified_new)
-
-    # store in memory
-    memory.update(entries, language, categories)
-    return entries
