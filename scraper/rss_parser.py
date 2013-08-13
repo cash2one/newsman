@@ -62,7 +62,7 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
         else:
             entry['title'] = e.title.strip()
     except AttributeError as k:
-        print k
+        print '[rss_parser._read_entry:65L]', k
         entry['error'].append(k + '\n')
         raise Exception(
             '[rss_parser._read_entry] ERROR: No title or link found for %s!' % entry['feed_id'])
@@ -98,12 +98,12 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
                     raise ValueError(
                         "[rss_parser._read_entry] attribute updated/published has no value")
             except ValueError as k:
-                print k
+                print '[rss_parser._read_entry:101L]', k
                 entry['error'] = '%s\n%s' % (entry['error'], k)
                 raise Exception(
                     '[rss_parser._read_entry] ERROR: entry %s has no publication info!' % entry['title'])
             except AttributeError as k:
-                print k
+                print '[rss_parser._read_entry:106L]', k
                 entry['error'].append('no update or published\n')
                 raise Exception(
                     '[rss_parser._read_entry] ERROR: entry %s has no publication info!' % entry['title'])

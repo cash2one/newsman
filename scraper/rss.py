@@ -43,7 +43,7 @@ def _generate_images(image=None, entry=None, rand=None):
     generate hot news, category and thumbnail images, and maybe more sizes
     """
     if not image or not entry:
-        raise Exception('[_generate_images] ERROR: Cannot generate images from void content!')
+        raise Exception('[rss._generate_images] ERROR: Cannot generate images from void content!')
     if not rand:
         # get a new rand
         rand = random.randint(0, 100000000)
@@ -83,7 +83,7 @@ def _get_tts(entry=None, rand=None):
     get tts from the provider
     """
     if not entry:
-        raise Exception('[_get_tts] ERROR: Cannot generate tts from void content!')
+        raise Exception('[rss._get_tts] ERROR: Cannot generate tts from void content!')
     if not rand:
         # get a new rand
         rand = random.randint(0, 100000000)
@@ -96,7 +96,7 @@ def _get_tts(entry=None, rand=None):
         entry['mp3'], entry['mp3_local'] = tts_provider.google(
             entry['language'], read_content, tts_relative_path)
     except Exception as k:
-        print k, '... Cannot generate TTS for %s' % entry['link']
+        print '[rss._get_tts]', k, '... Cannot generate TTS for %s' % entry['link']
         entry['error'].append(k + '\n')
         entry['mp3'] = None
         entry['mp3_local'] = None
@@ -111,7 +111,7 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
     if not entries:
         return None
     if not language or language not in LANGUAGES:
-        raise Exception("[_value_added_process] ERROR: language not found or not supported!")
+        raise Exception("[rss._value_added_process] ERROR: language not found or not supported!")
 
     for entry in entries:
         try:
@@ -188,7 +188,7 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
             print
             print
         except Exception as k:
-            print k
+            print '[rss._value_added_process:191L]', k
 
 
 # TODO: code to remove added items if things suck at database/memory

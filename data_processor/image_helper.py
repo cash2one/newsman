@@ -230,7 +230,7 @@ def normalize(images):
                     return {'url': image, 'width': width, 'height': height}
             return None
         except IOError as k:
-            print k
+            print '[image_helper.normalize]', k
             return None
 
     if isinstance(images, str) or isinstance(images, unicode):

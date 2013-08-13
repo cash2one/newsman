@@ -378,5 +378,5 @@ def convert(url, language):
         readable = Simplr(url, language)
         return readable.short_title, readable.content, readable.images
     except Exception as k:
-        print k
+        print '[simplr.convert]', k
         return None, None, None

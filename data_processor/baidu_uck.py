@@ -170,5 +170,5 @@ def convert(link):
         else:
             raise Exception('[baidu_uck.convert] ERROR: Nothing found in return.')
     except Exception as k:
-        print k
+        print '[baidu_uck.convert]', k
         return None, None, None
