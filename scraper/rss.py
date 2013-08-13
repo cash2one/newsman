@@ -47,24 +47,30 @@ def _generate_images(image=None, entry=None, rand=None):
     if not rand:
         # get a new rand
         rand = random.randint(0, 100000000)
-    
-    image_relative_path = '%s_%s_%s_%i' % (entry['language'], entry['feed_id'], entry['updated'], rand)
+
+    image_relative_path = '%s_%s_%s_%i' % (
+        entry['language'], entry['feed_id'], entry['updated'], rand)
 
     # hot news image
-    hot_web, hot_local = image_helper.scale_image(image=image, size_expected=HOT_IMAGE_SIZE, resize_by_width=True, crop_by_center=False, relative_path='%s_hotnews' % image_relative_path)
+    hot_web, hot_local = image_helper.scale_image(
+        image=image, size_expected=HOT_IMAGE_SIZE, resize_by_width=True, crop_by_center=False, relative_path='%s_hotnews' % image_relative_path)
     entry['hot_news_image'] = hot_web if hot_web else None
     entry['hot_news_image_local'] = hot_local if hot_local else None
 
     # category image
-    category_web, category_local = image_helper.scale_image(image=image, size_expected=CATEGORY_IMAGE_SIZE, resize_by_width=True, crop_by_center=False, relative_path='%s_category' % image_relative_path)
+    category_web, category_local = image_helper.scale_image(
+        image=image, size_expected=CATEGORY_IMAGE_SIZE, resize_by_width=True, crop_by_center=False, relative_path='%s_category' % image_relative_path)
     entry['category_image'] = category_web if category_web else None
     entry['category_image_local'] = category_local if category_local else None
 
     # thumbnail image
-    if float(image['width']) / float(image['height']) >= THUMBNAIL_STYLE:  # landscape
-        thumbnail_web, thumbnail_local = image_helper.scale_image(image=image, size_expected=THUMBNAIL_LANDSCAPE_SIZE, resize_by_width=True, crop_by_center=False, relative_path='%s_thumbnail' % image_relative_path)
+    # landscape
+    if float(image['width']) / float(image['height']) >= THUMBNAIL_STYLE:
+        thumbnail_web, thumbnail_local = image_helper.scale_image(
+            image=image, size_expected=THUMBNAIL_LANDSCAPE_SIZE, resize_by_width=True, crop_by_center=False, relative_path='%s_thumbnail' % image_relative_path)
     else:  # portrait
-        thumbnail_web, thumbnail_local = image_helper.scale_image(image=image, size_expected=THUMBNAIL_PORTRAIT_SIZE, resize_by_width=True, crop_by_center=False, relative_path='%s_thumbnail' % image_relative_path)
+        thumbnail_web, thumbnail_local = image_helper.scale_image(
+            image=image, size_expected=THUMBNAIL_PORTRAIT_SIZE, resize_by_width=True, crop_by_center=False, relative_path='%s_thumbnail' % image_relative_path)
     entry['thumbnail_image'] = thumbnail_web if thumbnail_web else None
     entry['thumbnail_image_local'] = thumbnail_local if thumbnail_local else None
 
@@ -83,9 +89,12 @@ def _get_tts(entry=None, rand=None):
         rand = random.randint(0, 100000000)
 
     try:
-        tts_relative_path = '%s_%s_%s_%i.mp3' % (entry['language'], entry['feed_id'], entry['updated'], rand)
-        read_content = '%s. %s' % (entry['title'], entry['summary'] if entry.has_key('summary') and entry['summary'] else "")
-        entry['mp3'], entry['mp3_local'] = tts_provider.google(entry['language'], read_content, tts_relative_path)
+        tts_relative_path = '%s_%s_%s_%i.mp3' % (
+            entry['language'], entry['feed_id'], entry['updated'], rand)
+        read_content = '%s. %s' % (entry['title'], entry[
+                                   'summary'] if entry.has_key('summary') and entry['summary'] else "")
+        entry['mp3'], entry['mp3_local'] = tts_provider.google(
+            entry['language'], read_content, tts_relative_path)
     except Exception as k:
         print k, '... Cannot generate TTS for %s' % entry['link']
         entry['error'].append(k + '\n')
@@ -142,7 +151,8 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
                     try:
                         entry = _generate_images(biggest, entry, rand)
                         # for older version users
-                        entry['image'] = entry['thumbnail_image']['url'] if entry.has_key('thumbnail_image') and entry['thumbnail_image'] else None
+                        entry['image'] = entry['thumbnail_image']['url'] if entry.has_key(
+                            'thumbnail_image') and entry['thumbnail_image'] else None
                     except IOError as k:
                         entry['error'].append(str(k) + '\n')
 
@@ -212,7 +222,8 @@ def update(feed_link=None, feed_id=None, language=None, categories=None, transco
         modified = feed['modified'] if 'modified' in feed else None
 
         # parse rss reading from remote rss servers
-        entries, status_new, feed_title_new, etag_new, modified_new = rss_parser.parse(feed_link, feed_id, feed_title, language, categories, etag, modified)
+        entries, status_new, feed_title_new, etag_new, modified_new = rss_parser.parse(
+            feed_link, feed_id, feed_title, language, categories, etag, modified)
 
         # filter out existing entries in db_news
         # there are some possible exceptions -- yet let it be
@@ -223,6 +234,7 @@ def update(feed_link=None, feed_id=None, language=None, categories=None, transco
 
         # feed_title, etag and modified to db_feeds
         # only feed_id is necessary, others are optional **kwargs
-        db_feeds.update(feed_id=feed_id, status=status_new, feed_title=feed_title_new, etag=etag_new, modified=modified_new)
+        db_feeds.update(feed_id=feed_id, status=status_new,
+                        feed_title=feed_title_new, etag=etag_new, modified=modified_new)
     else:
         raise Exception('ERROR: Register feed in database before updating!')
