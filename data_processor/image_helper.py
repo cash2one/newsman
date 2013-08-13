@@ -59,7 +59,7 @@ def _link_process(link):
             except urllib2.URLError as k:
                 pass
             except Exception as k:
-                print k
+                print '[image_helper._link_process]', k
         if response:
             return image_url
 
@@ -170,8 +170,12 @@ def scale_image(image=None, size_expected=MIN_IMAGE_SIZE,
         if width_new >= width_expected and height_new >= height_expected:
             # resize
             size_new = width_new, height_new
-            image_downloaded = StringIO(urllib2.urlopen(image['url'], timeout=UCK_TIMEOUT).read())
-            image_data = Image.open(image_downloaded)
+            image_data = None
+            try:
+                image_data = Image.open(StringIO(urllib2.urlopen(image['url'], timeout=UCK_TIMEOUT).read()))
+            except Exception as k:
+                print '[image_helper.scale_image]', k
+                raise k
             image_data.thumbnail(size_new, Image.ANTIALIAS)
             # crop
             if crop_by_center:
