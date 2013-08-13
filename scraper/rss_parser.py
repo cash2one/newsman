@@ -41,9 +41,9 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
     """
     if not e or not feed_title or not language or not categories:
         raise Exception(
-            "ERROR: Method signature not well formed for %s!" % feed_title)
+            "[_read_entry] ERROR: Method signature not well formed for %s!" % feed_title)
     if language not in LANGUAGES:
-        raise Exception("ERROR: Language not supported for %s!" % feed_title)
+        raise Exception("[_read_entry] ERROR: Language not supported for %s!" % feed_title)
 
     entry = {}
     entry['feed_id'] = feed_id
@@ -65,7 +65,7 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
         print k
         entry['error'].append(k + '\n')
         raise Exception(
-            'ERROR: No title or link found for %s!' % entry['feed_id'])
+            '[rss_parser._read_entry] ERROR: No title or link found for %s!' % entry['feed_id'])
 
     # article published time
     # first try parsed time info
@@ -101,12 +101,12 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
                 print k
                 entry['error'] = '%s\n%s' % (entry['error'], k)
                 raise Exception(
-                    'ERROR: entry %s has no publication info!' % entry['title'])
+                    '[rss_parser._read_entry] ERROR: entry %s has no publication info!' % entry['title'])
             except AttributeError as k:
                 print k
                 entry['error'].append('no update or published\n')
                 raise Exception(
-                    'ERROR: entry %s has no publication info!' % entry['title'])
+                    '[rss_parser._read_entry] ERROR: entry %s has no publication info!' % entry['title'])
 
     # article's summary
     try:
@@ -221,9 +221,9 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
     """
     if not feed_link or not feed_id or not language or not categories:
         raise Exception(
-            "ERROR: Method signature not well formed for %s!" % feed_link)
+            "[rss_parser.parse] ERROR: Method signature not well formed for %s!" % feed_link)
     if language not in LANGUAGES:
-        raise Exception("ERROR: Language not supported for %s!" % feed_link)
+        raise Exception("[rss_parser.parse] ERROR: Language not supported for %s!" % feed_link)
 
     def _validate_time(entry):
         """
@@ -241,16 +241,16 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
         status = d.status
         if status == 301:
             raise Exception(
-                'ERROR: %s has been permantently moved to a %s!' % (feed_link, d.href))
+                '[rss_parser.parse] ERROR: %s has been permantently moved to a %s!' % (feed_link, d.href))
         elif status == 304:
-            print 'WARNING: %s server has not updated its feeds' % feed_link
+            print '[rss_parser.parse] WARNING: %s server has not updated its feeds' % feed_link
         elif status == 410:
             raise Exception(
-                'ERROR: %s is gone! Admin should check the feed availability!' % feed_link)
+                '[rss_parser.parse] ERROR: %s is gone! Admin should check the feed availability!' % feed_link)
         elif status == 200 or status == 302:
             # no need to worry.
             if status == 302:
-                print 'WARNING: %s url has been temp moved to a new place' % feed_link
+                print '[rss_parser.parse] WARNING: %s url has been temp moved to a new place' % feed_link
 
             if not feed_title:
                 # if title were not found in feed, an AttributeError would be
@@ -260,7 +260,7 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
                 feed_title = feed_title.strip()
                 feed_title_latest = urllib2.unquote(d.feed.title).strip()
                 if feed_title != feed_title_latest:
-                    print 'WARNING: %s title changed! Please update feed table/database' % feed_link
+                    print '[rss_parser.parse] WARNING: %s title changed! Please update feed table/database' % feed_link
                     print 'old title:', feed_title
                     print 'new title:', feed_title_latest
 
@@ -282,9 +282,9 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
                            for e in d.entries]
                 return filter(_validate_time, entries), status, feed_title, etag, modified
             else:
-                raise Exception("ERROR: Feed %s has no items!" % feed_id)
+                raise Exception("[rss_parser.parse] ERROR: Feed %s has no items!" % feed_id)
         else:
             raise Exception(
-                'ERROR: HTTP ERROR CODE %i for %s' % (status, feed_link))
+                '[rss_parser.parse] ERROR: HTTP ERROR CODE %i for %s' % (status, feed_link))
     else:
-        raise Exception("ERROR: Cannot parse %s correctly!" % feed_id)
+        raise Exception("[rss_parser.parse] ERROR: Cannot parse %s correctly!" % feed_id)

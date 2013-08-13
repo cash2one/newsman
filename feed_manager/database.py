@@ -49,7 +49,7 @@ def update(feed_id, **kwargs):
         item['latest_update'] = time.asctime(time.gmtime())
         col.update({'_id': ObjectId(feed_id)}, item)
     else:
-        raise Exception("ERROR: No such a _id %s in feeds" % feed_id)
+        raise Exception("[database.update] ERROR: No such a _id %s in feeds" % feed_id)
 
 
 def save(feed_info=None):
@@ -57,7 +57,7 @@ def save(feed_info=None):
     add a new record of feed
     """
     if not feed_info:
-        raise Exception("ERROR: Nothing found in feed!")
+        raise Exception("[database.save] ERROR: Nothing found in feed!")
 
     # if the collection does not exist, it will be created
     col = Collection(db, FEED_REGISTRAR)

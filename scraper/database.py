@@ -28,7 +28,7 @@ def dedup(entries=None, language=None):
     if not entries:
         return None
     if not language or language not in LANGUAGES:
-        raise Exception("ERROR: language not found or not supported!")
+        raise Exception("[database.dedup] ERROR: language not found or not supported!")
 
     entries_new = []
     col = Collection(db, language)
@@ -50,9 +50,8 @@ def update(entry=None):
     """
     if not entry:
         return None
-
     if entry['language'] not in LANGUAGES:
-        raise Exception("ERROR: language not found or not supported!")
+        raise Exception("[databse.update] ERROR: language not found or not supported!")
 
     # collection was created by the feed
     col = Collection(db, entry['language'])

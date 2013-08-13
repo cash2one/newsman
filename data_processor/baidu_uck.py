@@ -118,7 +118,7 @@ def _extract(data):
     if data:
         successful = int(data['STRUCT_PAGE_TYPE'])
         if successful == 0:
-            raise Exception('ERROR: Cannot interpret the page!')
+            raise Exception('[baidu_uck._extract] ERROR: Cannot interpret the page!')
 
         # content
         content = data['content'].replace("\\", "")
@@ -139,7 +139,7 @@ def _extract(data):
     else:
         # no data found
         raise Exception(
-            'ERROR: Have not received data from transcoding server.')
+            '[baidu_uck._extract] ERROR: Have not received data from transcoding server.')
 
 
 def _transcode(link):
@@ -158,7 +158,7 @@ def convert(link):
     send link to uck api and reformat the content
     """
     if not link:
-        raise Exception('ERROR: Cannot transcode nothing!')
+        raise Exception('[baidu_uck.convert] ERROR: Cannot transcode nothing!')
 
     # send link to uck server and get data back
     try:
@@ -168,7 +168,7 @@ def convert(link):
             title, transcoded, images = _extract(eval(raw_data))
             return title, transcoded, images
         else:
-            raise Exception('ERROR: Nothing found in return.')
+            raise Exception('[baidu_uck.convert] ERROR: Nothing found in return.')
     except Exception as k:
         print k
         return None, None, None

@@ -43,7 +43,7 @@ def _prepare_link(url):
             data = html.decode('utf-8', 'ignore')
         return data
     else:
-        raise Exception("ERROR: Cannot read %s" % url)
+        raise Exception("[burify._prepare_link] ERROR: Cannot read %s" % url)
 
 
 def convert(link):
@@ -52,7 +52,7 @@ def convert(link):
     and return the transcoded page and images found in it
     """
     if not link:
-        raise Exception('ERROR: Cannot transcode nothing!')
+        raise Exception('[burify.convert] ERROR: Cannot transcode nothing!')
 
     try:
         data = _prepare_link(link)

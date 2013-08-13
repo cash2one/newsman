@@ -28,7 +28,7 @@ def update(entry=None, language=None, categories=None):
     if not entry:
         return None
     if not language or not categories:
-        raise Exception("ERROR: Method signature not well formed!")
+        raise Exception("[memory.update] ERROR: Method signature not well formed!")
 
     # add an entry to memory
     # add a piece of news into memory

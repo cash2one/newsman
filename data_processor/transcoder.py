@@ -91,7 +91,7 @@ def _compose(language, title, content):
     combine content with a template
     """
     if not content or not language or not title:
-        raise Exception("ERROR: Method not well formed!")
+        raise Exception("[transcoder._compose] ERROR: Method not well formed!")
 
     # f reads the template
     f = None
@@ -105,7 +105,7 @@ def _compose(language, title, content):
         f.close()
         return template % (title, title, content, TRANSCODE_BUTTON[language])
     else:
-        raise Exception("ERROR: Cannot find a template!")
+        raise Exception("[transcoder._compose] ERROR: Cannot find a template!")
 
 
 def _combine(content, images):
@@ -129,7 +129,7 @@ def _transcode(url, transcoders, language=None):
     organize different transcoders
     """
     if not url or not transcoders:
-        raise Exception("ERROR: Method not well formed!")
+        raise Exception("[transcoder._transcode] ERROR: Method not well formed!")
 
     threads = {}
     for transcoder in transcoders:
@@ -232,7 +232,7 @@ def convert(language="en", title=None, link=None, transcoder="chengdujin", relat
     * stdout default value False
     """
     if not language or not link:
-        raise Exception('ERROR: Method not well formed!')
+        raise Exception('[transcoder.convert] ERROR: Method not well formed!')
 
     link = _preprocess(link)
     transcoders = _organize_transcoders(transcoder)
@@ -254,6 +254,6 @@ def convert(language="en", title=None, link=None, transcoder="chengdujin", relat
     else:
         if not stdout:
             raise Exception(
-                'ERROR: Transcoder %s failed for %s' % (transcoder, link))
+                '[transcoder.convert] ERROR: Transcoder %s failed for %s' % (transcoder, link))
         else:
             return None, None

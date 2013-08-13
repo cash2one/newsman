@@ -43,7 +43,7 @@ def _generate_images(image=None, entry=None, rand=None):
     generate hot news, category and thumbnail images, and maybe more sizes
     """
     if not image or not entry:
-        raise Exception('ERROR: Cannot generate images from void content!')
+        raise Exception('[_generate_images] ERROR: Cannot generate images from void content!')
     if not rand:
         # get a new rand
         rand = random.randint(0, 100000000)
@@ -83,7 +83,7 @@ def _get_tts(entry=None, rand=None):
     get tts from the provider
     """
     if not entry:
-        raise Exception('ERROR: Cannot generate tts from void content!')
+        raise Exception('[_get_tts] ERROR: Cannot generate tts from void content!')
     if not rand:
         # get a new rand
         rand = random.randint(0, 100000000)
@@ -111,7 +111,7 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
     if not entries:
         return None
     if not language or language not in LANGUAGES:
-        raise Exception("ERROR: language not found or not supported!")
+        raise Exception("[_value_added_process] ERROR: language not found or not supported!")
 
     for entry in entries:
         try:
@@ -202,7 +202,7 @@ def update(feed_link=None, feed_id=None, language=None, categories=None, transco
     """
     if not feed_id and not (feed_link and language):
         raise Exception(
-            "ERROR: Method signature not well formed!")
+            "[rss.update] ERROR: Method signature not well formed!")
 
     # try to find the feed in database
     if feed_id:
@@ -237,4 +237,4 @@ def update(feed_link=None, feed_id=None, language=None, categories=None, transco
         db_feeds.update(feed_id=feed_id, status=status_new,
                         feed_title=feed_title_new, etag=etag_new, modified=modified_new)
     else:
-        raise Exception('ERROR: Register feed in database before updating!')
+        raise Exception('[rss.update] ERROR: Register feed in database before updating!')

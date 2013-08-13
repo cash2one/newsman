@@ -74,9 +74,9 @@ def google(language='en', query='Service provided by Baidu', relative_path='do_n
     6. return the path
     """
     if not language or not query or not relative_path:
-        raise Exception('ERROR: Method not well formed!')
+        raise Exception('[tts_provider.google] ERROR: Method not well formed!')
     if language not in LANGUAGES:
-        raise Exception('ERROR: %s not supported!' % language)
+        raise Exception('[tts_provider.google] ERROR: %s not supported!' % language)
 
     # generate out.mp3
     tmp_file = _download(language, query, '%s-tmp.mp3' % relative_path[:-4])

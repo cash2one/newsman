@@ -213,7 +213,7 @@ def normalize(images):
         check an image if it matches with MIN_IMAGE_SIZE
         """
         if not image:
-            raise Exception('ERROR: Method not well formed!')
+            raise Exception('[image_helper.normalize] ERROR: Method not well formed!')
 
         try:
             if 'url' in image:

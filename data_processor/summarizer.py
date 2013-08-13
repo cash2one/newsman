@@ -103,7 +103,8 @@ def extract(summary, transcoded, language):
     get the summary/first paragraph, text only
     """
     if not summary and not transcoded:
-        raise Exception('ERROR: No data is found!')
+        raise Exception('[summarizer.extract] ERROR: No data is found!')
+
     result_summary = result_first_paragraph = ""
 
     # if summary from rss provider is found

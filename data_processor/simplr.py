@@ -69,7 +69,7 @@ class Simplr:
                     data = html.decode('utf-8', 'ignore')
                 return data
             else:
-                raise Exception("ERROR: Cannot read %s" % url)
+                raise Exception("[simplr._prepare_link] ERROR: Cannot read %s" % url)
 
         self.data = _prepare_link(self.url)
         self.data = self.regexps['replace_brs'].sub("</p><p>", self.data)
@@ -373,7 +373,7 @@ def convert(url, language):
     an interface to expose Simplr
     """
     if not url:
-        raise Exception("ERROR: Cannot transcode nothing!")
+        raise Exception("[simplr.convert] ERROR: Cannot transcode nothing!")
 
     try:
         readable = Simplr(url, language)

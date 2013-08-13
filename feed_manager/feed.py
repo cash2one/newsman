@@ -42,7 +42,7 @@ def _read_source(d=None, feed_link=None, language=None, categories=None):
             feed['modified'] = d.feed.modified.strip()
         return feed
     else:
-        raise Exception('ERROR: Feed %s malformed!' % feed_link)
+        raise Exception('[feed._read_source] ERROR: Feed %s malformed!' % feed_link)
 
 
 # TODO: implement _link_cleaner!
@@ -51,7 +51,7 @@ def add(feed_link=None, language=None, categories=None, transcoder_type="chengdu
     read rss/atom meta information from a given feed
     """
     if not feed_link or not language:
-        raise Exception("ERROR: Method not well formed!")
+        raise Exception("[feed.add] ERROR: Method not well formed!")
 
     d = feedparser.parse(feed_link)
     if d:
@@ -63,4 +63,4 @@ def add(feed_link=None, language=None, categories=None, transcoder_type="chengdu
                    categories=categories, transcoder_type=transcoder_type)
     else:
         raise Exception(
-            "ERROR: RSS source %s cannot be interpreted!" % feed_link)
+            "[feed.add] ERROR: RSS source %s cannot be interpreted!" % feed_link)
