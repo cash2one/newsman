@@ -3,29 +3,19 @@ News Backend
 
 This project is outlined with the following modules:
 
-* `image_processor`: handles scaling images, making thumbnails; checking if the
-image is content-sensitive; checking if the content of the image matches its
-description, etc.
 
-* `alert_maintenance`: provides code to watch over the running databases and the like; clean and restore obsolete data.
+* `watchdog`: provides code to watch over the running databases and the like; clean and restore obsolete data.
 
 * `scraper`: scrapes RSS resources for news, blogs and images; APIs of SNS,
 APIs of SNS-based images, and streams.
 
-* `data_miner`: mines hot and related news from server logs and stored user information; it also provides code to dedup news 
+* `data_processor`: transcoding webpages, news summarization, TTS-generation, Searchet-based features, and mines hot and related news from server logs and stored user information; it also provides code to dedup news. it contains code that handles scaling images, making thumbnails; checking if the image is content-sensitive; checking if the content of the image matches its description, etc.
 
-* `user_account`: provides code to do user register/login/logoff, API-based login/logoff; code to comment on news/images; code to favorate news/images; code to do personalization (subscription, collect, comment, change themes and colors)
+* `templates`: HTML, CSS and Javascript code necessary for news-page and integrated information page (Searchet-based features)
 
-* `data_processor`: transcoding webpages, news summarization, TTS-generation,
-Searchet-based features 
+* `feed_manager`: RSS-adding page, manual hot news push news page and strategy modification page 
 
-* `template`: HTML, CSS and Javascript code necessary for news-page and
-integrated information page (Searchet-based features)
-
-* `adminstration`: RSS-adding page, manual hot news push news page and strategy
-modification page 
-
-* `interface`: news reading, image reading and etc.
+* `publisher`: news reading, image reading and etc.
 
 ToDos - High Priority
 ----------------------
@@ -41,6 +31,8 @@ ToDos - High Priority
 10. qrconverter类似脚本使用docopt/docopt
 11. 抓取改为每处理完一个存储数据库和内存
 12. 为每个文件增加开源声明
+13. thumbnail/image_helper重新构造
+14. 修改本文档
 
 ToDos - Low Priority
 ---------------------
