@@ -20,7 +20,6 @@ from config import rclient
 from config import MEMORY_EXPIRATION_DAYS
 
 
-# TODO: add more comments
 # TODO: be precautious with possible redis adding failure
 def update(entry=None, language=None, categories=None):
     """
