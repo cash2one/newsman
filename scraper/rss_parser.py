@@ -96,7 +96,7 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
                     entry['updated'] = time.mktime(updated.timetuple())
                 else:
                     raise ValueError(
-                        "attribute updated/published has no value")
+                        "[rss_parser._read_entry] attribute updated/published has no value")
             except ValueError as k:
                 print k
                 entry['error'] = '%s\n%s' % (entry['error'], k)

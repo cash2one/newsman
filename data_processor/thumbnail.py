@@ -33,13 +33,12 @@ def is_valid_image(image_url):
     """
     if not image_url:
         return None
-    image_downloaded = None
+    image_pil = None
     try:
-        image_downloaded = urllib2.urlopen(image_url, timeout=UCK_TIMEOUT).read()
-    except urllib2.URLError:
-        urllib2.install_opener(urllib2.build_opener(urllib2.ProxyHandler({'http':'127.0.0.1:8087'})))
-        image_downloaded = urllib2.urlopen(image_url, timeout=UCK_TIMEOUT).read()
-    image_pil = Image.open(StringIO(image_downloaded))
+        image_pil = Image.open(StringIO(urllib2.urlopen(image_url, timeout=UCK_TIMEOUT).read()))
+    except Exception as k:
+        print '[thumbnail.is_valid_image]', k
+        raise k
     # to avoid line length limit
     if image_pil.size[0] * image_pil.size[1] > MIN_IMAGE_SIZE[0] * MIN_IMAGE_SIZE[1]:
         return True
@@ -55,9 +54,13 @@ def generate_thumbnail(image_url, relative_path):
     """
     if not image_url or not relative_path:
         return None
-    image_web = StringIO(
-        urllib2.urlopen(image_url, timeout=UCK_TIMEOUT).read())
-    image_pil = Image.open(image_web)
+    image_pil = None
+    try:
+        image_pil = Image.open(StringIO(
+            urllib2.urlopen(image_url, timeout=UCK_TIMEOUT).read()))
+    except Exception as k:
+        print '[thumbnail.generate_thumbnail]', k
+        raise k
     # generate thumbnail
     if image_pil.size > MIN_IMAGE_SIZE:
         image_thumbnail_local_path = '%s%si.jpg' % (
@@ -76,11 +79,12 @@ def get_image_size(image_url):
     """
     docs needed
     """
+    im = None
     try:
-        image_web = StringIO(
-            urllib2.urlopen(image_url, timeout=UCK_TIMEOUT).read())
-    except Exception as e:
-        print e
+        im = Image.open(StringIO(
+            urllib2.urlopen(image_url, timeout=UCK_TIMEOUT).read()))
+    except Exception as k:
+        print '[thumbnail.get_image_size]', k
         image_web = image_url
     im = Image.open(image_web)
     width, height = im.size
