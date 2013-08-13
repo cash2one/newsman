@@ -31,19 +31,18 @@ def update(entry=None, language=None, categories=None):
     if not language or not categories:
         raise Exception("ERROR: Method signature not well formed!")
 
-    # add entry objects to memory
-    for entry in entries:
-        # add a piece of news into memory
-        rclient.set(entry['_id'], entry)
+    # add an entry to memory
+    # add a piece of news into memory
+    rclient.set(entry['_id'], entry)
 
-        # expired in redis is counted in seconds
-        expiration = MEMORY_EXPIRATION_DAYS * 24 * 60 * 60
-        rclient.expire(entry['_id'], expiration)
+    # expired in redis is counted in seconds
+    expiration = MEMORY_EXPIRATION_DAYS * 24 * 60 * 60
+    rclient.expire(entry['_id'], expiration)
 
-        # add entry ids to the language list
-        rclient.zadd("news::%s" % language, entry['updated'], entry['_id'])
-        # print entry['_id'], 'is added to memory', rclient.zcard(language)
+    # add entry ids to the language list
+    rclient.zadd("news::%s" % language, entry['updated'], entry['_id'])
+    # print entry['_id'], 'is added to memory', rclient.zcard(language)
 
-        # add entry ids to the category list
-        for category in categories:
-            rclient.zadd('news::%s::%s' % (language, category), entry['updated'], entry['_id'])
+    # add entry ids to the category list
+    for category in categories:
+        rclient.zadd('news::%s::%s' % (language, category), entry['updated'], entry['_id'])
