@@ -79,10 +79,10 @@ def get_image_size(image_url):
     """
     docs needed
     """
-    im = None
+    image_web = None
     try:
-        im = Image.open(StringIO(
-            urllib2.urlopen(image_url, timeout=UCK_TIMEOUT).read()))
+        image_web = StringIO(
+            urllib2.urlopen(image_url, timeout=UCK_TIMEOUT).read())
     except Exception as k:
         print '[thumbnail.get_image_size]', k
         image_web = image_url
