@@ -156,6 +156,11 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
 
             entry['error'] = entry['error'] if entry['error'] else None
             entries_new.append(entry)
+
+            # update new entries to db_news
+            # each entry is added with _id
+            entries = db_news.update(entry)
+
             print
             print
         except Exception as k:
@@ -170,8 +175,7 @@ def update(feed_link=None, feed_id=None, language=None, categories=None, transco
     1. from task procedure: feed_id
     2. after an rss is added: feed_id
     3. manually for testing purpose: feed_link, language
-    Note. categories are ids of category item
-    Notel categories are kept for manual testing
+    Note categories are kept for manual testing
     """
     if not feed_id and not (feed_link and language):
         raise Exception(
@@ -201,9 +205,6 @@ def update(feed_link=None, feed_id=None, language=None, categories=None, transco
     # and do tts, big_images, image as well as transcode.
     entries = _value_added_process(entries, language, transcoder_type)
 
-    # update new entries to db_news
-    # each entry is added with _id
-    entries = db_news.update(entries, language)
     # and some data, like feed_title, etag and modified to db_feeds
     # only feed_id is necessary, others are optional **kwargs
     db_feeds.update(feed_id=feed_id, status=status_new,
