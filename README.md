@@ -33,6 +33,7 @@ ToDos - High Priority
 12. 为每个文件增加开源声明
 13. thumbnail/image_helper重新构造
 14. 修改本文档
+15. Redis expire可能会失效，访问时增加检查和清理
 
 ToDos - Low Priority
 ---------------------
