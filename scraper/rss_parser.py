@@ -224,9 +224,6 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
             "ERROR: Method signature not well formed for %s!" % feed_link)
     if language not in LANGUAGES:
         raise Exception("ERROR: Language not supported for %s!" % feed_link)
-    # parameters striped
-    feed_link = feed_link.strip()
-    language = language.strip()
 
     def _validate_time(entry):
         """
