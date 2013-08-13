@@ -146,7 +146,7 @@ def _transcode(url, transcoders, language=None):
     # after a while ... put data in the proper variables
     uck_content = simplr_content = burify_content = None
     uck_images = simplr_images = burify_images = None
-    simplr_title = burify_title = None
+    uck_title = simplr_title = burify_title = None
 
     if 'baidu_uck' in transcoders and 'baidu_uck' in threads:
         if threads['baidu_uck'].result:
