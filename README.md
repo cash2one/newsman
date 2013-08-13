@@ -29,11 +29,10 @@ ToDos - High Priority
 8. URL处理换成gruns/furl
 9. 测试标题提取使用Lassie(多国语言)
 10. qrconverter类似脚本使用docopt/docopt
-11. 抓取改为每处理完一个存储数据库和内存
-12. 为每个文件增加开源声明
-13. thumbnail/image_helper重新构造
-14. 修改本文档
-15. Redis expire可能会失效，访问时增加检查和清理
+11. 为每个文件增加开源声明
+12. thumbnail/image_helper重新构造
+13. 修改本文档
+14. Redis expire可能会失效，访问时增加检查和清理
 
 ToDos - Low Priority
 ---------------------
@@ -68,6 +67,7 @@ Dones
 11. 摘要/首段抓取代码编写
 12. 为PM提供一个Simplr, Readability, UCK比较的页面
 13. 包结构合理化
+14. 抓取改为每处理完一个存储数据库和内存
 
 
 ToDos - Generated from docs
