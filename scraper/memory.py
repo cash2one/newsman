@@ -21,14 +21,12 @@ from config import MEMORY_EXPIRATION_DAYS
 
 
 # TODO: be precautious with possible redis adding failure
-def update(entry=None, language=None, categories=None):
+def update(entry=None):
     """
     add news and its attributes to memory
     """
     if not entry:
         return None
-    if not language or not categories:
-        raise Exception("[memory.update] ERROR: Method signature not well formed!")
 
     # add an entry to memory
     # add a piece of news into memory
@@ -39,9 +37,9 @@ def update(entry=None, language=None, categories=None):
     rclient.expire(entry['_id'], expiration)
 
     # add entry ids to the language list
-    rclient.zadd("news::%s" % language, entry['updated'], entry['_id'])
+    rclient.zadd("news::%s" % entry['language'], entry['updated'], entry['_id'])
     # print entry['_id'], 'is added to memory', rclient.zcard(language)
 
     # add entry ids to the category list
-    for category in categories:
-        rclient.zadd('news::%s::%s' % (language, category), entry['updated'], entry['_id'])
+    for category in entry['categories']:
+        rclient.zadd('news::%s::%s' % (entry['language'], category), entry['updated'], entry['_id'])
