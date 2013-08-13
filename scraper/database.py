@@ -44,20 +44,18 @@ def dedup(entries=None, language=None):
     return entries_new if entries_new else None
 
 
-# TODO: break update_database into several shorter mthods
-def update(entries=None, language=None):
+def update(entry=None, language=None):
     """
-    save entries
+    save an entry in database
     """
-    if not entries:
+    if not entry:
         return None
     if not language or language not in LANGUAGES:
         raise Exception("ERROR: language not found or not supported!")
 
     # collection was created by the feed
     col = Collection(db, language)
-    for entry in entries:
-        # then save to database
-        entry_id = col.save(entry)
-        entry['_id'] = str(entry_id)
-    return entries
+    # then save to database
+    entry_id = col.save(entry)
+    entry['_id'] = str(entry_id)
+    return entry
