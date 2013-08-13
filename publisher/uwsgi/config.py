@@ -62,12 +62,11 @@ STRATEGY_WITHOUT_WEIGHTS = 1
 STRATEGY_WITH_WEIGHTS = 2
 
 FEED_REGISTRAR = 'feeds'
-CATEGORY_REGISTRAR = 'categories'
 
 PARAGRAPH_CRITERIA = 40
 SUMMARY_LENGTH_LIMIT = 500
-UCK_TIMEOUT = 3  # 3 seconds timeout
-GOOGLE_TTS_TIMEOUT = 5
+UCK_TIMEOUT = 9  # 9 seconds timeout
+GOOGLE_TTS_TIMEOUT = 7
 
 LANGUAGES = ['en', 'th', 'ind', 'ja', 'pt', 'en-rIN', 'ar', 'zh-CN', 'zh-HK']
 MIN_IMAGE_SIZE = 150, 150

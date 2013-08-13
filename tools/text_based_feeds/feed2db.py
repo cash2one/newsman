@@ -19,7 +19,6 @@ from config import db
 
 # CONSTANTS
 from config import FEED_REGISTRAR
-from config import CATEGORY_REGISTRAR
 #FILE_SUFFIX = '/home/work/bgm_news/tools/text_based_feeds/feed_lists/'
 FILE_SUFFIX = '/home/jinyuan/Downloads/bgm_news/tools/text_based_feeds/feed_lists/'
 
@@ -47,25 +46,13 @@ def _convert(language='en'):
 
     # open datbase
     db_feeds = Collection(db, FEED_REGISTRAR)
-    db_categories = Collection(db, CATEGORY_REGISTRAR)
 
     for line in lines:
         if line.strip():
             language, categories, feed_title, feed_link = _parse_task(line)
-            # save categories
-            category_ids = []
-            for category in categories:
-                item = db_categories.find_one(
-                    {'name': category, 'language': language})
-                if item:
-                    category_ids.append(str(item['_id']))
-                else:
-                    category_id = db_categories.save(
-                        {'name': category, 'language': language})
-                    category_ids.append(str(category_id))
             # save feed
             db_feeds.save({'language': language, 'feed_link': feed_link,
-                           'categories': category_ids, 'feed_title': feed_title,
+                           'categories': categories, 'feed_title': feed_title,
                            'latest_update': None, 'updated_times': 0,
                            'transcoder': 'chengdujin'})
 
