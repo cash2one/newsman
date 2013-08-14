@@ -96,7 +96,7 @@ def _get_tts(entry=None, rand=None):
         entry['mp3'], entry['mp3_local'] = tts_provider.google(
             entry['language'], read_content, tts_relative_path)
     except Exception as k:
-        print '[rss._get_tts]', k, '... Cannot generate TTS for %s' % entry['link']
+        print '[rss._get_tts]', k, ':%s' % entry['link']
         entry['error'].append(k + '\n')
         entry['mp3'] = None
         entry['mp3_local'] = None
