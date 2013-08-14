@@ -80,11 +80,11 @@ def get_image_size(image_url):
     docs needed
     """
     image_web = None
-    try:
-        image_web = StringIO(
-            urllib2.urlopen(image_url, timeout=UCK_TIMEOUT).read())
-    except Exception as k:
-        print '[thumbnail.get_image_size]', str(k)
+    if isinstance(image_url, str) or isinstance(image_url, unicode):
+        print '[thumbnail.get_image_size] opening %s' % image_url 
+        image_web = StringIO(urllib2.urlopen(image_url, timeout=UCK_TIMEOUT).read())
+    else:
+        print '[thumbnail.get_image_size] image_url is data'
         image_web = image_url
     im = Image.open(image_web)
     width, height = im.size

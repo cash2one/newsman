@@ -70,7 +70,7 @@ class TranscoderAPI(threading.Thread):
             try:
                 self.result = eval(self.transcoder).convert(self.url)
             except Exception as k:
-                print k
+                print '[transcoder.TranscoderAPI]', str(k)
                 self.result = None, None, None
 
 
