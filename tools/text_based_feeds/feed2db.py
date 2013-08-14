@@ -57,7 +57,7 @@ def _convert(language='en'):
             else:
                 transcoder_mode = "readability"
                 feed_title = feed_x
-            print feed_link, transcoder
+            print feed_link, transcoder_mode
             db_feeds.save({'language': language, 'feed_link': feed_link,
                            'categories': categories, 'feed_title': feed_title,
                            'latest_update': None, 'updated_times': 0,
