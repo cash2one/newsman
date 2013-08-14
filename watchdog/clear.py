@@ -16,12 +16,10 @@ from datetime import datetime, timedelta
 import feedparser
 import os
 from scraper import memory
-from scraper import rss
 import time
 
 # CONSTANTS
 from config import Collection
-from config import FEED_REGISTRAR
 from config import DATABASE_REMOVAL_DAYS
 from config import db
 from config import IMAGES_LOCAL_DIR
@@ -159,21 +157,18 @@ def clear_short_dated(language, category, feed_id):
 
 def clear_zombies(language):
     '''zombies are shits in memory but no more in database'''
-    language_ids_total = rclient.zcard(language)
+    language_ids_total = rclient.zcard("news::%s" % language)
     col = Collection(db, language)
-    zombies = []
     if language_ids_total:
-        entry_ids = rclient.zrange(language, 0, language_ids_total)
+        entry_ids = rclient.zrange("news::%s" % language, 0, language_ids_total)
         for entry_id in entry_ids:
             item = col.find_one({'_id': ObjectId(entry_id)})
             if not item:  # then its a zombie
-                zombies.append(entry_id)
                 if rclient.exists(entry_id):
                     print 'ZOMBIE!!: ', entry_id, eval(rclient.get(entry_id))['title']
                     rclient.delete(entry_id)
     else:
         print 'there is no such a language %s' % language
-    return zombies
 
 
 def clear_long_dated(language):
@@ -203,22 +198,13 @@ def clear_long_dated(language):
 def clear():
     print '----------------------clearing-------------------------'
     # clear memory
-    f = open(DATA_CLEAR_LOG, 'a')
     language_files = read_task_directory()
     for language_file in language_files:
         language = language_file.replace(MAINTENANCE_DIR, '').split('_')[0]
         # remove item in database
         removed_long_ids = clear_long_dated(language)
-        if removed_long_ids:
-            print 'LONG', len(removed_long_ids)
-            f.write('[LONG] %s: %s %i\n' %
-                    (time.asctime(time.gmtime()), language, len(removed_long_ids)))
         # remove zombies
         removed_zombies = clear_zombies(language)
-        if removed_zombies:
-            print 'ZOMBIE', len(removed_zombies)
-            f.write('[ZOMBIE] %s: %s %i\n' %
-                    (time.asctime(time.gmtime()), language, len(removed_zombies)))
         # remove item in memory
         l = open(language_file, 'r')
         lines = l.readlines()
@@ -226,76 +212,8 @@ def clear():
             language, category, feed_id, feed_link = extract_task(line)
             removed_short_ids = clear_short_dated(
                 language, category, feed_id)
-            if removed_short_ids:
-                print 'SHORT', language, category, feed_id, removed_short_ids
-                f.write(
-                    '[SHORT] %s: %s %i %s %i %s %i\n' % (time.asctime(time.gmtime()), language, removed_short_ids[0], '%s-%s' %
-                       (language, category), removed_short_ids[1], '%s-%s-%s' % (language, category, feed_id), removed_short_ids[2]))
-        f.write('\n')
         l.close()
         print
-    f.close()
-    return 0
-
-
-def add_task(feed_id, feed_link, language, category):
-    if not feed_id or not feed_link or not language or not category:
-        return 1
-    feed_link = feed_link.strip()
-    language = language.strip()
-    category = category.strip()
-    if language not in LANGUAGES:
-        return 2
-    if category.count(' '):
-        return 3
-
-    feeds_list_path = '%s%s_feeds_list.txt' % (MAINTENANCE_DIR, language)
-    if os.path.exists(feeds_list_path):
-        f = open(feeds_list_path, 'r')
-        lines = f.readlines()
-        for line in lines:
-            splits = line.split('*|*')
-            if feed_link == splits[3].strip():
-                # hey we find one the same as the new one
-                return 5
-
-    f = open(feeds_list_path, 'a')
-    line = '*|*'.join([language, category, feed_id, feed_link])
-    f.write(line + '\n')
-    f.close()
-    return 0
-
-
-def _update(feed_ids):
-    """
-    update links find in feeds
-    """
-    if not feed_ids:
-        raise Exception("ERROR: No feed found!")
-    else:
-        for feed_id in feed_ids:
-            rss.update(feed_id=feed_id)
-
-
-def _read_feeds(language='en'):
-    """
-    read feed information from database feeds
-    """
-    db_feeds = Collection(db, FEED_REGISTRAR)
-    items = db_feeds.find({'language': language})
-    if items:
-        return [str(item['_id']) for item in items]
-    else:
-        raise Exception(
-            "ERROR: Cannot find any feeds for language %s!" % language)
-
-
-def scrape(language):
-    """
-    update news from stored feeds
-    """
-    print '----------------------scraping-------------------------'
-    _update(_read_feeds(language))
 
 
 # TODO: put language in config file
