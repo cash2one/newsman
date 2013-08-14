@@ -168,7 +168,8 @@ def convert(link):
             title, transcoded, images = _extract(eval(raw_data))
             return title, transcoded, images
         else:
-            raise Exception('[baidu_uck.convert] ERROR: Nothing found in return.')
+            print '[baidu_uck.convert] ERROR: Nothing found in return.'
+            return None, None, None
     except Exception as k:
         print '[baidu_uck.convert]', str(k)
         return None, None, None
