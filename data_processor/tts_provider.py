@@ -90,8 +90,7 @@ def google(language='en', query='Service provided by Baidu', relative_path='do_n
         print '... MP3 acceleration is successfully completed!'
         return tts_web_path, tts_local_path
     else:
-        print '... %s is revoked due to erros found in downloading!' % relative_path
-        return None, None
+        raise Exception('... %s is revoked due to erros found in downloading!' % relative_path)
 
 
 # TODO: write some boundary checkers
