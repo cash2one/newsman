@@ -67,7 +67,11 @@ class TranscoderAPI(threading.Thread):
             self.result = eval(self.transcoder).convert(
                 self.url, self.language)
         else:
-            self.result = eval(self.transcoder).convert(self.url)
+            try:
+                self.result = eval(self.transcoder).convert(self.url)
+            except Exception as k:
+                print k
+                self.result = None, None, None
 
 
 def _save(data, path):
