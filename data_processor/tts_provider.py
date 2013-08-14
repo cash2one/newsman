@@ -221,11 +221,13 @@ def _download(language='en', query='Service provided by Baidu', tmp_file='do_not
             if th.result:
                 out.write(th.result)
             else:
+                # close the file before raise an exception
+                out.close()
                 raise Exception
         out.close()
         return tmp_file
     except Exception as k:
-        print '!Exception: removing file ...', k
+        print '[tts_provider._download] ERROR: part of tts dowload went wrong, now removing the file', k
         if os.path.exists(tmp_file):
             os.remove(tmp_file)
         return None
