@@ -62,8 +62,9 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
         else:
             entry['title'] = e.title.strip()
     except AttributeError as k:
-        print '[rss_parser._read_entry:65L]', k
+        print '[rss_parser._read_entry:65L]', str(k)
         entry['error'].append(k + '\n')
+        print '... %s is revoked due to erros found in downloading!' % relative_path
         raise Exception(
             '[rss_parser._read_entry] ERROR: No title or link found for %s!' % entry['feed_id'])
 
@@ -98,12 +99,12 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
                     raise ValueError(
                         "[rss_parser._read_entry] attribute updated/published has no value")
             except ValueError as k:
-                print '[rss_parser._read_entry:101L]', k
+                print '[rss_parser._read_entry:101L]', str(k)
                 entry['error'] = '%s\n%s' % (entry['error'], k)
                 raise Exception(
                     '[rss_parser._read_entry] ERROR: entry %s has no publication info!' % entry['title'])
             except AttributeError as k:
-                print '[rss_parser._read_entry:106L]', k
+                print '[rss_parser._read_entry:106L]', str(k)
                 entry['error'].append('no update or published\n')
                 raise Exception(
                     '[rss_parser._read_entry] ERROR: entry %s has no publication info!' % entry['title'])
@@ -261,8 +262,8 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
                 feed_title_latest = urllib2.unquote(d.feed.title).strip()
                 if feed_title != feed_title_latest:
                     print '[rss_parser.parse] WARNING: %s title changed! Please update feed table/database' % feed_link
-                    print 'old title:', feed_title
-                    print 'new title:', feed_title_latest
+                    print '    old title:', feed_title
+                    print '    new title:', feed_title_latest
 
             # update etag/modified
             etag = None
