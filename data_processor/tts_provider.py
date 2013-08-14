@@ -80,16 +80,18 @@ def google(language='en', query='Service provided by Baidu', relative_path='do_n
 
     # generate out.mp3
     tmp_file = _download(language, query, '%s-tmp.mp3' % relative_path[:-4])
-    # form paths
-    tts_local_path = '%s%s' % (MEDIA_LOCAL_DIR, relative_path)
-    tts_web_path = '%s%s' % (MEDIA_PUBLIC_DIR, relative_path)
+    if tmp_file:
+        # form paths
+        tts_local_path = '%s%s' % (MEDIA_LOCAL_DIR, relative_path)
+        tts_web_path = '%s%s' % (MEDIA_PUBLIC_DIR, relative_path)
 
-    command = 'lame -S --decode {0} - | sox -q -t wav - -t wav - speed 1.06 | lame -S - {1}; rm {0}'.format(
-        tmp_file, tts_local_path)
-
-    subprocess.Popen(command, stderr=subprocess.PIPE, shell=True)
-    print '... MP3 acceleration is successfully completed!'
-    return tts_web_path, tts_local_path
+        command = 'lame -S --decode {0} - | sox -q -t wav - -t wav - speed 1.06 | lame -S - {1}; rm {0}'.format(tmp_file, tts_local_path)
+        subprocess.Popen(command, stderr=subprocess.PIPE, shell=True)
+        print '... MP3 acceleration is successfully completed!'
+        return tts_web_path, tts_local_path
+    else:
+        print '... %s is revoked due to erros found in downloading!' % relative_path
+        return None, None
 
 
 # TODO: write some boundary checkers
