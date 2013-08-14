@@ -33,8 +33,12 @@ from config import DATABASE_REMOVAL_DAYS
 from config import HOT_IMAGE_SIZE
 from config import LANGUAGES
 from config import MEMORY_EXPIRATION_DAYS
-from config import THUMBNAIL_LANDSCAPE_SIZE
-from config import THUMBNAIL_PORTRAIT_SIZE
+from config import THUMBNAIL_LANDSCAPE_SIZE_HIGH
+from config import THUMBNAIL_LANDSCAPE_SIZE_NORMAL
+from config import THUMBNAIL_LANDSCAPE_SIZE_LOW
+from config import THUMBNAIL_PORTRAIT_SIZE_HIGH
+from config import THUMBNAIL_PORTRAIT_SIZE_NORMAL
+from config import THUMBNAIL_PORTRAIT_SIZE_LOW
 from config import THUMBNAIL_STYLE
 
 
@@ -43,7 +47,8 @@ def _generate_images(image=None, entry=None, rand=None):
     generate hot news, category and thumbnail images, and maybe more sizes
     """
     if not image or not entry:
-        raise Exception('[rss._generate_images] ERROR: Cannot generate images from void content!')
+        raise Exception(
+            '[rss._generate_images] ERROR: Cannot generate images from void content!')
     if not rand:
         # get a new rand
         rand = random.randint(0, 100000000)
@@ -66,11 +71,29 @@ def _generate_images(image=None, entry=None, rand=None):
     # thumbnail image
     # landscape
     if float(image['width']) / float(image['height']) >= THUMBNAIL_STYLE:
+        # high resolution
         thumbnail_web, thumbnail_local = image_helper.scale_image(
-            image=image, size_expected=THUMBNAIL_LANDSCAPE_SIZE, resize_by_width=True, crop_by_center=False, relative_path='%s_thumbnail' % image_relative_path)
+            image=image, size_expected=THUMBNAIL_LANDSCAPE_SIZE_HIGH, resize_by_width=True, crop_by_center=False, relative_path='%s_thumbnail' % image_relative_path)
+        if not thumbnail_web:
+            # normal resolution
+            thumbnail_web, thumbnail_local = image_helper.scale_image(
+                image=image, size_expected=THUMBNAIL_LANDSCAPE_SIZE_NORMAL, resize_by_width=True, crop_by_center=False, relative_path='%s_thumbnail' % image_relative_path)
+            if not thumbnail_webi:
+                # low resolution
+                thumbnail_web, thumbnail_local = image_helper.scale_image(
+                    image=image, size_expected=THUMBNAIL_LANDSCAPE_SIZE_LOW, resize_by_width=True, crop_by_center=False, relative_path='%s_thumbnail' % image_relative_path)
     else:  # portrait
+        # high resolution
         thumbnail_web, thumbnail_local = image_helper.scale_image(
-            image=image, size_expected=THUMBNAIL_PORTRAIT_SIZE, resize_by_width=True, crop_by_center=True, relative_path='%s_thumbnail' % image_relative_path)
+            image=image, size_expected=THUMBNAIL_PORTRAIT_SIZE_HIGH, resize_by_width=True, crop_by_center=True, relative_path='%s_thumbnail' % image_relative_path)
+        if not thumbnail_web:
+            # normal resolution
+            thumbnail_web, thumbnail_local = image_helper.scale_image(
+                image=image, size_expected=THUMBNAIL_PORTRAIT_SIZE_NORMAL, resize_by_width=True, crop_by_center=True, relative_path='%s_thumbnail' % image_relative_path)
+            if not thumbnail_web:
+                # low resolution
+                thumbnail_web, thumbnail_local = image_helper.scale_image(
+                    image=image, size_expected=THUMBNAIL_PORTRAIT_SIZE_LOW, resize_by_width=True, crop_by_center=True, relative_path='%s_thumbnail' % image_relative_path)
     entry['thumbnail_image'] = thumbnail_web if thumbnail_web else None
     entry['thumbnail_image_local'] = thumbnail_local if thumbnail_local else None
 
@@ -83,7 +106,8 @@ def _get_tts(entry=None, rand=None):
     get tts from the provider
     """
     if not entry:
-        raise Exception('[rss._get_tts] ERROR: Cannot generate tts from void content!')
+        raise Exception(
+            '[rss._get_tts] ERROR: Cannot generate tts from void content!')
     if not rand:
         # get a new rand
         rand = random.randint(0, 100000000)
@@ -111,7 +135,8 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
     if not entries:
         return None
     if not language or language not in LANGUAGES:
-        raise Exception("[rss._value_added_process] ERROR: language not found or not supported!")
+        raise Exception(
+            "[rss._value_added_process] ERROR: language not found or not supported!")
 
     for entry in entries:
         try:
@@ -239,4 +264,5 @@ def update(feed_link=None, feed_id=None, language=None, categories=None, transco
         db_feeds.update(feed_id=feed_id, status=status_new,
                         feed_title=feed_title_new, etag=etag_new, modified=modified_new)
     else:
-        raise Exception('[rss.update] ERROR: Register feed in database before updating!')
+        raise Exception(
+            '[rss.update] ERROR: Register feed in database before updating!')
