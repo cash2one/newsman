@@ -228,7 +228,7 @@ def _download(language='en', query='Service provided by Baidu', tmp_file='do_not
         out.close()
         return tmp_file
     except Exception as k:
-        print '[tts_provider._download] ERROR: part of tts dowload went wrong, now removing the file', k
+        print '[tts_provider._download] ERROR: part of tts dowload went wrong, now removing the file', str(k)
         if os.path.exists(tmp_file):
             os.remove(tmp_file)
         return None

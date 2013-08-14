@@ -37,7 +37,7 @@ def is_valid_image(image_url):
     try:
         image_pil = Image.open(StringIO(urllib2.urlopen(image_url, timeout=UCK_TIMEOUT).read()))
     except Exception as k:
-        print '[thumbnail.is_valid_image]', k
+        print '[thumbnail.is_valid_image]', str(k)
         raise k
     # to avoid line length limit
     if image_pil.size[0] * image_pil.size[1] > MIN_IMAGE_SIZE[0] * MIN_IMAGE_SIZE[1]:
@@ -59,7 +59,7 @@ def generate_thumbnail(image_url, relative_path):
         image_pil = Image.open(StringIO(
             urllib2.urlopen(image_url, timeout=UCK_TIMEOUT).read()))
     except Exception as k:
-        print '[thumbnail.generate_thumbnail]', k
+        print '[thumbnail.generate_thumbnail]', str(k)
         raise k
     # generate thumbnail
     if image_pil.size > MIN_IMAGE_SIZE:
@@ -84,7 +84,7 @@ def get_image_size(image_url):
         image_web = StringIO(
             urllib2.urlopen(image_url, timeout=UCK_TIMEOUT).read())
     except Exception as k:
-        print '[thumbnail.get_image_size]', k
+        print '[thumbnail.get_image_size]', str(k)
         image_web = image_url
     im = Image.open(image_web)
     width, height = im.size

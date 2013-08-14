@@ -60,5 +60,5 @@ def convert(link):
         images = _collect_images(article.summary())
         return article.short_title(), article.summary(html_partial=False), images
     except Exception as k:
-        print '[burify.convert]', k
+        print '[burify.convert]', str(k)
         return None, None, None
