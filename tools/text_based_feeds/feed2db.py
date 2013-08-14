@@ -49,12 +49,18 @@ def _convert(language='en'):
 
     for line in lines:
         if line.strip():
-            language, categories, feed_title, feed_link = _parse_task(line)
+            language, categories, feed_x, feed_link = _parse_task(line)
             # save feed
+            if feed_x in ['chengdujin', 'readability', 'uck']:
+                transcoder_mode = feed_x
+                feed_title = ""
+            else:
+                transcoder_mode = "readability"
+                feed_title = feed_x
             db_feeds.save({'language': language, 'feed_link': feed_link,
                            'categories': categories, 'feed_title': feed_title,
                            'latest_update': None, 'updated_times': 0,
-                           'transcoder': 'chengdujin'})
+                           'transcoder': transcoder_mode})
 
 
 if __name__ == "__main__":
