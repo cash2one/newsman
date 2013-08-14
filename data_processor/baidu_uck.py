@@ -125,7 +125,11 @@ def _extract(data):
         content = _sanitize(content)
 
         # images
-        images = _collect_images(data)
+        images = None
+        try:
+            images = _collect_images(data)
+        except Exception as k:
+            print '[baidu_uck._extract]', str(k)
         images = images if images else None
 
         # title
