@@ -97,7 +97,7 @@ def _get_tts(entry=None, rand=None):
             entry['language'], read_content, tts_relative_path)
     except Exception as k:
         print '[rss._get_tts]', str(k), ':%s' % entry['link']
-        entry['error'].append(k + '\n')
+        entry['error'].append(str(k) + '\n')
         entry['mp3'] = None
         entry['mp3_local'] = None
     return entry
