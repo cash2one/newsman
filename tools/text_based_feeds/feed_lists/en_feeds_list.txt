@@ -1,7 +1,7 @@
-en*|*Travel|readability|http://rss.cnn.com/rss/cnn_travel.rss
-en*|*Travel|chengdujin|http://feeds.feedburner.com/weblogsinc/gadling
-en*|*Travel|readability|http://rss.ibtimes.com/rss/media-culture/travel
-en*|*Travel|chengdujin|http://intelligenttravel.nationalgeographic.com/feed/
+en*|*Travel*|*readability*|*http://rss.cnn.com/rss/cnn_travel.rss
+en*|*Travel*|*chengdujin*|*http://feeds.feedburner.com/weblogsinc/gadling
+en*|*Travel*|*readability*|*http://rss.ibtimes.com/rss/media-culture/travel
+en*|*Travel*|*chengdujin*|*http://intelligenttravel.nationalgeographic.com/feed/
 en*|*Health*|*readability*|*http://news.yahoo.com/rss/health
 en*|*Health*|*chengdujin*|*http://feeds.feedburner.com/AtlanticFood
 en*|*Health*|*readability*|*http://feeds.reuters.com/reuters/healthNews
@@ -40,10 +40,9 @@ en*|*Entertainment*|*readability*|*http://rss.cnn.com/rss/edition_entertainment.
 en*|*Entertainment*|*readability*|*http://feeds.reuters.com/reuters/entertainment
 en*|*Entertainment*|*readability*|*http://www.huffingtonpost.com/feeds/verticals/entertainment/index.xml
 en*|*Entertainment*|*chengdujin*|*http://www.mtv.com/rss/news/news_full.jhtml
-en*|*Sports*|*readability*|*http://feeds.bbci.co.uk/news/entertainment_and_arts/rss.xml
 en*|*Entertainment*|*chengdujin*|*http://feeds.abcnews.com/abcnews/entertainmentheadlines
-en*|*Sports*|*NewYork Times*|*http://rss.nytimes.com/services/xml/rss/nyt/Sports.xml
-en*|*Sports*|*Reuters: Sports News*|*http://feeds.reuters.com/reuters/sportsNews
+en*|*Sports*|*readability*|*http://feeds.bbci.co.uk/news/entertainment_and_arts/rss.xml
+en*|*Sports*|*readability*|*http://feeds.reuters.com/reuters/sportsNews
 en*|*Sports*|*readability*|*http://sports.espn.go.com/espn/rss/news
 en*|*Sports*|*readability*|*http://www.huffingtonpost.com/feeds/verticals/sports/index.xml
 en*|*Sports*|*chengdujin*|*http://rss.cbc.ca/lineup/sports.xml
