@@ -27,7 +27,8 @@ rclient = redis.StrictRedis(host='127.0.0.1')
 
 
 # CONSTANTS
-PUBLIC = 'http://mobile-global.baidu.com/news/%s'
+#PUBLIC = 'http://mobile-global.baidu.com/news/%s'
+PUBLIC = 'http://180.76.2.34/%s'
 #LOCAL = '/home/work/STATIC/%s'
 LOCAL = '/home/jinyuan/Downloads/%s'
 
@@ -55,8 +56,8 @@ TRANSCODING_BTN_ZH_CN = '查看原始网页'
 TRANSCODING_BTN_ZH_HK = '查看原始鏈接'
 
 DATABASE_REMOVAL_DAYS = 90
-MEMORY_RESTORATION_DAYS = 10
-MEMORY_EXPIRATION_DAYS = 10
+MEMORY_RESTORATION_DAYS = 20
+MEMORY_EXPIRATION_DAYS = 20
 
 STRATEGY_WITHOUT_WEIGHTS = 1
 STRATEGY_WITH_WEIGHTS = 2
