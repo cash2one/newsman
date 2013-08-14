@@ -261,6 +261,7 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
                 feed_title = feed_title.strip()
                 feed_title_latest = urllib2.unquote(d.feed.title).strip()
                 if feed_title != feed_title_latest:
+                    # change feed title
                     print '[rss_parser.parse] WARNING: %s title changed! Please update feed table/database' % feed_link
                     print '    old title:', feed_title
                     print '    new title:', feed_title_latest
