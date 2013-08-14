@@ -66,8 +66,8 @@ FEED_REGISTRAR = 'feeds'
 
 PARAGRAPH_CRITERIA = 40
 SUMMARY_LENGTH_LIMIT = 500
-UCK_TIMEOUT = 9  # 9 seconds timeout
-GOOGLE_TTS_TIMEOUT = 7
+UCK_TIMEOUT = 15  # 15 seconds timeout
+GOOGLE_TTS_TIMEOUT = 10
 
 LANGUAGES = ['en', 'th', 'ind', 'ja', 'pt', 'en-rIN', 'ar', 'zh-CN', 'zh-HK']
 MIN_IMAGE_SIZE = 150, 150
