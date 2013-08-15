@@ -61,6 +61,8 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
             entry['title'] = urllib2.unquote(e.title.strip())
         else:
             entry['title'] = e.title.strip()
+        # remove possible htmlized title
+        entry['title'] = re.sub("<.*?>", " ", entry['title'])
     except AttributeError as k:
         print '[rss_parser._read_entry:65L]', str(k)
         entry['error'].append(k + '\n')
