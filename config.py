@@ -28,8 +28,8 @@ rclient = redis.StrictRedis(host='127.0.0.1')
 
 # CONSTANTS
 #PUBLIC = 'http://mobile-global.baidu.com/news/%s'
-PUBLIC = 'http://180.76.2.34/%s'
-#PUBLIC = 'http://54.251.107.116/%s'
+#PUBLIC = 'http://180.76.2.34/%s'
+PUBLIC = 'http://54.251.107.116/%s'
 #LOCAL = '/home/work/STATIC/%s'
 #LOCAL = '/home/ubuntu/STATIC/%s'
 LOCAL = '/home/jinyuan/Downloads/%s'
