@@ -73,24 +73,21 @@ Dones
 ToDos - Generated from docs
 --------------------------
 * `data_processor/transcoder.py`
-    1. Line 127: _transcode
+    1. Line 139: _transcode
         - add http string checkers
 
 * `scraper/rss.py`
-    1. Line 162: update
+    1. Line 104: _get_tts
+        - replace primitive exception recording with logging
+    2. Line 222: update
         - code to remove added items if things suck at database/memory
 
-* `publisher/uwsgi/inquirer.py`
-    1. Line 26: get_categories_by_language
-        - need to refactor this method after sorting out feed.py
-        - added database inquire if language cannot be found in memory
-
 * `data_processor/tts_provider.py`
-    1. Line 98: _query_segment
+    1. Line 99: _query_segment
         - write some boundary checkers
         - determine how do these languages separate words
         - get encoding of a feed. use that if indicated, else 'utf-8'
-    2. Line 205: _download
+    2. Line 199: _download
         - Test! Test! Test!
         - boundary checkers
         - write docs!
@@ -100,10 +97,10 @@ ToDos - Generated from docs
         - remove accepting command line calls
 
 * `scraper/rss_parser.py`
-    1. Line 217: parse
+    1. Line 218: parse
         - boundary checkers
         - update parsing info to feed database
-    2. Line 39: _read_entry
+    2. Line 37: _read_entry
         - add more boundary checks
         - [register unsupported date format](http://pythonhosted.org/feedparser/date-parsing.html#advanced-date)
         - add tags
@@ -114,30 +111,28 @@ ToDos - Generated from docs
         - test the code
         - remove code that sanitize too much
 
-* `scraper/database.py`
-    1. Line 38: update
-        - break update_database into several shorter mthods
-    2. Line 58: update_feed
-        - write docs
+* `publisher/inquirer.py`
+    1. Line 30: get_categories_by_language
+        - need to refactor this method after sorting out feed.py
+        - added database inquire if language cannot be found in memory
 
 * `data_processor/image_helper.py`
-    1. Line 145: scale_image
+    1. Line 146: scale_image
         - boundary checker
 
 * `data_processor/thumbnail.py`
-    1. Line 29: is_valid_image
+    1. Line 30: is_valid_image
         - boundary checker should not return None, instead probably an Exception
         - this method should be moved to image_helper
-    2. Line 46: generate_thumbnail
+    2. Line 51: generate_thumbnail
         - boundary checkers
         - relative path could be a url including its suffix like jpg/png
 
 * `scraper/memory.py`
-    1. Line 15: update
-        - add more comments
+    1. Line 24: update
         - be precautious with possible redis adding failure
 
 * `feed_manager/feed.py`
-    1. Line 60: add
+    1. Line 49: add
         - implement _link_cleaner!
 

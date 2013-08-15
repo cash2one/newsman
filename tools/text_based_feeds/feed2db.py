@@ -20,6 +20,7 @@ from config import db
 # CONSTANTS
 from config import FEED_REGISTRAR
 #FILE_SUFFIX = '/home/work/bgm_news/tools/text_based_feeds/feed_lists/'
+#FILE_SUFFIX = '/home/ubuntu/bgm_news/tools/text_based_feeds/feed_lists/'
 FILE_SUFFIX = '/home/jinyuan/Downloads/bgm_news/tools/text_based_feeds/feed_lists/'
 
 
