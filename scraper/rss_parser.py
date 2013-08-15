@@ -41,9 +41,9 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
     """
     if not e or not feed_title or not language or not categories:
         raise Exception(
-            "[_read_entry] ERROR: Method signature not well formed for %s!" % feed_title)
+                "[rss_parser._read_entry:44L] ERROR: Method signature not well formed for %s!" % feed_title)
     if language not in LANGUAGES:
-        raise Exception("[_read_entry] ERROR: Language not supported for %s!" % feed_title)
+        raise Exception("[rss_parser._read_entry:46L] ERROR: Language not supported for %s!" % feed_title)
 
     entry = {}
     entry['feed_id'] = feed_id
@@ -64,7 +64,7 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
     except AttributeError as k:
         print '[rss_parser._read_entry:65L]', str(k)
         entry['error'].append(k + '\n')
-        print '... %s is revoked due to erros found in downloading!' % relative_path
+        print '[rss_parser._read_entry:67L] %s is revoked due to erros found in downloading!' % relative_path
         raise Exception(
             '[rss_parser._read_entry] ERROR: No title or link found for %s!' % entry['feed_id'])
 

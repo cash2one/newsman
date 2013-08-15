@@ -78,7 +78,7 @@ def _generate_images(image=None, entry=None, rand=None):
             # normal resolution
             thumbnail_web, thumbnail_local = image_helper.scale_image(
                 image=image, size_expected=THUMBNAIL_LANDSCAPE_SIZE_NORMAL, resize_by_width=True, crop_by_center=False, relative_path='%s_thumbnail' % image_relative_path)
-            if not thumbnail_webi:
+            if not thumbnail_web:
                 # low resolution
                 thumbnail_web, thumbnail_local = image_helper.scale_image(
                     image=image, size_expected=THUMBNAIL_LANDSCAPE_SIZE_LOW, resize_by_width=True, crop_by_center=False, relative_path='%s_thumbnail' % image_relative_path)
