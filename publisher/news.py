@@ -12,11 +12,11 @@ news.py is the wsgi interface to connect the request and the backend
 import sys
 reload(sys)
 sys.setdefaultencoding('UTF-8')
-sys.path.append('/home/work/uwsgi/news-uwsgi')
+sys.path.append('/var/www/wsgi')
 
 import cgi
 import json
-from uwsgi import inquirer
+import inquirer
 
 
 def get_categories_by_language(*bundle):
@@ -30,7 +30,7 @@ def get_latest_entries_by_language(*bundle):
     """
     get the latest entries by language
     """
-    LIMIT = 10 if 'limit' not in bundle[0] else bundle[0]['limit']
+    LIMIT = 10 if 'limit' not in bundle[0] else int(bundle[0]['limit'])
     START_ID = None if 'start_id' not in bundle[0] else bundle[0]['start_id']
     STRATEGY = 1 if 'strategy' not in bundle[0] else bundle[0]['strategy']
     return inquirer.get_latest_entries_by_language(bundle[0]['language'], limit=LIMIT, start_id=START_ID, strategy=STRATEGY)
@@ -40,7 +40,7 @@ def get_previous_entries_by_language(*bundle):
     """
     get the latest entries of a feed
     """
-    LIMIT = 10 if 'limit' not in bundle[0] else bundle[0]['limit']
+    LIMIT = 10 if 'limit' not in bundle[0] else int(bundle[0]['limit'])
     END_ID = None if 'end_id' not in bundle[0] else bundle[0]['end_id']
     STRATEGY = 1 if 'strategy' not in bundle[0] else bundle[0]['strategy']
     return inquirer.get_previous_entries_by_language(bundle[0]['language'], limit=LIMIT, end_id=END_ID, strategy=STRATEGY)
@@ -50,7 +50,7 @@ def get_latest_entries_by_category(*bundle):
     """
     get the latest entries by category
     """
-    LIMIT = 10 if 'limit' not in bundle[0] else bundle[0]['limit']
+    LIMIT = 10 if 'limit' not in bundle[0] else int(bundle[0]['limit'])
     START_ID = None if 'start_id' not in bundle[0] else bundle[0]['start_id']
     STRATEGY = 1 if 'strategy' not in bundle[0] else bundle[0]['strategy']
     return inquirer.get_latest_entries_by_category(bundle[0]['language'], bundle[0]['category'], limit=LIMIT, start_id=START_ID, strategy=STRATEGY)
@@ -60,7 +60,7 @@ def get_previous_entries_by_category(*bundle):
     """
     get the latest entries of a feed
     """
-    LIMIT = 10 if 'limit' not in bundle[0] else bundle[0]['limit']
+    LIMIT = 10 if 'limit' not in bundle[0] else int(bundle[0]['limit'])
     END_ID = None if 'end_id' not in bundle[0] else bundle[0]['end_id']
     STRATEGY = 1 if 'strategy' not in bundle[0] else bundle[0]['strategy']
     return inquirer.get_previous_entries_by_category(bundle[0]['language'], bundle[0]['category'], limit=LIMIT, end_id=END_ID, strategy=STRATEGY)
@@ -72,10 +72,15 @@ def _read_http(environ):
     """
     bin_data = cgi.FieldStorage(fp=environ['wsgi.input'], environ=environ)
     bundle = {}
+    # note, CREATE output BY HAND and CHMOD it before executing the following
+    # or you will get a "You don't have permission to ...."
+    # f = open('/var/www/wsgi/output', 'w')
     for key in bin_data.keys():
         bundle[key] = bin_data[key].value
+    # f.write('Command\n%s\n\n' % str(bundle))
     # call corresponding method
     result = eval(bundle['function'])(bundle)
+    # f.write('Result\n%s\n\n' % str(result))
     if result:
         return json.dumps(result, encoding="utf-8")
     else:
