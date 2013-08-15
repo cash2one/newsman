@@ -33,7 +33,7 @@ def get_categories_by_language(language=None):
     """
     if not language:
         return None
-    search_limit = 30
+    search_limit = 50
     images_limit = 5
 
     category_images = {}
