@@ -91,7 +91,6 @@ def get_latest_entries_by_language(language=None, limit=10, start_id=None, strat
     language = language.strip()
     if language not in LANGUAGES:
         return None
-    limit = int(limit)
     # get the latest entries
     entry_ids_total = rclient.zcard("news::%s" % language)
     entries = []
@@ -153,7 +152,6 @@ def get_previous_entries_by_language(language=None, limit=10, end_id=None, strat
     language = language.strip()
     if language not in LANGUAGES:
         return None
-    limit = int(limit)
     # preprocess end_id
     entry_ids_total = 0
     end_id_index = 0
@@ -244,7 +242,6 @@ def get_latest_entries_by_category(language=None, category=None, limit=10, start
     category = category.strip()
     if language not in LANGUAGES:
         return None
-    limit = int(limit)
     collection_name = 'news::%s::%s' % (language, category)
     # get the latest entries
     entry_ids_total = rclient.zcard(collection_name)
@@ -314,7 +311,6 @@ def get_previous_entries_by_category(language=None, category=None, limit=10,
     category = category.strip()
     if language not in LANGUAGES:
         return None
-    limit = int(limit)
     collection_name = 'news::%s::%s' % (language, category)
     # preprocess end_id
     entry_ids_total = 0
