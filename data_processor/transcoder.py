@@ -19,7 +19,6 @@ from data_processor import burify
 from data_processor import image_helper
 from data_processor import simplr
 import os
-import re
 import threading
 import urllib2
 
