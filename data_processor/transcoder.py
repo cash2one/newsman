@@ -112,6 +112,14 @@ def _compose(language, title, content):
         raise Exception("[transcoder._compose] ERROR: Cannot find a template!")
 
 
+def _sanitize(content):
+    """
+    sanitize the content
+    """
+    content = content.replace("<noscript>", "")
+    return content.replace("</noscript>", "")
+
+
 def _combine(content, images):
     """
     combine results from transcoders
@@ -249,7 +257,7 @@ def convert(language="en", title=None, link=None, transcoder="chengdujin", relat
     if content:
         if not stdout:
             # embed content in template
-            news = _compose(language, title, content)
+            news = _compose(language, title, _sanitize(content))
             # create web/local path
             web_path, local_path = _save(news, relative_path)
             return web_path, local_path, content, images
