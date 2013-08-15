@@ -12,7 +12,7 @@ scrape is a task to scrape rss resources
 import sys 
 reload(sys) 
 sys.setdefaultencoding('UTF-8')
-sys.path.append('/home/work/bgm_news')
+sys.path.append('/home/ubuntu/bgm_news')
 
 from config import Collection
 from config import db
