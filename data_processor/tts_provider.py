@@ -221,7 +221,7 @@ def _download(language='en', query='Service provided by Baidu', tmp_file='do_not
                 gt_request.join(GOOGLE_TTS_TIMEOUT)
 
         out = open(tmp_file, 'a')
-        dowload_completed = True
+        download_completed = True
         for th in threads:
             sys.stdout.write('.')
             sys.stdout.flush()
