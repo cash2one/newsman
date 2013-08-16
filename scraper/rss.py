@@ -248,21 +248,22 @@ def update(feed_link=None, feed_id=None, language=None, categories=None, transco
         etag = feed['etag'] if 'etag' in feed else None
         modified = feed['modified'] if 'modified' in feed else None
 
-        # parse rss reading from remote rss servers
-        entries, status_new, feed_title_new, etag_new, modified_new = rss_parser.parse(
-            feed_link, feed_id, feed_title, language, categories, etag, modified)
+        try:
+            # parse rss reading from remote rss servers
+            entries, status_new, feed_title_new, etag_new, modified_new = rss_parser.parse(feed_link, feed_id, feed_title, language, categories, etag, modified)
 
-        # filter out existing entries in db_news
-        # there are some possible exceptions -- yet let it be
-        entries = db_news.dedup(entries, language)
+            # filter out existing entries in db_news
+            # there are some possible exceptions -- yet let it be
+            entries = db_news.dedup(entries, language)
 
-        # and do tts, big_images, image as well as transcode.
-        _value_added_process(entries, language, transcoder_type)
+            # and do tts, big_images, image as well as transcode.
+            _value_added_process(entries, language, transcoder_type)
 
-        # feed_title, etag and modified to db_feeds
-        # only feed_id is necessary, others are optional **kwargs
-        db_feeds.update(feed_id=feed_id, status=status_new,
-                        feed_title=feed_title_new, etag=etag_new, modified=modified_new)
+            # feed_title, etag and modified to db_feeds
+            # only feed_id is necessary, others are optional **kwargs
+            db_feeds.update(feed_id=feed_id, status=status_new, feed_title=feed_title_new, etag=etag_new, modified=modified_new)
+        except Exception as k:
+            print '[rss.update]', str(k)
     else:
         raise Exception(
             '[rss.update] ERROR: Register feed in database before updating!')
