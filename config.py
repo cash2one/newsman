@@ -43,6 +43,8 @@ IMAGES_PUBLIC_DIR = PUBLIC % 'img/'
 MEDIA_LOCAL_DIR = LOCAL % 'news/mid/'
 MEDIA_PUBLIC_DIR = PUBLIC % 'mid/'
 
+MEDIA_TEMP_LOCAL_DIR = LOCAL % 'news/tmp/'
+
 NEWS_TEMPLATE = LOCAL % 'news/templates/index.html'
 NEWS_TEMPLATE_ARABIC = LOCAL % 'news/templates/index_arabic.html'
 UCK_TRANSCODING = 'http://gate.baidu.com/tc?m=8&from=bdpc_browser&src='
