@@ -57,7 +57,7 @@ TRANSCODING_BTN_AR = 'ﺎﻠﻤﺻﺩﺭ'
 TRANSCODING_BTN_ZH_CN = '查看原始网页'
 TRANSCODING_BTN_ZH_HK = '查看原始鏈接'
 
-HOT_NEWS_TITLE_EN = 'HOT NEWS'
+HOT_NEWS_TITLE_EN = 'Hot News'
 HOT_NEWS_TITLE_PT = 'Notícias Quentes'
 HOT_NEWS_TITLE_JA = '人気ニュース'
 HOT_NEWS_TITLE_IND = 'Berita Terbaru'
