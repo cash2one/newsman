@@ -27,6 +27,7 @@ import urllib2
 from config import GOOGLE_TTS_TIMEOUT
 from config import MEDIA_LOCAL_DIR
 from config import MEDIA_PUBLIC_DIR
+from config import MEDIA_TEMP_LOCAL_DIR
 from config import LANGUAGES
 
 
@@ -79,7 +80,7 @@ def google(language='en', query='Service provided by Baidu', relative_path='do_n
         raise Exception('[tts_provider.google] ERROR: %s not supported!' % language)
 
     # generate out.mp3
-    tmp_file = _download(language, query, '%s-tmp.mp3' % relative_path[:-4])
+    tmp_file = _download(language, query, '%s%s-tmp.mp3' % (MEDIA_TEMP_LOCAL_DIR, relative_path[:-4]))
     if tmp_file:
         # form paths
         tts_local_path = '%s%s' % (MEDIA_LOCAL_DIR, relative_path)
@@ -215,18 +216,23 @@ def _download(language='en', query='Service provided by Baidu', tmp_file='do_not
                 threads.append(gt_request)
                 gt_request.start()
                 gt_request.join(GOOGLE_TTS_TIMEOUT)
+
         out = open(tmp_file, 'a')
+        dowload_completed = True
         for th in threads:
             sys.stdout.write('.')
             sys.stdout.flush()
             if th.result:
                 out.write(th.result)
             else:
-                # close the file before raise an exception
-                out.close()
-                raise Exception
+                download_completed = False
+                break
         out.close()
-        return tmp_file
+        
+        if download_completed:
+            return tmp_file
+        else:
+            raise Exception
     except Exception as k:
         print '[tts_provider._download] ERROR: part of tts dowload went wrong, now removing the file', str(k)
         if os.path.exists(tmp_file):
