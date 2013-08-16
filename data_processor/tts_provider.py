@@ -34,6 +34,9 @@ from config import LANGUAGES
 if not os.path.exists(MEDIA_LOCAL_DIR):
     os.mkdir(MEDIA_LOCAL_DIR)
 
+if not os.path.exists(MEDIA_TEMP_LOCAL_DIR):
+    os.mkdir(MEDIA_TEMP_LOCAL_DIR)
+
 
 # TODO: write docs
 class GoogleTranslateAPI(threading.Thread):
