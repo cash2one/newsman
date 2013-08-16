@@ -20,6 +20,14 @@ from config import rclient
 import feedparser
 
 # CONSTANTS
+from config import HOT_NEWS_TITLE_AR
+from config import HOT_NEWS_TITLE_EN
+from config import HOT_NEWS_TITLE_JA
+from config import HOT_NEWS_TITLE_IND
+from config import HOT_NEWS_TITLE_PT
+from config import HOT_NEWS_TITLE_TH
+from config import HOT_NEWS_TITLE_ZH_CN
+from config import HOT_NEWS_TITLE_ZH_HK
 from config import LANGUAGES
 from config import STRATEGY_WITHOUT_WEIGHTS
 from config import STRATEGY_WITH_WEIGHTS
