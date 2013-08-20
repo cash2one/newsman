@@ -14,9 +14,9 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
+from config import hparser
 from data_processor import baidu_uck
 from data_processor import burify
-from data_processor import hparser
 from data_processor import image_helper
 from data_processor import simplr
 import os
