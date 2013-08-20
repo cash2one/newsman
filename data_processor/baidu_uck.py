@@ -17,6 +17,7 @@ sys.path.append('..')
 from BeautifulSoup import BeautifulSoup
 from BeautifulSoup import NavigableString
 from BeautifulSoup import Tag
+from data_processor import hparser
 from data_processor import image_helper
 from data_processor import thumbnail
 import urllib2
@@ -154,7 +155,7 @@ def _transcode(link):
     # timeout set to UCK_TIMEOUT, currently
     html = urllib2.urlopen(uck_url, timeout=UCK_TIMEOUT).read()
     # free data from html encoding
-    return urllib2.unquote(html)
+    return urllib2.unquote(hparser.unescape(html))
 
 
 def convert(link):
