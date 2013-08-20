@@ -175,11 +175,11 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
                 if biggest:
                     try:
                         entry = _generate_images(biggest, entry, rand)
-                        # for older version users
-                        entry['image'] = entry['thumbnail_image']['url'] if entry.has_key(
-                            'thumbnail_image') and entry['thumbnail_image'] else None
                     except IOError as k:
                         entry['error'].append(str(k) + '\n')
+            # for older version users
+            entry['image'] = entry['thumbnail_image']['url'] if entry.has_key(
+                'thumbnail_image') and entry['thumbnail_image'] else None
 
             # [OPTIONAL] google tts not for indonesian
             if entry['language'] != 'ind':
@@ -250,7 +250,8 @@ def update(feed_link=None, feed_id=None, language=None, categories=None, transco
 
         try:
             # parse rss reading from remote rss servers
-            entries, status_new, feed_title_new, etag_new, modified_new = rss_parser.parse(feed_link, feed_id, feed_title, language, categories, etag, modified)
+            entries, status_new, feed_title_new, etag_new, modified_new = rss_parser.parse(
+                feed_link, feed_id, feed_title, language, categories, etag, modified)
 
             # filter out existing entries in db_news
             # there are some possible exceptions -- yet let it be
@@ -261,7 +262,8 @@ def update(feed_link=None, feed_id=None, language=None, categories=None, transco
 
             # feed_title, etag and modified to db_feeds
             # only feed_id is necessary, others are optional **kwargs
-            db_feeds.update(feed_id=feed_id, status=status_new, feed_title=feed_title_new, etag=etag_new, modified=modified_new)
+            db_feeds.update(feed_id=feed_id, status=status_new,
+                            feed_title=feed_title_new, etag=etag_new, modified=modified_new)
         except Exception as k:
             print '[rss.update]', str(k)
     else:
