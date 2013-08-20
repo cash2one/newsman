@@ -17,6 +17,7 @@ sys.path.append('..')
 from BeautifulSoup import BeautifulStoneSoup
 import calendar
 import chardet
+from config import hparser
 from data_processor import image_helper
 from datetime import datetime, timedelta
 import feedparser
@@ -58,7 +59,7 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
         entry['link'] = e.link.strip()
         # article title
         if e.title_detail.type != 'text/plain':
-            entry['title'] = urllib2.unquote(e.title.strip())
+            entry['title'] = urllib2.unquote(hparser.unescap(e.title.strip()))
         else:
             entry['title'] = e.title.strip()
         # remove possible htmlized title
@@ -113,7 +114,7 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
     # article's summary
     try:
         # its possible summary is html-based
-        summary = urllib2.unquote(e.summary)
+        summary = urllib2.unquote(hparser.unescap(e.summary))
         if isinstance(summary, str):
             summary_encoding = chardet.detect(summary)['encoding']
             summary = summary.decode(summary_encoding, 'ignore')
@@ -257,10 +258,10 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
             if not feed_title:
                 # if title were not found in feed, an AttributeError would be
                 # raised.
-                feed_title = urllib2.unquote(d.feed.title).strip()
+                feed_title = urllib2.unquote(hparser.unescape(d.feed.title)).strip()
             else:
                 feed_title = feed_title.strip()
-                feed_title_latest = urllib2.unquote(d.feed.title).strip()
+                feed_title_latest = urllib2.unquote(hparser.unescape(d.feed.title)).strip()
                 if feed_title != feed_title_latest:
                     # change feed title
                     print '[rss_parser.parse] WARNING: %s title changed! Please update feed table/database' % feed_link
