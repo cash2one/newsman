@@ -33,6 +33,8 @@ ToDos - High Priority
 12. thumbnail/image_helper重新构造
 13. 修改本文档
 14. Redis expire可能会失效，访问时增加检查和清理
+15. 去掉html内容的代码换成那个bs4
+    [link](http://azd325.github.io/blog/2013/08/18/python-strip-tags/)
 
 ToDos - Low Priority
 ---------------------
