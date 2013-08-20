@@ -66,7 +66,6 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
     except AttributeError as k:
         print '[rss_parser._read_entry:65L]', str(k)
         entry['error'].append(k + '\n')
-        print '[rss_parser._read_entry:67L] %s is revoked due to erros found in downloading!' % relative_path
         raise Exception(
             '[rss_parser._read_entry] ERROR: No title or link found for %s!' % entry['feed_id'])
 
