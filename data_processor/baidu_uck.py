@@ -14,10 +14,10 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
+from config import hparser
 from BeautifulSoup import BeautifulSoup
 from BeautifulSoup import NavigableString
 from BeautifulSoup import Tag
-from data_processor import hparser
 from data_processor import image_helper
 from data_processor import thumbnail
 import urllib2
