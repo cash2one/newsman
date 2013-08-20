@@ -81,9 +81,10 @@ def _read_http(environ):
     # call corresponding method
     result = eval(bundle['function'])(bundle)
     # f.write('Result\n%s\n\n' % str(result))
+    # f.close()
     if result:
         result_json = json.dumps(result, encoding="utf-8")
-        return result_json.replace('":null', '":None')  # which is stupid
+        return result_json.replace('": null', '": None')  # which is stupid
     else:
         return 'null'
 
