@@ -15,6 +15,7 @@ sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
 from BeautifulSoup import BeautifulSoup
+from config import hparser
 from cStringIO import StringIO
 from data_processor import thumbnail
 import Image
@@ -40,7 +41,7 @@ def _link_process(link):
     get rid of cdn prefix
     """
     link = link.replace("\/", "/")
-    image_url_complex = urllib2.unquote(link.strip())
+    image_url_complex = urllib2.unquote(hparser.unescape(link.strip()))
     if image_url_complex:
         # as the name could be http://xxx.com/yyy--http://zzz.jpg
         # or http://xxx.com/yyy--https://zzz.jpg
