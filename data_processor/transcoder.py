@@ -86,7 +86,7 @@ def _save(data, path):
     web_path = '%s%s.html' % (TRANSCODED_PUBLIC_DIR, path)
 
     f = open(local_path, 'w')
-    f.write(hparser.unescape(urllib2.unquote(data)))
+    f.write(urllib2.unquote(hparser.unescape(data)))
     f.close()
     return web_path, local_path
 
