@@ -25,3 +25,6 @@ Tasks of a watch dog
 
 * `monitor web server`: monitor web server usage, alarm on risks, restart web
   server
+
+* `monitor scraping`: monitor rss/web service scraping, alarm on errors or
+  blockage
