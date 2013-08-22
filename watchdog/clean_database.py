@@ -44,6 +44,7 @@ def clean():
     """
     remove expired items from database
     """
+    print '... cleaning database ...'
     document_names = _find_document_names()
     for document_name in document_names:
         document = Collection(db, document_name)
