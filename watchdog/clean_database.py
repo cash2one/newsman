@@ -23,6 +23,7 @@ import time
 
 # CONSTANTS
 from config import FEED_REGISTRAR
+from config import DATABASE_REMOVAL_DAYS
 
 
 def _find_document_names():
