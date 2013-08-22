@@ -32,7 +32,7 @@ hparser = HTMLParser()
 # CONSTANTS
 #PUBLIC = 'http://mobile-global.baidu.com/news/%s'  # hk01-hao123-mob01/mob02
 #PUBLIC = 'http://180.76.2.34/%s'                   # hk01-hao123-mob00
-#PUBLIC = 'http://54.251.107.116/%s'                # AWS singapore
+PUBLIC = 'http://54.251.107.116/%s'                # AWS singapore
 #PUBLIC = 'http://54.232.81.44/%s'                  # AWS sao paolo
 #PUBLIC = 'http://54.248.227.71/%s'                 # AWS tokyo
 #LOCAL = '/home/work/STATIC/%s'                     # official server prefix
@@ -64,14 +64,14 @@ TRANSCODING_BTN_AR = 'ﺎﻠﻤﺻﺩﺭ'
 TRANSCODING_BTN_ZH_CN = '查看原始网页'
 TRANSCODING_BTN_ZH_HK = '查看原始鏈接'
 
-HOT_NEWS_TITLE_EN = 'Hot News'
-HOT_NEWS_TITLE_PT = 'Notícias Quentes'
-HOT_NEWS_TITLE_JA = '人気ニュース'
-HOT_NEWS_TITLE_IND = 'Berita Terbaru'
-HOT_NEWS_TITLE_TH = 'ข่าวฮิต'
-HOT_NEWS_TITLE_AR = 'أخبار عاجلة'
-HOT_NEWS_TITLE_ZH_CN = '查看原始网页'
-HOT_NEWS_TITLE_ZH_HK = '查看原始鏈接'
+HOTNEWS_TITLE_EN = 'Hot News'
+HOTNEWS_TITLE_PT = 'Notícias Quentes'
+HOTNEWS_TITLE_JA = '人気ニュース'
+HOTNEWS_TITLE_IND = 'Berita Terbaru'
+HOTNEWS_TITLE_TH = 'ข่าวฮิต'
+HOTNEWS_TITLE_AR = 'أخبار عاجلة'
+HOTNEWS_TITLE_ZH_CN = '查看原始网页'
+HOTNEWS_TITLE_ZH_HK = '查看原始鏈接'
 
 DATABASE_REMOVAL_DAYS = 90
 MEMORY_RESTORATION_DAYS = 20
