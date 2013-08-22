@@ -19,6 +19,7 @@ from config import Collection, db
 from datetime import datetime, timedelta
 import os
 import time
+from watchdog import cleaner
 
 # CONSTANS
 from config import DATABASE_REMOVAL_DAYS
@@ -77,29 +78,11 @@ def _clean_unrecorded_files():
     5. remove the file if it is not found in database
     """
 
-    def _is_overdue(path):
-        """
-        find out if the file is overdue
-        """
-        if not path:
-            return False
-        if not os.path.exists(path):
-            return False
-
-        deadline_datetime = datetime.utcfromtimestamp(os.path.getctime(path)) + timedelta(days=DATABASE_REMOVAL_DAYS)
-        deadline_posix = calendar.timegm(deadline_datetime.timetuple())
-        now_posix = time.mktime(time.gmtime())
-
-        if deadline_posix < now_posix:  # deadline is earlier than now
-            return True
-        else:
-            return False
-
     # "en": [(transcoded_local', '/home/work/xxx.html'), ('mp3_local':'/home/work/xxx.mp3')]
     unrecorded_files = {}
     # mp3 files
     if os.path.exists(MEDIA_LOCAL_DIR):
-        media_files = [os.path.join(MEDIA_LOCAL_DIR, media_file) for media_file in os.listdir(MEDIA_LOCAL_DIR) if _is_overdue(os.path.join(MEDIA_LOCAL_DIR, media_file))]
+        media_files = [os.path.join(MEDIA_LOCAL_DIR, media_file) for media_file in os.listdir(MEDIA_LOCAL_DIR) if cleaner._is_overdue(os.path.getctime(os.path.join(MEDIA_LOCAL_DIR, media_file)))]
         for media_file in media_files:
             if os.path.exists(media_file):
                 document_name = media_file.split('_')[0]  # en, en-rIN, pt
@@ -109,7 +92,7 @@ def _clean_unrecorded_files():
 
     # image files
     if os.path.exists(IMAGES_LOCAL_DIR):
-        image_files = [os.path.join(IMAGES_LOCAL_DIR, image_file) for image_file in os.listdir(IMAGES_LOCAL_DIR) if _is_overdue(os.path.join(IMAGES_LOCAL_DIR, image_file))]
+        image_files = [os.path.join(IMAGES_LOCAL_DIR, image_file) for image_file in os.listdir(IMAGES_LOCAL_DIR) if cleaner._is_overdue(os.path.getctime(os.path.join(IMAGES_LOCAL_DIR, image_file)))]
         for image_file in image_files:
             if os.path.exists(image_file):
                 document_name = image_file.split('_')[0]
@@ -120,7 +103,7 @@ def _clean_unrecorded_files():
 
     # transcoded files
     if os.path.exists(TRANSCODED_LOCAL_DIR):
-        transcoded_files = [os.path.join(TRANSCODED_LOCAL_DIR, transcoded_file) for transcoded_file in os.listdir(TRANSCODED_LOCAL_DIR) if _is_overdue(os.path.join(TRANSCODED_LOCAL_DIR, transcoded_file))]
+        transcoded_files = [os.path.join(TRANSCODED_LOCAL_DIR, transcoded_file) for transcoded_file in os.listdir(TRANSCODED_LOCAL_DIR) if cleaner._is_overdue(os.path.getctime(os.path.join(TRANSCODED_LOCAL_DIR, transcoded_file)))]
         for transcoded_file in transcoded_files:
             if os.path.exists(transcoded_file):
                 document_name = transcoded_file.split('_')[0]
