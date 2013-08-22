@@ -59,8 +59,8 @@ def _generate_images(image=None, entry=None, rand=None):
     # hot news image
     hot_web, hot_local = image_helper.scale_image(
         image=image, size_expected=HOT_IMAGE_SIZE, resize_by_width=True, crop_by_center=False, relative_path='%s_hotnews' % image_relative_path)
-    entry['hot_news_image'] = hot_web if hot_web else None
-    entry['hot_news_image_local'] = hot_local if hot_local else None
+    entry['hotnews_image'] = hot_web if hot_web else None
+    entry['hotnews_image_local'] = hot_local if hot_local else None
 
     # category image
     category_web, category_local = image_helper.scale_image(
