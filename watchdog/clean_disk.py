@@ -96,12 +96,33 @@ def _clean_unrecorded_files():
 
     # "en": [(transcoded_local', '/home/work/xxx.html'), ('mp3_local':'/home/work/xxx.mp3')]
     unrecorded_files = {}
+    # mp3 files
     if os.path.exists(MEDIA_LOCAL_DIR):
-        media_files = [os.path.join(MEDIA_LOCAL_DIR, media_file) for media_file in os.listdir(MEDIA_LOCAL_DIR)]
+        media_files = [os.path.join(MEDIA_LOCAL_DIR, media_file) for media_file in os.listdir(MEDIA_LOCAL_DIR) if _is_overdue(os.path.join(MEDIA_LOCAL_DIR, media_file))]
+        for media_file in media_files:
+            if os.path.exists(media_file):
+                document_name = media_file.split('_')[0]  # en, en-rIN, pt
+                if not unrecorded_files[document_name]:
+                    unrecorded_files[document_name] = []
+                unrecorded_files[document_name].append(('mp3_local', media_file))
+
+    # image files
     if os.path.exists(IMAGES_LOCAL_DIR):
-        pass
+        image_files = [os.path.join(IMAGES_LOCAL_DIR, image_file) for image_file in os.listdir(IMAGES_LOCAL_DIR) if _is_overdue(os.path.join(IMAGES_LOCAL_DIR, image_file))]
+        for image_file in image_files:
+            if os.path.exists(image_file):
+                document_name = image_file.split('_')[0]
+                image_type = '%s_image_local' % os.path.splitext(image_file)[0].split('_')[-1]  # category_image_local
+
+    # transcoded files
     if os.path.exists(TRANSCODED_LOCAL_DIR):
-        pass
+        transcoded_files = [os.path.join(TRANSCODED_LOCAL_DIR, transcoded_file) for transcoded_file in os.listdir(TRANSCODED_LOCAL_DIR) if _is_overdue(os.path.join(TRANSCODED_LOCAL_DIR, transcoded_file))]
+        for transcoded_file in transcoded_files:
+            if os.path.exists(transcoded_file):
+                document_name = transcoded_file.split('_')[0]
+                if not unrecorded_files[document_name]:
+                    unrecorded_files[document_name] = []
+                unrecorded_files[document_name].append((transcoded_local, transcoded_file))
 
 
 def clean():
