@@ -20,20 +20,20 @@ from config import rclient
 import feedparser
 
 # CONSTANTS
-from config import HOT_NEWS_TITLE_AR
-from config import HOT_NEWS_TITLE_EN
-from config import HOT_NEWS_TITLE_JA
-from config import HOT_NEWS_TITLE_IND
-from config import HOT_NEWS_TITLE_PT
-from config import HOT_NEWS_TITLE_TH
-from config import HOT_NEWS_TITLE_ZH_CN
-from config import HOT_NEWS_TITLE_ZH_HK
+from config import HOTNEWS_TITLE_AR
+from config import HOTNEWS_TITLE_EN
+from config import HOTNEWS_TITLE_JA
+from config import HOTNEWS_TITLE_IND
+from config import HOTNEWS_TITLE_PT
+from config import HOTNEWS_TITLE_TH
+from config import HOTNEWS_TITLE_ZH_CN
+from config import HOTNEWS_TITLE_ZH_HK
 from config import LANGUAGES
 from config import STRATEGY_WITHOUT_WEIGHTS
 from config import STRATEGY_WITH_WEIGHTS
 
-HOT_NEWS_TITLE = {'en': HOT_NEWS_TITLE_EN, 'ja': HOT_NEWS_TITLE_JA, 'th': HOT_NEWS_TITLE_TH, 'pt': HOT_NEWS_TITLE_PT, 'ind':
-                  HOT_NEWS_TITLE_IND, 'en-rIN': HOT_NEWS_TITLE_EN, 'ar': HOT_NEWS_TITLE_AR, 'zh-CN': HOT_NEWS_TITLE_ZH_CN, 'zh-HK': HOT_NEWS_TITLE_ZH_HK}
+HOTNEWS_TITLE = {'en': HOTNEWS_TITLE_EN, 'ja': HOTNEWS_TITLE_JA, 'th': HOTNEWS_TITLE_TH, 'pt': HOTNEWS_TITLE_PT, 'ind':
+                  HOTNEWS_TITLE_IND, 'en-rIN': HOTNEWS_TITLE_EN, 'ar': HOTNEWS_TITLE_AR, 'zh-CN': HOTNEWS_TITLE_ZH_CN, 'zh-HK': HOTNEWS_TITLE_ZH_HK}
 
 
 # TODO: need to refactor this method after sorting out feed.py
@@ -73,7 +73,7 @@ def get_categories_by_language(language=None):
 
     # find hot_news_image from hot news
     # category_images['hot_news']
-    hot_news = HOT_NEWS_TITLE[language]
+    hot_news = HOTNEWS_TITLE[language]
     entries = get_latest_entries_by_language(
         language=language, limit=search_limit)
     category_images[hot_news] = []
