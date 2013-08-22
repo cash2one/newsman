@@ -16,6 +16,13 @@ sys.path.append("..")
 
 import os
 
+# CONSTANS
+from config import DATABASE_REMOVAL_DAYS
+from config import IMAGES_LOCAL_DIR
+from config import MEDIA_LOCAL_DIR
+from config import MEDIA_TEMP_LOCAL_DIR
+from config import TRANSCODED_LOCAL_DIR
+
 
 def clean_by_item(candidate):
     """
@@ -48,7 +55,12 @@ def _clean_tempory_files():
     """
     remove temporary files
     """
-    pass
+    if os.path.exists(MEDIA_TEMP_LOCAL_DIR):
+        temp_files = [os.path.join(MEDIA_TEMP_LOCAL_DIR, temp_file) for temp_file in os.listdir(MEDIA_TEMP_LOCAL_DIR)]
+        if temp_files:
+            for temp_file in temp_files:
+                if os.path.exists(temp_file):
+                    os.remove(temp_file)
 
 
 def _clean_unrecorded_files():
