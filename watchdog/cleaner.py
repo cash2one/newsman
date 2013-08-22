@@ -159,7 +159,7 @@ def is_overdue(time_stamp):
     """
     find out if the file is overdue
     """
-    if not path:
+    if not time_stamp:
         return False
 
     deadline_datetime = datetime.utcfromtimestamp(time_stamp) + timedelta(days=DATABASE_REMOVAL_DAYS)
