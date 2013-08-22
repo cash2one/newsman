@@ -14,7 +14,10 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append("..")
 
+import calendar
+from datetime import datetime, timedelta
 import os
+import time
 
 # CONSTANS
 from config import DATABASE_REMOVAL_DAYS
@@ -72,10 +75,29 @@ def _clean_unrecorded_files():
     4. check if the file is still in database
     5. remove the file if it is not found in database
     """
+
+    def _is_overdue(path):
+        """
+        find out if the file is overdue
+        """
+        if not path:
+            return False
+        if not os.path.exists(path):
+            return False
+
+        deadline_datetime = datetime.utcfromtimestamp(os.path.getctime(path)) + timedelta(days=DATABASE_REMOVAL_DAYS)
+        deadline_posix = calendar.timegm(deadline_datetime.timetuple())
+        now_posix = time.mktime(time.gmtime())
+
+        if deadline_posix < now_posix:  # deadline is earlier than now
+            return True
+        else:
+            return False
+
     # "en": [(transcoded_local', '/home/work/xxx.html'), ('mp3_local':'/home/work/xxx.mp3')]
     unrecorded_files = {}
     if os.path.exists(MEDIA_LOCAL_DIR):
-        pass
+        media_files = [os.path.join(MEDIA_LOCAL_DIR, media_file) for media_file in os.listdir(MEDIA_LOCAL_DIR)]
     if os.path.exists(IMAGES_LOCAL_DIR):
         pass
     if os.path.exists(TRANSCODED_LOCAL_DIR):
