@@ -12,13 +12,13 @@ daily work, clean expired items and its place in queues in memory
 import sys 
 reload(sys) 
 sys.setdefaultencoding('UTF-8')
-sys.path.append('..')
+sys.path.append("..")
 
 from bson.objectid import ObjectId
 from config import Collection, db
 from config import rclient
 import time
-from watchdog import cleaner
+import cleaner
 
 
 def clean_by_item(item_id):
@@ -72,7 +72,7 @@ def clean():
                     news_item_string = rclient.get(news_id)
                     if news_item_string:
                         news_item = eval(news_item_string)
-                        news_updated = float(news_item)['updated'])
+                        news_updated = float(news_item['updated'])
                         
                         if cleaner.is_overdue(news_updated):  # WTF, remove it
                             rclient.zrem(news_list, news_id)

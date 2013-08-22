@@ -16,7 +16,7 @@ sys.path.append("..")
 
 from config import Collection, db
 import os
-from watchdog import cleaner
+import cleaner
 
 # CONSTANS
 from config import IMAGES_LOCAL_DIR

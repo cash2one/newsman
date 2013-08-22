@@ -12,13 +12,13 @@ cleaner is an interface file to clean database, memory and files on disk
 import sys
 reload(sys)
 sys.setdefaultencoding('UTF-8')
-sys.path.append('/home/ubuntu/bgm_news')
+sys.path.append('/home/jinyuan/Downloads/bgm_news')
 
 import calendar
 from datetime import datetime, timedelta
 import time
-from watchdog import clean_database, clean_memory, clean_disk
-from watchdog import clean_process
+import clean_database, clean_memory, clean_disk
+import clean_process
 
 # CONSTANTS
 from config import DATABASE_REMOVAL_DAYS
@@ -47,11 +47,11 @@ def _clean_data():
     """
     print '----------------------cleaning-------------------------'
     # clean database
-    clean_database.clean()
+    #clean_database.clean()
     # clean memory
     clean_memory.clean()
     # clean disk
-    clean_disk.clean()
+    #clean_disk.clean()
 
 
 def _clean_zombies():
