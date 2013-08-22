@@ -116,45 +116,6 @@ def clear_transcoded(removal_candidate):
         os.remove(transcoded_local_path)
 
 
-def clear_short_dated(language, category, feed_id):
-    if not language or not category or not feed_id:
-        return None
-    else:
-        # remove entry ids in the language list that are already expired
-        removed_language_ids = 0
-        language_ids_total = rclient.zcard(language)
-        if language_ids_total:
-            entry_ids = rclient.zrange(language, 0, language_ids_total)
-            for entry_id in entry_ids:
-                if not rclient.exists(entry_id):
-                    rclient.zrem(language, entry_id)
-                    removed_language_ids = removed_language_ids + 1
-
-        # remove entry ids in the category list that are already expired
-        collection_name = '%s-%s' % (language, category)
-        removed_collection_ids = 0
-        collection_ids_total = rclient.zcard(collection_name)
-        if collection_ids_total:
-            entry_ids = rclient.zrange(
-                collection_name, 0, collection_ids_total)
-            for entry_id in entry_ids:
-                if not rclient.exists(entry_id):
-                    rclient.zrem(collection_name, entry_id)
-                    removed_collection_ids = removed_collection_ids + 1
-
-        # remove entry ids in the source list that are already expired
-        removed_source_ids = 0
-        source_name = '%s-%s-%s' % (language, category, feed_id)
-        source_ids_total = rclient.zcard(source_name)
-        if source_ids_total:
-            entry_ids = rclient.zrange(source_name, 0, source_ids_total)
-            for entry_id in entry_ids:
-                if not rclient.exists(entry_id):
-                    rclient.zrem(source_name, entry_id)
-                    removed_source_ids = removed_source_ids + 1
-        return removed_language_ids, removed_collection_ids, removed_source_ids
-
-
 def clear_zombies(language):
     '''zombies are shits in memory but no more in database'''
     language_ids_total = rclient.zcard("news::%s" % language)
