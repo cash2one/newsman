@@ -18,6 +18,7 @@ import calendar
 from datetime import datetime, timedelta
 import time
 from watchdog import clean_database, clean_memory, clean_disk
+from watchdog import clean_process
 
 # CONSTANTS
 from config import DATABASE_REMOVAL_DAYS
@@ -40,9 +41,9 @@ def is_overdue(time_stamp):
         return False
 
 
-def clean():
+def _clean_data():
     """
-    cleaner interface
+    clean memory, database and files, usually run daily
     """
     print '----------------------cleaning-------------------------'
     # clean database
@@ -53,5 +54,14 @@ def clean():
     clean_disk.clean()
 
 
+def _clean_zombie():
+    """
+    kill zombie processes, usually run semi-daily, or quasi-daily
+    """
+    print '----------------------killing zombies-------------------------'
+    clean_process.clean()
+
+
 if __name__ == "__main__":
+    language = sys.argv[1]
     clean()
