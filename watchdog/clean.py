@@ -12,6 +12,8 @@ sys.path.append('/home/jinyuan/Downloads/bgm_news')
 
 from bson.objectid import ObjectId
 import calendar
+from config import Collection, db
+from config import rclient
 from datetime import datetime, timedelta
 import feedparser
 import os
@@ -19,14 +21,11 @@ from scraper import memory
 import time
 
 # CONSTANTS
-from config import Collection
 from config import DATABASE_REMOVAL_DAYS
-from config import db
 from config import IMAGES_LOCAL_DIR
 from config import IMAGES_PUBLIC_DIR
 from config import LANGUAGES
 from config import MEMORY_RESTORATION_DAYS
-from config import rclient
 from config import TRANSCODED_LOCAL_DIR
 from config import TRANSCODED_PUBLIC_DIR
 
@@ -156,14 +155,14 @@ def clear_long_dated(language):
         return removed_ids
 
 
-def is_overdue(path):
+def is_overdue(time_stamp):
     """
     find out if the file is overdue
     """
     if not path:
         return False
 
-    deadline_datetime = datetime.utcfromtimestamp(path) + timedelta(days=DATABASE_REMOVAL_DAYS)
+    deadline_datetime = datetime.utcfromtimestamp(time_stamp) + timedelta(days=DATABASE_REMOVAL_DAYS)
     deadline_posix = calendar.timegm(deadline_datetime.timetuple())
     now_posix = time.mktime(time.gmtime())
 
