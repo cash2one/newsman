@@ -44,12 +44,27 @@ def clean_by_item(candidate):
             os.remove(candidate['thumbnail_image_local']['url'])
 
 
-def clean():
+def _clean_tempory_files():
     """
+    remove temporary files
     """
     pass
 
 
+def _clean_unrecorded_files():
+    """
+    remove files not recorded in database, with a illegal status (longer than DATABASE_REMOVAL_DAYS)
+    """
+    pass
+
+
+def clean():
+    """
+    interface to clean temporary and unrecorded files
+    """
+    _clean_unrecorded_files()
+    _clean_tempory_files()
+
+
 if __name__ == "__main__":
     clean()
-
