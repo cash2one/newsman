@@ -30,7 +30,7 @@ from config import TRANSCODED_LOCAL_DIR
 def clean_by_item(candidate):
     """
     remove related files on disk of an item
-    mp3_local, transcoded_local, hot_news_image_local, category_image_local, thumbnail_image_local
+    mp3_local, transcoded_local, hotnews_image_local, category_image_local, thumbnail_image_local
     """
     # mp3
     if candidate.has_key('mp3_local') and candidate['mp3_local']:
@@ -40,10 +40,10 @@ def clean_by_item(candidate):
     if candidate.has_key('transcoded_local') and candidate['transcoded_local']:
         if os.path.exists(candidate['transcoded_local']):
             os.remove(candidate['transcoded_local'])
-    # hot_news_image
-    if candidate.has_key('hot_news_image_local') and candidate['hot_news_image_local']:
-        if os.path.exists(candidate['hot_news_image_local']['url']):
-            os.remove(candidate['hot_news_image_local']['url'])
+    # hotnews_image
+    if candidate.has_key('hotnews_image_local') and candidate['hotnews_image_local']:
+        if os.path.exists(candidate['hotnews_image_local']['url']):
+            os.remove(candidate['hotnews_image_local']['url'])
     # category_image
     if candidate.has_key('category_image_local') and candidate['category_image_local']:
         if os.path.exists(candidate['category_image_local']['url']):
