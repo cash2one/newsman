@@ -37,7 +37,7 @@ hparser = HTMLParser()
 #PUBLIC = 'http://54.248.227.71/%s'                 # AWS tokyo
 #LOCAL = '/home/work/STATIC/%s'                     # official server prefix
 #LOCAL = '/home/ubuntu/STATIC/%s'                   # AWS server prefix
-#LOCAL = '/home/jinyuan/Downloads/%s'               # local server prefix
+LOCAL = '/home/jinyuan/Downloads/%s'               # local server prefix
 
 TRANSCODED_LOCAL_DIR = LOCAL % 'news/ts/'
 TRANSCODED_PUBLIC_DIR = PUBLIC % 'ts/'
