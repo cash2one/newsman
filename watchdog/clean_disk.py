@@ -129,6 +129,7 @@ def clean():
     """
     interface to clean temporary and unrecorded files
     """
+    print '... cleaning files on the disk ...'
     _clean_unrecorded_files()
     _clean_tempory_files()
 
