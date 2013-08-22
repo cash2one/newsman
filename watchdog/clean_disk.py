@@ -14,15 +14,11 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append("..")
 
-import calendar
 from config import Collection, db
-from datetime import datetime, timedelta
 import os
-import time
 from watchdog import cleaner
 
 # CONSTANS
-from config import DATABASE_REMOVAL_DAYS
 from config import IMAGES_LOCAL_DIR
 from config import MEDIA_LOCAL_DIR
 from config import MEDIA_TEMP_LOCAL_DIR
