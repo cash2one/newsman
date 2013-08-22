@@ -1,9 +1,13 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-#
-#@created Jan 2, 2013
-#@updated Feb 8, 2013
+"""
+cleaner is an interface file to clean database, memory and files on disk
+"""
+# @author chengdujin
+# @contact chengdujin@gmail.com
+# @created Jan 2, 2013
+
 
 import sys
 reload(sys)
@@ -19,6 +23,7 @@ import feedparser
 import os
 from scraper import memory
 import time
+from watchdog import clean_database, clean_memory, clean_disk
 
 # CONSTANTS
 from config import DATABASE_REMOVAL_DAYS
@@ -90,71 +95,6 @@ def restore():
     return 0
 
 
-def clear_thumbnail(removal_candidate):
-    '''convert web path to local path'''
-    if isinstance(removal_candidate['image'], str):
-        thumbnail_web_path = removal_candidate['image']
-        thumbnail_local_path = thumbnail_web_path.replace(
-            IMAGES_PUBLIC_DIR, IMAGES_LOCAL_DIR)
-        if os.path.exists(thumbnail_local_path):
-            os.remove(thumbnail_local_path)
-    elif isinstance(removal_candidate['image'], list):
-        for thumbnail_web_path in removal_candidate['image']:
-            thumbnail_local_path = thumbnail_web_path.replace(
-                IMAGES_PUBLIC_DIR, IMAGES_LOCAL_DIR)
-            if os.path.exists(thumbnail_local_path):
-                os.remove(thumbnail_local_path)
-
-
-def clear_transcoded(removal_candidate):
-    '''convert web path to local path'''
-    transcoded_web_path = removal_candidate['transcoded']
-    transcoded_local_path = transcoded_web_path.replace(
-        TRANSCODED_PUBLIC_DIR, TRANSCODED_LOCAL_DIR)
-    if os.path.exists(transcoded_local_path):
-        os.remove(transcoded_local_path)
-
-
-def clear_zombies(language):
-    '''zombies are shits in memory but no more in database'''
-    language_ids_total = rclient.zcard("news::%s" % language)
-    col = Collection(db, language)
-    if language_ids_total:
-        entry_ids = rclient.zrange("news::%s" % language, 0, language_ids_total)
-        for entry_id in entry_ids:
-            item = col.find_one({'_id': ObjectId(entry_id)})
-            if not item:  # then its a zombie
-                if rclient.exists(entry_id):
-                    print 'ZOMBIE!!: ', entry_id, eval(rclient.get(entry_id))['title']
-                    rclient.delete(entry_id)
-    else:
-        print 'there is no such a language %s' % language
-
-
-def clear_long_dated(language):
-    if not language:
-        return None
-    else:
-        col = Collection(db, language)
-        # data more than DATABASE_REMOVAL_DAYS days are removed
-        current_utc_time_posix = calendar.timegm(time.gmtime())
-        deadline_datetime = datetime.utcfromtimestamp(
-            current_utc_time_posix) - timedelta(days=DATABASE_REMOVAL_DAYS)
-        deadline_posix = calendar.timegm(deadline_datetime.timetuple())
-
-        removal_candidates = col.find({'updated': {'$lt': deadline_posix}})
-        removed_ids = []
-        for removal_candidate in removal_candidates:
-            clear_transcoded(removal_candidate)
-            clear_thumbnail(removal_candidate)
-            removed_ids.append(str(removal_candidate['_id']))
-            # remove memory items
-            rclient.delete(str(removal_candidate['_id']))
-            # remove database items
-            col.remove({'_id': removal_candidate['_id']})
-        return removed_ids
-
-
 def is_overdue(time_stamp):
     """
     find out if the file is overdue
@@ -172,31 +112,18 @@ def is_overdue(time_stamp):
         return False
 
 
-def clear():
-    print '----------------------clearing-------------------------'
-    # clear memory
-    language_files = read_task_directory()
-    for language_file in language_files:
-        language = language_file.replace(MAINTENANCE_DIR, '').split('_')[0]
-        # remove item in database
-        removed_long_ids = clear_long_dated(language)
-        # remove zombies
-        removed_zombies = clear_zombies(language)
-        # remove item in memory
-        l = open(language_file, 'r')
-        lines = l.readlines()
-        for line in lines:
-            language, category, feed_id, feed_link = extract_task(line)
-            removed_short_ids = clear_short_dated(
-                language, category, feed_id)
-        l.close()
-        print
+def clean():
+    """
+    cleaner interface
+    """
+    print '----------------------cleaning-------------------------'
+    # clean database
+    clean_database.clean()
+    # clean memory
+    clean_memory.clean()
+    # clean disk
+    clean_disk.clean()
 
 
-# TODO: put language in config file
 if __name__ == "__main__":
-    command = sys.argv[1]
-    if len(sys.argv) > 2:
-        eval(command)(sys.argv[2])
-    else:
-        eval(command)()
+    clean()
