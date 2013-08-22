@@ -17,9 +17,22 @@ sys.path.append('..')
 from config import rclient
 
 
-def _clean():
+def clean_by_item(item_id):
+    """
+    remove item-related things in memory
+    """
+    if not item_id:
+        return None
+    if not rclient.exists(item_id):
+        return None
+    # it's possible item_id in queues be visited
+    return rclient.delete(item_id)
+
+
+def clean():
     """
     remove expired items from queues in memory
+    walk through all redis content
     """
     news_lists = rclient.keys('news::*')
     for news_list in news_lists:
@@ -35,4 +48,4 @@ def _clean():
     
 
 if __name__ == "__main__":
-    _clean()
+    clean()
