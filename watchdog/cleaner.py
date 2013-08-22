@@ -14,25 +14,13 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('/home/jinyuan/Downloads/bgm_news')
 
-from bson.objectid import ObjectId
 import calendar
-from config import Collection, db
-from config import rclient
 from datetime import datetime, timedelta
-import feedparser
-import os
-from scraper import memory
 import time
 from watchdog import clean_database, clean_memory, clean_disk
 
 # CONSTANTS
 from config import DATABASE_REMOVAL_DAYS
-from config import IMAGES_LOCAL_DIR
-from config import IMAGES_PUBLIC_DIR
-from config import LANGUAGES
-from config import MEMORY_RESTORATION_DAYS
-from config import TRANSCODED_LOCAL_DIR
-from config import TRANSCODED_PUBLIC_DIR
 
 
 def is_overdue(time_stamp):
