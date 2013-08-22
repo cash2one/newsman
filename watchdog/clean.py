@@ -156,6 +156,23 @@ def clear_long_dated(language):
         return removed_ids
 
 
+def is_overdue(path):
+    """
+    find out if the file is overdue
+    """
+    if not path:
+        return False
+
+    deadline_datetime = datetime.utcfromtimestamp(path) + timedelta(days=DATABASE_REMOVAL_DAYS)
+    deadline_posix = calendar.timegm(deadline_datetime.timetuple())
+    now_posix = time.mktime(time.gmtime())
+
+    if deadline_posix < now_posix:  # deadline is earlier than now
+        return True
+    else:
+        return False
+
+
 def clear():
     print '----------------------clearing-------------------------'
     # clear memory
