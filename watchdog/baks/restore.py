@@ -11,6 +11,15 @@ restore memory from database, if memory failed
 import sys 
 reload(sys) 
 sys.setdefaultencoding('UTF-8')
+sys.path.append("..")
+
+from bson.objectid import ObjectId
+from config import Collection, db
+from config import rclient
+from scraper import memory
+
+# CONSTANTS
+from config import MEMORY_RESTORATION_DAYS
 
 
 def restore():
@@ -71,3 +80,7 @@ def restore():
                         print 'restored', id_aloof['_id'], id_aloof['title'], datetime.utcfromtimestamp(float(id_aloof['updated']))
         print
     return 0
+
+
+if __name__ == "__main__":
+    restore()
