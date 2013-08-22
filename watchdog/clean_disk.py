@@ -113,6 +113,9 @@ def _clean_unrecorded_files():
             if os.path.exists(image_file):
                 document_name = image_file.split('_')[0]
                 image_type = '%s_image_local' % os.path.splitext(image_file)[0].split('_')[-1]  # category_image_local
+                if not unrecorded_files[document_name]:
+                    unrecorded_files[document_name] = []
+                unrecorded_files[document_name].append((image_type, image_file))
 
     # transcoded files
     if os.path.exists(TRANSCODED_LOCAL_DIR):
@@ -122,7 +125,7 @@ def _clean_unrecorded_files():
                 document_name = transcoded_file.split('_')[0]
                 if not unrecorded_files[document_name]:
                     unrecorded_files[document_name] = []
-                unrecorded_files[document_name].append((transcoded_local, transcoded_file))
+                unrecorded_files[document_name].append(('transcoded_local', transcoded_file))
 
 
 def clean():
