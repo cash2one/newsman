@@ -72,17 +72,17 @@ def get_categories_by_language(language=None):
         print "ERROR: %s not supported! Or database is corrupted!" % language
 
     # find hotnews_image from hot news
-    # category_images['hot_news']
-    hot_news = HOTNEWS_TITLE[language]
+    # category_images['hotnews']
+    hotnews = HOTNEWS_TITLE[language]
     entries = get_latest_entries_by_language(
         language=language, limit=search_limit)
-    category_images[hot_news] = []
+    category_images[hotnews] = []
     for entry in entries:
         if 'hotnews_image' in entry and entry['hotnews_image']:
             item = {'title': entry['title'], 'image': entry[
                 'hotnews_image'], 'updated': entry['updated']}
-            category_images[hot_news].append(item)
-            if len(category_images[hot_news]) == images_limit:
+            category_images[hotnews].append(item)
+            if len(category_images[hotnews]) == images_limit:
                 break
 
     # special formatting for android-end
