@@ -15,6 +15,7 @@ sys.setdefaultencoding('UTF-8')
 sys.path.append("..")
 
 import calendar
+from config import Collection, db
 from datetime import datetime, timedelta
 import os
 import time
@@ -126,6 +127,23 @@ def _clean_unrecorded_files():
                 if not unrecorded_files[document_name]:
                     unrecorded_files[document_name] = []
                 unrecorded_files[document_name].append(('transcoded_local', transcoded_file))
+
+    # check and remove an unrecorded file
+    for document_name, items in unrecorded_files.iteritems():
+        # remove duplicated
+        items = list(set(items))
+
+        # check if a file is still in databse
+        document = Collection(db, document_name)
+        for item in items:
+            field = item[0]
+            path = item[1]
+            found = document.find({field:path})
+            if not found:
+                # remove it if it were not
+                # check if file exists again for safety
+                if os.path.exists(path):
+                    os.remove(path)
 
 
 def clean():
