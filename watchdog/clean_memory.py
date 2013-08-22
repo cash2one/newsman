@@ -26,6 +26,7 @@ def clean_by_item(item_id):
     if not rclient.exists(item_id):
         return None
     # it's possible item_id in queues be visited
+    # success returns 1, else 0
     return rclient.delete(item_id)
 
 

@@ -15,6 +15,8 @@ sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
 import calendar
+import clean_disk
+import clean_memory
 from config import Collection, db
 from datetime import datetime, timedelta
 import time
@@ -37,7 +39,7 @@ def _find_document_names():
     return list(set(document_names))
 
 
-def _clean():
+def clean():
     """
     remove expired items from database
     """
@@ -52,8 +54,13 @@ def _clean():
 
         removal_candidates = document.find({'updated': {'$lt': deadline_posix}})
         for removal_candidate in removal_candidates:
+            # see if removal candidate has a footage in memory
+            clean_memory.clean_by_item(str(removal_candidate['_id']))
+            # remove corresponding files on disk
+            clean_disk.clean_by_item(removal_candidate)
+            # remove the candidate in database
+            document.remove({'_id': removal_candidate['_id']})
 
-    
 
 if __name__ == "__main__":
-    _clean()
+    clean()
