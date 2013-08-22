@@ -54,7 +54,7 @@ def _clean_data():
     clean_disk.clean()
 
 
-def _clean_zombie():
+def _clean_zombies():
     """
     kill zombie processes, usually run semi-daily, or quasi-daily
     """
@@ -63,5 +63,6 @@ def _clean_zombie():
 
 
 if __name__ == "__main__":
-    language = sys.argv[1]
-    clean()
+    modes = {'data':'_clean_data', 'zombie':'_clean_zombies'}
+    mode = sys.argv[1]
+    eval(modes[mode])()
