@@ -64,14 +64,14 @@ TRANSCODING_BTN_AR = 'ﺎﻠﻤﺻﺩﺭ'
 TRANSCODING_BTN_ZH_CN = '查看原始网页'
 TRANSCODING_BTN_ZH_HK = '查看原始鏈接'
 
-HOT_NEWS_TITLE_EN = 'Hot News'
-HOT_NEWS_TITLE_PT = 'Notícias Quentes'
-HOT_NEWS_TITLE_JA = '人気ニュース'
-HOT_NEWS_TITLE_IND = 'Berita Terbaru'
-HOT_NEWS_TITLE_TH = 'ข่าวฮิต'
-HOT_NEWS_TITLE_AR = 'أخبار عاجلة'
-HOT_NEWS_TITLE_ZH_CN = '查看原始网页'
-HOT_NEWS_TITLE_ZH_HK = '查看原始鏈接'
+HOTNEWS_TITLE_EN = 'Hot News'
+HOTNEWS_TITLE_PT = 'Notícias Quentes'
+HOTNEWS_TITLE_JA = '人気ニュース'
+HOTNEWS_TITLE_IND = 'Berita Terbaru'
+HOTNEWS_TITLE_TH = 'ข่าวฮิต'
+HOTNEWS_TITLE_AR = 'أخبار عاجلة'
+HOTNEWS_TITLE_ZH_CN = '查看原始网页'
+HOTNEWS_TITLE_ZH_HK = '查看原始鏈接'
 
 DATABASE_REMOVAL_DAYS = 90
 MEMORY_RESTORATION_DAYS = 20
