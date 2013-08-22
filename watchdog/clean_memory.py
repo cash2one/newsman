@@ -14,7 +14,11 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
+from bson.objectid import ObjectId
+from config import Collection, db
 from config import rclient
+import time
+from watchdog import cleaner
 
 
 def clean_by_item(item_id):
@@ -28,6 +32,23 @@ def clean_by_item(item_id):
     # it's possible item_id in queues be visited
     # success returns 1, else 0
     return rclient.delete(item_id)
+
+
+def _is_zombie(item):
+    """
+    zombies are items in memory but not in database
+    """
+    if not item:
+        return True
+
+    document_name = item['language']
+    document = Collection(db, document_name)
+    item_id = ObjectId(item['_id']) 
+    found = document.find_one({'_id': item_id})
+    if not found:
+        return True
+    else:
+        return False
 
 
 def clean():
@@ -46,6 +67,22 @@ def clean():
                 # make sure every item is touched
                 if not rclient.exists(news_id):
                     rclient.zrem(news_list, news_id)
+                else:
+                    news_item_string = rclient.get(news_id)
+                    if news_item_string:
+                        news_item = eval(news_item_string)
+                        news_updated = float(news_item)['updated'])
+                        
+                        if cleaner.is_overdue(news_updated):  # WTF, remove it
+                            rclient.zrem(news_list, news_id)
+                            rclient.delete(news_id)
+                        else:  # check if this is zombie
+                            if _is_zombie(news_item):
+                                rclient.zrem(news_list, news_id)
+                                rclient.delete(news_id)
+                    else:
+                        rclient.zrem(news_list, news_id)
+                        rclient.delete(news_id)
     
 
 if __name__ == "__main__":
