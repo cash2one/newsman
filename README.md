@@ -19,21 +19,20 @@ APIs of SNS-based images, and streams.
 
 ToDos - High Priority
 ----------------------
-1. Task相关代码分解、重构
-2. 预警代码整理、重构
-3. Feed管理平台
-4. 自定义Exception类，并替换相应代码
-5. 理清每个函数的返回类型（raise Exception or None?）
-6. 服务器质量监控
-7. 数据整理代码整理、重构
-8. URL处理换成gruns/furl
-9. 测试标题提取使用Lassie(多国语言)
-10. qrconverter类似脚本使用docopt/docopt
-11. 为每个文件增加开源声明
-12. thumbnail/image_helper重新构造
-13. 修改本文档
-14. Redis expire可能会失效，访问时增加检查和清理
-15. 去掉html内容的代码换成那个bs4
+1. 预警代码整理、重构
+2. Feed管理平台
+3. 自定义Exception类，并替换相应代码
+4. 理清每个函数的返回类型（raise Exception or None?）
+5. 服务器质量监控
+6. 数据整理代码整理、重构
+7. URL处理换成gruns/furl
+8. 测试标题提取使用Lassie(多国语言)
+9. qrconverter类似脚本使用docopt/docopt
+10. 为每个文件增加开源声明
+11. thumbnail/image_helper重新构造
+12. 修改本文档
+13. Redis expire可能会失效，访问时增加检查和清理
+14. 去掉html内容的代码换成那个bs4
     [link](http://azd325.github.io/blog/2013/08/18/python-strip-tags/)
 
 ToDos - Low Priority
@@ -70,6 +69,7 @@ Dones
 12. 为PM提供一个Simplr, Readability, UCK比较的页面
 13. 包结构合理化
 14. 抓取改为每处理完一个存储数据库和内存
+15. Task相关代码分解、重构
 
 
 ToDos - Generated from docs
