@@ -66,8 +66,20 @@ def _clean_tempory_files():
 def _clean_unrecorded_files():
     """
     remove files not recorded in database, with a illegal status (longer than DATABASE_REMOVAL_DAYS)
+    1. check if the file is overdue
+    2. collect it with proper indication, i.e. what is it, an mp3 or an image? what document is it in?
+    3. remove duplicates
+    4. check if the file is still in database
+    5. remove the file if it is not found in database
     """
-    pass
+    # "en": [(transcoded_local', '/home/work/xxx.html'), ('mp3_local':'/home/work/xxx.mp3')]
+    unrecorded_files = {}
+    if os.path.exists(MEDIA_LOCAL_DIR):
+        pass
+    if os.path.exists(IMAGES_LOCAL_DIR):
+        pass
+    if os.path.exists(TRANSCODED_LOCAL_DIR):
+        pass
 
 
 def clean():
