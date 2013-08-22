@@ -56,6 +56,7 @@ def clean():
     remove expired items from queues in memory
     walk through all redis content
     """
+    print '... cleaning memory ...'
     news_lists = rclient.keys('news::*')
     for news_list in news_lists:
         # get the total number of a news list
