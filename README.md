@@ -1,5 +1,35 @@
-News Backend
-============
+BGM News
+========
+
+This project provides backend support for news service
+
+BGM News is licensed under GNU Affero GPL v3
+
+Licence
+-------
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>. 
+
+(see [license.txt](https://github.com/chengdujin/bgm_news/blob/master/license.txt)
+for full AGPL licence)
+
+**(For those who don't get the legal lingo: Basically what we're saying is
+feel free to copy our code, but please share back any changes or improvements
+that you make, in the spirit of free software)**
+
+Walkthrough
+-------------------------
 
 This project is outlined with the following modules:
 
