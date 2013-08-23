@@ -5,7 +5,7 @@ This project provides backend support for news service
 
 BGM News is licensed under GNU Affero GPL v3
 
-Licence
+License
 -------
 
 This program is free software: you can redistribute it and/or modify
