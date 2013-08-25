@@ -35,23 +35,25 @@ hparser = HTMLParser()
 PUBLIC = 'http://54.251.107.116/%s'                # AWS singapore
 #PUBLIC = 'http://54.232.81.44/%s'                  # AWS sao paolo
 #PUBLIC = 'http://54.248.227.71/%s'                 # AWS tokyo
-#LOCAL = '/home/work/STATIC/%s'                     # official server prefix
-#LOCAL = '/home/ubuntu/STATIC/%s'                   # AWS server prefix
+#LOCAL = '/home/work/%s'                            # official server prefix
+#LOCAL = '/home/ubuntu/%s'                          # AWS server prefix
 LOCAL = '/home/jinyuan/Downloads/%s'               # local server prefix
 
-TRANSCODED_LOCAL_DIR = LOCAL % 'news/ts/'
+CODE_BASE = LOCAL % 'newman'
+
+TRANSCODED_LOCAL_DIR = LOCAL % 'STATIC/news/ts/'
 TRANSCODED_PUBLIC_DIR = PUBLIC % 'ts/'
 
-IMAGES_LOCAL_DIR = LOCAL % 'news/img/'
+IMAGES_LOCAL_DIR = LOCAL % 'STATIC/news/img/'
 IMAGES_PUBLIC_DIR = PUBLIC % 'img/'
 
-MEDIA_LOCAL_DIR = LOCAL % 'news/mid/'
+MEDIA_LOCAL_DIR = LOCAL % 'STATIC/news/mid/'
 MEDIA_PUBLIC_DIR = PUBLIC % 'mid/'
 
-MEDIA_TEMP_LOCAL_DIR = LOCAL % 'news/tmp/'
+MEDIA_TEMP_LOCAL_DIR = LOCAL % 'STATIC/news/tmp/'
 
-NEWS_TEMPLATE = LOCAL % 'news/templates/index.html'
-NEWS_TEMPLATE_ARABIC = LOCAL % 'news/templates/index_arabic.html'
+NEWS_TEMPLATE = LOCAL % 'STATIC/news/templates/index.html'
+NEWS_TEMPLATE_ARABIC = LOCAL % 'STATIC/news/templates/index_arabic.html'
 UCK_TRANSCODING = 'http://gate.baidu.com/tc?m=8&from=bdpc_browser&src='
 UCK_TRANSCODING_NEW = 'http://m.baidu.com/openapp?/webapp?debug=1&from=bd_international&onlyspdebug=1&structpage&siteType=7&nextpage=1&siteappid=1071361&src='
 TRANSCODED_ENCODING = '<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>\n'

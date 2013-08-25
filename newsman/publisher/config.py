@@ -39,6 +39,7 @@ PUBLIC = 'http://54.251.107.116/%s'                # AWS singapore
 #LOCAL = '/home/ubuntu/%s'                          # AWS server prefix
 LOCAL = '/home/jinyuan/Downloads/%s'               # local server prefix
 
+CODE_BASE = LOCAL % 'newman'
 
 TRANSCODED_LOCAL_DIR = LOCAL % 'STATIC/news/ts/'
 TRANSCODED_PUBLIC_DIR = PUBLIC % 'ts/'
@@ -56,9 +57,6 @@ NEWS_TEMPLATE_ARABIC = LOCAL % 'STATIC/news/templates/index_arabic.html'
 UCK_TRANSCODING = 'http://gate.baidu.com/tc?m=8&from=bdpc_browser&src='
 UCK_TRANSCODING_NEW = 'http://m.baidu.com/openapp?/webapp?debug=1&from=bd_international&onlyspdebug=1&structpage&siteType=7&nextpage=1&siteappid=1071361&src='
 TRANSCODED_ENCODING = '<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>\n'
-
-CODE_BASE = LOCAL % 'newsman'
-COMMAND_CLEAN_MEMORY = "python %s/newsman/watchdog/clean_memory.py"
 
 TRANSCODING_BTN_EN = 'Original page'
 TRANSCODING_BTN_PT = 'Página original'
