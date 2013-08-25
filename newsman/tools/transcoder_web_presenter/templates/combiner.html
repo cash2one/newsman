@@ -1,4 +1,4 @@
-$def with (title_simplr, content_simplr, title_burify, content_burify, title_uck, content_uck, button)
+$def with (title_simplr, content_simplr, title_burify, content_burify, title_uck, content_uck, title_uck_new, content_uck_new, button)
 
 <!DOCTYPE html>
 <html>
@@ -62,6 +62,26 @@ $if content_uck:
                         <div class="new-line-h new-title-gap"></div>
                         <div class="new-content">
                             $:content_uck
+                        </div>
+                    </div>        
+                    <a class="fullBtn" href="javascript:void(0)" onclick="window.hao123app_webkit_js.btnClicked()">$button</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p></p>
+    <p></p>
+$if content_uck_new:
+    <div id="sApp" class="new-app-wrap">
+        <div id="newPage" class="s-page s-page-current" data-page-level="1000" data-page-title="{{title}}">
+            <div class="s-page-space">
+                <div class="new-wrap">
+                    <h3><font face="verdana" size=22px color="green">New UCK</font></h3>
+                    <div class="new-cont">
+                        <h1 class="new-title">$title_uck_new</h1>
+                        <div class="new-line-h new-title-gap"></div>
+                        <div class="new-content">
+                            $:content_uck_new
                         </div>
                     </div>        
                     <a class="fullBtn" href="javascript:void(0)" onclick="window.hao123app_webkit_js.btnClicked()">$button</a>
