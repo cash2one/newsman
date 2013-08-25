@@ -215,59 +215,52 @@ def get_previous_entries_by_language(language=None, limit=10, end_id=None):
         END_ID_IN_MEMORY = True if end_id_index > 0 else False
         if END_ID_IN_MEMORY:
             limit_in_memory = rclient.zrank("news::%s" % language, end_id)
-    # implement according to strategy
-    if strategy == STRATEGY_WITHOUT_WEIGHTS:
-        entries = []
-        if END_ID_IN_MEMORY:  # see if data in memory suffice
-            if limit_in_memory >= limit:  # purely get from memory
-                entry_ids = rclient.zrevrange(
-                    "news::%s" % language, entry_ids_total - end_id_index, entry_ids_total - end_id_index + limit - 1)
-                for entry_id in entry_ids:
-                    entries.append(eval(rclient.get(entry_id)))
-            else:  # memory + database
-                # memory
-                entry_ids = rclient.zrevrange(
-                    "news::%s" % language, entry_ids_total - end_id_index, entry_ids_total - end_id_index + limit_in_memory - 1)
-                last_entry_in_memory = None
-                for entry_id in entry_ids:
-                    last_entry_in_memory = eval(rclient.get(entry_id))
-                    entries.append(last_entry_in_memory)
-                limit_in_database = limit - limit_in_memory
-                last_entry_in_memory_updated = last_entry_in_memory['updated']
-                # find the remaining items in database
-                col = Collection(db, language)
-                items = col.find({'updated': {'$lt': last_entry_in_memory_updated}}).sort(
-                    'updated', -1).limit(limit_in_database)
-                for item in items:
-                    # string-ify all the values: ObjectId
-                    for x, y in item.iteritems():
-                        if x != 'updated':
-                            item[x] = str(y)
-                    entries.append(item)
-            return entries
-        else:  # no memory or data in memory are not enough, so query database
-            entries = []
+            
+    entries = []
+    if END_ID_IN_MEMORY:  # see if data in memory suffice
+        if limit_in_memory >= limit:  # purely get from memory
+            entry_ids = rclient.zrevrange("news::%s" % language, entry_ids_total - end_id_index, entry_ids_total - end_id_index + limit - 1)
+            for entry_id in entry_ids:
+                entries.append(eval(rclient.get(entry_id)))
+        else:  # memory + database
+            # memory
+            entry_ids = rclient.zrevrange("news::%s" % language, entry_ids_total - end_id_index, entry_ids_total - end_id_index + limit_in_memory - 1)
+            last_entry_in_memory = None
+            for entry_id in entry_ids:
+                last_entry_in_memory = eval(rclient.get(entry_id))
+                entries.append(last_entry_in_memory)
+            limit_in_database = limit - limit_in_memory
+            last_entry_in_memory_updated = last_entry_in_memory['updated']
+            # find the remaining items in database
             col = Collection(db, language)
-            if end_id:
-                end_id_entry = col.find_one({'_id': ObjectId(end_id)})
-                if end_id_entry:
-                    end_id_updated = end_id_entry['updated']
-                    items = col.find({'updated': {'$lt': end_id_updated}}).sort(
-                        'updated', -1).limit(limit)
-                else:
-                    return None
-            # get the most recent limit number of entries
-            else:
-                items = col.find().sort('updated', -1).limit(limit)
+            items = col.find({'updated': {'$lt': last_entry_in_memory_updated}}).sort('updated', -1).limit(limit_in_database)
             for item in items:
                 # string-ify all the values: ObjectId
                 for x, y in item.iteritems():
                     if x != 'updated':
                         item[x] = str(y)
                 entries.append(item)
-            return entries
-    elif strategy == STRATEGY_WITH_WEIGHTS:
-        pass
+        return entries
+    else:  # no memory or data in memory are not enough, so query database
+        entries = []
+        col = Collection(db, language)
+        if end_id:
+            end_id_entry = col.find_one({'_id': ObjectId(end_id)})
+            if end_id_entry:
+                end_id_updated = end_id_entry['updated']
+                items = col.find({'updated': {'$lt': end_id_updated}}).sort('updated', -1).limit(limit)
+            else:
+                return None
+        # get the most recent limit number of entries
+        else:
+            items = col.find().sort('updated', -1).limit(limit)
+        for item in items:
+            # string-ify all the values: ObjectId
+            for x, y in item.iteritems():
+                if x != 'updated':
+                    item[x] = str(y)
+            entries.append(item)
+        return entries
 
 
 def get_latest_entries_by_category(language=None, category=None, limit=10, start_id=None):
