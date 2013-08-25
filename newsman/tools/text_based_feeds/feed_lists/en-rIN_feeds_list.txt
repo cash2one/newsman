@@ -31,7 +31,6 @@ en-rIN*|*Technology*|*WirelessDuniya*|*http://feeds.feedburner.com/wirelessduniy
 en-rIN*|*Technology*|*Digital Inspiration Technology Blog*|*http://feeds.labnol.org/labnol
 en-rIN*|*International*|*The Guardian World News*|*http://feeds.guardian.co.uk/theguardian/rss
 en-rIN*|*International*|*The Hindu - International*|*http://www.thehindu.com/news/international/?service=rss
-en-rIN*|*International*|*ABC News: Top Stories*|*http://feeds.abcnews.com/abcnews/topstories
 en-rIN*|*International*|*FOXNews.com*|*http://feeds.feedburner.com/foxnews/latest
 en-rIN*|*International*|*The Huffington Post | Full News Feed*|*http://feeds.huffingtonpost.com/huffingtonpost/LatestNews
 en-rIN*|*Health*|*Cricket News*|*http://www.newkerala.com/health-news.xml
