@@ -408,17 +408,30 @@ def get_previous_entries_by_category(language=None, category=None, limit=10, end
         if limit_in_memory >= limit:  # purely get from memory
             entry_ids = rclient.zrevrange(
                 category_name, entry_ids_total - end_id_index, entry_ids_total - end_id_index + limit - 1)
+
+            dirty_expired_ids = []
             for entry_id in entry_ids:
-                entries.append(eval(rclient.get(entry_id)))
+                entry_id_in_memory = rclient.get(entry_id)
+                if entry_id_in_memory:
+                    entries.append(eval(entry_id_in_memory))
+                else:
+                    dirty_expired_ids.append(entry_id)
         else:  # memory + database
             # memory
             entry_ids = rclient.zrevrange(category_name, entry_ids_total - end_id_index, entry_ids_total - end_id_index + limit_in_memory - 1)
+
             last_entry_in_memory = None
+            dirty_expired_ids = []
             for entry_id in entry_ids:
-                last_entry_in_memory = eval(rclient.get(entry_id))
-                entries.append(last_entry_in_memory)
-            limit_in_database = limit - limit_in_memory
+                entry_id_in_memory = rclient.get(entry_id)
+                if entry_id_in_memory:
+                    last_entry_in_memory = eval(entry_id_in_memory)
+                    entries.append(last_entry_in_memory)
+                else:
+                    dirty_expired_ids.append(entry_id)
+
             last_entry_in_memory_updated = last_entry_in_memory['updated']
+            limit_in_database = limit - len(entries)
 
             # find the remaining items in database
             col = Collection(db, language)
