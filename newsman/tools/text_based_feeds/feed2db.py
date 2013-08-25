@@ -19,9 +19,9 @@ from config import db
 
 # CONSTANTS
 from config import FEED_REGISTRAR
-#FILE_SUFFIX = '/home/work/bgm_news/tools/text_based_feeds/feed_lists/'
-#FILE_SUFFIX = '/home/ubuntu/bgm_news/tools/text_based_feeds/feed_lists/'
-FILE_SUFFIX = '/home/jinyuan/Downloads/bgm_news/tools/text_based_feeds/feed_lists/'
+#FILE_SUFFIX = '/home/work/newsman/newsman/tools/text_based_feeds/feed_lists/'
+#FILE_SUFFIX = '/home/ubuntu/newsman/newsman/tools/text_based_feeds/feed_lists/'
+FILE_SUFFIX = '/home/jinyuan/Downloads/newsman/newsman/tools/text_based_feeds/feed_lists/'
 
 
 def _parse_task(line):
