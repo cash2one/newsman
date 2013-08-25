@@ -15,6 +15,7 @@ ToDos - High Priority
 13. Redis expire可能会失效，访问时增加检查和清理
 14. 去掉html内容的代码换成那个bs4
     [link](http://azd325.github.io/blog/2013/08/18/python-strip-tags/)
+15. 融合[Scrapely](https://github.com/scrapy/scrapely)到转码器中
 
 ToDos - Low Priority
 ---------------------
