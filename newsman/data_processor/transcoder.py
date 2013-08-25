@@ -233,6 +233,22 @@ def _preprocess(link):
     return link[last_http_index:].strip()
 
 
+def prepare_link(url):
+    """
+    decode with the correct encoding
+    """
+    html = urllib2.urlopen(url, timeout=UCK_TIMEOUT).read()
+    if html:
+        detected = chardet.detect(html)
+        if detected:
+            data = html.decode(detected['encoding'], 'ignore')
+        else:
+            data = html.decode('utf-8', 'ignore')
+        return data
+    else:
+        raise Exception("[transcoder.prepare_link] ERROR: Cannot read %s" % url)
+
+
 def convert(language="en", title=None, link=None, transcoder="chengdujin", relative_path=None, stdout=False):
     """
     select a transcoder

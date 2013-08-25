@@ -17,6 +17,7 @@ sys.path.append("..")
 from BeautifulSoup import BeautifulSoup
 import chardet
 from data_processor import image_helper
+from data_processor import transcoder
 import math
 import posixpath
 import re
@@ -55,22 +56,7 @@ class Simplr:
         self.url = url
         self.language = language
 
-        def _prepare_link(url):
-            """
-            decode with the correct encoding
-            """
-            html = urllib2.urlopen(url, timeout=UCK_TIMEOUT).read()
-            if html:
-                detected = chardet.detect(html)
-                if detected:
-                    data = html.decode(detected['encoding'], 'ignore')
-                else:
-                    data = html.decode('utf-8', 'ignore')
-                return data
-            else:
-                raise Exception("[simplr._prepare_link] ERROR: Cannot read %s" % url)
-
-        self.data = _prepare_link(self.url)
+        self.data = transcoder.prepare_link(self.url)
         self.data = self.regexps['replace_brs'].sub("</p><p>", self.data)
         self.data = self.regexps['replace_fonts'].sub("<\g<1>span>", self.data)
 

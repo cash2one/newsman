@@ -16,6 +16,7 @@ sys.path.append('..')
 
 import chardet
 from data_processor import image_helper
+from data_processor import transcoder
 from readability import Document
 import urllib2
 
@@ -30,22 +31,6 @@ def _collect_images(content):
     return image_helper.find_images(content)
 
 
-def _prepare_link(url):
-    """
-    decode with the correct encoding
-    """
-    html = urllib2.urlopen(url, timeout=UCK_TIMEOUT).read()
-    if html:
-        detected = chardet.detect(html)
-        if detected:
-            data = html.decode(detected['encoding'], 'ignore')
-        else:
-            data = html.decode('utf-8', 'ignore')
-        return data
-    else:
-        raise Exception("[burify._prepare_link] ERROR: Cannot read %s" % url)
-
-
 def convert(link):
     """
     use burify's readability implementation to transcode a web page
@@ -55,7 +40,7 @@ def convert(link):
         raise Exception('[burify.convert] ERROR: Cannot transcode nothing!')
 
     try:
-        data = _prepare_link(link)
+        data = transcoder.prepare_link(link)
         article = Document(data)
         images = _collect_images(article.summary())
         return article.short_title(), article.summary(html_partial=False), images
