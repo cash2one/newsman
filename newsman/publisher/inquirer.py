@@ -260,6 +260,7 @@ def get_previous_entries_by_language(language=None, limit=10, end_id=None):
         return entries
     else:  # no memory or data in memory are not enough, so query database
         entries = []
+        items = []
         col = Collection(db, language)
         if end_id:
             end_id_entry = col.find_one({'_id': ObjectId(end_id)})
@@ -271,8 +272,9 @@ def get_previous_entries_by_language(language=None, limit=10, end_id=None):
         # get the most recent limit number of entries
         else:
             items = col.find().sort('updated', -1).limit(limit)
+
+        # string-ify all the values: ObjectId
         for item in items:
-            # string-ify all the values: ObjectId
             for x, y in item.iteritems():
                 if x != 'updated':
                     item[x] = str(y)
