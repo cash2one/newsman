@@ -16,6 +16,7 @@ sys.path.append('..')
 
 from config import hparser
 from data_processor import baidu_uck
+from data_processor import baidu_uck_new
 from data_processor import burify
 from data_processor import image_helper
 from data_processor import simplr
@@ -157,13 +158,16 @@ def _transcode(url, transcoders, language=None):
         transcoding_request.join(UCK_TIMEOUT + 5)
 
     # after a while ... put data in the proper variables
-    uck_content = simplr_content = burify_content = None
-    uck_images = simplr_images = burify_images = None
-    uck_title = simplr_title = burify_title = None
+    uck_content = uck_new_content = simplr_content = burify_content = None
+    uck_images = uck_new_images = simplr_images = burify_images = None
+    uck_title = uck_new_title = simplr_title = burify_title = None
 
     if 'baidu_uck' in transcoders and 'baidu_uck' in threads:
         if threads['baidu_uck'].result:
             uck_title, uck_content, uck_images = threads['baidu_uck'].result
+    if 'baidu_uck_new' in transcoders and 'baidu_uck_new' in threads:
+        if threads['baidu_uck_new'].result:
+            uck_new_title, uck_new_content, uck_new_images = threads['baidu_uck_new'].result
     if 'simplr' in transcoders and 'simplr' in threads:
         if threads['simplr'].result:
             simplr_title, simplr_content, simplr_images = threads[
@@ -199,9 +203,12 @@ def _transcode(url, transcoders, language=None):
                 return burify_title, new_content, new_images
             else:  # no image at all
                 return burify_title, burify_content, burify_images
-    # only uck
-    if uck_content:
+
+    # uck and uck_new
+    if 'uck' in transcoders and uck_content:
         return uck_title, uck_content, uck_images
+    elif 'uck_new' in transcoders and uck_new_content:
+        return uck_new_title, uck_new_content, uck_new_images
     else:
         return None, None, None
 
@@ -212,6 +219,7 @@ def _organize_transcoders(transcoder="chengdujin"):
     chengdujin: simplr.py
     readability: burify.py
     uck: baidu_uck.py
+    uck_new: baidu_uck_new.py
     """
     transcoders = []
     if transcoder == 'chengdujin':
@@ -220,8 +228,10 @@ def _organize_transcoders(transcoder="chengdujin"):
     elif transcoder == 'readability':
         transcoders.append("burify")
         transcoders.append("baidu_uck")
-    else:
+    elif transcoder == 'baidu_uck':
         transcoders.append("baidu_uck")
+    elif transcoder == 'baidu_uck_new':
+        transcoders.append('baidu_uck_new')
     return transcoders
 
 
