@@ -51,6 +51,13 @@ def _is_zombie(item):
         return False
 
 
+def clean_by_collection():
+    """
+    removed a group of expired items in memory
+    """
+    pass
+
+
 def clean():
     """
     remove expired items from queues in memory
