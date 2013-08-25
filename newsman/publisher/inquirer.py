@@ -106,8 +106,8 @@ def get_latest_entries_by_language(language=None, limit=10, start_id=None):
     # get the latest entries
     entry_ids_total = rclient.zcard("news::%s" % language)
     entries = []
-    if entry_ids_total:  # memory (partially) meets the limit
-        if entry_ids_total >= limit:
+    if entry_ids_total:  
+        if entry_ids_total >= limit: # memory (partially) meets the limit
             entry_ids = rclient.zrevrange("news::%s" % language, 0, limit - 1)
             for entry_id in entry_ids:
                 if start_id and entry_id == start_id:
