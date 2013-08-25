@@ -152,7 +152,8 @@ def get_latest_entries_by_language(language=None, limit=10, start_id=None):
 
             # find out the boundary between memory and database
             last_entry_in_memory_updated = last_entry_in_memory['updated']
-            limit_in_database = limit - entry_ids_total
+            # get the REAL number of needs in database
+            limit_in_database = limit - len(entries)
 
             # database
             col = Collection(db, language)
