@@ -98,13 +98,11 @@ def get_latest_entries_by_language(language=None, limit=10, start_id=None, strat
     """
     if not language:
         return None
-    if not limit:
-        return None
     if limit < 0 or limit > 100:
         return None
-    language = language.strip()
     if language not in LANGUAGES:
         return None
+
     # get the latest entries
     entry_ids_total = rclient.zcard("news::%s" % language)
     entries = []
