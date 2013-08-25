@@ -15,14 +15,12 @@ sys.setdefaultencoding("utf-8")
 sys.path.append("..")
 
 from BeautifulSoup import BeautifulSoup
-import chardet
 from data_processor import image_helper
 from data_processor import transcoder
 import math
 import posixpath
 import re
 import tinysegmenter
-import urllib2
 import urlparse
 
 # CONSTANTS
