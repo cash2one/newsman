@@ -56,7 +56,7 @@ Dones
 ToDos - Generated from docs
 --------------------------
 * `data_processor/transcoder.py`
-    1. Line 139: _transcode
+    1. Line 140: _transcode
         - add http string checkers
 
 * `scraper/rss.py`
@@ -66,15 +66,15 @@ ToDos - Generated from docs
         - code to remove added items if things suck at database/memory
 
 * `data_processor/tts_provider.py`
-    1. Line 99: _query_segment
+    1. Line 103: _query_segment
         - write some boundary checkers
         - determine how do these languages separate words
         - get encoding of a feed. use that if indicated, else 'utf-8'
-    2. Line 199: _download
+    2. Line 203: _download
         - Test! Test! Test!
         - boundary checkers
         - write docs!
-    3. Line 67: google
+    3. Line 71: google
         - write docs
         - rename the file and variables
         - remove accepting command line calls
@@ -83,24 +83,24 @@ ToDos - Generated from docs
     1. Line 218: parse
         - boundary checkers
         - update parsing info to feed database
-    2. Line 37: _read_entry
+    2. Line 38: _read_entry
         - add more boundary checks
         - [register unsupported date format](http://pythonhosted.org/feedparser/date-parsing.html#advanced-date)
         - add tags
         - add thumbnail limit(downward)
 
 * `data_processor/baidu_uck.py`
-    1. Line 31: _sanitize
+    1. Line 32: _sanitize
         - test the code
         - remove code that sanitize too much
 
 * `publisher/inquirer.py`
-    1. Line 30: get_categories_by_language
+    1. Line 41: get_categories_by_language
         - need to refactor this method after sorting out feed.py
         - added database inquire if language cannot be found in memory
 
 * `data_processor/image_helper.py`
-    1. Line 146: scale_image
+    1. Line 147: scale_image
         - boundary checker
 
 * `data_processor/thumbnail.py`
