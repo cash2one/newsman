@@ -54,11 +54,12 @@ def clean_by_item(item_id):
 def clean_by_items(news_list, item_ids):
     """
     removed a group of expired items in memory
-    - remove id from queues
-    - remove id from redis
+    the item might be in redis, but void
     """
     for item_id in item_ids:
+        # remove id from queues
         rclient.zrem(news_list, item_id)
+        # delete id from redis, if it's available
         clean_by_item(item_id)
 
 
