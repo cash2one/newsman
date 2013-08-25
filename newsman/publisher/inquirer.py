@@ -14,8 +14,7 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 
 from bson.objectid import ObjectId
-from config import Collection
-from config import db
+from config import Collection, db
 from config import rclient
 import feedparser
 import os
