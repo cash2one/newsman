@@ -105,11 +105,12 @@ def get_latest_entries_by_language(language=None, limit=10, start_id=None):
         return None
 
     # get the latest entries
-    entry_ids_total = rclient.zcard("news::%s" % language)
+    category_name = "news::%s" % language
+    entry_ids_total = rclient.zcard(category_name)
     entries = []
     if entry_ids_total:  
         if entry_ids_total >= limit: # memory (partially) meets the limit
-            entry_ids = rclient.zrevrange("news::%s" % language, 0, limit - 1)
+            entry_ids = rclient.zrevrange(category_name, 0, limit - 1)
             
             dirty_expired_ids = []
             for entry_id in entry_ids:
@@ -159,7 +160,9 @@ def get_latest_entries_by_language(language=None, limit=10, start_id=None):
         if dirty_expired_ids:
             sys.path.append(os.path.join(CODE_BASE, 'newsman'))
             from watchdog import clean_memory
-            clean_memory.clean_by_items(dirty_expired_ids)
+            clean_memory.clean_by_items(category_name, dirty_expired_ids)
+
+        return entries
     else:  # query the database
         entries = []
         col = Collection(db, language)
@@ -447,7 +450,7 @@ def get_previous_entries_by_category(language=None, category=None, limit=10, end
         if dirty_expired_ids:
             sys.path.append(os.path.join(CODE_BASE, 'newsman'))
             from watchdog import clean_memory
-            clean_memory.clean_by_items(dirty_expired_ids)
+            clean_memory.clean_by_items(category_name, dirty_expired_ids)
 
         return entries
     else:  # no memory or data in memory are not enough, so query database
