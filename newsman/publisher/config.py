@@ -39,7 +39,7 @@ PUBLIC = 'http://54.251.107.116/%s'                # AWS singapore
 #LOCAL = '/home/ubuntu/%s'                          # AWS server prefix
 LOCAL = '/home/jinyuan/Downloads/%s'               # local server prefix
 
-CODE_BASE = LOCAL % 'newman'
+CODE_BASE = LOCAL % 'newsman'
 
 TRANSCODED_LOCAL_DIR = LOCAL % 'STATIC/news/ts/'
 TRANSCODED_PUBLIC_DIR = PUBLIC % 'ts/'
