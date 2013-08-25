@@ -192,6 +192,7 @@ def get_previous_entries_by_language(language=None, limit=10, end_id=None):
     end_id_index = 0
     END_ID_IN_MEMORY = False
     limit_in_memory = 0
+
     if not end_id:
         entry_ids_total = rclient.zcard("news::%s" % language)
         end_id_index = entry_ids_total
@@ -384,6 +385,7 @@ def get_previous_entries_by_category(language=None, category=None, limit=10, end
     end_id_index = 0
     END_ID_IN_MEMORY = False
     limit_in_memory = 0
+
     if not end_id:
         entry_ids_total = rclient.zcard(category_name)
         end_id_index = entry_ids_total
@@ -397,59 +399,63 @@ def get_previous_entries_by_category(language=None, category=None, limit=10, end
             END_ID_IN_MEMORY = False
     else:
         end_id_index = rclient.zrank(category_name, end_id)
-        END_ID_IN_MEMORY = True if end_id_index > 0 else False
+        END_ID_IN_MEMORY = True if end_id_index >= 0 else False
         if END_ID_IN_MEMORY:
-            limit_in_memory = rclient.zrank(category_name, end_id) + 1
-    # implement according to strategy
-    if strategy == STRATEGY_WITHOUT_WEIGHTS:
-        entries = []
-        if END_ID_IN_MEMORY:  # see if data in memory suffice
-            if limit_in_memory >= limit:  # purely get from memory
-                entry_ids = rclient.zrevrange(
-                    category_name, entry_ids_total - end_id_index, entry_ids_total - end_id_index + limit - 1)
-                for entry_id in entry_ids:
-                    entries.append(eval(rclient.get(entry_id)))
-            else:  # memory + database
-                # memory
-                entry_ids = rclient.zrevrange(
-                    category_name, entry_ids_total - end_id_index, entry_ids_total - end_id_index + limit_in_memory - 1)
-                last_entry_in_memory = None
-                for entry_id in entry_ids:
-                    last_entry_in_memory = eval(rclient.get(entry_id))
-                    entries.append(last_entry_in_memory)
-                limit_in_database = limit - limit_in_memory
-                last_entry_in_memory_updated = last_entry_in_memory['updated']
+            limit_in_memory = rclient.zrank(category_name, end_id)
 
-                # find the remaining items in database
-                col = Collection(db, language)
-                items = col.find({'updated': {'$lt': last_entry_in_memory_updated}, 'categories': category}).sort(
-                    'updated', -1).limit(limit_in_database)
-                for item in items:
-                    # string-ify all the values: ObjectId
-                    for x, y in item.iteritems():
-                        if x != 'updated':
-                            item[x] = str(y)
-                    entries.append(item)
-            return entries
-        else:  # no memory or data in memory are not enough, so query database
-            entries = []
+    entries = []
+    if END_ID_IN_MEMORY:  # see if data in memory suffice
+        if limit_in_memory >= limit:  # purely get from memory
+            entry_ids = rclient.zrevrange(
+                category_name, entry_ids_total - end_id_index, entry_ids_total - end_id_index + limit - 1)
+            for entry_id in entry_ids:
+                entries.append(eval(rclient.get(entry_id)))
+        else:  # memory + database
+            # memory
+            entry_ids = rclient.zrevrange(category_name, entry_ids_total - end_id_index, entry_ids_total - end_id_index + limit_in_memory - 1)
+            last_entry_in_memory = None
+            for entry_id in entry_ids:
+                last_entry_in_memory = eval(rclient.get(entry_id))
+                entries.append(last_entry_in_memory)
+            limit_in_database = limit - limit_in_memory
+            last_entry_in_memory_updated = last_entry_in_memory['updated']
+
+            # find the remaining items in database
             col = Collection(db, language)
-            if end_id:
-                end_id_entry = col.find_one({'_id': ObjectId(end_id)})
-                if end_id_entry:
-                    end_id_updated = end_id_entry['updated']
-                    items = col.find({'updated': {'$lt': end_id_updated}, 'categories': category}).sort(
-                        'updated', -1).limit(limit)
-                else:
-                    return None
-            # get the most recent limit number of entries
-            else:
-                items = col.find({'categories': category}).sort(
-                    'updated', -1).limit(limit)
+            items = col.find({'updated': {'$lt': last_entry_in_memory_updated}, 'categories': category}).sort('updated', -1).limit(limit_in_database)
             for item in items:
                 # string-ify all the values: ObjectId
                 for x, y in item.iteritems():
                     if x != 'updated':
                         item[x] = str(y)
                 entries.append(item)
-            return entries
+
+        # expired ids not cleaned found
+        if dirty_expired_ids:
+            sys.path.append(os.path.join(CODE_BASE, 'newsman'))
+            from watchdog import clean_memory
+            clean_memory.clean_by_items(dirty_expired_ids)
+
+        return entries
+    else:  # no memory or data in memory are not enough, so query database
+        entries = []
+        items = []
+        col = Collection(db, language)
+        if end_id:
+            end_id_entry = col.find_one({'_id': ObjectId(end_id)})
+            if end_id_entry:
+                end_id_updated = end_id_entry['updated']
+                items = col.find({'updated': {'$lt': end_id_updated}, 'categories': category}).sort('updated', -1).limit(limit)
+            else:
+                return None
+        # get the most recent limit number of entries
+        else:
+            items = col.find({'categories': category}).sort('updated', -1).limit(limit)
+
+        for item in items:
+            # string-ify all the values: ObjectId
+            for x, y in item.iteritems():
+                if x != 'updated':
+                    item[x] = str(y)
+            entries.append(item)
+        return entries
