@@ -47,6 +47,7 @@ class Transcoders:
             language=language, link=url, transcoder='chengdujin', stdout=True)
         title_burify, content_burify = transcoder.convert(
             language=language, link=url, transcoder='readability', stdout=True)
+
         title_uck, content_uck = transcoder.convert(
             language=language, link=url, transcoder='uck', stdout=True)
         title_uck_new, content_uck_new = transcoder.convert(

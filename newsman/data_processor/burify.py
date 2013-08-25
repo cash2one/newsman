@@ -14,8 +14,8 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
-from data_processor import image_helper
-from data_processor import transcoder
+import image_helper
+import transcoder
 from readability import Document
 
 # CONSTANTS

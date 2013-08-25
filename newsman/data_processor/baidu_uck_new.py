@@ -15,7 +15,7 @@ sys.setdefaultencoding('UTF-8')
 sys.path.append("..")
 
 from config import hparser
-from data_processor import image_helper
+import image_helper
 import urllib2
 
 # CONSTANTS

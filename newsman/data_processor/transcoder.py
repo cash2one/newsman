@@ -14,12 +14,13 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
+import chardet
 from config import hparser
-from data_processor import baidu_uck
-from data_processor import baidu_uck_new
-from data_processor import burify
-from data_processor import image_helper
-from data_processor import simplr
+import baidu_uck
+import baidu_uck_new
+import burify
+import image_helper
+import simplr
 import os
 import threading
 import urllib2
@@ -155,7 +156,8 @@ def _transcode(url, transcoders, language=None):
         threads[transcoder] = transcoding_request
         transcoding_request.start()
         # UCK_TIMEOUT seconds to wait UCK server
-        transcoding_request.join(UCK_TIMEOUT + 5)
+        #transcoding_request.join(UCK_TIMEOUT + 5)
+        transcoding_request.join()
 
     # after a while ... put data in the proper variables
     uck_content = uck_new_content = simplr_content = burify_content = None
@@ -205,9 +207,9 @@ def _transcode(url, transcoders, language=None):
                 return burify_title, burify_content, burify_images
 
     # uck and uck_new
-    if 'uck' in transcoders and uck_content:
+    if 'baidu_uck' in transcoders and uck_content:
         return uck_title, uck_content, uck_images
-    elif 'uck_new' in transcoders and uck_new_content:
+    elif 'baidu_uck_new' in transcoders and uck_new_content:
         return uck_new_title, uck_new_content, uck_new_images
     else:
         return None, None, None
@@ -228,9 +230,9 @@ def _organize_transcoders(transcoder="chengdujin"):
     elif transcoder == 'readability':
         transcoders.append("burify")
         transcoders.append("baidu_uck")
-    elif transcoder == 'baidu_uck':
+    elif transcoder == 'uck':
         transcoders.append("baidu_uck")
-    elif transcoder == 'baidu_uck_new':
+    elif transcoder == 'uck_new':
         transcoders.append('baidu_uck_new')
     return transcoders
 
@@ -273,6 +275,7 @@ def convert(language="en", title=None, link=None, transcoder="chengdujin", relat
     if not language or not link:
         raise Exception('[transcoder.convert] ERROR: Method not well formed!')
 
+    print ' .... ', transcoder
     link = _preprocess(link)
     transcoders = _organize_transcoders(transcoder)
     title_new, content, images = _transcode(link, transcoders, language)

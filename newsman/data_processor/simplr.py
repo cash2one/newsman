@@ -15,8 +15,8 @@ sys.setdefaultencoding("utf-8")
 sys.path.append("..")
 
 from BeautifulSoup import BeautifulSoup
-from data_processor import image_helper
-from data_processor import transcoder
+import image_helper
+import transcoder
 import math
 import posixpath
 import re
