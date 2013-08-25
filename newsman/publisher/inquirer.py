@@ -20,6 +20,7 @@ from config import rclient
 import feedparser
 
 # CONSTANTS
+from confgi import COMMAND_CLEAN_MEMORY
 from config import HOTNEWS_TITLE_AR
 from config import HOTNEWS_TITLE_EN
 from config import HOTNEWS_TITLE_JA
@@ -110,7 +111,7 @@ def get_latest_entries_by_language(language=None, limit=10, start_id=None):
         if entry_ids_total >= limit: # memory (partially) meets the limit
             entry_ids = rclient.zrevrange("news::%s" % language, 0, limit - 1)
             
-            dirty_expired_ids = False
+            dirty_expired_ids = []
             for entry_id in entry_ids:
                 if start_id and entry_id == start_id:
                     return entries
@@ -119,8 +120,9 @@ def get_latest_entries_by_language(language=None, limit=10, start_id=None):
                     entries.append(eval(entry_id_in_memory))
                 else:
                     # call clean_memory afterwards
-                    dirty_expired_ids = True
+                    dirty_expired_ids.append(entry_id)
             if dirty_expired_ids:
+                import subprocess
 
         else:
             entry_ids = rclient.zrevrange(
