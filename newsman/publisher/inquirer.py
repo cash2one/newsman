@@ -122,12 +122,6 @@ def get_latest_entries_by_language(language=None, limit=10, start_id=None):
                 else:
                     # call clean_memory afterwards
                     dirty_expired_ids.append(entry_id)
-
-            # expired ids not cleaned found
-            if dirty_expired_ids:
-                sys.path.append(os.path.join(CODE_BASE, 'newsman'))
-                from watchdog import clean_memory
-                clean_memory.clean_by_items(dirty_expired_ids)
         else:
             entry_ids = rclient.zrevrange(
                 "news::%s" % language, 0, entry_ids_total - 1)
@@ -143,12 +137,6 @@ def get_latest_entries_by_language(language=None, limit=10, start_id=None):
                     entries.append(last_entry_in_memory)
                 else:
                     dirty_expired_ids.append(entry_id)
-
-            # expired ids not cleaned found
-            if dirty_expired_ids:
-                sys.path.append(os.path.join(CODE_BASE, 'newsman'))
-                from watchdog import clean_memory
-                clean_memory.clean_by_items(dirty_expired_ids)
 
             # find out the boundary between memory and database
             last_entry_in_memory_updated = last_entry_in_memory['updated']
@@ -167,6 +155,12 @@ def get_latest_entries_by_language(language=None, limit=10, start_id=None):
                     if x != 'updated':
                         item[x] = str(y)
                 entries.append(item)
+
+        # expired ids not cleaned found
+        if dirty_expired_ids:
+            sys.path.append(os.path.join(CODE_BASE, 'newsman'))
+            from watchdog import clean_memory
+            clean_memory.clean_by_items(dirty_expired_ids)
     else:  # query the database
         entries = []
         col = Collection(db, language)
@@ -203,7 +197,7 @@ def get_previous_entries_by_language(language=None, limit=10, end_id=None):
         entry_ids_total = rclient.zcard("news::%s" % language)
         end_id_index = entry_ids_total
         if entry_ids_total:
-            # end_id is assign the most recent one
+            # end_id is assigned the most recent one
             end_id = rclient.zrevrange("news::%s" % language, 0, 0)[0]
             END_ID_IN_MEMORY = True
             limit_in_memory = entry_ids_total
@@ -220,17 +214,31 @@ def get_previous_entries_by_language(language=None, limit=10, end_id=None):
     if END_ID_IN_MEMORY:  # see if data in memory suffice
         if limit_in_memory >= limit:  # purely get from memory
             entry_ids = rclient.zrevrange("news::%s" % language, entry_ids_total - end_id_index, entry_ids_total - end_id_index + limit - 1)
+
+            dirty_expired_ids = []
             for entry_id in entry_ids:
-                entries.append(eval(rclient.get(entry_id)))
+                entry_id_in_memory = rclient.get(entry_id)
+                if entry_id_in_memory:
+                    entries.append(eval(entry_id_in_memory))
+                else:
+                    dirty_expired_ids.append(entry_id)
         else:  # memory + database
             # memory
             entry_ids = rclient.zrevrange("news::%s" % language, entry_ids_total - end_id_index, entry_ids_total - end_id_index + limit_in_memory - 1)
+
             last_entry_in_memory = None
+            dirty_expired_ids = []
             for entry_id in entry_ids:
-                last_entry_in_memory = eval(rclient.get(entry_id))
-                entries.append(last_entry_in_memory)
-            limit_in_database = limit - limit_in_memory
+                entry_id_in_memory = rclient.get(entry_id)
+                if entry_id_in_memory:
+                    last_entry_in_memory = eval(entry_id_in_memory)
+                    entries.append(last_entry_in_memory)
+                else:
+                    dirty_expired_ids.append(entry_id)
+
             last_entry_in_memory_updated = last_entry_in_memory['updated']
+            limit_in_database = limit - len(entries)
+
             # find the remaining items in database
             col = Collection(db, language)
             items = col.find({'updated': {'$lt': last_entry_in_memory_updated}}).sort('updated', -1).limit(limit_in_database)
@@ -240,6 +248,13 @@ def get_previous_entries_by_language(language=None, limit=10, end_id=None):
                     if x != 'updated':
                         item[x] = str(y)
                 entries.append(item)
+
+        # clean dirty memory
+        if dirty_expired_ids:
+            sys.path.append(os.path.join(CODE_BASE, 'newsman'))
+            from watchdog import clean_memory
+            clean_memory.clean_by_items(dirty_expired_ids)
+
         return entries
     else:  # no memory or data in memory are not enough, so query database
         entries = []
