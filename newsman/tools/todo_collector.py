@@ -19,8 +19,8 @@ import re
 
 # CONSTANTS
 from config import LOCAL
-HOME = LOCAL % 'bgm_news'
-OUTPUT = LOCAL % 'bgm_news/README.md'
+HOME = LOCAL % 'newsman/newsman'
+OUTPUT = LOCAL % 'newsman/TODO.md'
 
 
 def docs_output(docs, output):
