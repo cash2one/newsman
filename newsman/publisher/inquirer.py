@@ -18,6 +18,7 @@ from config import Collection
 from config import db
 from config import rclient
 import feedparser
+import os
 
 # CONSTANTS
 from config import COMMAND_CLEAN_MEMORY
@@ -122,7 +123,8 @@ def get_latest_entries_by_language(language=None, limit=10, start_id=None):
                     # call clean_memory afterwards
                     dirty_expired_ids.append(entry_id)
             if dirty_expired_ids:
-                import subprocess
+                sys.path.append(os.path.join(CODE_BASE, 'newsman'))
+                from watchdog import clean_memory as cm
 
         else:
             entry_ids = rclient.zrevrange(
