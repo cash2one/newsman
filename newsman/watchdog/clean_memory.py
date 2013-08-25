@@ -21,19 +21,6 @@ import time
 import cleaner
 
 
-def clean_by_item(item_id):
-    """
-    remove item-related things in memory
-    """
-    if not item_id:
-        return None
-    if not rclient.exists(item_id):
-        return None
-    # it's possible item_id in queues be visited
-    # success returns 1, else 0
-    return rclient.delete(item_id)
-
-
 def _is_zombie(item):
     """
     zombies are items in memory but not in database
@@ -51,7 +38,20 @@ def _is_zombie(item):
         return False
 
 
-def clean_by_collection():
+def clean_by_item(item_id):
+    """
+    remove item-related things in memory
+    """
+    if not item_id:
+        return None
+    if not rclient.exists(item_id):
+        return None
+    # it's possible item_id in queues be visited
+    # success returns 1, else 0
+    return rclient.delete(item_id)
+
+
+def clean_by_items():
     """
     removed a group of expired items in memory
     """
