@@ -51,7 +51,3 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 (see [LICENSE](https://github.com/chengdujin/newsman/blob/master/LICENSE)
 for full AGPL licence)
-
-**(For those who don't get the legal lingo: Basically what we're saying is
-feel free to copy our code, but please share back any changes or improvements
-that you make, in the spirit of free software)**
