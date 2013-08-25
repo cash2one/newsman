@@ -355,7 +355,7 @@ def get_latest_entries_by_category(language=None, category=None, limit=10, start
         if dirty_expired_ids:
             sys.path.append(os.path.join(CODE_BASE, 'newsman'))
             from watchdog import clean_memory
-            clean_memory.clean_by_items(dirty_expired_ids)
+            clean_memory.clean_by_items(category_name, dirty_expired_ids)
 
         return entries
     else:  # query the database
