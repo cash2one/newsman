@@ -29,8 +29,6 @@ from config import HOTNEWS_TITLE_TH
 from config import HOTNEWS_TITLE_ZH_CN
 from config import HOTNEWS_TITLE_ZH_HK
 from config import LANGUAGES
-from config import STRATEGY_WITHOUT_WEIGHTS
-from config import STRATEGY_WITH_WEIGHTS
 
 HOTNEWS_TITLE = {'en': HOTNEWS_TITLE_EN, 'ja': HOTNEWS_TITLE_JA, 'th': HOTNEWS_TITLE_TH, 'pt': HOTNEWS_TITLE_PT, 'ind':
                   HOTNEWS_TITLE_IND, 'en-rIN': HOTNEWS_TITLE_EN, 'ar': HOTNEWS_TITLE_AR, 'zh-CN': HOTNEWS_TITLE_ZH_CN, 'zh-HK': HOTNEWS_TITLE_ZH_HK}
@@ -92,10 +90,12 @@ def get_categories_by_language(language=None):
     return {'Categories': output}
 
 
-def get_latest_entries_by_language(language=None, limit=10, start_id=None, strategy=1):
+def get_latest_entries_by_language(language=None, limit=10, start_id=None):
     """
     find out latest news items by language
+    with a start_id, search entries newer than that 
     """
+
     if not language:
         return None
     if limit < 0 or limit > 100:
@@ -151,19 +151,18 @@ def get_latest_entries_by_language(language=None, limit=10, start_id=None, strat
     return entries
 
 
-def get_previous_entries_by_language(language=None, limit=10, end_id=None, strategy=1):
+def get_previous_entries_by_language(language=None, limit=10, end_id=None):
     """
-    strategy 1.query without considering weights 2.query with considering weights
+    get entries before end_id
     """
+
     if not language:
-        return None
-    if not limit:
         return None
     if limit < 0 or limit > 100:
         return None
-    language = language.strip()
     if language not in LANGUAGES:
         return None
+
     # preprocess end_id
     entry_ids_total = 0
     end_id_index = 0
@@ -240,20 +239,19 @@ def get_previous_entries_by_language(language=None, limit=10, end_id=None, strat
         pass
 
 
-def get_latest_entries_by_category(language=None, category=None, limit=10, start_id=None, strategy=1):
+def get_latest_entries_by_category(language=None, category=None, limit=10, start_id=None):
     """
     find out latest news items by category and language
+    search entries newer than that
     """
+
     if not language or not category:
-        return None
-    if not limit:
         return None
     if limit < 0 or limit > 100:
         return None
-    language = language.strip()
-    category = category.strip()
     if language not in LANGUAGES:
         return None
+
     collection_name = 'news::%s::%s' % (language, category)
     # get the latest entries
     entry_ids_total = rclient.zcard(collection_name)
@@ -306,23 +304,18 @@ def get_latest_entries_by_category(language=None, category=None, limit=10, start
     return entries
 
 
-def get_previous_entries_by_category(language=None, category=None, limit=10,
-                                     end_id=None, strategy=1):
+def get_previous_entries_by_category(language=None, category=None, limit=10, end_id=None):
     """
-    strategy 
-        1.query without considering weights 
-        2.query with considering weights
+    find entries before end_id
     """
+
     if not language or not category:
-        return None
-    if not limit:
         return None
     if limit < 0 or limit > 100:
         return None
-    language = language.strip()
-    category = category.strip()
     if language not in LANGUAGES:
         return None
+
     collection_name = 'news::%s::%s' % (language, category)
     # preprocess end_id
     entry_ids_total = 0
