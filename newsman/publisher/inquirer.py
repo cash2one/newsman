@@ -21,7 +21,7 @@ import feedparser
 import os
 
 # CONSTANTS
-from config import COMMAND_CLEAN_MEMORY
+from config import CODE_BASE
 from config import HOTNEWS_TITLE_AR
 from config import HOTNEWS_TITLE_EN
 from config import HOTNEWS_TITLE_JA
@@ -122,21 +122,38 @@ def get_latest_entries_by_language(language=None, limit=10, start_id=None):
                 else:
                     # call clean_memory afterwards
                     dirty_expired_ids.append(entry_id)
+
+            # expired ids not cleaned found
             if dirty_expired_ids:
                 sys.path.append(os.path.join(CODE_BASE, 'newsman'))
-                from watchdog import clean_memory as cm
-
+                from watchdog import clean_memory
+                clean_memory.clean_by_items(dirty_expired_ids)
         else:
             entry_ids = rclient.zrevrange(
                 "news::%s" % language, 0, entry_ids_total - 1)
+
             last_entry_in_memory = None
+            dirty_expired_ids = []
             for entry_id in entry_ids:
                 if start_id and entry_id == start_id:
                     return entries
-                last_entry_in_memory = eval(rclient.get(entry_id))
-                entries.append(last_entry_in_memory)
+                entry_id_in_memory = rclient.get(entry_id)
+                if entry_id_in_memory:
+                    last_entry_in_memory = eval(entry_id_in_memory)
+                    entries.append(last_entry_in_memory)
+                else:
+                    dirty_expired_ids.append(entry_id)
+
+            # expired ids not cleaned found
+            if dirty_expired_ids:
+                sys.path.append(os.path.join(CODE_BASE, 'newsman'))
+                from watchdog import clean_memory
+                clean_memory.clean_by_items(dirty_expired_ids)
+
+            # find out the boundary between memory and database
             last_entry_in_memory_updated = last_entry_in_memory['updated']
             limit_in_database = limit - entry_ids_total
+
             # database
             col = Collection(db, language)
             items = col.find({'updated': {'$lt': last_entry_in_memory_updated}}).sort(
