@@ -13,6 +13,26 @@ What a README.md usually contains
 - "Quickstart" documentation (how to quickly install and use your project)
 - A list of non-Python dependencies (if any) and how to install them
 
+Walkthrough
+-------------------------
+
+This project is outlined with the following modules:
+
+* `data_processor`: transcoding webpages, news summarization, TTS-generation, Searchet-based features, and mines hot and related news from server logs and stored user information; it also provides code to dedup news. it contains code that handles scaling images, making thumbnails; checking if the image is content-sensitive; checking if the content of the image matches its description, etc.
+
+* `feed_manager`: RSS-adding page, manual hot news push news page and strategy modification page 
+
+* `publisher`: news reading, image reading and etc.
+
+* `scraper`: scrapes RSS resources for news, blogs and images; APIs of SNS, APIs of SNS-based images, and streams.
+
+* `templates`: HTML, CSS and Javascript code necessary for news-page and integrated information page (Searchet-based features)
+
+* `tools`: a collection of auxilary tools, including todo-collector, feed2db,
+  transcoder_web_presentor, feed_preview, qrcode_converter and etc. 
+
+* `watchdog`: provides code to watch over the running databases and the like; clean and restore obsolete data.
+
 License
 -------
 
@@ -35,23 +55,3 @@ for full AGPL licence)
 **(For those who don't get the legal lingo: Basically what we're saying is
 feel free to copy our code, but please share back any changes or improvements
 that you make, in the spirit of free software)**
-
-Walkthrough
--------------------------
-
-This project is outlined with the following modules:
-
-* `data_processor`: transcoding webpages, news summarization, TTS-generation, Searchet-based features, and mines hot and related news from server logs and stored user information; it also provides code to dedup news. it contains code that handles scaling images, making thumbnails; checking if the image is content-sensitive; checking if the content of the image matches its description, etc.
-
-* `feed_manager`: RSS-adding page, manual hot news push news page and strategy modification page 
-
-* `publisher`: news reading, image reading and etc.
-
-* `scraper`: scrapes RSS resources for news, blogs and images; APIs of SNS, APIs of SNS-based images, and streams.
-
-* `templates`: HTML, CSS and Javascript code necessary for news-page and integrated information page (Searchet-based features)
-
-* `tools`: a collection of auxilary tools, including todo-collector, feed2db,
-  transcoder_web_presentor, feed_preview, qrcode_converter and etc. 
-
-* `watchdog`: provides code to watch over the running databases and the like; clean and restore obsolete data.
