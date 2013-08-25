@@ -206,7 +206,9 @@ def get_previous_entries_by_language(language=None, limit=10, end_id=None):
             END_ID_IN_MEMORY = False
     else:
         end_id_index = rclient.zrank("news::%s" % language, end_id)
-        END_ID_IN_MEMORY = True if end_id_index > 0 else False
+        # not existing entry --> nil
+        # first entry --> 0
+        END_ID_IN_MEMORY = True if end_id_index >= 0 else False
         if END_ID_IN_MEMORY:
             limit_in_memory = rclient.zrank("news::%s" % language, end_id)
             
