@@ -20,7 +20,7 @@ from config import rclient
 import feedparser
 
 # CONSTANTS
-from confgi import COMMAND_CLEAN_MEMORY
+from config import COMMAND_CLEAN_MEMORY
 from config import HOTNEWS_TITLE_AR
 from config import HOTNEWS_TITLE_EN
 from config import HOTNEWS_TITLE_JA
