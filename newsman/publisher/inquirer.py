@@ -109,10 +109,19 @@ def get_latest_entries_by_language(language=None, limit=10, start_id=None):
     if entry_ids_total:  
         if entry_ids_total >= limit: # memory (partially) meets the limit
             entry_ids = rclient.zrevrange("news::%s" % language, 0, limit - 1)
+            
+            dirty_expired_ids = False
             for entry_id in entry_ids:
                 if start_id and entry_id == start_id:
                     return entries
-                entries.append(eval(rclient.get(entry_id)))
+                entry_id_in_memory = rclient.get(entry_id)
+                if entry_id_in_memory:
+                    entries.append(eval(entry_id_in_memory))
+                else:
+                    # call clean_memory afterwards
+                    dirty_expired_ids = True
+            if dirty_expired_ids:
+
         else:
             entry_ids = rclient.zrevrange(
                 "news::%s" % language, 0, entry_ids_total - 1)
