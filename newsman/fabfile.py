@@ -34,7 +34,7 @@ def aws():
     env.user = 'ubuntu'
     env.hosts = ['54.251.107.116', '54.232.81.44', '54.248.227.71']
     env.key_filename = ['/home/jinyuan/Public/AWS_identifiers/mandy.pem', '/home/jinyuan/Public/AWS_identifiers/guochen.pem', '/home/jinyuan/Public/AWS_identifiers/searchet.pem']
-    env.REMOTE_CODEBASE_PATH = '/home/%s/bgm_news' % env.user
+    env.REMOTE_CODEBASE_PATH = '/home/%s/newsman' % env.user
     env.PIP_REQUIREMENTS_PATH = '%s/requirements.txt' % env.REMOTE_CODEBASE_PATH
     env.servername = ['aws_sing', 'aws_sao', 'aws_tokyo']
 
