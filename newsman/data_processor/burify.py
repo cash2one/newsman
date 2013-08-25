@@ -14,11 +14,9 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
-import chardet
 from data_processor import image_helper
 from data_processor import transcoder
 from readability import Document
-import urllib2
 
 # CONSTANTS
 from config import UCK_TIMEOUT
