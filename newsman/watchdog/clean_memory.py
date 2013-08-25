@@ -51,13 +51,15 @@ def clean_by_item(item_id):
     return rclient.delete(item_id)
 
 
-def clean_by_items(item_ids):
+def clean_by_items(news_list, item_ids):
     """
     removed a group of expired items in memory
     - remove id from queues
     - remove id from redis
     """
-    news_lists = rclient.keys('news::*')
+    for item_id in item_ids:
+        rclient.zrem(news_list, item_id)
+        clean_by_item(item_id)
 
 
 def clean():
