@@ -18,6 +18,7 @@ from BeautifulSoup import BeautifulStoneSoup
 import calendar
 import chardet
 from config import hparser
+from config import logging
 from data_processor import image_helper
 from datetime import datetime, timedelta
 import feedparser
@@ -223,10 +224,11 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
     Note: category should be added to feed table/database
     """
     if not feed_link or not feed_id or not language or not categories:
-        raise Exception(
-            "[rss_parser.parse] ERROR: Method signature not well formed for %s!" % feed_link)
+        logging.error("Method malformed!")
+        return None, None, None, None, None 
     if language not in LANGUAGES:
-        raise Exception("[rss_parser.parse] ERROR: Language not supported for %s!" % feed_link)
+        logging.error("Language not supported for %s!" % feed_link)
+        return None, None, None, None, None 
 
     def _validate_time(entry):
         """
@@ -236,59 +238,61 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
             entry['updated']) + timedelta(days=MEMORY_RESTORATION_DAYS)
         return True if deadline > datetime.now() else False
 
-    # variables d and e follow feedparser tradition
-    d = feedparser.parse(feed_link, etag=etag, modified=modified)
-    if d:
-        # http://pythonhosted.org/feedparser/reference-status.html
-        # http://pythonhosted.org/feedparser/http-etag.html#http-etag
-        status = d.status
-        if status == 301:
-            raise Exception(
-                '[rss_parser.parse] ERROR: %s has been permantently moved to a %s!' % (feed_link, d.href))
-        elif status == 304:
-            print '[rss_parser.parse] WARNING: %s server has not updated its feeds' % feed_link
-        elif status == 410:
-            raise Exception(
-                '[rss_parser.parse] ERROR: %s is gone! Admin should check the feed availability!' % feed_link)
-        elif status == 200 or status == 302:
-            # no need to worry.
-            if status == 302:
-                print '[rss_parser.parse] WARNING: %s url has been temp moved to a new place' % feed_link
+    try:
+        # variables d and e follow feedparser tradition
+        d = feedparser.parse(feed_link, etag=etag, modified=modified)
+        if d:
+            # http://pythonhosted.org/feedparser/reference-status.html
+            # http://pythonhosted.org/feedparser/http-etag.html#http-etag
+            status = d.status
+            if status == 301:
+                raise Exception(
+                    '[rss_parser.parse] ERROR: %s has been permantently moved to a %s!' % (feed_link, d.href))
+            elif status == 304:
+                print '[rss_parser.parse] WARNING: %s server has not updated its feeds' % feed_link
+            elif status == 410:
+                raise Exception(
+                    '[rss_parser.parse] ERROR: %s is gone! Admin should check the feed availability!' % feed_link)
+            elif status == 200 or status == 302:
+                # no need to worry.
+                if status == 302:
+                    print '[rss_parser.parse] WARNING: %s url has been temp moved to a new place' % feed_link
 
-            if not feed_title:
-                # if title were not found in feed, an AttributeError would be
-                # raised.
-                feed_title = urllib2.unquote(hparser.unescape(d.feed.title)).strip()
-            else:
-                feed_title = feed_title.strip()
-                feed_title_latest = urllib2.unquote(hparser.unescape(d.feed.title)).strip()
-                if feed_title != feed_title_latest:
-                    # change feed title
-                    print '[rss_parser.parse] WARNING: %s title changed! Please update feed table/database' % feed_link
-                    print '    old title:', feed_title
-                    print '    new title:', feed_title_latest
+                if not feed_title:
+                    # if title were not found in feed, an AttributeError would be raised.
+                    feed_title = urllib2.unquote(hparser.unescape(d.feed.title)).strip()
+                else:
+                    feed_title = feed_title.strip()
+                    feed_title_latest = urllib2.unquote(hparser.unescape(d.feed.title)).strip()
+                    if feed_title != feed_title_latest:
+                        # change feed title
+                        print '[rss_parser.parse] WARNING: %s title changed! Please update feed table/database' % feed_link
+                        print '    old title:', feed_title
+                        print '    new title:', feed_title_latest
 
-            # update etag/modified
-            etag = None
-            modified = None
-            try:
-                etag = d.etag
-            except AttributeError:
+                # update etag/modified
+                etag = None
+                modified = None
                 try:
-                    modified = d.modified
+                    etag = d.etag
                 except AttributeError:
-                    pass
+                    try:
+                        modified = d.modified
+                    except AttributeError:
+                        pass
 
-            if 'entries' in d:
-                language = language if 'language' not in d else d.language
-                # an Exception might be raised from _read_entry
-                entries = [_read_entry(e, feed_id, feed_title, language, categories)
-                           for e in d.entries]
-                return filter(_validate_time, entries), status, feed_title, etag, modified
+                if 'entries' in d:
+                    language = language if 'language' not in d else d.language
+                    # an Exception might be raised from _read_entry
+                    entries = [_read_entry(e, feed_id, feed_title, language, categories) for e in d.entries]
+                    return filter(_validate_time, entries), status, feed_title, etag, modified
+                else:
+                    raise Exception("[rss_parser.parse] ERROR: Feed %s has no items!" % feed_id)
             else:
-                raise Exception("[rss_parser.parse] ERROR: Feed %s has no items!" % feed_id)
+                raise Exception(
+                    '[rss_parser.parse] ERROR: HTTP ERROR CODE %i for %s' % (status, feed_link))
         else:
-            raise Exception(
-                '[rss_parser.parse] ERROR: HTTP ERROR CODE %i for %s' % (status, feed_link))
-    else:
-        raise Exception("[rss_parser.parse] ERROR: Cannot parse %s correctly!" % feed_id)
+            raise Exception("[rss_parser.parse] ERROR: Cannot parse %s correctly!" % feed_id)
+    except Exception as k:
+        logging.exception(str(k))
+        return None, None, None, None, None
