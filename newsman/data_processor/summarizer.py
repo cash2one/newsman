@@ -16,6 +16,7 @@ sys.path.append('..')
 
 import chardet
 import html2text
+import logging
 import nltk
 
 # CONSTANTS
