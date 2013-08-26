@@ -15,6 +15,7 @@ sys.setdefaultencoding('UTF-8')
 sys.path.append("..")
 
 from config import hparser
+from config import logging
 import image_helper
 import urllib2
 
@@ -51,10 +52,10 @@ def _extract(link):
             images = _collect_images(content)
             return title, content, images
         else:
-            print '[baidu_uck_new] ERROR: UCK cannot parse the link'
+            logging.info('UCK cannot parse the link')
             return None, None, None
     else:
-        print '[baidu_uck_new._extract] ERROR: Get nothing from UCK server'
+        logging.info('Get nothing from UCK server')
         return None, None, None
 
 
@@ -63,11 +64,11 @@ def convert(link):
     call UCK's new interface to get title, images and content
     """
     if not link:
-        raise Exception('[baidu_uck_new.convert] ERROR: Cannot transcode nothing!')
+        logging.error('Cannot transcode nothing!')
 
     try:
         title, content, images = _extract(link)
         return title, content, images
     except Exception as k:
-        print '[baidu_uck_new.convert]', str(k)
+        logging.info(str(k))
         return None, None, None
