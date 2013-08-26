@@ -19,9 +19,6 @@ import image_helper
 from readability import Document
 import transcoder
 
-# CONSTANTS
-from config import UCK_TIMEOUT
-
 
 def _collect_images(content):
     """
