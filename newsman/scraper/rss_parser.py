@@ -300,7 +300,8 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
                     # an Exception might be raised from _read_entry
                     entries = []
                     for e in d.entries:
-                        entry = _read_entry(e, feed_id, feed_title, language, categories)
+                        entry = _read_entry(
+                            e, feed_id, feed_title, language, categories)
                         if entry:
                             entries.append(entry)
                     if entries:
