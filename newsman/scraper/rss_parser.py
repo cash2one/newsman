@@ -298,8 +298,11 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
                 if 'entries' in d:
                     language = language if 'language' not in d else d.language
                     # an Exception might be raised from _read_entry
-                    entries = [_read_entry(e, feed_id, feed_title, language, categories)
-                               for e in d.entries]
+                    entries = []
+                    for e in d.entries:
+                        entry = _read_entry(e, feed_id, feed_title, language, categories)
+                        if entry:
+                            entries.append(entry)
                     if entries:
                         # the FINAL return
                         return filter(_validate_time, entries), status, feed_title, etag, modified
