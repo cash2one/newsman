@@ -1,5 +1,5 @@
-#!/usr/bin/env python 
-#-*- coding: utf-8 -*- 
+#!/usr/bin/env python
+#-*- coding: utf-8 -*-
 
 """
 A wrapper for UCK's new interface
@@ -9,8 +9,8 @@ A wrapper for UCK's new interface
 # @created Aug. 25, 2013
 
 
-import sys 
-reload(sys) 
+import sys
+reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append("..")
 
@@ -36,7 +36,8 @@ def _transcode(link):
     send link to uck and get the data
     """
     try:
-        html = urllib2.urlopen('%s%s' % (UCK_TRANSCODING_NEW, link), timeout=UCK_TIMEOUT).read()
+        html = urllib2.urlopen(
+            '%s%s' % (UCK_TRANSCODING_NEW, link), timeout=UCK_TIMEOUT).read()
         data = urllib2.unquote(hparser.unescape(html))
         return data
     except Exception as k:
@@ -53,8 +54,10 @@ def _extract(link):
         data = eval(data_string)
 
         if int(data['status']) == 1:
-            title = None if 'title' not in data or not data['title'] else data['title']
-            content = None if 'content' not in data or not data['content'] else data['content']
+            title = None if 'title' not in data or not data[
+                'title'] else data['title']
+            content = None if 'content' not in data or not data[
+                'content'] else data['content']
             images = _collect_images(content)
             return title, content, images
         else:
