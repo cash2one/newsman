@@ -104,7 +104,7 @@ def _compose(language, title, content):
     combine content with a template
     """
     if not content or not language or not title:
-        logging.exception("Method malformed!")
+        logging.error("Method malformed!")
         return None
 
     try:
@@ -165,7 +165,7 @@ def _transcode(url, transcoders, language=None):
     organize different transcoders
     """
     if not url or not transcoders:
-        logging.exception("Method malformed!")
+        logging.error("Method malformed!")
         return None, None, None
 
     try:
