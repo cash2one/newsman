@@ -162,6 +162,7 @@ def get_latest_entries_by_language(language=None, limit=10, start_id=None):
             sys.path.append(os.path.join(CODE_BASE, 'newsman'))
             from watchdog import clean_memory
             clean_memory.clean_by_items(category_name, dirty_expired_ids)
+            logging.warning('Memory contains dirty expired items')
 
         return entries
     else:  # query the database
@@ -261,6 +262,7 @@ def get_previous_entries_by_language(language=None, limit=10, end_id=None):
             sys.path.append(os.path.join(CODE_BASE, 'newsman'))
             from watchdog import clean_memory
             clean_memory.clean_by_items(category_name, dirty_expired_ids)
+            logging.warning('Memory contains dirty expired items')
 
         return entries
     else:  # no memory or data in memory are not enough, so query database
@@ -357,6 +359,7 @@ def get_latest_entries_by_category(language=None, category=None, limit=10, start
             sys.path.append(os.path.join(CODE_BASE, 'newsman'))
             from watchdog import clean_memory
             clean_memory.clean_by_items(category_name, dirty_expired_ids)
+            logging.warning('Memory contains dirty expired items')
 
         return entries
     else:  # query the database
@@ -456,6 +459,7 @@ def get_previous_entries_by_category(language=None, category=None, limit=10, end
             sys.path.append(os.path.join(CODE_BASE, 'newsman'))
             from watchdog import clean_memory
             clean_memory.clean_by_items(category_name, dirty_expired_ids)
+            logging.warning('Memory contains dirty expired items')
 
         return entries
     else:  # no memory or data in memory are not enough, so query database
