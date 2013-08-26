@@ -355,11 +355,15 @@ def convert(url, language):
     """
     if not url:
         logging.error("Cannot transcode nothing!")
-        return None
+        return None, None, None
 
     try:
         readable = Simplr(url, language)
-        return readable.short_title, readable.content, readable.images
+        if readable:
+            return readable.short_title, readable.content, readable.images
+        else:
+            logging.error('Simplr cannot parse the data')
+            return None, None, None
     except Exception as k:
         logging.exception(str(k))
         return None, None, None
