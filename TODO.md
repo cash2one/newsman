@@ -18,6 +18,7 @@ ToDos - High Priority
 14. 去掉html内容的代码换成那个bs4
     [link](http://azd325.github.io/blog/2013/08/18/python-strip-tags/)
 15. 融合[Scrapely](https://github.com/scrapy/scrapely)到转码器中
+16. 实现Feed地址清理工具（去掉诸如#、?等参数）
 
 ToDos - Low Priority
 ---------------------
