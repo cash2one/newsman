@@ -213,6 +213,7 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
         except AttributeError as k:
             entry['tags'] = None
 
+        # the final return
         return entry
     except Exception as k:
         logging.exception(str(k))
@@ -300,6 +301,7 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
                     entries = [_read_entry(e, feed_id, feed_title, language, categories)
                                for e in d.entries]
                     if entries:
+                        # the FINAL return
                         return filter(_validate_time, entries), status, feed_title, etag, modified
                     else:
                         logging.error('Feed parsing goes wrong!')

@@ -48,6 +48,8 @@ def update(entry=None):
         for category in entry['categories']:
             rclient.zadd('news::%s::%s' %
                          (entry['language'], category), entry['updated'], entry['_id'])
+        # final return
+        return True
     except Exception as k:
         logging.exception(str(k))
         return None
