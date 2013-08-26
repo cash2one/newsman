@@ -29,10 +29,6 @@ rclient = redis.StrictRedis(host='127.0.0.1')
 from HTMLParser import HTMLParser
 hparser = HTMLParser()
 
-LOG_FORMAT = "%(levelname)-9s %(asctime)-25s %(lineno)-3d:%(filename)-14s %(message)s"
-# critical, error, warning, info, debug, notset
-logging.basicConfig(format=LOG_FORMAT, level=logging.DEBUG)
-
 
 # CONSTANTS
 #PUBLIC = 'http://mobile-global.baidu.com/news/%s'  # hk01-hao123-mob01/mob02
@@ -45,6 +41,10 @@ PUBLIC = 'http://54.251.107.116/%s'                # AWS singapore
 LOCAL = '/home/jinyuan/Downloads/%s'               # local server prefix
 
 CODE_BASE = LOCAL % 'newsman'
+
+LOG_FORMAT = "%(levelname)-9s %(asctime)-25s %(lineno)-3d:%(filename)-14s %(message)s"
+# critical, error, warning, info, debug, notset
+logging.basicConfig(filename='%s/logs.txt' % CODE_BASE, format=LOG_FORMAT, level=logging.DEBUG)
 
 TRANSCODED_LOCAL_DIR = LOCAL % 'STATIC/news/ts/'
 TRANSCODED_PUBLIC_DIR = PUBLIC % 'ts/'
