@@ -35,8 +35,13 @@ def _transcode(link):
     """
     send link to uck and get the data
     """
-    html = urllib2.urlopen('%s%s' % (UCK_TRANSCODING_NEW, link), timeout=UCK_TIMEOUT).read()
-    return urllib2.unquote(hparser.unescape(html))
+    try:
+        html = urllib2.urlopen('%s%s' % (UCK_TRANSCODING_NEW, link), timeout=UCK_TIMEOUT).read()
+        data = urllib2.unquote(hparser.unescape(html))
+        return data
+    except Exception as k:
+        logging.exception(str(k))
+        return None
 
 
 def _extract(link):
@@ -46,13 +51,14 @@ def _extract(link):
     data_string = _transcode(link)
     if data_string:
         data = eval(data_string)
+
         if int(data['status']) == 1:
             title = None if 'title' not in data or not data['title'] else data['title']
             content = None if 'content' not in data or not data['content'] else data['content']
             images = _collect_images(content)
             return title, content, images
         else:
-            logging.info('UCK cannot parse the link')
+            logging.info('UCK cannot parse the link: status != 1')
             return None, None, None
     else:
         logging.info('Get nothing from UCK server')
@@ -65,6 +71,7 @@ def convert(link):
     """
     if not link:
         logging.error('Cannot transcode nothing!')
+        return None, None, None
 
     try:
         title, content, images = _extract(link)
