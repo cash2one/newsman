@@ -16,6 +16,7 @@ sys.path.append('..')
 
 import chardet
 from config import hparser
+from config import logging
 import baidu_uck
 import baidu_uck_new
 import burify
@@ -73,7 +74,7 @@ class TranscoderAPI(threading.Thread):
             try:
                 self.result = eval(self.transcoder).convert(self.url)
             except Exception as k:
-                print '[transcoder.TranscoderAPI]', str(k)
+                logging.exception(str(k))
                 self.result = None, None, None
 
 
@@ -273,9 +274,12 @@ def convert(language="en", title=None, link=None, transcoder="chengdujin", relat
     * stdout default value False
     """
     if not language or not link:
-        raise Exception('[transcoder.convert] ERROR: Method not well formed!')
+        logging.error('Method not well formed!')
+        if not stdout:
+            return None, None, None, None
+        else:
+            return None, None
 
-    print ' .... ', transcoder
     link = _preprocess(link)
     transcoders = _organize_transcoders(transcoder)
     title_new, content, images = _transcode(link, transcoders, language)
@@ -295,7 +299,7 @@ def convert(language="en", title=None, link=None, transcoder="chengdujin", relat
             return title, content
     else:
         if not stdout:
-            raise Exception(
-                '[transcoder.convert] ERROR: Transcoder %s failed for %s' % (transcoder, link))
+            logging.error('Transcoder %s failed for %s' % (transcoder, link))
+            return None, None, None, None
         else:
             return None, None
