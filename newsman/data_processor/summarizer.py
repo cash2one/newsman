@@ -29,7 +29,7 @@ def _get_shorter_text(content, language, limit):
     limit the number of words to 500
     """
     if not content or not language:
-        logging.error('Method malformed')
+        logging.error('Method malformed!')
         return None
 
     try:
@@ -64,7 +64,7 @@ def _is_valid(content, language):
     check if the content meets the need
     """
     if not content or not language:
-        logging.error('Method malformed')
+        logging.error('Method malformed!')
         return False
 
     try:
@@ -110,7 +110,7 @@ def _get_summary(content, language):
     find out the first readable summary
     """
     if not content or not language:
-        logging.error('Method malformed')
+        logging.error('Method malformed!')
         return None
 
     try:
