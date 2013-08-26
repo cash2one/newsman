@@ -24,9 +24,6 @@ import re
 import tinysegmenter
 import urlparse
 
-# CONSTANTS
-from config import UCK_TIMEOUT
-
 
 class Simplr:
     regexps = {
