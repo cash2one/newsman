@@ -86,8 +86,12 @@ def find_image(link=None):
 
     try:
         link = _link_process(link)
-        image_normalized = normalize(link)
-        return image_normalized[0] if image_normalized else None
+        if link:
+            image_normalized = normalize(link)
+            return image_normalized[0] if image_normalized else None
+        else:
+            logging.error('Cannot parse link correctly')
+            return None
     except Exception as k:
         logging.exception(str(k))
         return None
@@ -264,8 +268,11 @@ def normalize(images):
             else:
                 if thumbnail.is_valid_image(image):
                     width, height = thumbnail.get_image_size(image)
-                    return {'url': image, 'width': width, 'height': height}
-
+                    if width and height:
+                        return {'url': image, 'width': width, 'height': height}
+                    else:
+                        logging.error('Cannot get image size')
+                        return None
             return None
         except IOError as k:
             logging.exception(str(k))
