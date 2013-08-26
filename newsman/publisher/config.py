@@ -14,6 +14,7 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 
 # SERVICES
+import logging
 from pymongo.connection import Connection
 from pymongo.database import Database
 from pymongo.collection import Collection
@@ -27,6 +28,10 @@ rclient = redis.StrictRedis(host='127.0.0.1')
 
 from HTMLParser import HTMLParser
 hparser = HTMLParser()
+
+LOG_FORMAT = "%(levelname)-9s %(asctime)-25s %(lineno)-3d:%(filename)-14s %(message)s"
+# critical, error, warning, info, debug, notset
+logging.basicConfig(format=LOG_FORMAT, level=logging.DEBUG)
 
 
 # CONSTANTS
