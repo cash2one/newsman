@@ -267,7 +267,7 @@ def _organize_transcoders(transcoder="chengdujin"):
     return transcoders
 
 
-def _preprocess(link):
+def _preprocess(url):
     """
     get the real address out
     """
@@ -276,8 +276,8 @@ def _preprocess(link):
         return None
 
     try:
-        last_http_index = link.rfind('http')
-        return link[last_http_index:].strip()
+        last_http_index = url.rfind('http')
+        return url[last_http_index:].strip()
     except Exception as k:
         logging.exception(str(k))
         return None
