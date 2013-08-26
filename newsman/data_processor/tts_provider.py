@@ -207,10 +207,12 @@ def _download(language='en', query='Service provided by Baidu', tmp_file='do_not
     1. https://github.com/hungtruong/Google-Translate-TTS/blob/master/GoogleTTS.py
     2. https://github.com/gavinmh/tts-api/blob/master/text_segmenter.py
     """
-    segments = _query_segment(language, query)
 
-    # download chunks and write them to the output file
     try:
+        # break a long sentence/paragraph into google-acceptable length
+        segments = _query_segment(language, query)
+
+        # download chunks and write them to the output file
         threads = []
         for segment in segments:
             if segment:
@@ -218,7 +220,8 @@ def _download(language='en', query='Service provided by Baidu', tmp_file='do_not
                 gt_request = GoogleTranslateAPI(language, segment)
                 threads.append(gt_request)
                 gt_request.start()
-                gt_request.join(GOOGLE_TTS_TIMEOUT)
+                #gt_request.join(GOOGLE_TTS_TIMEOUT)
+                gt_request.join()
 
         out = open(tmp_file, 'a')
         download_completed = True
@@ -235,9 +238,12 @@ def _download(language='en', query='Service provided by Baidu', tmp_file='do_not
         if download_completed:
             return tmp_file
         else:
-            raise Exception
+            logging.error('Download not completed, now removing the file')
+            if os.path.exists(tmp_file):
+                os.remove(tmp_file)
+            return None
     except Exception as k:
-        print '[tts_provider._download] ERROR: part of tts dowload went wrong, now removing the file', str(k)
+        logging.exception('Part of tts dowload went wrong, now removing the file: %s' % str(k))
         if os.path.exists(tmp_file):
             os.remove(tmp_file)
         return None
