@@ -16,11 +16,12 @@ sys.path.append('..')
 
 from BeautifulSoup import BeautifulSoup
 from config import hparser
+from config import logging
 from cStringIO import StringIO
-from data_processor import thumbnail
 import Image
 import os
 import re
+import thumbnail
 import urllib2
 import urlparse
 
@@ -31,7 +32,7 @@ from config import MIN_IMAGE_SIZE
 from config import TRANSCODED_LOCAL_DIR
 from config import UCK_TIMEOUT
 
-
+# creat images local directory if it does not exist
 if not os.path.exists(IMAGES_LOCAL_DIR):
     os.mkdir(IMAGES_LOCAL_DIR)
 
@@ -213,6 +214,7 @@ def normalize(images):
     for list of images, remove images that don't match with MIN_IMAGE_SIZE;
     for an image, return None if it doesn't matches with MIN_IMAGE_SIZE
     """
+
     def _check_image(image):
         """
         check an image if it matches with MIN_IMAGE_SIZE
