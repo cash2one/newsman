@@ -15,6 +15,7 @@ sys.setdefaultencoding('UTF-8')
 
 from bson.objectid import ObjectId
 from config import Collection, db
+from config import logging
 from config import rclient
 import feedparser
 import os
@@ -68,7 +69,7 @@ def get_categories_by_language(language=None):
                     if len(category_images[category]) == images_limit:
                         break
     else:
-        print "ERROR: %s not supported! Or database is corrupted!" % language
+        logging.error("%s not supported! Or database is corrupted!" % language)
 
     # find hotnews_image from hot news
     # category_images['hotnews']
