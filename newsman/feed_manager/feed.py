@@ -14,7 +14,8 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append("..")
 
-from feed_manager import database as db_feeds
+from config import logging
+import database as db_feeds
 import feedparser
 from scraper import rss
 
