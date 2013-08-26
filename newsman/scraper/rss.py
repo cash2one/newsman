@@ -15,16 +15,17 @@ sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
 import calendar
+from config import logging
 from datetime import datetime, timedelta
+from data_processor import image_helper
 from data_processor import summarizer
 from data_processor import transcoder
 from data_processor import tts_provider
-from data_processor import image_helper
+import database as db_news
 from feed_manager import database as db_feeds
+import memory
 import random
-from scraper import database as db_news
-from scraper import memory
-from scraper import rss_parser
+import rss_parser
 import time
 
 # CONSTANTS
@@ -253,17 +254,24 @@ def update(feed_link=None, feed_id=None, language=None, categories=None, transco
             entries, status_new, feed_title_new, etag_new, modified_new = rss_parser.parse(
                 feed_link, feed_id, feed_title, language, categories, etag, modified)
 
-            # filter out existing entries in db_news
-            # there are some possible exceptions -- yet let it be
-            entries = db_news.dedup(entries, language)
+            if entries:
+                # filter out existing entries in db_news
+                # there are some possible exceptions -- yet let it be
+                entries = db_news.dedup(entries, language)
 
-            # and do tts, big_images, image as well as transcode.
-            _value_added_process(entries, language, transcoder_type)
+                if entries:
+                    # and do tts, big_images, image as well as transcode.
+                    _value_added_process(entries, language, transcoder_type)
 
-            # feed_title, etag and modified to db_feeds
-            # only feed_id is necessary, others are optional **kwargs
-            db_feeds.update(feed_id=feed_id, status=status_new,
-                            feed_title=feed_title_new, etag=etag_new, modified=modified_new)
+                    # feed_title, etag and modified to db_feeds
+                    # only feed_id is necessary, others are optional **kwargs
+                    db_feeds.update(feed_id=feed_id, status=status_new, feed_title=feed_title_new, etag=etag_new, modified=modified_new)
+                else:
+                    logging.error('Nothing from RSS is found new!')
+                    return None
+            else:
+                logging.error('Nothing from RSS is updated!')
+                return None
         except Exception as k:
             print '[rss.update]', str(k)
     else:
