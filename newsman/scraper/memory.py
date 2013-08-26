@@ -14,6 +14,7 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
+from config import logging
 from config import rclient
 
 # CONSTANTS
@@ -26,20 +27,25 @@ def update(entry=None):
     add news and its attributes to memory
     """
     if not entry:
+        logging.error('Method malformed!')
         return None
 
-    # add an entry to memory
-    # add a piece of news into memory
-    rclient.set(entry['_id'], entry)
+    try:
+        # add an entry to memory
+        # add a piece of news into memory
+        rclient.set(entry['_id'], entry)
 
-    # expired in redis is counted in seconds
-    expiration = MEMORY_EXPIRATION_DAYS * 24 * 60 * 60
-    rclient.expire(entry['_id'], expiration)
+        # expired in redis is counted in seconds
+        expiration = MEMORY_EXPIRATION_DAYS * 24 * 60 * 60
+        rclient.expire(entry['_id'], expiration)
 
-    # add entry ids to the language list
-    rclient.zadd("news::%s" % entry['language'], entry['updated'], entry['_id'])
-    # print entry['_id'], 'is added to memory', rclient.zcard(language)
+        # add entry ids to the language list
+        rclient.zadd("news::%s" % entry['language'], entry['updated'], entry['_id'])
+        # print entry['_id'], 'is added to memory', rclient.zcard(language)
 
-    # add entry ids to the category list
-    for category in entry['categories']:
-        rclient.zadd('news::%s::%s' % (entry['language'], category), entry['updated'], entry['_id'])
+        # add entry ids to the category list
+        for category in entry['categories']:
+            rclient.zadd('news::%s::%s' % (entry['language'], category), entry['updated'], entry['_id'])
+    except Exception as k:
+        logging.exception(str(k))
+        return None
