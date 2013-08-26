@@ -128,7 +128,7 @@ def extract(summary, transcoded, language):
     get the summary/first paragraph, text only
     """
     if not summary and not transcoded:
-        logging.exception('No data is found!')
+        logging.error('No data is found!')
         return None
 
     try:
