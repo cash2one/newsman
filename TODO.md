@@ -1,7 +1,7 @@
 ToDos - High Priority
 ----------------------
 1. 预警代码整理、重构
-2. 自定义Exception类，并替换相应代码
+2. 服务器质量监控
 3. 理清每个函数的返回类型（raise Exception or None?）
 4. 输出改为logging
 5. 使用Fabric进行发布
@@ -18,7 +18,6 @@ ToDos - High Priority
 14. 去掉html内容的代码换成那个bs4
     [link](http://azd325.github.io/blog/2013/08/18/python-strip-tags/)
 15. 融合[Scrapely](https://github.com/scrapy/scrapely)到转码器中
-16. 服务器质量监控
 
 ToDos - Low Priority
 ---------------------
@@ -27,14 +26,16 @@ ToDos - Low Priority
 3. 判断图片是否是黄图
 4. 社交账户好友信息抓取
 5. 热点新闻提取
-6. 新闻去重
-7. 类别类似新闻
-8. Bugu用户账户代码转移
-9. Minerva代码转移
-10. 详情页增加夜间、字体大小、分享等代码
-11. 为PM提供RSS管理的Web界面
-12. 增加在线生成临时图片和MP3的接口
-13. Feed管理平台
+6. 新闻摘要
+7. 新闻去重
+8. 类别类似新闻
+9. Bugu用户账户代码转移
+10. Minerva代码转移
+11. 详情页增加夜间、字体大小、分享等代码
+12. 为PM提供RSS管理的Web界面
+13. 增加在线生成临时图片和MP3的接口
+14. Feed管理平台
+15. 自定义Exception类，并替换相应代码
 
 Dones
 ------
