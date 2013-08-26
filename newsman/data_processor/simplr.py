@@ -15,6 +15,7 @@ sys.setdefaultencoding("utf-8")
 sys.path.append("..")
 
 from BeautifulSoup import BeautifulSoup
+from config import logging
 import image_helper
 import transcoder
 import math
@@ -356,11 +357,12 @@ def convert(url, language):
     an interface to expose Simplr
     """
     if not url:
-        raise Exception("[simplr.convert] ERROR: Cannot transcode nothing!")
+        logging.error("Cannot transcode nothing!")
+        return None
 
     try:
         readable = Simplr(url, language)
         return readable.short_title, readable.content, readable.images
     except Exception as k:
-        print '[simplr.convert]', str(k)
+        logging.exception(str(k))
         return None, None, None
