@@ -1,21 +1,24 @@
 ToDos - High Priority
 ----------------------
 1. 预警代码整理、重构
-2. Feed管理平台
-3. 自定义Exception类，并替换相应代码
-4. 理清每个函数的返回类型（raise Exception or None?）
-5. 服务器质量监控
-6. 数据整理代码整理、重构
-7. URL处理换成gruns/furl
-8. 测试标题提取使用Lassie(多国语言)
-9. qrconverter类似脚本使用docopt/docopt
-10. 为每个文件增加开源声明
+2. 自定义Exception类，并替换相应代码
+3. 理清每个函数的返回类型（raise Exception or None?）
+4. 输出改为logging
+5. 使用Fabric进行发布
+6. data_processor代码整理、重构
+7. 采用nose/coverage进行测试
+8. URL处理换成gruns/furl
+9. 测试标题提取使用Lassie(多国语言)
+10. qrconverter类似脚本使用docopt/docopt
 11. thumbnail/image_helper重新构造
-12. 修改本文档
-13. Redis expire可能会失效，访问时增加检查和清理
+12. 修改README
+13. 参照谷歌编码风格
+    [中文](http://zh-google-styleguide.readthedocs.org/en/latest/google-python-styleguide/)
+    [EN](http://google-styleguide.googlecode.com/svn/trunk/pyguide.html)
 14. 去掉html内容的代码换成那个bs4
     [link](http://azd325.github.io/blog/2013/08/18/python-strip-tags/)
 15. 融合[Scrapely](https://github.com/scrapy/scrapely)到转码器中
+16. 服务器质量监控
 
 ToDos - Low Priority
 ---------------------
@@ -31,9 +34,7 @@ ToDos - Low Priority
 10. 详情页增加夜间、字体大小、分享等代码
 11. 为PM提供RSS管理的Web界面
 12. 增加在线生成临时图片和MP3的接口
-13. 参照谷歌编码风格
-    [中文](http://zh-google-styleguide.readthedocs.org/en/latest/google-python-styleguide/)
-    [EN](http://google-styleguide.googlecode.com/svn/trunk/pyguide.html)
+13. Feed管理平台
 
 Dones
 ------
@@ -52,7 +53,8 @@ Dones
 13. 包结构合理化
 14. 抓取改为每处理完一个存储数据库和内存
 15. Task相关代码分解、重构
-
+16. 为项目增加开源声明
+17. Redis expire可能会失效，访问时增加检查和清理
 
 ToDos - Generated from docs
 --------------------------
