@@ -14,6 +14,7 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
+from config import logging
 import image_helper
 import transcoder
 from readability import Document
@@ -35,7 +36,8 @@ def convert(link):
     and return the transcoded page and images found in it
     """
     if not link:
-        raise Exception('[burify.convert] ERROR: Cannot transcode nothing!')
+        logging.error('Cannot transcode nothing!')
+        return None, None, None
 
     try:
         data = transcoder.prepare_link(link)
@@ -43,5 +45,5 @@ def convert(link):
         images = _collect_images(article.summary())
         return article.short_title(), article.summary(html_partial=False), images
     except Exception as k:
-        print '[burify.convert]', str(k)
+        logging.exception(str(k))
         return None, None, None
