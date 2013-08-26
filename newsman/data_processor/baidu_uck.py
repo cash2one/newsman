@@ -16,11 +16,9 @@ sys.path.append('..')
 
 from config import hparser
 from config import logging
-from BeautifulSoup import BeautifulSoup
-from BeautifulSoup import NavigableString
-from BeautifulSoup import Tag
-from data_processor import image_helper
-from data_processor import thumbnail
+from BeautifulSoup import BeautifulSoup, NavigableString, Tag
+import image_helper
+import thumbnail
 import urllib2
 
 # CONSTANTS
