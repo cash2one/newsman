@@ -24,26 +24,35 @@ def _read_source(d=None, feed_link=None, language=None, categories=None):
     """
     parse the feed for meta information
     """
-    if 'feed' in d:
-        feed = {}
-        # read in passed values
-        feed['feed_link'] = feed_link
-        feed['categories'] = categories
-        feed['language'] = language
+    if not d or not feed_link or not language or not categories:
+        logging.error('Method malformed!')
+        return None
 
-        if 'title' in d.feed:
-            feed['feed_title'] = d.feed.title.strip()
-        if 'status' in d:
-            feed['status'] = d.status
-        if 'rights' in d.feed:
-            feed['rights'] = d.feed.rights.strip()
-        if 'etag' in d:
-            feed['etag'] = d.feed.etag.strip()
-        if 'modified' in d:
-            feed['modified'] = d.feed.modified.strip()
-        return feed
-    else:
-        raise Exception('[feed._read_source] ERROR: Feed %s malformed!' % feed_link)
+    try:
+        if 'feed' in d:
+            feed = {}
+            # read in passed values
+            feed['feed_link'] = feed_link
+            feed['categories'] = categories
+            feed['language'] = language
+
+            if 'title' in d.feed:
+                feed['feed_title'] = d.feed.title.strip()
+            if 'status' in d:
+                feed['status'] = d.status
+            if 'rights' in d.feed:
+                feed['rights'] = d.feed.rights.strip()
+            if 'etag' in d:
+                feed['etag'] = d.feed.etag.strip()
+            if 'modified' in d:
+                feed['modified'] = d.feed.modified.strip()
+            return feed
+        else:
+            logging.exception('Feed %s is malformed!' % feed_link)
+            return None
+    except Exception as k:
+        logging.exception(str(k))
+        return None
 
 
 # TODO: implement _link_cleaner!
@@ -52,16 +61,20 @@ def add(feed_link=None, language=None, categories=None, transcoder_type="chengdu
     read rss/atom meta information from a given feed
     """
     if not feed_link or not language:
-        raise Exception("[feed.add] ERROR: Method not well formed!")
+        logging.error("[feed.add] ERROR: Method not well formed!")
+        return None
 
-    d = feedparser.parse(feed_link)
-    if d:
-        # feed level
-        feed = _read_source(d, feed_link, language, categories)
-        feed_id = db_feeds.save(feed)
-        # add entries of this feed
-        rss.update(feed_link=feed_link, feed_id=feed_id, language=language,
-                   categories=categories, transcoder_type=transcoder_type)
-    else:
-        raise Exception(
-            "[feed.add] ERROR: RSS source %s cannot be interpreted!" % feed_link)
+    try:
+        d = feedparser.parse(feed_link)
+        if d:
+            # feed level
+            feed = _read_source(d, feed_link, language, categories)
+            feed_id = db_feeds.save(feed)
+            # add entries of this feed
+            rss.update(feed_link=feed_link, feed_id=feed_id, language=language, categories=categories, transcoder_type=transcoder_type)
+        else:
+            logging.exception("RSS source %s cannot be interpreted!" % feed_link)
+            return None
+    except Exception as k:
+        logging.exception(str(k))
+        return None
