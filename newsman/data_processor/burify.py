@@ -38,9 +38,17 @@ def convert(link):
 
     try:
         data = transcoder.prepare_link(link)
-        article = Document(data)
-        images = _collect_images(article.summary())
-        return article.short_title(), article.summary(html_partial=False), images
+        if data:
+            article = Document(data)
+            if article:
+                images = _collect_images(article.summary())
+                return article.short_title(), article.summary(html_partial=False), images
+            else:
+                logging.error('Burify cannot recognize the data')
+                return None, None, None
+        else:
+            logging.error('Cannot parse link correctly')
+            return None, None, None
     except Exception as k:
         logging.exception(str(k))
         return None, None, None
