@@ -151,7 +151,8 @@ def _combine(content, images):
         # for now, if there are more than one image, take only one of them
         biggest = image_helper.find_biggest_image(images)
         IMAGE_TAG = '<img src="%s" width="%s" height="%s">'
-        image = IMAGE_TAG % (biggest['url'], str(biggest['width']), str(biggest['height']))
+        image = IMAGE_TAG % (
+            biggest['url'], str(biggest['width']), str(biggest['height']))
         return "%s %s" % (image, content), images
     except Exception as k:
         logging.exception(str(k))
@@ -188,16 +189,20 @@ def _transcode(url, transcoders, language=None):
 
         if 'baidu_uck' in transcoders and 'baidu_uck' in threads:
             if threads['baidu_uck'].result:
-                uck_title, uck_content, uck_images = threads['baidu_uck'].result
+                uck_title, uck_content, uck_images = threads[
+                    'baidu_uck'].result
         if 'baidu_uck_new' in transcoders and 'baidu_uck_new' in threads:
             if threads['baidu_uck_new'].result:
-                uck_new_title, uck_new_content, uck_new_images = threads['baidu_uck_new'].result
+                uck_new_title, uck_new_content, uck_new_images = threads[
+                    'baidu_uck_new'].result
         if 'simplr' in transcoders and 'simplr' in threads:
             if threads['simplr'].result:
-                simplr_title, simplr_content, simplr_images = threads['simplr'].result
+                simplr_title, simplr_content, simplr_images = threads[
+                    'simplr'].result
         if 'burify' in transcoders and 'burify' in threads:
             if threads['burify'].result:
-                burify_title, burify_content, burify_images = threads['burify'].result
+                burify_title, burify_content, burify_images = threads[
+                    'burify'].result
 
         # use different combinations to create a news page with pictures
         if 'simplr' in transcoders or 'burify' in transcoders:
@@ -209,7 +214,8 @@ def _transcode(url, transcoders, language=None):
                 if simplr_images:
                     return simplr_title, simplr_content, simplr_images
                 elif uck_images:  # add images from uck
-                    new_content, new_images = _combine(simplr_content, uck_images)
+                    new_content, new_images = _combine(
+                        simplr_content, uck_images)
                     return simplr_title, new_content, new_images
                 else:  # no image at all
                     return simplr_title, simplr_content, simplr_images
@@ -221,7 +227,8 @@ def _transcode(url, transcoders, language=None):
                 if burify_images:
                     return burify_title, burify_content, burify_images
                 elif uck_images:  # add images from uck
-                    new_content, new_images = _combine(burify_content, uck_images)
+                    new_content, new_images = _combine(
+                        burify_content, uck_images)
                     return burify_title, new_content, new_images
                 else:  # no image at all
                     return burify_title, burify_content, burify_images
@@ -339,7 +346,8 @@ def convert(language="en", title=None, link=None, transcoder="chengdujin", relat
                 return title, content
         else:
             if not stdout:
-                logging.warning('Transcoder %s failed for %s' % (transcoder, link))
+                logging.warning(
+                    'Transcoder %s failed for %s' % (transcoder, link))
                 return None, None, None, None
             else:
                 return None, None
