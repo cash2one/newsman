@@ -83,15 +83,20 @@ def _save(data, path):
     save the file on local disk and return web and local path
     """
     if not data or not path:
-        return None
+        logging.error('Method malformed!')
+        return None, None
 
-    local_path = '%s%s.html' % (TRANSCODED_LOCAL_DIR, path)
-    web_path = '%s%s.html' % (TRANSCODED_PUBLIC_DIR, path)
+    try:
+        local_path = '%s%s.html' % (TRANSCODED_LOCAL_DIR, path)
+        web_path = '%s%s.html' % (TRANSCODED_PUBLIC_DIR, path)
 
-    f = open(local_path, 'w')
-    f.write(urllib2.unquote(hparser.unescape(data)))
-    f.close()
-    return web_path, local_path
+        f = open(local_path, 'w')
+        f.write(urllib2.unquote(hparser.unescape(data)))
+        f.close()
+        return web_path, local_path
+    except Exception as k:
+        logging.exception(str(k))
+        return None, None
 
 
 def _compose(language, title, content):
@@ -99,29 +104,40 @@ def _compose(language, title, content):
     combine content with a template
     """
     if not content or not language or not title:
-        raise Exception("[transcoder._compose] ERROR: Method not well formed!")
+        logging.exception("Method malformed!")
+        return None
 
-    # f reads the template
-    f = None
-    if language == 'ar':
-        f = open(NEWS_TEMPLATE_ARABIC, 'r')
-    else:
-        f = open(NEWS_TEMPLATE, 'r')
-    # a template is found
-    if f:
-        template = str(f.read())
-        f.close()
-        return template % (title, title, content, TRANSCODE_BUTTON[language])
-    else:
-        raise Exception("[transcoder._compose] ERROR: Cannot find a template!")
+    try:
+        # f reads the template
+        f = None
+        if language == 'ar':
+            f = open(NEWS_TEMPLATE_ARABIC, 'r')
+        else:
+            f = open(NEWS_TEMPLATE, 'r')
+
+        # a template is found
+        if f:
+            template = str(f.read())
+            f.close()
+            return template % (title, title, content, TRANSCODE_BUTTON[language])
+        else:
+            logging.error("Cannot find a template!")
+            return None
+    except Exception as k:
+        logging.exception(str(k))
+        return None
 
 
 def _sanitize(content):
     """
     sanitize the content
     """
+    if not content:
+        return content
+
     content = content.replace("<noscript>", "")
-    return content.replace("</noscript>", "")
+    content = content.replace("</noscript>", "")
+    return content
 
 
 def _combine(content, images):
@@ -131,12 +147,15 @@ def _combine(content, images):
     if not content or not images:
         return content, images
 
-    # for now, if there are more than one image, take only one of them
-    biggest = image_helper.find_biggest_image(images)
-    IMAGE_TAG = '<img src="%s" width="%s" height="%s">'
-    image = IMAGE_TAG % (
-        biggest['url'], str(biggest['width']), str(biggest['height']))
-    return "%s %s" % (image, content), images
+    try:
+        # for now, if there are more than one image, take only one of them
+        biggest = image_helper.find_biggest_image(images)
+        IMAGE_TAG = '<img src="%s" width="%s" height="%s">'
+        image = IMAGE_TAG % (biggest['url'], str(biggest['width']), str(biggest['height']))
+        return "%s %s" % (image, content), images
+    except Exception as k:
+        logging.exception(str(k))
+        return content, images
 
 
 # TODO: add http string checkers
@@ -145,74 +164,77 @@ def _transcode(url, transcoders, language=None):
     organize different transcoders
     """
     if not url or not transcoders:
-        raise Exception("[transcoder._transcode] ERROR: Method not well formed!")
+        logging.exception("Method malformed!")
+        return None, None, None
 
-    threads = {}
-    for transcoder in transcoders:
-        if transcoder == 'simplr':
-            transcoding_request = TranscoderAPI(url, transcoder, language)
+    try:
+        threads = {}
+        for transcoder in transcoders:
+            if transcoder == 'simplr':
+                transcoding_request = TranscoderAPI(url, transcoder, language)
+            else:
+                transcoding_request = TranscoderAPI(url, transcoder)
+            # thread could be found via transcoder name
+            threads[transcoder] = transcoding_request
+            transcoding_request.start()
+            # UCK_TIMEOUT seconds to wait UCK server
+            #transcoding_request.join(UCK_TIMEOUT + 5)
+            transcoding_request.join()
+
+        # after a while ... put data in the proper variables
+        uck_content = uck_new_content = simplr_content = burify_content = None
+        uck_images = uck_new_images = simplr_images = burify_images = None
+        uck_title = uck_new_title = simplr_title = burify_title = None
+
+        if 'baidu_uck' in transcoders and 'baidu_uck' in threads:
+            if threads['baidu_uck'].result:
+                uck_title, uck_content, uck_images = threads['baidu_uck'].result
+        if 'baidu_uck_new' in transcoders and 'baidu_uck_new' in threads:
+            if threads['baidu_uck_new'].result:
+                uck_new_title, uck_new_content, uck_new_images = threads['baidu_uck_new'].result
+        if 'simplr' in transcoders and 'simplr' in threads:
+            if threads['simplr'].result:
+                simplr_title, simplr_content, simplr_images = threads['simplr'].result
+        if 'burify' in transcoders and 'burify' in threads:
+            if threads['burify'].result:
+                burify_title, burify_content, burify_images = threads['burify'].result
+
+        # use different combinations to create a news page with pictures
+        if 'simplr' in transcoders or 'burify' in transcoders:
+            if 'simplr' in transcoders and simplr_content:
+                # handle cases title cannot be retrieved
+                simplr_title = simplr_title if simplr_title else uck_title
+
+                # if simplr found any image
+                if simplr_images:
+                    return simplr_title, simplr_content, simplr_images
+                elif uck_images:  # add images from uck
+                    new_content, new_images = _combine(simplr_content, uck_images)
+                    return simplr_title, new_content, new_images
+                else:  # no image at all
+                    return simplr_title, simplr_content, simplr_images
+            elif 'burify' in transcoders and burify_content:
+                # handle cases title cannot be retrieved
+                burify_title = burify_title if burify_title else uck_title
+
+                # if burify found any image
+                if burify_images:
+                    return burify_title, burify_content, burify_images
+                elif uck_images:  # add images from uck
+                    new_content, new_images = _combine(burify_content, uck_images)
+                    return burify_title, new_content, new_images
+                else:  # no image at all
+                    return burify_title, burify_content, burify_images
+
+        # uck and uck_new
+        if 'baidu_uck' in transcoders and uck_content:
+            return uck_title, uck_content, uck_images
+        elif 'baidu_uck_new' in transcoders and uck_new_content:
+            return uck_new_title, uck_new_content, uck_new_images
         else:
-            transcoding_request = TranscoderAPI(url, transcoder)
-        # thread could be found via transcoder name
-        threads[transcoder] = transcoding_request
-        transcoding_request.start()
-        # UCK_TIMEOUT seconds to wait UCK server
-        #transcoding_request.join(UCK_TIMEOUT + 5)
-        transcoding_request.join()
-
-    # after a while ... put data in the proper variables
-    uck_content = uck_new_content = simplr_content = burify_content = None
-    uck_images = uck_new_images = simplr_images = burify_images = None
-    uck_title = uck_new_title = simplr_title = burify_title = None
-
-    if 'baidu_uck' in transcoders and 'baidu_uck' in threads:
-        if threads['baidu_uck'].result:
-            uck_title, uck_content, uck_images = threads['baidu_uck'].result
-    if 'baidu_uck_new' in transcoders and 'baidu_uck_new' in threads:
-        if threads['baidu_uck_new'].result:
-            uck_new_title, uck_new_content, uck_new_images = threads['baidu_uck_new'].result
-    if 'simplr' in transcoders and 'simplr' in threads:
-        if threads['simplr'].result:
-            simplr_title, simplr_content, simplr_images = threads[
-                'simplr'].result
-    if 'burify' in transcoders and 'burify' in threads:
-        if threads['burify'].result:
-            burify_title, burify_content, burify_images = threads[
-                'burify'].result
-
-    # use different combinations to create a news page with pictures
-    if 'simplr' in transcoders or 'burify' in transcoders:
-        if 'simplr' in transcoders and simplr_content:
-            # handle cases title cannot be retrieved
-            simplr_title = simplr_title if simplr_title else uck_title
-
-            # if simplr found any image
-            if simplr_images:
-                return simplr_title, simplr_content, simplr_images
-            elif uck_images:  # add images from uck
-                new_content, new_images = _combine(simplr_content, uck_images)
-                return simplr_title, new_content, new_images
-            else:  # no image at all
-                return simplr_title, simplr_content, simplr_images
-        elif 'burify' in transcoders and burify_content:
-            # handle cases title cannot be retrieved
-            burify_title = burify_title if burify_title else uck_title
-
-            # if burify found any image
-            if burify_images:
-                return burify_title, burify_content, burify_images
-            elif uck_images:  # add images from uck
-                new_content, new_images = _combine(burify_content, uck_images)
-                return burify_title, new_content, new_images
-            else:  # no image at all
-                return burify_title, burify_content, burify_images
-
-    # uck and uck_new
-    if 'baidu_uck' in transcoders and uck_content:
-        return uck_title, uck_content, uck_images
-    elif 'baidu_uck_new' in transcoders and uck_new_content:
-        return uck_new_title, uck_new_content, uck_new_images
-    else:
+            return None, None, None
+    except Exception as k:
+        logging.exception(str(k))
         return None, None, None
 
 
