@@ -71,9 +71,11 @@ def add(feed_link=None, language=None, categories=None, transcoder_type="chengdu
             feed = _read_source(d, feed_link, language, categories)
             feed_id = db_feeds.save(feed)
             # add entries of this feed
-            rss.update(feed_link=feed_link, feed_id=feed_id, language=language, categories=categories, transcoder_type=transcoder_type)
+            rss.update(feed_link=feed_link, feed_id=feed_id, language=language,
+                       categories=categories, transcoder_type=transcoder_type)
         else:
-            logging.exception("RSS source %s cannot be interpreted!" % feed_link)
+            logging.exception(
+                "RSS source %s cannot be interpreted!" % feed_link)
             return None
     except Exception as k:
         logging.exception(str(k))
