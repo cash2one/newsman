@@ -152,7 +152,8 @@ def _combine(content, images):
         biggest = image_helper.find_biggest_image(images)
         if biggest:
             IMAGE_TAG = '<img src="%s" width="%s" height="%s">'
-            image = IMAGE_TAG % (biggest['url'], str(biggest['width']), str(biggest['height']))
+            image = IMAGE_TAG % (
+                biggest['url'], str(biggest['width']), str(biggest['height']))
             return "%s %s" % (image, content), images
         else:
             logging.error('Cannot find biggest image')
@@ -334,7 +335,8 @@ def convert(language="en", title=None, link=None, transcoder="chengdujin", relat
         if link:
             # this wont suck
             transcoders = _organize_transcoders(transcoder)
-            title_new, content, images = _transcode(link, transcoders, language)
+            title_new, content, images = _transcode(
+                link, transcoders, language)
 
             # in case uck cannot find a proper title
             # if title_new:
@@ -356,7 +358,8 @@ def convert(language="en", title=None, link=None, transcoder="chengdujin", relat
                             else:
                                 return None, None
                     else:
-                        logging.error('Cannot combine content with the template!')
+                        logging.error(
+                            'Cannot combine content with the template!')
                         if not stdout:
                             return None, None, None, None
                         else:
@@ -364,7 +367,8 @@ def convert(language="en", title=None, link=None, transcoder="chengdujin", relat
                 else:
                     return title, content
             else:
-                logging.error('Transcoder %s failed for %s' % (transcoder, link))
+                logging.error(
+                    'Transcoder %s failed for %s' % (transcoder, link))
                 if not stdout:
                     return None, None, None, None
                 else:
