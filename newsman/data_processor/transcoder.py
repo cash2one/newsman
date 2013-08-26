@@ -242,24 +242,41 @@ def _preprocess(link):
     """
     get the real address out
     """
-    last_http_index = link.rfind('http')
-    return link[last_http_index:].strip()
+    if not url:
+        logging.error('Method malformed!')
+        return None
+
+    try:
+        last_http_index = link.rfind('http')
+        return link[last_http_index:].strip()
+    except Exception as k:
+        logging.exception(str(k))
+        return None
 
 
 def prepare_link(url):
     """
     decode with the correct encoding
     """
-    html = urllib2.urlopen(url, timeout=UCK_TIMEOUT).read()
-    if html:
-        detected = chardet.detect(html)
-        if detected:
-            data = html.decode(detected['encoding'], 'ignore')
+    if not url:
+        logging.error('Method malformed!')
+        return None
+
+    try:
+        html = urllib2.urlopen(url, timeout=UCK_TIMEOUT).read()
+        if html:
+            detected = chardet.detect(html)
+            if detected:
+                data = html.decode(detected['encoding'], 'ignore')
+            else:
+                data = html.decode('utf-8', 'ignore')
+            return data
         else:
-            data = html.decode('utf-8', 'ignore')
-        return data
-    else:
-        raise Exception("[transcoder.prepare_link] ERROR: Cannot read %s" % url)
+            logging.warning("Cannot read %s" % url)
+            return None
+    except Exception as k:
+        logging.exception(str(k))
+        return None
 
 
 def convert(language="en", title=None, link=None, transcoder="chengdujin", relative_path=None, stdout=False):
@@ -280,26 +297,33 @@ def convert(language="en", title=None, link=None, transcoder="chengdujin", relat
         else:
             return None, None
 
-    link = _preprocess(link)
-    transcoders = _organize_transcoders(transcoder)
-    title_new, content, images = _transcode(link, transcoders, language)
+    try:
+        link = _preprocess(link)
+        transcoders = _organize_transcoders(transcoder)
+        title_new, content, images = _transcode(link, transcoders, language)
 
-    # in case uck cannot find a proper title
-    # if title_new:
-    #    title = title_new
+        # in case uck cannot find a proper title
+        # if title_new:
+        #    title = title_new
 
-    if content:
-        if not stdout:
-            # embed content in template
-            news = _compose(language, title, _sanitize(content))
-            # create web/local path
-            web_path, local_path = _save(news, relative_path)
-            return web_path, local_path, content, images
+        if content:
+            if not stdout:
+                # embed content in template
+                news = _compose(language, title, _sanitize(content))
+                # create web/local path
+                web_path, local_path = _save(news, relative_path)
+                return web_path, local_path, content, images
+            else:
+                return title, content
         else:
-            return title, content
-    else:
+            if not stdout:
+                logging.warning('Transcoder %s failed for %s' % (transcoder, link))
+                return None, None, None, None
+            else:
+                return None, None
+    except Exception as k:
+        logging.exception(str(k))
         if not stdout:
-            logging.error('Transcoder %s failed for %s' % (transcoder, link))
             return None, None, None, None
         else:
             return None, None
