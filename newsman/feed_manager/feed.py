@@ -46,6 +46,7 @@ def _read_source(d=None, feed_link=None, language=None, categories=None):
                 feed['etag'] = d.feed.etag.strip()
             if 'modified' in d:
                 feed['modified'] = d.feed.modified.strip()
+            # the final return
             return feed
         else:
             logging.exception('Feed %s is malformed!' % feed_link)
@@ -69,12 +70,20 @@ def add(feed_link=None, language=None, categories=None, transcoder_type="chengdu
         if d:
             # feed level
             feed = _read_source(d, feed_link, language, categories)
-            feed_id = db_feeds.save(feed)
-            # add entries of this feed
-            rss.update(feed_link=feed_link, feed_id=feed_id, language=language,
-                       categories=categories, transcoder_type=transcoder_type)
+            if feed:
+                feed_id = db_feeds.save(feed)
+                if feed_id:
+                    # add entries of this feed
+                    # the FINAL return
+                    return rss.update(feed_link=feed_link, feed_id=feed_id, language=language, categories=categories, transcoder_type=transcoder_type)
+                else:
+                    logging.error('Cannot save feed in database')
+                    return None
+            else:
+                logging.error('Cannot read source!')
+                return None
         else:
-            logging.exception(
+            logging.error(
                 "RSS source %s cannot be interpreted!" % feed_link)
             return None
     except Exception as k:
