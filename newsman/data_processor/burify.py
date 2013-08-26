@@ -16,8 +16,8 @@ sys.path.append('..')
 
 from config import logging
 import image_helper
-import transcoder
 from readability import Document
+import transcoder
 
 # CONSTANTS
 from config import UCK_TIMEOUT
