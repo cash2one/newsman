@@ -37,6 +37,7 @@ def get(feed_id=None, feed_link=None, language=None):
             item = col.find_one({'_id': ObjectId(feed_id)})
         else:
             item = col.find_one({'feed_link': feed_link, 'language': language})
+        # the final return
         return item
     except Exception as k:
         logging.exception(str(k))
@@ -60,9 +61,10 @@ def update(feed_id, **kwargs):
                 item.update(kwargs)
             item['updated_times'] = int(item['updated_times']) + 1
             item['latest_update'] = time.asctime(time.gmtime())
-            col.update({'_id': ObjectId(feed_id)}, item)
+            return col.update({'_id': ObjectId(feed_id)}, item)
         else:
             logging.error("No such a _id %s in feeds" % feed_id)
+            return None
     except Exception as k:
         logging.exception(str(k))
         return None
