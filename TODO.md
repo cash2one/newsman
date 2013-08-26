@@ -32,10 +32,9 @@ ToDos - Low Priority
 9. Bugu用户账户代码转移
 10. Minerva代码转移
 11. 详情页增加夜间、字体大小、分享等代码
-12. 为PM提供RSS管理的Web界面
-13. 增加在线生成临时图片和MP3的接口
-14. Feed管理平台
-15. 自定义Exception类，并替换相应代码
+12. 增加在线生成临时图片和MP3的接口
+13. Feed管理平台
+14. 自定义Exception类，并替换相应代码
 
 Dones
 ------
