@@ -61,6 +61,7 @@ def update(feed_id, **kwargs):
                 item.update(kwargs)
             item['updated_times'] = int(item['updated_times']) + 1
             item['latest_update'] = time.asctime(time.gmtime())
+            # the final return
             return col.update({'_id': ObjectId(feed_id)}, item)
         else:
             logging.error("No such a _id %s in feeds" % feed_id)
@@ -87,8 +88,10 @@ def save(feed_info=None):
         if not item:
             feed_info['updated_times'] = 0
             feed_info['latest_update'] = None
+            # the final return
             return str(col.save(feed_info))
         else:
+            # the final return
             return str(item['_id'])
     except Exception as k:
         logging.exception(str(k))
