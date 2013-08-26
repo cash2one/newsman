@@ -204,7 +204,8 @@ def scale_image(image=None, size_expected=MIN_IMAGE_SIZE,
                 # resize
                 size_new = width_new, height_new
                 # possible exception raiser
-                image_data = Image.open(StringIO(urllib2.urlopen(image['url'], timeout=UCK_TIMEOUT).read()))
+                image_data = Image.open(
+                    StringIO(urllib2.urlopen(image['url'], timeout=UCK_TIMEOUT).read()))
                 image_data.thumbnail(size_new, Image.ANTIALIAS)
 
                 # crop
@@ -223,8 +224,10 @@ def scale_image(image=None, size_expected=MIN_IMAGE_SIZE,
 
                 # storing
                 if image_cropped:
-                    image_web_path = '%s%s.jpg' % (IMAGES_PUBLIC_DIR, relative_path)
-                    image_local_path = '%s%s.jpg' % (IMAGES_LOCAL_DIR, relative_path)
+                    image_web_path = '%s%s.jpg' % (
+                        IMAGES_PUBLIC_DIR, relative_path)
+                    image_local_path = '%s%s.jpg' % (
+                        IMAGES_LOCAL_DIR, relative_path)
                     image_cropped = image_cropped.convert('RGB')
                     image_cropped.save(image_local_path, 'JPEG')
                     return {'url': image_web_path, 'width': width_expected, 'height': height_expected}, {'url': image_local_path, 'width': width_expected, 'height': height_expected}
