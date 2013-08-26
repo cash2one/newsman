@@ -150,10 +150,13 @@ def _combine(content, images):
     try:
         # for now, if there are more than one image, take only one of them
         biggest = image_helper.find_biggest_image(images)
-        IMAGE_TAG = '<img src="%s" width="%s" height="%s">'
-        image = IMAGE_TAG % (
-            biggest['url'], str(biggest['width']), str(biggest['height']))
-        return "%s %s" % (image, content), images
+        if biggest:
+            IMAGE_TAG = '<img src="%s" width="%s" height="%s">'
+            image = IMAGE_TAG % (biggest['url'], str(biggest['width']), str(biggest['height']))
+            return "%s %s" % (image, content), images
+        else:
+            logging.error('Cannot find biggest image')
+            return content, images
     except Exception as k:
         logging.exception(str(k))
         return content, images
@@ -328,26 +331,47 @@ def convert(language="en", title=None, link=None, transcoder="chengdujin", relat
 
     try:
         link = _preprocess(link)
-        transcoders = _organize_transcoders(transcoder)
-        title_new, content, images = _transcode(link, transcoders, language)
+        if link:
+            # this wont suck
+            transcoders = _organize_transcoders(transcoder)
+            title_new, content, images = _transcode(link, transcoders, language)
 
-        # in case uck cannot find a proper title
-        # if title_new:
-        #    title = title_new
+            # in case uck cannot find a proper title
+            # if title_new:
+            #    title = title_new
 
-        if content:
-            if not stdout:
-                # embed content in template
-                news = _compose(language, title, _sanitize(content))
-                # create web/local path
-                web_path, local_path = _save(news, relative_path)
-                return web_path, local_path, content, images
+            if content:
+                if not stdout:
+                    # embed content in template
+                    news = _compose(language, title, _sanitize(content))
+                    if news:
+                        # create web/local path
+                        web_path, local_path = _save(news, relative_path)
+                        if web_path:
+                            # the FINAL return
+                            return web_path, local_path, content, images
+                        else:
+                            if not stdout:
+                                return None, None, None, None
+                            else:
+                                return None, None
+                    else:
+                        logging.error('Cannot combine content with the template!')
+                        if not stdout:
+                            return None, None, None, None
+                        else:
+                            return None, None
+                else:
+                    return title, content
             else:
-                return title, content
+                logging.error('Transcoder %s failed for %s' % (transcoder, link))
+                if not stdout:
+                    return None, None, None, None
+                else:
+                    return None, None
         else:
+            logging.error('Link cannot be parsed')
             if not stdout:
-                logging.warning(
-                    'Transcoder %s failed for %s' % (transcoder, link))
                 return None, None, None, None
             else:
                 return None, None
