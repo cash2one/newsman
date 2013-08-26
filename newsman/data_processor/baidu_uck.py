@@ -132,7 +132,7 @@ def _extract(data):
     extract images and text content
     """
     if not data:
-        logging.info('Received no data from UCK server.')
+        logging.error('Received no data from UCK server.')
         return None, None, None
 
     successful = int(data['STRUCT_PAGE_TYPE'])
