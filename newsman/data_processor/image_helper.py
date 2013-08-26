@@ -120,7 +120,7 @@ def find_images(content=None):
         return images_normalized
     except Exception as k:
         logging.exception(str(k))
-        return NOne
+        return None
 
 
 def find_biggest_image(images=None):
