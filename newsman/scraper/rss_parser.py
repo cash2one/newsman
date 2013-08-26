@@ -42,176 +42,176 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
     Note. categories are ids of category item
     """
     if not e or not feed_title or not language or not categories:
-        raise Exception(
-                "[rss_parser._read_entry:44L] ERROR: Method signature not well formed for %s!" % feed_title)
+        logging.error('Method malformed!')
+        return None
     if language not in LANGUAGES:
-        raise Exception("[rss_parser._read_entry:46L] ERROR: Language not supported for %s!" % feed_title)
+        logging.error("Language not supported for %s!" % feed_title)
+        return None
 
-    entry = {}
-    entry['feed_id'] = feed_id
-    entry['feed'] = feed_title.strip()
-    entry['language'] = language.strip()
-    entry['categories'] = categories
-
-    # the easy part: the must-have
     try:
-        # article original link
-        entry['error'] = []
-        entry['link'] = e.link.strip()
-        # article title
-        if e.title_detail.type != 'text/plain':
-            entry['title'] = urllib2.unquote(hparser.unescap(e.title.strip()))
-        else:
-            entry['title'] = e.title.strip()
-        # remove possible htmlized title
-        entry['title'] = re.sub("<.*?>", " ", entry['title'])
-    except AttributeError as k:
-        print '[rss_parser._read_entry:65L]', str(k)
-        entry['error'].append(k + '\n')
-        raise Exception(
-            '[rss_parser._read_entry] ERROR: No title or link found for %s!' % entry['feed_id'])
+        entry = {}
+        entry['feed_id'] = feed_id
+        entry['feed'] = feed_title.strip()
+        entry['language'] = language.strip()
+        entry['categories'] = categories
 
-    # article published time
-    # first try parsed time info
-    try:
-        entry['updated'] = calendar.timegm(e.updated_parsed)
-        entry['updated_human'] = e.updated
-    except AttributeError as k:
+        # the easy part: the must-have
         try:
-            entry['updated'] = calendar.timegm(e.published_parsed)
-            entry['updated_human'] = e.published
+            # article original link
+            entry['error'] = []
+            entry['link'] = e.link.strip()
+            # article title
+            if e.title_detail.type != 'text/plain':
+                entry['title'] = urllib2.unquote(hparser.unescap(e.title.strip()))
+            else:
+                entry['title'] = e.title.strip()
+            # remove possible htmlized title
+            entry['title'] = re.sub("<.*?>", " ", entry['title'])
         except AttributeError as k:
-            entry['error'] = '%s\n%s' % (
-                entry['error'], "no 'updated_parsed' or 'published_parsed'")
-            # then try unparsed time info
-            # this is rarely possible.
+            logging.error(str(k))
+            entry['error'].append(k + '\n')
+            return None
+
+        # article published time
+        # first try parsed time info
+        try:
+            entry['updated'] = calendar.timegm(e.updated_parsed)
+            entry['updated_human'] = e.updated
+        except AttributeError as k:
             try:
-                updated = e.updated if 'updated' in e else e.published
-                if updated:
-                    # get time zone
-                    offset = int(updated[-5:])
-                    delta = timedelta(hours=offset / 100)
-                    format = "%a , %d %b %Y %H:%M:%S"
-                    if updated[-8:-5] != 'UTC':
-                        updated = datetime.strptime(updated[:-6], format)
-                    else:
-                        updated = datetime.strptime(updated[:-9], format)
-                    updated -= delta
-                    entry['updated'] = time.mktime(updated.timetuple())
-                else:
-                    raise ValueError(
-                        "[rss_parser._read_entry] attribute updated/published has no value")
-            except ValueError as k:
-                print '[rss_parser._read_entry:101L]', str(k)
-                entry['error'] = '%s\n%s' % (entry['error'], k)
-                raise Exception(
-                    '[rss_parser._read_entry] ERROR: entry %s has no publication info!' % entry['title'])
+                entry['updated'] = calendar.timegm(e.published_parsed)
+                entry['updated_human'] = e.published
             except AttributeError as k:
-                print '[rss_parser._read_entry:106L]', str(k)
-                entry['error'].append('no update or published\n')
-                raise Exception(
-                    '[rss_parser._read_entry] ERROR: entry %s has no publication info!' % entry['title'])
+                entry['error'] = '%s\n%s' % (entry['error'], "no 'updated_parsed' or 'published_parsed'")
+                # then try unparsed time info
+                # this is rarely possible.
+                try:
+                    updated = e.updated if 'updated' in e else e.published
+                    if updated:
+                        # get time zone
+                        offset = int(updated[-5:])
+                        delta = timedelta(hours=offset / 100)
+                        format = "%a , %d %b %Y %H:%M:%S"
+                        if updated[-8:-5] != 'UTC':
+                            updated = datetime.strptime(updated[:-6], format)
+                        else:
+                            updated = datetime.strptime(updated[:-9], format)
+                        updated -= delta
+                        entry['updated'] = time.mktime(updated.timetuple())
+                    else:
+                        logging.error("Attribute updated/published has no value")
+                        return None
+                except ValueError as k:
+                    logging.error(str(k))
+                    entry['error'] = '%s\n%s' % (entry['error'], k)
+                    return None
+                except AttributeError as k:
+                    logging.error(str(k))
+                    entry['error'].append('no update or published\n')
+                    return None
 
-    # article's summary
-    try:
-        # its possible summary is html-based
-        summary = urllib2.unquote(hparser.unescap(e.summary))
-        if isinstance(summary, str):
-            summary_encoding = chardet.detect(summary)['encoding']
-            summary = summary.decode(summary_encoding, 'ignore')
-        # a <div, for example, and a </div
-        is_html = True if len(
-            re.findall(u'</?a|</?p|</?strong|</?img|</?html|</?div', summary)) > 1 else False
-        if is_html:
-            h = html2text.HTML2Text()
-            h.ignore_images = True
-            h.ignore_links = True
-            h.ignore_emphasis = True
-            paragraphs = (h.handle(summary)).strip('#').split('\n\n')
-            paragraphs_above_limit = []
-            # remove paragraphs that contain less than x number of words
-            for paragraph in paragraphs:
-                if entry['language'].startswith('zh') or entry['language'] == 'ja':
-                    if len(paragraph) > 18:
-                        paragraphs_above_limit.append(paragraph)
-                else:
-                    words = paragraph.split()
-                    if len(words) > 12:
-                        paragraphs_above_limit.append(paragraph)
-            entry['summary'] = '\n\n'.join(paragraphs_above_limit)
-        else:
-            entry['summary'] = summary
-    except AttributeError as k:
-        entry['summary'] = None
-    entry['summary'] = None if not entry['summary'] else entry['summary']
+        # article's summary
+        try:
+            # its possible summary is html-based
+            summary = urllib2.unquote(hparser.unescap(e.summary))
+            if isinstance(summary, str):
+                summary_encoding = chardet.detect(summary)['encoding']
+                summary = summary.decode(summary_encoding, 'ignore')
+            # a <div, for example, and a </div
+            is_html = True if len(re.findall(u'</?a|</?p|</?strong|</?img|</?html|</?div', summary)) > 1 else False
+            if is_html:
+                h = html2text.HTML2Text()
+                h.ignore_images = True
+                h.ignore_links = True
+                h.ignore_emphasis = True
+                paragraphs = (h.handle(summary)).strip('#').split('\n\n')
+                paragraphs_above_limit = []
+                # remove paragraphs that contain less than x number of words
+                for paragraph in paragraphs:
+                    if entry['language'].startswith('zh') or entry['language'] == 'ja':
+                        if len(paragraph) > 18:
+                            paragraphs_above_limit.append(paragraph)
+                    else:
+                        words = paragraph.split()
+                        if len(words) > 12:
+                            paragraphs_above_limit.append(paragraph)
+                entry['summary'] = '\n\n'.join(paragraphs_above_limit)
+            else:
+                entry['summary'] = summary
+        except AttributeError as k:
+            entry['summary'] = None
+        entry['summary'] = None if not entry['summary'] else entry['summary']
 
-    # article's images
-    # e.g. [{'url':'http://image.com/test.jpg, 'width': u'130', 'height':
-    # u'86'}]
-    entry['images'] = []
-    try:
-        images = image_helper.normalize(e.media_content)
-        if images:
-            entry['images'].extend(images)
-    except AttributeError as k:
-        pass
-    try:
-        images = image_helper.normalize(e.media_thumbnail)
-        if images:
-            entry['images'].extend(images)
-    except AttributeError as k:
-        pass
-    for attribute in e:
-        if 'thumbnail' in attribute:
-            # currently set thumbnail to None if its a dictionary
-            image = e[attribute] if isinstance(e[attribute], str) else None
-            image = image_helper.normalize(image)
-            if image:
-                entry['images'].extend(image)
-    try:
-        links = e.links
-        for link in links:
-            if 'type' in link and 'image' in link.type:
-                if 'href' in link:
-                    image = image_helper.normalize(link.href)
-                    if image:
-                        entry['images'].extend(image)
-    except AttributeError as k:
-        pass
-    if entry.has_key('summary') and entry['summary']:
-        soup = BeautifulStoneSoup(entry['summary'])
-        if soup.img:
-            if soup.img.get('src'):
-                images = image_helper.normalize(soup.img['src'])
-                if images:
-                    entry['images'].extend(images)
-    # dedup images is processed at rss.py
+        # article's images
+        # e.g. [{'url':'http://image.com/test.jpg, 'width': u'130', 'height': u'86'}]
+        entry['images'] = []
+        try:
+            images = image_helper.normalize(e.media_content)
+            if images:
+                entry['images'].extend(images)
+        except AttributeError as k:
+            pass
+        try:
+            images = image_helper.normalize(e.media_thumbnail)
+            if images:
+                entry['images'].extend(images)
+        except AttributeError as k:
+            pass
+        for attribute in e:
+            if 'thumbnail' in attribute:
+                # currently set thumbnail to None if its a dictionary
+                image = e[attribute] if isinstance(e[attribute], str) else None
+                image = image_helper.normalize(image)
+                if image:
+                    entry['images'].extend(image)
+        try:
+            links = e.links
+            for link in links:
+                if 'type' in link and 'image' in link.type:
+                    if 'href' in link:
+                        image = image_helper.normalize(link.href)
+                        if image:
+                            entry['images'].extend(image)
+        except AttributeError as k:
+            pass
 
-    # article's author
-    # e.g. Yuan Jin
-    try:
-        # i guess this could be a string or a list
-        entry['author'] = e.author
-    except AttributeError as k:
-        entry['author'] = None
+        if entry.has_key('summary') and entry['summary']:
+            soup = BeautifulStoneSoup(entry['summary'])
+            if soup.img:
+                if soup.img.get('src'):
+                    images = image_helper.normalize(soup.img['src'])
+                    if images:
+                        entry['images'].extend(images)
+        # dedup images is processed at rss.py
 
-    # article's source
-    # e.g. {'href': u'http://www.reuters.com/', 'title': u'Reuters'}
-    try:
-        entry['source'] = e.source
-    except AttributeError as k:
-        entry['source'] = None
+        # article's author
+        # e.g. Yuan Jin
+        try:
+            # i guess this could be a string or a list
+            entry['author'] = e.author
+        except AttributeError as k:
+            entry['author'] = None
 
-    # article's tags
-    # e.g. [{'term': u'Campus Party', 'scheme': None, 'label': None}]
-    # term is usually combined with scheme to form a url; label is
-    # the name of term
-    try:
-        entry['tags'] = e.tag
-    except AttributeError as k:
-        entry['tags'] = None
+        # article's source
+        # e.g. {'href': u'http://www.reuters.com/', 'title': u'Reuters'}
+        try:
+            entry['source'] = e.source
+        except AttributeError as k:
+            entry['source'] = None
 
-    return entry
+        # article's tags
+        # e.g. [{'term': u'Campus Party', 'scheme': None, 'label': None}]
+        # term is usually combined with scheme to form a url; label is
+        # the name of term
+        try:
+            entry['tags'] = e.tag
+        except AttributeError as k:
+            entry['tags'] = None
+
+        return entry
+    except Exception as k:
+        logging.exception(str(k))
+        return None
 
 
 # TODO: boundary checkers
@@ -285,7 +285,11 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
                     language = language if 'language' not in d else d.language
                     # an Exception might be raised from _read_entry
                     entries = [_read_entry(e, feed_id, feed_title, language, categories) for e in d.entries]
-                    return filter(_validate_time, entries), status, feed_title, etag, modified
+                    if entries:
+                        return filter(_validate_time, entries), status, feed_title, etag, modified
+                    else:
+                        logging.error('Feed parsing goes wrong!')
+                        return None, None, None, None
                 else:
                     logging.error("Feed %s has no items!" % feed_id)
                     return None, None, None, None, None
