@@ -29,7 +29,7 @@ def dedup(entries=None, language=None):
         logging.error('Method malformed!')
         return None
     if not language or language not in LANGUAGES:
-        logging.exception("Language not found or not supported!")
+        logging.error("Language not found or not supported!")
         return None
 
     try:
@@ -60,7 +60,7 @@ def update(entry=None):
         logging.error('Method malformed!')
         return None
     if entry['language'] not in LANGUAGES:
-        logging.exception("Language not found or not supported!")
+        logging.error("Language not found or not supported!")
         return None
 
     try:
