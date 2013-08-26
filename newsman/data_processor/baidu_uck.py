@@ -111,7 +111,8 @@ def _collect_images(data):
         if 'image_list' in data and data.get('image_list'):
             for image in data.get('image_list'):
                 if 'src' in image and image['src']:
-                    image_normalized = image_helper.find_image(image['src'].strip())
+                    image_normalized = image_helper.find_image(
+                        image['src'].strip())
                     if image_normalized:
                         images.append(image_normalized)
 
