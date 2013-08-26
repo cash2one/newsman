@@ -274,7 +274,7 @@ def convert(language="en", title=None, link=None, transcoder="chengdujin", relat
     * stdout default value False
     """
     if not language or not link:
-        logging.error('Method not well formed!')
+        logging.error('Method malformed!')
         if not stdout:
             return None, None, None, None
         else:

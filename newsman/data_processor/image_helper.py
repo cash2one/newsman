@@ -253,7 +253,7 @@ def normalize(images):
         check an image if it matches with MIN_IMAGE_SIZE
         """
         if not image:
-            logging.error('Method not well formed!')
+            logging.error('Method malformed!')
             return None
 
         try:
