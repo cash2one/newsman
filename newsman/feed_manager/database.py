@@ -73,7 +73,7 @@ def save(feed_info=None):
     add a new record of feed
     """
     if not feed_info:
-        logging.exception("Method malformed!")
+        logging.error("Method malformed!")
         return None
 
     try:
