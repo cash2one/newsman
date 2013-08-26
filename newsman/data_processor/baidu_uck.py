@@ -187,9 +187,13 @@ def convert(link):
     # send link to uck server and get data back
     try:
         raw_data = _transcode(link)
-        # text is sanitized, images are found from image_list
-        title, transcoded, images = _extract(eval(raw_data))
-        return title, transcoded, images
+        if raw_data:
+            # text is sanitized, images are found from image_list
+            title, transcoded, images = _extract(eval(raw_data))
+            return title, transcoded, images
+        else:
+            logging.error('Cannot read anything from UCK server')
+            return None, None, None
     except Exception as k:
         logging.exception(str(k))
         return None, None, None
