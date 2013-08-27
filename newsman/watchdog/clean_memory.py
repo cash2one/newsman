@@ -1,5 +1,5 @@
-#!/usr/bin/env python 
-#-*- coding: utf-8 -*- 
+#!/usr/bin/env python
+#-*- coding: utf-8 -*-
 
 """
 daily work, clean expired items and its place in queues in memory
@@ -9,8 +9,8 @@ daily work, clean expired items and its place in queues in memory
 # @created Aug. 22, 2013
 
 
-import sys 
-reload(sys) 
+import sys
+reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append("..")
 
@@ -32,7 +32,7 @@ def _is_zombie(item):
     try:
         document_name = item['language']
         document = Collection(db, document_name)
-        item_id = ObjectId(item['_id']) 
+        item_id = ObjectId(item['_id'])
         found = document.find_one({'_id': item_id})
         if not found:
             return True
@@ -91,8 +91,9 @@ def clean():
                         if news_item_string:
                             news_item = eval(news_item_string)
                             news_updated = float(news_item['updated'])
-                        
-                            if cleaner.is_overdue(news_updated):  # WTF, remove it
+
+                            # WTF, remove it
+                            if cleaner.is_overdue(news_updated):
                                 rclient.zrem(news_list, news_id)
                                 rclient.delete(news_id)
                             else:  # check if this is zombie
@@ -109,7 +110,7 @@ def clean():
     except Exception as k:
         logging.exception(str(k))
         return False
-    
+
 
 if __name__ == "__main__":
     clean()
