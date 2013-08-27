@@ -15,9 +15,9 @@ sys.setdefaultencoding('UTF-8')
 sys.path.append("..")
 
 import calendar
-import clean_disk
-import clean_memory
+import clean_disk, clean_memory
 from config import Collection, db
+from config import logging
 from datetime import datetime, timedelta
 import time
 
@@ -31,37 +31,50 @@ def _find_document_names():
     find all documents
     note. documents are represented by language
     """
-    feeds = Collection(db, FEED_REGISTRAR)
-    document_names = []
-    # only get language and _id
-    items = feeds.find({}, {'language':1})
-    if items:
-        document_names = [item['language'] for item in items]
-    return list(set(document_names))
+    try:
+        feeds = Collection(db, FEED_REGISTRAR)
+        document_names = []
+        # only get language and _id
+        items = feeds.find({}, {'language':1})
+        if items:
+            document_names = [item['language'] for item in items]
+        return list(set(document_names))
+    except Exception as k:
+        logging.exception(str(k))
+        return None
 
 
 def clean():
     """
     remove expired items from database
     """
-    print '... cleaning database ...'
-    document_names = _find_document_names()
-    for document_name in document_names:
-        document = Collection(db, document_name)
+    logging.info('... cleaning database ...')
+    try:
+        document_names = _find_document_names()
+        if document_names:
+            for document_name in document_names:
+                document = Collection(db, document_name)
 
-        # compute a threshold
-        current_utc_time_posix = calendar.timegm(time.gmtime())
-        deadline_datetime = datetime.utcfromtimestamp(current_utc_time_posix) - timedelta(days=DATABASE_REMOVAL_DAYS)
-        deadline_posix = calendar.timegm(deadline_datetime.timetuple())
+                # compute a threshold
+                current_utc_time_posix = calendar.timegm(time.gmtime())
+                deadline_datetime = datetime.utcfromtimestamp(current_utc_time_posix) - timedelta(days=DATABASE_REMOVAL_DAYS)
+                deadline_posix = calendar.timegm(deadline_datetime.timetuple())
 
-        removal_candidates = document.find({'updated': {'$lt': deadline_posix}})
-        for removal_candidate in removal_candidates:
-            # see if removal candidate has a footage in memory
-            clean_memory.clean_by_item(str(removal_candidate['_id']))
-            # remove corresponding files on disk
-            clean_disk.clean_by_item(removal_candidate)
-            # remove the candidate in database
-            document.remove({'_id': removal_candidate['_id']})
+                removal_candidates = document.find({'updated': {'$lt': deadline_posix}})
+                for removal_candidate in removal_candidates:
+                    # see if removal candidate has a footage in memory
+                    clean_memory.clean_by_item(str(removal_candidate['_id']))
+                    # remove corresponding files on disk
+                    clean_disk.clean_by_item(removal_candidate)
+                    # remove the candidate in database
+                    document.remove({'_id': removal_candidate['_id']})
+            return True
+        else:
+            logging.error('Cannot find documents')
+            return False
+    except Exception as k:
+        logging.exception(str(k))
+        return False
 
 
 if __name__ == "__main__":
