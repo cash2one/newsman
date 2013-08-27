@@ -65,8 +65,12 @@ class GoogleTranslateAPI(threading.Thread):
                 logging.error('Errors or Permission found in HTTP response')
                 self.result = None
         else:
-            logging.error('Errors found or no content returned')
-            self.result = None
+            if error:
+                logging.error('Error %s found for %s' % (str(error), self.text))
+                self.result = None
+            else:
+                logging.error('No content returned for %s' % self.text)
+                self.result = None
 
 
 # TODO: rename the file and variables
