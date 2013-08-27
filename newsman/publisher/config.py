@@ -48,7 +48,7 @@ LOCAL = '/home/jinyuan/Downloads/%s'               # local server prefix
 CODE_BASE = LOCAL % 'newsman'
 
 # logging settings
-LOG_FORMAT = "%(levelname)-8s %(asctime)-25s %(lineno)-3d:%(filename)-14s %(message)s"
+LOG_FORMAT = "%(levelname)-8s %(asctime)-25s %(lineno)-3d:%(filename)-16s %(message)s"
 # critical, error, warning, info, debug, notset
 logging.basicConfig(filename='%s/logs.txt' % CODE_BASE, format=LOG_FORMAT, level=logging.DEBUG)
 
