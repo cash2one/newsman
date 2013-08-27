@@ -62,11 +62,11 @@ def _clean_data():
             logging.error('Error found cleaning database')
             any_mistake = True
         # clean memory
-        if clean_memory.clean():
+        if not clean_memory.clean():
             logging.error('Error found cleaning memory')
             any_mistake = True
         # clean disk
-        if clean_disk.clean():
+        if not clean_disk.clean():
             logging.error('Error found cleaning disk')
             any_mistake = True
 
