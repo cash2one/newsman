@@ -304,6 +304,9 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
                             e, feed_id, feed_title, language, categories)
                         if entry:
                             entries.append(entry)
+                        else:
+                            logging.error('Cannot parse %s' % e['link'])
+                            continue
                     if entries:
                         # the FINAL return
                         return filter(_validate_time, entries), status, feed_title, etag, modified
