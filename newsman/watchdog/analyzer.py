@@ -36,7 +36,7 @@ def _update(feed_ids):
             if not updated:
                 logging.error('Nothing got updated from %s' % feed_id)
             else:
-                logging.error('%s got updated' % feed_id)
+                logging.warning('%s got updated' % feed_id)
     except Exception as k:
         logging.exception(str(k))
         return None
