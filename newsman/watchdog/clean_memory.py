@@ -16,6 +16,7 @@ sys.path.append("..")
 
 from bson.objectid import ObjectId
 from config import Collection, db
+from config import logging
 from config import rclient
 import time
 import cleaner
@@ -28,14 +29,18 @@ def _is_zombie(item):
     if not item:
         return True
 
-    document_name = item['language']
-    document = Collection(db, document_name)
-    item_id = ObjectId(item['_id']) 
-    found = document.find_one({'_id': item_id})
-    if not found:
+    try:
+        document_name = item['language']
+        document = Collection(db, document_name)
+        item_id = ObjectId(item['_id']) 
+        found = document.find_one({'_id': item_id})
+        if not found:
+            return True
+        else:
+            return False
+    except Exception as k:
+        logging.exception(str(k))
         return True
-    else:
-        return False
 
 
 def clean_by_item(item_id):
@@ -68,34 +73,42 @@ def clean():
     remove expired items from queues in memory
     walk through all redis content
     """
-    print '... cleaning memory ...'
-    news_lists = rclient.keys('news::*')
-    for news_list in news_lists:
-        # get the total number of a news list
-        news_list_count = rclient.zcard(news_list)
-        # get all the ids in a news list
-        if news_list_count:
-            news_ids = rclient.zrange(news_list, 0, news_list_count)
-            for news_id in news_ids:
-                # make sure every item is touched
-                if not rclient.exists(news_id):
-                    rclient.zrem(news_list, news_id)
-                else:
-                    news_item_string = rclient.get(news_id)
-                    if news_item_string:
-                        news_item = eval(news_item_string)
-                        news_updated = float(news_item['updated'])
+    logging.info('... cleaning memory ...')
+    try:
+        news_lists = rclient.keys('news::*')
+        for news_list in news_lists:
+            # get the total number of a news list
+            news_list_count = rclient.zcard(news_list)
+            # get all the ids in a news list
+            if news_list_count:
+                news_ids = rclient.zrange(news_list, 0, news_list_count)
+                for news_id in news_ids:
+                    # make sure every item is touched
+                    if not rclient.exists(news_id):
+                        rclient.zrem(news_list, news_id)
+                    else:
+                        news_item_string = rclient.get(news_id)
+                        if news_item_string:
+                            news_item = eval(news_item_string)
+                            news_updated = float(news_item['updated'])
                         
-                        if cleaner.is_overdue(news_updated):  # WTF, remove it
-                            rclient.zrem(news_list, news_id)
-                            rclient.delete(news_id)
-                        else:  # check if this is zombie
-                            if _is_zombie(news_item):
+                            if cleaner.is_overdue(news_updated):  # WTF, remove it
                                 rclient.zrem(news_list, news_id)
                                 rclient.delete(news_id)
-                    else:
-                        rclient.zrem(news_list, news_id)
-                        rclient.delete(news_id)
+                            else:  # check if this is zombie
+                                if _is_zombie(news_item):
+                                    rclient.zrem(news_list, news_id)
+                                    rclient.delete(news_id)
+                        else:
+                            rclient.zrem(news_list, news_id)
+                            rclient.delete(news_id)
+                return True
+            else:
+                logging.error('Nothing in the list')
+                return False
+    except Exception as k:
+        logging.exception(str(k))
+        return False
     
 
 if __name__ == "__main__":
