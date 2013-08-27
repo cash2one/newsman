@@ -54,7 +54,7 @@ def _clean_data():
     """
     clean memory, database and files, usually run daily
     """
-    print '----------------------cleaning-------------------------'
+    logging.info('----------------------cleaning-------------------------')
     try:
         any_mistake = False
         # clean database
@@ -84,7 +84,7 @@ def _clean_zombies():
     """
     kill zombie processes, usually run semi-daily, or quasi-daily
     """
-    print '----------------------killing zombies-------------------------'
+    logging.info('-----------------killing zombies--------------------')
     try:
         clean_process.clean()
         return True
