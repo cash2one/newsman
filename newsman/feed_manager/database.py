@@ -27,9 +27,6 @@ def get(feed_id=None, feed_link=None, language=None):
     """
     get all feed info in database:feeds
     """
-    logging.debug(feed_id)
-    logging.debug(feed_link)
-    logging.debug(language)
     if not feed_id and not (feed_link and language):
         logging.error('Method malformed!')
         return None
