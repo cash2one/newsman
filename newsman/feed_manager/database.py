@@ -65,7 +65,10 @@ def update(feed_id, **kwargs):
             item['updated_times'] = int(item['updated_times']) + 1
             item['latest_update'] = time.asctime(time.gmtime())
             # the final return
-            return col.update({'_id': ObjectId(feed_id)}, item)
+            # by default update returns null upon successful update
+            # use find_and_modify if a return is needed
+            col.update({'_id': ObjectId(feed_id)}, item)
+            return True
         else:
             logging.error("No such a _id %s in feeds" % feed_id)
             return None

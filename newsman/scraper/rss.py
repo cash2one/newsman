@@ -287,6 +287,7 @@ def update(feed_link=None, feed_id=None, language=None, categories=None, transco
                         # **kwargs
                         result = db_feeds.update(
                             feed_id=feed_id, status=status_new, feed_title=feed_title_new, etag=etag_new, modified=modified_new)
+                        logging.debug(result)
                         if result:
                             return result
                         else:
