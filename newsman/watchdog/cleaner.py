@@ -56,13 +56,24 @@ def _clean_data():
     """
     print '----------------------cleaning-------------------------'
     try:
+        any_mistake = False
         # clean database
-        clean_database.clean()
+        if not clean_database.clean():
+            logging.error('Error found cleaning database')
+            any_mistake = True
         # clean memory
-        clean_memory.clean()
+        if clean_memory.clean():
+            logging.error('Error found cleaning memory')
+            any_mistake = True
         # clean disk
-        clean_disk.clean()
-        return True
+        if clean_disk.clean():
+            logging.error('Error found cleaning disk')
+            any_mistake = True
+
+        if not any_mistake:
+            return True
+        else:
+            return False
     except Exception as k:
         logging.exception(str(k))
         return False
