@@ -144,8 +144,9 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
         return None
 
     updated_entries = []
-    for entry in entries:
+    for i, entry in enumerate(entries):
         try:
+            logging.info('... Working on %i of %d ...' % (i+1, len(entries)))
             logging.info(entry['title'])
             logging.info(entry['link'])
 
