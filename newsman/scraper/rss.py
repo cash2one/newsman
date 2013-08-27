@@ -127,6 +127,7 @@ def _get_tts(entry=None, rand=None):
         entry['error'].append(str(k) + '\n')
         entry['mp3'] = None
         entry['mp3_local'] = None
+    logging.debug('entry is returned')
     return entry
 
 
@@ -142,6 +143,7 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
         logging.error("Language not found or not supported!")
         return None
 
+    updated_entries = []
     for entry in entries:
         try:
             logging.info(entry['title'])
@@ -222,20 +224,25 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
                     # [MUST-HAVE] store in memory
                     result = memory.update(entry)
                     if result:
-                        # the FINAL return
-                        return result
+                        updated_entries.append(entry)
                     else:
                         logging.error('Error found in updating memory')
-                        return None
+                        continue
                 else:
                     logging.error('Error found in updating to news database')
-                    return None
+                    continue
             else:
                 logging.error('Error found in transcoding')
-                return None
+                continue
         except Exception as k:
             logging.exception(str(k))
-            return None
+            continue
+    # the FINAL return
+    if updated_entries:
+        return True
+    else:
+        logging.error('No entry got value added!')
+        return False
 
 
 # TODO: code to remove added items if things suck at database/memory

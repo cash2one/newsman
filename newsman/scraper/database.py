@@ -69,6 +69,7 @@ def update(entry=None):
         # then save to database
         entry_id = col.save(entry)
         entry['_id'] = str(entry_id)
+        logging.debug(entry['_id'] + ' is inserted into database')
         return entry
     except Exception as k:
         logging.exception(str(k))
