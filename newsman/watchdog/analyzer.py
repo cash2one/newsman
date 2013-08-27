@@ -1,5 +1,5 @@
-#!/usr/bin/env python 
-#-*- coding: utf-8 -*- 
+#!/usr/bin/env python
+#-*- coding: utf-8 -*-
 
 """
 scrape is a task to scrape rss resources
@@ -9,8 +9,8 @@ scrape is a task to scrape rss resources
 # @created Aug. 14, 2013
 
 
-import sys 
-reload(sys) 
+import sys
+reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('/home/jinyuan/Downloads/bgm_news')
 
