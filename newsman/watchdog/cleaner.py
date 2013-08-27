@@ -15,6 +15,7 @@ sys.setdefaultencoding('UTF-8')
 sys.path.append('/home/jinyuan/Downloads/bgm_news')
 
 import calendar
+from config import logging
 from datetime import datetime, timedelta
 import time
 import clean_database, clean_memory, clean_disk
@@ -29,16 +30,21 @@ def is_overdue(time_stamp):
     find out if the file is overdue
     """
     if not time_stamp:
-        return False
-
-    deadline_datetime = datetime.utcfromtimestamp(time_stamp) + timedelta(days=DATABASE_REMOVAL_DAYS)
-    deadline_posix = calendar.timegm(deadline_datetime.timetuple())
-    now_posix = time.mktime(time.gmtime())
-
-    if deadline_posix < now_posix:  # deadline is earlier than now
+        logging.error('Method malformed!')
         return True
-    else:
-        return False
+
+    try:
+        deadline_datetime = datetime.utcfromtimestamp(time_stamp) + timedelta(days=DATABASE_REMOVAL_DAYS)
+        deadline_posix = calendar.timegm(deadline_datetime.timetuple())
+        now_posix = time.mktime(time.gmtime())
+
+        if deadline_posix < now_posix:  # deadline is earlier than now
+            return True
+        else:
+            return False
+    except Exception as k:
+        logging.exception(str(k))
+        return True
 
 
 def _clean_data():
@@ -46,12 +52,17 @@ def _clean_data():
     clean memory, database and files, usually run daily
     """
     print '----------------------cleaning-------------------------'
-    # clean database
-    #clean_database.clean()
-    # clean memory
-    clean_memory.clean()
-    # clean disk
-    #clean_disk.clean()
+    try:
+        # clean database
+        clean_database.clean()
+        # clean memory
+        clean_memory.clean()
+        # clean disk
+        clean_disk.clean()
+        return True
+    except Exception as k:
+        logging.exception(str(k))
+        return False
 
 
 def _clean_zombies():
@@ -59,7 +70,12 @@ def _clean_zombies():
     kill zombie processes, usually run semi-daily, or quasi-daily
     """
     print '----------------------killing zombies-------------------------'
-    clean_process.clean()
+    try:
+        clean_process.clean()
+        return True
+    except Exception as k:
+        logging.exception(str(k))
+        return False
 
 
 if __name__ == "__main__":
