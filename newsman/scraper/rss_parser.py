@@ -213,7 +213,7 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
         except AttributeError as k:
             entry['tags'] = None
 
-        # the final return
+        # the FINAL return
         return entry
     except Exception as k:
         logging.exception(str(k))
