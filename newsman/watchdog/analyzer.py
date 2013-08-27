@@ -14,8 +14,8 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('/home/jinyuan/Downloads/bgm_news')
 
-from config import Collection
-from config import db
+from config import Collection, db
+from config import logging
 from scraper import rss
 
 # CONSTANTS
@@ -27,23 +27,32 @@ def _update(feed_ids):
     update links find in feeds
     """
     if not feed_ids:
-        raise Exception("ERROR: No feed found!")
-    else:
+        logging.error("No feed found!")
+        return None
+
+    try:
         for feed_id in feed_ids:
             rss.update(feed_id=feed_id)
+    except Exception as k:
+        logging.exception(str(k))
+        return None
 
 
 def _read_feeds(language='en'):
     """
     read feed information from database feeds
     """
-    db_feeds = Collection(db, FEED_REGISTRAR)
-    items = db_feeds.find({'language': language})
-    if items:
-        return [str(item['_id']) for item in items]
-    else:
-        raise Exception(
-            "ERROR: Cannot find any feeds for language %s!" % language)
+    try:
+        db_feeds = Collection(db, FEED_REGISTRAR)
+        items = db_feeds.find({'language': language})
+        if items:
+            return [str(item['_id']) for item in items]
+        else:
+            logging.error("Cannot find any feeds for language %s!" % language)
+            return None
+    except Exception as k:
+        logging.exception(str(k))
+        return None
 
 
 def _scrape(language):
