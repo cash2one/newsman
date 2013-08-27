@@ -12,7 +12,7 @@ scrape is a task to scrape rss resources
 import sys
 reload(sys)
 sys.setdefaultencoding('UTF-8')
-sys.path.append('/home/jinyuan/Downloads/bgm_news')
+sys.path.append('/home/jinyuan/Downloads/newsman')
 
 from config import Collection, db
 from config import logging
