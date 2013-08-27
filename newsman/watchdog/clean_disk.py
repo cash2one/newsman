@@ -15,6 +15,7 @@ sys.setdefaultencoding('UTF-8')
 sys.path.append("..")
 
 from config import Collection, db
+from config import logging
 import os
 import cleaner
 
@@ -30,38 +31,49 @@ def clean_by_item(candidate):
     remove related files on disk of an item
     mp3_local, transcoded_local, hotnews_image_local, category_image_local, thumbnail_image_local
     """
-    # mp3
-    if candidate.has_key('mp3_local') and candidate['mp3_local']:
-        if os.path.exists(candidate['mp3_local']):
-            os.remove(candidate['mp3_local'])
-    # transcoded
-    if candidate.has_key('transcoded_local') and candidate['transcoded_local']:
-        if os.path.exists(candidate['transcoded_local']):
-            os.remove(candidate['transcoded_local'])
-    # hotnews_image
-    if candidate.has_key('hotnews_image_local') and candidate['hotnews_image_local']:
-        if os.path.exists(candidate['hotnews_image_local']['url']):
-            os.remove(candidate['hotnews_image_local']['url'])
-    # category_image
-    if candidate.has_key('category_image_local') and candidate['category_image_local']:
-        if os.path.exists(candidate['category_image_local']['url']):
-            os.remove(candidate['category_image_local']['url'])
-    # thumbnail_image
-    if candidate.has_key('thumbnail_image_local') and candidate['thumbnail_image_local']:
-        if os.path.exists(candidate['thumbnail_image_local']['url']):
-            os.remove(candidate['thumbnail_image_local']['url'])
+    try:
+        # mp3
+        if candidate.has_key('mp3_local') and candidate['mp3_local']:
+            if os.path.exists(candidate['mp3_local']):
+                os.remove(candidate['mp3_local'])
+        # transcoded
+        if candidate.has_key('transcoded_local') and candidate['transcoded_local']:
+            if os.path.exists(candidate['transcoded_local']):
+                os.remove(candidate['transcoded_local'])
+        # hotnews_image
+        if candidate.has_key('hotnews_image_local') and candidate['hotnews_image_local']:
+            if os.path.exists(candidate['hotnews_image_local']['url']):
+                os.remove(candidate['hotnews_image_local']['url'])
+        # category_image
+        if candidate.has_key('category_image_local') and candidate['category_image_local']:
+            if os.path.exists(candidate['category_image_local']['url']):
+                os.remove(candidate['category_image_local']['url'])
+        # thumbnail_image
+        if candidate.has_key('thumbnail_image_local') and candidate['thumbnail_image_local']:
+            if os.path.exists(candidate['thumbnail_image_local']['url']):
+                os.remove(candidate['thumbnail_image_local']['url'])
+
+        return True
+    except Exception as k:
+        logging.exception(str(k))
+        return False
 
 
 def _clean_tempory_files():
     """
     remove temporary files
     """
-    if os.path.exists(MEDIA_TEMP_LOCAL_DIR):
-        temp_files = [os.path.join(MEDIA_TEMP_LOCAL_DIR, temp_file) for temp_file in os.listdir(MEDIA_TEMP_LOCAL_DIR)]
-        if temp_files:
-            for temp_file in temp_files:
-                if os.path.exists(temp_file):
-                    os.remove(temp_file)
+    try:
+        if os.path.exists(MEDIA_TEMP_LOCAL_DIR):
+            temp_files = [os.path.join(MEDIA_TEMP_LOCAL_DIR, temp_file) for temp_file in os.listdir(MEDIA_TEMP_LOCAL_DIR)]
+            if temp_files:
+                for temp_file in temp_files:
+                    if os.path.exists(temp_file):
+                        os.remove(temp_file)
+        return True
+    except Exception as k:
+        logging.exception(str(k))
+        return False
 
 
 def _clean_unrecorded_files():
@@ -129,10 +141,19 @@ def clean():
     """
     interface to clean temporary and unrecorded files
     """
-    print '... cleaning files on the disk ...'
-    _clean_unrecorded_files()
-    _clean_tempory_files()
+    logging.info('... cleaning files on the disk ...')
+    any_mistake = False
+    if not _clean_unrecorded_files():
+        logging.error('Error found cleaning unrecorded files')
+        any_mistake = True
+    if not _clean_tempory_files():
+        logging.error('Error found cleaning temporary files')
+        any_mistake = True
 
+    if not any_mistake:
+        return True
+    else:
+        return False
 
 if __name__ == "__main__":
     clean()
