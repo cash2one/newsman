@@ -63,7 +63,7 @@ def _scrape(language):
     """
     update news from stored feeds
     """
-    print '----------------------scraping-------------------------'
+    logging.info('----------------------scraping-------------------------')
     _update(_read_feeds(language))
 
 
