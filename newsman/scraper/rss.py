@@ -280,7 +280,7 @@ def update(feed_link=None, feed_id=None, language=None, categories=None, transco
 
                 if entries:
                     # and do tts, big_images, image as well as transcode.
-                    result = _value_added_process(entries, language, transcoder_type):
+                    result = _value_added_process(entries, language, transcoder_type)
                     if result:
                         # feed_title, etag and modified to db_feeds
                         # only feed_id is necessary, others are optional
