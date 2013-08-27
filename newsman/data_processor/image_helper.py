@@ -70,6 +70,8 @@ def _link_process(link):
                     logging.info(str(k))
             if response:
                 return image_url
+            else:
+                return None
         else:
             return None
     except Exception as k:
