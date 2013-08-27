@@ -12,7 +12,7 @@ cleaner is an interface file to clean database, memory and files on disk
 import sys
 reload(sys)
 sys.setdefaultencoding('UTF-8')
-sys.path.append('/home/jinyuan/Downloads/bgm_news')
+sys.path.append('/home/jinyuan/Downloads/newsman')
 
 import calendar
 from config import logging
