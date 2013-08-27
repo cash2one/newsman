@@ -18,7 +18,9 @@ import calendar
 from config import logging
 from datetime import datetime, timedelta
 import time
-import clean_database, clean_memory, clean_disk
+import clean_database
+import clean_memory
+import clean_disk
 import clean_process
 
 # CONSTANTS
@@ -34,7 +36,8 @@ def is_overdue(time_stamp):
         return True
 
     try:
-        deadline_datetime = datetime.utcfromtimestamp(time_stamp) + timedelta(days=DATABASE_REMOVAL_DAYS)
+        deadline_datetime = datetime.utcfromtimestamp(
+            time_stamp) + timedelta(days=DATABASE_REMOVAL_DAYS)
         deadline_posix = calendar.timegm(deadline_datetime.timetuple())
         now_posix = time.mktime(time.gmtime())
 
@@ -79,6 +82,6 @@ def _clean_zombies():
 
 
 if __name__ == "__main__":
-    modes = {'data':'_clean_data', 'zombie':'_clean_zombies'}
+    modes = {'data': '_clean_data', 'zombie': '_clean_zombies'}
     mode = sys.argv[1]
     eval(modes[mode])()
