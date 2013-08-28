@@ -75,7 +75,6 @@ def _link_process(link):
         else:
             return None
     except Exception as k:
-        pass
         logger.error(str(k))
         return None
 
@@ -93,10 +92,9 @@ def find_image(link=None):
             image_normalized = normalize(link)
             return image_normalized[0] if image_normalized else None
         else:
-            logger.error('Cannot parse link correctly')
+            logger.error('Cannot parse %s correctly' % link)
             return None
     except Exception as k:
-        pass
         logger.error(str(k))
         return None
 
@@ -127,7 +125,6 @@ def find_images(content=None):
 
         return images_normalized
     except Exception as k:
-        pass
         logger.error(str(k))
         return None
 
@@ -149,7 +146,6 @@ def find_biggest_image(images=None):
                 resolution_max = resolution_image
         return biggest
     except Exception as k:
-        pass
         logger.error(str(k))
         return None
 
@@ -179,7 +175,6 @@ def dedupe_images(images):
     try:
         return filter(lambda x: not _exists(x), images)
     except Exception as k:
-        pass
         logger.error(str(k))
         return None
 
@@ -249,7 +244,6 @@ def scale_image(image=None, size_expected=MIN_IMAGE_SIZE,
         else:
             return None, None
     except Exception as k:
-        pass
         logger.error(str(k))
         return None, None
 
@@ -283,7 +277,6 @@ def normalize(images):
                         return None
             return None
         except IOError as k:
-            pass
             logger.error(str(k))
             return None
 
@@ -299,6 +292,5 @@ def normalize(images):
                     images_new.append(image_new)
             return images_new if images_new else None
     except Exception as k:
-        pass
         logger.error(str(k))
         return None
