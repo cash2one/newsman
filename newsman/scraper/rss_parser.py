@@ -101,7 +101,7 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
                         updated -= delta
                         entry['updated'] = time.mktime(updated.timetuple())
                     else:
-                        logger.error(
+                        logger.info(
                             "Attribute updated/published has no value")
                         return None
                 except ValueError as k:
@@ -308,6 +308,7 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
                         else:
                             logger.error('Cannot parse %s' % e['link'])
                             continue
+
                     if entries:
                         # the FINAL return
                         return filter(_validate_time, entries), status, feed_title, etag, modified
