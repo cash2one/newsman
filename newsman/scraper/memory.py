@@ -14,7 +14,7 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
-from config import logging
+from config import logger
 from config import rclient
 
 # CONSTANTS
@@ -27,7 +27,7 @@ def update(entry=None):
     add news and its attributes to memory
     """
     if not entry:
-        logging.error('Method malformed!')
+        logger.error('Method malformed!')
         return None
 
     try:
@@ -52,5 +52,5 @@ def update(entry=None):
         return True
     except Exception as k:
         pass
-        logging.error(str(k))
+        logger.error(str(k))
         return None

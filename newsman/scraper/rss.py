@@ -15,7 +15,7 @@ sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
 import calendar
-from config import logging
+from config import logger
 from datetime import datetime, timedelta
 from data_processor import image_helper
 from data_processor import summarizer
@@ -48,7 +48,7 @@ def _generate_images(image=None, entry=None, rand=None):
     generate hot news, category and thumbnail images, and maybe more sizes
     """
     if not image or not entry:
-        logging.error('Method malformedi!')
+        logger.error('Method malformedi!')
         return entry
     if not rand:
         # get a new rand
@@ -100,17 +100,17 @@ def _generate_images(image=None, entry=None, rand=None):
         entry['thumbnail_image_local'] = thumbnail_local if thumbnail_local else None
     except Exception as k:
         pass
-        logging.error(str(k))
+        logger.error(str(k))
     return entry
 
 
-# TODO: replace primitive exception recording with logging
+# TODO: replace primitive exception recording with logger
 def _get_tts(entry=None, rand=None):
     """
     get tts from the provider
     """
     if not entry:
-        logging.error('Method malformed!')
+        logger.error('Method malformed!')
         return entry
     if not rand:
         # get a new rand
@@ -125,11 +125,11 @@ def _get_tts(entry=None, rand=None):
             entry['language'], read_content, tts_relative_path)
     except Exception as k:
         pass
-        logging.error(str(k))
+        logger.error(str(k))
         entry['error'].append(str(k) + '\n')
         entry['mp3'] = None
         entry['mp3_local'] = None
-    logging.debug('entry is returned')
+    logger.debug('entry is returned')
     return entry
 
 
@@ -139,18 +139,18 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
     tts, transcode, images, redis_entry_expiration, database_entry_expiration
     """
     if not entries:
-        logging.error('Method malformed!')
+        logger.error('Method malformed!')
         return None
     if not language or language not in LANGUAGES:
-        logging.error("Language not found or not supported!")
+        logger.error("Language not found or not supported!")
         return None
 
     updated_entries = []
     for i, entry in enumerate(entries):
         try:
-            logging.info('... Working on %i of %d ...' % (i+1, len(entries)))
-            logging.info(entry['title'])
-            logging.info(entry['link'])
+            logger.info('... Working on %i of %d ...' % (i+1, len(entries)))
+            logger.info(entry['title'])
+            logger.info(entry['link'])
 
             # [MUST-HAVE] transcoding
             # get a random int from 100 million possibilities
@@ -217,7 +217,7 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
                 entry['database_expired'] = _expired(
                     entry['updated'], DATABASE_REMOVAL_DAYS)
 
-                # [OPTIONAL] if logging is used, this could be removed
+                # [OPTIONAL] if logger is used, this could be removed
                 entry['error'] = entry['error'] if entry['error'] else None
 
                 # [MUST-HAVE] update new entry to db_news
@@ -229,23 +229,23 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
                     if result:
                         updated_entries.append(entry)
                     else:
-                        logging.error('Error found in updating memory')
+                        logger.error('Error found in updating memory')
                         continue
                 else:
-                    logging.error('Error found in updating to news database')
+                    logger.error('Error found in updating to news database')
                     continue
             else:
-                logging.error('Error found in transcoding')
+                logger.error('Error found in transcoding')
                 continue
         except Exception as k:
             pass
-            logging.error(str(k))
+            logger.error(str(k))
             continue
     # the FINAL return
     if updated_entries:
         return True
     else:
-        logging.error('No entry got value added!')
+        logger.error('No entry got value added!')
         return False
 
 
@@ -259,7 +259,7 @@ def update(feed_link=None, feed_id=None, language=None, categories=None, transco
     Note categories are kept for manual testing
     """
     if not feed_id and not (feed_link and language):
-        logging.error('Method malformed!')
+        logger.error('Method malformed!')
         return None
 
     try:
@@ -301,23 +301,23 @@ def update(feed_link=None, feed_id=None, language=None, categories=None, transco
                         if result:
                             return result
                         else:
-                            logging.error(
+                            logger.error(
                                 'Error found updating feeds database')
                             return None
                     else:
-                        logging.error('Error found adding value to entries')
+                        logger.error('Error found adding value to entries')
                         return None
 
                 else:
-                    logging.error('Nothing from RSS is found new!')
+                    logger.error('Nothing from RSS is found new!')
                     return None
             else:
-                logging.error('Nothing from RSS is updated!')
+                logger.error('Nothing from RSS is updated!')
                 return None
         else:
-            logging.warning('Register feed in database before updating!')
+            logger.warning('Register feed in database before updating!')
             return None
     except Exception as k:
         pass
-        logging.error(str(k))
+        logger.error(str(k))
         return None

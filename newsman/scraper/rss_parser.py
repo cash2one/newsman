@@ -18,7 +18,7 @@ from BeautifulSoup import BeautifulStoneSoup
 import calendar
 import chardet
 from config import hparser
-from config import logging
+from config import logger
 from data_processor import image_helper
 from datetime import datetime, timedelta
 import feedparser
@@ -42,10 +42,10 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
     Note. categories are ids of category item
     """
     if not e or not feed_title or not language or not categories:
-        logging.error('Method malformed!')
+        logger.error('Method malformed!')
         return None
     if language not in LANGUAGES:
-        logging.error("Language not supported for %s!" % feed_title)
+        logger.error("Language not supported for %s!" % feed_title)
         return None
 
     try:
@@ -69,7 +69,7 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
             # remove possible htmlized title
             entry['title'] = re.sub("<.*?>", " ", entry['title'])
         except AttributeError as k:
-            logging.error(str(k))
+            logger.error(str(k))
             entry['error'].append(k + '\n')
             return None
 
@@ -101,15 +101,15 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
                         updated -= delta
                         entry['updated'] = time.mktime(updated.timetuple())
                     else:
-                        logging.error(
+                        logger.error(
                             "Attribute updated/published has no value")
                         return None
                 except ValueError as k:
-                    logging.error(str(k))
+                    logger.error(str(k))
                     entry['error'] = '%s\n%s' % (entry['error'], k)
                     return None
                 except AttributeError as k:
-                    logging.error(str(k))
+                    logger.error(str(k))
                     entry['error'].append('no update or published\n')
                     return None
 
@@ -217,7 +217,7 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
         return entry
     except Exception as k:
         pass
-        logging.error(str(k))
+        logger.error(str(k))
         return None
 
 
@@ -231,10 +231,10 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
     Note: category should be added to feed table/database
     """
     if not feed_link or not feed_id or not language or not categories:
-        logging.error("Method malformed!")
+        logger.error("Method malformed!")
         return None, None, None, None, None
     if language not in LANGUAGES:
-        logging.error("Language not supported for %s!" % feed_link)
+        logger.error("Language not supported for %s!" % feed_link)
         return None, None, None, None, None
 
     def _validate_time(entry):
@@ -253,20 +253,20 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
             # http://pythonhosted.org/feedparser/http-etag.html#http-etag
             status = d.status
             if status == 301:
-                logging.critical(
+                logger.critical(
                     '%s has been permantently moved to a %s!' % (feed_link, d.href))
                 return None, None, None, None, None
             elif status == 304:
-                logging.warning(
+                logger.warning(
                     '%s server has not updated its feeds' % feed_link)
             elif status == 410:
-                logging.critical(
+                logger.critical(
                     '%s is gone! Admin should check the feed availability!' % feed_link)
                 return None, None, None, None, None
             elif status == 200 or status == 302:
                 # no need to worry.
                 if status == 302:
-                    logging.warning(
+                    logger.warning(
                         '%s url has been temp moved to a new place' % feed_link)
 
                 if not feed_title:
@@ -280,10 +280,10 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
                         hparser.unescape(d.feed.title)).strip()
                     if feed_title != feed_title_latest:
                         # change feed title
-                        logging.warning(
+                        logger.warning(
                             '%s title changed! Please update feed table/database' % feed_link)
-                        logging.info('old title: %s' % feed_title)
-                        logging.info('new title: %s' % feed_title_latest)
+                        logger.info('old title: %s' % feed_title)
+                        logger.info('new title: %s' % feed_title_latest)
 
                 # update etag/modified
                 etag = None
@@ -306,25 +306,25 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
                         if entry:
                             entries.append(entry)
                         else:
-                            logging.error('Cannot parse %s' % e['link'])
+                            logger.error('Cannot parse %s' % e['link'])
                             continue
                     if entries:
                         # the FINAL return
                         return filter(_validate_time, entries), status, feed_title, etag, modified
                     else:
-                        logging.error('Feed parsing goes wrong!')
+                        logger.error('Feed parsing goes wrong!')
                         return None, None, None, None
                 else:
-                    logging.error("Feed %s has no items!" % feed_id)
+                    logger.error("Feed %s has no items!" % feed_id)
                     return None, None, None, None, None
             else:
-                logging.error(
+                logger.error(
                     'HTTP ERROR CODE %i for %s' % (status, feed_link))
                 return None, None, None, None, None
         else:
-            logging.error("Cannot parse %s correctly!" % feed_id)
+            logger.error("Cannot parse %s correctly!" % feed_id)
             return None, None, None, None, None
     except Exception as k:
         pass
-        logging.error(str(k))
+        logger.error(str(k))
         return None, None, None, None, None
