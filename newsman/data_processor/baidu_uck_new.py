@@ -41,7 +41,6 @@ def _transcode(link):
         data = urllib2.unquote(hparser.unescape(html))
         return data
     except Exception as k:
-        pass
         logger.error(str(k))
         return None
 
@@ -81,6 +80,5 @@ def convert(link):
         title, content, images = _extract(link)
         return title, content, images
     except Exception as k:
-        pass
         logger.error(str(k))
         return None, None, None
