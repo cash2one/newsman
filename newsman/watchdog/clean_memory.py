@@ -39,7 +39,6 @@ def _is_zombie(item):
         else:
             return False
     except Exception as k:
-        pass
         logger.error(str(k))
         return True
 
@@ -109,7 +108,6 @@ def clean():
                 logger.error('Nothing in the list')
                 return False
     except Exception as k:
-        pass
         logger.error(str(k))
         return False
 
