@@ -142,10 +142,13 @@ def find_biggest_image(images=None):
         biggest = None
         for image in images:
             resolution_max = MIN_IMAGE_SIZE[0] * MIN_IMAGE_SIZE[1]
-            resolution_image = int(image['width']) * int(image['height'])
-            if resolution_image > resolution_max:
-                biggest = image
-                resolution_max = resolution_image
+            if 'width' in image and 'height' in image:
+                resolution_image = int(image['width']) * int(image['height'])
+                if resolution_image > resolution_max:
+                    biggest = image
+                    resolution_max = resolution_image
+            else:
+                logger.error('Image malformed! %s' % str(image))
         return biggest
     except Exception as k:
         logger.error(str(k))
