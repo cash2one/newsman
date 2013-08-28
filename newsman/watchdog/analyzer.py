@@ -38,6 +38,7 @@ def _update(feed_ids):
             else:
                 logging.warning('%s got updated' % feed_id)
     except Exception as k:
+        pass
         logging.exception(str(k))
         return None
 
@@ -55,6 +56,7 @@ def _read_feeds(language='en'):
             logging.error("Cannot find any feeds for language %s!" % language)
             return None
     except Exception as k:
+        pass
         logging.exception(str(k))
         return None
 
