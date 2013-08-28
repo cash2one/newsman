@@ -100,7 +100,7 @@ def _generate_images(image=None, entry=None, rand=None):
         entry['thumbnail_image_local'] = thumbnail_local if thumbnail_local else None
     except Exception as k:
         pass
-        logging.exception(str(k))
+        logging.error(str(k))
     return entry
 
 
@@ -125,7 +125,7 @@ def _get_tts(entry=None, rand=None):
             entry['language'], read_content, tts_relative_path)
     except Exception as k:
         pass
-        logging.exception(str(k))
+        logging.error(str(k))
         entry['error'].append(str(k) + '\n')
         entry['mp3'] = None
         entry['mp3_local'] = None
@@ -239,7 +239,7 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
                 continue
         except Exception as k:
             pass
-            logging.exception(str(k))
+            logging.error(str(k))
             continue
     # the FINAL return
     if updated_entries:
@@ -319,5 +319,5 @@ def update(feed_link=None, feed_id=None, language=None, categories=None, transco
             return None
     except Exception as k:
         pass
-        logging.exception(str(k))
+        logging.error(str(k))
         return None

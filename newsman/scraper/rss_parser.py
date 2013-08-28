@@ -217,7 +217,7 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
         return entry
     except Exception as k:
         pass
-        logging.exception(str(k))
+        logging.error(str(k))
         return None
 
 
@@ -326,5 +326,5 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
             return None, None, None, None, None
     except Exception as k:
         pass
-        logging.exception(str(k))
+        logging.error(str(k))
         return None, None, None, None, None
