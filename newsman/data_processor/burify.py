@@ -50,5 +50,6 @@ def convert(link):
             logging.error('Cannot parse link correctly')
             return None, None, None
     except Exception as k:
+        pass
         logging.exception(str(k))
         return None, None, None
