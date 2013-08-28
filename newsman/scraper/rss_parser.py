@@ -258,6 +258,7 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
             elif status == 304:
                 logger.warning(
                     '%s server has not updated its feeds' % feed_link)
+                return None, None, None, None, None
             elif status == 410:
                 logger.critical(
                     '%s is gone! Admin should check the feed availability!' % feed_link)
