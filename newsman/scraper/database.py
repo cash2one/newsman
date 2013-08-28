@@ -41,7 +41,7 @@ def dedup(entries=None, language=None):
             dup_title = col.find_one({'title': entry['title']})
 
             if dup_link or dup_title:
-                logger.warning(
+                logger.info(
                     'Find a duplicate for %s' % str(entry['title']))
                 continue
             else:
