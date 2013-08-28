@@ -47,9 +47,8 @@ def convert(link):
                 logger.error('Burify cannot recognize the data')
                 return None, None, None
         else:
-            logger.error('Cannot parse link correctly')
+            logger.error('Cannot parse %s correctly' % link)
             return None, None, None
     except Exception as k:
-        pass
         logger.error(str(k))
         return None, None, None
