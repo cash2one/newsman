@@ -40,7 +40,6 @@ def get(feed_id=None, feed_link=None, language=None):
         # the final return
         return item
     except Exception as k:
-        pass
         logger.error(str(k))
         return None
 
@@ -71,7 +70,6 @@ def update(feed_id, **kwargs):
             logger.error("No such a _id %s in feeds" % feed_id)
             return None
     except Exception as k:
-        pass
         logger.error(str(k))
         return None
 
@@ -99,6 +97,5 @@ def save(feed_info=None):
             # the final return
             return str(item['_id'])
     except Exception as k:
-        pass
         logger.error(str(k))
         return None
