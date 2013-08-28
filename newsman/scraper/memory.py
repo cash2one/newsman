@@ -51,6 +51,5 @@ def update(entry=None):
         # final return
         return True
     except Exception as k:
-        pass
         logger.error(str(k))
         return None
