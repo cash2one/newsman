@@ -40,7 +40,7 @@ def _is_zombie(item):
             return False
     except Exception as k:
         logger.error(str(k))
-        return True
+        return False
 
 
 def clean_by_item(item_id):
