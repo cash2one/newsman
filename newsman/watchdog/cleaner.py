@@ -72,7 +72,7 @@ def _clean_data():
             any_mistake = True
 
         if not any_mistake:
-            logger.warning('Memory, Database & Disk got cleaned!')
+            logger.info('Memory, Database & Disk got cleaned!')
             return True
         else:
             return False

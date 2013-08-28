@@ -34,9 +34,9 @@ def _update(feed_ids):
         for feed_id in feed_ids:
             updated = rss.update(feed_id=feed_id)
             if not updated:
-                logger.error('Nothing got updated from %s' % feed_id)
+                logger.info('Nothing got updated from %s' % feed_id)
             else:
-                logger.warning('%s got updated' % feed_id)
+                logger.info('%s got updated' % feed_id)
     except Exception as k:
         pass
         logger.error(str(k))
