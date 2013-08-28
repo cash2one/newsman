@@ -216,7 +216,6 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
         # the FINAL return
         return entry
     except Exception as k:
-        pass
         logger.error(str(k))
         return None
 
@@ -326,6 +325,5 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
             logger.error("Cannot parse %s correctly!" % feed_id)
             return None, None, None, None, None
     except Exception as k:
-        pass
         logger.error(str(k))
         return None, None, None, None, None
