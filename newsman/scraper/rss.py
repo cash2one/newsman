@@ -233,7 +233,7 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
                     logger.error('Error found in updating to news database')
                     continue
             else:
-                logger.error('Error found in transcoding')
+                logger.info('Error found in transcoding')
                 continue
         except Exception as k:
             logger.error(str(k))
@@ -242,7 +242,7 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
     if updated_entries:
         return True
     else:
-        logger.error('No entry got value added!')
+        logger.info('No entry got value added!')
         return False
 
 
@@ -298,11 +298,11 @@ def update(feed_link=None, feed_id=None, language=None, categories=None, transco
                         if result:
                             return result
                         else:
-                            logger.error(
+                            logger.info(
                                 'Error found updating feeds database')
                             return None
                     else:
-                        logger.error('Error found adding value to entries')
+                        logger.info('Error found adding value to entries')
                         return None
 
                 else:
