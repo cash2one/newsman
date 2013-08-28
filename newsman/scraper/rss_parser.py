@@ -70,7 +70,7 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
             entry['title'] = re.sub("<.*?>", " ", entry['title'])
         except AttributeError as k:
             logger.error(str(k))
-            entry['error'].append(k + '\n')
+            entry['error'].append(str(k) + '\n')
             return None
 
         # article published time
