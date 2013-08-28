@@ -63,7 +63,7 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
             # article title
             if e.title_detail.type != 'text/plain':
                 entry['title'] = urllib2.unquote(
-                    hparser.unescap(e.title.strip()))
+                    hparser.unescape(e.title.strip()))
             else:
                 entry['title'] = e.title.strip()
             # remove possible htmlized title
