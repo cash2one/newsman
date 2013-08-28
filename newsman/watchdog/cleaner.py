@@ -46,8 +46,7 @@ def is_overdue(time_stamp):
         else:
             return False
     except Exception as k:
-        pass
-        logger.exception(str(k))
+        logger.error(str(k))
         return True
 
 
@@ -77,8 +76,7 @@ def _clean_data():
         else:
             return False
     except Exception as k:
-        pass
-        logger.exception(str(k))
+        logger.error(str(k))
         return False
 
 
@@ -91,8 +89,7 @@ def _clean_zombies():
         clean_process.clean()
         return True
     except Exception as k:
-        pass
-        logger.exception(str(k))
+        logger.error(str(k))
         return False
 
 
