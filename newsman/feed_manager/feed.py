@@ -49,9 +49,10 @@ def _read_source(d=None, feed_link=None, language=None, categories=None):
             # the final return
             return feed
         else:
-            logging.exception('Feed %s is malformed!' % feed_link)
+            logging.error('Feed %s is malformed!' % feed_link)
             return None
     except Exception as k:
+        pass
         logging.exception(str(k))
         return None
 
@@ -87,5 +88,6 @@ def add(feed_link=None, language=None, categories=None, transcoder_type="chengdu
                 "RSS source %s cannot be interpreted!" % feed_link)
             return None
     except Exception as k:
+        pass
         logging.exception(str(k))
         return None
