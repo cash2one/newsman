@@ -15,8 +15,8 @@ sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
 import chardet
+from config import logger
 import html2text
-import logger
 import nltk
 
 # CONSTANTS
