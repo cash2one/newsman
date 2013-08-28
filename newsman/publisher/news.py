@@ -15,6 +15,7 @@ sys.setdefaultencoding('UTF-8')
 sys.path.append('/var/www/wsgi')
 
 import cgi
+from config import logging
 import json
 import inquirer
 
@@ -98,6 +99,7 @@ def application(environ, start_response):
         start_response("200 OK", header)
         return [output]
     except Exception, e:
+        logging.error(str(e))
         header = [('Content-type', 'text/html'),
                   ('Content-Length', str(len(str(e))))]
         start_response("404 Not Found", header)
