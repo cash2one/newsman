@@ -106,11 +106,10 @@ def google(language='en', query='Service provided by Baidu', relative_path='do_n
             logger.info('... MP3 acceleration is successfully completed!')
             return tts_web_path, tts_local_path
         else:
-            logger.error(
+            logger.info(
                 '%s is revoked due to erros found in downloading!' % relative_path)
             return None, None
     except Exception as k:
-        pass
         logger.error(str(k))
         return None, None
 
@@ -215,7 +214,6 @@ def _query_segment(language='en', query='Service provided by Baidu'):
         segments.append(segment.strip())
         return segments
     except Exception as k:
-        pass
         logger.error(str(k))
         return None
 
@@ -269,7 +267,6 @@ def _download(language='en', query='Service provided by Baidu', tmp_file='do_not
             logger.error('Nothing generated from the query')
             return None
     except Exception as k:
-        pass
         logger.error(
             'Part of tts dowload went wrong, now removing the file: %s' % str(k))
         if os.path.exists(tmp_file):
