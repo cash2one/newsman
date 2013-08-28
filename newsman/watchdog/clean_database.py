@@ -40,7 +40,6 @@ def _find_document_names():
             document_names = [item['language'] for item in items]
         return list(set(document_names))
     except Exception as k:
-        pass
         logger.error(str(k))
         return None
 
@@ -74,7 +73,6 @@ def clean():
             logger.error('Cannot find documents')
             return False
     except Exception as k:
-        pass
         logger.error(str(k))
         return False
 
