@@ -66,8 +66,10 @@ def _link_process(link):
                     response = urllib2.urlopen(image_url, timeout=UCK_TIMEOUT)
                 except urllib2.URLError as k:
                     logger.info(str(k))
+                    pass
                 except Exception as k:
                     logger.info(str(k))
+                    pass
             if response:
                 return image_url
             else:
