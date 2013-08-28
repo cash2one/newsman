@@ -16,7 +16,7 @@ sys.path.append("..")
 
 from bson.objectid import ObjectId
 from config import Collection, db
-from config import logging
+from config import logger
 import time
 
 # CONSTANTS
@@ -28,7 +28,7 @@ def get(feed_id=None, feed_link=None, language=None):
     get all feed info in database:feeds
     """
     if not feed_id and not (feed_link and language):
-        logging.error('Method malformed!')
+        logger.error('Method malformed!')
         return None
 
     try:
@@ -41,7 +41,7 @@ def get(feed_id=None, feed_link=None, language=None):
         return item
     except Exception as k:
         pass
-        logging.error(str(k))
+        logger.error(str(k))
         return None
 
 
@@ -50,7 +50,7 @@ def update(feed_id, **kwargs):
     update feed info
     """
     if not feed_id:
-        logging.error('Method malformed!')
+        logger.error('Method malformed!')
         return None
 
     try:
@@ -68,11 +68,11 @@ def update(feed_id, **kwargs):
             col.update({'_id': ObjectId(feed_id)}, item)
             return True
         else:
-            logging.error("No such a _id %s in feeds" % feed_id)
+            logger.error("No such a _id %s in feeds" % feed_id)
             return None
     except Exception as k:
         pass
-        logging.error(str(k))
+        logger.error(str(k))
         return None
 
 
@@ -81,7 +81,7 @@ def save(feed_info=None):
     add a new record of feed
     """
     if not feed_info:
-        logging.error("Method malformed!")
+        logger.error("Method malformed!")
         return None
 
     try:
@@ -100,5 +100,5 @@ def save(feed_info=None):
             return str(item['_id'])
     except Exception as k:
         pass
-        logging.error(str(k))
+        logger.error(str(k))
         return None

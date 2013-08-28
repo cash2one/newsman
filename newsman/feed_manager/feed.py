@@ -14,7 +14,7 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append("..")
 
-from config import logging
+from config import logger
 import database as db_feeds
 import feedparser
 from scraper import rss
@@ -25,7 +25,7 @@ def _read_source(d=None, feed_link=None, language=None, categories=None):
     parse the feed for meta information
     """
     if not d or not feed_link or not language or not categories:
-        logging.error('Method malformed!')
+        logger.error('Method malformed!')
         return None
 
     try:
@@ -49,11 +49,11 @@ def _read_source(d=None, feed_link=None, language=None, categories=None):
             # the final return
             return feed
         else:
-            logging.error('Feed %s is malformed!' % feed_link)
+            logger.error('Feed %s is malformed!' % feed_link)
             return None
     except Exception as k:
         pass
-        logging.error(str(k))
+        logger.error(str(k))
         return None
 
 
@@ -63,7 +63,7 @@ def add(feed_link=None, language=None, categories=None, transcoder_type="chengdu
     read rss/atom meta information from a given feed
     """
     if not feed_link or not language:
-        logging.error("[feed.add] ERROR: Method not well formed!")
+        logger.error("[feed.add] ERROR: Method not well formed!")
         return None
 
     try:
@@ -78,16 +78,16 @@ def add(feed_link=None, language=None, categories=None, transcoder_type="chengdu
                     # the FINAL return
                     return rss.update(feed_link=feed_link, feed_id=feed_id, language=language, categories=categories, transcoder_type=transcoder_type)
                 else:
-                    logging.error('Cannot save feed in database')
+                    logger.error('Cannot save feed in database')
                     return None
             else:
-                logging.error('Cannot read source!')
+                logger.error('Cannot read source!')
                 return None
         else:
-            logging.error(
+            logger.error(
                 "RSS source %s cannot be interpreted!" % feed_link)
             return None
     except Exception as k:
         pass
-        logging.error(str(k))
+        logger.error(str(k))
         return None
