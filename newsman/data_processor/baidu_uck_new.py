@@ -42,7 +42,7 @@ def _transcode(link):
         return data
     except Exception as k:
         pass
-        logging.exception(str(k))
+        logging.error(str(k))
         return None
 
 
@@ -82,5 +82,5 @@ def convert(link):
         return title, content, images
     except Exception as k:
         pass
-        logging.exception(str(k))
+        logging.error(str(k))
         return None, None, None

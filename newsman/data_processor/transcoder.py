@@ -75,7 +75,7 @@ class TranscoderAPI(threading.Thread):
                 self.result = eval(self.transcoder).convert(self.url)
             except Exception as k:
                 pass
-                logging.exception(str(k))
+                logging.error(str(k))
                 self.result = None, None, None
 
 
@@ -97,7 +97,7 @@ def _save(data, path):
         return web_path, local_path
     except Exception as k:
         pass
-        logging.exception(str(k))
+        logging.error(str(k))
         return None, None
 
 
@@ -127,7 +127,7 @@ def _compose(language, title, content):
             return None
     except Exception as k:
         pass
-        logging.exception(str(k))
+        logging.error(str(k))
         return None
 
 
@@ -163,7 +163,7 @@ def _combine(content, images):
             return content, images
     except Exception as k:
         pass
-        logging.exception(str(k))
+        logging.error(str(k))
         return content, images
 
 
@@ -250,7 +250,7 @@ def _transcode(url, transcoders, language=None):
             return None, None, None
     except Exception as k:
         pass
-        logging.exception(str(k))
+        logging.error(str(k))
         return None, None, None
 
 
@@ -289,7 +289,7 @@ def _preprocess(url):
         return url[last_http_index:].strip()
     except Exception as k:
         pass
-        logging.exception(str(k))
+        logging.error(str(k))
         return None
 
 
@@ -315,7 +315,7 @@ def prepare_link(url):
             return None
     except Exception as k:
         pass
-        logging.exception(str(k))
+        logging.error(str(k))
         return None
 
 
@@ -388,7 +388,7 @@ def convert(language="en", title=None, link=None, transcoder="chengdujin", relat
                 return None, None
     except Exception as k:
         pass
-        logging.exception(str(k))
+        logging.error(str(k))
         if not stdout:
             return None, None, None, None
         else:

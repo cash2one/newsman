@@ -51,5 +51,5 @@ def convert(link):
             return None, None, None
     except Exception as k:
         pass
-        logging.exception(str(k))
+        logging.error(str(k))
         return None, None, None

@@ -76,7 +76,7 @@ def _link_process(link):
             return None
     except Exception as k:
         pass
-        logging.exception(str(k))
+        logging.error(str(k))
         return None
 
 
@@ -97,7 +97,7 @@ def find_image(link=None):
             return None
     except Exception as k:
         pass
-        logging.exception(str(k))
+        logging.error(str(k))
         return None
 
 
@@ -128,7 +128,7 @@ def find_images(content=None):
         return images_normalized
     except Exception as k:
         pass
-        logging.exception(str(k))
+        logging.error(str(k))
         return None
 
 
@@ -150,7 +150,7 @@ def find_biggest_image(images=None):
         return biggest
     except Exception as k:
         pass
-        logging.exception(str(k))
+        logging.error(str(k))
         return None
 
 
@@ -180,7 +180,7 @@ def dedupe_images(images):
         return filter(lambda x: not _exists(x), images)
     except Exception as k:
         pass
-        logging.exception(str(k))
+        logging.error(str(k))
         return None
 
 
@@ -250,7 +250,7 @@ def scale_image(image=None, size_expected=MIN_IMAGE_SIZE,
             return None, None
     except Exception as k:
         pass
-        logging.exception(str(k))
+        logging.error(str(k))
         return None, None
 
 
@@ -284,7 +284,7 @@ def normalize(images):
             return None
         except IOError as k:
             pass
-            logging.exception(str(k))
+            logging.error(str(k))
             return None
 
     try:
@@ -300,5 +300,5 @@ def normalize(images):
             return images_new if images_new else None
     except Exception as k:
         pass
-        logging.exception(str(k))
+        logging.error(str(k))
         return None

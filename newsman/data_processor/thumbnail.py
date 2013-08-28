@@ -47,7 +47,7 @@ def is_valid_image(image_url):
             return False
     except Exception as k:
         pass
-        logging.exception(str(k))
+        logging.error(str(k))
         return False
 
 
@@ -82,7 +82,7 @@ def generate_thumbnail(image_url, relative_path):
             return image_url
     except Exception as k:
         pass
-        logging.exception(str(k))
+        logging.error(str(k))
         return None
 
 
@@ -112,5 +112,5 @@ def get_image_size(image_url):
             return None, None
     except Exception as k:
         pass
-        logging.exception(str(k))
+        logging.error(str(k))
         return None, None

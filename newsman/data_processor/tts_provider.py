@@ -111,7 +111,7 @@ def google(language='en', query='Service provided by Baidu', relative_path='do_n
             return None, None
     except Exception as k:
         pass
-        logging.exception(str(k))
+        logging.error(str(k))
         return None, None
 
 
@@ -216,7 +216,7 @@ def _query_segment(language='en', query='Service provided by Baidu'):
         return segments
     except Exception as k:
         pass
-        logging.exception(str(k))
+        logging.error(str(k))
         return None
 
 
@@ -270,7 +270,7 @@ def _download(language='en', query='Service provided by Baidu', tmp_file='do_not
             return None
     except Exception as k:
         pass
-        logging.exception(
+        logging.error(
             'Part of tts dowload went wrong, now removing the file: %s' % str(k))
         if os.path.exists(tmp_file):
             os.remove(tmp_file)
