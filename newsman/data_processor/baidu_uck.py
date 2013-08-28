@@ -90,6 +90,7 @@ def _sanitize(content):
         else:
             return ''.join([str(item) for item in soup.contents])
     except Exception as k:
+        pass
         logging.exception(str(k))
         return None
 
@@ -123,6 +124,7 @@ def _collect_images(data):
         images = image_helper.dedupe_images(images) if images else None
         return images
     except Exception as k:
+        pass
         logging.exception(str(k))
         return None
 
@@ -156,6 +158,7 @@ def _extract(data):
 
         return title, content, images
     except Exception as k:
+        pass
         logging.exception(str(k))
         return None, None, None
 
@@ -172,6 +175,7 @@ def _transcode(link):
         data = urllib2.unquote(hparser.unescape(html))
         return data
     except Exception as k:
+        pass
         logging.exception(str(k))
         return None
 
@@ -195,5 +199,6 @@ def convert(link):
             logging.error('Cannot read anything from UCK server')
             return None, None, None
     except Exception as k:
+        pass
         logging.exception(str(k))
         return None, None, None
