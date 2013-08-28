@@ -315,5 +315,5 @@ def update(feed_link=None, feed_id=None, language=None, categories=None, transco
             logger.warning('Register feed in database before updating!')
             return None
     except Exception as k:
-        logger.exception(str(k))
+        logger.error(str(k))
         return None
