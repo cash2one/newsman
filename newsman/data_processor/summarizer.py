@@ -55,7 +55,6 @@ def _get_shorter_text(content, language, limit):
 
         return str(enough_sentences.strip())
     except Exception as k:
-        pass
         logger.error(str(k))
         return None
 
@@ -83,7 +82,6 @@ def _is_valid(content, language):
         else:
             return True
     except Exception as k:
-        pass
         logger.error(str(k))
         return False
 
@@ -103,7 +101,6 @@ def _get_first_paragraph(content, language):
             if paragraph and _is_valid(paragraph, language):
                 return _get_shorter_text(paragraph, language, SUMMARY_LENGTH_LIMIT)
     except Exception as K:
-        pass
         logger.error(str(k))
         return None
 
@@ -122,7 +119,6 @@ def _get_summary(content, language):
             if paragraph and _is_valid(paragraph, language):
                 return _get_shorter_text(paragraph, language, SUMMARY_LENGTH_LIMIT)
     except Exception as k:
-        pass
         logger.error(str(k))
         return None
 
@@ -158,6 +154,5 @@ def extract(summary, transcoded, language):
 
         return result_summary if result_summary else result_first_paragraph if result_first_paragraph else None
     except Exception as k:
-        pass
         logger.error(str(k))
         return None
