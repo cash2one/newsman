@@ -244,8 +244,7 @@ def _download(language='en', query='Service provided by Baidu', tmp_file='do_not
                     gt_request = GoogleTranslateAPI(language, segment)
                     threads.append(gt_request)
                     gt_request.start()
-                    # gt_request.join(GOOGLE_TTS_TIMEOUT)
-                    gt_request.join()
+                    gt_request.join(GOOGLE_TTS_TIMEOUT)
 
             out = open(tmp_file, 'a')
             download_completed = True
