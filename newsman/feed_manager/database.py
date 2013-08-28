@@ -41,7 +41,7 @@ def get(feed_id=None, feed_link=None, language=None):
         return item
     except Exception as k:
         pass
-        logging.exception(str(k))
+        logging.error(str(k))
         return None
 
 
@@ -72,7 +72,7 @@ def update(feed_id, **kwargs):
             return None
     except Exception as k:
         pass
-        logging.exception(str(k))
+        logging.error(str(k))
         return None
 
 
@@ -100,5 +100,5 @@ def save(feed_info=None):
             return str(item['_id'])
     except Exception as k:
         pass
-        logging.exception(str(k))
+        logging.error(str(k))
         return None

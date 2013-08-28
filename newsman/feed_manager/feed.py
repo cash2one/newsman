@@ -53,7 +53,7 @@ def _read_source(d=None, feed_link=None, language=None, categories=None):
             return None
     except Exception as k:
         pass
-        logging.exception(str(k))
+        logging.error(str(k))
         return None
 
 
@@ -89,5 +89,5 @@ def add(feed_link=None, language=None, categories=None, transcoder_type="chengdu
             return None
     except Exception as k:
         pass
-        logging.exception(str(k))
+        logging.error(str(k))
         return None
