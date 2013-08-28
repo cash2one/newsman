@@ -309,10 +309,10 @@ def update(feed_link=None, feed_id=None, language=None, categories=None, transco
                         return None
 
                 else:
-                    logger.error('Nothing from RSS is found new!')
+                    logger.info('Nothing from RSS is found new!')
                     return None
             else:
-                logger.error('Nothing from RSS is updated!')
+                logger.info('Nothing from RSS is updated!')
                 return None
         else:
             logger.warning('Register feed in database before updating!')
