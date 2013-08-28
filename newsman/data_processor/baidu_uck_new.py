@@ -80,5 +80,5 @@ def convert(link):
         title, content, images = _extract(link)
         return title, content, images
     except Exception as k:
-        logger.error(str(k))
+        logger.error('%s for %s' % (str(k), link))
         return None, None, None
