@@ -48,6 +48,7 @@ def dedup(entries=None, language=None):
                 entries_new.append(entry)
         return entries_new if entries_new else None
     except Exception as k:
+        pass
         logging.exception(str(k))
         return None
 
@@ -72,5 +73,6 @@ def update(entry=None):
         logging.debug(entry['_id'] + ' is inserted into database')
         return entry
     except Exception as k:
+        pass
         logging.exception(str(k))
         return None
