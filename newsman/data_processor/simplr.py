@@ -365,5 +365,6 @@ def convert(url, language):
             logging.error('Simplr cannot parse the data')
             return None, None, None
     except Exception as k:
+        pass
         logging.exception(str(k))
         return None, None, None
