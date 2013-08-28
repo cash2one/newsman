@@ -110,6 +110,7 @@ def google(language='en', query='Service provided by Baidu', relative_path='do_n
                 '%s is revoked due to erros found in downloading!' % relative_path)
             return None, None
     except Exception as k:
+        pass
         logging.exception(str(k))
         return None, None
 
@@ -214,6 +215,7 @@ def _query_segment(language='en', query='Service provided by Baidu'):
         segments.append(segment.strip())
         return segments
     except Exception as k:
+        pass
         logging.exception(str(k))
         return None
 
@@ -268,6 +270,7 @@ def _download(language='en', query='Service provided by Baidu', tmp_file='do_not
             logging.error('Nothing generated from the query')
             return None
     except Exception as k:
+        pass
         logging.exception(
             'Part of tts dowload went wrong, now removing the file: %s' % str(k))
         if os.path.exists(tmp_file):
