@@ -50,7 +50,7 @@ CODE_BASE = LOCAL % 'newsman'
 # logging settings
 LOG_FORMAT = "%(levelname)-8s %(asctime)-25s %(lineno)-3d:%(filename)-16s %(message)s"
 # critical, error, warning, info, debug, notset
-logging.basicConfig(filename='%s/logs.txt' % CODE_BASE, format=LOG_FORMAT, level=logging.WARNING)
+logging.basicConfig(filename='%s/logs.txt' % CODE_BASE, format=LOG_FORMAT, level=logging.ERROR)
 
 # paths for generating transcoded files, mp3 and images
 TRANSCODED_LOCAL_DIR = LOCAL % 'STATIC/news/ts/'
@@ -109,8 +109,8 @@ PARAGRAPH_CRITERIA = 40
 SUMMARY_LENGTH_LIMIT = 500
 
 # request connection timeouts
-UCK_TIMEOUT = 15  # 15 seconds timeout
-GOOGLE_TTS_TIMEOUT = 15
+UCK_TIMEOUT = 40  # 14 seconds timeout
+GOOGLE_TTS_TIMEOUT = 120  # 2 minutes timeout
 
 # supported languages
 LANGUAGES = ['en', 'th', 'ind', 'ja', 'pt', 'en-rIN', 'ar', 'zh-CN', 'zh-HK']
