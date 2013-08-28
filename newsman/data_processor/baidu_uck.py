@@ -195,5 +195,5 @@ def convert(link):
             logger.info('Cannot read anything from UCK server')
             return None, None, None
     except Exception as k:
-        logger.error(str(k))
+        logger.error('%s for %s' % (str(k), link))
         return None, None, None
