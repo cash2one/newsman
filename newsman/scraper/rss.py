@@ -99,8 +99,8 @@ def _generate_images(image=None, entry=None, rand=None):
         entry['thumbnail_image'] = thumbnail_web if thumbnail_web else None
         entry['thumbnail_image_local'] = thumbnail_local if thumbnail_local else None
     except Exception as k:
-        pass
         logger.error(str(k))
+        pass
     return entry
 
 
@@ -124,12 +124,10 @@ def _get_tts(entry=None, rand=None):
         entry['mp3'], entry['mp3_local'] = tts_provider.google(
             entry['language'], read_content, tts_relative_path)
     except Exception as k:
-        pass
         logger.error(str(k))
         entry['error'].append(str(k) + '\n')
         entry['mp3'] = None
         entry['mp3_local'] = None
-    logger.debug('entry is returned')
     return entry
 
 
@@ -238,7 +236,6 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
                 logger.error('Error found in transcoding')
                 continue
         except Exception as k:
-            pass
             logger.error(str(k))
             continue
     # the FINAL return
@@ -318,6 +315,5 @@ def update(feed_link=None, feed_id=None, language=None, categories=None, transco
             logger.warning('Register feed in database before updating!')
             return None
     except Exception as k:
-        pass
         logger.error(str(k))
         return None
