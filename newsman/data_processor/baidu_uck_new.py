@@ -15,7 +15,7 @@ sys.setdefaultencoding('UTF-8')
 sys.path.append("..")
 
 from config import hparser
-from config import logging
+from config import logger
 import image_helper
 import urllib2
 
@@ -42,7 +42,7 @@ def _transcode(link):
         return data
     except Exception as k:
         pass
-        logging.error(str(k))
+        logger.error(str(k))
         return None
 
 
@@ -62,10 +62,10 @@ def _extract(link):
             images = _collect_images(content)
             return title, content, images
         else:
-            logging.info('UCK cannot parse the link: status != 1')
+            logger.info('UCK cannot parse the link: status != 1')
             return None, None, None
     else:
-        logging.info('Get nothing from UCK server')
+        logger.info('Get nothing from UCK server')
         return None, None, None
 
 
@@ -74,7 +74,7 @@ def convert(link):
     call UCK's new interface to get title, images and content
     """
     if not link:
-        logging.error('Cannot transcode nothing!')
+        logger.error('Cannot transcode nothing!')
         return None, None, None
 
     try:
@@ -82,5 +82,5 @@ def convert(link):
         return title, content, images
     except Exception as k:
         pass
-        logging.error(str(k))
+        logger.error(str(k))
         return None, None, None

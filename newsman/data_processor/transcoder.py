@@ -16,7 +16,7 @@ sys.path.append('..')
 
 import chardet
 from config import hparser
-from config import logging
+from config import logger
 import baidu_uck
 import baidu_uck_new
 import burify
@@ -75,7 +75,7 @@ class TranscoderAPI(threading.Thread):
                 self.result = eval(self.transcoder).convert(self.url)
             except Exception as k:
                 pass
-                logging.error(str(k))
+                logger.error(str(k))
                 self.result = None, None, None
 
 
@@ -84,7 +84,7 @@ def _save(data, path):
     save the file on local disk and return web and local path
     """
     if not data or not path:
-        logging.error('Method malformed!')
+        logger.error('Method malformed!')
         return None, None
 
     try:
@@ -97,7 +97,7 @@ def _save(data, path):
         return web_path, local_path
     except Exception as k:
         pass
-        logging.error(str(k))
+        logger.error(str(k))
         return None, None
 
 
@@ -106,7 +106,7 @@ def _compose(language, title, content):
     combine content with a template
     """
     if not content or not language or not title:
-        logging.error("Method malformed!")
+        logger.error("Method malformed!")
         return None
 
     try:
@@ -123,11 +123,11 @@ def _compose(language, title, content):
             f.close()
             return template % (title, title, content, TRANSCODE_BUTTON[language])
         else:
-            logging.error("Cannot find a template!")
+            logger.error("Cannot find a template!")
             return None
     except Exception as k:
         pass
-        logging.error(str(k))
+        logger.error(str(k))
         return None
 
 
@@ -159,11 +159,11 @@ def _combine(content, images):
                 biggest['url'], str(biggest['width']), str(biggest['height']))
             return "%s %s" % (image, content), images
         else:
-            logging.error('Cannot find biggest image')
+            logger.error('Cannot find biggest image')
             return content, images
     except Exception as k:
         pass
-        logging.error(str(k))
+        logger.error(str(k))
         return content, images
 
 
@@ -173,7 +173,7 @@ def _transcode(url, transcoders, language=None):
     organize different transcoders
     """
     if not url or not transcoders:
-        logging.error("Method malformed!")
+        logger.error("Method malformed!")
         return None, None, None
 
     try:
@@ -250,7 +250,7 @@ def _transcode(url, transcoders, language=None):
             return None, None, None
     except Exception as k:
         pass
-        logging.error(str(k))
+        logger.error(str(k))
         return None, None, None
 
 
@@ -281,7 +281,7 @@ def _preprocess(url):
     get the real address out
     """
     if not url:
-        logging.error('Method malformed!')
+        logger.error('Method malformed!')
         return None
 
     try:
@@ -289,7 +289,7 @@ def _preprocess(url):
         return url[last_http_index:].strip()
     except Exception as k:
         pass
-        logging.error(str(k))
+        logger.error(str(k))
         return None
 
 
@@ -298,7 +298,7 @@ def prepare_link(url):
     decode with the correct encoding
     """
     if not url:
-        logging.error('Method malformed!')
+        logger.error('Method malformed!')
         return None
 
     try:
@@ -311,11 +311,11 @@ def prepare_link(url):
                 data = html.decode('utf-8', 'ignore')
             return data
         else:
-            logging.warning("Cannot read %s" % url)
+            logger.warning("Cannot read %s" % url)
             return None
     except Exception as k:
         pass
-        logging.error(str(k))
+        logger.error(str(k))
         return None
 
 
@@ -331,7 +331,7 @@ def convert(language="en", title=None, link=None, transcoder="chengdujin", relat
     * stdout default value False
     """
     if not language or not link:
-        logging.error('Method malformed!')
+        logger.error('Method malformed!')
         if not stdout:
             return None, None, None, None
         else:
@@ -365,7 +365,7 @@ def convert(language="en", title=None, link=None, transcoder="chengdujin", relat
                             else:
                                 return None, None
                     else:
-                        logging.error(
+                        logger.error(
                             'Cannot combine content with the template!')
                         if not stdout:
                             return None, None, None, None
@@ -374,21 +374,21 @@ def convert(language="en", title=None, link=None, transcoder="chengdujin", relat
                 else:
                     return title, content
             else:
-                logging.error(
+                logger.error(
                     'Transcoder %s failed for %s' % (transcoder, link))
                 if not stdout:
                     return None, None, None, None
                 else:
                     return None, None
         else:
-            logging.error('Link cannot be parsed')
+            logger.error('Link cannot be parsed')
             if not stdout:
                 return None, None, None, None
             else:
                 return None, None
     except Exception as k:
         pass
-        logging.error(str(k))
+        logger.error(str(k))
         if not stdout:
             return None, None, None, None
         else:

@@ -15,7 +15,7 @@ sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
 from config import hparser
-from config import logging
+from config import logger
 from BeautifulSoup import BeautifulSoup, NavigableString, Tag
 import image_helper
 import thumbnail
@@ -91,7 +91,7 @@ def _sanitize(content):
             return ''.join([str(item) for item in soup.contents])
     except Exception as k:
         pass
-        logging.error(str(k))
+        logger.error(str(k))
         return None
 
 
@@ -125,7 +125,7 @@ def _collect_images(data):
         return images
     except Exception as k:
         pass
-        logging.error(str(k))
+        logger.error(str(k))
         return None
 
 
@@ -134,12 +134,12 @@ def _extract(data):
     extract images and text content
     """
     if not data:
-        logging.error('Received no data from UCK server.')
+        logger.error('Received no data from UCK server.')
         return None, None, None
 
     successful = int(data['STRUCT_PAGE_TYPE'])
     if successful == 0:
-        logging.info('Cannot interpret the page! status != 1')
+        logger.info('Cannot interpret the page! status != 1')
         return None, None, None
 
     try:
@@ -159,7 +159,7 @@ def _extract(data):
         return title, content, images
     except Exception as k:
         pass
-        logging.error(str(k))
+        logger.error(str(k))
         return None, None, None
 
 
@@ -176,7 +176,7 @@ def _transcode(link):
         return data
     except Exception as k:
         pass
-        logging.error(str(k))
+        logger.error(str(k))
         return None
 
 
@@ -185,7 +185,7 @@ def convert(link):
     send link to uck api and reformat the content
     """
     if not link:
-        logging.error('Cannot transcode nothing!')
+        logger.error('Cannot transcode nothing!')
         return None, None, None
 
     # send link to uck server and get data back
@@ -196,9 +196,9 @@ def convert(link):
             title, transcoded, images = _extract(eval(raw_data))
             return title, transcoded, images
         else:
-            logging.error('Cannot read anything from UCK server')
+            logger.error('Cannot read anything from UCK server')
             return None, None, None
     except Exception as k:
-        logging.error(str(k))
+        logger.error(str(k))
         pass
         return None, None, None

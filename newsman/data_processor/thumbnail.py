@@ -14,7 +14,7 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
-from config import logging
+from config import logger
 from cStringIO import StringIO
 import Image
 import urllib2
@@ -32,7 +32,7 @@ def is_valid_image(image_url):
     find out if the image has a resolution larger than MIN_IMAGE_SIZE
     """
     if not image_url:
-        logging.error('Method malformed!')
+        logger.error('Method malformed!')
         return False
 
     try:
@@ -47,7 +47,7 @@ def is_valid_image(image_url):
             return False
     except Exception as k:
         pass
-        logging.error(str(k))
+        logger.error(str(k))
         return False
 
 
@@ -57,7 +57,7 @@ def generate_thumbnail(image_url, relative_path):
     generate a thumbnail
     """
     if not image_url or not relative_path:
-        logging.error('Method malformed!')
+        logger.error('Method malformed!')
         return None
 
     try:
@@ -82,7 +82,7 @@ def generate_thumbnail(image_url, relative_path):
             return image_url
     except Exception as k:
         pass
-        logging.error(str(k))
+        logger.error(str(k))
         return None
 
 
@@ -91,17 +91,17 @@ def get_image_size(image_url):
     docs needed
     """
     if not image_url:
-        logging.error('Method malformed!')
+        logger.error('Method malformed!')
         return None, None
 
     try:
         image_web = None
         if isinstance(image_url, str) or isinstance(image_url, unicode):
-            logging.info('opening %s' % image_url)
+            logger.info('opening %s' % image_url)
             image_web = StringIO(
                 urllib2.urlopen(image_url, timeout=UCK_TIMEOUT).read())
         else:
-            logging.info('image_url is data')
+            logger.info('image_url is data')
             image_web = image_url
 
         if image_web:
@@ -112,5 +112,5 @@ def get_image_size(image_url):
             return None, None
     except Exception as k:
         pass
-        logging.error(str(k))
+        logger.error(str(k))
         return None, None

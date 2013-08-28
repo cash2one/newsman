@@ -16,7 +16,7 @@ sys.path.append('..')
 
 import chardet
 import html2text
-import logging
+import logger
 import nltk
 
 # CONSTANTS
@@ -29,7 +29,7 @@ def _get_shorter_text(content, language, limit):
     limit the number of words to 500
     """
     if not content or not language:
-        logging.error('Method malformed!')
+        logger.error('Method malformed!')
         return None
 
     try:
@@ -56,7 +56,7 @@ def _get_shorter_text(content, language, limit):
         return str(enough_sentences.strip())
     except Exception as k:
         pass
-        logging.error(str(k))
+        logger.error(str(k))
         return None
 
 
@@ -65,7 +65,7 @@ def _is_valid(content, language):
     check if the content meets the need
     """
     if not content or not language:
-        logging.error('Method malformed!')
+        logger.error('Method malformed!')
         return False
 
     try:
@@ -84,7 +84,7 @@ def _is_valid(content, language):
             return True
     except Exception as k:
         pass
-        logging.error(str(k))
+        logger.error(str(k))
         return False
 
 
@@ -104,7 +104,7 @@ def _get_first_paragraph(content, language):
                 return _get_shorter_text(paragraph, language, SUMMARY_LENGTH_LIMIT)
     except Exception as K:
         pass
-        logging.error(str(k))
+        logger.error(str(k))
         return None
 
 
@@ -113,7 +113,7 @@ def _get_summary(content, language):
     find out the first readable summary
     """
     if not content or not language:
-        logging.error('Method malformed!')
+        logger.error('Method malformed!')
         return None
 
     try:
@@ -123,7 +123,7 @@ def _get_summary(content, language):
                 return _get_shorter_text(paragraph, language, SUMMARY_LENGTH_LIMIT)
     except Exception as k:
         pass
-        logging.error(str(k))
+        logger.error(str(k))
         return None
 
 
@@ -132,7 +132,7 @@ def extract(summary, transcoded, language):
     get the summary/first paragraph, text only
     """
     if not summary and not transcoded:
-        logging.error('No data is found!')
+        logger.error('No data is found!')
         return None
 
     try:
@@ -159,5 +159,5 @@ def extract(summary, transcoded, language):
         return result_summary if result_summary else result_first_paragraph if result_first_paragraph else None
     except Exception as k:
         pass
-        logging.error(str(k))
+        logger.error(str(k))
         return None

@@ -16,7 +16,7 @@ sys.path.append('..')
 
 from BeautifulSoup import BeautifulSoup
 from config import hparser
-from config import logging
+from config import logger
 from cStringIO import StringIO
 import Image
 import os
@@ -65,9 +65,9 @@ def _link_process(link):
                 try:
                     response = urllib2.urlopen(image_url, timeout=UCK_TIMEOUT)
                 except urllib2.URLError as k:
-                    logging.info(str(k))
+                    logger.info(str(k))
                 except Exception as k:
-                    logging.info(str(k))
+                    logger.info(str(k))
             if response:
                 return image_url
             else:
@@ -76,7 +76,7 @@ def _link_process(link):
             return None
     except Exception as k:
         pass
-        logging.error(str(k))
+        logger.error(str(k))
         return None
 
 
@@ -93,11 +93,11 @@ def find_image(link=None):
             image_normalized = normalize(link)
             return image_normalized[0] if image_normalized else None
         else:
-            logging.error('Cannot parse link correctly')
+            logger.error('Cannot parse link correctly')
             return None
     except Exception as k:
         pass
-        logging.error(str(k))
+        logger.error(str(k))
         return None
 
 
@@ -128,7 +128,7 @@ def find_images(content=None):
         return images_normalized
     except Exception as k:
         pass
-        logging.error(str(k))
+        logger.error(str(k))
         return None
 
 
@@ -150,7 +150,7 @@ def find_biggest_image(images=None):
         return biggest
     except Exception as k:
         pass
-        logging.error(str(k))
+        logger.error(str(k))
         return None
 
 
@@ -180,7 +180,7 @@ def dedupe_images(images):
         return filter(lambda x: not _exists(x), images)
     except Exception as k:
         pass
-        logging.error(str(k))
+        logger.error(str(k))
         return None
 
 
@@ -193,7 +193,7 @@ def scale_image(image=None, size_expected=MIN_IMAGE_SIZE,
     crop_by_center: crop image from its center(True) or by point(0, 0)(False)
     """
     if not image or not size_expected or not relative_path:
-        logging.error('Method malformed!')
+        logger.error('Method malformed!')
         return None, None
 
     try:
@@ -250,7 +250,7 @@ def scale_image(image=None, size_expected=MIN_IMAGE_SIZE,
             return None, None
     except Exception as k:
         pass
-        logging.error(str(k))
+        logger.error(str(k))
         return None, None
 
 
@@ -265,7 +265,7 @@ def normalize(images):
         check an image if it matches with MIN_IMAGE_SIZE
         """
         if not image:
-            logging.error('Method malformed!')
+            logger.error('Method malformed!')
             return None
 
         try:
@@ -279,12 +279,12 @@ def normalize(images):
                     if width and height:
                         return {'url': image, 'width': width, 'height': height}
                     else:
-                        logging.error('Cannot get image size')
+                        logger.error('Cannot get image size')
                         return None
             return None
         except IOError as k:
             pass
-            logging.error(str(k))
+            logger.error(str(k))
             return None
 
     try:
@@ -300,5 +300,5 @@ def normalize(images):
             return images_new if images_new else None
     except Exception as k:
         pass
-        logging.error(str(k))
+        logger.error(str(k))
         return None

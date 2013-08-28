@@ -14,7 +14,7 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
-from config import logging
+from config import logger
 import nltk
 import os
 import re
@@ -62,14 +62,14 @@ class GoogleTranslateAPI(threading.Thread):
             if 'error' not in content or 'permission' not in content:
                 self.result = content
             else:
-                logging.error('Errors or Permission found in HTTP response')
+                logger.error('Errors or Permission found in HTTP response')
                 self.result = None
         else:
             if error:
-                logging.error('Error %s found for %s' % (str(error), self.text))
+                logger.error('Error %s found for %s' % (str(error), self.text))
                 self.result = None
             else:
-                logging.error('No content returned for %s' % self.text)
+                logger.error('No content returned for %s' % self.text)
                 self.result = None
 
 
@@ -85,10 +85,10 @@ def google(language='en', query='Service provided by Baidu', relative_path='do_n
     6. return the path
     """
     if not language or not query or not relative_path:
-        logging.error('Method malformed!')
+        logger.error('Method malformed!')
         return None, None
     if language not in LANGUAGES:
-        logging.error('%s not supported!' % language)
+        logger.error('%s not supported!' % language)
         return None, None
 
     try:
@@ -103,15 +103,15 @@ def google(language='en', query='Service provided by Baidu', relative_path='do_n
             command = 'lame -S --decode {0} - | sox -q -t wav - -t wav - speed 1.06 | lame -S - {1}; rm {0}'.format(
                 tmp_file, tts_local_path)
             subprocess.Popen(command, stderr=subprocess.PIPE, shell=True)
-            logging.info('... MP3 acceleration is successfully completed!')
+            logger.info('... MP3 acceleration is successfully completed!')
             return tts_web_path, tts_local_path
         else:
-            logging.error(
+            logger.error(
                 '%s is revoked due to erros found in downloading!' % relative_path)
             return None, None
     except Exception as k:
         pass
-        logging.error(str(k))
+        logger.error(str(k))
         return None, None
 
 
@@ -216,7 +216,7 @@ def _query_segment(language='en', query='Service provided by Baidu'):
         return segments
     except Exception as k:
         pass
-        logging.error(str(k))
+        logger.error(str(k))
         return None
 
 
@@ -240,7 +240,7 @@ def _download(language='en', query='Service provided by Baidu', tmp_file='do_not
         if segments:
             for segment in segments:
                 if segment:
-                    logging.info('... Transmitting "%s"' % segment)
+                    logger.info('... Transmitting "%s"' % segment)
                     gt_request = GoogleTranslateAPI(language, segment)
                     threads.append(gt_request)
                     gt_request.start()
@@ -261,16 +261,16 @@ def _download(language='en', query='Service provided by Baidu', tmp_file='do_not
             if download_completed:
                 return tmp_file
             else:
-                logging.error('Download not completed, now removing the file')
+                logger.error('Download not completed, now removing the file')
                 if os.path.exists(tmp_file):
                     os.remove(tmp_file)
                 return None
         else:  # nothing generated from the query
-            logging.error('Nothing generated from the query')
+            logger.error('Nothing generated from the query')
             return None
     except Exception as k:
         pass
-        logging.error(
+        logger.error(
             'Part of tts dowload went wrong, now removing the file: %s' % str(k))
         if os.path.exists(tmp_file):
             os.remove(tmp_file)
