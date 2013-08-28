@@ -74,7 +74,6 @@ class TranscoderAPI(threading.Thread):
             try:
                 self.result = eval(self.transcoder).convert(self.url)
             except Exception as k:
-                pass
                 logger.error(str(k))
                 self.result = None, None, None
 
@@ -96,7 +95,6 @@ def _save(data, path):
         f.close()
         return web_path, local_path
     except Exception as k:
-        pass
         logger.error(str(k))
         return None, None
 
@@ -126,7 +124,6 @@ def _compose(language, title, content):
             logger.error("Cannot find a template!")
             return None
     except Exception as k:
-        pass
         logger.error(str(k))
         return None
 
@@ -162,7 +159,6 @@ def _combine(content, images):
             logger.error('Cannot find biggest image')
             return content, images
     except Exception as k:
-        pass
         logger.error(str(k))
         return content, images
 
@@ -249,7 +245,6 @@ def _transcode(url, transcoders, language=None):
         else:
             return None, None, None
     except Exception as k:
-        pass
         logger.error(str(k))
         return None, None, None
 
@@ -288,7 +283,6 @@ def _preprocess(url):
         last_http_index = url.rfind('http')
         return url[last_http_index:].strip()
     except Exception as k:
-        pass
         logger.error(str(k))
         return None
 
@@ -314,7 +308,6 @@ def prepare_link(url):
             logger.warning("Cannot read %s" % url)
             return None
     except Exception as k:
-        pass
         logger.error(str(k))
         return None
 
@@ -387,7 +380,6 @@ def convert(language="en", title=None, link=None, transcoder="chengdujin", relat
             else:
                 return None, None
     except Exception as k:
-        pass
         logger.error(str(k))
         if not stdout:
             return None, None, None, None
