@@ -39,7 +39,7 @@ def _update(feed_ids):
                 logging.warning('%s got updated' % feed_id)
     except Exception as k:
         pass
-        logging.exception(str(k))
+        logging.error(str(k))
         return None
 
 
@@ -57,7 +57,7 @@ def _read_feeds(language='en'):
             return None
     except Exception as k:
         pass
-        logging.exception(str(k))
+        logging.error(str(k))
         return None
 
 

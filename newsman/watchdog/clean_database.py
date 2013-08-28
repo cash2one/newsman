@@ -41,7 +41,7 @@ def _find_document_names():
         return list(set(document_names))
     except Exception as k:
         pass
-        logging.exception(str(k))
+        logging.error(str(k))
         return None
 
 
@@ -75,7 +75,7 @@ def clean():
             return False
     except Exception as k:
         pass
-        logging.exception(str(k))
+        logging.error(str(k))
         return False
 
 

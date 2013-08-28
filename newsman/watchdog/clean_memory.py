@@ -40,7 +40,7 @@ def _is_zombie(item):
             return False
     except Exception as k:
         pass
-        logging.exception(str(k))
+        logging.error(str(k))
         return True
 
 
@@ -110,7 +110,7 @@ def clean():
                 return False
     except Exception as k:
         pass
-        logging.exception(str(k))
+        logging.error(str(k))
         return False
 
 

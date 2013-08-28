@@ -56,7 +56,7 @@ def clean_by_item(candidate):
         return True
     except Exception as k:
         pass
-        logging.exception(str(k))
+        logging.error(str(k))
         return False
 
 
@@ -75,7 +75,7 @@ def _clean_tempory_files():
         return True
     except Exception as k:
         pass
-        logging.exception(str(k))
+        logging.error(str(k))
         return False
 
 
@@ -149,7 +149,7 @@ def _clean_unrecorded_files():
         return True
     except Exception as k:
         pass
-        logging.exception(str(k))
+        logging.error(str(k))
         return False
 
 
