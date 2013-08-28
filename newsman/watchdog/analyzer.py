@@ -15,7 +15,7 @@ sys.setdefaultencoding('UTF-8')
 sys.path.append('/home/jinyuan/Downloads/newsman/newsman')
 
 from config import Collection, db
-from config import logging
+from config import logger
 from scraper import rss
 
 # CONSTANTS
@@ -27,19 +27,19 @@ def _update(feed_ids):
     update links find in feeds
     """
     if not feed_ids:
-        logging.error("No feed found!")
+        logger.error("No feed found!")
         return None
 
     try:
         for feed_id in feed_ids:
             updated = rss.update(feed_id=feed_id)
             if not updated:
-                logging.error('Nothing got updated from %s' % feed_id)
+                logger.error('Nothing got updated from %s' % feed_id)
             else:
-                logging.warning('%s got updated' % feed_id)
+                logger.warning('%s got updated' % feed_id)
     except Exception as k:
         pass
-        logging.error(str(k))
+        logger.error(str(k))
         return None
 
 
@@ -53,11 +53,11 @@ def _read_feeds(language='en'):
         if items:
             return [str(item['_id']) for item in items]
         else:
-            logging.error("Cannot find any feeds for language %s!" % language)
+            logger.error("Cannot find any feeds for language %s!" % language)
             return None
     except Exception as k:
         pass
-        logging.error(str(k))
+        logger.error(str(k))
         return None
 
 
@@ -65,7 +65,7 @@ def _scrape(language):
     """
     update news from stored feeds
     """
-    logging.info('----------------------scraping-------------------------')
+    logger.info('----------------------scraping-------------------------')
     _update(_read_feeds(language))
 
 

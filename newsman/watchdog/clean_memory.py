@@ -16,7 +16,7 @@ sys.path.append("..")
 
 from bson.objectid import ObjectId
 from config import Collection, db
-from config import logging
+from config import logger
 from config import rclient
 import time
 import cleaner
@@ -40,7 +40,7 @@ def _is_zombie(item):
             return False
     except Exception as k:
         pass
-        logging.error(str(k))
+        logger.error(str(k))
         return True
 
 
@@ -74,7 +74,7 @@ def clean():
     remove expired items from queues in memory
     walk through all redis content
     """
-    logging.info('... cleaning memory ...')
+    logger.info('... cleaning memory ...')
     try:
         news_lists = rclient.keys('news::*')
         for news_list in news_lists:
@@ -106,11 +106,11 @@ def clean():
                             rclient.delete(news_id)
                 return True
             else:
-                logging.error('Nothing in the list')
+                logger.error('Nothing in the list')
                 return False
     except Exception as k:
         pass
-        logging.error(str(k))
+        logger.error(str(k))
         return False
 
 

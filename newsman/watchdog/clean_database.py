@@ -17,7 +17,7 @@ sys.path.append("..")
 import calendar
 import clean_disk, clean_memory
 from config import Collection, db
-from config import logging
+from config import logger
 from datetime import datetime, timedelta
 import time
 
@@ -41,7 +41,7 @@ def _find_document_names():
         return list(set(document_names))
     except Exception as k:
         pass
-        logging.error(str(k))
+        logger.error(str(k))
         return None
 
 
@@ -49,7 +49,7 @@ def clean():
     """
     remove expired items from database
     """
-    logging.info('... cleaning database ...')
+    logger.info('... cleaning database ...')
     try:
         document_names = _find_document_names()
         if document_names:
@@ -71,11 +71,11 @@ def clean():
                     document.remove({'_id': removal_candidate['_id']})
             return True
         else:
-            logging.error('Cannot find documents')
+            logger.error('Cannot find documents')
             return False
     except Exception as k:
         pass
-        logging.error(str(k))
+        logger.error(str(k))
         return False
 
 

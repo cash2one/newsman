@@ -15,7 +15,7 @@ sys.setdefaultencoding('UTF-8')
 sys.path.append('/home/jinyuan/Downloads/newsman/newsman')
 
 import calendar
-from config import logging
+from config import logger
 from datetime import datetime, timedelta
 import time
 import clean_database
@@ -32,7 +32,7 @@ def is_overdue(time_stamp):
     find out if the file is overdue
     """
     if not time_stamp:
-        logging.error('Method malformed!')
+        logger.error('Method malformed!')
         return True
 
     try:
@@ -47,7 +47,7 @@ def is_overdue(time_stamp):
             return False
     except Exception as k:
         pass
-        logging.exception(str(k))
+        logger.exception(str(k))
         return True
 
 
@@ -55,30 +55,30 @@ def _clean_data():
     """
     clean memory, database and files, usually run daily
     """
-    logging.info('----------------------cleaning-------------------------')
+    logger.info('----------------------cleaning-------------------------')
     try:
         any_mistake = False
         # clean database
         if not clean_database.clean():
-            logging.error('Error found cleaning database')
+            logger.error('Error found cleaning database')
             any_mistake = True
         # clean memory
         if not clean_memory.clean():
-            logging.error('Error found cleaning memory')
+            logger.error('Error found cleaning memory')
             any_mistake = True
         # clean disk
         if not clean_disk.clean():
-            logging.error('Error found cleaning disk')
+            logger.error('Error found cleaning disk')
             any_mistake = True
 
         if not any_mistake:
-            logging.warning('Memory, Database & Disk got cleaned!')
+            logger.warning('Memory, Database & Disk got cleaned!')
             return True
         else:
             return False
     except Exception as k:
         pass
-        logging.exception(str(k))
+        logger.exception(str(k))
         return False
 
 
@@ -86,13 +86,13 @@ def _clean_zombies():
     """
     kill zombie processes, usually run semi-daily, or quasi-daily
     """
-    logging.info('-----------------killing zombies--------------------')
+    logger.info('-----------------killing zombies--------------------')
     try:
         clean_process.clean()
         return True
     except Exception as k:
         pass
-        logging.exception(str(k))
+        logger.exception(str(k))
         return False
 
 

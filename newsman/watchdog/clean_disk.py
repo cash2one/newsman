@@ -15,7 +15,7 @@ sys.setdefaultencoding('UTF-8')
 sys.path.append("..")
 
 from config import Collection, db
-from config import logging
+from config import logger
 import os
 import cleaner
 
@@ -56,7 +56,7 @@ def clean_by_item(candidate):
         return True
     except Exception as k:
         pass
-        logging.error(str(k))
+        logger.error(str(k))
         return False
 
 
@@ -75,7 +75,7 @@ def _clean_tempory_files():
         return True
     except Exception as k:
         pass
-        logging.error(str(k))
+        logger.error(str(k))
         return False
 
 
@@ -149,7 +149,7 @@ def _clean_unrecorded_files():
         return True
     except Exception as k:
         pass
-        logging.error(str(k))
+        logger.error(str(k))
         return False
 
 
@@ -157,13 +157,13 @@ def clean():
     """
     interface to clean temporary and unrecorded files
     """
-    logging.info('... cleaning files on the disk ...')
+    logger.info('... cleaning files on the disk ...')
     any_mistake = False
     if not _clean_unrecorded_files():
-        logging.error('Error found cleaning unrecorded files')
+        logger.error('Error found cleaning unrecorded files')
         any_mistake = True
     if not _clean_tempory_files():
-        logging.error('Error found cleaning temporary files')
+        logger.error('Error found cleaning temporary files')
         any_mistake = True
 
     if not any_mistake:
