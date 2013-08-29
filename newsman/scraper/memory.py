@@ -20,6 +20,9 @@ from config import rclient, ConnectionError
 # CONSTANTS
 from config import MEMORY_EXPIRATION_DAYS
 
+# list of fields stored in memory
+field_list = ['_id', 'category_image', 'feed', 'hotnews_image', 'image', 'language', 'link', 'mp3', 'summary', 'thumbnail_image', 'title', 'transcoded', 'updated']
+
 
 def update(entry=None):
     """
@@ -30,21 +33,29 @@ def update(entry=None):
         return False
 
     try:
+        # check if redis in alive
         rclient.ping()
+
+        entry_reduced = {}
+        # simplify fields in entry to ones in field_list
+        for field in entry:
+            if field in field_list:
+                entry_reduced[field] = entry[filed]
+        
         # add an entry to memory
         # add a piece of news into memory
-        rclient.set(entry['_id'], entry)
+        rclient.set(entry_reduced['_id'], entry_reduced)
 
         # expired in redis is counted in seconds
         expiration = MEMORY_EXPIRATION_DAYS * 24 * 60 * 60
-        rclient.expire(entry['_id'], expiration)
+        rclient.expire(entry_reduced['_id'], expiration)
 
         # add entry ids to the language list
-        rclient.zadd("news::%s" % entry['language'], entry['updated'], entry['_id'])
+        rclient.zadd("news::%s" % entry_reduced['language'], entry_reduced['updated'], entry_reduced['_id'])
 
         # add entry ids to the category list
-        for category in entry['categories']:
-            rclient.zadd('news::%s::%s' % (entry['language'], category), entry['updated'], entry['_id'])
+        for category in entry_reduced['categories']:
+            rclient.zadd('news::%s::%s' % (entry_reduced['language'], category), entry_reduced['updated'], entry_reduced['_id'])
         # final return
         return True
     except ConnectionError:
