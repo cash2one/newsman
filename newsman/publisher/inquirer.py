@@ -148,7 +148,7 @@ def get_latest_entries_by_language(language=None, limit=10, start_id=None):
                         dirty_expired_ids.append(entry_id)
 
                 # find out the boundary between memory and database
-                last_entry_in_memory_updated = last_entry_in_memory['updated']
+                last_entry_in_memory_updated = float(last_entry_in_memory['updated'])
                 # get the REAL number of needs in database
                 limit_in_database = limit - len(entries)
 
@@ -210,12 +210,12 @@ def get_previous_entries_by_language(language=None, limit=10, end_id=None):
         # check is redis is alive
         rclient.ping()
 
+        category_name = "news::%s" % language
         # preprocess end_id
         entry_ids_total = rclient.zcard(category_name)
         end_id_index = 0
         END_ID_IN_MEMORY = False
         limit_in_memory = 0
-        category_name = "news::%s" % language
 
         if not end_id:
             end_id_index = entry_ids_total
@@ -260,7 +260,7 @@ def get_previous_entries_by_language(language=None, limit=10, end_id=None):
                     else:
                         dirty_expired_ids.append(entry_id)
 
-                last_entry_in_memory_updated = last_entry_in_memory['updated']
+                last_entry_in_memory_updated = float(last_entry_in_memory['updated'])
                 limit_in_database = limit - len(entries)
 
                 # find the remaining items in database
@@ -291,7 +291,7 @@ def get_previous_entries_by_language(language=None, limit=10, end_id=None):
         if end_id:
             end_id_entry = col.find_one({'_id': ObjectId(end_id)})
             if end_id_entry:
-                end_id_updated = end_id_entry['updated']
+                end_id_updated = float(end_id_entry['updated'])
                 items = col.find({'updated': {'$lt': end_id_updated}}).sort('updated', -1).limit(limit)
             else:
                 return None
@@ -362,7 +362,7 @@ def get_latest_entries_by_category(language=None, category=None, limit=10, start
                         dirty_expired_ids.append(entry_id)
 
                 # compute boundary variables
-                last_entry_in_memory_updated = last_entry_in_memory['updated']
+                last_entry_in_memory_updated = float(last_entry_in_memory['updated'])
                 limit_in_database = limit - len(entries)
 
                 # database
@@ -427,10 +427,10 @@ def get_previous_entries_by_category(language=None, category=None, limit=10, end
 
         category_name = 'news::%s::%s' % (language, category)
         # preprocess end_id
+        entry_ids_total = rclient.zcard(category_name)
         end_id_index = 0
         END_ID_IN_MEMORY = False
         limit_in_memory = 0
-        entry_ids_total = rclient.zcard(category_name)
 
         if not end_id:
             end_id_index = entry_ids_total
@@ -473,7 +473,7 @@ def get_previous_entries_by_category(language=None, category=None, limit=10, end
                     else:
                         dirty_expired_ids.append(entry_id)
 
-                last_entry_in_memory_updated = last_entry_in_memory['updated']
+                last_entry_in_memory_updated = float(last_entry_in_memory['updated'])
                 limit_in_database = limit - len(entries)
 
                 # find the remaining items in database
@@ -504,7 +504,7 @@ def get_previous_entries_by_category(language=None, category=None, limit=10, end
         if end_id:
             end_id_entry = col.find_one({'_id': ObjectId(end_id)})
             if end_id_entry:
-                end_id_updated = end_id_entry['updated']
+                end_id_updated = float(end_id_entry['updated'])
                 items = col.find({'updated': {'$lt': end_id_updated}, 'categories': category}).sort('updated', -1).limit(limit)
             else:
                 return None
