@@ -211,14 +211,13 @@ def get_previous_entries_by_language(language=None, limit=10, end_id=None):
         rclient.ping()
 
         # preprocess end_id
-        entry_ids_total = 0
+        entry_ids_total = rclient.zcard(category_name)
         end_id_index = 0
         END_ID_IN_MEMORY = False
         limit_in_memory = 0
         category_name = "news::%s" % language
 
         if not end_id:
-            entry_ids_total = rclient.zcard(category_name)
             end_id_index = entry_ids_total
             if entry_ids_total:
                 # end_id is assigned the most recent one
@@ -428,13 +427,12 @@ def get_previous_entries_by_category(language=None, category=None, limit=10, end
 
         category_name = 'news::%s::%s' % (language, category)
         # preprocess end_id
-        entry_ids_total = 0
         end_id_index = 0
         END_ID_IN_MEMORY = False
         limit_in_memory = 0
+        entry_ids_total = rclient.zcard(category_name)
 
         if not end_id:
-            entry_ids_total = rclient.zcard(category_name)
             end_id_index = entry_ids_total
             if entry_ids_total:
                 # end_id is assign the most recent one
