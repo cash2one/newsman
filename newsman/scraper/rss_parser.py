@@ -24,6 +24,8 @@ from datetime import datetime, timedelta
 import feedparser
 import html2text
 import re
+import socket
+socket.setdefaulttimeout(10) # 10 seconds
 import time
 import urllib2
 
