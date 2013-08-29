@@ -21,7 +21,7 @@ from config import rclient, ConnectionError
 from config import MEMORY_EXPIRATION_DAYS
 
 # list of fields stored in memory
-field_list = ['_id', 'category_image', 'feed', 'hotnews_image', 'image', 'language', 'link', 'mp3', 'summary', 'thumbnail_image', 'title', 'transcoded', 'updated']
+field_list = ['_id', 'categories', 'category_image', 'feed', 'hotnews_image', 'image', 'language', 'link', 'mp3', 'summary', 'thumbnail_image', 'title', 'transcoded', 'updated']
 
 
 def update(entry=None):
