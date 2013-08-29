@@ -314,7 +314,7 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
                         return filter(_validate_time, entries), status, feed_title, etag, modified
                     else:
                         logger.error('Feed parsing goes wrong!')
-                        return None, None, None, None
+                        return None, None, None, None, None
                 else:
                     logger.error("Feed %s has no items!" % feed_id)
                     return None, None, None, None, None
