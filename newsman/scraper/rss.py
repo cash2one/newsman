@@ -230,12 +230,12 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
                     else:
                         logger.error('Error found in updating memory')
                         # remove entry in database
-                        if not clean_memory.clean_by_item(entry):
+                        if clean_database.clean_by_item(entry):
                             logger.info('Cleaned %s in database' % entry['title'])
                         else:
                             logger.error('Error cleaning %s in database' % entry['title'])
                         # remove entry-created files on disk
-                        if not clean_disk.clean_by_item(entry):
+                        if clean_disk.clean_by_item(entry):
                             logger.info('Cleaned %s on disk' % entry['title'])
                         else:
                             logger.error('Error cleaning %s on disk' % entry['title'])
@@ -243,7 +243,7 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
                 else:
                     logger.error('Error found in updating to news database')
                     # remove entry-created files on disk
-                    if not clean_disk.clean_by_item(entry):
+                    if clean_disk.clean_by_item(entry):
                         logger.info('Cleaned %s on disk' % entry['title'])
                     else:
                         logger.error('Error cleaning %s on disk' % entry['title'])
