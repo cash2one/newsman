@@ -14,6 +14,7 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append("..")
 
+from bson.objectid import ObjectId
 import calendar
 import clean_disk
 import clean_memory
@@ -25,6 +26,24 @@ import time
 # CONSTANTS
 from config import FEED_REGISTRAR
 from config import DATABASE_REMOVAL_DAYS
+
+
+def clean_by_item(candidate):
+    """
+    remove candidate in database
+    """
+    if not candidate:
+        logger.error('Method malformed! %s' % str(candidate))
+        return False
+
+    try:
+        document_name = candidate['language']
+        document = Collection(db, document_name)
+        document.remove({'_id': ObjectId(candidate['_id'])})
+        return True
+    except Exception as k:
+        logger.error(str(k))
+        return False
 
 
 def _find_document_names():
