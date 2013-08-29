@@ -27,6 +27,7 @@ import memory
 import random
 import rss_parser
 import time
+from watchdog import clean_disk, clean_database
 
 # CONSTANTS
 from config import CATEGORY_IMAGE_SIZE
@@ -228,9 +229,24 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
                         updated_entries.append(entry)
                     else:
                         logger.error('Error found in updating memory')
+                        # remove entry in database
+                        if not clean_memory.clean_by_item(entry):
+                            logger.info('Cleaned %s in database' % entry['title'])
+                        else:
+                            logger.error('Error cleaning %s in database' % entry['title'])
+                        # remove entry-created files on disk
+                        if not clean_disk.clean_by_item(entry):
+                            logger.info('Cleaned %s on disk' % entry['title'])
+                        else:
+                            logger.error('Error cleaning %s on disk' % entry['title'])
                         continue
                 else:
                     logger.error('Error found in updating to news database')
+                    # remove entry-created files on disk
+                    if not clean_disk.clean_by_item(entry):
+                        logger.info('Cleaned %s on disk' % entry['title'])
+                    else:
+                        logger.error('Error cleaning %s on disk' % entry['title'])
                     continue
             else:
                 logger.info('Error found in transcoding')
