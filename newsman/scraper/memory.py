@@ -21,7 +21,6 @@ from config import rclient, ConnectionError
 from config import MEMORY_EXPIRATION_DAYS
 
 
-# TODO: be precautious with possible redis adding failure
 def update(entry=None):
     """
     add news and its attributes to memory
