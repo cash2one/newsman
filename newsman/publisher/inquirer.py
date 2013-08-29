@@ -37,7 +37,6 @@ HOTNEWS_TITLE = {'en': HOTNEWS_TITLE_EN, 'ja': HOTNEWS_TITLE_JA, 'th': HOTNEWS_T
 
 
 # TODO: need to refactor this method after sorting out feed.py
-# TODO: added database inquire if language cannot be found in memory
 def get_categories_by_language(language=None):
     """
     get a list of categories and hot news by language
