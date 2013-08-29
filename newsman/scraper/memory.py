@@ -40,7 +40,7 @@ def update(entry=None):
         # simplify fields in entry to ones in field_list
         for field in entry:
             if field in field_list:
-                entry_reduced[field] = entry[filed]
+                entry_reduced[field] = entry[field]
         
         # add an entry to memory
         # add a piece of news into memory
