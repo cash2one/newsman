@@ -31,6 +31,10 @@ def clean_by_item(candidate):
     remove related files on disk of an item
     mp3_local, transcoded_local, hotnews_image_local, category_image_local, thumbnail_image_local
     """
+    if not candidate:
+        log.error('Method malformed! %s' % str(candidate))
+        return False
+
     try:
         # mp3
         if candidate.has_key('mp3_local') and candidate['mp3_local']:
