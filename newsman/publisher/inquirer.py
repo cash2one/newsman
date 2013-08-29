@@ -100,10 +100,12 @@ def get_latest_entries_by_language(language=None, limit=10, start_id=None):
 
     if not language:
         return None
-    if limit < 0 or limit > 100:
-        return None
     if language not in LANGUAGES:
         return None
+
+    # limit the number of items
+    if limit < 0 or limit > 100:
+        limit = 100
 
     # return list
     entries = []
@@ -198,10 +200,12 @@ def get_previous_entries_by_language(language=None, limit=10, end_id=None):
 
     if not language:
         return None
-    if limit < 0 or limit > 100:
-        return None
     if language not in LANGUAGES:
         return None
+
+    # limit the number of items
+    if limit < 0 or limit > 100:
+        limit = 100
 
     # return list
     entries = []
@@ -315,10 +319,12 @@ def get_latest_entries_by_category(language=None, category=None, limit=10, start
 
     if not language or not category:
         return None
-    if limit < 0 or limit > 100:
-        return None
     if language not in LANGUAGES:
         return None
+
+    # limit the number of items
+    if limit < 0 or limit > 100:
+        limit = 100
 
     # return list
     entries = []
@@ -413,10 +419,12 @@ def get_previous_entries_by_category(language=None, category=None, limit=10, end
 
     if not language or not category:
         return None
-    if limit < 0 or limit > 100:
-        return None
     if language not in LANGUAGES:
         return None
+
+    # limit the number of items
+    if limit < 0 or limit > 100:
+        limit = 100
 
     # return list
     entries = []
