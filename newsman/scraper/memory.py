@@ -42,11 +42,13 @@ def update(entry=None):
             rclient.expire(entry['_id'], expiration)
 
             # add entry ids to the language list
-            rclient.zadd("news::%s" % entry['language'], entry['updated'], entry['_id'])
+            rclient.zadd("news::%s" %
+                         entry['language'], entry['updated'], entry['_id'])
 
             # add entry ids to the category list
             for category in entry['categories']:
-                rclient.zadd('news::%s::%s' % (entry['language'], category), entry['updated'], entry['_id'])
+                rclient.zadd('news::%s::%s' %
+                             (entry['language'], category), entry['updated'], entry['_id'])
             # final return
             return True
         except ConnectionError:
