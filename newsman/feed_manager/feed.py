@@ -17,6 +17,8 @@ sys.path.append("..")
 from config import logger
 import database as db_feeds
 import feedparser
+import socket
+socket.setdefaulttimeout(10) # 10 seconds
 from scraper import rss
 
 
