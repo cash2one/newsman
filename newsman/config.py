@@ -51,7 +51,7 @@ CODE_BASE = LOCAL % 'newsman'
 # logging settings
 LOG_FORMAT = "%(levelname)-8s %(asctime)-25s %(lineno)-3d:%(filename)-16s %(message)s"
 # critical, error, warning, info, debug, notset
-logging.basicConfig(filename='%s/logs.txt' % CODE_BASE, format=LOG_FORMAT)
+logging.basicConfig(format=LOG_FORMAT)
 logger = logging.getLogger('news-logger')
 logger.setLevel(logging.WARNING)
 
