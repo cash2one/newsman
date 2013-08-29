@@ -49,6 +49,9 @@ def get_categories_by_language(language=None):
 
     category_images = {}
     try:
+        # check if redis is running
+        rclient.ping()
+
         # find category_images for each category
         key_wildcard = 'news::%s::*' % language
         categories_composite = rclient.keys(key_wildcard)
@@ -103,68 +106,76 @@ def get_latest_entries_by_language(language=None, limit=10, start_id=None):
     if language not in LANGUAGES:
         return None
 
-    # get the latest entries
-    category_name = "news::%s" % language
-    entry_ids_total = rclient.zcard(category_name)
+    # return list
     entries = []
 
-    if entry_ids_total:  
-        if entry_ids_total >= limit: # memory (partially) meets the limit
-            entry_ids = rclient.zrevrange(category_name, 0, limit - 1)
+    try:
+        # check if redis is alive
+        rclient.ping()
+
+        # get the latest entries
+        category_name = "news::%s" % language
+        entry_ids_total = rclient.zcard(category_name)
+
+        if entry_ids_total:  
+            if entry_ids_total >= limit: # memory (partially) meets the limit
+                entry_ids = rclient.zrevrange(category_name, 0, limit - 1)
             
-            dirty_expired_ids = []
-            for entry_id in entry_ids:
-                if start_id and entry_id == start_id:
-                    return entries
-                entry_id_in_memory = rclient.get(entry_id)
-                if entry_id_in_memory:
-                    entries.append(eval(entry_id_in_memory))
-                else:
-                    # call clean_memory afterwards
-                    dirty_expired_ids.append(entry_id)
+                dirty_expired_ids = []
+                for entry_id in entry_ids:
+                    if start_id and entry_id == start_id:
+                        return entries
+                    entry_id_in_memory = rclient.get(entry_id)
+                    if entry_id_in_memory:
+                        entries.append(eval(entry_id_in_memory))
+                    else:
+                        # call clean_memory afterwards
+                        dirty_expired_ids.append(entry_id)
+            else:
+                entry_ids = rclient.zrevrange(category_name, 0, entry_ids_total - 1)
+
+                last_entry_in_memory = None
+                dirty_expired_ids = []
+                for entry_id in entry_ids:
+                    if start_id and entry_id == start_id:
+                        return entries
+                    entry_id_in_memory = rclient.get(entry_id)
+                    if entry_id_in_memory:
+                        last_entry_in_memory = eval(entry_id_in_memory)
+                        entries.append(last_entry_in_memory)
+                    else:
+                        dirty_expired_ids.append(entry_id)
+
+                # find out the boundary between memory and database
+                last_entry_in_memory_updated = last_entry_in_memory['updated']
+                # get the REAL number of needs in database
+                limit_in_database = limit - len(entries)
+
+                # database
+                col = Collection(db, language)
+                items = col.find({'updated': {'$lt': last_entry_in_memory_updated}}).sort('updated', -1).limit(limit_in_database)
+                for item in items:
+                    if start_id and str(item['_id']) == start_id:
+                        return entries
+                    # string-ify all the values: ObjectId
+                    for x, y in item.iteritems():
+                        if x != 'updated':
+                            item[x] = str(y)
+                    entries.append(item)
+
+            # dirty expired ids found
+            if dirty_expired_ids:
+                sys.path.append(os.path.join(CODE_BASE, 'newsman'))
+                from watchdog import clean_memory
+                clean_memory.clean_by_items(category_name, dirty_expired_ids)
+                logger.warning('Memory contains dirty expired items')
+
+            return entries
         else:
-            entry_ids = rclient.zrevrange(category_name, 0, entry_ids_total - 1)
-
-            last_entry_in_memory = None
-            dirty_expired_ids = []
-            for entry_id in entry_ids:
-                if start_id and entry_id == start_id:
-                    return entries
-                entry_id_in_memory = rclient.get(entry_id)
-                if entry_id_in_memory:
-                    last_entry_in_memory = eval(entry_id_in_memory)
-                    entries.append(last_entry_in_memory)
-                else:
-                    dirty_expired_ids.append(entry_id)
-
-            # find out the boundary between memory and database
-            last_entry_in_memory_updated = last_entry_in_memory['updated']
-            # get the REAL number of needs in database
-            limit_in_database = limit - len(entries)
-
-            # database
-            col = Collection(db, language)
-            items = col.find({'updated': {'$lt': last_entry_in_memory_updated}}).sort(
-                'updated', -1).limit(limit_in_database)
-            for item in items:
-                if start_id and str(item['_id']) == start_id:
-                    return entries
-                # string-ify all the values: ObjectId
-                for x, y in item.iteritems():
-                    if x != 'updated':
-                        item[x] = str(y)
-                entries.append(item)
-
-        # expired ids not cleaned found
-        if dirty_expired_ids:
-            sys.path.append(os.path.join(CODE_BASE, 'newsman'))
-            from watchdog import clean_memory
-            clean_memory.clean_by_items(category_name, dirty_expired_ids)
-            logger.warning('Memory contains dirty expired items')
-
-        return entries
-    else:  # query the database
-        entries = []
+            logger.error('Found nothings about %s in memory' % category_name)
+            return entries
+    except ConnectionError:
+        # query the database
         col = Collection(db, language)
         items = col.find().sort('updated', -1).limit(limit)
         for item in items:
@@ -175,7 +186,7 @@ def get_latest_entries_by_language(language=None, limit=10, start_id=None):
                 if x != 'updated':
                     item[x] = str(y)
             entries.append(item)
-    return entries
+        return entries
 
 
 def get_previous_entries_by_language(language=None, limit=10, end_id=None):
@@ -190,81 +201,90 @@ def get_previous_entries_by_language(language=None, limit=10, end_id=None):
     if language not in LANGUAGES:
         return None
 
-    # preprocess end_id
-    entry_ids_total = 0
-    end_id_index = 0
-    END_ID_IN_MEMORY = False
-    limit_in_memory = 0
-    category_name = "news::%s" % language
-
-    if not end_id:
-        entry_ids_total = rclient.zcard(category_name)
-        end_id_index = entry_ids_total
-        if entry_ids_total:
-            # end_id is assigned the most recent one
-            end_id = rclient.zrevrange(category_name, 0, 0)[0]
-            END_ID_IN_MEMORY = True
-            limit_in_memory = entry_ids_total
-        else:
-            end_id = None  # which is in most cases, pointless
-            END_ID_IN_MEMORY = False
-    else:
-        end_id_index = rclient.zrank(category_name, end_id)
-        # not existing entry --> nil
-        # first entry --> 0
-        END_ID_IN_MEMORY = True if end_id_index >= 0 else False
-        if END_ID_IN_MEMORY:
-            limit_in_memory = rclient.zrank(category_name, end_id)
-            
+    # return list
     entries = []
-    if END_ID_IN_MEMORY:  # see if data in memory suffice
-        if limit_in_memory >= limit:  # purely get from memory
-            entry_ids = rclient.zrevrange(category_name, entry_ids_total - end_id_index, entry_ids_total - end_id_index + limit - 1)
 
-            dirty_expired_ids = []
-            for entry_id in entry_ids:
-                entry_id_in_memory = rclient.get(entry_id)
-                if entry_id_in_memory:
-                    entries.append(eval(entry_id_in_memory))
-                else:
-                    dirty_expired_ids.append(entry_id)
-        else:  # memory + database
-            # memory
-            entry_ids = rclient.zrevrange(category_name, entry_ids_total - end_id_index, entry_ids_total - end_id_index + limit_in_memory - 1)
+    try:
+        # check is redis is alive
+        rclient.ping()
 
-            last_entry_in_memory = None
-            dirty_expired_ids = []
-            for entry_id in entry_ids:
-                entry_id_in_memory = rclient.get(entry_id)
-                if entry_id_in_memory:
-                    last_entry_in_memory = eval(entry_id_in_memory)
-                    entries.append(last_entry_in_memory)
-                else:
-                    dirty_expired_ids.append(entry_id)
+        # preprocess end_id
+        entry_ids_total = 0
+        end_id_index = 0
+        END_ID_IN_MEMORY = False
+        limit_in_memory = 0
+        category_name = "news::%s" % language
 
-            last_entry_in_memory_updated = last_entry_in_memory['updated']
-            limit_in_database = limit - len(entries)
+        if not end_id:
+            entry_ids_total = rclient.zcard(category_name)
+            end_id_index = entry_ids_total
+            if entry_ids_total:
+                # end_id is assigned the most recent one
+                end_id = rclient.zrevrange(category_name, 0, 0)[0]
+                END_ID_IN_MEMORY = True
+                limit_in_memory = entry_ids_total
+            else:
+                end_id = None  # which is in most cases, pointless
+                END_ID_IN_MEMORY = False
+        else:
+            end_id_index = rclient.zrank(category_name, end_id)
+            # not existing entry --> nil
+            # first entry --> 0
+            END_ID_IN_MEMORY = True if end_id_index >= 0 else False
+            if END_ID_IN_MEMORY:
+                limit_in_memory = rclient.zrank(category_name, end_id)
+            
+        if END_ID_IN_MEMORY:  # see if data in memory suffice
+            if limit_in_memory >= limit:  # purely get from memory
+                entry_ids = rclient.zrevrange(category_name, entry_ids_total - end_id_index, entry_ids_total - end_id_index + limit - 1)
 
-            # find the remaining items in database
-            col = Collection(db, language)
-            items = col.find({'updated': {'$lt': last_entry_in_memory_updated}}).sort('updated', -1).limit(limit_in_database)
-            for item in items:
-                # string-ify all the values: ObjectId
-                for x, y in item.iteritems():
-                    if x != 'updated':
-                        item[x] = str(y)
-                entries.append(item)
+                dirty_expired_ids = []
+                for entry_id in entry_ids:
+                    entry_id_in_memory = rclient.get(entry_id)
+                    if entry_id_in_memory:
+                        entries.append(eval(entry_id_in_memory))
+                    else:
+                        dirty_expired_ids.append(entry_id)
+            else:  # memory + database
+                # memory
+                entry_ids = rclient.zrevrange(category_name, entry_ids_total - end_id_index, entry_ids_total - end_id_index + limit_in_memory - 1)
 
-        # clean dirty memory
-        if dirty_expired_ids:
-            sys.path.append(os.path.join(CODE_BASE, 'newsman'))
-            from watchdog import clean_memory
-            clean_memory.clean_by_items(category_name, dirty_expired_ids)
-            logger.warning('Memory contains dirty expired items')
+                last_entry_in_memory = None
+                dirty_expired_ids = []
+                for entry_id in entry_ids:
+                    entry_id_in_memory = rclient.get(entry_id)
+                    if entry_id_in_memory:
+                        last_entry_in_memory = eval(entry_id_in_memory)
+                        entries.append(last_entry_in_memory)
+                    else:
+                        dirty_expired_ids.append(entry_id)
 
-        return entries
-    else:  # no memory or data in memory are not enough, so query database
-        entries = []
+                last_entry_in_memory_updated = last_entry_in_memory['updated']
+                limit_in_database = limit - len(entries)
+
+                # find the remaining items in database
+                col = Collection(db, language)
+                items = col.find({'updated': {'$lt': last_entry_in_memory_updated}}).sort('updated', -1).limit(limit_in_database)
+                for item in items:
+                    # string-ify all the values: ObjectId
+                    for x, y in item.iteritems():
+                        if x != 'updated':
+                            item[x] = str(y)
+                    entries.append(item)
+
+            # clean dirty memory
+            if dirty_expired_ids:
+                sys.path.append(os.path.join(CODE_BASE, 'newsman'))
+                from watchdog import clean_memory
+                clean_memory.clean_by_items(category_name, dirty_expired_ids)
+                logger.warning('Memory contains dirty expired items')
+
+            return entries
+        else:
+            logger.error('Found nothing about %s in memory' % category_name)
+            return entries
+    except ConnectionError:
+        # no memory or data in memory are not enough, so query database
         items = []
         col = Collection(db, language)
         if end_id:
@@ -300,10 +320,16 @@ def get_latest_entries_by_category(language=None, category=None, limit=10, start
     if language not in LANGUAGES:
         return None
 
-    category_name = 'news::%s::%s' % (language, category)
-    # get the latest entries
-    entry_ids_total = rclient.zcard(category_name)
+    # return list
     entries = []
+
+    try:
+        # check if redis is alive
+        rclient.ping()
+
+        category_name = 'news::%s::%s' % (language, category)
+        # get the latest entries
+        entry_ids_total = rclient.zcard(category_name)
 
     if entry_ids_total:  # memory (partially) meets the limit
         if entry_ids_total >= limit:
