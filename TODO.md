@@ -2,23 +2,24 @@ ToDos - High Priority
 ----------------------
 1. 预警代码整理、重构
 2. 服务器质量监控
-3. 理清每个函数的返回类型（raise Exception or None?）
-4. 输出改为logging
+3. 细化Exception抓取
+4. WAP页支持
 5. 使用Fabric进行发布
 6. data_processor代码整理、重构
-7. 采用nose/coverage进行测试
-8. URL处理换成gruns/furl
-9. 测试标题提取使用Lassie(多国语言)
-10. qrconverter类似脚本使用docopt/docopt
-11. thumbnail/image_helper重新构造
-12. 修改README
-13. 参照谷歌编码风格
+7. 整理转码器图片提取模块
+8. 采用nose/coverage进行测试
+9. URL处理换成gruns/furl
+10. 实现Feed地址清理工具（去掉诸如#、?等参数）
+11. 测试标题提取使用Lassie(多国语言)
+12. 融合[Scrapely](https://github.com/scrapy/scrapely)到转码器中
+13 根据热门关键字搜索图片
+14. 新闻摘要
+15. 修改README
+16. 参照谷歌编码风格
     [中文](http://zh-google-styleguide.readthedocs.org/en/latest/google-python-styleguide/)
     [EN](http://google-styleguide.googlecode.com/svn/trunk/pyguide.html)
-14. 去掉html内容的代码换成那个bs4
+17. 去掉html内容的代码换成那个bs4
     [link](http://azd325.github.io/blog/2013/08/18/python-strip-tags/)
-15. 融合[Scrapely](https://github.com/scrapy/scrapely)到转码器中
-16. 实现Feed地址清理工具（去掉诸如#、?等参数）
 
 ToDos - Low Priority
 ---------------------
@@ -27,15 +28,13 @@ ToDos - Low Priority
 3. 判断图片是否是黄图
 4. 社交账户好友信息抓取
 5. 热点新闻提取
-6. 新闻摘要
-7. 新闻去重
-8. 类别类似新闻
-9. Bugu用户账户代码转移
-10. Minerva代码转移
-11. 详情页增加夜间、字体大小、分享等代码
-12. 增加在线生成临时图片和MP3的接口
-13. Feed管理平台
-14. 自定义Exception类，并替换相应代码
+6. 新闻去重
+7. 类别类似新闻
+8. Bugu用户账户代码转移
+9. Minerva代码转移
+10. 详情页增加夜间、字体大小、分享等代码
+11. Feed管理平台
+12. qrconverter类似脚本使用docopt/docopt
 
 Dones
 ------
@@ -56,6 +55,8 @@ Dones
 15. Task相关代码分解、重构
 16. 为项目增加开源声明
 17. Redis expire可能会失效，访问时增加检查和清理
+18. 理清每个函数的返回类型（raise Exception or None?）
+19. 输出改为logging
 
 ToDos - Generated from docs
 --------------------------
