@@ -118,13 +118,13 @@ def get_latest_entries_by_language(language=None, limit=10, start_id=None):
 
     # return list
     entries = []
+    category_name = "news::%s" % language
 
     try:
         # check if redis is alive
         rclient.ping()
 
         # get the latest entries
-        category_name = "news::%s" % language
         entry_ids_total = rclient.zcard(category_name)
 
         if entry_ids_total:  
@@ -219,12 +219,12 @@ def get_previous_entries_by_language(language=None, limit=10, end_id=None):
 
     # return list
     entries = []
+    category_name = "news::%s" % language
 
     try:
         # check is redis is alive
         rclient.ping()
 
-        category_name = "news::%s" % language
         # preprocess end_id
         entry_ids_total = rclient.zcard(category_name)
         end_id_index = 0
@@ -339,12 +339,12 @@ def get_latest_entries_by_category(language=None, category=None, limit=10, start
 
     # return list
     entries = []
+    category_name = 'news::%s::%s' % (language, category)
 
     try:
         # check if redis is alive
         rclient.ping()
 
-        category_name = 'news::%s::%s' % (language, category)
         # get the latest entries
         entry_ids_total = rclient.zcard(category_name)
 
@@ -440,12 +440,12 @@ def get_previous_entries_by_category(language=None, category=None, limit=10, end
 
     # return list
     entries = []
+    category_name = 'news::%s::%s' % (language, category)
 
     try:
         # check if redis is alive
         rclient.ping()
 
-        category_name = 'news::%s::%s' % (language, category)
         # preprocess end_id
         entry_ids_total = rclient.zcard(category_name)
         end_id_index = 0
