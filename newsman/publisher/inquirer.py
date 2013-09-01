@@ -63,6 +63,9 @@ def get_categories_by_language(language=None):
             document_name = language
             document = Collection(db, document_name)
             categories = document.distinct('categories')
+            # utf-u all unicode
+            if categories:
+                categories = [str(category) for category in categories]
         except Excception as k:
             logger.critical(str(k))
 
