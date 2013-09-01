@@ -54,36 +54,44 @@ def get_categories_by_language(language=None):
         # find category_images for each category
         key_wildcard = 'news::%s::*' % language
         categories_composite = rclient.keys(key_wildcard)
-        if categories_composite:
-            categories = [cc.replace('news::%s::' % language, "") for cc in categories_composite]
-            for category in categories:
-                entries = get_latest_entries_by_category(language=language, category=category, limit=search_limit)
-                # 'category A': [{'title':'xxx', 'image':'http://yyy.com/zzz.jpg'}]
-                # image: category_image
-                category_images[category] = []
-                for entry in entries:
-                    if 'category_image' in entry and entry['category_image']:
-                        item = {'title': entry['title'], 'image': entry['category_image'], 'updated': entry['updated']}
-                        category_images[category].append(item)
-                        # limit the number of category_image to
-                        if len(category_images[category]) == images_limit:
-                            break
-        else:
-            logger.error("%s not supported! Or database is corrupted!" % language)
-
-        # find hotnews_image from hot news
-        # category_images['hotnews']
-        hotnews = HOTNEWS_TITLE[language]
-        entries = get_latest_entries_by_language(language=language, limit=search_limit)
-        category_images[hotnews] = []
-        for entry in entries:
-            if 'hotnews_image' in entry and entry['hotnews_image']:
-                item = {'title': entry['title'], 'image': entry['hotnews_image'], 'updated': entry['updated']}
-                category_images[hotnews].append(item)
-                if len(category_images[hotnews]) == images_limit:
-                    break
+        categories = [cc.replace('news::%s::' % language, "") for cc in categories_composite]
     except ConnectionError:
         logger.critical('Redis is down!')
+        
+        # query database for category names
+        try:
+            document_name = language
+            document = Collection(db, document_name)
+            categories = document.distinct('categories')
+        except Excception as k:
+            logger.critical(str(k))
+
+    if categories:
+        for category in categories:
+            entries = get_latest_entries_by_category(language=language, category=category, limit=search_limit)
+            # 'category A': [{'title':'xxx', 'image':'http://yyy.com/zzz.jpg'}]
+            # image: category_image
+            category_images[category] = []
+            for entry in entries:
+                if 'category_image' in entry and entry['category_image']:
+                    item = {'title': entry['title'], 'image': entry['category_image'], 'updated': entry['updated']}
+                    category_images[category].append(item)
+                    # limit the number of category_image to
+                    if len(category_images[category]) == images_limit:
+                        break
+    else:
+        logger.error("%s not supported! Or database is corrupted!" % language)
+
+    # find hotnews_image from hot news
+    hotnews = HOTNEWS_TITLE[language]
+    entries = get_latest_entries_by_language(language=language, limit=search_limit)
+    category_images[hotnews] = []
+    for entry in entries:
+        if 'hotnews_image' in entry and entry['hotnews_image']:
+            item = {'title': entry['title'], 'image': entry['hotnews_image'], 'updated': entry['updated']}
+            category_images[hotnews].append(item)
+            if len(category_images[hotnews]) == images_limit:
+                break
 
     # special formatting for android-end
     output = []
