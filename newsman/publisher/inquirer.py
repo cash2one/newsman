@@ -197,6 +197,7 @@ def get_latest_entries_by_language(language=None, limit=10, start_id=None):
         for item in items:
             if start_id and str(item['_id']) == start_id:
                 return entries
+
             # string-ify all the values: ObjectId
             for x, y in item.iteritems():
                 if x != 'updated':
@@ -390,7 +391,7 @@ def get_latest_entries_by_category(language=None, category=None, limit=10, start
                 # query categories array with only one of its values
                 items = col.find({'updated': {'$lt': last_entry_in_memory_updated}, 'categories': category}).sort('updated', -1).limit(limit_in_database)
                 for item in items:
-                    if start_id and item['_id'] == start_id:
+                    if start_id and str(item['_id']) == start_id:
                         return entries
 
                     # string-ify all the values: ObjectId
@@ -412,12 +413,13 @@ def get_latest_entries_by_category(language=None, category=None, limit=10, start
             return entries
     except ConnectionError:  
         # query the database
-        col = Collection(db, category_name)
+        col = Collection(db, language)
         items = col.find({'categories': category}).sort(
             'updated', -1).limit(limit)
         for item in items:
-            if start_id and item['_id'] == start_id:
+            if start_id and str(item['_id']) == start_id:
                 return entries
+
             # string-ify all the values: ObjectId
             for x, y in item.iteritems():
                 if x != 'updated':
