@@ -371,6 +371,7 @@ def convert(language="en", title=None, link=None, transcoder="chengdujin", relat
                     'Transcoder %s failed for %s' % (transcoder, link))
                 if not stdout:
                     # original link is returned as transcoded path
+                    logger.info('Original link %s is used as transcoded path')
                     return link, None, None, None
                 else:
                     return None, None
