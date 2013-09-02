@@ -81,10 +81,6 @@ def _generate_images(image=None, entry=None, rand=None):
                 # normal resolution
                 thumbnail_web, thumbnail_local = image_helper.scale_image(
                     image=image, size_expected=THUMBNAIL_LANDSCAPE_SIZE_NORMAL, resize_by_width=True, crop_by_center=False, relative_path='%s_thumbnail' % image_relative_path)
-                if not thumbnail_web:
-                    # low resolution
-                    thumbnail_web, thumbnail_local = image_helper.scale_image(
-                        image=image, size_expected=THUMBNAIL_LANDSCAPE_SIZE_LOW, resize_by_width=True, crop_by_center=False, relative_path='%s_thumbnail' % image_relative_path)
         else:  # portrait
             # high resolution
             thumbnail_web, thumbnail_local = image_helper.scale_image(
@@ -93,10 +89,6 @@ def _generate_images(image=None, entry=None, rand=None):
                 # normal resolution
                 thumbnail_web, thumbnail_local = image_helper.scale_image(
                     image=image, size_expected=THUMBNAIL_PORTRAIT_SIZE_NORMAL, resize_by_width=True, crop_by_center=True, relative_path='%s_thumbnail' % image_relative_path)
-                if not thumbnail_web:
-                    # low resolution
-                    thumbnail_web, thumbnail_local = image_helper.scale_image(
-                        image=image, size_expected=THUMBNAIL_PORTRAIT_SIZE_LOW, resize_by_width=True, crop_by_center=True, relative_path='%s_thumbnail' % image_relative_path)
         entry['thumbnail_image'] = thumbnail_web if thumbnail_web else None
         entry['thumbnail_image_local'] = thumbnail_local if thumbnail_local else None
     except Exception as k:
