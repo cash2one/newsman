@@ -32,9 +32,6 @@ def _check(url):
         if code != 200:
             f.write("W %s %i\n" % (str(now), code))
             f.close()
-        else:
-            f.write("N %s %i\n" % (str(now), code))
-            f.close()
     except Exception as k:
         f.write("E %s %s\n" % (str(now), str(k)))
         f.close()
