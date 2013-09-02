@@ -2,22 +2,21 @@ ToDos - High Priority
 ----------------------
 1. 预警代码整理、重构
 2. 细化Exception抓取
-3. WAP页支持
-4. 使用Fabric进行发布
-5. data_processor代码整理、重构
-6. 整理转码器图片提取模块
-7. 采用nose/coverage进行测试
-8. URL处理换成gruns/furl
-9. 实现Feed地址清理工具（去掉诸如#、?等参数）
-10. 测试标题提取使用Lassie(多国语言)
-11. 融合[Scrapely](https://github.com/scrapy/scrapely)到转码器中
-12. 根据热门关键字搜索图片
-13. 新闻摘要
-14. 修改README
-15. 参照谷歌编码风格
+3. 使用Fabric进行发布
+4. data_processor代码整理、重构
+5. 整理转码器图片提取模块
+6. 采用nose/coverage进行测试
+7. URL处理换成gruns/furl
+8. 实现Feed地址清理工具（去掉诸如#、?等参数）
+9. 测试标题提取使用Lassie(多国语言)
+10. 融合[Scrapely](https://github.com/scrapy/scrapely)到转码器中
+11. 根据热门关键字搜索图片
+12. 新闻摘要
+13. 修改README
+14. 参照谷歌编码风格
     [中文](http://zh-google-styleguide.readthedocs.org/en/latest/google-python-styleguide/)
     [EN](http://google-styleguide.googlecode.com/svn/trunk/pyguide.html)
-16. 去掉html内容的代码换成那个bs4
+15. 去掉html内容的代码换成那个bs4
     [link](http://azd325.github.io/blog/2013/08/18/python-strip-tags/)
 
 ToDos - Low Priority
@@ -57,6 +56,7 @@ Dones
 18. 理清每个函数的返回类型（raise Exception or None?）
 19. 输出改为logging
 20. 服务器质量监控
+21. WAP页支持
 
 ToDos - Generated from docs
 --------------------------
