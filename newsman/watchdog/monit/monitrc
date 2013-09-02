@@ -49,7 +49,7 @@
 # will use the second mail server in the list and so on. By default Monit uses 
 # port 25 - it is possible to override this with the PORT option.
 #
-# set mailserver # primary mailserver
+ set mailserver smtp.gmail.com port 587 username 'doremilauncher@gmail.com' password 'Welcometodoremiworld*2012&shenzhen' using tlsv1
 #                backup.bar.baz port 10025,  # backup mailserver on port 10025
 #                localhost                   # fallback relay
 #
@@ -90,8 +90,9 @@
 ##                 Host:        $HOST
 ##                 Description: $DESCRIPTION
 ##
-##            Your faithful employee,
-##            Monit
+##            Best,
+##
+##            chengdujin
 ## }
 ## --8<--
 ##
@@ -99,14 +100,14 @@
 ## or sender using the MAIL-FORMAT statement. Macros such as $DATE, etc.
 ## are expanded at runtime. For example, to override the sender, use:
 #
-# set mail-format { from: monit@foo.bar }
+ set mail-format { from: doremilauncher@gmail.com }
 #
 #
 ## You can set alert recipients whom will receive alerts if/when a 
 ## service defined in this file has errors. Alerts may be restricted on 
 ## events by using a filter as in the second example below. 
 #
-# set alert chengdujin@gmail.com                       # receive all alerts
+ set alert chengdujin@gmail.com only on {timeout}                     # receive all alerts
 # set alert manager@foo.bar only on { timeout }  # receive just service-
 #                                                # timeout alert
 #
