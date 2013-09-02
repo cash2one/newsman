@@ -163,6 +163,7 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
 
             if entry['transcoded']:
                 # [OPTIONAL] summary
+                # raw_transcoded_content is validated inside summarizer
                 summary_found = summarizer.extract(
                     entry['summary'], raw_transcoded_content, entry['language'])
                 if summary_found:
