@@ -281,14 +281,15 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
                         hparser.unescape(d.feed.title)).strip()
                 else:
                     feed_title = feed_title.strip()
-                    feed_title_latest = urllib2.unquote(
-                        hparser.unescape(d.feed.title)).strip()
-                    if feed_title != feed_title_latest:
-                        # change feed title
-                        logger.warning(
-                            '%s title changed! Please update feed table/database' % feed_link)
-                        logger.info('old title: %s' % feed_title)
-                        logger.info('new title: %s' % feed_title_latest)
+                    if 'title' in d.feed:
+                        feed_title_latest = urllib2.unquote(hparser.unescape(d.feed.title)).strip()
+                        if feed_title != feed_title_latest:
+                            # change feed title
+                            logger.warning('%s title changed! Please update feed table/database' % feed_link)
+                            logger.info('old title: %s' % feed_title)
+                            logger.info('new title: %s' % feed_title_latest)
+                    else:
+                        logger.warning('%s[%s] has lost its title' % (feed_title, feed_link))
 
                 # update etag/modified
                 etag = None
@@ -331,5 +332,5 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
             logger.error("Cannot parse %s correctly!" % feed_id)
             return None, None, None, None, None
     except Exception as k:
-        logger.error(str(k))
+        logger.error('%s for %s' % (str(k), feed_id))
         return None, None, None, None, None
