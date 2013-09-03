@@ -59,9 +59,14 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
 
         # the easy part: the must-have
         try:
-            # article original link
             entry['error'] = []
-            entry['link'] = e.link.strip()
+
+            # article original link
+            if e.link:
+                entry['link'] = e.link.strip()
+            else:
+                raise AttributeError('Feed malformed! No link found')
+
             # article title
             if e.title_detail.type != 'text/plain':
                 entry['title'] = urllib2.unquote(
