@@ -260,7 +260,7 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
         if d:
             # http://pythonhosted.org/feedparser/reference-status.html
             # http://pythonhosted.org/feedparser/http-etag.html#http-etag
-            status = d.status if status in d else None
+            status = d.status if 'status' in d else None
 
             if status == 301:
                 logger.critical(
