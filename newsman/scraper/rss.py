@@ -155,11 +155,11 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
 
             if entry['transcoded']:
                 # [OPTIONAL] summary
-                # raw_transcoded_content is validated inside summarizer
-                summary_found = summarizer.extract(
-                    entry['summary'], raw_transcoded_content, entry['language'])
-                if summary_found:
-                    entry['summary'] = summary_found
+                if entry['summary'] or raw_transcoded_content:
+                    summary_found = summarizer.extract(entry['summary'], raw_transcoded_content, entry['language'])
+                    if summary_found:
+                        entry['summary'] = summary_found
+                entry['summary'] = entry['summary'] if 'summary' in entry and entry['summary'] else None
 
                 # [OPTIONAL] images
                 # process images found in the transcoded data
@@ -173,10 +173,7 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
                     # sucks
                     if images_deduped:
                         entry['images'] = images_deduped
-
-                # make images none if nothing's there, instead of a []
-                entry['images'] = entry['images'] if entry.has_key(
-                    'images') and entry['images'] else None
+                entry['images'] = entry['images'] if 'images' in entry and entry['images'] else None
 
                 # [OPTIONAL] generate 3 types of images: thumbnail,
                 # category image and hot news image
@@ -185,8 +182,7 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
                     if biggest:
                         entry = _generate_images(biggest, entry, rand)
                 # for older version users
-                entry['image'] = entry['thumbnail_image']['url'] if entry.has_key(
-                    'thumbnail_image') and entry['thumbnail_image'] else None
+                entry['image'] = entry['thumbnail_image']['url'] if 'thumbnail_image' in entry and entry['thumbnail_image'] else None
 
                 # [OPTIONAL] google tts not for indonesian
                 if entry['language'] != 'ind':
