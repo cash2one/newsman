@@ -318,7 +318,7 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
                     if entries:
                         # the FINAL return
                         # the last one indicates nothing wrong happended in parsing
-                        return filter(_validate_time, entries), status, feed_title, etag, modified, None
+                        return filter(_validate_time, entries), status, feed_title, etag, modified, 'OK'
                     else:
                         logger.info('Feed parsing goes wrong!')
                         return None, status, feed_title, etag, modified, 'Feed parsing goes wrong!'
