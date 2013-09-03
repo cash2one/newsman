@@ -51,6 +51,13 @@ def _extract(link):
     """
     data_string = _transcode(link)
     if data_string:
+        # syntax checker
+        try:
+            eval(data_string)
+        except Exception:
+            logger.info('Invalid syntax found for New UCK output')
+            return None, None, None
+        
         data = eval(data_string)
 
         if int(data['status']) == 1:
