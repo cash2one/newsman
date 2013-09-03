@@ -179,7 +179,7 @@ def get_latest_entries_by_language(language=None, limit=10, start_id=None):
             # dirty expired ids found
             if dirty_expired_ids:
                 sys.path.append(os.path.join(CODE_BASE, 'newsman'))
-                from watchdog import clean_memory
+                from watchdog.cron import clean_memory
                 clean_memory.clean_by_items(category_name, dirty_expired_ids)
                 logger.warning('Memory contains dirty expired items')
 
@@ -291,7 +291,7 @@ def get_previous_entries_by_language(language=None, limit=10, end_id=None):
             # clean dirty memory
             if dirty_expired_ids:
                 sys.path.append(os.path.join(CODE_BASE, 'newsman'))
-                from watchdog import clean_memory
+                from watchdog.cron import clean_memory
                 clean_memory.clean_by_items(category_name, dirty_expired_ids)
                 logger.warning('Memory contains dirty expired items')
 
@@ -400,7 +400,7 @@ def get_latest_entries_by_category(language=None, category=None, limit=10, start
             # expired ids not cleaned found
             if dirty_expired_ids:
                 sys.path.append(os.path.join(CODE_BASE, 'newsman'))
-                from watchdog import clean_memory
+                from watchdog.cron import clean_memory
                 clean_memory.clean_by_items(category_name, dirty_expired_ids)
                 logger.warning('Memory contains dirty expired items')
 
@@ -511,7 +511,7 @@ def get_previous_entries_by_category(language=None, category=None, limit=10, end
             # expired ids not cleaned found
             if dirty_expired_ids:
                 sys.path.append(os.path.join(CODE_BASE, 'newsman'))
-                from watchdog import clean_memory
+                from watchdog.cron import clean_memory
                 clean_memory.clean_by_items(category_name, dirty_expired_ids)
                 logger.warning('Memory contains dirty expired items')
 
