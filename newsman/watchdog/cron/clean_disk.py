@@ -12,7 +12,7 @@ daily, clean saved expired files, temporary files and unrecorded files on disk
 import sys
 reload(sys)
 sys.setdefaultencoding('UTF-8')
-sys.path.append("..")
+sys.path.append("../..")
 
 from config import Collection, db
 from config import logger
