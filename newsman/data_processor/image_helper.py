@@ -58,18 +58,18 @@ def _link_process(link):
             response = None
             try:
                 response = urllib2.urlopen(image_url, timeout=UCK_TIMEOUT)
-            except urllib2.URLError as k:
+            except urllib2.URLError:
                 path = re.split('https?://?', image_url)[-1]
                 scheme = urlparse.urlparse(image_url).scheme
                 image_url = '%s://%s' % (scheme, path)
-                try:
-                    response = urllib2.urlopen(image_url, timeout=UCK_TIMEOUT)
-                except urllib2.URLError as k:
-                    logger.info(str(k))
-                    pass
-                except Exception as k:
-                    logger.info(str(k))
-                    pass
+                response = urllib2.urlopen(image_url, timeout=UCK_TIMEOUT)
+            except urllib2.HTTPError as k:
+                logger.error('%s for %s' % (str(k), image_url))
+                return None
+            except Exception as k:
+                logger.error('%s for %s' % (str(k), image_url))
+                return None
+
             if response:
                 return image_url
             else:
