@@ -46,7 +46,11 @@ def is_valid_image(image_url):
 
         if image_downloaded:
             # possible exception raiser
-            image_pil = Image.open(StringIO(image_downloaded))
+            try:
+                image_pil = Image.open(StringIO(image_downloaded))
+            except Exception as k:
+                logger.info(str(k))
+                return False
 
             # to avoid line length limit
             if image_pil.size[0] * image_pil.size[1] > MIN_IMAGE_SIZE[0] * MIN_IMAGE_SIZE[1]:
@@ -57,7 +61,7 @@ def is_valid_image(image_url):
             logger.info('Nothing obtained from %s' % image_url)
             return False
     except Exception as k:
-        logger.error('%s for %s' % (str(k), image_downloaded))
+        logger.error('%s' % str(k))
         return False
 
 
