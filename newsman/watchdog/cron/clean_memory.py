@@ -12,7 +12,7 @@ daily work, clean expired items and its place in queues in memory
 import sys
 reload(sys)
 sys.setdefaultencoding('UTF-8')
-sys.path.append("..")
+sys.path.append("../..")
 
 from bson.objectid import ObjectId
 from config import Collection, db
