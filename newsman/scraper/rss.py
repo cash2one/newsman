@@ -139,7 +139,7 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
     updated_entries = []
     for i, entry in enumerate(entries):
         try:
-            logger.info('... Working on %i of %d ...' % (i+1, len(entries)))
+            logger.info('... Working on %i of %d ...' % (i + 1, len(entries)))
             logger.info(entry['title'])
             logger.info(entry['link'])
 
@@ -156,10 +156,12 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
             if entry['transcoded']:
                 # [OPTIONAL] summary
                 if entry['summary'] or raw_transcoded_content:
-                    summary_found = summarizer.extract(entry['summary'], raw_transcoded_content, entry['language'])
+                    summary_found = summarizer.extract(
+                        entry['summary'], raw_transcoded_content, entry['language'])
                     if summary_found:
                         entry['summary'] = summary_found
-                entry['summary'] = entry['summary'] if 'summary' in entry and entry['summary'] else None
+                entry['summary'] = entry[
+                    'summary'] if 'summary' in entry and entry['summary'] else None
 
                 # [OPTIONAL] images
                 # process images found in the transcoded data
@@ -173,7 +175,8 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
                     # sucks
                     if images_deduped:
                         entry['images'] = images_deduped
-                entry['images'] = entry['images'] if 'images' in entry and entry['images'] else None
+                entry['images'] = entry[
+                    'images'] if 'images' in entry and entry['images'] else None
 
                 # [OPTIONAL] generate 3 types of images: thumbnail,
                 # category image and hot news image
@@ -182,7 +185,8 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
                     if biggest:
                         entry = _generate_images(biggest, entry, rand)
                 # for older version users
-                entry['image'] = entry['thumbnail_image']['url'] if 'thumbnail_image' in entry and entry['thumbnail_image'] else None
+                entry['image'] = entry['thumbnail_image'][
+                    'url'] if 'thumbnail_image' in entry and entry['thumbnail_image'] else None
 
                 # [OPTIONAL] google tts not for indonesian
                 if entry['language'] != 'ind':
@@ -220,14 +224,17 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
                         logger.error('Error found in updating memory')
                         # remove entry in database
                         if clean_database.clean_by_item(entry):
-                            logger.info('Cleaned %s in database' % entry['title'])
+                            logger.info(
+                                'Cleaned %s in database' % entry['title'])
                         else:
-                            logger.error('Error cleaning %s in database' % entry['title'])
+                            logger.error(
+                                'Error cleaning %s in database' % entry['title'])
                         # remove entry-created files on disk
                         if clean_disk.clean_by_item(entry):
                             logger.info('Cleaned %s on disk' % entry['title'])
                         else:
-                            logger.error('Error cleaning %s on disk' % entry['title'])
+                            logger.error(
+                                'Error cleaning %s on disk' % entry['title'])
                         continue
                 else:
                     logger.error('Error found in updating to news database')
@@ -235,7 +242,8 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
                     if clean_disk.clean_by_item(entry):
                         logger.info('Cleaned %s on disk' % entry['title'])
                     else:
-                        logger.error('Error cleaning %s on disk' % entry['title'])
+                        logger.error(
+                            'Error cleaning %s on disk' % entry['title'])
                     continue
             else:
                 logger.info('Error found in transcoding')
@@ -293,7 +301,8 @@ def update(feed_link=None, feed_id=None, language=None, categories=None, transco
 
                 if entries:
                     # and do tts, big_images, image as well as transcode.
-                    result = _value_added_process(entries, language, transcoder_type)
+                    result = _value_added_process(
+                        entries, language, transcoder_type)
                     if result:
                         # feed_title, etag and modified to db_feeds
                         # only feed_id is necessary, others are optional
