@@ -30,7 +30,7 @@ def _find_idler():
     """
     try:
         document = Collection(db, FEED_REGISTRAR) 
-        feeds = document.find({}, {'latest_update':1, 'feed_title':1, 'feed_link':1})
+        feeds = document.find({}, {'language':1, 'latest_update':1, 'feed_title':1, 'feed_link':1})
         if feeds:
             for feed in feeds:
                 if 'latest_update' in feed and feed['latest_update']:
@@ -53,14 +53,14 @@ def _find_idler():
                         pass
                     else:
                         if 'feed_title' in feed and feed['feed_title']:
-                            logger.error('%s (%s) has not been updated for 2 days!' % (feed['feed_title'], feed['feed_link']))
+                            logger.error('%s %s (%s) has not been updated for 2 days!' % (feed['language'], feed['feed_title'], feed['feed_link']))
                         else:
-                            logger.error('%s has not been updated for 2 days!' % feed['feed_link'])
+                            logger.error('%s %s has not been updated for 2 days!' % (feed['language'], feed['feed_link']))
                 else:  # nothing found in feed about latest_update
                     if 'feed_title' in feed and feed['feed_title']:
-                        logger.error('%s (%s) has never been updated!' % (feed['feed_title'], feed['feed_link']))
+                        logger.error('%s %s (%s) has never been updated!' % (feed['language'], feed['feed_title'], feed['feed_link']))
                     else:
-                        logger.error('%s has never been updated!' % feed['feed_link'])
+                        logger.error('%s %s has never been updated!' % (feed['language'], feed['feed_link']))
         else:
             logger.error('Cannot find any feed in %s' % FEED_REGISTRAR)
     except Exception as k:
