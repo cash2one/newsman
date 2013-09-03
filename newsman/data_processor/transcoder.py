@@ -331,12 +331,12 @@ def convert(language="en", title=None, link=None, transcoder="chengdujin", relat
             return None, None
 
     try:
-        link = _preprocess(link)
-        if link:
+        link_clean = _preprocess(link)
+        if link_clean:
             # this wont suck
             transcoders = _organize_transcoders(transcoder)
             title_new, content, images = _transcode(
-                link, transcoders, language)
+                link_clean, transcoders, language)
 
             # in case no title is found from feed information
             if not title:
@@ -367,16 +367,16 @@ def convert(language="en", title=None, link=None, transcoder="chengdujin", relat
                 else:
                     return title, content
             else:
-                logger.error(
-                    'Transcoder %s failed for %s' % (transcoder, link))
+                logger.info(
+                    'Transcoder %s failed for %s' % (transcoder, link_clean))
                 if not stdout:
                     # original link is returned as transcoded path
                     logger.info('Original link %s is used as transcoded path')
-                    return link, None, None, None
+                    return link_clean, None, None, None
                 else:
                     return None, None
         else:
-            logger.error('Link cannot be parsed')
+            logger.error('Link [clean %s] [original %s] cannot be parsed' % (link_clean, link))
             if not stdout:
                 return None, None, None, None
             else:
