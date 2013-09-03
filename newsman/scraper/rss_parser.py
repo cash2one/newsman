@@ -331,11 +331,11 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
                     logger.info("Feed %s has no items!" % feed_id)
                     return None, status, feed_title, etag, modified, 'Feed %s has no items!' % feed_id
             else:
-                logger.info('HTTP Error Code %i for %s' % (status, feed_link))
+                logger.info('HTTP Error Code [%s] for %s' % (status, feed_link))
                 return None, status, feed_title, etag, modfied, 'HTTP Error Code %i for %s' % (status, feed_link)
         else:
             logger.info("Cannot parse %s correctly!" % feed_id)
             return None, None, feed_title, etag, modified, "Cannot parse %s correctly!" % feed_id
     except Exception as k:
-        logger.exception('%s for %s' % (str(k), feed_id))
+        logger.error('%s for %s' % (str(k), feed_id))
         return None, None, feed_title, etag, modified, '%s for %s' % (str(k), feed_id)
