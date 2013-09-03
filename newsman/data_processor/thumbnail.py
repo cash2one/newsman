@@ -55,7 +55,7 @@ def is_valid_image(image_url):
                 return False
         else:
             logger.info('Nothing obtained from %s' % image_url)
-            retrun False
+            return False
     except Exception as k:
         logger.error(str(k))
         return False
