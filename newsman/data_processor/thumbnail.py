@@ -36,15 +36,26 @@ def is_valid_image(image_url):
         return False
 
     try:
-        # possible exception raiser
-        image_pil = Image.open(
-            StringIO(urllib2.urlopen(image_url, timeout=UCK_TIMEOUT).read()))
-
-        # to avoid line length limit
-        if image_pil.size[0] * image_pil.size[1] > MIN_IMAGE_SIZE[0] * MIN_IMAGE_SIZE[1]:
-            return True
-        else:
+        # check if image could be downloaded
+        image_downloaded = None
+        try:
+            image_downloaded = urllib2.urlopen(image_url, timeout=UCK_TIMEOUT).read()
+        except Exception:
+            logger.info('%s cannot be downloaded' % image_url)
             return False
+
+        if image_downloaded:
+            # possible exception raiser
+            image_pil = Image.open(StringIO(image_downloaded))
+
+            # to avoid line length limit
+            if image_pil.size[0] * image_pil.size[1] > MIN_IMAGE_SIZE[0] * MIN_IMAGE_SIZE[1]:
+                return True
+            else:
+                return False
+        else:
+            logger.info('Nothing obtained from %s' % image_url)
+            retrun False
     except Exception as k:
         logger.error(str(k))
         return False
