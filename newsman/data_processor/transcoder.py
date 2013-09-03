@@ -338,9 +338,9 @@ def convert(language="en", title=None, link=None, transcoder="chengdujin", relat
             title_new, content, images = _transcode(
                 link, transcoders, language)
 
-            # in case uck cannot find a proper title
-            # if title_new:
-            #    title = title_new
+            # in case no title is found from feed information
+            if not title:
+                title = title_new
 
             if content:
                 if not stdout:
