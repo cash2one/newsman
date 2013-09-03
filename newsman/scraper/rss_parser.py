@@ -260,15 +260,15 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
             if status == 301:
                 logger.critical(
                     '%s has been permantently moved to a %s!' % (feed_link, d.href))
-                return None, 301, feed_title, etag, modified, '%s has been permantently moved to a %s!' % (feed_link, d.href)
+                return None, status, feed_title, etag, modified, '%s has been permantently moved to a %s!' % (feed_link, d.href)
             elif status == 304:
                 logger.warning(
                     '%s server has not updated its feeds' % feed_link)
-                return None, 304, feed_title, etag, modified, '%s server has not updated its feeds' % feed_link
+                return None, status, feed_title, etag, modified, '%s server has not updated its feeds' % feed_link
             elif status == 410:
                 logger.critical(
                     '%s is gone! Admin should check the feed availability!' % feed_link)
-                return None, 410, feed_title, etag, modfied, '%s is gone! Admin should check the feed availability!' % feed_link
+                return None, status, feed_title, etag, modfied, '%s is gone! Admin should check the feed availability!' % feed_link
             elif status == 200 or status == 302:
                 # no need to worry.
                 if status == 302:
