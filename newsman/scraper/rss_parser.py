@@ -58,30 +58,24 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
         entry['categories'] = categories
 
         # the easy part: the must-have
-        try:
-            entry['error'] = []
+        entry['error'] = []
 
-            # article original link
-            if e.link:
-                entry['link'] = e.link.strip()
-            else:
-                raise AttributeError('Feed malformed! No link found')
-
-            # article title
-            if e.title_detail.type != 'text/plain':
-                entry['title'] = urllib2.unquote(
-                    hparser.unescape(e.title.strip()))
-            elif 'title' in e:
-                entry['title'] = e.title.strip()
-            else:
-                entry['title'] = None
-            # remove possible htmlized title
-            entry['title'] = re.sub(
-                "<.*?>", " ", entry['title']) if 'title' in entry and entry['title'] else None
-        except AttributeError as k:
-            logger.error(str(k))
-            entry['error'].append(str(k) + '\n')
+        # article original link
+        if e.link:
+            entry['link'] = e.link.strip()
+        else:
+            logger.info('Feed malformed! No link found!')
             return None
+
+        # article title
+        if e.title_detail.type != 'text/plain':
+            entry['title'] = urllib2.unquote(hparser.unescape(e.title.strip()))
+        elif 'title' in e:
+            entry['title'] = e.title.strip()
+        else:
+            entry['title'] = None
+        # remove possible htmlized title
+        entry['title'] = re.sub("<.*?>", " ", entry['title']) if 'title' in entry and entry['title'] else None
 
         # article published time
         # first try parsed time info
