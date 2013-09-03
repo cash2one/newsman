@@ -171,6 +171,9 @@ def _transcode(link):
         # free data from html encoding
         data = urllib2.unquote(hparser.unescape(html))
         return data
+    except urllib2.URLError as k:
+        logging.info(str(k))
+        return None
     except Exception as k:
         logger.error(str(k))
         return None
