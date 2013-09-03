@@ -75,7 +75,8 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
         else:
             entry['title'] = None
         # remove possible htmlized title
-        entry['title'] = re.sub("<.*?>", " ", entry['title']) if 'title' in entry and entry['title'] else None
+        entry['title'] = re.sub("<.*?>", " ", entry[
+                                'title']) if 'title' in entry and entry['title'] else None
 
         # article published time
         # first try parsed time info
@@ -282,14 +283,17 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
                 else:
                     feed_title = feed_title.strip()
                     if 'title' in d.feed:
-                        feed_title_latest = urllib2.unquote(hparser.unescape(d.feed.title)).strip()
+                        feed_title_latest = urllib2.unquote(
+                            hparser.unescape(d.feed.title)).strip()
                         if feed_title != feed_title_latest:
                             # change feed title
-                            logger.warning('%s title changed! Please update feed table/database' % feed_link)
+                            logger.warning(
+                                '%s title changed! Please update feed table/database' % feed_link)
                             logger.info('old title: %s' % feed_title)
                             logger.info('new title: %s' % feed_title_latest)
                     else:
-                        logger.warning('%s[%s] has no title in its latest RSS' % (feed_title, feed_link))
+                        logger.warning(
+                            '%s[%s] has no title in its latest RSS' % (feed_title, feed_link))
 
                 # update etag/modified
                 etag = None
@@ -317,7 +321,8 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
 
                     if entries:
                         # the FINAL return
-                        # the last one indicates nothing wrong happended in parsing
+                        # the last one indicates nothing wrong happended in
+                        # parsing
                         return filter(_validate_time, entries), status, feed_title, etag, modified, 'OK'
                     else:
                         logger.info('Feed parsing goes wrong!')
