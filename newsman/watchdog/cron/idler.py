@@ -31,7 +31,7 @@ def _find_idler():
     try:
         document = Collection(db, FEED_REGISTRAR)
         feeds = document.find(
-                {}, {'language': 1, 'latest_update': 1, 'feed_title': 1, 'feed_link': 1, 'reason': 1})
+            {}, {'language': 1, 'latest_update': 1, 'feed_title': 1, 'feed_link': 1, 'reason': 1})
         if feeds:
             for feed in feeds:
                 if 'latest_update' in feed and feed['latest_update']:
@@ -61,25 +61,34 @@ def _find_idler():
                     else:
                         if 'feed_title' in feed and feed['feed_title']:
                             if 'reason' in feed and feed['reason']:
-                                logger.error('%s %s (%s) has no updates in %s days! Reason: %s' % (feed['language'], feed['feed_title'], feed['feed_link'], FEED_UPDATE_DAYS, feed['reason']))
+                                logger.error('%s %s (%s) has no updates in %s days! Reason: %s' % (
+                                    feed['language'], feed['feed_title'], feed['feed_link'], FEED_UPDATE_DAYS, feed['reason']))
                             else:
-                                logger.error('%s %s (%s) has no updates in %s days!' % (feed['language'], feed['feed_title'], feed['feed_link'], FEED_UPDATE_DAYS))
+                                logger.error('%s %s (%s) has no updates in %s days!' % (
+                                    feed['language'], feed['feed_title'], feed['feed_link'], FEED_UPDATE_DAYS))
                         else:
                             if 'reason' in feed and feed['reason']:
-                                logger.error('%s %s has no updates in %s days! Reason: %s' % (feed['language'], feed['feed_link'], FEED_UPDATE_DAYS, feed['reason']))
+                                logger.error('%s %s has no updates in %s days! Reason: %s' % (
+                                    feed['language'], feed['feed_link'], FEED_UPDATE_DAYS, feed['reason']))
                             else:
-                                logger.error('%s %s has no updates in %s days!' % (feed['language'], feed['feed_link'], FEED_UPDATE_DAYS))
+                                logger.error('%s %s has no updates in %s days!' % (
+                                    feed['language'], feed['feed_link'], FEED_UPDATE_DAYS))
                 else:  # nothing found in feed about latest_update
                     if 'feed_title' in feed and feed['feed_title']:
                         if 'reason' in feed and feed['reason']:
-                            logger.error('%s %s (%s) has never been updated! Reason: %s' % (feed['language'], feed['feed_title'], feed['feed_link'], feed['reason']))
+                            logger.error('%s %s (%s) has never been updated! Reason: %s' % (
+                                feed['language'], feed['feed_title'], feed['feed_link'], feed['reason']))
                         else:
-                            logger.error('%s %s (%s) has never been updated!' % (feed['language'], feed['feed_title'], feed['feed_link']))
+                            logger.error('%s %s (%s) has never been updated!' % (
+                                feed['language'], feed['feed_title'], feed['feed_link']))
                     else:
                         if 'reason' in feed and feed['reason']:
-                            logger.error('%s %s has never been updated! Reason: %s' % (feed['language'], feed['feed_link'], feed['reason']))
+                            logger.error(
+                                '%s %s has never been updated! Reason: %s' %
+                                (feed['language'], feed['feed_link'], feed['reason']))
                         else:
-                            logger.error('%s %s has never been updated!' % (feed['language'], feed['feed_link']))
+                            logger.error('%s %s has never been updated!' %
+                                         (feed['language'], feed['feed_link']))
         else:
             logger.error('Cannot find any feed in %s' % FEED_REGISTRAR)
     except Exception as k:
