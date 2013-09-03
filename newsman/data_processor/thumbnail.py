@@ -35,9 +35,9 @@ def is_valid_image(image_url):
         logger.error('Method malformed!')
         return False
 
+    # check if image could be downloaded
+    image_downloaded = None
     try:
-        # check if image could be downloaded
-        image_downloaded = None
         try:
             image_downloaded = urllib2.urlopen(image_url, timeout=UCK_TIMEOUT).read()
         except Exception:
@@ -57,7 +57,7 @@ def is_valid_image(image_url):
             logger.info('Nothing obtained from %s' % image_url)
             return False
     except Exception as k:
-        logger.error(str(k))
+        logger.error('%s for %s' % (str(k), image_downloaded))
         return False
 
 
