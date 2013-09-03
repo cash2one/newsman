@@ -25,7 +25,7 @@ import feedparser
 import html2text
 import re
 import socket
-socket.setdefaulttimeout(10) # 10 seconds
+socket.setdefaulttimeout(10)  # 10 seconds
 import time
 import urllib2
 
@@ -76,7 +76,8 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
             else:
                 entry['title'] = None
             # remove possible htmlized title
-            entry['title'] = re.sub("<.*?>", " ", entry['title']) if 'title' in entry and entry['title'] else None
+            entry['title'] = re.sub(
+                "<.*?>", " ", entry['title']) if 'title' in entry and entry['title'] else None
         except AttributeError as k:
             logger.error(str(k))
             entry['error'].append(str(k) + '\n')
