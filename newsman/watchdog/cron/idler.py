@@ -12,7 +12,7 @@ idler finds out sources that do not update frequently
 import sys
 reload(sys)
 sys.setdefaultencoding('UTF-8')
-sys.path.append("../..")
+sys.path.append("/home/ubuntu/newsman/newsman")
 
 from config import Collection, db
 from config import logger
