@@ -40,6 +40,9 @@ def _transcode(link):
             '%s%s' % (UCK_TRANSCODING_NEW, link), timeout=UCK_TIMEOUT).read()
         data = urllib2.unquote(hparser.unescape(html))
         return data
+    except urllib2.URLError as k:
+        logging.info(str(k))
+        return None
     except Exception as k:
         logger.error(str(k))
         return None
