@@ -248,6 +248,9 @@ def scale_image(image=None, size_expected=MIN_IMAGE_SIZE,
                 return scale_image(image, size_expected, not resize_by_width, crop_by_center, relative_path)
         else:
             return None, None
+    except urllib2.URLError as k:
+        logger.info(str(k))
+        return None, None
     except Exception as k:
         logger.error(str(k))
         return None, None
