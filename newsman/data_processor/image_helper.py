@@ -64,10 +64,10 @@ def _link_process(link):
                 image_url = '%s://%s' % (scheme, path)
                 response = urllib2.urlopen(image_url, timeout=UCK_TIMEOUT)
             except urllib2.HTTPError as k:
-                logger.error('%s for %s' % (str(k), image_url))
+                logger.info('%s for %s' % (str(k), image_url))
                 return None
             except Exception as k:
-                logger.error('%s for %s' % (str(k), image_url))
+                logger.info('%s for %s' % (str(k), image_url))
                 return None
 
             if response:
@@ -94,7 +94,7 @@ def find_image(link=None):
             image_normalized = normalize(link_clean)
             return image_normalized[0] if image_normalized else None
         else:
-            logger.error('Cannot parse [clean %s] [orginal %s] correctly' % (link_clean, link))
+            logger.info('Cannot parse [clean %s] [orginal %s] correctly' % (link_clean, link))
             return None
     except Exception as k:
         logger.error(str(k))
