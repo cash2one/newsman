@@ -317,14 +317,14 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
                         if entry:
                             entries.append(entry)
                         else:
-                            logger.error('Cannot parse %s' % e['link'])
+                            logger.info('Cannot parse %s' % e['link'])
                             continue
 
                     if entries:
                         # the FINAL return
                         return filter(_validate_time, entries), status, feed_title, etag, modified
                     else:
-                        logger.error('Feed parsing goes wrong!')
+                        logger.info('Feed parsing goes wrong!')
                         return None, None, None, None, None
                 else:
                     logger.error("Feed %s has no items!" % feed_id)
