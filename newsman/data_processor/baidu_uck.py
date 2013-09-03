@@ -188,6 +188,13 @@ def convert(link):
     try:
         raw_data = _transcode(link)
         if raw_data:
+            # check if raw_data is syntax-correct
+            try:
+                eval(raw_data)
+            except Exception:
+                logger.info('Invalid syntax found for UCK output')
+                return None, None, None
+
             # text is sanitized, images are found from image_list
             title, transcoded, images = _extract(eval(raw_data))
             return title, transcoded, images
