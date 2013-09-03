@@ -289,7 +289,7 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
                             logger.info('old title: %s' % feed_title)
                             logger.info('new title: %s' % feed_title_latest)
                     else:
-                        logger.warning('%s[%s] has lost its title' % (feed_title, feed_link))
+                        logger.warning('%s[%s] has no title in its latest RSS' % (feed_title, feed_link))
 
                 # update etag/modified
                 etag = None
