@@ -71,10 +71,12 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
             if e.title_detail.type != 'text/plain':
                 entry['title'] = urllib2.unquote(
                     hparser.unescape(e.title.strip()))
-            else:
+            elif 'title' in e:
                 entry['title'] = e.title.strip()
+            else:
+                entry['title'] = None
             # remove possible htmlized title
-            entry['title'] = re.sub("<.*?>", " ", entry['title'])
+            entry['title'] = re.sub("<.*?>", " ", entry['title']) if 'title' in entry and entry['title'] else None
         except AttributeError as k:
             logger.error(str(k))
             entry['error'].append(str(k) + '\n')
