@@ -1,5 +1,5 @@
-#!/usr/bin/env python 
-#-*- coding: utf-8 -*- 
+#!/usr/bin/env python
+#-*- coding: utf-8 -*-
 
 """
 idler finds out sources that do not update frequently
@@ -9,8 +9,8 @@ idler finds out sources that do not update frequently
 # @created Sept. 03, 2013
 
 
-import sys 
-reload(sys) 
+import sys
+reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append("../..")
 
@@ -29,38 +29,51 @@ def _find_idler():
     contact feeds database and apply the filter
     """
     try:
-        document = Collection(db, FEED_REGISTRAR) 
-        feeds = document.find({}, {'language':1, 'latest_update':1, 'feed_title':1, 'feed_link':1})
+        document = Collection(db, FEED_REGISTRAR)
+        feeds = document.find(
+            {}, {'language': 1, 'latest_update': 1, 'feed_title': 1, 'feed_link': 1})
         if feeds:
             for feed in feeds:
                 if 'latest_update' in feed and feed['latest_update']:
-                    # read string value from database and convert it into unix time
-                    latest_update_time = time.mktime(time.strptime(str(feed['latest_update'])))
+                    # read string value from database and convert it into unix
+                    # time
+                    latest_update_time = time.mktime(
+                        time.strptime(str(feed['latest_update'])))
                     # change unix time into datetime struct
-                    latest_update_datetime = datetime.utcfromtimestamp(latest_update_time)
+                    latest_update_datetime = datetime.utcfromtimestamp(
+                        latest_update_time)
                     # convert feed_update_days into datetime struct
                     checkpoint_datetime = timedelta(days=FEED_UPDATE_DAYS)
                     # compute feed update deadline in datetime struct
-                    feed_deadline_datetime = latest_update_datetime + checkpoint_datetime
+                    feed_deadline_datetime = latest_update_datetime + \
+                        checkpoint_datetime
                     # convert feed update deadline back to unix time
-                    feed_deadline_time = time.mktime(feed_deadline_datetime.utctimetuple())
+                    feed_deadline_time = time.mktime(
+                        feed_deadline_datetime.utctimetuple())
 
                     # compute time now in unix
                     now_time = time.mktime(time.gmtime())
 
                     # compare feed_deadline with now
-                    if feed_deadline_time > now_time: # feed was updated correctly
+                    # feed was updated correctly
+                    if feed_deadline_time > now_time:
                         pass
                     else:
                         if 'feed_title' in feed and feed['feed_title']:
-                            logger.error('%s %s (%s) has not been updated for 2 days!' % (feed['language'], feed['feed_title'], feed['feed_link']))
+                            logger.error(
+                                '%s %s (%s) has not been updated for 2 days!' %
+                                (feed['language'], feed['feed_title'], feed['feed_link']))
                         else:
-                            logger.error('%s %s has not been updated for 2 days!' % (feed['language'], feed['feed_link']))
+                            logger.error(
+                                '%s %s has not been updated for 2 days!' %
+                                (feed['language'], feed['feed_link']))
                 else:  # nothing found in feed about latest_update
                     if 'feed_title' in feed and feed['feed_title']:
-                        logger.error('%s %s (%s) has never been updated!' % (feed['language'], feed['feed_title'], feed['feed_link']))
+                        logger.error('%s %s (%s) has never been updated!' %
+                                     (feed['language'], feed['feed_title'], feed['feed_link']))
                     else:
-                        logger.error('%s %s has never been updated!' % (feed['language'], feed['feed_link']))
+                        logger.error('%s %s has never been updated!' %
+                                     (feed['language'], feed['feed_link']))
         else:
             logger.error('Cannot find any feed in %s' % FEED_REGISTRAR)
     except Exception as k:
@@ -69,4 +82,3 @@ def _find_idler():
 
 if __name__ == "__main__":
     _find_idler()
-
