@@ -307,6 +307,9 @@ def prepare_link(url):
         else:
             logger.warning("Cannot read %s" % url)
             return None
+    except urllib2.URLError as k:
+        logger.info(str(k))
+        return None
     except Exception as k:
         logger.error(str(k))
         return None
