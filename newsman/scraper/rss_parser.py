@@ -260,7 +260,8 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
         if d:
             # http://pythonhosted.org/feedparser/reference-status.html
             # http://pythonhosted.org/feedparser/http-etag.html#http-etag
-            status = d.status
+            status = d.status if status in d else None
+
             if status == 301:
                 logger.critical(
                     '%s has been permantently moved to a %s!' % (feed_link, d.href))
