@@ -259,15 +259,15 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
             if status == 301:
                 logger.critical(
                     '%s has been permantently moved to a %s!' % (feed_link, d.href))
-                return None, None, None, None, None, '%s has been permantently moved to a %s!' % (feed_link, d.href)
+                return None, 301, None, None, None, '%s has been permantently moved to a %s!' % (feed_link, d.href)
             elif status == 304:
                 logger.warning(
                     '%s server has not updated its feeds' % feed_link)
-                return None, None, None, None, None, '%s server has not updated its feeds' % feed_link
+                return None, 304, None, None, None, '%s server has not updated its feeds' % feed_link
             elif status == 410:
                 logger.critical(
                     '%s is gone! Admin should check the feed availability!' % feed_link)
-                return None, None, None, None, None, '%s is gone! Admin should check the feed availability!' % feed_link
+                return None, 410, None, None, None, '%s is gone! Admin should check the feed availability!' % feed_link
             elif status == 200 or status == 302:
                 # no need to worry.
                 if status == 302:
@@ -321,13 +321,13 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
                         return filter(_validate_time, entries), status, feed_title, etag, modified, None
                     else:
                         logger.info('Feed parsing goes wrong!')
-                        return None, None, None, None, None, 'Feed parsing goes wrong!'
+                        return None, status, feed_title, etag, modified, 'Feed parsing goes wrong!'
                 else:
                     logger.info("Feed %s has no items!" % feed_id)
-                    return None, None, None, None, None, 'Feed %s has no items!' % feed_id
+                    return None, status, feed_title, etag, modified, 'Feed %s has no items!' % feed_id
             else:
                 logger.info('HTTP Error Code %i for %s' % (status, feed_link))
-                return None, None, None, None, None, 'HTTP Error Code %i for %s' % (status, feed_link)
+                return None, status, None, None, None, 'HTTP Error Code %i for %s' % (status, feed_link)
         else:
             logger.info("Cannot parse %s correctly!" % feed_id)
             return None, None, None, None, None, "Cannot parse %s correctly!" % feed_id

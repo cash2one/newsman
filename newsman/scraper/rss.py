@@ -291,7 +291,7 @@ def update(feed_link=None, feed_id=None, language=None, categories=None, transco
             modified = feed['modified'] if 'modified' in feed else None
 
             # parse rss reading from remote rss servers
-            entries, status_new, feed_title_new, etag_new, modified_new = rss_parser.parse(
+            entries, status_new, feed_title_new, etag_new, modified_new, reason_new = rss_parser.parse(
                 feed_link, feed_id, feed_title, language, categories, etag, modified)
 
             if entries:
@@ -301,19 +301,16 @@ def update(feed_link=None, feed_id=None, language=None, categories=None, transco
 
                 if entries:
                     # and do tts, big_images, image as well as transcode.
-                    result = _value_added_process(
-                        entries, language, transcoder_type)
+                    result = _value_added_process(entries, language, transcoder_type)
                     if result:
                         # feed_title, etag and modified to db_feeds
                         # only feed_id is necessary, others are optional
                         # **kwargs
-                        result = db_feeds.update(
-                            feed_id=feed_id, status=status_new, feed_title=feed_title_new, etag=etag_new, modified=modified_new)
+                        result = db_feeds.update(feed_id=feed_id, status=status_new, feed_title=feed_title_new, etag=etag_new, modified=modified_new, reason=reason_new)
                         if result:
                             return result
                         else:
-                            logger.info(
-                                'Error found updating feeds database')
+                            logger.info('Error found updating feeds database')
                             return None
                     else:
                         logger.info('Error found adding value to entries')
@@ -324,6 +321,9 @@ def update(feed_link=None, feed_id=None, language=None, categories=None, transco
                     return None
             else:
                 logger.info('Nothing from RSS is updated!')
+                result = db_feeds.update(feed_id=feed_id, status=status_new, feed_title=feed_title_new, etag=etag_new, modified=modified_new, reason=reason_new)
+                if not result:
+                    logger.info('Error found updating feeds database')
                 return None
         else:
             logger.warning('Register feed in database before updating!')
