@@ -28,7 +28,6 @@ def _check(url):
     try:
         response = urllib2.urlopen(url)
         code = response.getcode()
-        print now, code
         if code != 200:
             f.write("W %s %i\n" % (str(now), code))
             f.close()

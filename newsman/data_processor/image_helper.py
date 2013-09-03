@@ -89,12 +89,12 @@ def find_image(link=None):
         return None
 
     try:
-        link = _link_process(link)
-        if link:
-            image_normalized = normalize(link)
+        link_clean = _link_process(link)
+        if link_clean:
+            image_normalized = normalize(link_clean)
             return image_normalized[0] if image_normalized else None
         else:
-            logger.error('Cannot parse %s correctly' % link)
+            logger.error('Cannot parse [clean %s] [orginal %s] correctly' % (link_clean, link))
             return None
     except Exception as k:
         logger.error(str(k))
