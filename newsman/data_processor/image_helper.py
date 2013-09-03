@@ -271,19 +271,16 @@ def normalize(images):
             if 'url' in image:
                 image_url = image['url']
                 if thumbnail.is_valid_image(image_url):
-                    if 'width' in image and 'height' in image:
-                        return image
-                    else:
-                        width, height = thumbnail.get_image_size(image_url)
-                        image = {'url':image['url'], 'width':width, 'height':height}
-                        return image
+                    width, height = thumbnail.get_image_size(image_url)
+                    image = {'url':image['url'], 'width':width, 'height':height}
+                    return image
             else:
                 if thumbnail.is_valid_image(image):
                     width, height = thumbnail.get_image_size(image)
                     if width and height:
                         return {'url': image, 'width': width, 'height': height}
                     else:
-                        logger.error('Cannot get image size')
+                        logger.info('Cannot get image size')
                         return None
             return None
         except IOError as k:
