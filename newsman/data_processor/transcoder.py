@@ -342,7 +342,7 @@ def convert(language="en", title=None, link=None, transcoder="chengdujin", relat
             if not title:
                 title = title_new
 
-            if content:
+            if content and title:
                 if not stdout:
                     # embed content in template
                     news = _compose(language, title, _sanitize(content))
@@ -367,8 +367,11 @@ def convert(language="en", title=None, link=None, transcoder="chengdujin", relat
                 else:
                     return title, content
             else:
-                logger.info(
-                    'Transcoder %s failed for %s' % (transcoder, link_clean))
+                if not content:
+                    logger.info('Transcoder %s failed for %s' % (transcoder, link_clean))
+                else:
+                    logger.info('Cannot find title for %s' % link_clean)
+
                 if not stdout:
                     # original link is returned as transcoded path
                     logger.info('Original link %s is used as transcoded path')
