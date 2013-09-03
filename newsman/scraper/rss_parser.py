@@ -235,10 +235,10 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
     """
     if not feed_link or not feed_id or not language or not categories:
         logger.error("Method malformed!")
-        return None, None, None, None, None, "Method malformed!"
+        return None, None, feed_title, etag, modified, "Method malformed!"
     if language not in LANGUAGES:
         logger.error("Language not supported for %s!" % feed_link)
-        return None, None, None, None, None, "Language not supported for %s!" % feed_link
+        return None, None, feed_title, etag, modified, "Language not supported for %s!" % feed_link
 
     def _validate_time(entry):
         """
@@ -259,15 +259,15 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
             if status == 301:
                 logger.critical(
                     '%s has been permantently moved to a %s!' % (feed_link, d.href))
-                return None, 301, None, None, None, '%s has been permantently moved to a %s!' % (feed_link, d.href)
+                return None, 301, feed_title, etag, modified, '%s has been permantently moved to a %s!' % (feed_link, d.href)
             elif status == 304:
                 logger.warning(
                     '%s server has not updated its feeds' % feed_link)
-                return None, 304, None, None, None, '%s server has not updated its feeds' % feed_link
+                return None, 304, feed_title, etag, modified, '%s server has not updated its feeds' % feed_link
             elif status == 410:
                 logger.critical(
                     '%s is gone! Admin should check the feed availability!' % feed_link)
-                return None, 410, None, None, None, '%s is gone! Admin should check the feed availability!' % feed_link
+                return None, 410, feed_title, etag, modfied, '%s is gone! Admin should check the feed availability!' % feed_link
             elif status == 200 or status == 302:
                 # no need to worry.
                 if status == 302:
@@ -327,10 +327,10 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
                     return None, status, feed_title, etag, modified, 'Feed %s has no items!' % feed_id
             else:
                 logger.info('HTTP Error Code %i for %s' % (status, feed_link))
-                return None, status, None, None, None, 'HTTP Error Code %i for %s' % (status, feed_link)
+                return None, status, feed_title, etag, modfied, 'HTTP Error Code %i for %s' % (status, feed_link)
         else:
             logger.info("Cannot parse %s correctly!" % feed_id)
-            return None, None, None, None, None, "Cannot parse %s correctly!" % feed_id
+            return None, None, feed_title, etag, modified, "Cannot parse %s correctly!" % feed_id
     except Exception as k:
         logger.exception('%s for %s' % (str(k), feed_id))
-        return None, None, None, None, None, '%s for %s' % (str(k), feed_id)
+        return None, None, feed_title, etag, modified, '%s for %s' % (str(k), feed_id)
