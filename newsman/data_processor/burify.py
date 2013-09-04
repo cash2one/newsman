@@ -44,10 +44,10 @@ def convert(link):
                 images = _collect_images(article.summary())
                 return article.short_title(), article.summary(html_partial=False), images
             else:
-                logger.error('Burify cannot recognize the data')
+                logger.info('Burify cannot recognize the data')
                 return None, None, None
         else:
-            logger.error('Cannot parse %s correctly' % link)
+            logger.info('Cannot parse %s correctly' % link)
             return None, None, None
     except Exception as k:
         logger.error('%s for %s' % (str(k), str(link)))
