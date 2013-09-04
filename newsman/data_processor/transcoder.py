@@ -28,7 +28,9 @@ import time
 import urllib2
 
 # CONSTANTS
-from config import NEWS_TEMPLATE
+from config import NEWS_TEMPLATE_1
+from config import NEWS_TEMPLATE_2
+from config import NEWS_TEMPLATE_3
 from config import NEWS_TEMPLATE_ARABIC
 from config import TRANSCODED_LOCAL_DIR
 from config import TRANSCODED_PUBLIC_DIR
