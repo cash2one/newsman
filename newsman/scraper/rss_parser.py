@@ -268,7 +268,7 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
             elif status == 410:
                 logger.critical(
                     '%s is gone! Admin should check the feed availability!' % feed_link)
-                return None, status, feed_title, etag, modfied, '%s is gone! Admin should check the feed availability!' % feed_link
+                return None, status, feed_title, etag, modified, '%s is gone! Admin should check the feed availability!' % feed_link
             elif status == 200 or status == 302:
                 # no need to worry.
                 if status == 302:
@@ -332,7 +332,7 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
                     return None, status, feed_title, etag, modified, 'Feed %s has no items!' % feed_id
             else:
                 logger.info('HTTP Error Code [%s] for %s' % (status, feed_link))
-                return None, status, feed_title, etag, modfied, 'HTTP Error Code %i for %s' % (status, feed_link)
+                return None, status, feed_title, etag, modified, 'HTTP Error Code %i for %s' % (status, feed_link)
         else:
             logger.info("Cannot parse %s correctly!" % feed_id)
             return None, None, feed_title, etag, modified, "Cannot parse %s correctly!" % feed_id
