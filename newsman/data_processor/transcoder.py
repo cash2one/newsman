@@ -21,9 +21,10 @@ import baidu_uck
 import baidu_uck_new
 import burify
 import image_helper
-import simplr
 import os
+import simplr
 import threading
+import time
 import urllib2
 
 # CONSTANTS
@@ -99,7 +100,7 @@ def _save(data, path):
         return None, None
 
 
-def _compose(language, title, updated, feed, content, images):
+def _compose(language=None, title=None, updated=None, feed=None, content=None, images=None):
     """
     combine content with a template
     """
@@ -108,20 +109,21 @@ def _compose(language, title, updated, feed, content, images):
         return None
 
     try:
-        # f reads the template
-        f = None
-        if language == 'ar':
-            f = open(NEWS_TEMPLATE_ARABIC, 'r')
-        else:
-            f = open(NEWS_TEMPLATE, 'r')
+        # sub-info
+        updated_sub_info = time.strftime("%m %d, %Y", time.strptime(time.ctime(updated))) if updated else None
+        sub_info = '%s: %s' % (feed, updated_sub_info)
+
+        # select appropriate template
+        news_template = NEWS_TEMPLATE_2 if images and len(images) > 0 else NEWS_TEMPLATE_3
+        f = open(news_template, 'r')
 
         # a template is found
         if f:
             template = str(f.read())
             f.close()
-            return template % (title, title, content, TRANSCODE_BUTTON[language])
+            return template % (title, title, sub_info, content, TRANSCODE_BUTTON[language])
         else:
-            logger.error("Cannot find a template!")
+            logger.error("Template %s contains no data!" % news_template)
             return None
     except Exception as k:
         logger.error(str(k))
