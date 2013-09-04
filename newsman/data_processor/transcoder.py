@@ -310,6 +310,9 @@ def prepare_link(url):
     except urllib2.URLError as k:
         logger.info(str(k))
         return None
+    except urllib2.HTTPError as k:
+        logger.info(str(k))
+        return None
     except Exception as k:
         logger.error(str(k))
         return None
