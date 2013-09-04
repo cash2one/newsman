@@ -59,8 +59,12 @@ def update(feed_id, **kwargs):
             # import new things into existing items
             if kwargs:
                 item.update(kwargs)
-            item['updated_times'] = int(item['updated_times']) + 1
-            item['latest_update'] = time.asctime(time.gmtime())
+
+            # only update the following two if update happens
+            if 'reason' in item and item['reason'] and item['reason'] == 'OK':
+                item['updated_times'] = int(item['updated_times']) + 1
+                item['latest_update'] = time.asctime(time.gmtime())
+
             # the final return
             # by default update returns null upon successful update
             # use find_and_modify if a return is needed
