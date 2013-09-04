@@ -42,6 +42,10 @@ def is_valid_image(image_url):
             image_downloaded = urllib2.urlopen(image_url, timeout=UCK_TIMEOUT).read()
         except urllib2.URLError as k:
             logger.info(str(k))
+            return False
+        except urllib2.HTTPError as k:
+            logger.info(str(k))
+            return False
         except Exception:
             logger.info('%s cannot be downloaded' % image_url)
             return False
@@ -99,6 +103,9 @@ def generate_thumbnail(image_url, relative_path):
     except urllib2.URLError as k:
         logger.info(str(k))
         return None
+    except urllib2.HTTPError as k:
+        logger.info(str(k))
+        return None
     except Exception as k:
         logger.error(str(k))
         return None
@@ -129,6 +136,9 @@ def get_image_size(image_url):
         else:
             return None, None
     except urllib2.URLError as k:
+        logger.info(str(k))
+        return None, None
+    except urllib2.HTTPError as k:
         logger.info(str(k))
         return None, None
     except Exception as k:
