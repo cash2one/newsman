@@ -76,6 +76,12 @@ def _link_process(link):
                 return None
         else:
             return None
+    except urllib2.URLError as k:
+        logger.info(str(k))
+        return None
+    except urllib2.HTTPError as k:
+        logger.info(str(k))
+        return None
     except Exception as k:
         logger.error(str(k))
         return None
@@ -249,6 +255,9 @@ def scale_image(image=None, size_expected=MIN_IMAGE_SIZE,
         else:
             return None, None
     except urllib2.URLError as k:
+        logger.info(str(k))
+        return None, None
+    except urllib2.HTTPError as k:
         logger.info(str(k))
         return None, None
     except Exception as k:
