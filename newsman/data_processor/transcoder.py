@@ -99,7 +99,7 @@ def _save(data, path):
         return None, None
 
 
-def _compose(language, title, content):
+def _compose(language, title, updated, feed, content, images):
     """
     combine content with a template
     """
@@ -318,7 +318,7 @@ def prepare_link(url):
         return None
 
 
-def convert(language="en", title=None, link=None, transcoder="chengdujin", relative_path=None, stdout=False):
+def convert(language="en", title=None, link=None, updated=None, feed=None, transcoder="chengdujin", relative_path=None, stdout=False):
     """
     select a transcoder
     send the link
@@ -351,7 +351,7 @@ def convert(language="en", title=None, link=None, transcoder="chengdujin", relat
             if content and title:
                 if not stdout:
                     # embed content in template
-                    news = _compose(language, title, _sanitize(content))
+                    news = _compose(language, title, updated, feed, _sanitize(content), images)
                     if news:
                         # create web/local path
                         web_path, local_path = _save(news, relative_path)
