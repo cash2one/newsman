@@ -339,5 +339,5 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
             logger.info("Cannot parse %s correctly!" % feed_id)
             return None, None, feed_title, etag, modified, "Cannot parse %s correctly!" % feed_id
     except Exception as k:
-        logger.error('%s for %s' % (str(k), feed_id))
+        logger.exception('%s for %s' % (str(k), feed_id))
         return None, None, feed_title, etag, modified, '%s for %s' % (str(k), feed_id)
