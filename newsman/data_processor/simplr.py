@@ -362,7 +362,7 @@ def convert(url, language):
         if readable:
             return readable.short_title, readable.content, readable.images
         else:
-            logger.error('Simplr cannot parse the data')
+            logger.info('Simplr cannot parse the data')
             return None, None, None
     except Exception as k:
         logger.error('%s for %s' % (str(k), str(url)))
