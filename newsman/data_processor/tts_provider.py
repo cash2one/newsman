@@ -247,7 +247,6 @@ def _download(language='en', query='Service provided by Baidu', tmp_file='do_not
             out = open(tmp_file, 'a')
             download_completed = True
             for th in threads:
-                sys.stdout.write('.')
                 sys.stdout.flush()
                 if th.result:
                     out.write(th.result)
