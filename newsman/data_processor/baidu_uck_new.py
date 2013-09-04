@@ -43,6 +43,9 @@ def _transcode(link):
     except urllib2.URLError as k:
         logging.info(str(k))
         return None
+    except urllib2.HTTPError as k:
+        logging.info(str(k))
+        return None
     except Exception as k:
         logger.error(str(k))
         return None
