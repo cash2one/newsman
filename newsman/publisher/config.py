@@ -69,7 +69,9 @@ MEDIA_PUBLIC_DIR = PUBLIC % 'mid/'
 MEDIA_TEMP_LOCAL_DIR = LOCAL % 'STATIC/news/tmp/'
 
 # templates for new page
-NEWS_TEMPLATE = LOCAL % 'STATIC/news/templates/index.html'
+NEWS_TEMPLATE_1 = LOCAL % 'STATIC/news/templates/news1.html'
+NEWS_TEMPLATE_2 = LOCAL % 'STATIC/news/templates/news2.html'
+NEWS_TEMPLATE_3 = LOCAL % 'STATIC/news/templates/news3.html'
 NEWS_TEMPLATE_ARABIC = LOCAL % 'STATIC/news/templates/index_arabic.html'
 
 # uck transcoding web service url
