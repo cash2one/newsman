@@ -311,5 +311,5 @@ def normalize(images):
                     images_new.append(image_new)
             return images_new if images_new else None
     except Exception as k:
-        logger.error(str(k))
+        logger.exception(str(k))
         return None
