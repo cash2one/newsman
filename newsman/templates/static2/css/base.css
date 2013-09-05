@@ -28,6 +28,7 @@ a:hover{text-decoration:underline;}
 .news-hd .sub-info{color:#808080;font-size:14px;line-height:1.4;}
 .news-bd{border-bottom:1px solid #ededed;padding-bottom:30px;}
 .news-bd p{color:#717171;font-size:16px;line-height:1.5;margin:25px 0;}
+.news-bd img{width:100%;height:100%;}
 .news-bd .full-pic{width:100%;}
 
 /*news3*/
