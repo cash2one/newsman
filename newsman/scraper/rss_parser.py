@@ -334,7 +334,7 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
             else:
                 logger.info(
                     'HTTP Error Code [%s] for %s' % (status, feed_link))
-                return None, status, feed_title, etag, modified, 'HTTP Error Code %i for %s' % (status, feed_link)
+                return None, status, feed_title, etag, modified, 'HTTP Error Code [%s] for %s' % (status, feed_link)
         else:
             logger.info("Cannot parse %s correctly!" % feed_id)
             return None, None, feed_title, etag, modified, "Cannot parse %s correctly!" % feed_id
