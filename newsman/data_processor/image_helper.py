@@ -280,7 +280,7 @@ def normalize(images):
             return None
 
         try:
-            if 'url' in image:
+            if isinstance(image, dict) and 'url' in image:
                 image_url = image['url']
                 if thumbnail.is_valid_image(image_url):
                     width, height = thumbnail.get_image_size(image_url)
