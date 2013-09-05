@@ -54,5 +54,26 @@ def ll():
     print '=== LISTING ==='
     run('ls -lFh')
         
-        
-        
+
+# ==============================================
+# Service
+# ==============================================
+def install_services():
+    """
+    install apache2, mongodb and redis
+    """
+    # create folder for temporary install files
+    with cd(os.path.dirname(env.REMOTE_CODEBASE_PATH)):
+        run("mkdir baks")
+    # install services
+    install_apache2()
+    install_mongodb()
+    install_redis()
+
+
+def install_redis():
+    """
+    download redis from the provider, compile and install it
+    """
+    print "=== install redis ==="
+    with cd()
