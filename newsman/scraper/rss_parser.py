@@ -258,12 +258,10 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
             status = d.status if 'status' in d else None
 
             if status == 301:
-                logger.critical(
-                    '%s has been permantently moved to a %s!' % (feed_link, d.href))
+                logger.critical('%s has been permantently moved to a %s!' % (feed_link, d.href))
                 return None, status, feed_title, etag, modified, '%s has been permantently moved to a %s!' % (feed_link, d.href)
             elif status == 304:
-                logger.warning(
-                    '%s server has not updated its feeds' % feed_link)
+                logger.info('%s server has not updated its feeds' % feed_link)
                 return None, status, feed_title, etag, modified, '%s server has not updated its feeds' % feed_link
             elif status == 410:
                 logger.critical(
@@ -272,8 +270,7 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
             elif status == 200 or status == 302:
                 # no need to worry.
                 if status == 302:
-                    logger.warning(
-                        '%s url has been temp moved to a new place' % feed_link)
+                    logger.info('%s url has been temp moved to a new place' % feed_link)
 
                 if not feed_title:
                     # if title were not found in feed, an AttributeError would
@@ -287,14 +284,12 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
                             hparser.unescape(d.feed.title)).strip()
                         if feed_title != feed_title_latest:
                             # change feed title
-                            logger.warning(
-                                '%s title changed! Please update feed table/database' % feed_link)
+                            logger.info('%s title changed! Please update feed table/database' % feed_link)
                             logger.info('old title: %s' % feed_title)
                             logger.info('new title: %s' % feed_title_latest)
                             feed_title = feed_title_latest
                     else:
-                        logger.warning(
-                            '%s[%s] has no title in its latest RSS' % (feed_title, feed_link))
+                        logger.info('%s[%s] has no title in its latest RSS' % (feed_title, feed_link))
 
                 # update etag/modified
                 etag = None
