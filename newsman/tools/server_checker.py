@@ -24,7 +24,6 @@ def _check(url):
     log = '/home/ubuntu/newsman/server_checker_log'
     now = time.asctime(time.gmtime())
     f = open(log, 'a')
-    TIMEOUT = 10
     try:
         response = urllib2.urlopen(url)
         code = response.getcode()
