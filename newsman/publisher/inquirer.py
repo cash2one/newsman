@@ -17,7 +17,6 @@ from bson.objectid import ObjectId
 from config import Collection, db
 from config import logger
 from config import rclient, ConnectionError
-import feedparser
 import os
 
 # CONSTANTS
