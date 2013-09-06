@@ -19,6 +19,8 @@ import os
 
 # CONSTANTS
 env.GIT_REPO_URL = 'https://github.com/chengdujin/ubuntu-essentials'
+env.REDIS_URL = 'http://download.redis.io/releases/redis-2.6.16.tar.gz'
+env.MONGODB_URL = 'http://fastdl.mongodb.org/linux/mongodb-linux-x86_64-2.4.6.tgz'
 
 
 def local ():
@@ -35,6 +37,7 @@ def aws():
     env.hosts = ['54.251.107.116', '54.232.81.44', '54.248.227.71']
     env.key_filename = ['/home/jinyuan/Public/AWS_identifiers/mandy.pem', '/home/jinyuan/Public/AWS_identifiers/guochen.pem', '/home/jinyuan/Public/AWS_identifiers/searchet.pem']
     env.REMOTE_CODEBASE_PATH = '/home/%s/newsman' % env.user
+    env.BACKUP_PATH = '/home/%s/baks' % env.user
     env.PIP_REQUIREMENTS_PATH = '%s/requirements.txt' % env.REMOTE_CODEBASE_PATH
     env.servername = ['aws_sing', 'aws_sao', 'aws_tokyo']
 
@@ -58,22 +61,26 @@ def ll():
 # ==============================================
 # Service
 # ==============================================
-def install_services():
+def install_services(os_type):
     """
     install apache2, mongodb and redis
     """
     # create folder for temporary install files
-    with cd(os.path.dirname(env.REMOTE_CODEBASE_PATH)):
-        run("mkdir baks")
+    with cd(os.path.dirname(env.BACKUP_PATH)):
+        run("mkdir %s" % os.path.basename(env.BACKUP_PATH))
     # install services
-    install_apache2()
-    install_mongodb()
-    install_redis()
+    install_apache2(os_type)
+    install_mongodb(os_type)
+    install_redis(os_type)
 
 
-def install_redis():
+def install_redis(os_path):
     """
     download redis from the provider, compile and install it
     """
     print "=== install redis ==="
-    with cd()
+    with cd(env.BACKUP_PATH):
+        if os_path == 'ubuntu':
+            run('wget %s' % env.REDIS_URL)
+        elif os_path == 'centos':
+            pass

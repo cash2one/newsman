@@ -41,10 +41,10 @@ def _transcode(link):
         data = urllib2.unquote(hparser.unescape(html))
         return data
     except urllib2.URLError as k:
-        logging.info(str(k))
+        logger.info(str(k))
         return None
     except urllib2.HTTPError as k:
-        logging.info(str(k))
+        logger.info(str(k))
         return None
     except Exception as k:
         logger.error(str(k))
