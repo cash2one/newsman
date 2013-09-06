@@ -97,7 +97,7 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
                     if updated:
                         # get time zone
                         offset = int(updated[-5:])
-                        delta = timedelta(hours=offset / 100)
+                        delta = timedelta(hours=int(offset) / 100)
                         format = "%a, %d %b %Y %H:%M:%S"
                         if updated[-8:-5] != 'UTC':
                             updated = datetime.strptime(updated[:-6], format)
