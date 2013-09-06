@@ -100,7 +100,7 @@ def _get_first_paragraph(content, language):
         for paragraph in paragraphs:
             if paragraph and _is_valid(paragraph, language):
                 return _get_shorter_text(paragraph, language, SUMMARY_LENGTH_LIMIT)
-    except Exception as K:
+    except Exception as k:
         logger.error(str(k))
         return None
 
