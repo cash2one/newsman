@@ -13,6 +13,7 @@ import sys
 reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('/home/ubuntu/newsman/newsman')
+#sys.path.append('/home/jinyuan/Downloads/newsman/newsman')
 
 from config import Collection, db
 from config import logger
