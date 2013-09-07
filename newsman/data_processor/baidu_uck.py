@@ -178,7 +178,7 @@ def _transcode(link):
         logger.info(str(k))
         return None
     except Exception as k:
-        logger.error(str(k))
+        logger.exception(str(k))
         return None
 
 
