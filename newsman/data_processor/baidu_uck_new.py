@@ -17,6 +17,7 @@ sys.path.append("..")
 from config import hparser
 from config import logger
 import image_helper
+import socket
 import urllib2
 
 # CONSTANTS
@@ -40,14 +41,19 @@ def _transcode(link):
             '%s%s' % (UCK_TRANSCODING_NEW, link), timeout=UCK_TIMEOUT).read()
         data = urllib2.unquote(hparser.unescape(html))
         return data
+    """
     except urllib2.URLError as k:
         logger.info(str(k))
         return None
     except urllib2.HTTPError as k:
         logger.info(str(k))
         return None
+    except socket.timeout as k:
+        logger.info(str(k))
+        return None
+    """
     except Exception as k:
-        logger.error(str(k))
+        logger.info('Problem:[%s] Source:[%s]' % (str(k), link))
         return None
 
 
