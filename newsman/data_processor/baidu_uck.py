@@ -18,7 +18,6 @@ from config import hparser
 from config import logger
 from BeautifulSoup import BeautifulSoup, NavigableString, Tag
 import image_helper
-import socket
 import thumbnail
 import urllib2
 
@@ -172,17 +171,6 @@ def _transcode(link):
         # free data from html encoding
         data = urllib2.unquote(hparser.unescape(html))
         return data
-    """
-    except urllib2.URLError as k:
-        logger.info(str(k))
-        return None
-    except urllib2.HTTPError as k:
-        logger.info(str(k))
-        return None
-    except socket.timeout as k:
-        logger.info(str(k))
-        return None
-    """
     except Exception as k:
         logger.info('Problem:[%s] Source:[%s]' % (str(k), link))
         return None
