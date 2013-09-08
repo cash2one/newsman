@@ -76,14 +76,19 @@ def _link_process(link):
                 return None
         else:
             return None
+    """
     except urllib2.URLError as k:
         logger.info(str(k))
         return None
     except urllib2.HTTPError as k:
         logger.info(str(k))
         return None
+    except socket.timeout as k:
+        logger.info(str(k))
+        return None
+    """
     except Exception as k:
-        logger.error(str(k))
+        logger.error('Problem:[%s] Source:[%s]' % (str(k), link))
         return None
 
 
@@ -254,14 +259,19 @@ def scale_image(image=None, size_expected=MIN_IMAGE_SIZE,
                 return scale_image(image, size_expected, not resize_by_width, crop_by_center, relative_path)
         else:
             return None, None
+    """
     except urllib2.URLError as k:
         logger.info(str(k))
         return None, None
     except urllib2.HTTPError as k:
         logger.info(str(k))
         return None, None
+    exept socket.timeout as k:
+        logger.info(str(k))
+        return None, None
+    """
     except Exception as k:
-        logger.error(str(k))
+        logger.info(str(k))
         return None, None
 
 
