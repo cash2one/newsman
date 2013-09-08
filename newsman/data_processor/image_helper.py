@@ -21,6 +21,7 @@ from cStringIO import StringIO
 import Image
 import os
 import re
+import socket
 import thumbnail
 import urllib2
 import urlparse
