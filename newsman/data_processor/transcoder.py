@@ -23,6 +23,7 @@ import burify
 import image_helper
 import os
 import simplr
+import socket
 import threading
 import time
 import urllib2
@@ -311,14 +312,19 @@ def prepare_link(url):
         else:
             logger.warning("Cannot read %s" % url)
             return None
+    """
     except urllib2.URLError as k:
         logger.info(str(k))
         return None
     except urllib2.HTTPError as k:
         logger.info(str(k))
         return None
+    except socket.timeout as k:
+        logger.info(str(k))
+        return None
+    """
     except Exception as k:
-        logger.error(str(k))
+        logger.info('Problem:[%s] Source:[%s]' % (str(k), url))
         return None
 
 
