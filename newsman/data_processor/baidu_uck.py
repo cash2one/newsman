@@ -184,7 +184,7 @@ def _transcode(link):
         return None
     """
     except Exception as k:
-        logger.info('Problem:[%s] Source:[%s]' % (str(k), image_url))
+        logger.info('Problem:[%s] Source:[%s]' % (str(k), link))
         return None
 
 
