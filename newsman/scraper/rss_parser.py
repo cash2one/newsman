@@ -310,13 +310,17 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
                     language = language if 'language' not in d else d.language
                     # an Exception might be raised from _read_entry
                     entries = []
-                    for e in d.entries:
-                        entry = _read_entry(
-                            e, feed_id, feed_title, language, categories)
-                        if entry:
-                            entries.append(entry)
+                    for i, e in enumerate(d.entries):
+                        if e:
+                            entry = _read_entry(
+                                e, feed_id, feed_title, language, categories)
+                            if entry:
+                                entries.append(entry)
+                            else:
+                                logger.info('Cannot parse %s' % e['link'])
+                                continue
                         else:
-                            logger.info('Cannot parse %s' % e['link'])
+                            logger.info('No infomation found for %s-th entry' % i)
                             continue
 
                     if entries:
