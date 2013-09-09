@@ -98,12 +98,16 @@ def setup_repo ():
     print('=== CLONE FROM GITHUB ===')
     with cd(os.path.dirname(env.REMOTE_CODEBASE_PATH)):
         run("git clone %s %s" % (env.GIT_REPO_URL, os.path.basename(env.REMOTE_CODEBASE_PATH)))
-    with cd(os.path.join(env.REMOTE_CODEBASE_PATH, "ohbooklist/conf/local")):
-        run("ln -s ../production/settings.py")
-        run("ln -s ../production/urls.py")
-    with cd(env.REMOTE_CODEBASE_PATH):
-        run("python ohbooklist/bin/manage.py syncdb")
-        
+
+    from fabric.contrib.files import uncomment
+    uncomment(os.path.join(env.GIT_REPO_URL, 'newsman/config.py'), env.host)
+    uncomment(os.path.join(env.GIT_REPO_URL, 'newsman/config.py'), os.path.dirname(env.GIT_REPO_URL))
+    run("cp %s %s" % (os.path.join(env.GIT_REPO_URL, 'newsman/config.py'), os.path.join(env.GIT_REPO_URL, 'newsman/publisher/config.py')))
+
+    with cd(os.path.dirname(env.GIT_REPO_URL)):
+        run('mkdir -p STATIC/news/ts')
+        run("cp %s %s" % (os.path.join(env.GIT_REPO_URL, 'newsman/templates/static*'), 'STATIC/news/ts'))
+
 
 def install_redis(os_path):
     """
