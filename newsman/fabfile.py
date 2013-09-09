@@ -108,14 +108,3 @@ def setup_repo ():
         run('mkdir -p STATIC/news/ts')
         run("cp %s %s" % (os.path.join(env.GIT_REPO_URL, 'newsman/templates/static*'), 'STATIC/news/ts'))
 
-
-def install_redis(os_path):
-    """
-    download redis from the provider, compile and install it
-    """
-    print "=== install redis ==="
-    with cd(env.BACKUP_PATH):
-        if os_path == 'ubuntu':
-            run('wget %s' % env.REDIS_URL)
-        elif os_path == 'centos':
-            pass
