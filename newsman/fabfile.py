@@ -61,7 +61,7 @@ def ll():
 # ==============================================
 # Service
 # ==============================================
-def install_services(os_type):
+def setup_services(os_type):
     """
     install apache2, mongodb and redis
     """
@@ -72,6 +72,23 @@ def install_services(os_type):
     install_apache2(os_type)
     install_mongodb(os_type)
     install_redis(os_type)
+
+
+def setup_sys_install():
+    """
+    Setup system libraries and binaries
+    """
+    print "=== SETUP LIBRARIES ==="
+    sudo('apt-get -y update')
+    sudo('apt-get -y install build-essential gcc make git-core python-dev python-imaging python-pip curl monit mongodb sox lame libjpeg libjpeg-dev libfreetype6 libfreetype6-dev zlib1g-dev')
+
+
+def setup_pip_require ():
+    """
+    Setup pip requirements.
+    """
+    print('=== SETUP PIP REQUIREMENTS===')
+    sudo("pip install -r %s" % env.PIP_REQUIREMENTS_PATH)
 
 
 def install_redis(os_path):
