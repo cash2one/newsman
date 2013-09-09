@@ -91,6 +91,20 @@ def setup_pip_require ():
     sudo("pip install -r %s" % env.PIP_REQUIREMENTS_PATH)
 
 
+def setup_repo ():
+    """
+    git clone from repo in github. Need to add public key to github server.
+    """
+    print('=== CLONE FROM GITHUB ===')
+    with cd(os.path.dirname(env.REMOTE_CODEBASE_PATH)):
+        run("git clone %s %s" % (env.GIT_REPO_URL, os.path.basename(env.REMOTE_CODEBASE_PATH)))
+    with cd(os.path.join(env.REMOTE_CODEBASE_PATH, "ohbooklist/conf/local")):
+        run("ln -s ../production/settings.py")
+        run("ln -s ../production/urls.py")
+    with cd(env.REMOTE_CODEBASE_PATH):
+        run("python ohbooklist/bin/manage.py syncdb")
+        
+
 def install_redis(os_path):
     """
     download redis from the provider, compile and install it
