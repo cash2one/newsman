@@ -200,3 +200,52 @@ def configure_redis():
     """
     print '=== CONFIGURE REDIS ==='
     sudo('cp %s /etc/redis/redis.conf' % os.path.join(env.GIT_REPO_URL, 'newsman/configs/redis.conf'))
+
+
+def deploy_monit():
+    """
+    Update config file and restart monit
+    """
+    configure_monit()
+    restart_monit()
+
+
+def deploy_mongodb():
+    """
+    Update config file and restart mongodb
+    """
+    configure_mongodb()
+    restart_mongodb()
+
+
+def deploy_redis():
+    """
+    Update config file and restart redis
+    """
+    configure_redis()
+    restart_redis()
+
+
+def git_pull():
+    """
+    Git pull latest code
+    """
+    print '=== PULL LATEST SOURCE ==='
+    with cd(env.REMOTE_CODEBASE_PATH):
+        run('git pull')
+
+
+def deploy_full():
+    """
+    Update code and restart services
+    """
+    git_pull()
+    deploy_redis()
+    deploy_mongodb()
+    deploy_monit()
+
+def deploy():
+    """
+    Update code
+    """
+    git_pull()
