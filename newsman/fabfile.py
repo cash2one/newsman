@@ -80,7 +80,8 @@ def setup_sys_install():
     """
     print "=== SETUP LIBRARIES ==="
     sudo('apt-get -y update')
-    sudo('apt-get -y install build-essential gcc make git-core python-dev python-imaging python-pip curl monit mongodb sox lame libjpeg libjpeg-dev libfreetype6 libfreetype6-dev zlib1g-dev')
+    sudo('apt-get -y upgrade')
+    sudo('apt-get -y install build-essential gcc make git-core python-dev python-imaging python-pip curl monit mongodb redis-server sox lame libjpeg libjpeg-dev libfreetype6 libfreetype6-dev zlib1g-dev')
 
 
 def setup_pip_require ():
@@ -108,3 +109,11 @@ def setup_repo ():
         run('mkdir -p STATIC/news/ts')
         run("cp %s %s" % (os.path.join(env.GIT_REPO_URL, 'newsman/templates/static*'), 'STATIC/news/ts'))
 
+
+def setup():
+    """
+    Install for all the prequisitions.
+    """
+    setup_sys_install()
+    setup_pip_require()
+    setup_repo()
