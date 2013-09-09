@@ -184,8 +184,7 @@ def get_latest_entries_by_language(language=None, limit=10, start_id=None):
 
             return entries
         else:
-            logger.error('Find nothings about %s in memory' % category_name)
-            return entries
+            raise ConnectionError('Find nothing about %s in memory' % category_name)
     except ConnectionError:
         # query the database
         col = Collection(db, language)
@@ -245,7 +244,7 @@ def get_previous_entries_by_language(language=None, limit=10, end_id=None):
             end_id_index = rclient.zrank(category_name, end_id)
             # not existing entry --> nil
             # first entry --> 0
-            END_ID_IN_MEMORY = True if end_id_index >= 0 else False
+            END_ID_IN_MEMORY = True if end_id_index > 0 else False
             if END_ID_IN_MEMORY:
                 limit_in_memory = rclient.zrank(category_name, end_id)
             
@@ -296,8 +295,7 @@ def get_previous_entries_by_language(language=None, limit=10, end_id=None):
 
             return entries
         else:
-            logger.error('Find nothing about %s in memory' % category_name)
-            return entries
+            raise ConnectionError('Find nothing about %s in memory' % category_name)
     except ConnectionError:
         # no memory or data in memory are not enough, so query database
         items = []
@@ -405,8 +403,7 @@ def get_latest_entries_by_category(language=None, category=None, limit=10, start
 
             return entries
         else:
-            logger.error('Find nothing about %s in memory' % category_name)
-            return entries
+            raise ConnectionError('Find nothing about %s in memory' % category_name)
     except ConnectionError:  
         # query the database
         col = Collection(db, language)
@@ -465,7 +462,7 @@ def get_previous_entries_by_category(language=None, category=None, limit=10, end
                 END_ID_IN_MEMORY = False
         else:
             end_id_index = rclient.zrank(category_name, end_id)
-            END_ID_IN_MEMORY = True if end_id_index >= 0 else False
+            END_ID_IN_MEMORY = True if end_id_index > 0 else False
             if END_ID_IN_MEMORY:
                 limit_in_memory = rclient.zrank(category_name, end_id)
 
@@ -516,8 +513,7 @@ def get_previous_entries_by_category(language=None, category=None, limit=10, end
 
             return entries
         else:
-            logger.error('Find nothing about %s in memory' % category_name)
-            return entries
+            raise ConnectionError('Find nothing about %s in memory' % category_name)
     except ConnectionError:  
         # no memory or data in memory are not enough, so query database
         items = []
