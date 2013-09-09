@@ -103,10 +103,10 @@ def clean():
                         else:
                             rclient.zrem(news_list, news_id)
                             rclient.delete(news_id)
-                return True
             else:
                 logger.error('Nothing in the list')
-                return False
+                continue
+        return True
     except Exception as k:
         logger.error(str(k))
         return False
