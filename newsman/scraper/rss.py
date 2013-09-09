@@ -61,7 +61,7 @@ def _generate_images(image=None, entry=None, rand=None):
 
         # hot news image
         hot_web, hot_local = image_helper.scale_image(
-            image=image, size_expected=HOT_IMAGE_SIZE, resize_by_width=True, crop_by_center=False, relative_path='%s_hotnews' % image_relative_path)
+            image=image, size_expected=HOT_IMAGE_SIZE, resize_by_width=True, crop_by_center=True, relative_path='%s_hotnews' % image_relative_path)
         entry['hotnews_image'] = hot_web if hot_web else None
         entry['hotnews_image_local'] = hot_local if hot_local else None
 
@@ -76,11 +76,11 @@ def _generate_images(image=None, entry=None, rand=None):
         if float(image['width']) / float(image['height']) >= THUMBNAIL_STYLE:
             # high resolution
             thumbnail_web, thumbnail_local = image_helper.scale_image(
-                image=image, size_expected=THUMBNAIL_LANDSCAPE_SIZE_HIGH, resize_by_width=True, crop_by_center=False, relative_path='%s_thumbnail' % image_relative_path)
+                image=image, size_expected=THUMBNAIL_LANDSCAPE_SIZE_HIGH, resize_by_width=True, crop_by_center=True, relative_path='%s_thumbnail' % image_relative_path)
             if not thumbnail_web:
                 # normal resolution
                 thumbnail_web, thumbnail_local = image_helper.scale_image(
-                    image=image, size_expected=THUMBNAIL_LANDSCAPE_SIZE_NORMAL, resize_by_width=True, crop_by_center=False, relative_path='%s_thumbnail' % image_relative_path)
+                    image=image, size_expected=THUMBNAIL_LANDSCAPE_SIZE_NORMAL, resize_by_width=True, crop_by_center=True, relative_path='%s_thumbnail' % image_relative_path)
         else:  # portrait
             # high resolution
             thumbnail_web, thumbnail_local = image_helper.scale_image(
