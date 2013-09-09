@@ -61,19 +61,6 @@ def ll():
 # ==============================================
 # Service
 # ==============================================
-def setup_services(os_type):
-    """
-    install apache2, mongodb and redis
-    """
-    # create folder for temporary install files
-    with cd(os.path.dirname(env.BACKUP_PATH)):
-        run("mkdir %s" % os.path.basename(env.BACKUP_PATH))
-    # install services
-    install_apache2(os_type)
-    install_mongodb(os_type)
-    install_redis(os_type)
-
-
 def setup_sys_install():
     """
     Setup system libraries and binaries
@@ -84,7 +71,7 @@ def setup_sys_install():
     sudo('apt-get -y install build-essential gcc make git-core python-dev python-imaging python-pip curl monit mongodb redis-server sox lame libjpeg libjpeg-dev libfreetype6 libfreetype6-dev zlib1g-dev')
 
 
-def setup_pip_require ():
+def setup_pip_require():
     """
     Setup pip requirements.
     """
@@ -92,7 +79,7 @@ def setup_pip_require ():
     sudo("pip install -r %s" % env.PIP_REQUIREMENTS_PATH)
 
 
-def setup_repo ():
+def setup_repo():
     """
     git clone from repo in github. Need to add public key to github server.
     """
@@ -117,3 +104,67 @@ def setup():
     setup_sys_install()
     setup_pip_require()
     setup_repo()
+
+
+def restart_mongodb():
+    """
+    Restart redis server
+    """
+    print '=== RESTART REDIS ==='
+    sudo('/etc/init.d/redis-server restart')
+
+
+def stop_mongodb():
+    """
+    Stop redis server
+    """
+    print '=== STOP REDIS ==='
+    sudo('/etc/init.d/redis-server stop')
+
+
+def start_mongodb():
+    """
+    Start redis server
+    """
+    print '=== START REDIS ==='
+    sudo('/etc/init.d/redis-server start')
+
+
+def configure_mongodb():
+    """
+    Copy redis.conf to /etc/redis
+    """
+    print '=== CONFIGURE REDIS ==='
+    sudo('cp %s /etc/redis/redis.conf' % os.path.join(env.GIT_REPO_URL, 'newsman/configs/redis.conf'))
+
+
+def restart_redis():
+    """
+    Restart redis server
+    """
+    print '=== RESTART REDIS ==='
+    sudo('/etc/init.d/redis-server restart')
+
+
+def stop_redis():
+    """
+    Stop redis server
+    """
+    print '=== STOP REDIS ==='
+    sudo('/etc/init.d/redis-server stop')
+
+
+def start_redis():
+    """
+    Start redis server
+    """
+    print '=== START REDIS ==='
+    sudo('/etc/init.d/redis-server start')
+
+
+def configure_redis():
+    """
+    Copy redis.conf to /etc/redis
+    """
+    print '=== CONFIGURE REDIS ==='
+    sudo('cp %s /etc/redis/redis.conf' % os.path.join(env.GIT_REPO_URL, 'newsman/configs/redis.conf'))
