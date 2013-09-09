@@ -106,36 +106,68 @@ def setup():
     setup_repo()
 
 
+def restart_monit():
+    """
+    Restart Monit
+    """
+    print '=== RESTART MONIT ==='
+    sudo('/etc/init.d/monit restart')
+
+
+def stop_monit():
+    """
+    Stop Monit
+    """
+    print '=== STOP MONIT ==='
+    sudo('/etc/init.d/monit stop')
+
+
+def start_monit():
+    """
+    Start Monit
+    """
+    print '=== START MONIT ==='
+    sudo('/etc/init.d/monit start')
+
+
+def configure_monit():
+    """
+    Copy monit.conf to /etc/monit
+    """
+    print '=== CONFIGURE MONIT ==='
+    sudo('cp %s /etc/monit/monit.conf' % os.path.join(env.GIT_REPO_URL, 'newsman/configs/monit.conf'))
+
+
 def restart_mongodb():
     """
-    Restart redis server
+    Restart MongoDB server
     """
-    print '=== RESTART REDIS ==='
-    sudo('/etc/init.d/redis-server restart')
+    print '=== RESTART MONGODB ==='
+    sudo('/etc/init.d/mongod restart')
 
 
 def stop_mongodb():
     """
-    Stop redis server
+    Stop MongoDB server
     """
-    print '=== STOP REDIS ==='
-    sudo('/etc/init.d/redis-server stop')
+    print '=== STOP MONGODB ==='
+    sudo('/etc/init.d/mongod stop')
 
 
 def start_mongodb():
     """
-    Start redis server
+    Start MongoDB server
     """
-    print '=== START REDIS ==='
-    sudo('/etc/init.d/redis-server start')
+    print '=== START MONGODB ==='
+    sudo('/etc/init.d/mongod start')
 
 
 def configure_mongodb():
     """
-    Copy redis.conf to /etc/redis
+    Copy mongodb.conf to /etc/mongodb
     """
-    print '=== CONFIGURE REDIS ==='
-    sudo('cp %s /etc/redis/redis.conf' % os.path.join(env.GIT_REPO_URL, 'newsman/configs/redis.conf'))
+    print '=== CONFIGURE MONGODB ==='
+    sudo('cp %s /etc/mongodb/mongodb.conf' % os.path.join(env.GIT_REPO_URL, 'newsman/configs/mongodb.conf'))
 
 
 def restart_redis():
