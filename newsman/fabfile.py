@@ -94,7 +94,9 @@ def setup_sys_install():
     Setup system libraries and binaries
     """
     print "=== SETUP SYSTEM LIBRARIES ==="
+    sudo('apt-get -y update')
     sudo('apt-get -y install build-essential gcc make git-core python-dev python-imaging python-pip curl monit mongodb redis-server sox lame libjpeg8 libjpeg-dev libfreetype6 libfreetype6-dev zlib1g-dev')
+    sudo('apt-get -y upgrade')
 
 
 def setup_pip_require():
