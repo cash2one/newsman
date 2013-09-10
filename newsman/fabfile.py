@@ -40,7 +40,8 @@ def aws():
     env.key_filename = '/home/jinyuan/Public/AWS_identifiers/searchet.pem'
     env.BACKUP_PATH = '/home/%s/baks' % env.user
     env.REMOTE_CODEBASE_PATH = '/home/%s/newsman' % env.user
-    env.PIP_REQUIREMENTS_PATH = '%s/requirements.txt' % env.REMOTE_CODEBASE_PATH
+    env.PIP_REQUIREMENTS_PATH = os.path.join(env.REMOTE_CODEBASE_PATH, 'requirements.txt')
+    env.SERVICE_CONFIG_PATH = os.path.join(env.REMOTE_CODEBASE_PATH, 'newman/config')
     #env.servername = ['aws_sing', 'aws_sao', 'aws_tokyo']
     env.servername = 'aws_tokyo'
 
@@ -120,7 +121,7 @@ def configure_monit():
     Copy monit.conf to /etc/monit
     """
     print '=== CONFIGURE MONIT ==='
-    sudo('cp %s /etc/monit/monit.conf' % os.path.join(env.GIT_REPO_URL, 'newsman/configs/monit.conf'))
+    sudo('cp -r %s /etc/monit/' % os.path.join(env.SERVICE_CONFIG_PATH, 'monit/*'))
 
 
 def restart_mongodb():
@@ -152,7 +153,7 @@ def configure_mongodb():
     Copy mongodb.conf to /etc/mongodb
     """
     print '=== CONFIGURE MONGODB ==='
-    sudo('cp %s /etc/mongodb/mongodb.conf' % os.path.join(env.GIT_REPO_URL, 'newsman/configs/mongodb.conf'))
+    sudo('cp %s /etc/mongodb.conf' % os.path.join(env.SERVICE_CONFIG_PATH, 'mongodb/mongodb.conf'))
 
 
 def restart_redis():
@@ -184,7 +185,7 @@ def configure_redis():
     Copy redis.conf to /etc/redis
     """
     print '=== CONFIGURE REDIS ==='
-    sudo('cp %s /etc/redis/redis.conf' % os.path.join(env.GIT_REPO_URL, 'newsman/configs/redis.conf'))
+    sudo('cp %s /etc/redis/redis.conf' % os.path.join(env.SERVICE_CONFIG_PATH, 'redis/redis.conf'))
 
 
 def deploy_monit():
