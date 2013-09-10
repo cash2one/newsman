@@ -319,9 +319,8 @@ def deploy_cron():
     Update cron job
     """
     configure_cron()
-    put(os.path.join(env.REMOTE_CODEBASE_PATH,
-        'newsman/config/cron/cron.job'), '/tmp/crontab')
-    run('crontab < /tmp/crontab')
+    run('crontab < %s' % os.path.join(env.REMOTE_CODEBASE_PATH,
+        'newsman/config/cron/cron.job'))
 
 
 def git_pull():
