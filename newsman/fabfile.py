@@ -76,12 +76,12 @@ def setup_repo():
 
     from fabric.contrib.files import uncomment
     uncomment(os.path.join(env.REMOTE_CODEBASE_PATH, 'newsman/config.py'), env.host)
-    uncomment(os.path.join(env.REMOTE_CODEBASE_PATH, 'newsman/config.py'), os.path.dirname(env.REMOTE_CODEBASE_PATH))
+    uncomment(os.path.join(env.REMOTE_CODEBASE_PATH, 'newsman/config.py'), env.user)
     run("cp %s %s" % (os.path.join(env.REMOTE_CODEBASE_PATH, 'newsman/config.py'), os.path.join(env.REMOTE_CODEBASE_PATH, 'newsman/publisher/config.py')))
 
     with cd(os.path.dirname(env.REMOTE_CODEBASE_PATH)):
         run('mkdir -p STATIC/news/ts')
-        run("cp %s %s" % (os.path.join(env.REMOTE_CODEBASE_PATH, 'newsman/templates/static*'), 'STATIC/news/ts'))
+        run("cp -r %s %s" % (os.path.join(env.REMOTE_CODEBASE_PATH, 'newsman/templates/static*'), 'STATIC/news/ts'))
 
 
 def setup():
@@ -230,6 +230,7 @@ def deploy_full():
     deploy_redis()
     deploy_mongodb()
     deploy_monit()
+
 
 def deploy():
     """
