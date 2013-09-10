@@ -18,7 +18,7 @@ import os
 import re
 
 # CONSTANTS
-from config import LOCAL
+from config.settings import LOCAL
 HOME = LOCAL % 'newsman/newsman'
 OUTPUT = LOCAL % 'newsman/TODO.md'
 

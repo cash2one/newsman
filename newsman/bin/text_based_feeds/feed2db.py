@@ -14,11 +14,11 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('../..')
 
-from config import Collection
-from config import db
+from config.settings import Collection
+from config.settings import db
 
 # CONSTANTS
-from config import FEED_REGISTRAR
+from config.settings import FEED_REGISTRAR
 #FILE_SUFFIX = '/home/work/newsman/newsman/tools/text_based_feeds/feed_lists/'
 #FILE_SUFFIX = '/home/ubuntu/newsman/newsman/tools/text_based_feeds/feed_lists/'
 FILE_SUFFIX = '/home/jinyuan/Downloads/newsman/newsman/tools/text_based_feeds/feed_lists/'

@@ -6,8 +6,8 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append("..")
 
-from config import Collection, db
-from config import rclient
+from config.settings import Collection, db
+from config.settings import rclient
 
 
 def _change_field(language):
