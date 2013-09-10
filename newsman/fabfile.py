@@ -18,7 +18,7 @@ from fabric.api import *
 import os
 
 # CONSTANTS
-env.GIT_REPO_URL = 'https://github.com/chengdujin/ubuntu-essentials'
+env.GIT_REPO_URL = 'https://github.com/chengdujin/newsman'
 env.REDIS_URL = 'http://download.redis.io/releases/redis-2.6.16.tar.gz'
 env.MONGODB_URL = 'http://fastdl.mongodb.org/linux/mongodb-linux-x86_64-2.4.6.tgz'
 
@@ -34,29 +34,16 @@ def aws():
     set up basic settings for aws connectoins
     """
     env.user = 'ubuntu'
-    env.hosts = ['54.251.107.116', '54.232.81.44', '54.248.227.71']
-    env.key_filename = ['/home/jinyuan/Public/AWS_identifiers/mandy.pem', '/home/jinyuan/Public/AWS_identifiers/guochen.pem', '/home/jinyuan/Public/AWS_identifiers/searchet.pem']
-    env.REMOTE_CODEBASE_PATH = '/home/%s/newsman' % env.user
+    #env.hosts = ['54.251.107.116', '54.232.81.44', '54.248.227.71']
+    env.hosts = ['54.248.227.71']
+    #env.key_filename = ['/home/jinyuan/Public/AWS_identifiers/mandy.pem', '/home/jinyuan/Public/AWS_identifiers/guochen.pem', '/home/jinyuan/Public/AWS_identifiers/searchet.pem']
+    env.key_filename = '/home/jinyuan/Public/AWS_identifiers/searchet.pem'
     env.BACKUP_PATH = '/home/%s/baks' % env.user
+    env.REMOTE_CODEBASE_PATH = '/home/%s/newsman' % env.user
     env.PIP_REQUIREMENTS_PATH = '%s/requirements.txt' % env.REMOTE_CODEBASE_PATH
-    env.servername = ['aws_sing', 'aws_sao', 'aws_tokyo']
+    #env.servername = ['aws_sing', 'aws_sao', 'aws_tokyo']
+    env.servername = 'aws_tokyo'
 
-# ==============================================
-# Setup setting
-# ==============================================
-def setup_repo ():
-    """
-    git clone from repo in github. Need to add public key to github server.
-    """
-    print '=== CLONE FROM GITHUB ==='
-    with cd(os.path.dirname(env.REMOTE_CODEBASE_PATH)):
-        run("git clone %s" % (env.GIT_REPO_URL))
-        
-
-def ll():
-    print '=== LISTING ==='
-    run('ls -lFh')
-        
 
 # ==============================================
 # Service
@@ -88,13 +75,13 @@ def setup_repo():
         run("git clone %s %s" % (env.GIT_REPO_URL, os.path.basename(env.REMOTE_CODEBASE_PATH)))
 
     from fabric.contrib.files import uncomment
-    uncomment(os.path.join(env.GIT_REPO_URL, 'newsman/config.py'), env.host)
-    uncomment(os.path.join(env.GIT_REPO_URL, 'newsman/config.py'), os.path.dirname(env.GIT_REPO_URL))
-    run("cp %s %s" % (os.path.join(env.GIT_REPO_URL, 'newsman/config.py'), os.path.join(env.GIT_REPO_URL, 'newsman/publisher/config.py')))
+    uncomment(os.path.join(env.REMOTE_CODEBASE_PATH, 'newsman/config.py'), env.host)
+    uncomment(os.path.join(env.REMOTE_CODEBASE_PATH, 'newsman/config.py'), os.path.dirname(env.REMOTE_CODEBASE_PATH))
+    run("cp %s %s" % (os.path.join(env.REMOTE_CODEBASE_PATH, 'newsman/config.py'), os.path.join(env.REMOTE_CODEBASE_PATH, 'newsman/publisher/config.py')))
 
-    with cd(os.path.dirname(env.GIT_REPO_URL)):
+    with cd(os.path.dirname(env.REMOTE_CODEBASE_PATH)):
         run('mkdir -p STATIC/news/ts')
-        run("cp %s %s" % (os.path.join(env.GIT_REPO_URL, 'newsman/templates/static*'), 'STATIC/news/ts'))
+        run("cp %s %s" % (os.path.join(env.REMOTE_CODEBASE_PATH, 'newsman/templates/static*'), 'STATIC/news/ts'))
 
 
 def setup():
