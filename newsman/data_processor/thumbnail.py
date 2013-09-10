@@ -12,18 +12,18 @@ thumbnail used to make thumbnails
 import sys
 reload(sys)
 sys.setdefaultencoding('UTF-8')
-sys.path.append('..')
+sys.path.append('../config')
 
-from config import logger
 from cStringIO import StringIO
 import Image
+from settings import logger
 import urllib2
 
 # CONSTANTS
-from config import MIN_IMAGE_SIZE
-from config import IMAGES_LOCAL_DIR
-from config import IMAGES_PUBLIC_DIR
-from config import UCK_TIMEOUT
+from settings import MIN_IMAGE_SIZE
+from settings import IMAGES_LOCAL_DIR
+from settings import IMAGES_PUBLIC_DIR
+from settings import UCK_TIMEOUT
 
 
 # TODO: this method should be moved to image_helper

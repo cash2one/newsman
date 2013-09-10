@@ -12,15 +12,15 @@ simplr is a simplified readability implementation in python
 import sys
 reload(sys)
 sys.setdefaultencoding("utf-8")
-sys.path.append("..")
+sys.path.append("../config")
 
 from BeautifulSoup import BeautifulSoup
-from config import logger
 import image_helper
 import transcoder
 import math
 import posixpath
 import re
+from settings import logger
 import tinysegmenter
 import urlparse
 
