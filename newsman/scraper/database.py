@@ -14,11 +14,11 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
-from config import Collection, db
-from config import logger
+from config.settings import Collection, db
+from config.settings import logger
 
 # CONSTANTS
-from config import LANGUAGES
+from config.settings import LANGUAGES
 
 
 def dedup(entries=None, language=None):

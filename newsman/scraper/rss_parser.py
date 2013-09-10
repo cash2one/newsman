@@ -17,8 +17,8 @@ sys.path.append('..')
 from BeautifulSoup import BeautifulStoneSoup
 import calendar
 import chardet
-from config import hparser
-from config import logger
+from config.settings import hparser
+from config.settings import logger
 from data_processor import image_helper
 from datetime import datetime, timedelta
 import feedparser
@@ -30,8 +30,8 @@ import time
 import urllib2
 
 # CONSTANTS
-from config import LANGUAGES
-from config import MEMORY_RESTORATION_DAYS
+from config.settings import LANGUAGES
+from config.settings import MEMORY_RESTORATION_DAYS
 
 
 # TODO: add more boundary checks

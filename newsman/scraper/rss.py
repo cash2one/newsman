@@ -15,7 +15,7 @@ sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
 import calendar
-from config import logger
+from config.settings import logger
 from datetime import datetime, timedelta
 from data_processor import image_helper
 from data_processor import summarizer
@@ -30,18 +30,18 @@ import time
 from watchdog.cron import clean_disk, clean_database
 
 # CONSTANTS
-from config import CATEGORY_IMAGE_SIZE
-from config import DATABASE_REMOVAL_DAYS
-from config import HOT_IMAGE_SIZE
-from config import LANGUAGES
-from config import MEMORY_EXPIRATION_DAYS
-from config import THUMBNAIL_LANDSCAPE_SIZE_HIGH
-from config import THUMBNAIL_LANDSCAPE_SIZE_NORMAL
-from config import THUMBNAIL_LANDSCAPE_SIZE_LOW
-from config import THUMBNAIL_PORTRAIT_SIZE_HIGH
-from config import THUMBNAIL_PORTRAIT_SIZE_NORMAL
-from config import THUMBNAIL_PORTRAIT_SIZE_LOW
-from config import THUMBNAIL_STYLE
+from config.settings import CATEGORY_IMAGE_SIZE
+from config.settings import DATABASE_REMOVAL_DAYS
+from config.settings import HOT_IMAGE_SIZE
+from config.settings import LANGUAGES
+from config.settings import MEMORY_EXPIRATION_DAYS
+from config.settings import THUMBNAIL_LANDSCAPE_SIZE_HIGH
+from config.settings import THUMBNAIL_LANDSCAPE_SIZE_NORMAL
+from config.settings import THUMBNAIL_LANDSCAPE_SIZE_LOW
+from config.settings import THUMBNAIL_PORTRAIT_SIZE_HIGH
+from config.settings import THUMBNAIL_PORTRAIT_SIZE_NORMAL
+from config.settings import THUMBNAIL_PORTRAIT_SIZE_LOW
+from config.settings import THUMBNAIL_STYLE
 
 
 def _generate_images(image=None, entry=None, rand=None):

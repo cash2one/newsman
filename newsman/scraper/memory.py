@@ -14,11 +14,11 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
-from config import logger
-from config import rclient, ConnectionError
+from config.settings import logger
+from config.settings import rclient, ConnectionError
 
 # CONSTANTS
-from config import MEMORY_EXPIRATION_DAYS
+from config.settings import MEMORY_EXPIRATION_DAYS
 
 # list of fields stored in memory
 field_list = ['_id', 'categories', 'category_image', 'feed', 'hotnews_image', 'image', 'language', 'link', 'mp3', 'summary', 'thumbnail_image', 'title', 'transcoded', 'updated']
