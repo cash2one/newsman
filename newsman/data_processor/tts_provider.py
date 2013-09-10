@@ -12,11 +12,11 @@ tts_provider breaks text into paragraphs and grabs text-to-speech from google
 import sys
 reload(sys)
 sys.setdefaultencoding('UTF-8')
-sys.path.append('../config')
+sys.path.append('..')
 
+from config.settings import logger
 import nltk
 import os
-from settings import logger
 import re
 import string
 import subprocess
@@ -25,11 +25,11 @@ import threading
 import urllib2
 
 # CONSTANTS
-from settings import GOOGLE_TTS_TIMEOUT
-from settings import MEDIA_LOCAL_DIR
-from settings import MEDIA_PUBLIC_DIR
-from settings import MEDIA_TEMP_LOCAL_DIR
-from settings import LANGUAGES
+from config.settings import GOOGLE_TTS_TIMEOUT
+from config.settings import MEDIA_LOCAL_DIR
+from config.settings import MEDIA_PUBLIC_DIR
+from config.settings import MEDIA_TEMP_LOCAL_DIR
+from config.settings import LANGUAGES
 
 
 if not os.path.exists(MEDIA_LOCAL_DIR):

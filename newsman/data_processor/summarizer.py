@@ -12,16 +12,16 @@ summarizer extracts summary or first paragraph from news
 import sys
 reload(sys)
 sys.setdefaultencoding('UTF-8')
-sys.path.append('../config')
+sys.path.append('..')
 
 import chardet
+from config.settings import logger
 import html2text
 import nltk
-from settings import logger
 
 # CONSTANTS
-from settings import PARAGRAPH_CRITERIA
-from settings import SUMMARY_LENGTH_LIMIT
+from config.settings import PARAGRAPH_CRITERIA
+from config.settings import SUMMARY_LENGTH_LIMIT
 
 
 def _get_shorter_text(content, language, limit):

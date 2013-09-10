@@ -12,11 +12,11 @@ call burify's implementation of readability code to transcode a web page
 import sys
 reload(sys)
 sys.setdefaultencoding('UTF-8')
-sys.path.append('../config')
+sys.path.append('..')
 
+from config.settings import logger
 import image_helper
 from readability import Document
-from settings import logger
 import transcoder
 
 

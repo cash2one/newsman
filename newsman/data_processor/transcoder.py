@@ -12,37 +12,37 @@ transcoder is the main interface for several transcoders
 import sys
 reload(sys)
 sys.setdefaultencoding('UTF-8')
-sys.path.append('../config')
+sys.path.append('..')
 
-import chardet
 import baidu_uck
 import baidu_uck_new
 import burify
+import chardet
+from config.settings import hparser
+from config.settings import logger
 import image_helper
 import os
-from settings import hparser
-from settings import logger
 import simplr
 import threading
 import time
 import urllib2
 
 # CONSTANTS
-from settings import NEWS_TEMPLATE_1
-from settings import NEWS_TEMPLATE_2
-from settings import NEWS_TEMPLATE_3
-from settings import NEWS_TEMPLATE_ARABIC
-from settings import TRANSCODED_LOCAL_DIR
-from settings import TRANSCODED_PUBLIC_DIR
-from settings import TRANSCODING_BTN_AR
-from settings import TRANSCODING_BTN_EN
-from settings import TRANSCODING_BTN_IND
-from settings import TRANSCODING_BTN_JA
-from settings import TRANSCODING_BTN_PT
-from settings import TRANSCODING_BTN_TH
-from settings import TRANSCODING_BTN_ZH_CN
-from settings import TRANSCODING_BTN_ZH_HK
-from settings import UCK_TIMEOUT
+from config.settings import NEWS_TEMPLATE_1
+from config.settings import NEWS_TEMPLATE_2
+from config.settings import NEWS_TEMPLATE_3
+from config.settings import NEWS_TEMPLATE_ARABIC
+from config.settings import TRANSCODED_LOCAL_DIR
+from config.settings import TRANSCODED_PUBLIC_DIR
+from config.settings import TRANSCODING_BTN_AR
+from config.settings import TRANSCODING_BTN_EN
+from config.settings import TRANSCODING_BTN_IND
+from config.settings import TRANSCODING_BTN_JA
+from config.settings import TRANSCODING_BTN_PT
+from config.settings import TRANSCODING_BTN_TH
+from config.settings import TRANSCODING_BTN_ZH_CN
+from config.settings import TRANSCODING_BTN_ZH_HK
+from config.settings import UCK_TIMEOUT
 
 TRANSCODE_BUTTON = {'en': TRANSCODING_BTN_EN, 'ja': TRANSCODING_BTN_JA,
                     'th': TRANSCODING_BTN_TH, 'pt': TRANSCODING_BTN_PT,

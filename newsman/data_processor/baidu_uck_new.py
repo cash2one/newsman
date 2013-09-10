@@ -12,16 +12,16 @@ A wrapper for UCK's new interface
 import sys
 reload(sys)
 sys.setdefaultencoding('UTF-8')
-sys.path.append("../config")
+sys.path.append("..")
 
+from config.settings import hparser
+from config.settings import logger
 import image_helper
-from settings import hparser
-from settings import logger
 import urllib2
 
 # CONSTANTS
-from settings import UCK_TIMEOUT
-from settings import UCK_TRANSCODING_NEW
+from config.settings import UCK_TIMEOUT
+from config.settings import UCK_TRANSCODING_NEW
 
 
 def _collect_images(content):

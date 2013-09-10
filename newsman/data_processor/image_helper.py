@@ -12,25 +12,25 @@ image_scraper is used to find all images from a web page
 import sys
 reload(sys)
 sys.setdefaultencoding('UTF-8')
-sys.path.append('../config')
+sys.path.append('..')
 
 from BeautifulSoup import BeautifulSoup
+from config.settings import hparser
+from config.settings import logger
 from cStringIO import StringIO
 import Image
 import os
 import re
-from settings import hparser
-from settings import logger
 import thumbnail
 import urllib2
 import urlparse
 
 # CONSTANTS
-from settings import IMAGES_LOCAL_DIR
-from settings import IMAGES_PUBLIC_DIR
-from settings import MIN_IMAGE_SIZE
-from settings import TRANSCODED_LOCAL_DIR
-from settings import UCK_TIMEOUT
+from config.settings import IMAGES_LOCAL_DIR
+from config.settings import IMAGES_PUBLIC_DIR
+from config.settings import MIN_IMAGE_SIZE
+from config.settings import TRANSCODED_LOCAL_DIR
+from config.settings import UCK_TIMEOUT
 
 # creat images local directory if it does not exist
 if not os.path.exists(IMAGES_LOCAL_DIR):

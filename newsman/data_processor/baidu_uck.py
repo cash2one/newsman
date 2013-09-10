@@ -12,18 +12,18 @@ call baidu uck's api to transcode a web page
 import sys
 reload(sys)
 sys.setdefaultencoding('UTF-8')
-sys.path.append('../config')
+sys.path.append('..')
 
 from BeautifulSoup import BeautifulSoup, NavigableString, Tag
+from config.settings import hparser
+from config.settings import logger
 import image_helper
-from settings import hparser
-from settings import logger
 import thumbnail
 import urllib2
 
 # CONSTANTS
-from settings import UCK_TIMEOUT
-from settings import UCK_TRANSCODING
+from config.settings import UCK_TIMEOUT
+from config.settings import UCK_TRANSCODING
 
 
 # TODO: test the code
