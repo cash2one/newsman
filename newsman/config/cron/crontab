@@ -2,10 +2,10 @@ MAILTO="jinyuan@baidu.com,zhangxiaonan@baidu.com"
 0 0 * * * python /home/ubuntu/newsman/newsman/watchdog/cron/cleaner.py data
 10 0,8,16 * * * python /home/ubuntu/newsman/newsman/watchdog/cron/cleaner.py zombie
 20 0 * * * python /home/ubuntu/newsman/newsman/watchdog/cron/idler.py
-#10 * * * * python /home/ubuntu/newsman/newsman/watchdog/cron/analyzer.py en
-#20 * * * * python /home/ubuntu/newsman/newsman/watchdog/cron/analyzer.py th
-#30 * * * * python /home/ubuntu/newsman/newsman/watchdog/cron/analyzer.py ind
-#40 * * * * python /home/ubuntu/newsman/newsman/watchdog/cron/analyzer.py en-rIN
-#50 * * * * python /home/ubuntu/newsman/newsman/watchdog/cron/analyzer.py ja
-#0 * * * * python /home/ubuntu/newsman/newsman/watchdog/cron/analyzer.py pt
+# 10 * * * * python /home/ubuntu/newsman/newsman/watchdog/cron/analyzer.py en
+# 20 * * * * python /home/ubuntu/newsman/newsman/watchdog/cron/analyzer.py th
+# 30 * * * * python /home/ubuntu/newsman/newsman/watchdog/cron/analyzer.py ind
+# 40 * * * * python /home/ubuntu/newsman/newsman/watchdog/cron/analyzer.py en-rIN
+# 50 * * * * python /home/ubuntu/newsman/newsman/watchdog/cron/analyzer.py ja
+# 0 * * * * python /home/ubuntu/newsman/newsman/watchdog/cron/analyzer.py pt
 * * * * * python /home/ubuntu/newsman/newsman/tools/server_checker.py http://mobile-global.baidu.com >/dev/null 2>&1
