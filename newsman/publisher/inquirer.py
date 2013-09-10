@@ -72,7 +72,7 @@ def get_categories_by_language(language=None):
             # image: category_image
             category_images[category] = []
             for entry in entries:
-                if 'category_image' in entry and entry['category_image']:
+                if 'category_image' in entry and entry['category_image'] and entry['category_image'] != 'None' and entry['category_image'] != 'null':
                     item = {'title': entry['title'], 'image': entry['category_image'], 'updated': entry['updated']}
                     category_images[category].append(item)
                     # limit the number of category_image to
@@ -86,7 +86,7 @@ def get_categories_by_language(language=None):
     entries = get_latest_entries_by_language(language=language, limit=search_limit)
     category_images[hotnews] = []
     for entry in entries:
-        if 'hotnews_image' in entry and entry['hotnews_image']:
+        if 'hotnews_image' in entry and entry['hotnews_image'] and entry['hotnews_image'] != 'None' and entry['hotnews_image'] != 'null':
             item = {'title': entry['title'], 'image': entry['hotnews_image'], 'updated': entry['updated']}
             category_images[hotnews].append(item)
             if len(category_images[hotnews]) == images_limit:
