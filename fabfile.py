@@ -275,6 +275,16 @@ def configure_redis():
          os.path.join(env.SERVICE_CONFIG_PATH, 'redis/redis.conf'))
 
 
+def configure_cron():
+    """
+    Install crontab jobs
+    """
+    print '=== INSTALL CRON JOBS ==='
+    put(os.path.join(env.REMOTE_CODEBASE_PATH,
+        'newsman/config/cron/crontab'), '/tmp/crontab')
+    sudo('crontab < /tmp/crontab')
+
+
 def deploy_monit():
     """
     Update config file and restart monit
@@ -299,14 +309,11 @@ def deploy_redis():
     restart_redis()
 
 
-def deploy_crontab():
+def deploy_cron():
     """
     Update cron job
     """
-    print '=== DEPLOY CRON ==='
-    put(os.path.join(env.REMOTE_CODEBASE_PATH,
-        'newsman/config/cron/crontab'), '/tmp/crontab')
-    sudo('crontab < /tmp/crontab')
+    configure_cron()
 
 
 def git_pull():
