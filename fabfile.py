@@ -34,7 +34,7 @@ def local():
     env.BACKUP_PATH = '/home/%s/Documents/baks' % env.user
     env.REMOTE_CODEBASE_PATH = '/home/%s/Documents/newsman' % env.user
     env.PIP_REQUIREMENTS_PATH = os.path.join(
-        env.REMOTE_CODEBASE_PATH, 'requirements.txt')
+        env.REMOTE_CODEBASE_PATH, 'requirements.pip')
     env.SERVICE_CONFIG_PATH = os.path.join(
         env.REMOTE_CODEBASE_PATH, 'newsman/config')
 
@@ -48,7 +48,7 @@ def AWS():
     env.BACKUP_PATH = '/home/%s/baks' % env.user
     env.REMOTE_CODEBASE_PATH = '/home/%s/newsman' % env.user
     env.PIP_REQUIREMENTS_PATH = os.path.join(
-        env.REMOTE_CODEBASE_PATH, 'requirements.txt')
+        env.REMOTE_CODEBASE_PATH, 'requirements.pip')
     env.SERVICE_CONFIG_PATH = os.path.join(
         env.REMOTE_CODEBASE_PATH, 'newsman/config')
 
