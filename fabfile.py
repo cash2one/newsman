@@ -62,6 +62,7 @@ def tokyo():
     env.hosts = ['54.248.227.71']
     env.key_filename = '/home/jinyuan/Public/AWS_identifiers/searchet.pem'
     env.servername = 'aws_tokyo'
+    env.languages = ['ja', 'zh-CN', 'zh-HK']
 
 
 def singapore():
@@ -73,6 +74,7 @@ def singapore():
     env.hosts = ['54.251.107.116']
     env.key_filename = '/home/jinyuan/Public/AWS_identifiers/mandy.pem'
     env.servername = 'aws_singapore'
+    env.languages = ['en-rIN', 'ind', 'th']
 
 
 def sao():
@@ -84,6 +86,7 @@ def sao():
     env.hosts = ['54.232.81.44']
     env.key_filename = '/home/jinyuan/Public/AWS_identifiers/guochen.pem'
     env.servername = 'aws_sao'
+    env.languages = ['en', 'pt']
 
 
 # ==============================================
@@ -277,12 +280,9 @@ def configure_redis():
 
 def configure_cron():
     """
-    Install crontab jobs
+    Configure crontab jobs
     """
-    print '=== INSTALL CRON JOBS ==='
-    put(os.path.join(env.REMOTE_CODEBASE_PATH,
-        'newsman/config/cron/crontab'), '/tmp/crontab')
-    sudo('crontab < /tmp/crontab')
+    print '=== CONFIGURE CRON JOBS ==='
 
 
 def deploy_monit():
@@ -314,6 +314,9 @@ def deploy_cron():
     Update cron job
     """
     configure_cron()
+    put(os.path.join(env.REMOTE_CODEBASE_PATH,
+        'newsman/config/cron/crontab'), '/tmp/crontab')
+    sudo('crontab < /tmp/crontab')
 
 
 def git_pull():
