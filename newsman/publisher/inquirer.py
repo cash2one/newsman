@@ -14,22 +14,22 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 
 from bson.objectid import ObjectId
-from config import Collection, db
-from config import logger
-from config import rclient, ConnectionError
+from settings import Collection, db
+from settings import logger
+from settings import rclient, ConnectionError
 import os
 
 # CONSTANTS
-from config import CODE_BASE
-from config import HOTNEWS_TITLE_AR
-from config import HOTNEWS_TITLE_EN
-from config import HOTNEWS_TITLE_JA
-from config import HOTNEWS_TITLE_IND
-from config import HOTNEWS_TITLE_PT
-from config import HOTNEWS_TITLE_TH
-from config import HOTNEWS_TITLE_ZH_CN
-from config import HOTNEWS_TITLE_ZH_HK
-from config import LANGUAGES
+from settings import CODE_BASE
+from settings import HOTNEWS_TITLE_AR
+from settings import HOTNEWS_TITLE_EN
+from settings import HOTNEWS_TITLE_JA
+from settings import HOTNEWS_TITLE_IND
+from settings import HOTNEWS_TITLE_PT
+from settings import HOTNEWS_TITLE_TH
+from settings import HOTNEWS_TITLE_ZH_CN
+from settings import HOTNEWS_TITLE_ZH_HK
+from settings import LANGUAGES
 
 HOTNEWS_TITLE = {'en': HOTNEWS_TITLE_EN, 'ja': HOTNEWS_TITLE_JA, 'th': HOTNEWS_TITLE_TH, 'pt': HOTNEWS_TITLE_PT, 'ind':
                   HOTNEWS_TITLE_IND, 'en-rIN': HOTNEWS_TITLE_EN, 'ar': HOTNEWS_TITLE_AR, 'zh-CN': HOTNEWS_TITLE_ZH_CN, 'zh-HK': HOTNEWS_TITLE_ZH_HK}

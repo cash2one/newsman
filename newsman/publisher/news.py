@@ -15,9 +15,9 @@ sys.setdefaultencoding('UTF-8')
 sys.path.append('/var/www/wsgi')
 
 import cgi
-from config import logger
 import json
 import inquirer
+from settings import logger
 
 
 def get_categories_by_language(*bundle):
