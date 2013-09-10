@@ -97,6 +97,7 @@ def setup_sys_install():
     sudo('apt-get -y update')
     sudo('apt-get -y install build-essential gcc make git-core python-dev python-imaging python-pip curl monit mongodb redis-server sox lame libjpeg8 libjpeg-dev libfreetype6 libfreetype6-dev zlib1g-dev sendmail-bin sensible-mda')
     sudo('apt-get -y upgrade')
+    stop_sendmail_logging()
 
 
 def setup_pip_require():
@@ -105,6 +106,18 @@ def setup_pip_require():
     """
     print('=== SETUP PIP REQUIREMENTS===')
     sudo("pip install -r %s" % env.PIP_REQUIREMENTS_PATH)
+
+
+def setup_repo():
+    """
+    git clone from repo in github. Need to add public key to github server.
+    """
+    print '=== CLONE FROM GITHUB ==='
+    with cd(os.path.dirname(env.REMOTE_CODEBASE_PATH)):
+        run("git clone %s %s" %
+            (env.GIT_REPO_URL, os.path.basename(env.REMOTE_CODEBASE_PATH)))
+    configure_settings()
+    setup_folders()
 
 
 def configure_settings():
@@ -132,16 +145,25 @@ def setup_folders():
             (os.path.join(env.REMOTE_CODEBASE_PATH, 'newsman/templates/static*'), 'STATIC/news/ts'))
 
 
-def setup_repo():
+def stop_sendmail_logging():
     """
-    git clone from repo in github. Need to add public key to github server.
+    Stop sendmail logging
     """
-    print '=== CLONE FROM GITHUB ==='
-    with cd(os.path.dirname(env.REMOTE_CODEBASE_PATH)):
-        run("git clone %s %s" %
-            (env.GIT_REPO_URL, os.path.basename(env.REMOTE_CODEBASE_PATH)))
-    configure_settings()
+    print '=== STOP SENDMAIL LOGGING'
+    from fabric.contrib.files import append, comment
+    comment('/etc/rsyslog.conf', 'mail', use_sudo=True)
+    append('/etc/rsyslog.conf', 'mail.none', use_sudo=True)
+    sudo('/etc/init.d/rsyslog restart')
+
+
+def initialize_sys_work():
+    """
+    Initialize system work
+    """
+    print '=== INITIALIZE SYSTEM WORK'
+    stop_sendmail_logging()
     setup_folders()
+    configure_settings()
 
 
 def setup():
@@ -151,6 +173,7 @@ def setup():
     setup_sys_install()
     setup_repo()
     setup_pip_require()
+    initialize_sys_work()
 
 
 def restart_monit():
