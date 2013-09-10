@@ -15,12 +15,12 @@ sys.setdefaultencoding('UTF-8')
 sys.path.append('/home/ubuntu/newsman/newsman')
 #sys.path.append('/home/jinyuan/Downloads/newsman/newsman')
 
-from config import Collection, db
-from config import logger
+from config.settings import Collection, db
+from config.settings import logger
 from scraper import rss
 
 # CONSTANTS
-from config import FEED_REGISTRAR
+from config.settings import FEED_REGISTRAR
 
 
 def _update(feed_ids):

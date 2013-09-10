@@ -15,14 +15,14 @@ sys.setdefaultencoding('UTF-8')
 sys.path.append("/home/ubuntu/newsman/newsman")
 #sys.path.append("/home/jinyuan/Downloads/newsman/newsman")
 
-from config import Collection, db
-from config import logger
+from config.settings import Collection, db
+from config.settings import logger
 from datetime import datetime, timedelta
 import time
 
 # CONSTANTS
-from config import FEED_REGISTRAR
-from config import FEED_UPDATE_DAYS
+from config.settings import FEED_REGISTRAR
+from config.settings import FEED_UPDATE_DAYS
 
 
 def _find_idler():

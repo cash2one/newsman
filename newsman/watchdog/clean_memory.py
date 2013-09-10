@@ -15,9 +15,9 @@ sys.setdefaultencoding('UTF-8')
 sys.path.append("..")
 
 from bson.objectid import ObjectId
-from config import Collection, db
-from config import logger
-from config import rclient
+from config.settings import Collection, db
+from config.settings import logger
+from config.settings import rclient
 import time
 import cleaner
 

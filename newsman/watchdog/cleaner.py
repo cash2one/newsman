@@ -16,7 +16,7 @@ sys.path.append('/home/ubuntu/newsman/newsman')
 #sys.path.append('/home/jinyuan/Downloads/newsman/newsman')
 
 import calendar
-from config import logger
+from config.settings import logger
 from datetime import datetime, timedelta
 import time
 import clean_database
@@ -25,7 +25,7 @@ import clean_disk
 import clean_process
 
 # CONSTANTS
-from config import DATABASE_REMOVAL_DAYS
+from config.settings import DATABASE_REMOVAL_DAYS
 
 
 def is_overdue(time_stamp):

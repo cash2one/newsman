@@ -18,14 +18,14 @@ from bson.objectid import ObjectId
 import calendar
 import clean_disk
 import clean_memory
-from config import Collection, db
-from config import logger
+from config.settings import Collection, db
+from config.settings import logger
 from datetime import datetime, timedelta
 import time
 
 # CONSTANTS
-from config import FEED_REGISTRAR
-from config import DATABASE_REMOVAL_DAYS
+from config.settings import FEED_REGISTRAR
+from config.settings import DATABASE_REMOVAL_DAYS
 
 
 def clean_by_item(candidate):

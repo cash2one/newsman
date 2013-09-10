@@ -14,16 +14,16 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append("..")
 
-from config import Collection, db
-from config import logger
+from config.settings import Collection, db
+from config.settings import logger
 import os
 import cleaner
 
 # CONSTANS
-from config import IMAGES_LOCAL_DIR
-from config import MEDIA_LOCAL_DIR
-from config import MEDIA_TEMP_LOCAL_DIR
-from config import TRANSCODED_LOCAL_DIR
+from config.settings import IMAGES_LOCAL_DIR
+from config.settings import MEDIA_LOCAL_DIR
+from config.settings import MEDIA_TEMP_LOCAL_DIR
+from config.settings import TRANSCODED_LOCAL_DIR
 
 
 def clean_by_item(candidate):
