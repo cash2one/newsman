@@ -1,5 +1,5 @@
-#!/usr/bin/env python 
-#-*- coding: utf-8 -*- 
+#!/usr/bin/env python
+#-*- coding: utf-8 -*-
 
 """
 Fabric config file
@@ -10,8 +10,8 @@ Based on https://github.com/fengli/fabfile-deploy/blob/master/fabfile.py
 # @created Aug. 21, 2013
 
 
-import sys 
-reload(sys) 
+import sys
+reload(sys)
 sys.setdefaultencoding('UTF-8')
 
 from fabric.api import *
@@ -23,7 +23,7 @@ env.REDIS_URL = 'http://download.redis.io/releases/redis-2.6.16.tar.gz'
 env.MONGODB_URL = 'http://fastdl.mongodb.org/linux/mongodb-linux-x86_64-2.4.6.tgz'
 
 
-def local ():
+def local():
     env.user = 'jinyuan'
     env.hosts = ['localhost']
     env.servername = 'local'
@@ -40,8 +40,10 @@ def aws():
     env.key_filename = '/home/jinyuan/Public/AWS_identifiers/searchet.pem'
     env.BACKUP_PATH = '/home/%s/baks' % env.user
     env.REMOTE_CODEBASE_PATH = '/home/%s/newsman' % env.user
-    env.PIP_REQUIREMENTS_PATH = os.path.join(env.REMOTE_CODEBASE_PATH, 'requirements.txt')
-    env.SERVICE_CONFIG_PATH = os.path.join(env.REMOTE_CODEBASE_PATH, 'newman/config')
+    env.PIP_REQUIREMENTS_PATH = os.path.join(
+        env.REMOTE_CODEBASE_PATH, 'requirements.txt')
+    env.SERVICE_CONFIG_PATH = os.path.join(
+        env.REMOTE_CODEBASE_PATH, 'newman/config')
     #env.servername = ['aws_sing', 'aws_sao', 'aws_tokyo']
     env.servername = 'aws_tokyo'
 
@@ -71,16 +73,21 @@ def setup_repo():
     """
     print('=== CLONE FROM GITHUB ===')
     with cd(os.path.dirname(env.REMOTE_CODEBASE_PATH)):
-        run("git clone %s %s" % (env.GIT_REPO_URL, os.path.basename(env.REMOTE_CODEBASE_PATH)))
+        run("git clone %s %s" %
+            (env.GIT_REPO_URL, os.path.basename(env.REMOTE_CODEBASE_PATH)))
 
     from fabric.contrib.files import uncomment
-    uncomment(os.path.join(env.REMOTE_CODEBASE_PATH, 'newsman/config.py'), env.host)
-    uncomment(os.path.join(env.REMOTE_CODEBASE_PATH, 'newsman/config.py'), env.user)
-    run("cp %s %s" % (os.path.join(env.REMOTE_CODEBASE_PATH, 'newsman/config.py'), os.path.join(env.REMOTE_CODEBASE_PATH, 'newsman/publisher/config.py')))
+    uncomment(
+        os.path.join(env.REMOTE_CODEBASE_PATH, 'newsman/config/settings.py'), env.host)
+    uncomment(
+        os.path.join(env.REMOTE_CODEBASE_PATH, 'newsman/config/settings.py'), env.user)
+    run("cp %s %s" % (os.path.join(env.REMOTE_CODEBASE_PATH, 'newsman/config/settings.py'),
+        os.path.join(env.REMOTE_CODEBASE_PATH, 'newsman/publisher/settings.py')))
 
     with cd(os.path.dirname(env.REMOTE_CODEBASE_PATH)):
         run('mkdir -p STATIC/news/ts')
-        run("cp -r %s %s" % (os.path.join(env.REMOTE_CODEBASE_PATH, 'newsman/templates/static*'), 'STATIC/news/ts'))
+        run("cp -r %s %s" %
+            (os.path.join(env.REMOTE_CODEBASE_PATH, 'newsman/templates/static*'), 'STATIC/news/ts'))
 
 
 def setup():
@@ -121,7 +128,8 @@ def configure_monit():
     Copy monit.conf to /etc/monit
     """
     print '=== CONFIGURE MONIT ==='
-    sudo('cp -r %s /etc/monit/' % os.path.join(env.SERVICE_CONFIG_PATH, 'monit/*'))
+    sudo('cp -r %s /etc/monit/' %
+         os.path.join(env.SERVICE_CONFIG_PATH, 'monit/*'))
 
 
 def restart_mongodb():
@@ -153,7 +161,8 @@ def configure_mongodb():
     Copy mongodb.conf to /etc/mongodb
     """
     print '=== CONFIGURE MONGODB ==='
-    sudo('cp %s /etc/mongodb.conf' % os.path.join(env.SERVICE_CONFIG_PATH, 'mongodb/mongodb.conf'))
+    sudo('cp %s /etc/mongodb.conf' %
+         os.path.join(env.SERVICE_CONFIG_PATH, 'mongodb/mongodb.conf'))
 
 
 def restart_redis():
@@ -185,7 +194,8 @@ def configure_redis():
     Copy redis.conf to /etc/redis
     """
     print '=== CONFIGURE REDIS ==='
-    sudo('cp %s /etc/redis/redis.conf' % os.path.join(env.SERVICE_CONFIG_PATH, 'redis/redis.conf'))
+    sudo('cp %s /etc/redis/redis.conf' %
+         os.path.join(env.SERVICE_CONFIG_PATH, 'redis/redis.conf'))
 
 
 def deploy_monit():
