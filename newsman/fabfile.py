@@ -24,9 +24,19 @@ env.MONGODB_URL = 'http://fastdl.mongodb.org/linux/mongodb-linux-x86_64-2.4.6.tg
 
 
 def local():
+    """
+    Setup local machine
+    """
+    print '=== SETUP LOCAL MACHINE ==='
     env.user = 'jinyuan'
     env.hosts = ['localhost']
     env.servername = 'local'
+    env.BACKUP_PATH = '/home/%s/Documents/baks' % env.user
+    env.REMOTE_CODEBASE_PATH = '/home/%s/Documents/newsman' % env.user
+    env.PIP_REQUIREMENTS_PATH = os.path.join(
+        env.REMOTE_CODEBASE_PATH, 'requirements.txt')
+    env.SERVICE_CONFIG_PATH = os.path.join(
+        env.REMOTE_CODEBASE_PATH, 'newman/config')
 
 
 def AWS():
@@ -273,12 +283,10 @@ def git_pull():
         run('git pull')
 
 
-def deploy_full():
+def service():
     """
     Update code and restart services
     """
-    git_pull()
-    configure_settings()
     deploy_redis()
     deploy_mongodb()
     deploy_monit()
