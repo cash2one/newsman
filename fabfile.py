@@ -286,7 +286,7 @@ def configure_cron():
     from fabric.contrib.files import uncomment
     for language in env.languages:
         uncomment(
-            os.path.join(env.REMOTE_CODEBASE_PATH, 'newsman/config/cron/crontab'), 'py %s$' %
+            os.path.join(env.REMOTE_CODEBASE_PATH, 'newsman/config/cron/cron.job'), 'py %s$' %
             language)
 
 
@@ -320,7 +320,7 @@ def deploy_cron():
     """
     configure_cron()
     put(os.path.join(env.REMOTE_CODEBASE_PATH,
-        'newsman/config/cron/crontab'), '/tmp/crontab')
+        'newsman/config/cron/cron.job'), '/tmp/crontab')
     run('crontab < /tmp/crontab')
 
 
