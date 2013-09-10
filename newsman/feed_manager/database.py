@@ -12,15 +12,15 @@ database works to manage interaction with the feed database
 import sys
 reload(sys)
 sys.setdefaultencoding('UTF-8')
-sys.path.append("../config")
+sys.path.append("..")
 
 from bson.objectid import ObjectId
-from settings import Collection, db
-from settings import logger
+from config.settings import Collection, db
+from config.settings import logger
 import time
 
 # CONSTANTS
-from settings import FEED_REGISTRAR
+from config.settings import FEED_REGISTRAR
 
 
 def get(feed_id=None, feed_link=None, language=None):

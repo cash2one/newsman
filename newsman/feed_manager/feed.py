@@ -12,12 +12,12 @@ feed works to get feed meta info into database
 import sys
 reload(sys)
 sys.setdefaultencoding('UTF-8')
-sys.path.append("../config")
+sys.path.append("..")
 
+from config.settings import logger
 import database as db_feeds
 import feedparser
 from scraper import rss
-from settings import logger
 import socket
 socket.setdefaulttimeout(10) # 10 seconds
 
