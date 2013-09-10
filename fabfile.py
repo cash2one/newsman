@@ -330,6 +330,7 @@ def git_pull():
     """
     print '=== PULL LATEST SOURCE ==='
     with cd(env.REMOTE_CODEBASE_PATH):
+        run('git reset --hard')
         run('git pull')
 
 
