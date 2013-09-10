@@ -299,6 +299,16 @@ def deploy_redis():
     restart_redis()
 
 
+def deploy_crontab():
+    """
+    Update cron job
+    """
+    print '=== DEPLOY CRON ==='
+    put(os.path.join(env.REMOTE_CODEBASE_PATH,
+        'newsman/config/cron/crontab'), '/tmp/crontab')
+    sudo('crontab < /tmp/crontab')
+
+
 def git_pull():
     """
     Git pull latest code
@@ -315,6 +325,7 @@ def service():
     deploy_redis()
     deploy_mongodb()
     deploy_monit()
+    deploy_crontab()
 
 
 def deploy():
