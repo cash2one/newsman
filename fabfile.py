@@ -285,7 +285,7 @@ def configure_cron():
     print '=== CONFIGURE CRON JOBS ==='
     from fabric.contrib.files import uncomment
     for language in env.languages:
-        uncomment(os.path.join(env.REMOTE_CODEBASE_PATH, 'newsman/config/cron/crontab'), language)
+        uncomment(os.path.join(env.REMOTE_CODEBASE_PATH, 'newsman/config/cron/crontab'), 'py %s$' % language)
 
 
 def deploy_monit():
