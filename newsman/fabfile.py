@@ -149,8 +149,8 @@ def setup():
     Install for all the prequisitions.
     """
     setup_sys_install()
-    setup_pip_require()
     setup_repo()
+    setup_pip_require()
 
 
 def restart_monit():
