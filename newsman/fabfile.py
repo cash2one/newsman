@@ -29,23 +29,51 @@ def local():
     env.servername = 'local'
 
 
-def aws():
+def AWS():
     """
-    set up basic settings for aws connectoins
+    Setup common settings for all AWS servers
     """
+    print '=== SET AWS SERVER CONFIGURATION ==='
     env.user = 'ubuntu'
-    #env.hosts = ['54.251.107.116', '54.232.81.44', '54.248.227.71']
-    env.hosts = ['54.248.227.71']
-    #env.key_filename = ['/home/jinyuan/Public/AWS_identifiers/mandy.pem', '/home/jinyuan/Public/AWS_identifiers/guochen.pem', '/home/jinyuan/Public/AWS_identifiers/searchet.pem']
-    env.key_filename = '/home/jinyuan/Public/AWS_identifiers/searchet.pem'
     env.BACKUP_PATH = '/home/%s/baks' % env.user
     env.REMOTE_CODEBASE_PATH = '/home/%s/newsman' % env.user
     env.PIP_REQUIREMENTS_PATH = os.path.join(
         env.REMOTE_CODEBASE_PATH, 'requirements.txt')
     env.SERVICE_CONFIG_PATH = os.path.join(
         env.REMOTE_CODEBASE_PATH, 'newman/config')
-    #env.servername = ['aws_sing', 'aws_sao', 'aws_tokyo']
+
+
+def tokyo():
+    """
+    Set up basic settings for AWS Tokyo server
+    """
+    AWS()
+    print '=== SET TOKYO SERVER CONFIGURATION ==='
+    env.hosts = ['54.248.227.71']
+    env.key_filename = '/home/jinyuan/Public/AWS_identifiers/searchet.pem'
     env.servername = 'aws_tokyo'
+
+
+def singapore():
+    """
+    Set up basic settings for AWS Singapore server
+    """
+    AWS()
+    print '=== SET SINGAPORE SERVER CONFIGURATION ==='
+    env.hosts = ['54.251.107.116']
+    env.key_filename = '/home/jinyuan/Public/AWS_identifiers/mandy.pem'
+    env.servername = 'aws_singapore'
+
+
+def sao():
+    """
+    Set up basic settings for AWS Sao Paolo server
+    """
+    AWS()
+    print '=== SET SAO PAOLO SERVER CONFIGURATION ==='
+    env.hosts = ['54.232.81.44']
+    env.key_filename = '/home/jinyuan/Public/AWS_identifiers/guochen.pem'
+    env.servername = 'aws_sao'
 
 
 # ==============================================
@@ -55,7 +83,7 @@ def setup_sys_install():
     """
     Setup system libraries and binaries
     """
-    print "=== SETUP LIBRARIES ==="
+    print "=== SETUP SYSTEM LIBRARIES ==="
     sudo('apt-get -y install build-essential gcc make git-core python-dev python-imaging python-pip curl monit mongodb redis-server sox lame libjpeg8 libjpeg-dev libfreetype6 libfreetype6-dev zlib1g-dev')
 
 
@@ -71,7 +99,7 @@ def configure_settings():
     """
     Modify settings file according to the server
     """
-    print '=== CONFIGURE SETTINGS ==='
+    print '=== CONFIGURE REPO SETTINGS ==='
     from fabric.contrib.files import uncomment
     uncomment(
         os.path.join(env.REMOTE_CODEBASE_PATH, 'newsman/config/settings.py'), env.host)
@@ -250,6 +278,7 @@ def deploy_full():
     Update code and restart services
     """
     git_pull()
+    configure_settings()
     deploy_redis()
     deploy_mongodb()
     deploy_monit()
