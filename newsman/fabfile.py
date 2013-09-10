@@ -67,15 +67,11 @@ def setup_pip_require():
     sudo("pip install -r %s" % env.PIP_REQUIREMENTS_PATH)
 
 
-def setup_repo():
+def configure_settings():
     """
-    git clone from repo in github. Need to add public key to github server.
+    Modify settings file according to the server
     """
-    print('=== CLONE FROM GITHUB ===')
-    with cd(os.path.dirname(env.REMOTE_CODEBASE_PATH)):
-        run("git clone %s %s" %
-            (env.GIT_REPO_URL, os.path.basename(env.REMOTE_CODEBASE_PATH)))
-
+    print '=== CONFIGURE SETTINGS ==='
     from fabric.contrib.files import uncomment
     uncomment(
         os.path.join(env.REMOTE_CODEBASE_PATH, 'newsman/config/settings.py'), env.host)
@@ -84,10 +80,28 @@ def setup_repo():
     run("cp %s %s" % (os.path.join(env.REMOTE_CODEBASE_PATH, 'newsman/config/settings.py'),
         os.path.join(env.REMOTE_CODEBASE_PATH, 'newsman/publisher/settings.py')))
 
+
+def setup_folders():
+    """
+    Create folders needed by code
+    """
+    print '=== SETUP FOLDERS ==='
     with cd(os.path.dirname(env.REMOTE_CODEBASE_PATH)):
         run('mkdir -p STATIC/news/ts')
         run("cp -r %s %s" %
             (os.path.join(env.REMOTE_CODEBASE_PATH, 'newsman/templates/static*'), 'STATIC/news/ts'))
+
+
+def setup_repo():
+    """
+    git clone from repo in github. Need to add public key to github server.
+    """
+    print '=== CLONE FROM GITHUB ==='
+    with cd(os.path.dirname(env.REMOTE_CODEBASE_PATH)):
+        run("git clone %s %s" %
+            (env.GIT_REPO_URL, os.path.basename(env.REMOTE_CODEBASE_PATH)))
+    configure_settings()
+    setup_folders()
 
 
 def setup():
@@ -246,3 +260,4 @@ def deploy():
     Update code
     """
     git_pull()
+    configure_settings()
