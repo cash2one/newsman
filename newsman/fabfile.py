@@ -29,7 +29,7 @@ def local():
     """
     print '=== SETUP LOCAL MACHINE ==='
     env.user = 'jinyuan'
-    env.hosts = ['localhost']
+    env.hosts = ['127.0.0.1']
     env.servername = 'local'
     env.BACKUP_PATH = '/home/%s/Documents/baks' % env.user
     env.REMOTE_CODEBASE_PATH = '/home/%s/Documents/newsman' % env.user
