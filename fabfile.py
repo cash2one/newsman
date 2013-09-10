@@ -36,7 +36,7 @@ def local():
     env.PIP_REQUIREMENTS_PATH = os.path.join(
         env.REMOTE_CODEBASE_PATH, 'requirements.txt')
     env.SERVICE_CONFIG_PATH = os.path.join(
-        env.REMOTE_CODEBASE_PATH, 'newman/config')
+        env.REMOTE_CODEBASE_PATH, 'newsman/config')
 
 
 def AWS():
@@ -50,7 +50,7 @@ def AWS():
     env.PIP_REQUIREMENTS_PATH = os.path.join(
         env.REMOTE_CODEBASE_PATH, 'requirements.txt')
     env.SERVICE_CONFIG_PATH = os.path.join(
-        env.REMOTE_CODEBASE_PATH, 'newman/config')
+        env.REMOTE_CODEBASE_PATH, 'newsman/config')
 
 
 def tokyo():
