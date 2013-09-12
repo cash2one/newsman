@@ -219,7 +219,8 @@ def restore_mongodb():
     Restore MongoDB
     """
     print '=== RESTORE MONGODB ==='
-    sudo('mongorestore -h 127.0.0.1 -d news --directoryperdb ' % env.BACKUP_PATH)
+    sudo('mongorestore -h 127.0.0.1 -d news --directoryperdb ' %
+         env.BACKUP_PATH)
 
 
 def backup_mongodb():
