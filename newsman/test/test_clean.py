@@ -7,23 +7,23 @@ sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
 # remove collection
-from config import db
+from config.settings import db
 collections = db.collection_names()
 for collection in collections:
-    if collection != 'system.indexes' and collection != 'feeds' and collection != 'categories':
+    if collection != 'system.indexes' and collection != 'feeds':
         db.drop_collection(collection)
 print 'Database cleaned!'
 
 # clean memory
-from config import rclient
+from config.settings import rclient
 rclient.flushall()
 print 'Memory cleaned!'
 
 # clean physical files
 import os
-from config import IMAGES_LOCAL_DIR
-from config import MEDIA_LOCAL_DIR
-from config import TRANSCODED_LOCAL_DIR
+from config.settings import IMAGES_LOCAL_DIR
+from config.settings import MEDIA_LOCAL_DIR
+from config.settings import TRANSCODED_LOCAL_DIR
 
 
 def _remove_dir(dir):
