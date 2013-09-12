@@ -15,17 +15,19 @@ sys.setdefaultencoding('UTF-8')
 sys.path.append("..")
 
 from bson.objectid import ObjectId
+import calendar
 from config.settings import Collection, db
 from config.settings import rclient
 from datetime import datetime, timedelta
 from scraper import memory
+import time
 
 # CONSTANTS
 from config.settings import MEMORY_RESTORATION_DAYS
 from config.settings import LANGUAGES
 
 
-def _get_expiration(updated):
+def _expired(updated):
     """
     Compute expiration time
     """
@@ -51,20 +53,25 @@ def restore():
         return None
 
     print '=== RESTORE MEMORY FROM DATABASE ==='
-    collection_names = db.collection_names()
-    for collection_name in collection_names:
-        if collection_name != 'system.indexes' and collection_name != 'feeds':
-            col = Collection(db, collection_name)
+    try:
+        collection_names = db.collection_names()
+        for collection_name in collection_names:
+            if collection_name != 'system.indexes' and collection_name != 'feeds':
+                col = Collection(db, collection_name)
 
-            # find valid time to filter out expired items
-            current_utc_time_posix = calendar.timegm(time.gmtime())
-            active_datetime = datetime.utcfromtimestamp(current_utc_time_posix) - timedelta(days=MEMORY_RESTORATION_DAYS)
-            active_posix = calendar.timegm(active_datetime.timetuple())
+                # find valid time to filter out expired items
+                current_utc_time_posix = calendar.timegm(time.gmtime())
+                active_datetime = datetime.utcfromtimestamp(current_utc_time_posix) - timedelta(days=MEMORY_RESTORATION_DAYS)
+                active_posix = calendar.timegm(active_datetime.timetuple())
 
-            items = col.find({'updated': {'$gte': active_posix}}).sort('updated', -1)
-            for item in items:
-                expiration = _get_expiration(float(item['updated']))
-                memory.update(item, expiration)
+                items = col.find({'updated': {'$gte': active_posix}}).sort('updated', -1)
+                for item in items:
+                    expiration = _expired(float(item['updated']))
+                    memory.update(item, expiration)
+        print '=== MEMORY SUCCESSFULLY RESTORED ==='
+    except Exception as k:
+        print 'Memory restoring blocked due to [%s]' % str(k)
+        return None
 
 
 if __name__ == "__main__":
