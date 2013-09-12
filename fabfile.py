@@ -350,6 +350,7 @@ def deploy_redis():
     """
     configure_redis()
     restart_redis()
+    backup_redis()
 
 
 def deploy_cron():
