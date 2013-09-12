@@ -263,6 +263,25 @@ def configure_mongodb():
          os.path.join(env.SERVICE_CONFIG_PATH, 'mongodb/mongodb.conf'))
 
 
+def restore_redis():
+    """
+    Restore Redis
+    """
+    print '=== RESTORE REDIS ==='
+    sudo('monit stop redis-server')
+    sudo('cp %s /var/lib/redis' % os.path.join(env.BACKUP_PATH, 'dump.rdb'))
+    sudo('sudo chown redis:redis /var/lib/redis/dump.rdb')
+    sudo('monit start redis-server')
+
+
+def backup_redis():
+    """
+    Setup Redis backup
+    """
+    print '=== BACKUP REDIS ==='
+    sudo('ln /var/lib/redis/dump.rdb %s' % os.path.join(env.BACKUP_PATH, 'dump.rdb')
+
+
 def restart_redis():
     """
     Restart redis server
@@ -322,6 +341,7 @@ def deploy_mongodb():
     """
     configure_mongodb()
     restart_mongodb()
+    backup_mongodb()
 
 
 def deploy_redis():
