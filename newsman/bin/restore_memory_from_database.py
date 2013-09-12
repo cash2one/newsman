@@ -51,11 +51,10 @@ def restore():
         return None
 
     print '=== RESTORE MEMORY FROM DATABASE ==='
-    collections = db.collection_names()
-    for collection in collections:
-        if collection != 'system.indexes' and collection != 'feeds':
-            language = collection
-            col = Collection(db, language)
+    collection_names = db.collection_names()
+    for collection_name in collection_names:
+        if collection_name != 'system.indexes' and collection_name != 'feeds':
+            col = Collection(db, collection_name)
 
             # find valid time to filter out expired items
             current_utc_time_posix = calendar.timegm(time.gmtime())
@@ -63,10 +62,9 @@ def restore():
             active_posix = calendar.timegm(active_datetime.timetuple())
 
             items = col.find({'updated': {'$gte': active_posix}}).sort('updated', -1)
-            if items:
-                for item in items:
-                    expiration = _get_expiration(float(item['updated']))
-                    memory.update(item, expiration)
+            for item in items:
+                expiration = _get_expiration(float(item['updated']))
+                memory.update(item, expiration)
 
 
 if __name__ == "__main__":
