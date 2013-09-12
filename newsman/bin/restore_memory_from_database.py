@@ -41,9 +41,11 @@ def restore():
     """
     if memory failed, restore items from database
     """
-    # check if redis is alive
     try:
-        rcling.ping()
+        # check if redis is alive
+        rclient.ping()
+        # flushall existing data
+        rclient.flushall()
     except ConnectionError:
         print 'Redis is down! Cannot recover memory data from database'
         return None
@@ -62,30 +64,9 @@ def restore():
 
             items = col.find({'updated': {'$gte': active_posix}}).sort('updated', -1)
             if items:
-                items_with_expiration = [(item, _get_expiration(float(item['updated']))) for item in items]
-                memory.update_memory(items_with_expiration, language, category, feed_id)
-            print language, category, feed_id, len(items_with_expiration)
-        l.close()
-        print 'memory to database for %s' % language
-        language_in_memory_total = rclient.zcard(language)
-        language_ids = rclient.zrange(language, 0, language_in_memory_total)
-        if language_ids:
-            for language_id in language_ids:
-                if not rclient.get(language_id):
-                    print language_id, 'is missing'
-                    id_aloof = col.find_one({'_id': ObjectId(language_id)})
-                    if id_aloof:
-                        for key, value in id_aloof.iteritems():
-                            id_aloof[key] = str(value)
-                        rclient.set(id_aloof['_id'], id_aloof)
-                        # print '--', id_aloof['_id'],
-                        # datetime.utcfromtimestamp(id_aloof['updated']),
-                        # get_expiration(float(id_aloof['updated']))
-                        rclient.expire(
-                            id_aloof['_id'], get_expiration(float(id_aloof['updated'])))
-                        print 'restored', id_aloof['_id'], id_aloof['title'], datetime.utcfromtimestamp(float(id_aloof['updated']))
-        print
-    return 0
+                for item in items:
+                    expiration = _get_expiration(float(item['updated']))
+                    memory.update(item, expiration)
 
 
 if __name__ == "__main__":
