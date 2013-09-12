@@ -8,18 +8,19 @@ restore memory from database, if memory failed
 # @contact chengdujin@gmail.com
 # @created Aug. 23, 2013
 
+
 import sys 
 reload(sys) 
 sys.setdefaultencoding('UTF-8')
 sys.path.append("..")
 
 from bson.objectid import ObjectId
-from config import Collection, db
-from config import rclient
+from config.settings import Collection, db
+from config.settings import rclient
 from scraper import memory
 
 # CONSTANTS
-from config import MEMORY_RESTORATION_DAYS
+from config.settings import MEMORY_RESTORATION_DAYS
 
 
 def restore():
