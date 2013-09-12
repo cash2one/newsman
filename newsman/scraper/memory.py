@@ -24,7 +24,7 @@ from config.settings import MEMORY_EXPIRATION_DAYS
 field_list = ['_id', 'categories', 'category_image', 'feed', 'hotnews_image', 'image', 'language', 'link', 'mp3', 'summary', 'thumbnail_image', 'title', 'transcoded', 'updated']
 
 
-def update(entry=None):
+def update(entry=None, expiration=None):
     """
     add news and its attributes to memory
     """
@@ -47,7 +47,7 @@ def update(entry=None):
         rclient.set(entry_reduced['_id'], entry_reduced)
 
         # expired in redis is counted in seconds
-        expiration = MEMORY_EXPIRATION_DAYS * 24 * 60 * 60
+        expiration = MEMORY_EXPIRATION_DAYS * 24 * 60 * 60 if not expiration else expiration
         rclient.expire(entry_reduced['_id'], expiration)
 
         # add entry ids to the language list
