@@ -214,6 +214,22 @@ def configure_monit():
          os.path.join(env.SERVICE_CONFIG_PATH, 'monit/*'))
 
 
+def restore_mongodb():
+    """
+    Restore MongoDB
+    """
+    print '=== RESTORE MONGODB ==='
+    sudo('mongorestore -h 127.0.0.1 -d news --directoryperdb ' % env.BACKUP_PATH)
+
+
+def backup_mongodb():
+    """
+    Setup MongoDB backup
+    """
+    print '=== BACKUP MONGODB ==='
+    sudo('mongodump -h 127.0.0.1 -d news -o %s' % env.BACKUP_PATH)
+
+
 def restart_mongodb():
     """
     Restart MongoDB server
