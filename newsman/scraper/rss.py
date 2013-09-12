@@ -27,7 +27,7 @@ import memory
 import random
 import rss_parser
 import time
-from watchdog.cron import clean_disk, clean_database
+from watchdog import clean_disk, clean_database
 
 # CONSTANTS
 from config.settings import CATEGORY_IMAGE_SIZE
