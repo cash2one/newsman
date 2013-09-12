@@ -69,7 +69,7 @@ class GoogleTranslateAPI(threading.Thread):
                 logger.error('Error %s found for %s' % (str(error), self.text))
                 self.result = None
             else:
-                logger.error('No content returned for %s' % self.text)
+                logger.info('No content returned for %s' % self.text)
                 self.result = None
 
 
@@ -258,7 +258,7 @@ def _download(language='en', query='Service provided by Baidu', tmp_file='do_not
             if download_completed:
                 return tmp_file
             else:
-                logger.error('Download not completed, now removing the file')
+                logger.info('Download not completed, now removing the file')
                 if os.path.exists(tmp_file):
                     os.remove(tmp_file)
                 return None
