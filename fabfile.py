@@ -148,6 +148,10 @@ def setup_folders():
             (os.path.join(env.REMOTE_CODEBASE_PATH, 'newsman/templates/static*'), 'STATIC/news/ts'))
     with cd(os.path.dirname(env.BACKUP_PATH)):
         run('mkdir %s' % os.path.basename(env.BACKUP_PATH))
+        run('mkdir %s' %
+            os.path.join(os.path.basename(env.BACKUP_PATH), 'mongodb'))
+        run('mkdir %s' %
+            os.path.join(os.path.basename(env.BACKUP_PATH), 'redis'))
 
 
 def stop_sendmail_logging():
