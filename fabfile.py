@@ -280,7 +280,7 @@ def backup_redis():
     Setup Redis backup
     """
     print '=== BACKUP REDIS ==='
-    sudo('ln /var/lib/redis/dump.rdb %s' % os.path.join(env.BACKUP_PATH, 'dump.rdb')
+    sudo('ln /var/lib/redis/dump.rdb %s' % os.path.join(env.BACKUP_PATH, 'dump.rdb'))
 
 
 def restart_redis():
