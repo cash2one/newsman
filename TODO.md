@@ -10,12 +10,11 @@ ToDos - High Priority
     [link](http://azd325.github.io/blog/2013/08/18/python-strip-tags/)
 6. 采用nose/coverage进行测试
 7. 集成CDN
-8. 数据备份和恢复 
-9. 新闻摘要
-10. 测试标题提取使用Lassie(多国语言)
-11. 融合[Scrapely](https://github.com/scrapy/scrapely)到转码器中
-12. 根据热门关键字搜索图片
-13. 修改README
+8. 新闻摘要
+9. 测试标题提取使用Lassie(多国语言)
+10. 融合[Scrapely](https://github.com/scrapy/scrapely)到转码器中
+11. 根据热门关键字搜索图片
+12. 修改README
 
 ToDos - Low Priority
 ---------------------
@@ -57,6 +56,7 @@ Dones
 21. WAP页支持
 22. 预警代码整理、重构
 23. 使用Fabric进行发布
+24. 数据备份和恢复 
 
 ToDos - Generated from docs
 --------------------------
