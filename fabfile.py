@@ -74,7 +74,7 @@ def singapore():
     env.hosts = ['54.251.107.116']
     env.key_filename = '/home/jinyuan/Public/AWS_identifiers/mandy.pem'
     env.servername = 'aws_singapore'
-    env.languages = ['en-rIN', 'ind', 'th']
+    env.languages = ['en', 'ind', 'th']
 
 
 def sao():
@@ -220,7 +220,7 @@ def restore_mongodb():
     """
     print '=== RESTORE MONGODB ==='
     sudo('mongorestore -h 127.0.0.1 -d news --directoryperdb ' %
-         env.BACKUP_PATH)
+         os.path.join(env.BACKUP_PATH, 'mongodb'))
 
 
 def backup_mongodb():
@@ -228,7 +228,8 @@ def backup_mongodb():
     Setup MongoDB backup
     """
     print '=== BACKUP MONGODB ==='
-    sudo('mongodump -h 127.0.0.1 -d news -o %s' % env.BACKUP_PATH)
+    sudo('mongodump -h 127.0.0.1 -d news -o %s' %
+         os.path.join(env.BACKUP_PATH, 'mongodb'))
 
 
 def restart_mongodb():
@@ -270,7 +271,8 @@ def restore_redis():
     """
     print '=== RESTORE REDIS ==='
     sudo('monit stop redis-server')
-    sudo('cp %s /var/lib/redis' % os.path.join(env.BACKUP_PATH, 'dump.rdb'))
+    sudo('cp %s /var/lib/redis' %
+         os.path.join(env.BACKUP_PATH, 'redis/dump.rdb'))
     sudo('sudo chown redis:redis /var/lib/redis/dump.rdb')
     sudo('monit start redis-server')
 
@@ -280,7 +282,8 @@ def backup_redis():
     Setup Redis backup
     """
     print '=== BACKUP REDIS ==='
-    sudo('ln /var/lib/redis/dump.rdb %s' % os.path.join(env.BACKUP_PATH, 'dump.rdb'))
+    sudo('ln /var/lib/redis/dump.rdb %s' %
+         os.path.join(env.BACKUP_PATH, 'redis/dump.rdb'))
 
 
 def restart_redis():
