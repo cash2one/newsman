@@ -146,6 +146,8 @@ def setup_folders():
         run('mkdir -p STATIC/news/ts')
         run("cp -r %s %s" %
             (os.path.join(env.REMOTE_CODEBASE_PATH, 'newsman/templates/static*'), 'STATIC/news/ts'))
+    with cd(os.path.dirname(env.BACKUP_PATH)):
+        run('mkdir %s' % os.path.basename(env.BACKUP_PATH))
 
 
 def stop_sendmail_logging():
