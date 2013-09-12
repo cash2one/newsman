@@ -1,5 +1,5 @@
-#!/usr/bin/env python 
-#-*- coding: utf-8 -*- 
+#!/usr/bin/env python
+#-*- coding: utf-8 -*-
 
 """
 restore memory from database, if memory failed
@@ -9,8 +9,8 @@ restore memory from database, if memory failed
 # @created Aug. 23, 2013
 
 
-import sys 
-reload(sys) 
+import sys
+reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append("..")
 
@@ -34,7 +34,8 @@ def _expired(updated):
     if not updated:
         return 0
 
-    deadline = datetime.utcfromtimestamp(updated) + timedelta(days=MEMORY_RESTORATION_DAYS)
+    deadline = datetime.utcfromtimestamp(
+        updated) + timedelta(days=MEMORY_RESTORATION_DAYS)
     time_left = deadline - datetime.now()
     return time_left.days * 60 * 60 * 24 + time_left.seconds
 
@@ -61,10 +62,12 @@ def restore():
 
                 # find valid time to filter out expired items
                 current_utc_time_posix = calendar.timegm(time.gmtime())
-                active_datetime = datetime.utcfromtimestamp(current_utc_time_posix) - timedelta(days=MEMORY_RESTORATION_DAYS)
+                active_datetime = datetime.utcfromtimestamp(
+                    current_utc_time_posix) - timedelta(days=MEMORY_RESTORATION_DAYS)
                 active_posix = calendar.timegm(active_datetime.timetuple())
 
-                items = col.find({'updated': {'$gte': active_posix}}).sort('updated', -1)
+                items = col.find(
+                    {'updated': {'$gte': active_posix}}).sort('updated', -1)
                 for item in items:
                     expiration = _expired(float(item['updated']))
                     memory.update(item, expiration)
