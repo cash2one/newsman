@@ -170,7 +170,7 @@ def get_latest_entries_by_language(language=None, limit=10, start_id=None):
                         return entries
 
                     # string-ify all the values: ObjectId
-                    new_item = None
+                    new_item = {}
                     for x, y in item.iteritems():
                         if x != 'updated':
                             new_item[str(x)] = str(y)
@@ -196,7 +196,7 @@ def get_latest_entries_by_language(language=None, limit=10, start_id=None):
                 return entries
 
             # string-ify all the values: ObjectId
-            new_item = None
+            new_item = {}
             for x, y in item.iteritems():
                 if x != 'updated':
                     new_item[str(x)] = str(y)
@@ -285,7 +285,7 @@ def get_previous_entries_by_language(language=None, limit=10, end_id=None):
                 items = col.find({'updated': {'$lt': last_entry_in_memory_updated}}).sort('updated', -1).limit(limit_in_database)
                 for item in items:
                     # string-ify all the values: ObjectId
-                    new_item = None
+                    new_item = {}
                     for x, y in item.iteritems():
                         if x != 'updated':
                             new_item[str(x)] = str(y)
@@ -318,7 +318,7 @@ def get_previous_entries_by_language(language=None, limit=10, end_id=None):
 
         # string-ify all the values: ObjectId
         for item in items:
-            new_item = None
+            new_item = {}
             for x, y in item.iteritems():
                 if x != 'updated':
                     new_item[str(x)] = str(y)
@@ -397,7 +397,7 @@ def get_latest_entries_by_category(language=None, category=None, limit=10, start
                         return entries
 
                     # string-ify all the values: ObjectId
-                    new_item = None
+                    new_item = {}
                     for x, y in item.iteritems():
                         if x != 'updated':
                             new_item[str(x)] = str(y)
@@ -424,7 +424,7 @@ def get_latest_entries_by_category(language=None, category=None, limit=10, start
                 return entries
 
             # string-ify all the values: ObjectId
-            new_item = None
+            new_item = {}
             for x, y in item.iteritems():
                 if x != 'updated':
                     new_item[str(x)] = str(y)
@@ -511,7 +511,7 @@ def get_previous_entries_by_category(language=None, category=None, limit=10, end
                 items = col.find({'updated': {'$lt': last_entry_in_memory_updated}, 'categories': category}).sort('updated', -1).limit(limit_in_database)
                 for item in items:
                     # string-ify all the values: ObjectId
-                    new_item = None
+                    new_item = {}
                     for x, y in item.iteritems():
                         if x != 'updated':
                             new_item[str(x)] = str(y)
@@ -544,7 +544,7 @@ def get_previous_entries_by_category(language=None, category=None, limit=10, end
 
         for item in items:
             # string-ify all the values: ObjectId
-            new_item = None
+            new_item = {}
             for x, y in item.iteritems():
                 if x != 'updated':
                     new_item[str(x)] = str(y)
