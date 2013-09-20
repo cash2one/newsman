@@ -1,6 +1,0 @@
-en*|*US/Canada*|*U.S. News Headlines - Yahoo! News*|*http://news.yahoo.com/rss/us
-en*|*International*|*BBC News - World*|*http://feeds.bbci.co.uk/news/world/rss.xml
-en*|*Technology*|*Engadget*|*http://www.engadget.com/rss.xml
-en*|*Business*|*Business News Headlines - Yahoo! News*|*http://news.yahoo.com/rss/business
-en*|*Health*|*Health News Headlines - Yahoo! News*|*http://news.yahoo.com/rss/health
-en*|*Sports*|*Sports News Headlines - Yahoo! News*|*http://news.yahoo.com/rss/sports

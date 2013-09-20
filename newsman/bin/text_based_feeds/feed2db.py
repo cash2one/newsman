@@ -19,9 +19,9 @@ from config.settings import db
 
 # CONSTANTS
 from config.settings import FEED_REGISTRAR
-#FILE_SUFFIX = '/home/work/newsman/newsman/tools/text_based_feeds/feed_lists/'
-#FILE_SUFFIX = '/home/ubuntu/newsman/newsman/tools/text_based_feeds/feed_lists/'
-FILE_SUFFIX = '/home/jinyuan/Downloads/newsman/newsman/tools/text_based_feeds/feed_lists/'
+#FILE_PREFIX = '/home/work/newsman/newsman/tools/text_based_feeds/feed_lists/'
+#FILE_PREFIX = '/home/ubuntu/newsman/newsman/tools/text_based_feeds/feed_lists/'
+FILE_PREFIX = '/home/jinyuan/Downloads/newsman/newsman/tools/text_based_feeds/feed_lists/'
 
 
 def _parse_task(line):
@@ -36,12 +36,13 @@ def _parse_task(line):
         return None
 
 
-def _convert(language='en'):
+def _convert(language='en', country=None):
     """
     turn text-based feed infor into database items
+    Note. 1. categories: [(), ()]
     """
     # read in file content
-    feeds_list = open('%s%s_feeds_list.txt' % (FILE_SUFFIX, language), 'r')
+    feeds_list = open('%s%s_%s_feeds_list.txt' % (FILE_PREFIX, language, country), 'r')
     lines = feeds_list.readlines()
     feeds_list.close()
 
@@ -52,21 +53,24 @@ def _convert(language='en'):
         if line.strip():
             language, categories, feed_x, feed_link = _parse_task(line)
             # save feed
-            if feed_x in ['chengdujin', 'readability', 'uck']:
+            if feed_x in ['chengdujin', 'readability', 'uck', 'nuck']:
                 transcoder_mode = feed_x
                 feed_title = ""
             else:
                 transcoder_mode = "readability"
                 feed_title = feed_x
+
             print feed_link, transcoder_mode
             db_feeds.save({'language': language, 'feed_link': feed_link,
                            'categories': categories, 'feed_title': feed_title,
                            'latest_update': None, 'updated_times': 0,
                            'transcoder': transcoder_mode})
+        else:
+            continue
 
 
 if __name__ == "__main__":
-    if len(sys.argv) > 0:
-        _convert(sys.argv[1])
+    if len(sys.argv) > 1:
+        _convert(sys.argv[1], sys.argv[2])
     else:
-        print 'Please indicate a language'
+        print 'Please indicate a language and country'
