@@ -259,7 +259,7 @@ def _organize_transcoders(transcoder="chengdujin"):
     chengdujin: simplr.py
     readability: burify.py
     uck: baidu_uck.py
-    uck_new: baidu_uck_new.py
+    nuck: baidu_uck_new.py
     """
     transcoders = []
     if transcoder == 'chengdujin':
@@ -270,7 +270,7 @@ def _organize_transcoders(transcoder="chengdujin"):
         transcoders.append("baidu_uck")
     elif transcoder == 'uck':
         transcoders.append("baidu_uck")
-    elif transcoder == 'uck_new':
+    elif transcoder == 'nuck':
         transcoders.append('baidu_uck_new')
     return transcoders
 
