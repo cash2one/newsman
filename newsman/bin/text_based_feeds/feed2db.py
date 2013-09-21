@@ -53,7 +53,7 @@ def _convert(language='en', country=None):
         if line.strip():
             language, categories, feed_x, feed_link = _parse_task(line)
             if feed_link:
-                categories = ['%s*|*%s' % (country, category) for category in categories]
+                categories = ['%s::%s' % (country, category) for category in categories]
 
                 # save feed
                 if feed_x in ['chengdujin', 'readability', 'uck', 'nuck']:
