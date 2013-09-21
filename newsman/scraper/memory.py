@@ -21,7 +21,7 @@ from config.settings import rclient, ConnectionError
 from config.settings import MEMORY_EXPIRATION_DAYS
 
 # list of fields stored in memory
-field_list = ['_id', 'categories', 'category_image', 'feed', 'hotnews_image', 'image', 'language', 'link', 'mp3', 'summary', 'thumbnail_image', 'title', 'transcoded', 'updated']
+field_list = ['_id', 'categories', 'category_image', 'countries', 'feed', 'hotnews_image', 'image', 'labels', 'language', 'link', 'mp3', 'summary', 'thumbnail_image', 'title', 'transcoded', 'updated']
 
 
 def update(entry=None, expiration=None):
@@ -50,12 +50,13 @@ def update(entry=None, expiration=None):
         expiration = MEMORY_EXPIRATION_DAYS * 24 * 60 * 60 if not expiration else expiration
         rclient.expire(entry_reduced['_id'], expiration)
 
-        # add entry ids to the language list
-        rclient.zadd("news::%s" % entry_reduced['language'], entry_reduced['updated'], entry_reduced['_id'])
+        # add entry ids to the RSS list
+        rclient.zadd("news::%s::%s" % (entry_reduced['language'], entry_reduced['feed']), entry_reduced['updated'], entry_reduced['_id'])
 
-        # add entry ids to the category list
-        for category in entry_reduced['categories']:
-            rclient.zadd('news::%s::%s' % (entry_reduced['language'], category), entry_reduced['updated'], entry_reduced['_id'])
+        # add entry ids to the label list
+        for label in entry_reduced['labels']:
+            # a label is a combination of country, category and label
+            rclient.zadd('news::%s::%s' % (entry_reduced['language'], label), entry_reduced['updated'], entry_reduced['_id'])
         # final return
         return True
     except ConnectionError:
