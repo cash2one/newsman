@@ -13,7 +13,7 @@ ToDos - High Priority
 8. 新闻摘要
 9. 测试标题提取使用Lassie(多国语言)
 10. 融合[Scrapely](https://github.com/scrapy/scrapely)到转码器中
-11. 根据热门关键字搜索图片 [link](http://jackdschultz.com/index.php/2013/09/19/useful-named-entity-recognition/)
+11. 根据热门关键字搜索图片 [link1](http://jackdschultz.com/index.php/2013/09/19/useful-named-entity-recognition/) [link2](https://gist.github.com/shlomibabluki/6333174)
 12. 修改README
 
 ToDos - Low Priority
