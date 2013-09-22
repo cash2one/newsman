@@ -348,6 +348,8 @@ def get_latest_entries(language=None, country=None, category=None, feed=None, li
 
     # return list
     entries = []
+    category_name = '%s::%s' % (country, category)
+    label_name = '%s::%s::%s' % (country, category, feed)
 
     try:
         # check if redis is alive
@@ -356,6 +358,9 @@ def get_latest_entries(language=None, country=None, category=None, feed=None, li
         class_name = 'news::%s::%s' % (language, feed)
         if not rclient.exists(class_name):
             class_name = 'news::%s::%s::%s::%s' % (language, country, category, feed)
+        else:
+            # reset label_name as the flag
+            label_name = None
 
         # get the latest entries
         entry_ids_total = rclient.zcard(class_name)
@@ -396,8 +401,12 @@ def get_latest_entries(language=None, country=None, category=None, feed=None, li
 
                 # database
                 col = Collection(db, language)
-                # query categories array with only one of its values
-                items = col.find({'updated': {'$lt': last_entry_in_memory_updated}, 'categories': category}).sort('updated', -1).limit(limit_in_database)
+                # query only one of its values
+                if label_name:
+                    items = col.find({'updated': {'$lt':last_entry_in_memory_updated}, 'countries':country, 'categories':category_name, 'labels':label_name}).sort('updated', -1).limit(limit_in_database)
+                else:
+                    items = col.find({'updated': {'$lt':last_entry_in_memory_updated}, 'countries':country, 'categories':category_name, 'feed':feed}).sort('updated', -1).limit(limit_in_database)
+
                 for item in items:
                     if start_id and str(item['_id']) == start_id:
                         return entries
@@ -423,8 +432,11 @@ def get_latest_entries(language=None, country=None, category=None, feed=None, li
     except ConnectionError:  
         # query the database
         col = Collection(db, language)
-        items = col.find({'categories': category}).sort(
-            'updated', -1).limit(limit)
+        if label_name:
+            items = col.find({'countries':country, 'categories':category_name, 'labels':label_name}).sort('updated', -1).limit(limit)
+        else:
+            items = col.find({'countries':country, 'categories': category, 'feed':feed}).sort('updated', -1).limit(limit)
+
         for item in items:
             if start_id and str(item['_id']) == start_id:
                 return entries
