@@ -1,7 +1,7 @@
 ToDos - High Priority
 ----------------------
 1. data_processor代码整理、重构
-2. 整理转码器图片提取模块
+2. 整理转码器图片提取模块 [link](http://jackdschultz.com/index.php/2013/09/13/validating-url-as-an-image-in-python/)
 3. 参照谷歌编码风格
     [中文](http://zh-google-styleguide.readthedocs.org/en/latest/google-python-styleguide/)
     [EN](http://google-styleguide.googlecode.com/svn/trunk/pyguide.html)
