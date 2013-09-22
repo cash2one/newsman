@@ -20,47 +20,40 @@ import inquirer
 from settings import logger
 
 
-def get_categories_by_language(*bundle):
+def get_portal(*bundle):
     """
     get hot news and other categories images and titles
     """
-    return inquirer.get_categories_by_language(bundle[0]['language'])
+    language = bundle[0]['language']
+    country = bundle[0]['country']
+    bundle[0].pop('language')
+    bundle[0].pop('country')
+    return inquirer.get_portal(language, country, bundle[0])
 
 
-def get_latest_entries_by_language(*bundle):
+def get_categories(*bundle):
     """
-    get the latest entries by language
+    get categories and their feeds and labels
     """
-    LIMIT = 10 if 'limit' not in bundle[0] else int(bundle[0]['limit'])
-    START_ID = None if 'start_id' not in bundle[0] else bundle[0]['start_id']
-    return inquirer.get_latest_entries_by_language(bundle[0]['language'], limit=LIMIT, start_id=START_ID)
+    return inquirer.get_categories(bundle[0]['language'], bundle[0]['country'])
 
 
-def get_previous_entries_by_language(*bundle):
-    """
-    get the latest entries of a feed
-    """
-    LIMIT = 10 if 'limit' not in bundle[0] else int(bundle[0]['limit'])
-    END_ID = None if 'end_id' not in bundle[0] else bundle[0]['end_id']
-    return inquirer.get_previous_entries_by_language(bundle[0]['language'], limit=LIMIT, end_id=END_ID)
-
-
-def get_latest_entries_by_category(*bundle):
+def get_latest_entries(*bundle):
     """
     get the latest entries by category
     """
     LIMIT = 10 if 'limit' not in bundle[0] else int(bundle[0]['limit'])
     START_ID = None if 'start_id' not in bundle[0] else bundle[0]['start_id']
-    return inquirer.get_latest_entries_by_category(bundle[0]['language'], bundle[0]['category'], limit=LIMIT, start_id=START_ID)
+    return inquirer.get_latest_entries(bundle[0]['language'], bundle[0]['country'], bundle[0]['category'], bundle[0]['feed'], limit=LIMIT, start_id=START_ID)
 
 
-def get_previous_entries_by_category(*bundle):
+def get_previous_entries(*bundle):
     """
     get the latest entries of a feed
     """
     LIMIT = 10 if 'limit' not in bundle[0] else int(bundle[0]['limit'])
     END_ID = None if 'end_id' not in bundle[0] else bundle[0]['end_id']
-    return inquirer.get_previous_entries_by_category(bundle[0]['language'], bundle[0]['category'], limit=LIMIT, end_id=END_ID)
+    return inquirer.get_previous_entries(bundle[0]['language'], bundle[0]['country'], bundle[0]['category'], bundle[0]['feed'], limit=LIMIT, end_id=END_ID)
 
 
 def _read_http(environ):
