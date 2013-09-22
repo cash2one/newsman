@@ -37,7 +37,7 @@ HOTNEWS_TITLE = {'en': HOTNEWS_TITLE_EN, 'ja': HOTNEWS_TITLE_JA, 'th': HOTNEWS_T
 
 
 # TODO: need to refactor this method after sorting out feed.py
-def get_portal_data(language=None, country=None, **kwargs):
+def get_portal(language=None, country=None, **kwargs):
     """
     get a list of text and images for feed/rss and labels
     """
@@ -69,6 +69,13 @@ def get_portal_data(language=None, country=None, **kwargs):
     for k, v in portal_data.iteritems():
         output.append({'Category': k, 'Images': v})
     return {'Categories': output}
+
+
+def get_categories(language=None, country=None):
+    """
+    get categories and feeds and labels in those categories
+    """
+    pass
 
 
 def get_latest_entries(language=None, country=None, category=None, feed=None, limit=10, start_id=None):
