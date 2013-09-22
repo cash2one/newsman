@@ -37,65 +37,36 @@ HOTNEWS_TITLE = {'en': HOTNEWS_TITLE_EN, 'ja': HOTNEWS_TITLE_JA, 'th': HOTNEWS_T
 
 
 # TODO: need to refactor this method after sorting out feed.py
-def get_categories_by_language(language=None):
+def get_portal_data(language=None, country=None, **kwargs):
     """
-    get a list of categories and hot news by language
+    get a list of text and images for feed/rss and labels
     """
-    if not language:
+    if not language or not language:
         return None
+    if not kwargs:
+        return None
+
     search_limit = 60
     images_limit = 5
 
-    category_images = {}
-    try:
-        # check if redis is running
-        rclient.ping()
+    portal_data = {}
 
-        # find category_images for each category
-        key_wildcard = 'news::%s::*' % language
-        categories_composite = rclient.keys(key_wildcard)
-        categories = [cc.replace('news::%s::' % language, "") for cc in categories_composite]
-    except ConnectionError:
-        logger.critical('Redis is down!')
-        
-        # query database for category names
-        try:
-            document_name = language
-            document = Collection(db, document_name)
-            categories = document.distinct('categories')
-        except Exception as k:
-            logger.critical(str(k))
-
-    if categories:
-        for category in categories:
-            entries = get_latest_entries_by_category(language=language, category=category, limit=search_limit)
-            # 'category A': [{'title':'xxx', 'image':'http://yyy.com/zzz.jpg'}]
-            # image: category_image
-            category_images[category] = []
-            for entry in entries:
-                if 'category_image' in entry and entry['category_image'] and entry['category_image'] != 'None' and entry['category_image'] != 'null':
-                    item = {'title': entry['title'], 'image': entry['category_image'], 'updated': entry['updated']}
-                    category_images[category].append(item)
-                    # limit the number of category_image to
-                    if len(category_images[category]) == images_limit:
-                        break
-    else:
-        logger.error("%s not supported! Or database is corrupted!" % language)
-
-    # find hotnews_image from hot news
-    hotnews = HOTNEWS_TITLE[language]
-    entries = get_latest_entries_by_language(language=language, limit=search_limit)
-    category_images[hotnews] = []
-    for entry in entries:
-        if 'hotnews_image' in entry and entry['hotnews_image'] and entry['hotnews_image'] != 'None' and entry['hotnews_image'] != 'null':
-            item = {'title': entry['title'], 'image': entry['hotnews_image'], 'updated': entry['updated']}
-            category_images[hotnews].append(item)
-            if len(category_images[hotnews]) == images_limit:
-                break
+    for category, feed in kwargs.iteritems():
+        entries = get_latest_entries(language=language, country=country, category=category, feed=feed, limit=search_limit)
+        # 'category A': [{'title':'xxx', 'image':'http://yyy.com/zzz.jpg'}]
+        # image: category_image
+        portal_data[feed] = []
+        for entry in entries:
+            if 'category_image' in entry and entry['category_image'] and entry['category_image'] != 'None' and entry['category_image'] != 'null':
+                item = {'title': entry['title'], 'image': entry['category_image'], 'updated': entry['updated']}
+                portal_data[feed].append(item)
+                # limit the number of category_image to
+                if len(portal_data[feed]) == images_limit:
+                    break
 
     # special formatting for android-end
     output = []
-    for k, v in category_images.iteritems():
+    for k, v in portal_data.iteritems():
         output.append({'Category': k, 'Images': v})
     return {'Categories': output}
 
