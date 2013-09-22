@@ -38,12 +38,12 @@ hparser = HTMLParser()
 # CONSTANTS
 #PUBLIC = 'http://mobile-global.baidu.com/news/%s'  # hk01-hao123-mob01/mob02
 #PUBLIC = 'http://180.76.2.34/%s'                   # hk01-hao123-mob00
-#PUBLIC = 'http://54.251.107.116/%s'                # AWS singapore
+PUBLIC = 'http://54.251.107.116/%s'                # AWS singapore
 #PUBLIC = 'http://54.232.81.44/%s'                  # AWS sao paolo
 #PUBLIC = 'http://54.248.227.71/%s'                 # AWS tokyo
 #LOCAL = '/home/work/%s'                            # official server prefix
 #LOCAL = '/home/ubuntu/%s'                          # AWS server prefix
-#LOCAL = '/home/jinyuan/Downloads/%s'               # local server prefix
+LOCAL = '/home/jinyuan/Downloads/%s'               # local server prefix
 
 # code base folder for updating
 CODE_BASE = LOCAL % 'newsman'
@@ -120,6 +120,8 @@ GOOGLE_TTS_TIMEOUT = 120  # 2 minutes timeout
 
 # supported languages
 LANGUAGES = ['en', 'th', 'ind', 'ja', 'pt', 'en-rIN', 'ar', 'zh-CN', 'zh-HK']
+# supported countries, in code
+COUNTRIES = ['AU', 'BR', 'CA', 'CN', 'EG', 'FR', 'GB', 'HK', 'ID', 'IN', 'KR', 'TH', 'TR', 'TW', 'US', 'VN']
 
 # sizes for generating images
 MIN_IMAGE_SIZE = 150, 150
