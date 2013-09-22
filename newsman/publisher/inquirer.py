@@ -117,7 +117,8 @@ def get_categories(language=None, country=None):
         output = []
         for k, v in categories.iteritems():
             output.append({'Category':k, 'Feeds':v})
-        return {'Categories':output}
+        version = hashlib.md5(json.dumps(categories, sort_keys=True)).hexdigest()
+        return {'Categories':output, 'Version':version}
     else:
         return None
 
