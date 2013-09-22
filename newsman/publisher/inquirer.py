@@ -357,7 +357,7 @@ def get_latest_entries(language=None, country=None, category=None, feed=None, li
 
         class_name = 'news::%s::%s' % (language, feed)
         if not rclient.exists(class_name):
-            class_name = 'news::%s::%s::%s::%s' % (language, country, category, feed)
+            class_name = 'news::%s::%s' % (language, label_name)
         else:
             # reset label_name as the flag
             label_name = None
@@ -451,14 +451,16 @@ def get_latest_entries(language=None, country=None, category=None, feed=None, li
         return entries
 
 
-def get_previous_entries_by_category(language=None, category=None, limit=10, end_id=None):
+def get_previous_entries(language=None, country=None, category=None, feed=None, limit=10, end_id=None):
     """
     find entries before end_id
     """
 
-    if not language or not category:
+    if not language or not country or not category or not feed:
         return None
     if language not in LANGUAGES:
+        return None
+    if country not in COUNTRIES:
         return None
     if limit < 0:
         return None
@@ -468,11 +470,19 @@ def get_previous_entries_by_category(language=None, category=None, limit=10, end
 
     # return list
     entries = []
-    class_name = 'news::%s::%s' % (language, category)
+    category_name = '%s::%s' % (country, category)
+    label_name = '%s::%s::%s' % (country, category, feed)
 
     try:
         # check if redis is alive
         rclient.ping()
+
+        class_name = 'news::%s::%s' % (language, feed)
+        if not rclient.exists(class_name):
+            class_name = 'news::%s::%s' % (language, label_name)
+        else:
+            # reset label_name as the flag
+            label_name = None
 
         # preprocess end_id
         entry_ids_total = rclient.zcard(class_name)
@@ -526,7 +536,11 @@ def get_previous_entries_by_category(language=None, category=None, limit=10, end
 
                 # find the remaining items in database
                 col = Collection(db, language)
-                items = col.find({'updated': {'$lt': last_entry_in_memory_updated}, 'categories': category}).sort('updated', -1).limit(limit_in_database)
+                if label_name:
+                    items = col.find({'updated': {'$lt':last_entry_in_memory_updated}, 'countries':country, 'categories':category_name, 'labels':label_name}).sort('updated', -1).limit(limit_in_database)
+                else:
+                    items = col.find({'updated': {'$lt':last_entry_in_memory_updated}, 'countries':country, 'categories':category_name, 'feed':feed}).sort('updated', -1).limit(limit_in_database)
+
                 for item in items:
                     # string-ify all the values: ObjectId
                     new_item = {}
@@ -551,14 +565,25 @@ def get_previous_entries_by_category(language=None, category=None, limit=10, end
         items = []
         col = Collection(db, language)
         if end_id:
-            end_id_entry = col.find_one({'_id': ObjectId(end_id)})
+            end_id_entry = None
+            if label_name:
+                end_id_entry = col.find_one({'_id':ObjectId(end_id), 'countries':country, 'categories':category_name, 'labels':label_name})
+            else:
+                end_id_entry = col.find_one({'_id':ObjectId(end_id), 'countries':country, 'categories':category_name, 'feed':feed})
+                
             if end_id_entry:
                 end_id_updated = float(end_id_entry['updated'])
-                items = col.find({'updated': {'$lt': end_id_updated}, 'categories': category}).sort('updated', -1).limit(limit)
+                if label_name:
+                    items = col.find({'updated': {'$lt': end_id_updated}, 'countries':country, 'categories':category_name, 'labels':label_name}).sort('updated', -1).limit(limit)
+                else:
+                    items = col.find({'updated': {'$lt': end_id_updated}, 'countries':country, 'categories':category_name, 'feed':feed}).sort('updated', -1).limit(limit)
             else:
                 return None
         else: # get the most recent limit number of entries
-            items = col.find({'categories': category}).sort('updated', -1).limit(limit)
+            if label_name:
+                items = col.find({'countries':country, 'categories': category, 'labels':label_name}).sort('updated', -1).limit(limit)
+            else:
+                items = col.find({'countries':country, 'categories': category, 'feed':feed}).sort('updated', -1).limit(limit)
 
         for item in items:
             # string-ify all the values: ObjectId
