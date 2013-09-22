@@ -120,6 +120,8 @@ GOOGLE_TTS_TIMEOUT = 120  # 2 minutes timeout
 
 # supported languages
 LANGUAGES = ['en', 'th', 'ind', 'ja', 'pt', 'en-rIN', 'ar', 'zh-CN', 'zh-HK']
+# supported countries, in code
+COUNTRIES = ['AU', 'BR', 'CA', 'CN', 'EG', 'FR', 'GB', 'HK', 'ID', 'IN', 'KR', 'TH', 'TR', 'TW', 'US', 'VN']
 
 # sizes for generating images
 MIN_IMAGE_SIZE = 150, 150
