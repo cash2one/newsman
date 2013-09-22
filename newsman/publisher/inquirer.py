@@ -327,13 +327,13 @@ def get_previous_entries_by_language(language=None, limit=10, end_id=None):
         return entries
 
 
-def get_latest_entries_by_category(language=None, category=None, limit=10, start_id=None):
+def get_latest_entries(language=None, country=None, category=None, feed=None, limit=10, start_id=None):
     """
-    find out latest news items by category and language
-    search entries newer than that
+    find out latest news items
+    search entries newer than start_id
     """
 
-    if not language or not category:
+    if not language or not country or not category or not feed:
         return None
     if language not in LANGUAGES:
         return None
