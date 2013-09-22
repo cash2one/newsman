@@ -14,6 +14,8 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 
 from bson.objectid import ObjectId
+import hashlib
+import json
 from settings import Collection, db
 from settings import logger
 from settings import rclient, ConnectionError
@@ -22,6 +24,7 @@ import os
 # CONSTANTS
 from settings import CODE_BASE
 from settings import COUNTRIES
+from settings import FEED_REGISTRAR
 from settings import HOTNEWS_TITLE_AR
 from settings import HOTNEWS_TITLE_EN
 from settings import HOTNEWS_TITLE_JA
@@ -36,12 +39,16 @@ HOTNEWS_TITLE = {'en': HOTNEWS_TITLE_EN, 'ja': HOTNEWS_TITLE_JA, 'th': HOTNEWS_T
                   HOTNEWS_TITLE_IND, 'en-rIN': HOTNEWS_TITLE_EN, 'ar': HOTNEWS_TITLE_AR, 'zh-CN': HOTNEWS_TITLE_ZH_CN, 'zh-HK': HOTNEWS_TITLE_ZH_HK}
 
 
-# TODO: need to refactor this method after sorting out feed.py
 def get_portal(language=None, country=None, **kwargs):
     """
     get a list of text and images for feed/rss and labels
     """
+
     if not language or not language:
+        return None
+    if language not in LANGUAGES:
+        return None
+    if country not in COUNTRIES:
         return None
     if not kwargs:
         return None
@@ -75,7 +82,44 @@ def get_categories(language=None, country=None):
     """
     get categories and feeds and labels in those categories
     """
-    pass
+
+    if not language or not country:
+        return None
+    if language not in LANGUAGES:
+        return None
+    if country not in COUNTRIES:
+        return None
+
+    col = Collection(db, FEED_REGISTRAR)
+    items = col.find({'countries':country})
+    if items:
+        categories = {}
+        for item in items:
+            # add rss to the category dictionary
+            for category in item['categories']:
+                if category.startswith(country):
+                    category_name = category.lstrip('%s::' % country)
+                    if category_name not in categories:
+                        categories[category_name] = []
+                    if item['feed'] not in categories[category_name]:
+                        categories[category_name].append(item['feed'])
+            # add label to the category dictionary
+            for label in item['labels']:
+                if label.startswith(country):
+                    label_split = label.lstrip('%s::' % country).split('::')
+                    category_name = label_split[0]
+                    label_name = label_split[1]
+                    if category_name not in categories:
+                        categories[category_name] = []
+                    if label_name not in categories[category_name]:
+                        categories[category_name].append(label_name)
+        # reformat
+        output = []
+        for k, v in categories.iteritems():
+            output.append({'Category':k, 'Feeds':v})
+        return {'Categories':output}
+    else:
+        return None
 
 
 def get_latest_entries(language=None, country=None, category=None, feed=None, limit=10, start_id=None):
