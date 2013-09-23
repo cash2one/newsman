@@ -83,7 +83,7 @@ def remove_label(language=None, label=None):
 
     # operate on database with or without memory
     feeds = Collection(db, FEED_REGISTRAR) 
-    items = feeds.find({'labels':label})
+    items = feeds.find({'language':language, 'labels':label})
     if items:
         for item in items:
             new_item = item
@@ -98,13 +98,13 @@ def remove_label(language=None, label=None):
 
 def update_label(language=None, label=None):
     """
-    If some feed in lable change name, call this one
+    If some feed in label change name, call this one
     """
     if not language or not label:
         return None
 
     feeds = Collection(db, FEED_REGISTRAR) 
-    items = feeds.find({'labels':label})
+    items = feeds.find({'language'=language, 'labels':label})
     if items:
         feeds_with_label = [item['feed_title'] for item in items]
 
@@ -128,6 +128,30 @@ def update_label(language=None, label=None):
             return None
     else:
         return None
+
+
+def modify_label(language=None, label_old=None, label_new=None):
+    """
+    Call this one if the name a label is changed
+    """
+    if not language or not label_old or not label_new:
+        return None
+
+    # update feeds with old label names to new ones
+    feeds = Collection(db, FEED_REGISTRAR) 
+    items = feeds.find({'labels':label_old})
+    if items:
+        for item in items:
+            if label_old in item['labels']:
+                item['labels'].remove(label_old)
+                item['labels'].append(label_new)
+                feeds.update({'_id':item['_id']}, item)
+
+    # rename old label to new one in memory
+    label_old_in_memory = 'news::%s::%s' % (language, label_old)
+    label_new_in_memory = 'news::%s::%s' % (language, label_new)
+    rclient.rename(label_old_in_memory, label_new_in_memory)
+
 
 
 if __name__ == '__main__':
