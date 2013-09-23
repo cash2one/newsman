@@ -195,6 +195,7 @@ def get_latest_entries(language=None, country=None, category=None, feed=None, li
                 limit_in_database = limit - len(entries)
 
                 # database
+                items = []
                 col = Collection(db, language)
                 # query only one of its values
                 if label_name:
@@ -229,11 +230,15 @@ def get_latest_entries(language=None, country=None, category=None, feed=None, li
             raise ConnectionError('Find nothing about %s in memory' % class_name)
     except ConnectionError:  
         # query the database
+        items = []
         col = Collection(db, language)
         if label_name:
-            items = col.find({'countries':country, 'categories':category_name, 'labels':label_name}).sort('updated', -1).limit(limit)
+            feeds = Collection(db, FEED_REGISTRAR)
+            feed_lists = feeds.find({'labels':label_name}, {'feed_title':1})
+            feed_names = [feed_list['feed_title'] for feed_list in feed_lists]
+            items = col.find({'feed':{'$in':feed_names}}).sort('updated', -1).limit(limit)
         else:
-            items = col.find({'countries':country, 'categories': category, 'feed':feed}).sort('updated', -1).limit(limit)
+            items = col.find({'feed':feed}).sort('updated', -1).limit(limit)
 
         for item in items:
             if start_id and str(item['_id']) == start_id:
@@ -333,11 +338,16 @@ def get_previous_entries(language=None, country=None, category=None, feed=None, 
                 limit_in_database = limit - len(entries)
 
                 # find the remaining items in database
+                items = []
                 col = Collection(db, language)
+                # query only one of its values
                 if label_name:
-                    items = col.find({'updated': {'$lt':last_entry_in_memory_updated}, 'countries':country, 'categories':category_name, 'labels':label_name}).sort('updated', -1).limit(limit_in_database)
+                    feeds = Collection(db, FEED_REGISTRAR)
+                    feed_lists = feeds.find({'labels':label_name}, {'feed_title':1})
+                    feed_names = [feed_list['feed_title'] for feed_list in feed_lists]
+                    items = col.find({'updated': {'$lt':last_entry_in_memory_updated}, 'feed':{'$in':feed_names}}).sort('updated', -1).limit(limit_in_database)
                 else:
-                    items = col.find({'updated': {'$lt':last_entry_in_memory_updated}, 'countries':country, 'categories':category_name, 'feed':feed}).sort('updated', -1).limit(limit_in_database)
+                    items = col.find({'updated': {'$lt':last_entry_in_memory_updated}, 'feed':feed}).sort('updated', -1).limit(limit_in_database)
 
                 for item in items:
                     # string-ify all the values: ObjectId
@@ -363,25 +373,28 @@ def get_previous_entries(language=None, country=None, category=None, feed=None, 
         items = []
         col = Collection(db, language)
         if end_id:
-            end_id_entry = None
-            if label_name:
-                end_id_entry = col.find_one({'_id':ObjectId(end_id), 'countries':country, 'categories':category_name, 'labels':label_name})
-            else:
-                end_id_entry = col.find_one({'_id':ObjectId(end_id), 'countries':country, 'categories':category_name, 'feed':feed})
+            end_id_entry = col.find_one({'_id':ObjectId(end_id)})
                 
             if end_id_entry:
                 end_id_updated = float(end_id_entry['updated'])
+
                 if label_name:
-                    items = col.find({'updated': {'$lt': end_id_updated}, 'countries':country, 'categories':category_name, 'labels':label_name}).sort('updated', -1).limit(limit)
+                    feeds = Collection(db, FEED_REGISTRAR)
+                    feed_lists = feeds.find({'labels':label_name}, {'feed_title':1})
+                    feed_names = [feed_list['feed_title'] for feed_list in feed_lists]
+                    items = col.find({'updated': {'$lt': end_id_updated}, 'feed':{'$in':feed_names}}).sort('updated', -1).limit(limit)
                 else:
-                    items = col.find({'updated': {'$lt': end_id_updated}, 'countries':country, 'categories':category_name, 'feed':feed}).sort('updated', -1).limit(limit)
+                    items = col.find({'updated': {'$lt': end_id_updated}, 'feed':feed}).sort('updated', -1).limit(limit)
             else:
                 return None
         else: # get the most recent limit number of entries
             if label_name:
-                items = col.find({'countries':country, 'categories': category, 'labels':label_name}).sort('updated', -1).limit(limit)
+                feeds = Collection(db, FEED_REGISTRAR)
+                feed_lists = feeds.find({'labels':label_name}, {'feed_title':1})
+                feed_names = [feed_list['feed_title'] for feed_list in feed_lists]
+                items = col.find({'feed':{'$in':feed_names}}).sort('updated', -1).limit(limit)
             else:
-                items = col.find({'countries':country, 'categories': category, 'feed':feed}).sort('updated', -1).limit(limit)
+                items = col.find({'feed':feed}).sort('updated', -1).limit(limit)
 
         for item in items:
             # string-ify all the values: ObjectId
