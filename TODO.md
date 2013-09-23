@@ -65,16 +65,12 @@ ToDos - Generated from docs
         - test the code
         - remove code that sanitize too much
 
-* `publisher/inquirer.py`
-    1. Line 40: get_categories_by_language
-        - need to refactor this method after sorting out feed.py
-
 * `data_processor/image_helper.py`
     1. Line 188: scale_image
         - boundary checker
 
 * `data_processor/transcoder.py`
-    1. Line 167: _transcode
+    1. Line 171: _transcode
         - add http string checkers
 
 * `feed_manager/feed.py`
@@ -84,13 +80,13 @@ ToDos - Generated from docs
 * `data_processor/thumbnail.py`
     1. Line 30: is_valid_image
         - this method should be moved to image_helper
-    2. Line 54: generate_thumbnail
+    2. Line 69: generate_thumbnail
         - relative path could be a url including its suffix like jpg/png
 
 * `scraper/rss.py`
-    1. Line 109: _get_tts
+    1. Line 101: _get_tts
         - replace primitive exception recording with logger
-    2. Line 266: update
+    2. Line 263: update
         - code to remove added items if things suck at database/memory
 
 * `data_processor/tts_provider.py`
@@ -108,7 +104,7 @@ ToDos - Generated from docs
         - remove accepting command line calls
 
 * `scraper/rss_parser.py`
-    1. Line 227: parse
+    1. Line 230: parse
         - boundary checkers
         - update parsing info to feed database
     2. Line 41: _read_entry
