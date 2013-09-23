@@ -57,7 +57,7 @@ def update(entry=None, expiration=None):
 
         # add entry ids to the label list
         col = Collection(db, FEED_REGISTRAR)
-        item = col.find_one({'feed':entry_reduced['feed']}, {'labels':1})
+        item = col.find_one({'feed_title':entry_reduced['feed']}, {'labels':1})
         if item and 'labels' in item:
             for label in item['labels']:
                 # a label is a combination of country, category and label
