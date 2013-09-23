@@ -198,9 +198,12 @@ def get_latest_entries(language=None, country=None, category=None, feed=None, li
                 col = Collection(db, language)
                 # query only one of its values
                 if label_name:
-                    items = col.find({'updated': {'$lt':last_entry_in_memory_updated}, 'countries':country, 'categories':category_name, 'labels':label_name}).sort('updated', -1).limit(limit_in_database)
+                    feeds = Collection(db, FEED_REGISTRAR)
+                    feed_lists = feeds.find({'labels':label_name}, {'feed_title':1})
+                    feed_names = [feed_list['feed_title'] for feed_list in feed_lists]
+                    items = col.find({'updated': {'$lt':last_entry_in_memory_updated}, 'feed':{'$in':feed_names}}).sort('updated', -1).limit(limit_in_database)
                 else:
-                    items = col.find({'updated': {'$lt':last_entry_in_memory_updated}, 'countries':country, 'categories':category_name, 'feed':feed}).sort('updated', -1).limit(limit_in_database)
+                    items = col.find({'updated': {'$lt':last_entry_in_memory_updated}, 'feed':feed}).sort('updated', -1).limit(limit_in_database)
 
                 for item in items:
                     if start_id and str(item['_id']) == start_id:
