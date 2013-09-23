@@ -78,7 +78,7 @@ def get_portal(language=None, country=None, **kwargs):
     return {'Categories': output}
 
 
-def get_categories(language=None, country=None):
+def get_categories(language=None, country=None, version=None):
     """
     get categories and feeds and labels in those categories
     """
@@ -101,8 +101,8 @@ def get_categories(language=None, country=None):
                     category_name = category.lstrip('%s::' % country)
                     if category_name not in categories:
                         categories[category_name] = []
-                    if item['feed'] not in categories[category_name]:
-                        categories[category_name].append(item['feed'])
+                    if item['feed_title'] not in categories[category_name]:
+                        categories[category_name].append(item['feed_title'])
             # add label to the category dictionary
             for label in item['labels']:
                 if label.startswith(country):
@@ -117,8 +117,13 @@ def get_categories(language=None, country=None):
         output = []
         for k, v in categories.iteritems():
             output.append({'Category':k, 'Feeds':v})
-        version = hashlib.md5(json.dumps(categories, sort_keys=True)).hexdigest()
-        return {'Categories':output, 'Version':version}
+        version_latest = hashlib.md5(json.dumps(categories, sort_keys=True)).hexdigest()
+
+        # compare versions
+        if not version or version != version_latest:
+            return {'Categories':output, 'Version':version_latest}
+        else:
+            return None
     else:
         return None
 
