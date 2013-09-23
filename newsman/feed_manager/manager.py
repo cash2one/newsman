@@ -26,7 +26,35 @@ def add_feed_to_label(language=None, feed=None, label=None):
     """
     Ad hoc add a feed to label. This mainly deals with history data
     """
-    pass
+    if not language or not feed or not label:
+        return None
+
+    # add label to the feed's labels
+    feeds = Collection(db, FEED_REGISTRAR)
+    item = feeds.find_one({'feed_title':feed})
+    if item:
+        if label not in item['labels']:
+            item['labels'].append(label)
+            item['labels'] = list(set(item['labels']))
+            feeds.update({'_id':item['_id']}. item)
+
+            # add entries in memory of the feed
+            label_name_in_memory = 'news::%s::%s' % (language, label)
+            if rclient.exists(label_name_in_memory):
+                ids_all = rclient.keys('*')
+                for id_in_memory in ids_all:
+                    if 'news' not in id_in_memory and '::' not in id_in_memory:
+                        entry = eval(rclient.get(id_in_memory)) 
+                        if entry['feed'] == feed:
+                            rclient.zadd(label_name_in_memory, entry['updated'], entry['_id'])
+                return 'OK'
+            else:
+                return None
+        else:
+            # label is already there
+            return None
+    else:
+        return None
 
 
 def add_label(language=None, label=None):
