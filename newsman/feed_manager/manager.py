@@ -103,7 +103,31 @@ def update_label(language=None, label=None):
     if not language or not label:
         return None
 
-    label_name_in_memory = 'news::%s::%s' % (language, label)
+    feeds = Collection(db, FEED_REGISTRAR) 
+    items = feeds.find({'labels':label})
+    if items:
+        feeds_with_label = [item['feed_title'] for item in items]
+
+    if feeds_with_label:
+        label_name_in_memory = 'news::%s::%s' % (language, label)
+        # remove all existing data regarding this label in memory
+        if rclient.exsits(label_name_in_memory):
+            label_total_in_memory = rclient.zcard(label_name_in_memory)
+            # remove sequence in label_name_in_memory
+            rclient.zremrangebyrank(label_name_in_memory, 0, label_total_in_memory)
+
+            # reload entries of feeds to the sequence
+            ids_all = rclient.keys('*')
+            for id_in_memory in ids_all:
+                if 'news' not in id_in_memory and '::' not in id_in_memory:
+                    item = eval(rclient.get(id_in_memory)) 
+                    if item['feed'] in feeds_with_label:
+                        rclient.zadd(label_name_in_memory, item['updated'], item['_id'])
+            return 'OK'
+        else:
+            return None
+    else:
+        return None
 
 
 if __name__ == '__main__':
