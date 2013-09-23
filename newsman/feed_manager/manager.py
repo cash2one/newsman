@@ -35,7 +35,6 @@ def add_feed_to_label(language=None, feed=None, label=None):
     if item:
         if label not in item['labels']:
             item['labels'].append(label)
-            item['labels'] = list(set(item['labels']))
             feeds.update({'_id':item['_id']}. item)
 
             # add entries in memory of the feed
@@ -57,11 +56,29 @@ def add_feed_to_label(language=None, feed=None, label=None):
         return None
 
 
-def add_label(language=None, label=None):
+def add_label(language=None, label=None, *kwargs):
     """
     Ad hoc add a label. This mainly deals with history data
     """
-    pass
+    if not language or not label or not feeds:
+        return None
+
+    label_name_in_memory = 'news::%s::%s' % (language, label)
+
+    feeds = Collection(db, FEED_REGISTRAR)
+    items = feeds.find({'language':language, 'feed_title':{'$in':kwargs}})
+    if items:
+        for item in items:
+            if label not in item['labels']:
+                item['labels'].append(label)
+                feeds.update({'_id':item['_id']}, item)
+
+                # add entries in memory of this feed to the label sequence
+                add_feed_to_label(language=language, feed=item['feed_title'], label=label):
+            else:
+                continue
+    else:
+        return None
 
 
 def remove_feed_from_label(language=None, feed=None, label=None):
