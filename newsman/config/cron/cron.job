@@ -1,4 +1,5 @@
-MAILTO="jinyuan@baidu.com,zhangxiaonan@baidu.com"
+#MAILTO="jinyuan@baidu.com,zhangxiaonan@baidu.com"
+MAILTO="jinyuan@baidu.com"
 0 0 * * * python /home/ubuntu/newsman/newsman/watchdog/cleaner.py data
 10 0,8,16 * * * python /home/ubuntu/newsman/newsman/watchdog/cleaner.py zombie
 20 0 * * * python /home/ubuntu/newsman/newsman/watchdog/idler.py
