@@ -45,7 +45,39 @@ def modify_feed(language=None, feed_old=None, feed_new=None):
     """
     Call this once a feed's name is changed
     """
-    pass 
+    if not language or not feed_old or not feed_new:
+        return None
+
+    # update old feed name in memory to new one
+    feed_old_name_in_memory = 'news::%s::%s' % (language, feed_old)
+    feed_new_name_in_memory = 'news::%s::%s' % (language, feed_new)
+
+    ids_all = rclient.keys('*')
+    for id_in_memory in ids_all:
+        if 'news' not in id_in_memory and '::' not in id_in_memory:
+            entry = eval(rclient.get(id_in_memory)) 
+            if entry['feed'] == feed_old:
+                entry['feed'] = feed_new
+                rclient.set(name=id_in_memory, value=entry, ex=rclient.ttl(id_in_memory), xx=True)
+        elif id_in_memory == feed_old_name_in_memory:
+            rclient.rename(feed_old_name_in_memory, feed_new_name_in_memory)
+
+    # update old feed name in database to new one
+    # change the "meta" data of feed_old in database
+    feeds = Collection(db, FEED_REGISTRAR)
+    item = feeds.find_one({'feed_title':feed_old})
+    if item:
+        item['feed_title'] = feed_new
+        feeds.update({'_id':item['_id']}, item)
+    # change all the related news in database
+    col = Collection(db, language)
+    items = col.find({'feed':feed_old})
+    if items:
+        for item in items:
+            item['feed'] = feed_new
+            col.update({'_id':item['_id']}, item)
+
+    return 'OK'
 
 
 def remove_feed(language=None, feed=None):
