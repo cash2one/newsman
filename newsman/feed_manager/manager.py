@@ -17,6 +17,7 @@ sys.path.append('..')
 
 from config.settings import Collection, db
 from config.settings import rclient
+from watchdog import clean_memory
 
 # CONSTANTS
 from config.settings import FEED_REGISTRAR
@@ -61,6 +62,8 @@ def modify_feed(language=None, feed_old=None, feed_new=None):
                 rclient.set(name=id_in_memory, value=entry, ex=rclient.ttl(id_in_memory), xx=True)
         elif id_in_memory == feed_old_name_in_memory:
             rclient.rename(feed_old_name_in_memory, feed_new_name_in_memory)
+        else:
+            continue
 
     # update old feed name in database to new one
     # change the "meta" data of feed_old in database
@@ -84,7 +87,31 @@ def remove_feed(language=None, feed=None):
     """
     Call this once a feed is removed
     """
-    pass
+    if not language or not feed:
+        return None
+
+    # remove every entry related to feed in memory
+    feed_name_in_memory = 'news::%s::%s' % (language, feed)
+    ids_all = rclient.keys('*')
+    for id_in_memory in ids_all:
+        if 'news' not in id_in_memory and '::' not in id_in_memory:
+            rclient.delete(id_in_memory)
+        elif id_in_memory == feed_name_in_memory:
+            feed_total_in_memory = rclient.zcard(feed_name_in_memory)
+            # remove sequence in feed_name_in_memory
+            rclient.zremrangebyrank(feed_name_in_memory, 0, feed_total_in_memory)
+            # remove the key
+            rclient.delete(feed_name_in_memory)
+    # clean memory holes
+    clean_memory.clean()
+
+    # remove feed "meta" data in feeds database
+    feeds = Collection(db, FEED_REGISTRAR)
+    feeds.remove({'feed_title':feed}) 
+    # remove entries related to feed in database
+    col = Collection(db, language)
+    col.remove({'feed':feed})
+    return 'OK'
 
 
 def add_feed_to_label(language=None, feed=None, label=None):
