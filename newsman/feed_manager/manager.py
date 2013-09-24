@@ -22,6 +22,25 @@ from config.settings import rclient
 from config.settings import FEED_REGISTRAR
 
 
+def modify_field(language):
+    """
+    change a key/field name in database and memory
+    """
+    # memory
+    id_total = rclient.zcard("news::%s" % language)
+    ids = rclient.zrange("news::%s" % language, 0, id_total)
+
+    for id in ids:
+        entry_string = rclient.get(id)
+        entry_string_new = entry_string.replace('hot_news_image', 'hotnews_image')
+        rclient.setex(id, rclient.ttl(id), entry_string_new)
+
+    # database
+    col = Collection(db, language)
+    col.update({}, {"rename": {"hot_news_image":"hotnews_image"}}, False, True)
+    col.update({}, {"rename": {"hot_news_image_local":"hotnews_image_local"}}, False, True)
+
+
 def add_feed_to_label(language=None, feed=None, label=None):
     """
     Ad hoc add a feed to label. This mainly deals with history data
