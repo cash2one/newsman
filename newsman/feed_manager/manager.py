@@ -39,16 +39,13 @@ def add_feed_to_label(language=None, feed=None, label=None):
 
             # add entries in memory of the feed
             label_name_in_memory = 'news::%s::%s' % (language, label)
-            if rclient.exists(label_name_in_memory):
-                ids_all = rclient.keys('*')
-                for id_in_memory in ids_all:
-                    if 'news' not in id_in_memory and '::' not in id_in_memory:
-                        entry = eval(rclient.get(id_in_memory)) 
-                        if entry['feed'] == feed:
-                            rclient.zadd(label_name_in_memory, entry['updated'], entry['_id'])
-                return 'OK'
-            else:
-                return None
+            ids_all = rclient.keys('*')
+            for id_in_memory in ids_all:
+                if 'news' not in id_in_memory and '::' not in id_in_memory:
+                    entry = eval(rclient.get(id_in_memory)) 
+                    if entry['feed'] == feed:
+                        rclient.zadd(label_name_in_memory, entry['updated'], entry['_id'])
+            return 'OK'
         else:
             # label is already there
             return None
@@ -65,20 +62,9 @@ def add_label(language=None, label=None, *kwargs):
 
     label_name_in_memory = 'news::%s::%s' % (language, label)
 
-    feeds = Collection(db, FEED_REGISTRAR)
-    items = feeds.find({'language':language, 'feed_title':{'$in':kwargs}})
-    if items:
-        for item in items:
-            if label not in item['labels']:
-                item['labels'].append(label)
-                feeds.update({'_id':item['_id']}, item)
-
-                # add entries in memory of this feed to the label sequence
-                add_feed_to_label(language=language, feed=item['feed_title'], label=label):
-            else:
-                continue
-    else:
-        return None
+    for item in kwargs:
+        # add entries in memory of this feed to the label sequence
+        add_feed_to_label(language=language, feed=item, label=label_name_in_memory):
 
 
 def remove_feed_from_label(language=None, feed=None, label=None):
