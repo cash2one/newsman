@@ -17,6 +17,7 @@ sys.path.append('..')
 
 from config.settings import Collection, db
 from config.settings import rclient
+from watchdog import clean_disk
 from watchdog import clean_memory
 
 # CONSTANTS
@@ -111,6 +112,8 @@ def remove_feed(language=None, feed=None):
     # remove entries related to feed in database
     col = Collection(db, language)
     col.remove({'feed':feed})
+    # clean disk
+    clean_disk.clean()
     return 'OK'
 
 
