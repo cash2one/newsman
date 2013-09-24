@@ -41,11 +41,18 @@ def modify_field(language):
     col.update({}, {"rename": {"hot_news_image_local":"hotnews_image_local"}}, False, True)
 
 
-def modify_feed(language=None, feed_name_old=None, feed_name_new=None):
+def modify_feed(language=None, feed_old=None, feed_new=None):
     """
     Call this once a feed's name is changed
     """
     pass 
+
+
+def remove_feed(language=None, feed=None):
+    """
+    Call this once a feed is removed
+    """
+    pass
 
 
 def add_feed_to_label(language=None, feed=None, label=None):
