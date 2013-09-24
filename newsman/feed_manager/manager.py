@@ -41,6 +41,13 @@ def modify_field(language):
     col.update({}, {"rename": {"hot_news_image_local":"hotnews_image_local"}}, False, True)
 
 
+def modify_feed(language=None, feed_name_old=None, feed_name_new=None):
+    """
+    Call this once a feed's name is changed
+    """
+    pass 
+
+
 def add_feed_to_label(language=None, feed=None, label=None):
     """
     Ad hoc add a feed to label. This mainly deals with history data
