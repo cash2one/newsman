@@ -103,16 +103,17 @@ def get_categories(language=None, country=None, version=None):
                         categories[category_name] = []
                     if item['feed_title'] not in categories[category_name]:
                         categories[category_name].append(item['feed_title'])
-            # add label to the category dictionary
-            for label in item['labels']:
-                if label.startswith(country):
-                    label_split = label.lstrip('%s::' % country).split('::')
-                    category_name = label_split[0]
-                    label_name = label_split[1]
-                    if category_name not in categories:
-                        categories[category_name] = []
-                    if label_name not in categories[category_name]:
-                        categories[category_name].append(label_name)
+            if 'labels' in item:
+                # add label to the category dictionary
+                for label in item['labels']:
+                    if label.startswith(country):
+                        label_split = label.lstrip('%s::' % country).split('::')
+                        category_name = label_split[0]
+                        label_name = label_split[1]
+                        if category_name not in categories:
+                            categories[category_name] = []
+                        if label_name not in categories[category_name]:
+                            categories[category_name].append(label_name)
         # reformat
         output = []
         for k, v in categories.iteritems():
