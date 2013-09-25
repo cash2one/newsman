@@ -98,11 +98,12 @@ def get_categories(language=None, country=None, version=None):
             # add rss to the category dictionary
             for category in item['categories']:
                 if category.startswith(country):
-                    category_name = category.lstrip('%s::' % country)
+                    category_name = category.replace('%s::' % country, '')
                     if category_name not in categories:
                         categories[category_name] = []
                     if item['feed_title'] not in categories[category_name]:
                         categories[category_name].append(item['feed_title'])
+
             if 'labels' in item:
                 # add label to the category dictionary
                 for label in item['labels']:
