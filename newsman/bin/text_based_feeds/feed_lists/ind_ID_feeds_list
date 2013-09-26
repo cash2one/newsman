@@ -1,25 +1,10 @@
-ind*|*Teknologi*|*readability*|*http://sindikasi.okezone.com/index.php/rss/16/RSS2.0
-ind*|*Teknologi*|*readability*|*http://www.inilah.com/rss/feed/teknologi/
-ind*|*Teknologi*|*readability*|*http://inside.kompas.com/getrss/sains
-ind*|*Teknologi*|*readability*|*http://www.kompas.com/getrss/tekno
-ind*|*Teknologi*|*readability*|*http://inside.kompas.com/getrss/teknosoftware
-ind*|*Teknologi*|*readability*|*http://inside.kompas.com/getrss/teknohardware
-ind*|*Teknologi*|*readability*|*http://inside.kompas.com/getrss/teknointernet
-ind*|*Teknologi*|*readability*|*http://rss.vivanews.com/get/teknologi
 
 
-ind*|*gaya hidup*|*readability*|*http://www.antaranews.com/rss/nasional-kesehatan
-ind*|*gaya hidup*|*readability*|*http://sindikasi.okezone.com/index.php/rss/11/RSS2.0
-ind*|*gaya hidup*|*readability*|*http://www.metrotvnews.com/front/rss/ekonomi
-ind*|*gaya hidup*|*readability*|*http://www.inilah.com/rss/feed/ekonomi/
-ind*|*gaya hidup*|*readability*|*http://www.tempo.co/rss/travel
-ind*|*gaya hidup*|*readability*|*http://inside.kompas.com/getrss/edukasi
-ind*|*gaya hidup*|*readability*|*http://www.kompas.com/getrss/kesehatan
-ind*|*gaya hidup*|*readability*|*http://www.kompas.com/getrss/travel
-ind*|*gaya hidup*|*readability*|*http://inside.kompas.com/getrss/health
-ind*|*gaya hidup*|*readability*|*http://rss.vivanews.com/get/sorot
+国内
 
-
+ind*|*Nasional*|*readability*|*http://sindikasi.okezone.com/index.php/rss/0/RSS2.0*|*Berita Terbaru
+ind*|*Nasional*|*readability*|*http://www.tempo.co/rss/popular24hours*|*Berita Terbaru
+ind*|*Nasional*|*readability*|*http://www.indonesianews.net/index.php/rss/f9295dc05093c851*|*Berita Terbaru
 ind*|*Nasional*|*readability*|*http://sindikasi.okezone.com/index.php/rss/1/RSS2.0
 ind*|*Nasional*|*readability*|*http://www.inilah.com/rss/feed/nasional/
 ind*|*Nasional*|*readability*|*http://www.metrotvnews.com/front/rss/nusantara
@@ -34,7 +19,15 @@ ind*|*Nasional*|*readability*|*http://www.kompas.com/getrss/nasional
 ind*|*Nasional*|*readability*|*http://www.thejakartaglobe.com/news/feed/
 ind*|*Nasional*|*readability*|*http://rss.vivanews.com/get/all
 ind*|*Nasional*|*readability*|*http://rss.vivanews.com/get/nasional
+ind*|*Nasional*|*readability*|*http://indonesia.ucanews.com/?feed=rss2
+ind*|*Nasional*|*readability*|*http://www.antaranews.com/rss/nasional
+ind*|*Nasional*|*readability*|*http://www.insideindonesia.org/?option=com_ninjarsssyndicator&feed_id=1&format=raw
 
+ind*|*Nasional*|*readability*|*http://www.indosiar.com/rss
+
+
+
+国际
 
 ind*|*Internasional*|*readability*|*http://sindikasi.okezone.com/index.php/rss/18/RSS2.0
 ind*|*Internasional*|*readability*|*http://www.antaranews.com/rss/internasional
@@ -47,23 +40,43 @@ ind*|*Internasional*|*readability*|*http://www.kompas.com/getrss/internasional
 ind*|*Internasional*|*readability*|*http://www.thejakartaglobe.com/feed/
 ind*|*Internasional*|*readability*|*http://www.thejakartaglobe.com/international/feed/
 ind*|*Internasional*|*readability*|*http://rss.vivanews.com/get/dunia
+ind*|*Internasional*|*readability*|*http://www.thejakartapost.com/breaking/feed
+ind*|*Internasional*|*readability*|*http://www.antaranews.com/rss/internasional
 
 
+
+
+经济
+
+ind*|*Keuangan*|*readability*|*http://www.bignewsnetwork.com/index.php/nav/rss/3a8a80d6f705f8cc*|*Business Headline
+ind*|*Keuangan*|*readability*|*http://www.bisnis.com/rss
 ind*|*Keuangan*|*readability*|*http://sindikasi.okezone.com/index.php/rss/11/RSS2.0
 ind*|*Keuangan*|*readability*|*http://www.kompas.com/getrss/bisniskeuangan
 ind*|*Keuangan*|*readability*|*http://www.thejakartaglobe.com/business/feed/
 ind*|*Keuangan*|*readability*|*http://rss.vivanews.com/get/metro
+ind*|*Keuangan*|*readability*|*http://financeroll.co.id/feed
+ind*|*Keuangan*|*readability*|*http://www.antaranews.com/rss/ekonomi
 
 
-ind*|*Hiburan*|*readability*|*http://www.antaranews.com/rss/hiburan
-ind*|*Hiburan*|*readability*|*http://www.inilah.com/rss/feed/artis/
-ind*|*Hiburan*|*readability*|*http://inside.kompas.com/getrss/entertainment
-ind*|*Hiburan*|*readability*|*http://entertainment.kompas.com/rss/all
-ind*|*Hiburan*|*readability*|*http://inside.kompas.com/getrss/entertainmentmusik
-ind*|*Hiburan*|*readability*|*http://inside.kompas.com/getrss/entertainmentcinema
-ind*|*Hiburan*|*readability*|*http://inside.kompas.com/getrss/entertainmentgossips
-ind*|*Hiburan*|*readability*|*http://www.thejakartaglobe.com/features/feed/
 
+
+
+科技
+
+ind*|*Teknologi*|*readability*|*http://sindikasi.okezone.com/index.php/rss/16/RSS2.0
+ind*|*Teknologi*|*readability*|*http://www.inilah.com/rss/feed/teknologi/
+ind*|*Teknologi*|*readability*|*http://inside.kompas.com/getrss/sains
+ind*|*Teknologi*|*readability*|*http://www.kompas.com/getrss/tekno
+ind*|*Teknologi*|*readability*|*http://inside.kompas.com/getrss/teknosoftware
+ind*|*Teknologi*|*readability*|*http://inside.kompas.com/getrss/teknohardware
+ind*|*Teknologi*|*readability*|*http://inside.kompas.com/getrss/teknointernet
+ind*|*Teknologi*|*readability*|*http://rss.vivanews.com/get/teknologi
+ind*|*Teknologi*|*readability*|*http://www.antaranews.com/rss/teknologi
+ind*|*Teknologi*|*readability*|*http://rss.tempointeraktif.com/teknologi.xml
+
+
+
+体育
 
 ind*|*Olahraga*|*readability*|*http://rss.detik.com/index.php/sport
 ind*|*Olahraga*|*readability*|*http://www.tempo.co/rss/olahraga
@@ -77,10 +90,56 @@ ind*|*Olahraga*|*chengdujin*|*http://inside.kompas.com/getrss/bola
 ind*|*Olahraga*|*chengdujin*|*http://www.thejakartaglobe.com/sports/feed/
 ind*|*Olahraga*|*chengdujin*|*http://rss.vivanews.com/get/sport
 ind*|*Olahraga*|*chengdujin*|*http://rss.vivanews.com/get/bola
+ind*|*Olahraga*|*readability*|*http://sindikasi.okezone.com/index.php/rss/2/RSS2.0
 
+
+
+娱乐
+
+ind*|*Hiburan*|*readability*|*http://www.antaranews.com/rss/hiburan
+ind*|*Hiburan*|*readability*|*http://www.inilah.com/rss/feed/artis/
+ind*|*Hiburan*|*readability*|*http://inside.kompas.com/getrss/entertainment
+ind*|*Hiburan*|*readability*|*http://entertainment.kompas.com/rss/all
+ind*|*Hiburan*|*readability*|*http://inside.kompas.com/getrss/entertainmentmusik
+ind*|*Hiburan*|*readability*|*http://inside.kompas.com/getrss/entertainmentcinema
+ind*|*Hiburan*|*readability*|*http://inside.kompas.com/getrss/entertainmentgossips
+ind*|*Hiburan*|*readability*|*http://www.thejakartaglobe.com/features/feed/
+
+
+
+
+时尚
 
 ind*|*fashion*|*readability*|*http://inside.kompas.com/getrss/female
 ind*|*fashion*|*readability*|*http://inside.kompas.com/getrss/femaleibuanak
 ind*|*fashion*|*readability*|*http://inside.kompas.com/getrss/femalerelationship
 ind*|*fashion*|*readability*|*http://rss.vivanews.com/get/kosmo
+
+
+
+
+生活
+
+ind*|*gaya hidup*|*readability*|*http://www.antaranews.com/rss/nasional-kesehatan
+ind*|*gaya hidup*|*readability*|*http://sindikasi.okezone.com/index.php/rss/11/RSS2.0
+ind*|*gaya hidup*|*readability*|*http://www.metrotvnews.com/front/rss/ekonomi
+ind*|*gaya hidup*|*readability*|*http://www.inilah.com/rss/feed/ekonomi/
+ind*|*gaya hidup*|*readability*|*http://www.tempo.co/rss/travel
+ind*|*gaya hidup*|*readability*|*http://inside.kompas.com/getrss/edukasi
+ind*|*gaya hidup*|*readability*|*http://www.kompas.com/getrss/kesehatan
+ind*|*gaya hidup*|*readability*|*http://www.kompas.com/getrss/travel
+ind*|*gaya hidup*|*readability*|*http://inside.kompas.com/getrss/health
+ind*|*gaya hidup*|*readability*|*http://rss.vivanews.com/get/sorot
+ind*|*gaya hidup*|*readability*|*http://sindikasi.okezone.com/index.php/rss/12/RSS2.0
+
+
+
+
+
+
+
+
+
+
+
 
