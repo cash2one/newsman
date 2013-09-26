@@ -1,7 +1,3 @@
-
-
-国内
-
 ind*|*Nasional*|*readability*|*http://sindikasi.okezone.com/index.php/rss/0/RSS2.0*|*Berita Terbaru
 ind*|*Nasional*|*readability*|*http://www.tempo.co/rss/popular24hours*|*Berita Terbaru
 ind*|*Nasional*|*readability*|*http://www.indonesianews.net/index.php/rss/f9295dc05093c851*|*Berita Terbaru
@@ -22,14 +18,9 @@ ind*|*Nasional*|*readability*|*http://rss.vivanews.com/get/nasional
 ind*|*Nasional*|*readability*|*http://indonesia.ucanews.com/?feed=rss2
 ind*|*Nasional*|*readability*|*http://www.antaranews.com/rss/nasional
 ind*|*Nasional*|*readability*|*http://www.insideindonesia.org/?option=com_ninjarsssyndicator&feed_id=1&format=raw
-
 ind*|*Nasional*|*readability*|*http://www.indosiar.com/rss
 
 
-
-国际
-
-ind*|*Internasional*|*readability*|*http://sindikasi.okezone.com/index.php/rss/18/RSS2.0
 ind*|*Internasional*|*readability*|*http://www.antaranews.com/rss/internasional
 ind*|*Internasional*|*readability*|*http://www.tempo.co/rss/internasional
 ind*|*Internasional*|*readability*|*http://www.inilah.com/rss/feed/duniahariini/
@@ -46,9 +37,7 @@ ind*|*Internasional*|*readability*|*http://www.antaranews.com/rss/internasional
 
 
 
-经济
-
-ind*|*Keuangan*|*readability*|*http://www.bignewsnetwork.com/index.php/nav/rss/3a8a80d6f705f8cc*|*Business Headline
+ind*|*Keuangan*|*readability*|*http://www.bignewsnetwork.com/index.php/nav/rss/3a8a80d6f705f8cc*|*Business Headlines
 ind*|*Keuangan*|*readability*|*http://www.bisnis.com/rss
 ind*|*Keuangan*|*readability*|*http://sindikasi.okezone.com/index.php/rss/11/RSS2.0
 ind*|*Keuangan*|*readability*|*http://www.kompas.com/getrss/bisniskeuangan
@@ -59,9 +48,6 @@ ind*|*Keuangan*|*readability*|*http://www.antaranews.com/rss/ekonomi
 
 
 
-
-
-科技
 
 ind*|*Teknologi*|*readability*|*http://sindikasi.okezone.com/index.php/rss/16/RSS2.0
 ind*|*Teknologi*|*readability*|*http://www.inilah.com/rss/feed/teknologi/
@@ -75,8 +61,6 @@ ind*|*Teknologi*|*readability*|*http://www.antaranews.com/rss/teknologi
 ind*|*Teknologi*|*readability*|*http://rss.tempointeraktif.com/teknologi.xml
 
 
-
-体育
 
 ind*|*Olahraga*|*readability*|*http://rss.detik.com/index.php/sport
 ind*|*Olahraga*|*readability*|*http://www.tempo.co/rss/olahraga
@@ -94,8 +78,6 @@ ind*|*Olahraga*|*readability*|*http://sindikasi.okezone.com/index.php/rss/2/RSS2
 
 
 
-娱乐
-
 ind*|*Hiburan*|*readability*|*http://www.antaranews.com/rss/hiburan
 ind*|*Hiburan*|*readability*|*http://www.inilah.com/rss/feed/artis/
 ind*|*Hiburan*|*readability*|*http://inside.kompas.com/getrss/entertainment
@@ -108,8 +90,6 @@ ind*|*Hiburan*|*readability*|*http://www.thejakartaglobe.com/features/feed/
 
 
 
-时尚
-
 ind*|*fashion*|*readability*|*http://inside.kompas.com/getrss/female
 ind*|*fashion*|*readability*|*http://inside.kompas.com/getrss/femaleibuanak
 ind*|*fashion*|*readability*|*http://inside.kompas.com/getrss/femalerelationship
@@ -117,8 +97,6 @@ ind*|*fashion*|*readability*|*http://rss.vivanews.com/get/kosmo
 
 
 
-
-生活
 
 ind*|*gaya hidup*|*readability*|*http://www.antaranews.com/rss/nasional-kesehatan
 ind*|*gaya hidup*|*readability*|*http://sindikasi.okezone.com/index.php/rss/11/RSS2.0
