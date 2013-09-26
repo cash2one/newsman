@@ -74,11 +74,12 @@ def _convert(language='en', country=None):
 
                 existing_item = db_feeds.find_one({'link':feed_link})
                 if not existing_item:
-                    db_feeds.save({'language': language, 'countries':[country], 'feed_link': feed_link, 'categories': [category], 'feed_title': feed_title, 'latest_update': None, 'updated_times': 0, 'transcoder': transcoder_mode})
+                    db_feeds.save({'language': language, 'countries':[country], 'feed_link': feed_link, 'categories': [category], 'labels':labels, 'feed_title': feed_title, 'latest_update': None, 'updated_times': 0, 'transcoder': transcoder_mode})
                 else:
                     new_item = existing_item
                     new_item['language'] = language
                     new_item['categories'] = list(set(new_item['categories'].extend([category])))
+                    new_item['labels'] = list(set(new_item['labels'].extend(labels)))
                     new_item['countries'] = list(set(new_item['countries'].append(country)))
                     new_item['transcoder'] = transcoder_mode
                     new_item['feed_title'] = feed_title
