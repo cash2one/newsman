@@ -31,7 +31,10 @@ def _parse_task(line):
     if line:
         task = line.split('*|*')
         # task[1] refers to categories
-        return task[0].strip(), task[1].split(','), task[2].strip(), task[3].strip()
+        if len(task) == 4:
+            return task[0].strip(), task[1].strip(), task[2].strip(), task[3].strip(), None
+        else:
+            return task[0].strip(), task[1].strip(), task[2].strip(), task[3].strip(), task[4].strip()
     else:
         return None
 
@@ -51,9 +54,12 @@ def _convert(language='en', country=None):
 
     for line in lines:
         if line.strip():
-            language, categories, feed_x, feed_link = _parse_task(line)
+            language, category, feed_x, feed_link, labels = _parse_task(line)
             if feed_link:
-                categories = ['%s::%s' % (country, category) for category in categories]
+                category = '%s::%s' % (country, category)
+
+                # break labels
+                labels = ['%s::%s::%s' % (country, category, label.strip()) for label in labels.split(',')]
 
                 # save feed
                 if feed_x in ['chengdujin', 'readability', 'uck', 'nuck']:
@@ -62,15 +68,16 @@ def _convert(language='en', country=None):
                 else:
                     transcoder_mode = "readability"
                     feed_title = feed_x
-                print feed_link, transcoder_mode, categories
+
+                print feed_link, transcoder_mode, category, labels
 
                 existing_item = db_feeds.find_one({'link':feed_link})
                 if not existing_item:
-                    db_feeds.save({'language': language, 'countries':[country], 'feed_link': feed_link, 'categories': categories, 'feed_title': feed_title, 'latest_update': None, 'updated_times': 0, 'transcoder': transcoder_mode})
+                    db_feeds.save({'language': language, 'countries':[country], 'feed_link': feed_link, 'categories': [category], 'feed_title': feed_title, 'latest_update': None, 'updated_times': 0, 'transcoder': transcoder_mode})
                 else:
                     new_item = existing_item
                     new_item['language'] = language
-                    new_item['categories'] = list(set(new_item['categories'].extend(categories)))
+                    new_item['categories'] = list(set(new_item['categories'].extend([category])))
                     new_item['countries'] = list(set(new_item['countries'].append(country)))
                     new_item['transcoder'] = transcoder_mode
                     new_item['feed_title'] = feed_title
