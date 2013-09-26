@@ -59,7 +59,8 @@ def _convert(language='en', country=None):
                 category = '%s::%s' % (country, category)
 
                 # break labels
-                labels = ['%s::%s::%s' % (country, category, label.strip()) for label in labels.split(',')]
+                if labels:
+                    labels = ['%s::%s' % (category, label.strip()) for label in labels.split(',')]
 
                 # save feed
                 if feed_x in ['chengdujin', 'readability', 'uck', 'nuck']:
