@@ -100,7 +100,8 @@ def get_categories(language=None, country=None, version=None):
                     if category_name not in categories:
                         categories[category_name] = []
                     if item['feed_title'] not in categories[category_name]:
-                        categories[category_name].append(item['feed_title'])
+                        feed_format = {'text':item['feed_title'], 'image':None}
+                        categories[category_name].append(feed_format)
 
             if 'labels' in item:
                 # add label to the category dictionary
@@ -112,11 +113,15 @@ def get_categories(language=None, country=None, version=None):
                         if category_name not in categories:
                             categories[category_name] = []
                         if label_name not in categories[category_name]:
+                            label_format = {'text':label_name, 'image':None}
                             categories[category_name].append(label_name)
         # reformat
         output = []
         for k, v in categories.iteritems():
-            output.append({'Category':k, 'Feeds':v})
+            category_format = {'title':k, 'image':None}
+            output.append({'Category':category_format, 'Feeds':v})
+
+        # compute version number
         version_latest = hashlib.md5(json.dumps(categories, sort_keys=True)).hexdigest()
 
         # compare versions
