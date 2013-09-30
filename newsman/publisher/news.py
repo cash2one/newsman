@@ -26,9 +26,8 @@ def get_portal(*bundle):
     """
     language = bundle[0]['language']
     country = bundle[0]['country']
-    bundle[0].pop('language')
-    bundle[0].pop('country')
-    return inquirer.get_portal(language, country, bundle[0])
+    categories = bundle[0]['categories']
+    return inquirer.get_portal(language, country, categories)
 
 
 def get_categories(*bundle):

@@ -39,7 +39,7 @@ HOTNEWS_TITLE = {'en': HOTNEWS_TITLE_EN, 'ja': HOTNEWS_TITLE_JA, 'th': HOTNEWS_T
                   HOTNEWS_TITLE_IND, 'en-rIN': HOTNEWS_TITLE_EN, 'ar': HOTNEWS_TITLE_AR, 'zh-CN': HOTNEWS_TITLE_ZH_CN, 'zh-HK': HOTNEWS_TITLE_ZH_HK}
 
 
-def get_portal(language=None, country=None, **kwargs):
+def get_portal(language=None, country=None, categories=None):
     """
     get a list of text and images for feed/rss and labels
     """
@@ -50,15 +50,13 @@ def get_portal(language=None, country=None, **kwargs):
         return None
     if country not in COUNTRIES:
         return None
-    if not kwargs:
-        return None
 
     search_limit = 60
     images_limit = 5
-
     portal_data = {}
+    categories = eval(categories)
 
-    for category, feed in kwargs.iteritems():
+    for category, feed in categories.iteritems():
         entries = get_latest_entries(language=language, country=country, category=category, feed=feed, limit=search_limit)
         # 'category A': [{'title':'xxx', 'image':'http://yyy.com/zzz.jpg'}]
         # image: category_image
