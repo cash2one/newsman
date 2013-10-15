@@ -32,12 +32,11 @@ from settings import HOTNEWS_TITLE_JA
 from settings import HOTNEWS_TITLE_IND
 from settings import HOTNEWS_TITLE_PT
 from settings import HOTNEWS_TITLE_TH
-from settings import HOTNEWS_TITLE_ZH_CN
-from settings import HOTNEWS_TITLE_ZH_HK
+from settings import HOTNEWS_TITLE_ZH
 from settings import LANGUAGES
 
 HOTNEWS_TITLE = {'en': HOTNEWS_TITLE_EN, 'ja': HOTNEWS_TITLE_JA, 'th': HOTNEWS_TITLE_TH, 'pt': HOTNEWS_TITLE_PT, 'ind':
-                  HOTNEWS_TITLE_IND, 'en-rIN': HOTNEWS_TITLE_EN, 'ar': HOTNEWS_TITLE_AR, 'zh-CN': HOTNEWS_TITLE_ZH_CN, 'zh-HK': HOTNEWS_TITLE_ZH_HK}
+                  HOTNEWS_TITLE_IND, 'ar': HOTNEWS_TITLE_AR, 'zh': HOTNEWS_TITLE_ZH}
 
 
 def get_portal(language=None, country=None, categories=None):

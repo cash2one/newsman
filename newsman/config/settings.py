@@ -88,8 +88,7 @@ TRANSCODING_BTN_JA = '元のページ'
 TRANSCODING_BTN_IND = 'Laman Asli'
 TRANSCODING_BTN_TH = 'หน้าเดิม'
 TRANSCODING_BTN_AR = 'ﺎﻠﻤﺻﺩﺭ'
-TRANSCODING_BTN_ZH_CN = '查看原始网页'
-TRANSCODING_BTN_ZH_HK = '查看原始鏈接'
+TRANSCODING_BTN_ZH = '查看原始网页'
 
 # hot news title
 HOTNEWS_TITLE_EN = 'Hot News'
@@ -98,8 +97,7 @@ HOTNEWS_TITLE_JA = '人気ニュース'
 HOTNEWS_TITLE_IND = 'Berita Terbaru'
 HOTNEWS_TITLE_TH = 'ข่าวฮิต'
 HOTNEWS_TITLE_AR = 'أخبار عاجلة'
-HOTNEWS_TITLE_ZH_CN = '查看原始网页'
-HOTNEWS_TITLE_ZH_HK = '查看原始鏈接'
+HOTNEWS_TITLE_ZH = '查看原始网页'
 
 # expirations 
 DATABASE_REMOVAL_DAYS = 365

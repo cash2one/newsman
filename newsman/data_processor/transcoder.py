@@ -40,15 +40,12 @@ from config.settings import TRANSCODING_BTN_IND
 from config.settings import TRANSCODING_BTN_JA
 from config.settings import TRANSCODING_BTN_PT
 from config.settings import TRANSCODING_BTN_TH
-from config.settings import TRANSCODING_BTN_ZH_CN
-from config.settings import TRANSCODING_BTN_ZH_HK
+from config.settings import TRANSCODING_BTN_ZH
 from config.settings import UCK_TIMEOUT
 
 TRANSCODE_BUTTON = {'en': TRANSCODING_BTN_EN, 'ja': TRANSCODING_BTN_JA,
                     'th': TRANSCODING_BTN_TH, 'pt': TRANSCODING_BTN_PT,
-                    'ind': TRANSCODING_BTN_IND, 'en-rIN': TRANSCODING_BTN_EN,
-                    'ar': TRANSCODING_BTN_AR, 'zh-CN': TRANSCODING_BTN_ZH_CN,
-                    'zh-HK': TRANSCODING_BTN_ZH_HK}
+                    'ind': TRANSCODING_BTN_IND, 'ar': TRANSCODING_BTN_AR, 'zh': TRANSCODING_BTN_ZH}
 
 
 # create a local dir for transcoded content if dir does not exist
