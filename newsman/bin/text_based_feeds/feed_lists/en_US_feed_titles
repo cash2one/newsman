@@ -24,169 +24,86 @@ http://news.yahoo.com/rss/business*|*Yahoo Business News
 http://.cnn.com/rss/money_topstories.rss*|*CNN Business News
 http://www.huffingtonpost.com/feeds/verticals/business/index.xml*|* The Huffington Post
 http://feeds.feedburner.com/clusterstock?format=xml*|*Business Insider Finance
-
 http://www.economist.com/feeds/print-sections/77/business.xml*|* The Economist Business
-
 http://www.huffingtonpost.com/feeds/verticals/entertainment/index.xml*|* The Huffington Post Entertainment
-
 http://www.mtv.com/rss/news/news_full.jhtml*|* MTV News
-
 http://hollywoodcrush.mtv.com/feed*|* Hollywood Crush
-
-http://feeds.movieweb.com/movieweb_news?format=xml*|* MovieWeb - Movie, TV, DVD, Blu-ray News
-
+http://feeds.movieweb.com/movieweb_news?format=xml*|* MovieWeb Movie, TV, DVD, Blu-ray News
 http://syndication.eonline.com/syndication/feeds/rssfeeds/topstories.xml*|* E! Online (US)
-
 http://rssfeeds.usatoday.com/usatoday-LifeTopStories*|*USA Today Entertainment Headlines
-
-http://rssfeeds.usatoday.com/UsatodaycomMovies-TopStories*|*USA Today - Movies
-
-http://rssfeeds.usatoday.com/UsatodaycomMusic-TopStories*|*USA Today - Music
-
-http://rssfeeds.usatoday.com/UsatodaycomTelevision-TopStories*|*USA Today - TV
-
-http://rssfeeds.usatoday.com/toppeople*|*USA Today -Star
-
+http://rssfeeds.usatoday.com/UsatodaycomMovies-TopStories*|*USA Today Movies
+http://rssfeeds.usatoday.com/UsatodaycomMusic-TopStories*|*USA Today Music
+http://rssfeeds.usatoday.com/UsatodaycomTelevision-TopStories*|*USA Today TV
+http://rssfeeds.usatoday.com/toppeople*|*USA Today Star
 http://splashpage.mtv.com/feed/rss2*|* Splash Page
-
 http://rapfix.mtv.com/feed*|* RapFix
-
-http://feeds.filmjabber.com/Movie-sourcecomMovieContests*|* FilmJabber - Movie Contests
-
+http://feeds.filmjabber.com/Movie-sourcecomMovieContests*|* FilmJabber Movie Contests
 http://sports.espn.go.com/espn/rss/news*|* ESPN Sports
-
-http://feeds.bbci.co.uk/news/entertainment_and_arts/rss.xml*|* BBC News - Entertainment & Arts
-
+http://feeds.bbci.co.uk/news/entertainment_and_arts/rss.xml*|* BBC News Entertainment & Arts
 http://www.huffingtonpost.com/feeds/verticals/sports/index.xml*|* The Huffington Post
-
-http://news.yahoo.com/rss/sports*|* Yahoo! News - Sports News Headlines
-
-http://www.theguardian.com/uk/sport/rss*|* Theguardian - sports news
-
+http://news.yahoo.com/rss/sports*|* Yahoo! News Sports News Headlines
+http://www.theguardian.com/uk/sport/rss*|* Theguardian Sports News
 http://feeds.bbci.co.uk/sport/0/rss.xml?edition=uk#*|*BBC Sport
-
 http://rssfeeds.usatoday.com/UsatodaycomSports-TopStories*|*USA Today Sports
-
 http://rssfeeds.usatoday.com/UsatodaycomGolf-TopStories*|* USA Today Golf
-
 http://rssfeeds.usatoday.com/topmotorsports*|*USA Today Motor Sports
-
 http://rssfeeds.usatoday.com/UsatodaycomNfl-TopStories*|*USA Today NFL
-
 http://rssfeeds.usatoday.com/UsatodayTennis-TopStories*|*USA Today Tennis
-
 http://rssfeeds.usatoday.com/UsatodaycomNba-TopStories*|*USA Today NBA
-
 http://rssfeeds.usatoday.com/UsatodaycomSoccer-TopStories*|*USA Today Soccer
-
 http://www.refinery29.com/index.xml*|* Refinery29
-
 http://feedpress.me/geekandhype*|* Geek&Hype
-
-http://www.mujerhoy.com/feeds/rss-Moda-portada.xml*|* Mujerhoy - Moda
-
-http://www.mujerhoy.com/feeds/rss-Belleza-portada.xml*|* Mujerhoy - Belleza
-
-http://www.mujerhoy.com/feeds/rss-ser-Madre-portada.xml*|* Mujerhoy - Ser Madre
-
-http://www.mujerhoy.com/feeds/rss-Salud-portada.xml*|* Mujerhoy - Salud
-
-http://www.mujerhoy.com/feeds/rss-Corazon-portada.xml*|* Mujerhoy - Corazón
-
-http://www.mujerhoy.com/feeds/rss-Hoy-portada.xml*|* Mujerhoy - Vivir Hoy
-
-http://feeds.feedburner.com/TheHollywoodReporter-Technology*|* TheHollywoodReporter-Technology
-
-http://rss.cnn.com/rss/cnn_travel.rss*|*CNN - Travel
-
+http://www.mujerhoy.com/feeds/rss-Moda-portada.xml*|* Mujerhoy Moda
+http://www.mujerhoy.com/feeds/rss-Belleza-portada.xml*|* Mujerhoy Belleza
+http://www.mujerhoy.com/feeds/rss-ser-Madre-portada.xml*|* Mujerhoy Ser Madre
+http://www.mujerhoy.com/feeds/rss-Salud-portada.xml*|* Mujerhoy Salud
+http://www.mujerhoy.com/feeds/rss-Corazon-portada.xml*|* Mujerhoy Corazón
+http://www.mujerhoy.com/feeds/rss-Hoy-portada.xml*|* Mujerhoy Vivir Hoy
+http://feeds.feedburner.com/TheHollywoodReporter-Technology*|* The Hollywood Reporter Technology
+http://rss.cnn.com/rss/cnn_travel.rss*|*CNN Travel
 http://feeds.feedburner.com/weblogsinc/gadling*|* Gadling
-
 http://intelligenttravel.nationalgeographic.com/feed/*|* Intelligent Travel
-
-http://feeds.feedburner.com/AtlanticFood*|* Health - The Atlantic
-
-http://feeds.bbci.co.uk/news/health/rss.xml*|* BBC News - Health
-
+http://feeds.feedburner.com/AtlanticFood*|* Health The Atlantic
+http://feeds.bbci.co.uk/news/health/rss.xml*|* BBC News Health
 http://feeds.reuters.com/Reuters/domesticNews*|* Reuters domestic News
-
-http://feeds.bbci.co.uk/news/world/us_and_canada/rss.xml*|* BBC News - US & Canada
-
+http://feeds.bbci.co.uk/news/world/us_and_canada/rss.xml*|* BBC News US & Canada
 http://feeds.wired.com/wired/index*|* Wired Top Stories
-
-http://rss.cnn.com/rss/cnn_world.rss*|*CNN - World
-
+http://rss.cnn.com/rss/cnn_world.rss*|*CNN World
 http://feeds.feedburner.com/thr/international*|* International
-
-http://rss.cnn.com/rss/edition_business.rss*|*CNN – Business
-
-http://feeds.feedburner.com/AtlanticBusinessChannel*|* Business -The Atlantic
-
-http://feeds.reuters.com/reuters/entertainment*|* Reuters - Entertainment News
-
-http://feeds.abcnews.com/abcnews/entertainmentheadlines*|* ABC News - Entertainment
-
-http://feeds.eonline.com/eonline/thesoup*|* E! Online (US) - The Soup
-
+http://rss.cnn.com/rss/edition_business.rss*|*CNN Business
+http://feeds.feedburner.com/AtlanticBusinessChannel*|* Business The Atlantic
+http://feeds.reuters.com/reuters/entertainment*|* Reuters Entertainment News
+http://feeds.abcnews.com/abcnews/entertainmentheadlines*|* ABC News Entertainment
+http://feeds.eonline.com/eonline/thesoup*|* E! Online (US) The Soup
 http://feeds.filmjabber.com/EriksMovieReviewsAndOtherRantsAndRaves*|* FilmJabber Movie Blog
-
 http://feeds.filmjabber.com/Movie-sourcecomMovieUpdates*|* FilmJabber Movie Updates
-
-http://rss.cnn.com/rss/cnn_us.rss*|*CNN -US
-
-http://feeds.feedburner.com/PSSfeed*|* Pretty Shiny Sparkly
-
-http://feeds.feedburner.com/thr/film*|* Movies
-
-http://rss.cbc.ca/lineup/sports.xml*|* CBC - Sports News
-
-http://rss.cnn.com/rss/cnn_health.rss*|*CNN – Health
-
-http://rss.cbc.ca/lineup/health.xml*|* CBC - Health News
-
-http://www.theglobeandmail.com/news/world/?service=rss*|* Globeandmail - World
-
-http://syndication.eonline.com/syndication/feeds/rssfeeds/trends.xml*|* E! Online (US) - Trends
-
-http://rss.cnn.com/rss/edition_football.rss*|*CNN - Football
-
+http://rss.cnn.com/rss/cnn_us.rss*|*CNN US
+http://feeds.feedburner.com/PSSfeed*|*Pretty Shiny Sparkly
+http://feeds.feedburner.com/thr/film*|*Hollywoodreporter Movies
+http://rss.cbc.ca/lineup/sports.xml*|*CBC Sports News
+http://rss.cnn.com/rss/cnn_health.rss*|*CNN Health
+http://rss.cbc.ca/lineup/health.xml*|* CBC Health News
+http://www.theglobeandmail.com/news/world/?service=rss*|* Globeandmail World
+http://syndication.eonline.com/syndication/feeds/rssfeeds/trends.xml*|* E! Online (US) Trends
+http://rss.cnn.com/rss/edition_football.rss*|*CNN Football
 http://feeds.feedburner.com/fragrantica*|* Fragrantica Perfumes
-
-http://feeds.feedburner.com/cyanatrendland*|* Trendland - Fashion & Trends Blogzine
-
-http://feeds.feedburner.com/TheBudgetFashionista*|* TheBudgetFashionista
-
+http://feeds.feedburner.com/cyanatrendland*|* Trendland Fashion & Trends Blogzine
+http://feeds.feedburner.com/TheBudgetFashionista*|* The Budget Fashionista
 http://feeds.feedburner.com/youlookfab*|* YouLookFab
-
-http://feeds.bbci.co.uk/news/entertainment_and_arts/rss.xml*|* BBC News - Entertainment & Arts
-
-http://rss.cnn.com/rss/edition_entertainment.rss*|* CNN - Entertainment
-
+http://feeds.bbci.co.uk/news/entertainment_and_arts/rss.xml*|* BBC News Entertainment & Arts
+http://rss.cnn.com/rss/edition_entertainment.rss*|* CNN Entertainment
 http://feeds.feedburner.com/ommalik*|* GigaOM
-
 http://feeds.feedburner.com/thr/business*|* Business
-
 http://feeds.bbci.co.uk/sport/0/rss.xml*|* BBC Sport
-
-http://feeds.reuters.com/reuters/sportsNews*|* Reuters - Sports News
-
+http://feeds.reuters.com/reuters/sportsNews*|* Reuters Sports News
 http://readwrite.com/main/feed/articles.xml*|* ReadWrite
-
 http://feeds.washingtonpost.com/rss/local*|* Washingtonpost Local News
-
 http://feeds.feedburner.com/TechCrunch/*|* TechCrunch
-
-http://feeds.reuters.com/Reuters/worldNews*|* Reuters - World News
-
-http://feeds.reuters.com/reuters/businessNews*|* Reuters - Business News
-
-http://www.mujerhoy.com/feeds/rss-Psico-Sexo-portada.xml*|* Mujerhoy - Psico y Sexo
-
+http://feeds.reuters.com/Reuters/worldNews*|* Reuters World News
+http://feeds.reuters.com/reuters/businessNews*|* Reuters Business News
+http://www.mujerhoy.com/feeds/rss-Psico-Sexo-portada.xml*|* Mujerhoy Psico y Sexo
 http://feeds2.feedburner.com/thenextwebtopstories*|* The Next Web Top Stories
-
-http://feeds.bbci.co.uk/news/world/rss.xml*|* BBC News - World
-
-http://www.businessweek.com/feeds/homepage.rss*|* Businessweek - Top News
-
-http://www.theverge.com/rss/index.xml*|* The Verge - All Posts
-
-http://www.spiegel.de/international/business/index.rss*|* SPIEGEL ONLINE - International
+http://feeds.bbci.co.uk/news/world/rss.xml*|* BBC News World
+http://www.businessweek.com/feeds/homepage.rss*|* Businessweek Top News
+http://www.theverge.com/rss/index.xml*|* The Verge All Posts
+http://www.spiegel.de/international/business/index.rss*|* SPIEGEL ONLINE International
