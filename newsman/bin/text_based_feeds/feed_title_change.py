@@ -15,7 +15,7 @@ def _convert(language, country):
     for d in data:
         print d
         url, title = d.strip().split('*|*')
-        item = feeds.update({'language':language, 'countries':country, 'feed_link':url}, {'$set':{'feed_title':title}})
+        item = feeds.update({'language':language, 'countries':country, 'feed_link':url.strip()}, {'$set':{'feed_title':title.strip()}})
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
