@@ -23,7 +23,7 @@ from config.settings import FEED_REGISTRAR
 from config.settings import MEMORY_EXPIRATION_DAYS
 
 # list of fields stored in memory
-field_list = ['_id', 'category_image', 'feed', 'hotnews_image', 'image', 'language', 'link', 'mp3', 'summary', 'thumbnail_image', 'title', 'transcoded', 'updated']
+field_list = ['_id', 'category_image', 'feed', 'hotnews_image', 'image', 'labels', 'language', 'link', 'mp3', 'summary', 'thumbnail_image', 'title', 'transcoded', 'updated']
 
 
 def update(entry=None, expiration=None):
@@ -58,7 +58,7 @@ def update(entry=None, expiration=None):
         # add entry ids to the label list
         col = Collection(db, FEED_REGISTRAR)
         item = col.find_one({'feed_title':entry_reduced['feed']}, {'labels':1})
-        if item and 'labels' in item:
+        if item and 'labels' in item and item['labels']:
             for label in item['labels']:
                 # a label is a combination of country, category and label
                 rclient.zadd('news::%s::%s' % (entry_reduced['language'], label), entry_reduced['updated'], entry_reduced['_id'])
