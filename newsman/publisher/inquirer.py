@@ -106,7 +106,7 @@ def get_categories(language=None, country=None, version=None):
                         feed_format = {'order':len(categories[category_name]), 'text':item['feed_title'], 'image':{'url':'http://img3.douban.com/view/photo/large/public/p2151271124.jpg', 'width':258, 'height':487}}
                         categories[category_name].append(feed_format)
 
-            if 'labels' in item:
+            if 'labels' in item and item['labels']:
                 # add label to the category dictionary
                 for label in item['labels']:
                     if label.startswith(country):
