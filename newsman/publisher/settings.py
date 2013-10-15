@@ -27,8 +27,8 @@ db = Database(con, 'news')
 # redis rclient
 import redis
 from redis import ConnectionError
-#rclient = redis.StrictRedis(host='10.240.35.40', port=6379)
-rclient = redis.StrictRedis(host='127.0.0.1')
+rclient = redis.StrictRedis(host='10.240.35.40', port=6379)
+#rclient = redis.StrictRedis(host='127.0.0.1')
 
 # htmlparser to do unescaping
 from HTMLParser import HTMLParser
@@ -36,14 +36,14 @@ hparser = HTMLParser()
 
 
 # CONSTANTS
-#PUBLIC = 'http://mobile-global.baidu.com/news/%s'  # hk01-hao123-mob01/mob02
+PUBLIC = 'http://mobile-global.baidu.com/news/%s'  # hk01-hao123-mob01/mob02
 #PUBLIC = 'http://180.76.2.34/%s'                   # hk01-hao123-mob00
-PUBLIC = 'http://54.251.107.116/%s'                # AWS singapore
+#PUBLIC = 'http://54.251.107.116/%s'                # AWS singapore
 #PUBLIC = 'http://54.232.81.44/%s'                  # AWS sao paolo
 #PUBLIC = 'http://54.248.227.71/%s'                 # AWS tokyo
-#LOCAL = '/home/work/%s'                            # official server prefix
+LOCAL = '/home/work/%s'                            # official server prefix
 #LOCAL = '/home/ubuntu/%s'                          # AWS server prefix
-LOCAL = '/home/jinyuan/Downloads/%s'               # local server prefix
+#LOCAL = '/home/jinyuan/Downloads/%s'               # local server prefix
 
 # code base folder for updating
 CODE_BASE = LOCAL % 'newsman'
@@ -119,7 +119,7 @@ UCK_TIMEOUT = 40  # 14 seconds timeout
 GOOGLE_TTS_TIMEOUT = 120  # 2 minutes timeout
 
 # supported languages
-LANGUAGES = ['en', 'th', 'ind', 'ja', 'pt', 'en-rIN', 'ar', 'zh-CN', 'zh-HK']
+LANGUAGES = ['en', 'th', 'ind', 'ja', 'pt', 'ar', 'zh']
 # supported countries, in code
 COUNTRIES = ['AU', 'BR', 'CA', 'CN', 'EG', 'FR', 'GB', 'HK', 'ID', 'IN', 'KR', 'TH', 'TR', 'TW', 'US', 'VN']
 

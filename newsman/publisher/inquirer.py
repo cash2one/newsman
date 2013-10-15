@@ -20,6 +20,7 @@ from settings import Collection, db
 from settings import logger
 from settings import rclient, ConnectionError
 import os
+import urllib2
 
 # CONSTANTS
 from settings import CODE_BASE
@@ -52,27 +53,30 @@ def get_portal(language=None, country=None, categories=None):
         return None
 
     search_limit = 60
-    images_limit = 5
+    images_limit = 2
     portal_data = {}
-    categories = eval(categories)
+    categories = urllib2.unquote(categories.strip()).split(',')
 
-    for category, feed in categories.iteritems():
+    for user_subscription in categories:
+        category, feed = user_subscription.split('*|*')
         entries = get_latest_entries(language=language, country=country, category=category, feed=feed, limit=search_limit)
         # 'category A': [{'title':'xxx', 'image':'http://yyy.com/zzz.jpg'}]
         # image: category_image
-        portal_data[feed] = []
+        portal_data[user_subscription] = []
         for entry in entries:
             if 'category_image' in entry and entry['category_image'] and entry['category_image'] != 'None' and entry['category_image'] != 'null':
                 item = {'title': entry['title'], 'image': entry['category_image'], 'updated': entry['updated']}
-                portal_data[feed].append(item)
+                portal_data[user_subscription].append(item)
                 # limit the number of category_image to
-                if len(portal_data[feed]) == images_limit:
+                if len(portal_data[user_subscription]) == images_limit:
                     break
 
     # special formatting for android-end
     output = []
     for k, v in portal_data.iteritems():
-        output.append({'Category': k, 'Images': v})
+        if k and v:
+            category, feed = k.split('*|*')
+            output.append({'Category':category, 'Feed':feed, 'Images':v})
     return {'Categories': output}
 
 
@@ -100,7 +104,7 @@ def get_categories(language=None, country=None, version=None):
                     if category_name not in categories:
                         categories[category_name] = []
                     if item['feed_title'] not in categories[category_name]:
-                        feed_format = {'text':item['feed_title'], 'image':None}
+                        feed_format = {'order':len(categories[category_name]), 'text':item['feed_title'], 'image':{'url':'http://img3.douban.com/view/photo/large/public/p2151271124.jpg', 'width':258, 'height':487}}
                         categories[category_name].append(feed_format)
 
             if 'labels' in item:
@@ -113,15 +117,13 @@ def get_categories(language=None, country=None, version=None):
                         if category_name not in categories:
                             categories[category_name] = []
                         if label_name not in categories[category_name]:
-                            label_format = {'text':label_name, 'image':None}
-                            categories[category_name].append(label_name)
+                            label_format = {'order':len(categories[category_name]), 'text':label_name, 'image':{'url':'http://img3.douban.com/view/photo/large/public/p2151271124.jpg', 'width':310, 'height':250}}
+                            categories[category_name].append(label_format)
         # reformat
         output = []
         for k, v in categories.iteritems():
-            category_format = {'title':k, 'image':None}
+            category_format = {'text':k, 'image':{'url':'http://img3.douban.com/view/photo/large/public/p2151271124.jpg', 'width':250, 'height':310}}
             output.append({'Category':category_format, 'Feeds':v})
-
-        # compute version number
         version_latest = hashlib.md5(json.dumps(categories, sort_keys=True)).hexdigest()
 
         # compare versions
