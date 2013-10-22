@@ -1,43 +1,6 @@
 >>>>> TH
 http://drama.kapook.com/drama3/feed*|*Kapook Drama เรื่องย่อละครช่อง3
 
->>>>> ID
-http://www.thejakartaglobe.com/news/feed/*|*The Jakarta Globe » News
-http://www.tempo.co/rss/travel*|*Tempo.co News Site
-http://www.thejakartaglobe.com/international/feed/*|*The Jakarta Globe » International
-http://www.inilah.com/rss/feed/artis/*|*Inilah.com - Artis
-http://www.thejakartaglobe.com/features/feed/*|*The Jakarta Globe » Features
-http://rss.vivanews.com/get/sorot*|*VIVAnews - SOROT
-http://inside.kompas.com/getrss/all*|*http://inside.kompas.com/getrss/all
-http://inside.kompas.com/getrss/nasional*|*http://inside.kompas.com/getrss/nasional
-http://inside.kompas.com/getrss/regional*|*http://inside.kompas.com/getrss/regional
-http://inside.kompas.com/getrss/megapolitan*|*http://inside.kompas.com/getrss/megapolitan
-http://www.kompas.com/getrss/nasional*|*http://www.kompas.com/getrss/nasional
-http://inside.kompas.com/getrss/internasional*|*http://inside.kompas.com/getrss/internasional
-http://www.kompas.com/getrss/bisniskeuangan*|*http://www.kompas.com/getrss/bisniskeuangan
-http://financeroll.co.id/feed*|*Financeroll Indonesia
-http://inside.kompas.com/getrss/sains*|*http://inside.kompas.com/getrss/sains
-http://www.kompas.com/getrss/tekno*|*http://www.kompas.com/getrss/tekno
-http://inside.kompas.com/getrss/teknosoftware*|*http://inside.kompas.com/getrss/teknosoftware
-http://inside.kompas.com/getrss/teknohardware*|*http://inside.kompas.com/getrss/teknohardware
-http://inside.kompas.com/getrss/teknointernet*|*http://inside.kompas.com/getrss/teknointernet
-http://inside.kompas.com/getrss/olahraga*|*http://inside.kompas.com/getrss/olahraga
-http://inside.kompas.com/getrss/bolaindonesia*|*http://inside.kompas.com/getrss/bolaindonesia
-http://inside.kompas.com/getrss/bola*|*http://inside.kompas.com/getrss/bola
-http://inside.kompas.com/getrss/entertainment*|*http://inside.kompas.com/getrss/entertainment
-http://entertainment.kompas.com/rss/all*|*http://entertainment.kompas.com/rss/all
-http://inside.kompas.com/getrss/entertainmentcinema*|*http://inside.kompas.com/getrss/entertainmentcinema
-http://inside.kompas.com/getrss/female*|*http://inside.kompas.com/getrss/female
-http://inside.kompas.com/getrss/femaleibuanak*|*http://inside.kompas.com/getrss/femaleibuanak
-http://inside.kompas.com/getrss/edukasi*|*http://inside.kompas.com/getrss/edukasi
-http://www.kompas.com/getrss/kesehatan*|*http://www.kompas.com/getrss/kesehatan
-http://www.kompas.com/getrss/travel*|*http://www.kompas.com/getrss/travel
-http://inside.kompas.com/getrss/health*|*http://inside.kompas.com/getrss/health
-http://inside.kompas.com/getrss/entertainmentmusik*|*http://inside.kompas.com/getrss/entertainmentmusik
-http://inside.kompas.com/getrss/entertainmentgossips*|*http://inside.kompas.com/getrss/entertainmentgossips
-http://inside.kompas.com/getrss/femalerelationship*|*http://inside.kompas.com/getrss/femalerelationship
-http://www.antaranews.com/rss/nasional-kesehatan*|*ANTARA News - Nasional - Kesehatan
-
 >>>>> CN
 http://rss.sina.com.cn/tech/index.shtml*|*http://rss.sina.com.cn/tech/index.shtml
 http://rss.sina.com.cn/games/index.shtml*|*http://rss.sina.com.cn/games/index.shtml
