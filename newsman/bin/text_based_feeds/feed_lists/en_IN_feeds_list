@@ -1,4 +1,6 @@
+en*|*News*|*readability*|*http://www.dnaindia.com/services/rss/news-latest.xml*|*DNA Latest News*|*Hot News
 en*|*News*|*readability*|*http://www.dnaindia.com/syndication/rss_popular.xml*|*Dnaindia Daily News & Analysis*|*Hot News
+en*|*News*|*readability*|*http://www.dnaindia.com/syndication/rss,catid-2.xml*|*DNA India News
 en*|*News*|*chengdujin*|*http://www.dnaindia.com/syndication/rss_popular.xml*|*Dnaindia Daily News & Analysis*|*India Headlines
 en*|*News*|*readability*|*http://www.newkerala.com/india-news.xml*|*India News Update*|*India Headlines
 en*|*News*|*readability*|*http://www.deccanherald.com/rss/national.rss*|*Deccan Herald National*|*Hot News
@@ -9,13 +11,16 @@ en*|*News*|*readability*|*http://newindianexpress.com/nation/?widgetName=rssfeed
 en*|*News*|*chengdujin*|*http://blogs.timesofindia.indiatimes.com/main/feed/entries/rss*|*Times of India Blogs
 en*|*News*|*readability*|*http://feeds.feedburner.com/ndtv/Lsgd*|*NDTV News All India
 en*|*News*|*readability*|*http://syndication.indianexpress.com/rss/798/latest-news.xml*|*Indian Express Headline
+en*|*News*|*readability*|*http://ibnlive.in.com/ibnrss/rss/india/india.xml*|*IBNLive India News
 en*|*News*|*readability*|*http://www.thehindu.com/news/international/?service=rss*|*The Hindu International
 en*|*News*|*chengdujin*|*http://feeds.huffingtonpost.com/huffingtonpost/LatestNews*|*The Huffington Post International*|*International Headlines
 en*|*News*|*readability*|*http://syndication.indianexpress.com/rss/789/latest-news.xml*|*The Indian Express International*|*International Headlines, Hot News
+en*|*News*|*readability*|*http://ibnlive.in.com/ibnrss/rss/indiaglobal/indiaglobal.xml*|*IBNLive Global News
 en*|*News*|*chengdujin*|*http://feeds.guardian.co.uk/theguardian/rss*|*The Guardian World News
 en*|*News*|*chengdujin*|*http://feeds.abcnews.com/abcnews/topstories*|*ABC News Top Stories
 en*|*News*|*readability*|*http://feeds.feedburner.com/foxnews/latest*|*FOXNews International
 en*|*News*|*chengdujin*|*http://feeds.feedburner.com/ndtv/TqgX*|*NDTV News World
+en*|*News*|*readability*|*http://www.dnaindia.com/syndication/rss,catid-9.xml*|*DNA World News
 en*|*Business*|*chengdujin*|*http://www.deccanherald.com/rss/business.rss*|*Deccan Herald Business*|*Business Headlines
 en*|*Business*|*readability*|*http://www.ibnlive.com/xml/rss/business.xml*|*Top Business News IBNLive
 en*|*Business*|*readability*|*http://www.thehindubusinessline.com/industry-and-economy/?service=rss*|*BusinessLine Industry
@@ -25,6 +30,7 @@ en*|*Business*|*readability*|*http://timesofindia.feedsportal.com/c/33039/f/5339
 en*|*Business*|*readability*|*http://feeds.feedburner.com/NDTV-Business*|*NDTV News Profit
 en*|*Business*|*readability*|*http://syndication.indianexpress.com/rss/797/latest-news.xml*|*The Indian Express Business
 en*|*Business*|*readability*|*http://www.dnaindia.com/syndication/rss,catid-4.xml*|*DNA Money News
+en*|*Business*|*readability*|*http://ibnlive.in.com/ibnrss/rss/business/business.xml*|*IBNLive Business
 en*|*Technology*|*chengdujin*|*http://www.engadget.com/rss.xml*|*Engadget*|*Technology Headlines, Hot News
 en*|*Technology*|*readability*|*http://feeds.feedburner.com/NDTV-Tech*|*NDTV News Technology*|*Technology Headlines
 en*|*Technology*|*chengdujin*|*http://timesofindia.feedsportal.com/c/33039/f/533922/index.rss*|*Science News Times of India
@@ -37,6 +43,7 @@ en*|*Technology*|*readability*|*http://feeds.feedburner.com/wirelessduniya/ZLXi*
 en*|*Technology*|*chengdujin*|*http://feeds.feedburner.com/tarss*|*Telecom Asia RSS
 en*|*Technology*|*chengdujin*|*http://feeds.reuters.com/reuters/INtechnologyNews*|*Reuters Technology News
 en*|*Technology*|*chengdujin*|*http://timesofindia.feedsportal.com/c/33039/f/533923/index.rss*|*Times of India Tech
+en*|*Technology*|*readability*|*http://www.dnaindia.com/syndication/rss,catid-5.xml*|*DNA Science & Tech
 en*|*Technology*|*chengdujin*|*http://feeds.feedburner.com/medianama*|*MediaNama Digital Media in India
 en*|*Lifestyle*|*readability*|*http://syndication.indianexpress.com/rss/802/latest-news.xml*|*Indian Express Lifestyle*|*Lifestyle Headlines
 en*|*Lifestyle*|*chengdujin*|*http://feeds.feedburner.com/wanderingtrader*|*WanderingTrader Travel Blog
@@ -50,6 +57,7 @@ en*|*Lifestyle*|*chengdujin*|*http://feeds.reuters.com/reuters/INlifestyle*|*Reu
 en*|*Lifestyle*|*chengdujin*|*http://timesofindia.feedsportal.com/c/33039/f/533968/index.rss*|*The Times of India Life & Style
 en*|*Lifestyle*|*chengdujin*|*http://timesofindia.feedsportal.com/c/33039/f/533929/index.rss*|*The Times of India Lifestyle
 en*|*Lifestyle*|*readability*|*http://www.dnaindia.com/syndication/rss,catid-1058783.xml*|*DNA Health
+en*|*Lifestyle*|*readability*|*http://ibnlive.in.com/ibnrss/rss/arts/arts.xml*|*IBNLive Arts
 en*|*Lifestyle*|*readability*|*http://ibnlive.in.com/ibnrss/rss/health/health.xml*|*IBNLive Health
 en*|*Entertainment*|*readability*|*http://www.deccanherald.com/rss/entertainment.rss*|*Deccan Herald Entertainment*|*Entertainment Headlines, Hot News
 en*|*Entertainment*|*readability*|*http://www.bollywoodhungama.com/index/rss*|*Bollywood Hungama Entertainment*|*Entertainment Headlines
@@ -61,6 +69,8 @@ en*|*Entertainment*|*readability*|*http://timesofindia.feedsportal.com/c/33039/f
 en*|*Entertainment*|*readability*|*http://feeds.reuters.com/reuters/INhollywood*|*Reuters Hollywood News
 en*|*Entertainment*|*readability*|*http://feeds.reuters.com/reuters/INbollywood*|*Reuters Bollywood News
 en*|*Entertainment*|*readability*|*http://feeds.feedburner.com/NDTV-Ent*|*NDTV News Entertainment
+en*|*Entertainment*|*readability*|*http://www.dnaindia.com/syndication/rss,catid-7.xml*|*DNA Entertainment
+en*|*Entertainment*|*readability*|*http://ibnlive.in.com/ibnrss/rss/moviesnews/moviesnews.xml*|*IBNLive Movies
 en*|*Sports*|*readability*|*http://www.rediff.com/rss/sportsrss.xml*|*Rediff Sports*|*Sports Headlines
 en*|*Sports*|*readability*|*http://www.ibnlive.com/xml/rss/sports.xml*|*IBNLive Sports*|*Sports Headlines
 en*|*Sports*|*chengdujin*|*http://feeds.hindustantimes.com/HT-Cricket-TopStories*|*Cricket News
@@ -71,6 +81,8 @@ en*|*Sports*|*readability*|*http://www.espncricinfo.com/rss/content/story/feeds/
 en*|*Sports*|*chengdujin*|*http://timesofindia.feedsportal.com/c/33039/f/533921/index.rss*|*The Times of India Sports
 en*|*Sports*|*readability*|*http://feeds.reuters.com/reuters/INcricketNews*|*Reuters Cricket News
 en*|*Sports*|*readability*|*http://syndication.indianexpress.com/rss/785/latest-news.xml*|*Indian Express Sports
+en*|*Sports*|*readability*|*http://www.dnaindia.com/syndication/rss,catid-6.xml*|*DNA Sports
+en*|*Fashion*|*readability*|*http://ibnlive.in.com/ibnrss/rss/fashion/fashion.xml*|*IBNLive Fashion
 en*|*Fashion*|*chengdujin*|*http://feeds.feedburner.com/cyanatrendland*|*Trendland Fashion & Trends Blogzine
 en*|*Fashion*|*chengdujin*|*http://feeds.feedburner.com/fragrantica*|*Fragrantica Perfumes
 en*|*Fashion*|*readability*|*http://www.refinery29.com/index.xml*|*Refinery29 Fashion
