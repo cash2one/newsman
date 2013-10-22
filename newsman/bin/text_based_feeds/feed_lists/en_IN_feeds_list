@@ -1,7 +1,6 @@
 en*|*News*|*readability*|*http://www.dnaindia.com/services/rss/news-latest.xml*|*DNA Latest News*|*Hot News
-en*|*News*|*readability*|*http://www.dnaindia.com/syndication/rss_popular.xml*|*Dnaindia Daily News & Analysis*|*Hot News
+en*|*News*|*readability*|*http://www.dnaindia.com/syndication/rss_popular.xml*|*DNA Popular News*|*India Headlines, Hot News
 en*|*News*|*readability*|*http://www.dnaindia.com/syndication/rss,catid-2.xml*|*DNA India News
-en*|*News*|*chengdujin*|*http://www.dnaindia.com/syndication/rss_popular.xml*|*Dnaindia Daily News & Analysis*|*India Headlines
 en*|*News*|*readability*|*http://www.newkerala.com/india-news.xml*|*India News Update*|*India Headlines
 en*|*News*|*readability*|*http://www.deccanherald.com/rss/national.rss*|*Deccan Herald National*|*Hot News
 en*|*News*|*readability*|*http://www.thehindu.com/news/national/?service=rss*|*The Hindu National
@@ -28,7 +27,6 @@ en*|*Business*|*readability*|*http://www.indianexpress.com/rss/37/business.xml*|
 en*|*Business*|*readability*|*http://feeds.reuters.com/reuters/INbusinessNews*|*Reuters Money News
 en*|*Business*|*readability*|*http://timesofindia.feedsportal.com/c/33039/f/533919/index.rss*|*The Times of India Business
 en*|*Business*|*readability*|*http://feeds.feedburner.com/NDTV-Business*|*NDTV News Profit
-en*|*Business*|*readability*|*http://syndication.indianexpress.com/rss/797/latest-news.xml*|*The Indian Express Business
 en*|*Business*|*readability*|*http://www.dnaindia.com/syndication/rss,catid-4.xml*|*DNA Money News
 en*|*Business*|*readability*|*http://ibnlive.in.com/ibnrss/rss/business/business.xml*|*IBNLive Business
 en*|*Technology*|*chengdujin*|*http://www.engadget.com/rss.xml*|*Engadget*|*Technology Headlines, Hot News
@@ -38,17 +36,15 @@ en*|*Technology*|*chengdujin*|*http://www.campaignindia.in/RSS/rss.ashx?type=Cat
 en*|*Technology*|*chengdujin*|*http://www.campaignindia.in/RSS/rss.ashx?type=Category&ID=473*|*Campaign India Marketing
 en*|*Technology*|*chengdujin*|*http://www.campaignindia.in/RSS/rss.ashx?type=Category&ID=474*|*Campaign India Digital
 en*|*Technology*|*readability*|*http://www.campaignindia.in/RSS/rss.ashx?type=Category&ID=475*|*Campaign India Creativity
-en*|*Technology*|*readability*|*http://feeds.feedburner.com/tarss?format=xml*|*Telecom Asia RSS
+en*|*Technology*|*readability*|*http://feeds.feedburner.com/tarss?format=xml*|*Telecom Asia
 en*|*Technology*|*readability*|*http://feeds.feedburner.com/wirelessduniya/ZLXi*|*WirelessDuniya
-en*|*Technology*|*chengdujin*|*http://feeds.feedburner.com/tarss*|*Telecom Asia RSS
 en*|*Technology*|*chengdujin*|*http://feeds.reuters.com/reuters/INtechnologyNews*|*Reuters Technology News
 en*|*Technology*|*chengdujin*|*http://timesofindia.feedsportal.com/c/33039/f/533923/index.rss*|*Times of India Tech
 en*|*Technology*|*readability*|*http://www.dnaindia.com/syndication/rss,catid-5.xml*|*DNA Science & Tech
-en*|*Technology*|*chengdujin*|*http://feeds.feedburner.com/medianama*|*MediaNama Digital Media in India
 en*|*Lifestyle*|*readability*|*http://syndication.indianexpress.com/rss/802/latest-news.xml*|*Indian Express Lifestyle*|*Lifestyle Headlines
 en*|*Lifestyle*|*chengdujin*|*http://feeds.feedburner.com/wanderingtrader*|*WanderingTrader Travel Blog
 en*|*Lifestyle*|*readability*|*http://feeds.feedburner.com/TravelingCanucks*|*Traveling Canucks
-en*|*Lifestyle*|*readability*|*http://www.medianama.com/feed/*|*MediaNama Digital Media in India
+en*|*Lifestyle*|*readability*|*http://www.medianama.com/feed/*|*MediaNama
 en*|*Lifestyle*|*readability*|*http://www.newkerala.com/health-news.xml*|*Newkerala Health News
 en*|*Lifestyle*|*chengdujin*|*http://newsrack.in/rss/esg/Health/Diseases/Non_communicable/Cancer/rss.xml*|*NewsRack Cancer
 en*|*Lifestyle*|*readability*|*http://newsrack.in/rss/indiatogether/Health/Mental-Health/rss.xml*|*NewsRack NewsRack
@@ -90,7 +86,6 @@ en*|*Fashion*|*chengdujin*|*http://feeds.feedburner.com/TheBudgetFashionista*|*T
 en*|*Fashion*|*readability*|*http://feedpress.me/geekandhype*|*Geek&Hype
 en*|*Fashion*|*readability*|*http://feeds.feedburner.com/PSSfeed*|*Pretty Shiny Sparkly
 en*|*Fashion*|*chengdujin*|*http://feeds.feedburner.com/youlookfab*|*YouLookFab Fashion
-en*|*Fashion*|*readability*|*http://www.mujerhoy.com/feeds/rss-Moda-portada.xml*|*Mujerhoy Moda
 en*|*Fashion*|*chengdujin*|*http://www.mujerhoy.com/feeds/rss-Belleza-portada.xml*|*Mujerhoy Belleza
 en*|*Fashion*|*chengdujin*|*http://www.mujerhoy.com/feeds/rss-ser-Madre-portada.xml*|*Mujerhoy Ser Madre
 en*|*Fashion*|*chengdujin*|*http://www.mujerhoy.com/feeds/rss-Salud-portada.xml*|*Mujerhoy Salud

@@ -10,7 +10,6 @@ in*|*Nasional*|*readability*|*http://inside.kompas.com/getrss/all*|*Kompas*|*Ber
 in*|*Nasional*|*readability*|*http://inside.kompas.com/getrss/nasional*|*Kompas Nasional*|*Berita Terbaru
 in*|*Nasional*|*readability*|*http://inside.kompas.com/getrss/regional*|*Kompas Regional
 in*|*Nasional*|*readability*|*http://inside.kompas.com/getrss/megapolitan*|*Kompas Megapolitan
-in*|*Nasional*|*readability*|*http://www.kompas.com/getrss/nasional*|*Kompas Nasional*|*Berita Terbaru
 in*|*Nasional*|*readability*|*http://www.thejakartaglobe.com/news/feed/*|*The JKT Globe News
 in*|*Nasional*|*readability*|*http://rss.vivanews.com/get/all*|*VIVAnews
 in*|*Nasional*|*readability*|*http://rss.vivanews.com/get/nasional*|*VIVAnews Nasional
@@ -18,7 +17,6 @@ in*|*Nasional*|*readability*|*http://indonesia.ucanews.com/?feed=rss2*|*UCAN Ind
 in*|*Nasional*|*readability*|*http://www.antaranews.com/rss/nasional*|*ANTARA News Nasional
 in*|*Nasional*|*readability*|*http://www.insideindonesia.org/?option=com_ninjarsssyndicator&feed_id=1&format=raw*|*Inside Indonesia Current Edition
 in*|*Nasional*|*readability*|*http://www.indosiar.com/rss*|*INDOSIAR Stasiun TV
-in*|*Internasional*|*readability*|*http://www.antaranews.com/rss/internasional*|*ANTARA News Dunia
 in*|*Internasional*|*readability*|*http://www.tempo.co/rss/internasional*|*Tempo International
 in*|*Internasional*|*readability*|*http://www.inilah.com/rss/feed/duniahariini/*|*Inilah International
 in*|*Internasional*|*readability*|*http://www.metrotvnews.com/front/rss/internasional*|*METRO TV NEWS Dunia
@@ -30,7 +28,6 @@ in*|*Internasional*|*readability*|*http://www.thejakartapost.com/breaking/feed*|
 in*|*Internasional*|*readability*|*http://www.antaranews.com/rss/internasional*|*ANTARA News Dunia
 in*|*Keuangan*|*readability*|*http://www.bignewsnetwork.com/index.php/nav/rss/3a8a80d6f705f8cc*|*Big News Network Headlines
 in*|*Keuangan*|*readability*|*http://www.bisnis.com/rss*|*Bisnis Indonesia News
-in*|*Keuangan*|*readability*|*http://sindikasi.okezone.com/index.php/rss/11/RSS2.0*|*Sindikasi Economy
 in*|*Keuangan*|*readability*|*http://www.kompas.com/getrss/bisniskeuangan*|*Kompas Keuangan
 in*|*Keuangan*|*readability*|*http://www.thejakartaglobe.com/business/feed/*|*The JKT Globe Business
 in*|*Keuangan*|*readability*|*http://rss.vivanews.com/get/metro*|*VIVAnews Metro
@@ -72,7 +69,7 @@ in*|*Fashion*|*readability*|*http://inside.kompas.com/getrss/femaleibuanak*|*Kom
 in*|*Fashion*|*readability*|*http://inside.kompas.com/getrss/femalerelationship*|*Kompas Female
 in*|*Fashion*|*readability*|*http://rss.vivanews.com/get/kosmo*|*VIVAnews Kosmo
 in*|*Gaya Hidup*|*readability*|*http://www.antaranews.com/rss/nasional-kesehatan*|*ANTARA News Kesehatan
-in*|*Gaya Hidup*|*readability*|*http://sindikasi.okezone.com/index.php/rss/11/RSS2.0*|*Sindikasi Economy
+in*|*Gaya Hidup*|*readability*|*http://sindikasi.okezone.com/index.php/rss/11/RSS2.0*|*Okezone Economy
 in*|*Gaya Hidup*|*readability*|*http://www.metrotvnews.com/front/rss/ekonomi*|*METRO TV NEWS Ekonomi
 in*|*Gaya Hidup*|*readability*|*http://www.inilah.com/rss/feed/ekonomi/*|*Inilah Ekonomi
 in*|*Gaya Hidup*|*readability*|*http://www.tempo.co/rss/travel*|*Tempo Travel

@@ -4,7 +4,7 @@ en*|*News*|*readability*|*http://www.dailymail.co.uk/news/headlines/index.rss*|*
 en*|*News*|*readability*|*http://feeds.reuters.com/reuters/worldNews*|*Reuters World*|*World
 en*|*News*|*chengdujin*|*http://www.theglobeandmail.com/news/world/?service=rss*|*Globeandmail World*|*World
 en*|*News*|*chengdujin*|*http://news.nationalpost.com/category/news/world/feed/*|*Nationalpost World News*|*World
-en*|*News*|*chengdujin*|*http://www.spiegel.de/international/world/index.rss*|*SPIEGEL ONLINE International*|*World
+en*|*News*|*chengdujin*|*http://www.spiegel.de/international/world/index.rss*|*SPIEGEL World*|*World
 en*|*News*|*readability*|*http://feeds.feedburner.com/thr/international*|*International*|*World
 en*|*News*|*readability*|*http://feeds.reuters.com/Reuters/domesticNews*|*Reuters domestic News*|*Domestic
 en*|*News*|*chengdujin*|*http://www.theglobeandmail.com/news/national/?service=rss*|*Globeandmail National*|*Domestic
@@ -12,9 +12,9 @@ en*|*News*|*chengdujin*|*http://feeds.washingtonpost.com/rss/local*|*Washingtonp
 en*|*News*|*readability*|*http://feeds.reuters.com/Reuters/PoliticsNews*|*Reuters Politics*|*Politics
 en*|*News*|*readability*|*http://feeds.washingtonpost.com/rss/politics*|*Washington Post Politics*|*Politics
 en*|*News*|*readability*|*http://feeds.foxnews.com/foxnews/politics*|*Fox News Politics
-en*|*News*|*readability*|*http://news.yahoo.com/rss/world*|*Yahoo World News
-en*|*News*|*readability*|*http://news.yahoo.com/rss/us*|*Yahoo Domestic News
-en*|*News*|*readability*|*http://news.yahoo.com/rss/politics*|*Yahoo Politics
+en*|*News*|*readability*|*http://news.yahoo.com/rss/world*|*Yahoo! News World
+en*|*News*|*readability*|*http://news.yahoo.com/rss/us*|*Yahoo! News US
+en*|*News*|*readability*|*http://news.yahoo.com/rss/politics*|*Yahoo! News Politics
 en*|*News*|*readability*|*http://rss.cnn.com/rss/cnn_world.rss*|*CNN World
 en*|*News*|*readability*|*http://rss.cnn.com/rss/cnn_us.rss*|*CNN US
 en*|*News*|*readability*|*http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=news2*|*USA Today Canada News
@@ -29,15 +29,15 @@ en*|*News*|*readability*|*http://feeds.foxnews.com/foxnews/world*|*Fox News Worl
 en*|*News*|*readability*|*http://www.dailymail.co.uk/news/index.rss*|*Daily Mail News
 en*|*Business*|*readability*|*http://feeds.reuters.com/reuters/businessNews*|*Reuters Business News*|*Business Headlines
 en*|*Business*|*readability*|*http://www.forbes.com/business/feed2/*|*Forbes Business
-en*|*Business*|*readability*|*http://news.yahoo.com/rss/business*|*Yahoo Business News
+en*|*Business*|*readability*|*http://news.yahoo.com/rss/business*|*Yahoo! News Business
 en*|*Business*|*readability*|*http://rss.cnn.com/rss/money_topstories.rss*|*CNN Money Top Stories
-en*|*Business*|*readability*|*http://www.huffingtonpost.com/feeds/verticals/business/index.xml*|*The Huffington Post
+en*|*Business*|*readability*|*http://www.huffingtonpost.com/feeds/verticals/business/index.xml*|*Huffington Post Business
 en*|*Business*|*readability*|*http://www.businessweek.com/feeds/homepage.rss*|*Businessweek Top News
 en*|*Business*|*readability*|*http://feeds.feedburner.com/clusterstock?format=xml*|*Business Insider Finance
 en*|*Business*|*chengdujin*|*http://feeds.feedburner.com/AtlanticBusinessChannel*|*Business The Atlantic
 en*|*Business*|*readability*|*http://www.economist.com/feeds/print-sections/77/business.xml*|*The Economist Business
 en*|*Business*|*chengdujin*|*http://rss.cnn.com/rss/edition_business.rss*|*CNN Business
-en*|*Business*|*chengdujin*|*http://www.spiegel.de/international/business/index.rss*|*SPIEGEL ONLINE International
+en*|*Business*|*chengdujin*|*http://www.spiegel.de/international/business/index.rss*|*SPIEGEL Business
 en*|*Business*|*readability*|*http://feeds.feedburner.com/thr/business*|*Business
 en*|*Business*|*readability*|*http://feeds.washingtonpost.com/rss/business*|*Washington Post Business
 en*|*Technology*|*chengdujin*|*http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=tech1*|*USA Today Tech & Science*|*Technology Headlines
@@ -56,7 +56,7 @@ en*|*Technology*|*chengdujin*|*http://feeds.feedburner.com/crunchgear*|*TechCrun
 en*|*Technology*|*chengdujin*|*http://feeds.feedburner.com/TechCrunch/gaming*|*TechCrunch Gaming
 en*|*Technology*|*readability*|*http://feeds.feedburner.com/TheHollywoodReporter-Technology*|*The Hollywood Reporter Technology
 en*|*Technology*|*chengdujin*|*http://feeds.foxnews.com/foxnews/tech*|*Fox News Technology
-en*|*Fashion*|*readability*|*http://news.yahoo.com/rss/fashion*|*Yahoo Fashion*|*Fashion Headlines
+en*|*Fashion*|*readability*|*http://news.yahoo.com/rss/fashion*|*Yahoo! News Fashion*|*Fashion Headlines
 en*|*Fashion*|*readability*|*http://www.dailymail.co.uk/femail/index.rss*|*Dail Mail Femail*|*Fashion Headlines
 en*|*Fashion*|*readability*|*http://feeds.feedburner.com/cyanatrendland*|*Trendland Fashion & Trends Blogzine
 en*|*Fashion*|*readability*|*http://feeds.feedburner.com/fragrantica*|*Fragrantica Perfumes
@@ -68,11 +68,10 @@ en*|*Fashion*|*chengdujin*|*http://feeds.feedburner.com/youlookfab*|*YouLookFab
 en*|*Entertainment*|*readability*|*http://rssfeeds.usatoday.com/usatoday-LifeTopStories*|*USA Today Entertainment Headlines*|*Entertainment Headlines
 en*|*Entertainment*|*readability*|*http://feeds.foxnews.com/foxnews/entertainment*|*Fox News Entertainment*|*Entertainment Headlines
 en*|*Entertainment*|*readability*|*http://www.dailymail.co.uk/tvshowbiz/headlines/index.rss*|*Daily Mail TV Show Biz Headlines*|*Entertainment Headlines
-en*|*Entertainment*|*readability*|*http://news.yahoo.com/rss/entertainment*|*Yahoo Entertainment
+en*|*Entertainment*|*readability*|*http://news.yahoo.com/rss/entertainment*|*Yahoo! News Entertainment
 en*|*Entertainment*|*readability*|*http://feeds.washingtonpost.com/rss/entertainment*|*Washington Post Entertainment
-en*|*Entertainment*|*readability*|*http://feeds.bbci.co.uk/news/entertainment_and_arts/rss.xml*|*BBC News Entertainment & Arts
 en*|*Entertainment*|*readability*|*http://feeds.reuters.com/reuters/entertainment*|*Reuters Entertainment News
-en*|*Entertainment*|*readability*|*http://www.huffingtonpost.com/feeds/verticals/entertainment/index.xml*|*The Huffington Post Entertainment
+en*|*Entertainment*|*readability*|*http://www.huffingtonpost.com/feeds/verticals/entertainment/index.xml*|*Huffington Post Entertainment
 en*|*Entertainment*|*chengdujin*|*http://www.mtv.com/rss/news/news_full.jhtml*|*MTV News
 en*|*Entertainment*|*chengdujin*|*http://feeds.abcnews.com/abcnews/entertainmentheadlines*|*ABC News Entertainment
 en*|*Entertainment*|*readability*|*http://hollywoodcrush.mtv.com/feed*|*Hollywood Crush
@@ -94,19 +93,17 @@ en*|*Entertainment*|*readability*|*http://feeds.denverpost.com/dp-entertainment*
 en*|*Entertainment*|*readability*|*http://feeds.washingtonpost.com/rss/entertainment/comics*|*Washington Post Comics
 en*|*Entertainment*|*readability*|*http://www.dailymail.co.uk/tvshowbiz/index.rss*|*Daily Mail TV Show Biz
 en*|*Sports*|*readability*|*http://rssfeeds.usatoday.com/UsatodaycomSports-TopStories*|*USA Today Sports*|*Sports Headlines
-en*|*Sports*|*readability*|*http://feeds.foxnews.com/foxnews/sports*|*Fox News Travel*|*Sports Headlines
+en*|*Sports*|*readability*|*http://feeds.foxnews.com/foxnews/sports*|*Fox News Sports*|*Sports Headlines
 en*|*Sports*|*readability*|*http://www.dailymail.co.uk/sport/headlines/index.rss*|*Daily Mail Sport Headlines*|*Sports Headlines
-en*|*Sports*|*readability*|*http://news.yahoo.com/rss/sports*|*Yahoo! News Sports News Headlines
 en*|*Sports*|*readability*|*http://feeds.washingtonpost.com/rss/sports*|*Washington Post Sports
 en*|*Sports*|*readability*|*http://sports.espn.go.com/espn/rss/news*|*ESPN Sports
 en*|*Sports*|*readability*|*http://feeds.bbci.co.uk/news/entertainment_and_arts/rss.xml*|*BBC News Entertainment & Arts
 en*|*Sports*|*readability*|*http://feeds.reuters.com/reuters/sportsNews*|*Reuters Sports News
-en*|*Sports*|*readability*|*http://www.huffingtonpost.com/feeds/verticals/sports/index.xml*|*The Huffington Post
+en*|*Sports*|*readability*|*http://www.huffingtonpost.com/feeds/verticals/sports/index.xml*|*Huffington Post Sports
 en*|*Sports*|*chengdujin*|*http://rss.cbc.ca/lineup/sports.xml*|*CBC Sports News
 en*|*Sports*|*readability*|*http://feeds.bbci.co.uk/sport/0/rss.xml*|*BBC Sport
-en*|*Sports*|*readability*|*http://news.yahoo.com/rss/sports*|*Yahoo! News Sports News Headlines
+en*|*Sports*|*readability*|*http://news.yahoo.com/rss/sports*|*Yahoo! News Sports
 en*|*Sports*|*chengdujin*|*http://www.theguardian.com/uk/sport/rss*|*Theguardian Sports News
-en*|*Sports*|*chengdujin*|*http://feeds.bbci.co.uk/sport/0/rss.xml?edition=uk#*|*BBC Sport
 en*|*Sports*|*chengdujin*|*http://rss.cnn.com/rss/edition_football.rss*|*CNN Football
 en*|*Sports*|*readability*|*http://rssfeeds.usatoday.com/UsatodaycomGolf-TopStories*|*USA Today Golf
 en*|*Sports*|*readability*|*http://rssfeeds.usatoday.com/topmotorsports*|*USA Today Motor Sports
@@ -123,7 +120,7 @@ en*|*Lifestyle*|*readability*|*http://www.dailymail.co.uk/travel/index.rss*|*Dai
 en*|*Lifestyle*|*chengdujin*|*http://feeds.feedburner.com/weblogsinc/gadling*|*Gadling
 en*|*Lifestyle*|*readability*|*http://rss.ibtimes.com/rss/media-culture/travel*|*International Business Times
 en*|*Lifestyle*|*chengdujin*|*http://intelligenttravel.nationalgeographic.com/feed/*|*Intelligent Travel
-en*|*Lifestyle*|*readability*|*http://news.yahoo.com/rss/health*|*Yahoo Health
+en*|*Lifestyle*|*readability*|*http://news.yahoo.com/rss/health*|*Yahoo! News Health
 en*|*Lifestyle*|*chengdujin*|*http://feeds.feedburner.com/AtlanticFood*|*Health The Atlantic
 en*|*Lifestyle*|*readability*|*http://feeds.reuters.com/reuters/healthNews*|*Reuters Health News
 en*|*Lifestyle*|*readability*|*http://feeds.bbci.co.uk/news/health/rss.xml*|*BBC News Health
