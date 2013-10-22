@@ -1,3 +1,20 @@
+>>>> ID
+http://sindikasi.okezone.com/index.php/rss/0/RSS2.0
+http://www.tempo.co/rss/popular24hours
+http://www.indonesianews.net/index.php/rss/f9295dc05093c851
+http://indonesia.ucanews.com/?feed=rss2
+http://www.antaranews.com/rss/nasional
+http://www.insideindonesia.org/?option=com_ninjarsssyndicator&feed_id=1&format=raw
+http://www.indosiar.com/rss
+http://www.thejakartapost.com/breaking/feed
+http://www.bignewsnetwork.com/index.php/nav/rss/3a8a80d6f705f8cc
+http://www.bisnis.com/rss
+http://www.antaranews.com/rss/ekonomi
+http://www.antaranews.com/rss/teknologi
+http://rss.tempointeraktif.com/teknologi.xml
+http://sindikasi.okezone.com/index.php/rss/2/RSS2.0
+http://sindikasi.okezone.com/index.php/rss/12/RSS2.0
+
 >>>>> TH
 http://drama.kapook.com/drama3/feed*|*Kapook Drama เรื่องย่อละครช่อง3
 
