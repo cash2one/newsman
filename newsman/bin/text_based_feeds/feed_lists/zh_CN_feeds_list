@@ -25,12 +25,14 @@ zh*|*财经*|*readability*|*http://china.caixin.com/news/rss/100300241.xml*|*财
 zh*|*财经*|*readability*|*http://rich.online.sh.cn/rich/gb/special/rich.xml*|*上海财经频道
 zh*|*财经*|*readability*|*http://economy.caixin.com/news/rss/100300184.xml*|*财新网经济频道
 zh*|*财经*|*readability*|*http://app.eeo.com.cn/?app=rss&controller=index&action=feed&catid=29*|*经济观察网金融投资
+zh*|*时尚*|*readability*|*http://news.baidu.com/n?cmd=1&class=healthnews&tn=rss*|*百度女人焦点新闻*|*时尚焦点
 zh*|*时尚*|*readability*|*http://rss.sina.com.cn/fashion/index.shtml*|*新浪时尚
 zh*|*时尚*|*readability*|*http://rss.sina.com.cn/eladies/index.shtml*|*新浪女性
 zh*|*时尚*|*readability*|*http://rss.sina.com.cn/astro/index.shtml*|*新浪星座
 zh*|*时尚*|*readability*|*http://rss.sina.com.cn/baby/index.shtml*|*新浪育儿
 zh*|*时尚*|*readability*|*http://yoka.dynamic.feedsportal.com/pf/589029/rss.yoka.com/beauty/weeky.xml*|*YOKA美容周记
 zh*|*时尚*|*readability*|*http://yoka.dynamic.feedsportal.com/pf/589040/rss.yoka.com/shopping/clggp.xml*|*YOKA购物频道
+zh*|*时尚*|*readability*|*http://yoka.dynamic.feedsportal.com/pf/589040/rss.yoka.com/shopping/lxzt.xml*|*YOKA时尚流购物频道
 zh*|*时尚*|*readability*|*http://yoka.dynamic.feedsportal.com/pf/589040/rss.yoka.com/shopping/byhp.xml*|*YOKA本月红品
 zh*|*时尚*|*readability*|*http://yoka.dynamic.feedsportal.com/pf/589040/rss.yoka.com/shopping/drsd.xml*|*YOKA达人搜店
 zh*|*时尚*|*readability*|*http://yoka.dynamic.feedsportal.com/pf/589029/rss.yoka.com/beauty/class.xml*|*YOKA风尚彩妆
@@ -42,6 +44,7 @@ zh*|*时尚*|*readability*|*http://yoka.dynamic.feedsportal.com/pf/589033/rss.yo
 zh*|*时尚*|*readability*|*http://yoka.dynamic.feedsportal.com/pf/589033/rss.yoka.com/fashion/starwear.xml*|*YOKA明星衣品
 zh*|*时尚*|*readability*|*http://yoka.dynamic.feedsportal.com/pf/589036/rss.yoka.com/life/foods.xml*|*YOKA美食美酒
 zh*|*时尚*|*readability*|*http://yoka.dynamic.feedsportal.com/pf/589036/rss.yoka.com/life/meiqi.xml*|*YOKA美好家居
+zh*|*娱乐*|*readability*|*http://news.baidu.com/n?cmd=1&class=enternews&tn=rss*|*百度娱乐焦点新闻*|*娱乐焦点
 zh*|*娱乐*|*readability*|*http://cn.reuters.feedsportal.com/CNEntNews*|*路透社娱乐体育*|*头条
 zh*|*娱乐*|*readability*|*http://www.zdomo.com/news.aspx/rss*|*多芒播报
 zh*|*娱乐*|*readability*|*http://feeds.qzone.qq.com/cgi-bin/cgi_rss_out?uin=772937290*|*时尚占星
@@ -68,7 +71,7 @@ zh*|*科技*|*readability*|*http://www.newsmth.net/rssi.php?h=2&s=9*|*水木社�
 zh*|*科技*|*readability*|*http://zdnet.com.cn.feedsportal.com/c/33233/f/599258/index.rss*|*Tech ZDNet视点
 zh*|*科技*|*readability*|*http://www.theverge.com/rss/index.xml*|*The Verge
 zh*|*科技*|*readability*|*http://news.weiphone.com/rss.xml*|*威锋网
-zh*|*科技*|*readability*|*http://www.guao.hk/feed*|*谷奥
+zh*|*科技*|*readability*|*http://www.guao.hk/feed*|*古奥
 zh*|*科技*|*readability*|*http://www.iapps.im/feed*|*爱应用
 zh*|*科技*|*readability*|*http://www.leiphone.com/feed*|*雷锋网
 zh*|*科技*|*readability*|*http://www.igao7.com/feed*|*爱搞机
@@ -81,6 +84,7 @@ zh*|*科技*|*readability*|*http://feed.cnblogs.com/blog/u/40553/rss*|*博客园
 zh*|*科技*|*readability*|*http://tiyanzhimei.com/index.php/feed/*|*体验之美
 zh*|*科技*|*readability*|*http://rss.zol.com.cn/news.xml*|*中关村在线
 zh*|*科技*|*readability*|*http://feed.yixieshi.com/*|*互联网的一些事
+zh*|*科技*|*readability*|*http://www.ixna.net/rss/*|*臭鱼的交互设计
 zh*|*科技*|*readability*|*http://chinabyte.feedsportal.com/c/33256/f/558827/index.rss*|*比特网
 zh*|*科技*|*readability*|*http://www.blogjava.net/rss*|*Blogjava技术社区
 zh*|*科技*|*readability*|*http://www.cppblog.com/tx7do/Rss.aspx*|*C++博客

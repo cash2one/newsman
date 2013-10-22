@@ -15,25 +15,6 @@ http://rss.tempointeraktif.com/teknologi.xml
 http://sindikasi.okezone.com/index.php/rss/2/RSS2.0
 http://sindikasi.okezone.com/index.php/rss/12/RSS2.0
 
->>>>> CN
-http://rss.sina.com.cn/news/index.shtml
-http://rss.sina.com.cn/finance/index.shtml
-http://rss.business.sohu.com/rss.shtml
-http://news.baidu.com/n?cmd=1&class=healthnews&tn=rss
-http://yoka.dynamic.feedsportal.com/pf/589040/rss.yoka.com/shopping/lxzt.xml
-http://rss.women.sohu.com/rss.shtml
-http://news.baidu.com/n?cmd=1&class=enternews&tn=rss
-http://rss.sina.com.cn/ent/index.shtml
-http://rss.yule.sohu.com/rss.shtml
-http://rss.tom.com/inc/ent.html
-http://www.ixna.net/rss/
-http://rss.sina.com.cn/tech/index.shtml
-http://rss.sina.com.cn/games/index.shtml
-http://rss.sina.com.cn/auto/index.shtml
-http://rss.travel.sohu.com/rss.shtml
-http://rss.sina.com.cn/sports/index.shtml
-http://sports.sohu.com/rss.shtml
-
 >>>>> US
 http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=news1
 http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=money1
