@@ -19,9 +19,9 @@ from config.settings import db
 
 # CONSTANTS
 from config.settings import FEED_REGISTRAR
-FILE_PREFIX = '/home/work/newsman/newsman/bin/text_based_feeds/feed_lists/'
+#FILE_PREFIX = '/home/work/newsman/newsman/bin/text_based_feeds/feed_lists/'
 #FILE_PREFIX = '/home/ubuntu/newsman/newsman/bin/text_based_feeds/feed_lists/'
-#FILE_PREFIX = '/home/jinyuan/Downloads/newsman/newsman/bin/text_based_feeds/feed_lists/'
+FILE_PREFIX = '/home/jinyuan/Downloads/newsman/newsman/bin/text_based_feeds/feed_lists/'
 
 
 def _parse_task(line):
@@ -30,13 +30,14 @@ def _parse_task(line):
     """
     line = line.strip()
     if line:
-        print line, len(line)
-        task = line.split('*|*')
+        task = line.strip().split('*|*')
         # task[1] refers to categories
-        if len(task) == 4:
-            return task[0].strip(), task[1].strip(), task[2].strip(), task[3].strip(), None
+        if len(task) == 5:
+            return task[0].strip(), task[1].strip(), task[2].strip(), task[3].strip(), task[4].strip(), None
+        elif len(task) == 6:
+            return task[0].strip(), task[1].strip(), task[2].strip(), task[3].strip(), task[4].strip(), task[5].strip()
         else:
-            return task[0].strip(), task[1].strip(), task[2].strip(), task[3].strip(), task[4].strip()
+            return None
     else:
         return None
 
@@ -56,7 +57,7 @@ def _convert(language='en', country=None):
 
     for line in lines:
         if line.strip():
-            language, category, feed_x, feed_link, labels = _parse_task(line)
+            language, category, transcoder, feed_link, feed_title, labels = _parse_task(line)
             if feed_link:
                 category = '%s::%s' % (country, category)
 
@@ -64,28 +65,20 @@ def _convert(language='en', country=None):
                 if labels:
                     labels = ['%s::%s' % (category, label.strip()) for label in labels.split(',')]
 
-                # save feed
-                if feed_x in ['chengdujin', 'readability', 'uck', 'nuck']:
-                    transcoder_mode = feed_x
-                    feed_title = ""
-                else:
-                    transcoder_mode = "readability"
-                    feed_title = feed_x
-
-                print feed_link, transcoder_mode, category, labels
+                print feed_title, labels
 
                 existing_item = db_feeds.find_one({'link':feed_link})
                 if not existing_item:
-                    db_feeds.save({'language': language, 'countries':[country], 'feed_link': feed_link, 'categories': [category], 'labels':labels, 'feed_title': feed_title, 'latest_update': None, 'updated_times': 0, 'transcoder': transcoder_mode})
+                    db_feeds.save({'language': language, 'countries':[country], 'feed_link': feed_link, 'categories': [category], 'labels':labels, 'feed_title': feed_title, 'latest_update': None, 'updated_times': 0, 'transcoder': transcoder})
                 else:
                     new_item = existing_item
                     new_item['language'] = language
                     new_item['categories'] = list(set(new_item['categories'].extend([category])))
                     new_item['labels'] = list(set(new_item['labels'].extend(labels)))
                     new_item['countries'] = list(set(new_item['countries'].append(country)))
-                    new_item['transcoder'] = transcoder_mode
+                    new_item['transcoder'] = transcoder
                     new_item['feed_title'] = feed_title
-                    db_feeds.update({'_id': new_item['_id']}, item)
+                    db_feeds.update({'_id': item['_id']}, new_item)
             else:
                 continue
         else:
