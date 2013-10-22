@@ -117,7 +117,7 @@ UCK_TIMEOUT = 40  # 14 seconds timeout
 GOOGLE_TTS_TIMEOUT = 120  # 2 minutes timeout
 
 # supported languages
-LANGUAGES = ['en', 'th', 'ind', 'ja', 'pt', 'ar', 'zh']
+LANGUAGES = ['en', 'th', 'in', 'ja', 'pt', 'ar', 'zh']
 # supported countries, in code
 COUNTRIES = ['AU', 'BR', 'CA', 'CN', 'EG', 'FR', 'GB', 'HK', 'ID', 'IN', 'KR', 'TH', 'TR', 'TW', 'US', 'VN']
 
