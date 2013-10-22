@@ -22,8 +22,8 @@ for item in items:
         ss = feedparser.parse(item['feed_link'])
         print item['feed_link']
         feed_title = ss['feed']['title'] if ss and 'title' in ss['feed'] else item['feed_link']
-        print feed_title
-        output[country].append('%s  %s' % (item['categories'][0], feed_title))
+        print str(feed_title)
+        output[country].append('%s  %s' % (item['categories'][0], str(feed_title)))
         print
 
 f = open('test', 'w')
