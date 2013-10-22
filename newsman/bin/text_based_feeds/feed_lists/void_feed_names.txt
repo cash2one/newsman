@@ -1,0 +1,197 @@
+>>>>> TH
+http://drama.kapook.com/drama3/feed*|*Kapook Drama เรื่องย่อละครช่อง3
+
+>>>>> ID
+http://www.thejakartaglobe.com/news/feed/*|*The Jakarta Globe » News
+http://www.tempo.co/rss/travel*|*Tempo.co News Site
+http://www.thejakartaglobe.com/international/feed/*|*The Jakarta Globe » International
+http://www.inilah.com/rss/feed/artis/*|*Inilah.com - Artis
+http://www.thejakartaglobe.com/features/feed/*|*The Jakarta Globe » Features
+http://rss.vivanews.com/get/sorot*|*VIVAnews - SOROT
+http://inside.kompas.com/getrss/all*|*http://inside.kompas.com/getrss/all
+http://inside.kompas.com/getrss/nasional*|*http://inside.kompas.com/getrss/nasional
+http://inside.kompas.com/getrss/regional*|*http://inside.kompas.com/getrss/regional
+http://inside.kompas.com/getrss/megapolitan*|*http://inside.kompas.com/getrss/megapolitan
+http://www.kompas.com/getrss/nasional*|*http://www.kompas.com/getrss/nasional
+http://inside.kompas.com/getrss/internasional*|*http://inside.kompas.com/getrss/internasional
+http://www.kompas.com/getrss/bisniskeuangan*|*http://www.kompas.com/getrss/bisniskeuangan
+http://financeroll.co.id/feed*|*Financeroll Indonesia
+http://inside.kompas.com/getrss/sains*|*http://inside.kompas.com/getrss/sains
+http://www.kompas.com/getrss/tekno*|*http://www.kompas.com/getrss/tekno
+http://inside.kompas.com/getrss/teknosoftware*|*http://inside.kompas.com/getrss/teknosoftware
+http://inside.kompas.com/getrss/teknohardware*|*http://inside.kompas.com/getrss/teknohardware
+http://inside.kompas.com/getrss/teknointernet*|*http://inside.kompas.com/getrss/teknointernet
+http://inside.kompas.com/getrss/olahraga*|*http://inside.kompas.com/getrss/olahraga
+http://inside.kompas.com/getrss/bolaindonesia*|*http://inside.kompas.com/getrss/bolaindonesia
+http://inside.kompas.com/getrss/bola*|*http://inside.kompas.com/getrss/bola
+http://inside.kompas.com/getrss/entertainment*|*http://inside.kompas.com/getrss/entertainment
+http://entertainment.kompas.com/rss/all*|*http://entertainment.kompas.com/rss/all
+http://inside.kompas.com/getrss/entertainmentcinema*|*http://inside.kompas.com/getrss/entertainmentcinema
+http://inside.kompas.com/getrss/female*|*http://inside.kompas.com/getrss/female
+http://inside.kompas.com/getrss/femaleibuanak*|*http://inside.kompas.com/getrss/femaleibuanak
+http://inside.kompas.com/getrss/edukasi*|*http://inside.kompas.com/getrss/edukasi
+http://www.kompas.com/getrss/kesehatan*|*http://www.kompas.com/getrss/kesehatan
+http://www.kompas.com/getrss/travel*|*http://www.kompas.com/getrss/travel
+http://inside.kompas.com/getrss/health*|*http://inside.kompas.com/getrss/health
+http://inside.kompas.com/getrss/entertainmentmusik*|*http://inside.kompas.com/getrss/entertainmentmusik
+http://inside.kompas.com/getrss/entertainmentgossips*|*http://inside.kompas.com/getrss/entertainmentgossips
+http://inside.kompas.com/getrss/femalerelationship*|*http://inside.kompas.com/getrss/femalerelationship
+http://www.antaranews.com/rss/nasional-kesehatan*|*ANTARA News - Nasional - Kesehatan
+
+>>>>> CN
+http://rss.sina.com.cn/tech/index.shtml*|*http://rss.sina.com.cn/tech/index.shtml
+http://rss.sina.com.cn/games/index.shtml*|*http://rss.sina.com.cn/games/index.shtml
+http://rss.sina.com.cn/auto/index.shtml*|*http://rss.sina.com.cn/auto/index.shtml
+http://rss.travel.sohu.com/rss.shtml*|*http://rss.travel.sohu.com/rss.shtml
+http://rss.sina.com.cn/sports/index.shtml*|*http://rss.sina.com.cn/sports/index.shtml
+http://sports.sohu.com/rss.shtml*|*http://sports.sohu.com/rss.shtml
+http://rss.sina.com.cn/news/index.shtml*|*http://rss.sina.com.cn/news/index.shtml
+http://rss.sina.com.cn/finance/index.shtml*|*http://rss.sina.com.cn/finance/index.shtml
+http://rss.business.sohu.com/rss.shtml*|*http://rss.business.sohu.com/rss.shtml
+http://rss.sina.com.cn/eladies/index.shtml*|*http://rss.sina.com.cn/eladies/index.shtml
+http://rss.sina.com.cn/baby/index.shtml*|*http://rss.sina.com.cn/baby/index.shtml
+http://rss.sina.com.cn/ent/index.shtml*|*http://rss.sina.com.cn/ent/index.shtml
+http://rss.yule.sohu.com/rss.shtml*|*http://rss.yule.sohu.com/rss.shtml
+http://rss.tom.com/inc/ent.html*|*http://rss.tom.com/inc/ent.html
+http://rss.women.sohu.com/rss.shtml*|*http://rss.women.sohu.com/rss.shtml
+http://yoka.dynamic.feedsportal.com/pf/589029/rss.yoka.com/beauty/weeky.xml*|*美容周记_美容频道_YOKA时尚网
+http://news.ifeng.com/rss/index.xml*|*资讯频道_凤凰网
+http://zaobao.feedsportal.com/c/34003/f/616934/index.rss*|*联合早报网 zaobao.com - 言论
+http://cn.reuters.feedsportal.com/cnInvNews*|*路透: 投资资讯
+http://cn.reuters.feedsportal.com/cnInvNews*|*路透: 投资资讯
+http://cn.reuters.feedsportal.com/privateEquityNews*|*路透: 私募投资
+http://yoka.dynamic.feedsportal.com/pf/589029/rss.yoka.com/beauty/weeky.xml*|*美容周记_美容频道_YOKA时尚网
+http://yoka.dynamic.feedsportal.com/pf/589029/rss.yoka.com/beauty/class.xml*|*风尚彩妆_美容频道_YOKA时尚网
+http://yoka.dynamic.feedsportal.com/pf/589029/rss.yoka.com/beauty/starface.xml*|*明星美颜_美容频道_YOKA时尚网
+http://cn.reuters.feedsportal.com/CNEntNews*|*路透: 娱乐体育
+http://feeds.qzone.qq.com/cgi-bin/cgi_rss_out?uin=772937290*|*时尚占星
+http://www.250.im/feed*|*250恶搞网站
+http://cn.reuters.feedsportal.com/CNTechNews*|*路透: 科技电子
+http://zdnet.com.cn.feedsportal.com/c/33233/f/599258/index.rss*|*ZDNet视点
+http://www.guao.hk/feed*|*谷奥——探寻谷歌的奥秘
+http://www.ixna.net/rss/*|*Idea XML News Aggregator
+http://rss.yoka.com/news/all.xml*|*最新新闻_YOKA时尚网
+http://www.people.com.cn/rss/sports.xml*|*体育新闻
+http://rss.women.sohu.com/rss.shtml*|*http://rss.women.sohu.com/rss.shtml
+http://rss.sina.com.cn/tech/index.shtml*|*http://rss.sina.com.cn/tech/index.shtml
+http://rss.sina.com.cn/games/index.shtml*|*http://rss.sina.com.cn/games/index.shtml
+http://rss.sina.com.cn/auto/index.shtml*|*http://rss.sina.com.cn/auto/index.shtml
+http://rss.travel.sohu.com/rss.shtml*|*http://rss.travel.sohu.com/rss.shtml
+http://rss.people.com.cn/*|*http://rss.people.com.cn/
+http://rss.sina.com.cn/news/index.shtml*|*http://rss.sina.com.cn/news/index.shtml
+http://rss.sina.com.cn/finance/index.shtml*|*http://rss.sina.com.cn/finance/index.shtml
+http://rss.business.sohu.com/rss.shtml*|*http://rss.business.sohu.com/rss.shtml
+http://rss.sina.com.cn/fashion/index.shtml*|*http://rss.sina.com.cn/fashion/index.shtml
+http://rss.sina.com.cn/eladies/index.shtml*|*http://rss.sina.com.cn/eladies/index.shtml
+http://rss.sina.com.cn/astro/index.shtml*|*http://rss.sina.com.cn/astro/index.shtml
+http://rss.sina.com.cn/baby/index.shtml*|*http://rss.sina.com.cn/baby/index.shtml
+http://rss.sina.com.cn/ent/index.shtml*|*http://rss.sina.com.cn/ent/index.shtml
+http://rss.yule.sohu.com/rss.shtml*|*http://rss.yule.sohu.com/rss.shtml
+http://rss.tom.com/inc/ent.html*|*http://rss.tom.com/inc/ent.html
+http://feed.yixieshi.com/*|*互联网的一些事-关注互联网产品管理，交流产品设计、用户体验心得
+http://rss.sports.sohu.com/rss.shtml*|*http://rss.sports.sohu.com/rss.shtml
+http://rss.sina.com.cn/sports/index.shtml*|*http://rss.sina.com.cn/sports/index.shtml
+http://sports.sohu.com/rss.shtml*|*http://sports.sohu.com/rss.shtml
+http://www.blogjava.net/rss*|*BlogJava-首页技术区
+http://rss.zol.com.cn/news.xml*|*中关村在线新闻中心
+http://www.infzm.com/rss/home/rss2.0.xml*|*南方周末-热点新闻
+http://yoka.dynamic.feedsportal.com/pf/589033/rss.yoka.com/fashion/edittj.xml*|*摩登搭配_服饰频道_YOKA时尚网
+http://yoka.dynamic.feedsportal.com/pf/589029/rss.yoka.com/beauty/weeky.xml*|*美容周记_美容频道_YOKA时尚网
+http://yoka.dynamic.feedsportal.com/pf/589036/rss.yoka.com/life/foods.xml*|*http://yoka.dynamic.feedsportal.com/pf/589036/rss.yoka.com/life/foods.xml
+http://yoka.dynamic.feedsportal.com/pf/589033/rss.yoka.com/fashion/popinfo.xml*|*潮流情报_服饰频道_YOKA时尚网
+http://yoka.dynamic.feedsportal.com/pf/589029/rss.yoka.com/beauty/ytqx.xml*|*窈窕曲线_美容频道_YOKA时尚网
+http://tiyanzhimei.com/index.php/feed/*|*体验之美
+
+>>>>> US
+http://feeds.washingtonpost.com/rss/lifestyle/food*|*Food: Food & Dining News, Guides, Recipes & More - The Washington Post
+http://feeds.reuters.com/reuters/technologyNews*|*Reuters: Technology News
+http://news.yahoo.com/rss/fashion*|*Fashion News Headlines - Yahoo! News
+http://feeds.reuters.com/news/artsculture*|*Reuters: Arts
+http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=news1*|*http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=news1
+http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=money1*|*http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=money1
+http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=tech14*|*http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=tech14
+http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=life1*|*http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=life1
+http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=life3*|*http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=life3
+http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=life4*|*http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=life4
+http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=life5*|*http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=life5
+http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=sports1*|*http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=sports1
+http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=sports5*|*http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=sports5
+http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=sports18*|*http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=sports18
+http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=sports6*|*http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=sports6
+http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=travel1*|*http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=travel1
+http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=life2*|*http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=life2
+http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=travel13*|*http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=travel13
+http://www.mujerhoy.com/shopping/consumo/maximalismo-740250082013.html*|*http://www.mujerhoy.com/shopping/consumo/maximalismo-740250082013.html
+http://feeds.reuters.com/Reuters/PoliticsNews*|*Reuters: Politics
+http://feeds.foxnews.com/foxnews/science*|*FOX News
+http://feeds.bbci.co.uk/sport/0/rss.xml?edition=uk#*|*BBC Sport - Sport
+http://rss.cnn.com/rss/edition_football.rss*|*CNN.com - Football
+http://rss.cnn.com/rss/cnn_travel.rss*|*CNN.com - Travel
+http://www.dailymail.co.uk/travel/index.rss*|*Travel | Mail Online
+http://feeds.reuters.com/reuters/healthNews*|*Reuters: Health News
+http://rss.cnn.com/rss/cnn_health.rss*|*CNN.com - Health
+http://feeds.denverpost.com/dp-entertainment*|*Denver Post: Entertainment
+http://feeds.denverpost.com/dp-travel*|*Denver Post: Travel
+http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=tech14*|*http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=tech14
+http://www.mujerhoy.com/shopping/consumo/maximalismo-740250082013.html*|*http://www.mujerhoy.com/shopping/consumo/maximalismo-740250082013.html
+http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=travel1*|*http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=travel1
+http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=life2*|*http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=life2
+http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=travel13*|*http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=travel13
+http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=news4*|*http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=news4
+http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=money1*|*http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=money1
+http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=tech1*|*http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=tech1
+http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=news2*|*http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=news2
+http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=news1*|*http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=news1
+
+>>>>> IN
+http://www.dnaindia.com/syndication/rss_popular.xml*|*DNA - Popular News - Daily News & Analysis
+http://www.dnaindia.com/syndication/rss,catid-4.xml*|*dna: Money News
+http://www.mujerhoy.com/feeds/rss-ser-Madre-portada.xml*|*www.mujerhoy.com - Ser Madre
+http://www.mujerhoy.com/feeds/rss-Moda-portada.xml*|*www.mujerhoy.com - Moda
+http://syndication.indianexpress.com/rss/897/fashion.xml*|*Top Headlines
+http://timesofindia.feedsportal.com/c/33039/f/533922/index.rss*|*Science News - Times of India
+http://feeds.feedburner.com/wanderingtrader*|*WanderingTrader: Travel Blog. Living Overseas. Day Trading.
+http://www.dnaindia.com/syndication/rss,catid-1058781.xml*|*dna: Lifestyle News
+http://ibnlive.in.com/ibnrss/rss/health/health.xml*|*Top Health News- IBNLive.com
+http://www.mujerhoy.com/feeds/rss-Moda-portada.xml*|*www.mujerhoy.com - Moda
+http://www.mujerhoy.com/feeds/rss-ser-Madre-portada.xml*|*www.mujerhoy.com - Ser Madre
+http://www.mujerhoy.com/feeds/rss-Psico-Sexo-portada.xml*|*www.mujerhoy.com - Psico y Sexo
+http://www.mujerhoy.com/feeds/rss-Hoy-portada.xml*|*www.mujerhoy.com - Vivir Hoy
+http://www.mujerhoy.com/shopping/consumo/maximalismo-740250082013.html*|*http://www.mujerhoy.com/shopping/consumo/maximalismo-740250082013.html
+http://www.indianexpress.com/rss/37/business.xml*|*Top Headlines
+http://feeds.feedburner.com/wirelessduniya/ZLXi*|*WirelessDuniya
+http://feeds.feedburner.com/medianama*|*MediaNama: Digital Media in India
+http://syndication.indianexpress.com/rss/802/latest-news.xml*|*Top Headlines
+http://feeds.feedburner.com/wanderingtrader*|*WanderingTrader: Travel Blog. Living Overseas. Day Trading.
+http://feeds.feedburner.com/TravelingCanucks*|*Traveling Canucks
+http://www.newkerala.com/health-news.xml*|*Health News
+http://newsrack.in/rss/indiatogether/Health/Mental-Health/rss.xml*|*NewsRack: indiatogether/Health/Mental-Health
+http://feeds.reuters.com/reuters/INlifestyle*|*Reuters: Lifestyle
+http://timesofindia.feedsportal.com/c/33039/f/533929/index.rss*|*Lifestyle, Fashion Trends, Beauty, Parties, Relationship Tips, Health, Gourmet, Spirituality | Lifestyle - Times of India
+http://www.dnaindia.com/syndication/rss,catid-1058783.xml*|*dna: Health News
+http://ibnlive.in.com/ibnrss/rss/health/health.xml*|*Top Health News- IBNLive.com
+http://www.bollywoodhungama.com/rss/movie_reviews.xml*|*BollywoodHungama.com Movie Reviews
+http://www.bollywoodhungama.com/rss/movie_previews.xml*|*BollywoodHungama.com Movie Previews
+http://www.bollywoodhungama.com/rss/music_reviews.xml*|*BollywoodHungama.com Music Reviews
+http://timesofindia.feedsportal.com/c/33039/f/534006/index.rss*|*Movies - Videos - The Times of India
+http://feeds.reuters.com/reuters/INcricketNews*|*Reuters: Cricket News
+http://feeds.feedburner.com/TheBudgetFashionista*|*Women, Fashion Advice, Beauty Tips, and More | The Budget Fashionista
+http://www.dnaindia.com/syndication/rss_popular.xml*|*DNA - Popular News - Daily News & Analysis
+http://www.dnaindia.com/syndication/rss_popular.xml*|*DNA - Popular News - Daily News & Analysis
+http://syndication.indianexpress.com/rss/789/latest-news.xml*|*Top Headlines
+http://syndication.indianexpress.com/rss/797/latest-news.xml*|*Top Headlines
+http://www.dnaindia.com/syndication/rss,catid-4.xml*|*dna: Money News
+http://feeds.feedburner.com/NDTV-Tech*|*NDTV News - Technology
+http://www.campaignindia.in/RSS/rss.ashx?type=Category&ID=474*|*Campaign India  - Digital
+http://www.campaignindia.in/RSS/rss.ashx?type=Category&ID=475*|*Campaign India  - Creativity
+http://feeds.feedburner.com/wirelessduniya/ZLXi*|*WirelessDuniya
+http://feeds.feedburner.com/tarss*|*Telecom Asia RSS
+http://syndication.indianexpress.com/rss/802/latest-news.xml*|*Top Headlines
+http://www.medianama.com/feed/*|*MediaNama: Digital Media in India
+http://feeds.guardian.co.uk/theguardian/rss*|*The Guardian World News
+http://www.mujerhoy.com/shopping/consumo/maximalismo-740250082013.html*|*http://www.mujerhoy.com/shopping/consumo/maximalismo-740250082013.html
+http://www.bollywoodhungama.com/index/rss*|*http://www.bollywoodhungama.com/index/rss
+http://www.ibnlive.com/xml/rss/sports.xml*|*Top Sports News- IBNLive.com
+http://www.mujerhoy.com/shopping/consumo/maximalismo-740250082013.html*|*http://www.mujerhoy.com/shopping/consumo/maximalismo-740250082013.html
+http://www.ibnlive.com/xml/rss/business.xml*|*Top Business News- IBNLive.com
+
