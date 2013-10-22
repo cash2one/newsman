@@ -14,12 +14,10 @@ zh*|*新闻*|*readability*|*http://zaobao.feedsportal.com/c/34003/f/616934/index
 zh*|*新闻*|*readability*|*http://rss.people.com.cn/
 zh*|*新闻*|*readability*|*http://www.infzm.com/rss/home/rss2.0.xml
 zh*|*新闻*|*readability*|*http://rss.sina.com.cn/news/index.shtml
-
 zh*|*财经*|*readability*|*http://cn.reuters.feedsportal.com/chinaNews*|*财经焦点
 zh*|*财经*|*readability*|*http://news.baidu.com/n?cmd=1&class=finannews&tn=rss*|*头条
 zh*|*财经*|*readability*|*http://cn.reuters.feedsportal.com/CNIntlBizNews
 zh*|*财经*|*readability*|*http://cn.reuters.feedsportal.com/cnBizNews
-zh*|*财经*|*readability*|*http://cn.reuters.feedsportal.com/cnInvNews
 zh*|*财经*|*readability*|*http://cn.reuters.feedsportal.com/cnInvNews
 zh*|*财经*|*readability*|*http://cn.reuters.feedsportal.com/privateEquityNews
 zh*|*财经*|*readability*|*http://cn.reuters.feedsportal.com/financialServicesNews
@@ -30,7 +28,6 @@ zh*|*财经*|*readability*|*http://economy.caixin.com/news/rss/100300184.xml
 zh*|*财经*|*readability*|*http://app.eeo.com.cn/?app=rss&controller=index&action=feed&catid=29
 zh*|*财经*|*readability*|*http://rss.sina.com.cn/finance/index.shtml
 zh*|*财经*|*readability*|*http://rss.business.sohu.com/rss.shtml
-
 zh*|*时尚*|*readability*|*http://news.baidu.com/n?cmd=1&class=healthnews&tn=rss*|*时尚焦点
 zh*|*时尚*|*readability*|*http://rss.sina.com.cn/fashion/index.shtml
 zh*|*时尚*|*readability*|*http://rss.sina.com.cn/eladies/index.shtml
@@ -51,7 +48,6 @@ zh*|*时尚*|*readability*|*http://yoka.dynamic.feedsportal.com/pf/589033/rss.yo
 zh*|*时尚*|*readability*|*http://yoka.dynamic.feedsportal.com/pf/589036/rss.yoka.com/life/foods.xml
 zh*|*时尚*|*readability*|*http://yoka.dynamic.feedsportal.com/pf/589036/rss.yoka.com/life/meiqi.xml
 zh*|*时尚*|*readability*|*http://rss.women.sohu.com/rss.shtml
-
 zh*|*娱乐*|*readability*|*http://news.baidu.com/n?cmd=1&class=enternews&tn=rss*|*娱乐焦点
 zh*|*娱乐*|*readability*|*http://cn.reuters.feedsportal.com/CNEntNews*|*头条
 zh*|*娱乐*|*readability*|*http://www.zdomo.com/news.aspx/rss
@@ -62,7 +58,6 @@ zh*|*娱乐*|*readability*|*http://feed.mtime.com/my/seemovie/feed.rss
 zh*|*娱乐*|*readability*|*http://rss.sina.com.cn/ent/index.shtml
 zh*|*娱乐*|*readability*|*http://rss.yule.sohu.com/rss.shtml
 zh*|*娱乐*|*readability*|*http://rss.tom.com/inc/ent.html
-
 zh*|*科技*|*readability*|*http://news.baidu.com/n?cmd=1&class=technnews&tn=rss*|*科技焦点
 zh*|*科技*|*readability*|*http://news.baidu.com/n?cmd=1&class=internet&tn=rss*|*科技焦点
 zh*|*科技*|*readability*|*http://www.guokr.com/rss/
@@ -107,7 +102,6 @@ zh*|*科技*|*readability*|*http://feed.williamlong.info/
 zh*|*科技*|*readability*|*http://www.boxui.com/feed
 zh*|*科技*|*readability*|*http://rss.sina.com.cn/tech/index.shtml
 zh*|*科技*|*readability*|*http://rss.sina.com.cn/games/index.shtml
-
 zh*|*生活*|*readability*|*http://cn.reuters.feedsportal.com/CNTravelNews
 zh*|*生活*|*readability*|*http://news.baidu.com/n?cmd=1&class=autonews&tn=rss
 zh*|*生活*|*readability*|*http://cn.reuters.feedsportal.com/oddlyenoughNews
@@ -132,9 +126,8 @@ zh*|*生活*|*readability*|*http://rss.sina.com.cn/eladies/index.shtml
 zh*|*生活*|*readability*|*http://rss.sina.com.cn/auto/index.shtml
 zh*|*生活*|*readability*|*http://rss.sina.com.cn/baby/index.shtml
 zh*|*生活*|*readability*|*http://rss.travel.sohu.com/rss.shtml
-
 zh*|*体育*|*readability*|*http://news.baidu.com/n?cmd=1&class=sportnews&tn=rss*|*体育焦点
-zh*|*体育*|*New UCK*|*http://cn.reuters.com/rssFeed/cnsportsNews?mrss=true
+zh*|*体育*|*nuck*|*http://cn.reuters.com/rssFeed/cnsportsNews?mrss=true
 zh*|*体育*|*readability*|*http://sports.ifeng.com/rss/index.xml
 zh*|*体育*|*readability*|*http://www.people.com.cn/rss/sports.xml
 zh*|*体育*|*readability*|*http://rss.sina.com.cn/roll/sports/hot_roll.xml*|*头条
