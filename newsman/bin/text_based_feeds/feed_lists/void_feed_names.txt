@@ -34,49 +34,13 @@ http://rss.travel.sohu.com/rss.shtml
 http://rss.sina.com.cn/sports/index.shtml
 http://sports.sohu.com/rss.shtml
 
->>>>> TH
-http://drama.kapook.com/drama3/feed*|*Kapook Drama เรื่องย่อละครช่อง3
-
 >>>>> US
-http://feeds.washingtonpost.com/rss/lifestyle/food*|*Food: Food & Dining News, Guides, Recipes & More - The Washington Post
-http://feeds.reuters.com/reuters/technologyNews*|*Reuters: Technology News
-http://news.yahoo.com/rss/fashion*|*Fashion News Headlines - Yahoo! News
-http://feeds.reuters.com/news/artsculture*|*Reuters: Arts
-http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=news1*|*http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=news1
-http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=money1*|*http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=money1
-http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=tech14*|*http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=tech14
-http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=life1*|*http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=life1
-http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=life3*|*http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=life3
-http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=life4*|*http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=life4
-http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=life5*|*http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=life5
-http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=sports1*|*http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=sports1
-http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=sports5*|*http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=sports5
-http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=sports18*|*http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=sports18
-http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=sports6*|*http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=sports6
-http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=travel1*|*http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=travel1
-http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=life2*|*http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=life2
-http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=travel13*|*http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=travel13
-http://www.mujerhoy.com/shopping/consumo/maximalismo-740250082013.html*|*http://www.mujerhoy.com/shopping/consumo/maximalismo-740250082013.html
-http://feeds.reuters.com/Reuters/PoliticsNews*|*Reuters: Politics
-http://feeds.foxnews.com/foxnews/science*|*FOX News
-http://feeds.bbci.co.uk/sport/0/rss.xml?edition=uk#*|*BBC Sport - Sport
-http://rss.cnn.com/rss/edition_football.rss*|*CNN.com - Football
-http://rss.cnn.com/rss/cnn_travel.rss*|*CNN.com - Travel
-http://www.dailymail.co.uk/travel/index.rss*|*Travel | Mail Online
-http://feeds.reuters.com/reuters/healthNews*|*Reuters: Health News
-http://rss.cnn.com/rss/cnn_health.rss*|*CNN.com - Health
-http://feeds.denverpost.com/dp-entertainment*|*Denver Post: Entertainment
-http://feeds.denverpost.com/dp-travel*|*Denver Post: Travel
-http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=tech14*|*http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=tech14
-http://www.mujerhoy.com/shopping/consumo/maximalismo-740250082013.html*|*http://www.mujerhoy.com/shopping/consumo/maximalismo-740250082013.html
-http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=travel1*|*http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=travel1
-http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=life2*|*http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=life2
-http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=travel13*|*http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=travel13
-http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=news4*|*http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=news4
-http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=money1*|*http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=money1
-http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=tech1*|*http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=tech1
-http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=news2*|*http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=news2
-http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=news1*|*http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=news1
+http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=news1
+http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=money1
+http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=tech14
+http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=travel1
+http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=life2
+http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=travel13
 
 >>>>> IN
 http://www.dnaindia.com/syndication/rss_popular.xml*|*DNA - Popular News - Daily News & Analysis
@@ -130,3 +94,6 @@ http://www.ibnlive.com/xml/rss/sports.xml*|*Top Sports News- IBNLive.com
 http://www.mujerhoy.com/shopping/consumo/maximalismo-740250082013.html*|*http://www.mujerhoy.com/shopping/consumo/maximalismo-740250082013.html
 http://www.ibnlive.com/xml/rss/business.xml*|*Top Business News- IBNLive.com
 
+
+>>>>> TH
+http://drama.kapook.com/drama3/feed*|*Kapook Drama เรื่องย่อละครช่อง3
