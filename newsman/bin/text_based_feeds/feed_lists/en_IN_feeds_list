@@ -1,5 +1,3 @@
-
-
 en*|*News*|*readability*|*http://www.dnaindia.com/services/rss/news-latest.xml*|*Hot News
 en*|*News*|*readability*|*http://www.dnaindia.com/syndication/rss_topnews.xml*|*Hot News
 en*|*News*|*readability*|*http://www.dnaindia.com/syndication/rss_popular.xml*|*Hot News
@@ -24,10 +22,6 @@ en*|*News*|*chengdujin*|*http://feeds.abcnews.com/abcnews/topstories
 en*|*News*|*readability*|*http://feeds.feedburner.com/foxnews/latest
 en*|*News*|*chengdujin*|*http://feeds.feedburner.com/ndtv/TqgX
 en*|*News*|*readability*|*http://www.dnaindia.com/syndication/rss,catid-9.xml
-
-
-
-
 en*|*Business*|*chengdujin*|*http://www.deccanherald.com/rss/business.rss*|*Business Headlines
 en*|*Business*|*readability*|*http://www.ibnlive.com/xml/rss/business.xml
 en*|*Business*|*readability*|*http://www.thehindubusinessline.com/industry-and-economy/?service=rss
@@ -38,10 +32,6 @@ en*|*Business*|*readability*|*http://feeds.feedburner.com/NDTV-Business
 en*|*Business*|*readability*|*http://syndication.indianexpress.com/rss/797/latest-news.xml
 en*|*Business*|*readability*|*http://www.dnaindia.com/syndication/rss,catid-4.xml
 en*|*Business*|*readability*|*http://ibnlive.in.com/ibnrss/rss/business/business.xml
-
-
-
-
 en*|*Technology*|*chengdujin*|*http://www.engadget.com/rss.xml*|*Technology Headlines, Hot News
 en*|*Technology*|*readability*|*http://feeds.feedburner.com/NDTV-Tech*|*Technology Headlines
 en*|*Technology*|*chengdujin*|*http://timesofindia.feedsportal.com/c/33039/f/533922/index.rss
@@ -56,9 +46,6 @@ en*|*Technology*|*chengdujin*|*http://feeds.reuters.com/reuters/INtechnologyNews
 en*|*Technology*|*chengdujin*|*http://timesofindia.feedsportal.com/c/33039/f/533923/index.rss
 en*|*Technology*|*readability*|*http://www.dnaindia.com/syndication/rss,catid-5.xml
 en*|*Technology*|*chengdujin*|*http://feeds.feedburner.com/medianama
-
-
-
 en*|*Lifestyle*|*readability*|*http://syndication.indianexpress.com/rss/802/latest-news.xml*|*Lifestyle Headlines
 en*|*Lifestyle*|*chengdujin*|*http://feeds.feedburner.com/wanderingtrader
 en*|*Lifestyle*|*readability*|*http://feeds.feedburner.com/TravelingCanucks
@@ -74,10 +61,6 @@ en*|*Lifestyle*|*readability*|*http://www.dnaindia.com/syndication/rss,catid-105
 en*|*Lifestyle*|*readability*|*http://www.dnaindia.com/syndication/rss,catid-1058783.xml
 en*|*Lifestyle*|*readability*|*http://ibnlive.in.com/ibnrss/rss/arts/arts.xml
 en*|*Lifestyle*|*readability*|*http://ibnlive.in.com/ibnrss/rss/health/health.xml
-
-
-
-
 en*|*Entertainment*|*readability*|*http://www.deccanherald.com/rss/entertainment.rss*|*Entertainment Headlines, Hot News
 en*|*Entertainment*|*readability*|*http://www.bollywoodhungama.com/index/rss*|*Entertainment Headlines
 en*|*Entertainment*|*readability*|*http://www.bollywoodhungama.com/rss/movie_reviews.xml
@@ -90,9 +73,6 @@ en*|*Entertainment*|*readability*|*http://feeds.reuters.com/reuters/INbollywood
 en*|*Entertainment*|*readability*|*http://feeds.feedburner.com/NDTV-Ent
 en*|*Entertainment*|*readability*|*http://www.dnaindia.com/syndication/rss,catid-7.xml
 en*|*Entertainment*|*readability*|*http://ibnlive.in.com/ibnrss/rss/moviesnews/moviesnews.xml
-
-
-
 en*|*Sports*|*readability*|*http://www.rediff.com/rss/sportsrss.xml*|*Sports Headlines
 en*|*Sports*|*readability*|*http://www.ibnlive.com/xml/rss/sports.xml*|*Sports Headlines
 en*|*Sports*|*chengdujin*|*http://feeds.hindustantimes.com/HT-Cricket-TopStories
@@ -104,9 +84,6 @@ en*|*Sports*|*chengdujin*|*http://timesofindia.feedsportal.com/c/33039/f/533921/
 en*|*Sports*|*readability*|*http://feeds.reuters.com/reuters/INcricketNews
 en*|*Sports*|*readability*|*http://syndication.indianexpress.com/rss/785/latest-news.xml
 en*|*Sports*|*readability*|*http://www.dnaindia.com/syndication/rss,catid-6.xml
-
-
-
 en*|*Fashion*|*readability*|*http://ibnlive.in.com/ibnrss/rss/fashion/fashion.xml
 en*|*Fashion*|*chengdujin*|*http://feeds.feedburner.com/cyanatrendland
 en*|*Fashion*|*chengdujin*|*http://feeds.feedburner.com/fragrantica
@@ -125,17 +102,3 @@ en*|*Fashion*|*chengdujin*|*http://www.mujerhoy.com/feeds/rss-Hoy-portada.xml
 en*|*Fashion*|*chengdujin*|*http://www.mujerhoy.com/shopping/consumo/maximalismo-740250082013.html
 en*|*Fashion*|*chengdujin*|*http://www.mujerhoy.com/feeds/rss-Moda-portada.xml
 en*|*Fashion*|*readability*|*http://syndication.indianexpress.com/rss/897/fashion.xml
-
-
-
-
-
-
-
-
-
-
-
-
-
-
