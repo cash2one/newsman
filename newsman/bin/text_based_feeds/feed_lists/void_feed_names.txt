@@ -15,72 +15,27 @@ http://rss.tempointeraktif.com/teknologi.xml
 http://sindikasi.okezone.com/index.php/rss/2/RSS2.0
 http://sindikasi.okezone.com/index.php/rss/12/RSS2.0
 
+>>>>> CN
+http://rss.sina.com.cn/news/index.shtml
+http://rss.sina.com.cn/finance/index.shtml
+http://rss.business.sohu.com/rss.shtml
+http://news.baidu.com/n?cmd=1&class=healthnews&tn=rss
+http://yoka.dynamic.feedsportal.com/pf/589040/rss.yoka.com/shopping/lxzt.xml
+http://rss.women.sohu.com/rss.shtml
+http://news.baidu.com/n?cmd=1&class=enternews&tn=rss
+http://rss.sina.com.cn/ent/index.shtml
+http://rss.yule.sohu.com/rss.shtml
+http://rss.tom.com/inc/ent.html
+http://www.ixna.net/rss/
+http://rss.sina.com.cn/tech/index.shtml
+http://rss.sina.com.cn/games/index.shtml
+http://rss.sina.com.cn/auto/index.shtml
+http://rss.travel.sohu.com/rss.shtml
+http://rss.sina.com.cn/sports/index.shtml
+http://sports.sohu.com/rss.shtml
+
 >>>>> TH
 http://drama.kapook.com/drama3/feed*|*Kapook Drama เรื่องย่อละครช่อง3
-
->>>>> CN
-http://rss.sina.com.cn/tech/index.shtml*|*http://rss.sina.com.cn/tech/index.shtml
-http://rss.sina.com.cn/games/index.shtml*|*http://rss.sina.com.cn/games/index.shtml
-http://rss.sina.com.cn/auto/index.shtml*|*http://rss.sina.com.cn/auto/index.shtml
-http://rss.travel.sohu.com/rss.shtml*|*http://rss.travel.sohu.com/rss.shtml
-http://rss.sina.com.cn/sports/index.shtml*|*http://rss.sina.com.cn/sports/index.shtml
-http://sports.sohu.com/rss.shtml*|*http://sports.sohu.com/rss.shtml
-http://rss.sina.com.cn/news/index.shtml*|*http://rss.sina.com.cn/news/index.shtml
-http://rss.sina.com.cn/finance/index.shtml*|*http://rss.sina.com.cn/finance/index.shtml
-http://rss.business.sohu.com/rss.shtml*|*http://rss.business.sohu.com/rss.shtml
-http://rss.sina.com.cn/eladies/index.shtml*|*http://rss.sina.com.cn/eladies/index.shtml
-http://rss.sina.com.cn/baby/index.shtml*|*http://rss.sina.com.cn/baby/index.shtml
-http://rss.sina.com.cn/ent/index.shtml*|*http://rss.sina.com.cn/ent/index.shtml
-http://rss.yule.sohu.com/rss.shtml*|*http://rss.yule.sohu.com/rss.shtml
-http://rss.tom.com/inc/ent.html*|*http://rss.tom.com/inc/ent.html
-http://rss.women.sohu.com/rss.shtml*|*http://rss.women.sohu.com/rss.shtml
-http://yoka.dynamic.feedsportal.com/pf/589029/rss.yoka.com/beauty/weeky.xml*|*美容周记_美容频道_YOKA时尚网
-http://news.ifeng.com/rss/index.xml*|*资讯频道_凤凰网
-http://zaobao.feedsportal.com/c/34003/f/616934/index.rss*|*联合早报网 zaobao.com - 言论
-http://cn.reuters.feedsportal.com/cnInvNews*|*路透: 投资资讯
-http://cn.reuters.feedsportal.com/cnInvNews*|*路透: 投资资讯
-http://cn.reuters.feedsportal.com/privateEquityNews*|*路透: 私募投资
-http://yoka.dynamic.feedsportal.com/pf/589029/rss.yoka.com/beauty/weeky.xml*|*美容周记_美容频道_YOKA时尚网
-http://yoka.dynamic.feedsportal.com/pf/589029/rss.yoka.com/beauty/class.xml*|*风尚彩妆_美容频道_YOKA时尚网
-http://yoka.dynamic.feedsportal.com/pf/589029/rss.yoka.com/beauty/starface.xml*|*明星美颜_美容频道_YOKA时尚网
-http://cn.reuters.feedsportal.com/CNEntNews*|*路透: 娱乐体育
-http://feeds.qzone.qq.com/cgi-bin/cgi_rss_out?uin=772937290*|*时尚占星
-http://www.250.im/feed*|*250恶搞网站
-http://cn.reuters.feedsportal.com/CNTechNews*|*路透: 科技电子
-http://zdnet.com.cn.feedsportal.com/c/33233/f/599258/index.rss*|*ZDNet视点
-http://www.guao.hk/feed*|*谷奥——探寻谷歌的奥秘
-http://www.ixna.net/rss/*|*Idea XML News Aggregator
-http://rss.yoka.com/news/all.xml*|*最新新闻_YOKA时尚网
-http://www.people.com.cn/rss/sports.xml*|*体育新闻
-http://rss.women.sohu.com/rss.shtml*|*http://rss.women.sohu.com/rss.shtml
-http://rss.sina.com.cn/tech/index.shtml*|*http://rss.sina.com.cn/tech/index.shtml
-http://rss.sina.com.cn/games/index.shtml*|*http://rss.sina.com.cn/games/index.shtml
-http://rss.sina.com.cn/auto/index.shtml*|*http://rss.sina.com.cn/auto/index.shtml
-http://rss.travel.sohu.com/rss.shtml*|*http://rss.travel.sohu.com/rss.shtml
-http://rss.people.com.cn/*|*http://rss.people.com.cn/
-http://rss.sina.com.cn/news/index.shtml*|*http://rss.sina.com.cn/news/index.shtml
-http://rss.sina.com.cn/finance/index.shtml*|*http://rss.sina.com.cn/finance/index.shtml
-http://rss.business.sohu.com/rss.shtml*|*http://rss.business.sohu.com/rss.shtml
-http://rss.sina.com.cn/fashion/index.shtml*|*http://rss.sina.com.cn/fashion/index.shtml
-http://rss.sina.com.cn/eladies/index.shtml*|*http://rss.sina.com.cn/eladies/index.shtml
-http://rss.sina.com.cn/astro/index.shtml*|*http://rss.sina.com.cn/astro/index.shtml
-http://rss.sina.com.cn/baby/index.shtml*|*http://rss.sina.com.cn/baby/index.shtml
-http://rss.sina.com.cn/ent/index.shtml*|*http://rss.sina.com.cn/ent/index.shtml
-http://rss.yule.sohu.com/rss.shtml*|*http://rss.yule.sohu.com/rss.shtml
-http://rss.tom.com/inc/ent.html*|*http://rss.tom.com/inc/ent.html
-http://feed.yixieshi.com/*|*互联网的一些事-关注互联网产品管理，交流产品设计、用户体验心得
-http://rss.sports.sohu.com/rss.shtml*|*http://rss.sports.sohu.com/rss.shtml
-http://rss.sina.com.cn/sports/index.shtml*|*http://rss.sina.com.cn/sports/index.shtml
-http://sports.sohu.com/rss.shtml*|*http://sports.sohu.com/rss.shtml
-http://www.blogjava.net/rss*|*BlogJava-首页技术区
-http://rss.zol.com.cn/news.xml*|*中关村在线新闻中心
-http://www.infzm.com/rss/home/rss2.0.xml*|*南方周末-热点新闻
-http://yoka.dynamic.feedsportal.com/pf/589033/rss.yoka.com/fashion/edittj.xml*|*摩登搭配_服饰频道_YOKA时尚网
-http://yoka.dynamic.feedsportal.com/pf/589029/rss.yoka.com/beauty/weeky.xml*|*美容周记_美容频道_YOKA时尚网
-http://yoka.dynamic.feedsportal.com/pf/589036/rss.yoka.com/life/foods.xml*|*http://yoka.dynamic.feedsportal.com/pf/589036/rss.yoka.com/life/foods.xml
-http://yoka.dynamic.feedsportal.com/pf/589033/rss.yoka.com/fashion/popinfo.xml*|*潮流情报_服饰频道_YOKA时尚网
-http://yoka.dynamic.feedsportal.com/pf/589029/rss.yoka.com/beauty/ytqx.xml*|*窈窕曲线_美容频道_YOKA时尚网
-http://tiyanzhimei.com/index.php/feed/*|*体验之美
 
 >>>>> US
 http://feeds.washingtonpost.com/rss/lifestyle/food*|*Food: Food & Dining News, Guides, Recipes & More - The Washington Post
