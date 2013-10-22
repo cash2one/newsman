@@ -43,57 +43,20 @@ http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=life2
 http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=travel13
 
 >>>>> IN
-http://www.dnaindia.com/syndication/rss_popular.xml*|*DNA - Popular News - Daily News & Analysis
-http://www.dnaindia.com/syndication/rss,catid-4.xml*|*dna: Money News
-http://www.mujerhoy.com/feeds/rss-ser-Madre-portada.xml*|*www.mujerhoy.com - Ser Madre
-http://www.mujerhoy.com/feeds/rss-Moda-portada.xml*|*www.mujerhoy.com - Moda
-http://syndication.indianexpress.com/rss/897/fashion.xml*|*Top Headlines
-http://timesofindia.feedsportal.com/c/33039/f/533922/index.rss*|*Science News - Times of India
-http://feeds.feedburner.com/wanderingtrader*|*WanderingTrader: Travel Blog. Living Overseas. Day Trading.
-http://www.dnaindia.com/syndication/rss,catid-1058781.xml*|*dna: Lifestyle News
-http://ibnlive.in.com/ibnrss/rss/health/health.xml*|*Top Health News- IBNLive.com
-http://www.mujerhoy.com/feeds/rss-Moda-portada.xml*|*www.mujerhoy.com - Moda
-http://www.mujerhoy.com/feeds/rss-ser-Madre-portada.xml*|*www.mujerhoy.com - Ser Madre
-http://www.mujerhoy.com/feeds/rss-Psico-Sexo-portada.xml*|*www.mujerhoy.com - Psico y Sexo
-http://www.mujerhoy.com/feeds/rss-Hoy-portada.xml*|*www.mujerhoy.com - Vivir Hoy
-http://www.mujerhoy.com/shopping/consumo/maximalismo-740250082013.html*|*http://www.mujerhoy.com/shopping/consumo/maximalismo-740250082013.html
-http://www.indianexpress.com/rss/37/business.xml*|*Top Headlines
-http://feeds.feedburner.com/wirelessduniya/ZLXi*|*WirelessDuniya
-http://feeds.feedburner.com/medianama*|*MediaNama: Digital Media in India
-http://syndication.indianexpress.com/rss/802/latest-news.xml*|*Top Headlines
-http://feeds.feedburner.com/wanderingtrader*|*WanderingTrader: Travel Blog. Living Overseas. Day Trading.
-http://feeds.feedburner.com/TravelingCanucks*|*Traveling Canucks
-http://www.newkerala.com/health-news.xml*|*Health News
-http://newsrack.in/rss/indiatogether/Health/Mental-Health/rss.xml*|*NewsRack: indiatogether/Health/Mental-Health
-http://feeds.reuters.com/reuters/INlifestyle*|*Reuters: Lifestyle
-http://timesofindia.feedsportal.com/c/33039/f/533929/index.rss*|*Lifestyle, Fashion Trends, Beauty, Parties, Relationship Tips, Health, Gourmet, Spirituality | Lifestyle - Times of India
-http://www.dnaindia.com/syndication/rss,catid-1058783.xml*|*dna: Health News
-http://ibnlive.in.com/ibnrss/rss/health/health.xml*|*Top Health News- IBNLive.com
-http://www.bollywoodhungama.com/rss/movie_reviews.xml*|*BollywoodHungama.com Movie Reviews
-http://www.bollywoodhungama.com/rss/movie_previews.xml*|*BollywoodHungama.com Movie Previews
-http://www.bollywoodhungama.com/rss/music_reviews.xml*|*BollywoodHungama.com Music Reviews
-http://timesofindia.feedsportal.com/c/33039/f/534006/index.rss*|*Movies - Videos - The Times of India
-http://feeds.reuters.com/reuters/INcricketNews*|*Reuters: Cricket News
-http://feeds.feedburner.com/TheBudgetFashionista*|*Women, Fashion Advice, Beauty Tips, and More | The Budget Fashionista
-http://www.dnaindia.com/syndication/rss_popular.xml*|*DNA - Popular News - Daily News & Analysis
-http://www.dnaindia.com/syndication/rss_popular.xml*|*DNA - Popular News - Daily News & Analysis
-http://syndication.indianexpress.com/rss/789/latest-news.xml*|*Top Headlines
-http://syndication.indianexpress.com/rss/797/latest-news.xml*|*Top Headlines
-http://www.dnaindia.com/syndication/rss,catid-4.xml*|*dna: Money News
-http://feeds.feedburner.com/NDTV-Tech*|*NDTV News - Technology
-http://www.campaignindia.in/RSS/rss.ashx?type=Category&ID=474*|*Campaign India  - Digital
-http://www.campaignindia.in/RSS/rss.ashx?type=Category&ID=475*|*Campaign India  - Creativity
-http://feeds.feedburner.com/wirelessduniya/ZLXi*|*WirelessDuniya
-http://feeds.feedburner.com/tarss*|*Telecom Asia RSS
-http://syndication.indianexpress.com/rss/802/latest-news.xml*|*Top Headlines
-http://www.medianama.com/feed/*|*MediaNama: Digital Media in India
-http://feeds.guardian.co.uk/theguardian/rss*|*The Guardian World News
-http://www.mujerhoy.com/shopping/consumo/maximalismo-740250082013.html*|*http://www.mujerhoy.com/shopping/consumo/maximalismo-740250082013.html
-http://www.bollywoodhungama.com/index/rss*|*http://www.bollywoodhungama.com/index/rss
-http://www.ibnlive.com/xml/rss/sports.xml*|*Top Sports News- IBNLive.com
-http://www.mujerhoy.com/shopping/consumo/maximalismo-740250082013.html*|*http://www.mujerhoy.com/shopping/consumo/maximalismo-740250082013.html
-http://www.ibnlive.com/xml/rss/business.xml*|*Top Business News- IBNLive.com
-
+http://www.dnaindia.com/services/rss/news-latest.xml
+http://www.dnaindia.com/syndication/rss_topnews.xml
+http://www.dnaindia.com/syndication/rss,catid-2.xml
+http://ibnlive.in.com/ibnrss/rss/india/india.xml
+http://ibnlive.in.com/ibnrss/rss/indiaglobal/indiaglobal.xml
+http://www.dnaindia.com/syndication/rss,catid-9.xml
+http://ibnlive.in.com/ibnrss/rss/business/business.xml
+http://www.dnaindia.com/syndication/rss,catid-5.xml
+http://ibnlive.in.com/ibnrss/rss/arts/arts.xml
+http://www.dnaindia.com/syndication/rss,catid-7.xml
+http://ibnlive.in.com/ibnrss/rss/moviesnews/moviesnews.xml
+http://www.dnaindia.com/syndication/rss,catid-6.xml
+http://ibnlive.in.com/ibnrss/rss/fashion/fashion.xml
+http://www.mujerhoy.com/shopping/consumo/maximalismo-740250082013.html
 
 >>>>> TH
 http://drama.kapook.com/drama3/feed*|*Kapook Drama เรื่องย่อละครช่อง3
