@@ -19,9 +19,9 @@ from config.settings import db
 
 # CONSTANTS
 from config.settings import FEED_REGISTRAR
-#FILE_PREFIX = '/home/work/newsman/newsman/bin/text_based_feeds/feed_lists/'
+FILE_PREFIX = '/home/work/newsman/newsman/bin/text_based_feeds/feed_lists/'
 #FILE_PREFIX = '/home/ubuntu/newsman/newsman/bin/text_based_feeds/feed_lists/'
-FILE_PREFIX = '/home/jinyuan/Downloads/newsman/newsman/bin/text_based_feeds/feed_lists/'
+#FILE_PREFIX = '/home/jinyuan/Downloads/newsman/newsman/bin/text_based_feeds/feed_lists/'
 
 
 def _parse_task(line):
@@ -54,7 +54,7 @@ def _convert(language='en', country=None):
 
     # open datbase
     db_feeds = Collection(db, FEED_REGISTRAR)
-    db_id_list = open('db_id_list', 'w')
+    db_id_list = open('db_id_list', 'a')
 
     for line in lines:
         if line.strip():
@@ -78,7 +78,7 @@ def _convert(language='en', country=None):
                     existing_item['categories'].append(category)
                     new_item['categories'] = list(set(existing_item['categories']))
 
-                    if 'labels' in existing_item and existing_item['labels']:
+                    if 'labels' in existing_item and existing_item['labels'] and labels:
                         existing_item['labels'].extend(labels)
                     else:
                         existing_item['labels'] = labels
