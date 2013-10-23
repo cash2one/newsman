@@ -29,14 +29,14 @@ from settings import FEED_REGISTRAR
 from settings import HOTNEWS_TITLE_AR
 from settings import HOTNEWS_TITLE_EN
 from settings import HOTNEWS_TITLE_JA
-from settings import HOTNEWS_TITLE_IND
+from settings import HOTNEWS_TITLE_IN
 from settings import HOTNEWS_TITLE_PT
 from settings import HOTNEWS_TITLE_TH
 from settings import HOTNEWS_TITLE_ZH
 from settings import LANGUAGES
 
-HOTNEWS_TITLE = {'en': HOTNEWS_TITLE_EN, 'ja': HOTNEWS_TITLE_JA, 'th': HOTNEWS_TITLE_TH, 'pt': HOTNEWS_TITLE_PT, 'ind':
-                  HOTNEWS_TITLE_IND, 'ar': HOTNEWS_TITLE_AR, 'zh': HOTNEWS_TITLE_ZH}
+HOTNEWS_TITLE = {'en': HOTNEWS_TITLE_EN, 'ja': HOTNEWS_TITLE_JA, 'th': HOTNEWS_TITLE_TH, 'pt': HOTNEWS_TITLE_PT, 'in':
+                  HOTNEWS_TITLE_IN, 'ar': HOTNEWS_TITLE_AR, 'zh': HOTNEWS_TITLE_ZH}
 
 
 def get_portal(language=None, country=None, categories=None):

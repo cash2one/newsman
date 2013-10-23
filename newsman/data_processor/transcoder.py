@@ -36,7 +36,7 @@ from config.settings import TRANSCODED_LOCAL_DIR
 from config.settings import TRANSCODED_PUBLIC_DIR
 from config.settings import TRANSCODING_BTN_AR
 from config.settings import TRANSCODING_BTN_EN
-from config.settings import TRANSCODING_BTN_IND
+from config.settings import TRANSCODING_BTN_IN
 from config.settings import TRANSCODING_BTN_JA
 from config.settings import TRANSCODING_BTN_PT
 from config.settings import TRANSCODING_BTN_TH
@@ -45,7 +45,7 @@ from config.settings import UCK_TIMEOUT
 
 TRANSCODE_BUTTON = {'en': TRANSCODING_BTN_EN, 'ja': TRANSCODING_BTN_JA,
                     'th': TRANSCODING_BTN_TH, 'pt': TRANSCODING_BTN_PT,
-                    'ind': TRANSCODING_BTN_IND, 'ar': TRANSCODING_BTN_AR, 'zh': TRANSCODING_BTN_ZH}
+                    'in': TRANSCODING_BTN_IN, 'ar': TRANSCODING_BTN_AR, 'zh': TRANSCODING_BTN_ZH}
 
 
 # create a local dir for transcoded content if dir does not exist

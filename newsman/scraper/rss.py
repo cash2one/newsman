@@ -189,7 +189,7 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
                     'url'] if 'thumbnail_image' in entry and entry['thumbnail_image'] else None
 
                 # [OPTIONAL] google tts not for indonesian
-                if entry['language'] != 'ind':
+                if entry['language'] != 'in':
                     # you dont get None in _get_tts
                     # at worst the original entry is returned
                     entry = _get_tts(entry, rand)
