@@ -104,7 +104,7 @@ def get_categories(language=None, country=None, version=None):
                     if category_name not in categories:
                         categories[category_name] = []
                     if item['feed_title'] not in categories[category_name]:
-                        feed_format = {'order':len(categories[category_name]), 'text':item['feed_title'], 'image':{'url':'http://img3.douban.com/view/photo/large/public/p2151271124.jpg', 'width':258, 'height':487}}
+                        feed_format = {'order':len(categories[category_name]), 'text':item['feed_title']}
                         categories[category_name].append(feed_format)
 
             if 'labels' in item and item['labels']:
@@ -117,12 +117,12 @@ def get_categories(language=None, country=None, version=None):
                         if category_name not in categories:
                             categories[category_name] = []
                         if label_name not in categories[category_name]:
-                            label_format = {'order':len(categories[category_name]), 'text':label_name, 'image':{'url':'http://img3.douban.com/view/photo/large/public/p2151271124.jpg', 'width':310, 'height':250}}
+                            label_format = {'order':len(categories[category_name]), 'text':label_name}
                             categories[category_name].append(label_format)
         # reformat
         output = []
         for k, v in categories.iteritems():
-            category_format = {'text':k, 'image':{'url':'http://img3.douban.com/view/photo/large/public/p2151271124.jpg', 'width':250, 'height':310}}
+            category_format = {'text':k}
             output.append({'Category':category_format, 'Feeds':v})
         version_latest = hashlib.md5(json.dumps(categories, sort_keys=True)).hexdigest()
 
