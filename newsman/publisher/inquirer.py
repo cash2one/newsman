@@ -57,6 +57,7 @@ def get_portal(language=None, country=None, categories=None):
     categories = urllib2.unquote(categories.strip()).split(',')
 
     for user_subscription in categories:
+        user_subscription = user_subscription.replace('+', ' ')
         category, feed = user_subscription.split('*|*')
         entries = get_latest_entries(language=language, country=country, category=category, feed=feed, limit=search_limit)
         # 'category A': [{'title':'xxx', 'image':'http://yyy.com/zzz.jpg'}]
