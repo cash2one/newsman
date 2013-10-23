@@ -70,15 +70,24 @@ def _convert(language='en', country=None):
 
                 existing_item = db_feeds.find_one({'feed_link':feed_link})
                 if not existing_item:
-                    print '+'
                     db_feeds.save({'language': language, 'countries':[country], 'feed_link': feed_link, 'categories': [category], 'labels':labels, 'feed_title': feed_title, 'latest_update': None, 'updated_times': 0, 'transcoder': transcoder})
                 else:
-                    print '*'
                     new_item = existing_item
                     new_item['language'] = language
-                    new_item['categories'] = list(set(existing_item['categories'].extend([category])))
-                    new_item['labels'] = list(set(existing_item['labels'].extend(labels)))
-                    new_item['countries'] = list(set(existing_item['countries'].append(country)))
+
+                    existing_item['categories'].append(category)
+                    new_item['categories'] = list(set(existing_item['categories']))
+
+                    if 'labels' in existing_item and existing_item['labels']:
+                        existing_item['labels'].extend(labels)
+                    else:
+                        existing_item['labels'] = labels
+                    if existing_item['labels']:
+                        new_item['labels'] = list(set(existing_item['labels']))
+
+                    existing_item['countries'].extend([country])
+                    new_item['countries'] = list(set(existing_item['countries']))
+
                     new_item['transcoder'] = transcoder
                     new_item['feed_title'] = feed_title
                     db_feeds.update({'_id': existing_item['_id']}, new_item)
