@@ -14,13 +14,13 @@ en*|*News*|*readability*|*http://www.thehindu.com/news/international/?service=rs
 en*|*News*|*chengdujin*|*http://feeds.huffingtonpost.com/huffingtonpost/LatestNews*|*The Huffington Post International
 en*|*News*|*readability*|*http://syndication.indianexpress.com/rss/789/latest-news.xml*|*The Indian Express International
 en*|*News*|*readability*|*http://ibnlive.in.com/ibnrss/rss/indiaglobal/indiaglobal.xml*|*IBNLive Global News*|*World Headlines
-en*|*News*|*chengdujin*|*http://feeds.guardian.co.uk/theguardian/rss*|*The Guardian World News
+en*|*News*|*chengdujin*|*http://feeds.theguardian.com/theguardian/uk/rss*|*The Guardian World News
 en*|*News*|*chengdujin*|*http://feeds.abcnews.com/abcnews/topstories*|*ABC News Top Stories
 en*|*News*|*readability*|*http://feeds.feedburner.com/foxnews/latest*|*Fox News International
 en*|*News*|*chengdujin*|*http://feeds.feedburner.com/ndtv/TqgX*|*NDTV News World
 en*|*News*|*readability*|*http://www.dnaindia.com/syndication/rss,catid-9.xml*|*DNA World News
 en*|*Business*|*chengdujin*|*http://www.deccanherald.com/rss/business.rss*|*Deccan Herald Business*|*Business Headlines
-en*|*Business*|*readability*|*http://www.ibnlive.com/xml/rss/business.xml*|*IBNLive Business
+en*|*Business*|*readability*|*http://ibnlive.in.com/xml/rss/business.xml*|*IBNLive Business
 en*|*Business*|*readability*|*http://www.thehindubusinessline.com/industry-and-economy/?service=rss*|*The Hindu Business Line Economy
 en*|*Business*|*readability*|*http://www.indianexpress.com/rss/37/business.xml*|*The Indian Express Business
 en*|*Business*|*readability*|*http://feeds.reuters.com/reuters/INbusinessNews*|*Reuters Money
@@ -58,7 +58,7 @@ en*|*Entertainment*|*readability*|*http://feeds.feedburner.com/NDTV-Ent*|*NDTV N
 en*|*Entertainment*|*readability*|*http://www.dnaindia.com/syndication/rss,catid-7.xml*|*DNA Entertainment
 en*|*Entertainment*|*readability*|*http://ibnlive.in.com/ibnrss/rss/moviesnews/moviesnews.xml*|*IBNLive Movies
 en*|*Sports*|*readability*|*http://www.rediff.com/rss/sportsrss.xml*|*Rediff Sports
-en*|*Sports*|*readability*|*http://www.ibnlive.com/xml/rss/sports.xml*|*IBNLive Sports*|*Sports Headlines
+en*|*Sports*|*readability*|*http://ibnlive.in.com/xml/rss/sports.xml*|*IBNLive Sports*|*Sports Headlines
 en*|*Sports*|*chengdujin*|*http://feeds.hindustantimes.com/HT-Cricket-TopStories*|*Hindustan Times Cricket
 en*|*Sports*|*readability*|*http://www.deccanherald.com/rss/sports.rss*|*Deccan Herald Sports
 en*|*Sports*|*readability*|*http://www.thehindu.com/sport/other-sports/?service=rss*|*The Hindu Sports
