@@ -78,12 +78,7 @@ def _convert(language='en', country=None):
                     existing_item['categories'].append(category)
                     new_item['categories'] = list(set(existing_item['categories']))
 
-                    if 'labels' in existing_item and existing_item['labels'] and labels:
-                        existing_item['labels'].extend(labels)
-                    else:
-                        existing_item['labels'] = labels
-                    if existing_item['labels']:
-                        new_item['labels'] = list(set(existing_item['labels']))
+                    existing_item['labels'] = labels
 
                     existing_item['countries'].extend([country])
                     new_item['countries'] = list(set(existing_item['countries']))
