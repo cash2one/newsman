@@ -19,9 +19,9 @@ from config.settings import db
 
 # CONSTANTS
 from config.settings import FEED_REGISTRAR
-FILE_PREFIX = '/home/work/newsman/newsman/bin/text_based_feeds/feed_lists/'
+#FILE_PREFIX = '/home/work/newsman/newsman/bin/text_based_feeds/feed_lists/'
 #FILE_PREFIX = '/home/ubuntu/newsman/newsman/bin/text_based_feeds/feed_lists/'
-#FILE_PREFIX = '/home/jinyuan/Downloads/newsman/newsman/bin/text_based_feeds/feed_lists/'
+FILE_PREFIX = '/home/jinyuan/Downloads/newsman/newsman/bin/text_based_feeds/feed_lists/'
 
 
 def _parse_task(line):
@@ -54,6 +54,7 @@ def _convert(language='en', country=None):
 
     # open datbase
     db_feeds = Collection(db, FEED_REGISTRAR)
+    db_id_list = open('db_id_list', 'w')
 
     for line in lines:
         if line.strip():
@@ -65,24 +66,28 @@ def _convert(language='en', country=None):
                 if labels:
                     labels = ['%s::%s' % (category, label.strip()) for label in labels.split(',')]
 
-                print feed_title, labels
+                print feed_link
 
-                existing_item = db_feeds.find_one({'link':feed_link})
+                existing_item = db_feeds.find_one({'feed_link':feed_link})
                 if not existing_item:
+                    print '+'
                     db_feeds.save({'language': language, 'countries':[country], 'feed_link': feed_link, 'categories': [category], 'labels':labels, 'feed_title': feed_title, 'latest_update': None, 'updated_times': 0, 'transcoder': transcoder})
                 else:
+                    print '*'
                     new_item = existing_item
                     new_item['language'] = language
-                    new_item['categories'] = list(set(new_item['categories'].extend([category])))
-                    new_item['labels'] = list(set(new_item['labels'].extend(labels)))
-                    new_item['countries'] = list(set(new_item['countries'].append(country)))
+                    new_item['categories'] = list(set(existing_item['categories'].extend([category])))
+                    new_item['labels'] = list(set(existing_item['labels'].extend(labels)))
+                    new_item['countries'] = list(set(existing_item['countries'].append(country)))
                     new_item['transcoder'] = transcoder
                     new_item['feed_title'] = feed_title
-                    db_feeds.update({'_id': item['_id']}, new_item)
+                    db_feeds.update({'_id': existing_item['_id']}, new_item)
+                    db_id_list.write(str(existing_item['_id']) + '\n')
             else:
                 continue
         else:
             continue
+    db_id_list.close()
 
 
 if __name__ == "__main__":
