@@ -32,7 +32,7 @@ def is_valid_image(image_url):
     find out if the image has a resolution larger than MIN_IMAGE_SIZE
     """
     if not image_url:
-        logger.error('Method malformed!')
+        logger.error('Method malformed! URL [%s] is incorrect' % image_url)
         return False
 
     # check if image could be downloaded

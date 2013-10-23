@@ -88,8 +88,8 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
                 entry['updated'] = calendar.timegm(e.published_parsed)
                 entry['updated_human'] = e.published
             except AttributeError as k:
-                entry['error'] = '%s\n%s' % (
-                    entry['error'], "no 'updated_parsed' or 'published_parsed'")
+                entry['error'] = ['%s\n%s' % (
+                    entry['error'], "no 'updated_parsed' or 'published_parsed'")]
                 # then try unparsed time info
                 # this is rarely possible.
                 try:
@@ -110,11 +110,11 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
                             "Attribute updated/published has no value")
                         return None
                 except ValueError as k:
-                    logger.error(str(k))
-                    entry['error'] = '%s\n%s' % (entry['error'], k)
+                    logger.info(str(k))
+                    entry['error'].append('%s\n%s' % (entry['error'], k))
                     return None
                 except AttributeError as k:
-                    logger.error(str(k))
+                    logger.info(str(k))
                     entry['error'].append('no update or published\n')
                     return None
 
