@@ -74,11 +74,18 @@ def _convert(language='en', country=None):
                 else:
                     new_item = existing_item
                     new_item['language'] = language
+                    
+                    if 'categories' in existing_item and existing_item['categories']:
+                        existing_item['categories'].append(category)
+                        new_item['categories'] = list(set(existing_item['categories']))
+                    else:
+                        new_item['categories'] = [category]
 
-                    existing_item['categories'].append(category)
-                    new_item['categories'] = list(set(existing_item['categories']))
-
-                    existing_item['labels'] = labels
+                    if 'labels' in existing_item and existing_item['labels']:
+                        existing_item['labels'].extend(labels)
+                        new_item['labels'] = list(set(existing_item['labels']))
+                    else:
+                        new_item['labels'] = labels
 
                     existing_item['countries'].extend([country])
                     new_item['countries'] = list(set(existing_item['countries']))
