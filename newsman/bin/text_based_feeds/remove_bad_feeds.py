@@ -31,13 +31,6 @@ for item in items:
 print counter
 """
 
-items = col.find({'language':{'$in':['in', 'en', 'zh']}})
-for item in items:
-    if 'status' in item and item['status'] and int(item['status']) != 200:
-        print item['status'], item['feed_title'], item['reason'] if 'reason' in item else "No Reason is found!" 
-    elif 'status' not in item or not item['status']:
-        print item['feed_title'], item['reason'] if 'reason' in item else 'No Reason is found!'
-
 items = col.find({'language':{'$in':['en']}})
 for item in items:
     #if 'status' in item and item['status'] and (item['status'] == 200 or item['status'] == 302 or item['status'] == 304):
