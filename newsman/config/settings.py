@@ -97,7 +97,7 @@ HOTNEWS_TITLE_JA = '人気ニュース'
 HOTNEWS_TITLE_IN = 'Berita Terbaru'
 HOTNEWS_TITLE_TH = 'ข่าวฮิต'
 HOTNEWS_TITLE_AR = 'أخبار عاجلة'
-HOTNEWS_TITLE_ZH = '查看原始网页'
+HOTNEWS_TITLE_ZH = '头条'
 
 # expirations 
 DATABASE_REMOVAL_DAYS = 365
