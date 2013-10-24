@@ -37,3 +37,12 @@ for item in items:
         print item['status'], item['feed_title'], item['reason'] if 'reason' in item else "No Reason is found!" 
     elif 'status' not in item or not item['status']:
         print item['feed_title'], item['reason'] if 'reason' in item else 'No Reason is found!'
+
+items = col.find({'language':{'$in':['en']}})
+for item in items:
+    #if 'status' in item and item['status'] and (item['status'] == 200 or item['status'] == 302 or item['status'] == 304):
+        #pass
+        #print item['status'], item['feed_title'], "[%s]" % item['latest_update'] if 'latest_update' in item and item['latest_update'] else '-', '[%s]' % item['reason'] if 'reason' in item and reason['reason'] else '-'
+    if not item['updated_times']:
+        print item['language'], item['feed_title'], "[%s]" % item['latest_update'] if 'latest_update' in item and item['latest_update'] else '-', '[%s]' % item['reason'] if 'reason' in item and item['reason'] else '-', '[%s]' % item['status'] if 'status' in item and item['status'] else '-'
+        col.remove({'_id':item['_id']})
