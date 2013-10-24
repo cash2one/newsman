@@ -1,9 +1,9 @@
-zh*|*新闻*|*readability*|*http://news.baidu.com/n?cmd=1&class=civilnews&tn=rss*|*国内新闻*|*国内焦点, 头条
-zh*|*新闻*|*readability*|*http://news.baidu.com/n?cmd=1&class=internews&tn=rss*|*国际新闻*|*国际焦点, 头条
-zh*|*新闻*|*readability*|*http://news.baidu.com/n?cmd=1&class=mil&tn=rss*|*军事新闻
-zh*|*新闻*|*readability*|*http://news.baidu.com/n?cmd=1&class=housenews&tn=rss*|*房产新闻
-zh*|*新闻*|*readability*|*http://news.baidu.com/n?cmd=1&class=edunews&tn=rss*|*教育新闻
-zh*|*新闻*|*readability*|*http://news.baidu.com/n?cmd=1&class=socianews&tn=rss*|*社会新闻
+zh*|*新闻*|*readability*|*http://news.baidu.com/n?cmd=1&class=civilnews&tn=rss*|*百度国内新闻*|*国内焦点, 头条
+zh*|*新闻*|*readability*|*http://news.baidu.com/n?cmd=1&class=internews&tn=rss*|*百度国际新闻*|*国际焦点
+zh*|*新闻*|*readability*|*http://news.baidu.com/n?cmd=1&class=mil&tn=rss*|*百度军事新闻
+zh*|*新闻*|*readability*|*http://news.baidu.com/n?cmd=1&class=housenews&tn=rss*|*百度房产新闻
+zh*|*新闻*|*readability*|*http://news.baidu.com/n?cmd=1&class=edunews&tn=rss*|*百度教育新闻
+zh*|*新闻*|*readability*|*http://news.baidu.com/n?cmd=1&class=socianews&tn=rss*|*百度社会新闻
 zh*|*新闻*|*readability*|*http://news.ifeng.com/rss/index.xml*|*凤凰网资讯频道
 zh*|*新闻*|*readability*|*http://news.ifeng.com/rss/mainland.xml*|*凤凰网大陆频道
 zh*|*新闻*|*readability*|*http://news.ifeng.com/rss/taiwan.xml*|*凤凰网台湾频道
@@ -11,7 +11,7 @@ zh*|*新闻*|*readability*|*http://news.ifeng.com/rss/society.xml*|*凤凰网社
 zh*|*新闻*|*readability*|*http://news.ifeng.com/rss/photo.xml*|*凤凰网图片频道
 zh*|*新闻*|*readability*|*http://zaobao.feedsportal.com/c/34003/f/616934/index.rss*|*联合早报
 zh*|*财经*|*readability*|*http://cn.reuters.feedsportal.com/chinaNews*|*路透社中国财经*|*财经焦点
-zh*|*财经*|*readability*|*http://news.baidu.com/n?cmd=1&class=finannews&tn=rss*|*财经新闻*|*头条
+zh*|*财经*|*readability*|*http://news.baidu.com/n?cmd=1&class=finannews&tn=rss*|*财经新闻
 zh*|*财经*|*readability*|*http://cn.reuters.feedsportal.com/CNIntlBizNews*|*路透社国际财经
 zh*|*财经*|*readability*|*http://cn.reuters.feedsportal.com/cnBizNews*|*路透社财经报道
 zh*|*财经*|*readability*|*http://cn.reuters.feedsportal.com/cnInvNews*|*路透社投资资讯
@@ -35,7 +35,7 @@ zh*|*时尚*|*readability*|*http://yoka.dynamic.feedsportal.com/pf/589033/rss.yo
 zh*|*时尚*|*readability*|*http://yoka.dynamic.feedsportal.com/pf/589036/rss.yoka.com/life/foods.xml*|*YOKA美食美酒
 zh*|*时尚*|*readability*|*http://yoka.dynamic.feedsportal.com/pf/589036/rss.yoka.com/life/meiqi.xml*|*YOKA美好家居
 zh*|*娱乐*|*readability*|*http://news.baidu.com/n?cmd=1&class=enternews&tn=rss*|*百度娱乐焦点新闻*|*娱乐焦点
-zh*|*娱乐*|*readability*|*http://cn.reuters.feedsportal.com/CNEntNews*|*路透社娱乐体育*|*头条
+zh*|*娱乐*|*readability*|*http://cn.reuters.feedsportal.com/CNEntNews*|*路透社娱乐体育
 zh*|*娱乐*|*readability*|*http://www.zdomo.com/news.aspx/rss*|*多芒播报
 zh*|*娱乐*|*readability*|*http://feeds.qzone.qq.com/cgi-bin/cgi_rss_out?uin=772937290*|*时尚占星
 zh*|*娱乐*|*readability*|*http://www.250.im/feed*|*250恶搞网站
@@ -96,5 +96,5 @@ zh*|*生活*|*readability*|*http://fanhcy.com/feed*|*饭后茶娱
 zh*|*体育*|*readability*|*http://news.baidu.com/n?cmd=1&class=sportnews&tn=rss*|*体育新闻*|*体育焦点
 zh*|*体育*|*nuck*|*http://cn.reuters.com/rssFeed/cnsportsNews?mrss=true*|*路透中文体育短讯
 zh*|*体育*|*readability*|*http://sports.ifeng.com/rss/index.xml*|*凤凰网体育频道
-zh*|*体育*|*readability*|*http://rss.sina.com.cn/roll/sports/hot_roll.xml*|*新浪体育*|*头条
+zh*|*体育*|*readability*|*http://rss.sina.com.cn/roll/sports/hot_roll.xml*|*新浪体育
 zh*|*体育*|*readability*|*http://www.people.com.cn/rss/sports.xml*|*人民网体育频道
