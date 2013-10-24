@@ -203,7 +203,8 @@ def get_latest_entries(language=None, country=None, category=None, feed=None, li
                         dirty_expired_ids.append(entry_id)
 
                 # compute boundary variables
-                last_entry_in_memory_updated = float(last_entry_in_memory['updated'])
+                tmp = last_entry_in_memory['updated']
+                last_entry_in_memory_updated = float(tmp) if tmp else None
                 limit_in_database = limit - len(entries)
 
                 # database
@@ -346,7 +347,8 @@ def get_previous_entries(language=None, country=None, category=None, feed=None, 
                     else:
                         dirty_expired_ids.append(entry_id)
 
-                last_entry_in_memory_updated = float(last_entry_in_memory['updated'])
+                tmp = last_entry_in_memory['updated']
+                last_entry_in_memory_updated = float(tmp) if tmp else None
                 limit_in_database = limit - len(entries)
 
                 # find the remaining items in database
