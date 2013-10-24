@@ -12,7 +12,7 @@ restore memory from database, if memory failed
 import sys
 reload(sys)
 sys.setdefaultencoding('UTF-8')
-sys.path.append("..")
+sys.path.append("/home/work/newsman/newsman")
 
 from bson.objectid import ObjectId
 import calendar
