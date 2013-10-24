@@ -1,39 +1,41 @@
-in*|*Nasional*|*readability*|*http://www.tempo.co/rss/popular24hours*|*Tempo Berita Populer
-in*|*Nasional*|*readability*|*http://www.indonesianews.net/index.php/rss/f9295dc05093c851*|*Indonesia News Headlines
-in*|*Nasional*|*readability*|*http://sindikasi.okezone.com/index.php/rss/1/RSS2.0*|*Okezone News*|*Berita Terbaru
-in*|*Nasional*|*readability*|*http://www.inilah.com/rss/feed/nasional/*|*Inilah Nasional
-in*|*Nasional*|*readability*|*http://www.metrotvnews.com/front/rss/nusantara*|*METRO TV NEWS Nasional
-in*|*Nasional*|*readability*|*http://www.tempo.co/rss/nasional*|*Tempo Nasional
-in*|*Nasional*|*readability*|*http://www.metrotvnews.com/front/rss/aktual*|*METRO TV NEWS Aktual
-in*|*Nasional*|*readability*|*http://www.metrotvnews.com/front/rss/polkam*|*METRO TV NEWS Polkam
-in*|*Nasional*|*readability*|*http://inside.kompas.com/getrss/all*|*Kompas*|*Berita Terbaru
-in*|*Nasional*|*readability*|*http://inside.kompas.com/getrss/nasional*|*Kompas Nasional*|*Berita Terbaru
-in*|*Nasional*|*readability*|*http://inside.kompas.com/getrss/regional*|*Kompas Regional
-in*|*Nasional*|*readability*|*http://inside.kompas.com/getrss/megapolitan*|*Kompas Megapolitan
-in*|*Nasional*|*readability*|*http://www.thejakartaglobe.com/news/feed/*|*The JKT Globe News
-in*|*Nasional*|*readability*|*http://rss.vivanews.com/get/all*|*VIVAnews
-in*|*Nasional*|*readability*|*http://rss.vivanews.com/get/nasional*|*VIVAnews Nasional
-in*|*Nasional*|*readability*|*http://indonesia.ucanews.com/?feed=rss2*|*UCAN Indonesia
-in*|*Nasional*|*readability*|*http://www.antaranews.com/rss/nasional*|*ANTARA News Nasional
-in*|*Nasional*|*readability*|*http://www.insideindonesia.org/?option=com_ninjarsssyndicator&feed_id=1&format=raw*|*Inside Indonesia Current Edition
-in*|*Nasional*|*readability*|*http://www.indosiar.com/rss*|*INDOSIAR Stasiun TV
-in*|*Internasional*|*readability*|*http://www.tempo.co/rss/internasional*|*Tempo International
-in*|*Internasional*|*readability*|*http://www.inilah.com/rss/feed/duniahariini/*|*Inilah International
-in*|*Internasional*|*readability*|*http://www.metrotvnews.com/front/rss/internasional*|*METRO TV NEWS Dunia
-in*|*Internasional*|*readability*|*http://www.thejakartaglobe.com/feed/*|*The Jakarta Globe
-in*|*Internasional*|*readability*|*http://inside.kompas.com/getrss/internasional*|*Kompas International
-in*|*Internasional*|*readability*|*http://www.thejakartaglobe.com/international/feed/*|*The JKT Globe Dunia
-in*|*Internasional*|*readability*|*http://rss.vivanews.com/get/dunia*|*VIVAnews Dunia
-in*|*Internasional*|*readability*|*http://www.thejakartapost.com/breaking/feed*|*Jarkarta Post Latest News
-in*|*Internasional*|*readability*|*http://www.antaranews.com/rss/internasional*|*ANTARA News Dunia
-in*|*Keuangan*|*readability*|*http://www.bignewsnetwork.com/index.php/nav/rss/3a8a80d6f705f8cc*|*Big News Network Headlines
+in*|*News*|*readability*|*http://www.tempo.co/rss/popular24hours*|*Tempo Berita Populer
+in*|*News*|*readability*|*http://www.indonesianews.net/index.php/rss/f9295dc05093c851*|*Indonesia News Headlines
+in*|*News*|*readability*|*http://sindikasi.okezone.com/index.php/rss/1/RSS2.0*|*Okezone News*|*Berita Terbaru
+in*|*News*|*readability*|*http://www.inilah.com/rss/feed/nasional/*|*Inilah News
+in*|*News*|*readability*|*http://www.metrotvnews.com/front/rss/nusantara*|*METRO TV NEWS News
+in*|*News*|*readability*|*http://www.tempo.co/rss/nasional*|*Tempo News
+in*|*News*|*readability*|*http://www.metrotvnews.com/front/rss/aktual*|*METRO TV NEWS Aktual
+in*|*News*|*readability*|*http://www.metrotvnews.com/front/rss/polkam*|*METRO TV NEWS Polkam
+in*|*News*|*readability*|*http://inside.kompas.com/getrss/all*|*Kompas
+in*|*News*|*readability*|*http://inside.kompas.com/getrss/nasional*|*Kompas News
+in*|*News*|*readability*|*http://inside.kompas.com/getrss/regional*|*Kompas Regional
+in*|*News*|*readability*|*http://inside.kompas.com/getrss/megapolitan*|*Kompas Megapolitan
+in*|*News*|*readability*|*http://www.thejakartaglobe.com/news/feed/*|*The JKT Globe News
+in*|*News*|*readability*|*http://rss.vivanews.com/get/all*|*VIVAnews
+in*|*News*|*readability*|*http://rss.vivanews.com/get/nasional*|*VIVAnews News
+in*|*News*|*readability*|*http://indonesia.ucanews.com/?feed=rss2*|*UCAN Indonesia
+in*|*News*|*readability*|*http://www.antaranews.com/rss/nasional*|*ANTARA News News
+in*|*News*|*readability*|*http://www.insideindonesia.org/?option=com_ninjarsssyndicator&feed_id=1&format=raw*|*Inside Indonesia Current Edition
+in*|*News*|*readability*|*http://www.indosiar.com/rss*|*INDOSIAR Stasiun TV
+in*|*News*|*readability*|*http://www.tempo.co/rss/internasional*|*Tempo International
+in*|*News*|*readability*|*http://www.inilah.com/rss/feed/duniahariini/*|*Inilah International
+in*|*News*|*readability*|*http://www.metrotvnews.com/front/rss/internasional*|*METRO TV NEWS Dunia
+in*|*News*|*readability*|*http://www.thejakartaglobe.com/feed/*|*The Jakarta Globe
+in*|*News*|*readability*|*http://inside.kompas.com/getrss/internasional*|*Kompas International
+in*|*News*|*readability*|*http://www.thejakartaglobe.com/international/feed/*|*The JKT Globe Dunia
+in*|*News*|*readability*|*http://rss.vivanews.com/get/dunia*|*VIVAnews Dunia
+in*|*News*|*readability*|*http://www.thejakartapost.com/breaking/feed*|*Jakarta Post Latest News
+in*|*News*|*readability*|*http://www.antaranews.com/rss/internasional*|*ANTARA News Dunia
+in*|*News*|*readability*|*http://www.bignewsnetwork.com/index.php/nav/rss/3a8a80d6f705f8cc*|*Big News Network Headlines
 in*|*Keuangan*|*readability*|*http://www.bisnis.com/rss*|*Bisnis Indonesia News
 in*|*Keuangan*|*readability*|*http://www.kompas.com/getrss/bisniskeuangan*|*Kompas Keuangan
 in*|*Keuangan*|*readability*|*http://www.thejakartaglobe.com/business/feed/*|*The JKT Globe Business
-in*|*Keuangan*|*readability*|*http://rss.vivanews.com/get/metro*|*VIVAnews Metro
 in*|*Keuangan*|*readability*|*http://financeroll.co.id/feed/*|*Financeroll Indonesia
 in*|*Keuangan*|*readability*|*http://www.antaranews.com/rss/ekonomi*|*ANTARA News Ekonomi
-in*|*Teknologi*|*readability*|*http://sindikasi.okezone.com/index.php/rss/16/RSS2.0*|*Okezone Teknologi*|*Berita Terbaru
+in*|*Keuangan*|*readability*|*http://sindikasi.okezone.com/index.php/rss/11/RSS2.0*|*Okezone Ekonomi
+in*|*Keuangan*|*readability*|*http://www.metrotvnews.com/front/rss/ekonomi*|*METRO TV NEWS Ekonomi
+in*|*Keuangan*|*readability*|*http://www.inilah.com/rss/feed/ekonomi/*|*Inilah Ekonomi
+in*|*Teknologi*|*readability*|*http://sindikasi.okezone.com/index.php/rss/16/RSS2.0*|*Okezone Teknologi
 in*|*Teknologi*|*readability*|*http://www.inilah.com/rss/feed/teknologi/*|*Inilah Teknologi
 in*|*Teknologi*|*readability*|*http://inside.kompas.com/getrss/sains*|*Kompas Sains
 in*|*Teknologi*|*readability*|*http://www.kompas.com/getrss/tekno*|*Kompas Teknologi
@@ -43,7 +45,7 @@ in*|*Teknologi*|*readability*|*http://inside.kompas.com/getrss/teknointernet*|*K
 in*|*Teknologi*|*readability*|*http://rss.vivanews.com/get/teknologi*|*VIVAnews Teknologi
 in*|*Teknologi*|*readability*|*http://www.antaranews.com/rss/teknologi*|*ANTARA News Teknologi
 in*|*Teknologi*|*readability*|*http://rss.tempointeraktif.com/teknologi.xml*|*Tempo Teknologi
-in*|*Olahraga*|*readability*|*http://rss.detik.com/index.php/sport*|*Detik Olahraga*|*Berita Terbaru
+in*|*Olahraga*|*readability*|*http://rss.detik.com/index.php/sport*|*Detik Olahraga
 in*|*Olahraga*|*readability*|*http://www.tempo.co/rss/olahraga*|*Tempo Olahraga
 in*|*Olahraga*|*readability*|*http://www.tempo.co/rss/olahraga_sepakbola*|*Tempo Sepakbola
 in*|*Olahraga*|*readability*|*http://www.antaranews.com/rss/olahraga*|*ANTARA News Olahraga
@@ -59,7 +61,7 @@ in*|*Olahraga*|*readability*|*http://sindikasi.okezone.com/index.php/rss/2/RSS2.
 in*|*Hiburan*|*readability*|*http://www.antaranews.com/rss/hiburan*|*ANTARA News Hiburan
 in*|*Hiburan*|*readability*|*http://www.inilah.com/rss/feed/artis/*|*Inilah Artis
 in*|*Hiburan*|*readability*|*http://inside.kompas.com/getrss/entertainment*|*Kompas Hiburan
-in*|*Hiburan*|*readability*|*http://entertainment.kompas.com/rss/all*|*Kompas Entertainment*|*Berita Terbaru
+in*|*Hiburan*|*readability*|*http://entertainment.kompas.com/rss/all*|*Kompas Entertainment
 in*|*Hiburan*|*readability*|*http://inside.kompas.com/getrss/entertainmentmusik*|*Kompas Musik
 in*|*Hiburan*|*readability*|*http://inside.kompas.com/getrss/entertainmentcinema*|*Kompas Cinema
 in*|*Hiburan*|*readability*|*http://inside.kompas.com/getrss/entertainmentgossips*|*Kompas Gossips
@@ -69,13 +71,11 @@ in*|*Fashion*|*readability*|*http://inside.kompas.com/getrss/femaleibuanak*|*Kom
 in*|*Fashion*|*readability*|*http://inside.kompas.com/getrss/femalerelationship*|*Kompas Female
 in*|*Fashion*|*readability*|*http://rss.vivanews.com/get/kosmo*|*VIVAnews Kosmo
 in*|*Gaya Hidup*|*readability*|*http://www.antaranews.com/rss/nasional-kesehatan*|*ANTARA News Kesehatan
-in*|*Gaya Hidup*|*readability*|*http://sindikasi.okezone.com/index.php/rss/11/RSS2.0*|*Okezone Economy
-in*|*Gaya Hidup*|*readability*|*http://www.metrotvnews.com/front/rss/ekonomi*|*METRO TV NEWS Ekonomi
-in*|*Gaya Hidup*|*readability*|*http://www.inilah.com/rss/feed/ekonomi/*|*Inilah Ekonomi
 in*|*Gaya Hidup*|*readability*|*http://www.tempo.co/rss/travel*|*Tempo Travel
 in*|*Gaya Hidup*|*readability*|*http://inside.kompas.com/getrss/edukasi*|*Kompas edukasi
-in*|*Gaya Hidup*|*readability*|*http://www.kompas.com/getrss/kesehatan*|*Kompas kesehatan*|*Berita Terbaru
+in*|*Gaya Hidup*|*readability*|*http://www.kompas.com/getrss/kesehatan*|*Kompas kesehatan
 in*|*Gaya Hidup*|*readability*|*http://www.kompas.com/getrss/travel*|*Kompas travel
 in*|*Gaya Hidup*|*readability*|*http://inside.kompas.com/getrss/health*|*Kompas Kesehatan
 in*|*Gaya Hidup*|*readability*|*http://rss.vivanews.com/get/sorot*|*VIVAnews Sorot
 in*|*Gaya Hidup*|*readability*|*http://sindikasi.okezone.com/index.php/rss/12/RSS2.0*|*Okezone Lifestyle
+in*|*Gaya Hidup*|*readability*|*http://rss.vivanews.com/get/metro*|*VIVAnews Metro
