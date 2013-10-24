@@ -1,9 +1,6 @@
-
-
-
-th*|*ในประเทศ  *|*readability*|*http://hilight.kapook.com/main/feed/*|*Hot News
-th*|*ในประเทศ  *|*readability*|*http://www.komchadluek.net/rss/local.xml*|*Hot News
-th*|*ในประเทศ  *|*readability*|*http://www.sanook.com/hot/
+th*|*ในประเทศ  *|*readability*|*http://hilight.kapook.com/main/feed/
+th*|*ในประเทศ  *|*readability*|*http://www.komchadluek.net/rss/local.xml
+th*|*ในประเทศ  *|*readability*|*http://www.sanook.com/hot/*|*ข่าวฮิต
 th*|*ในประเทศ  *|*readability*|*http://feeds.posttoday.com/c/33101/f/595334/index.rss
 th*|*ในประเทศ  *|*readability*|*http://www.matichon.co.th/rss/news_inbound.xml
 th*|*ในประเทศ  *|*readability*|*http://rssfeeds.sanook.com/rss/feeds/sanook/news.index.xml
@@ -23,11 +20,6 @@ th*|*ในประเทศ  *|*readability*|*http://www.thairath.co.th/rss/ne
 th*|*ในประเทศ  *|*readability*|*http://www.thairath.co.th/rss/pol.xml
 th*|*ในประเทศ  *|*readability*|*http://www.thairath.co.th/region
 th*|*ในประเทศ  *|*readability*|*http://news.mthai.com/feed
-
-
-
-
-
 th*|*ต่างประเทศ  *|*readability*|*http://www.matichon.co.th/rss/news_world.xml*|*ต่างประเทศ 
 th*|*ต่างประเทศ  *|*readability*|*http://news.thaipbs.or.th/rss/world.xml*|*ต่างประเทศ 
 th*|*ต่างประเทศ  *|*readability*|*http://www.komchadluek.net/rss/foreign.xml
@@ -37,19 +29,12 @@ th*|*ต่างประเทศ  *|*readability*|*http://education.kapook.co
 th*|*ต่างประเทศ  *|*readability*|*http://www.springnewstv.tv/rssfeed/news/global.xml
 th*|*ต่างประเทศ  *|*readability*|*http://www.thairath.co.th/rss/oversea.xml
 th*|*ต่างประเทศ  *|*readability*|*http://news.mthai.com/category/world-news/feed
-
-
-
-
 th*|*เศรษฐกิจ *|*readability*|*http://www.komchadluek.net/rss/economic.xml
 th*|*เศรษฐกิจ *|*readability*|*http://www.matichon.co.th/rss/news_business.xml
 th*|*เศรษฐกิจ *|*readability*|*http://www.bangkokbiznews.com/home/services/rss/business.xml
 th*|*เศรษฐกิจ *|*readability*|*http://feeds.posttoday.com/c/33101/f/595340/index.rss
 th*|*เศรษฐกิจ *|*readability*|*http://feeds.posttoday.com/c/33101/f/535968/index.rss
 th*|*เศรษฐกิจ *|*readability*|*http://www.thairath.co.th/rss/eco.xml
-
-
-
 th*|*วิทยาศาสตร์ *|*readability*|*http://rssfeeds.sanook.com/rss/feeds/sanook/hitech.news.xml
 th*|*วิทยาศาสตร์ *|*readability*|*http://www.komchadluek.net/rss/scienceit.xml
 th*|*วิทยาศาสตร์ *|*readability*|*http://men.kapook.com/technology/feed
@@ -63,10 +48,6 @@ th*|*วิทยาศาสตร์ *|*readability*|*http://feeds.posttoday.c
 th*|*วิทยาศาสตร์ *|*readability*|*http://www.manager.co.th/RSS/Game/Game.xml
 th*|*วิทยาศาสตร์ *|*readability*|*http://www.thairath.co.th/rss/tech.xml
 th*|*วิทยาศาสตร์ *|*readability*|*http://tech.mthai.com/feed
-
-
-
-
 th*|*บันเทิง *|*readability*|*http://www.komchadluek.net/rss/entertainment.xml*|*บันเทิง
 th*|*บันเทิง *|*readability*|*http://feeds.feedburner.com/section-gossip*|*บันเทิง
 th*|*บันเทิง *|*readability*|*http://women.kapook.com/star/feed*|*บันเทิง
@@ -83,9 +64,6 @@ th*|*บันเทิง *|*readability*|*http://rssfeeds.sanook.com/rss/feeds
 th*|*บันเทิง *|*readability*|*http://www.posttoday.com/rss/src/entertainment.xml
 th*|*บันเทิง *|*readability*|*http://www.thairath.co.th/rss/ent.xml
 th*|*บันเทิง *|*readability*|*http://movie.mthai.com/movie-profile/new-movie/feed
-
-
-
 th*|*กีฬา *|*readability*|*http://www.matichon.co.th/rss/news_sport.xml*|*กีฬา 
 th*|*กีฬา *|*readability*|*http://www.krobkruakao.com/rss/SportNews.rss*|*กีฬา 
 th*|*กีฬา *|*readability*|*http://www.komchadluek.net/rss/sport.xml
@@ -97,9 +75,6 @@ th*|*กีฬา *|*readability*|*http://www.thairath.co.th/rss/sport.xml
 th*|*กีฬา *|*readability*|*http://sport.mthai.com/football-inter/feed
 th*|*กีฬา *|*readability*|*http://sport.mthai.com/feed
 th*|*กีฬา *|*readability*|*http://sport.mthai.com/sport-health-fit-firm/feed
-
-
-
 th*|*แฟชั่น *|*readability*|*http://women.mthai.com/home/feed
 th*|*แฟชั่น *|*uck*|*http://women.kapook.com/makeup/feed
 th*|*แฟชั่น *|*chengdujin*|*http://women.kapook.com/skin/feed
@@ -110,11 +85,6 @@ th*|*แฟชั่น *|*nuck*|*http://women.kapook.com/love/feed
 th*|*แฟชั่น *|*readability*|*http://women.kapook.com/wedding/feed
 th*|*แฟชั่น *|*readability*|*http://women.kapook.com/horo/feed
 th*|*แฟชั่น *|*readability*|*http://www.manager.co.th/RSS/Campus/Campus.xml
-
-
-
-
-
 th*|*ไลฟ์สไตล์  *|*readability*|*http://rssfeeds.sanook.com/rss/feeds/sanook/travel.index.xml
 th*|*ไลฟ์สไตล์  *|*nuck*|*http://women.kapook.com/food/feed
 th*|*ไลฟ์สไตล์  *|*readability*|*http://women.kapook.com/baby/feed
