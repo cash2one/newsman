@@ -1,14 +1,10 @@
-zh*|*新闻*|*uck*|*http://news.baidu.com/n?cmd=1&class=civilnews&tn=rss*|*百度国内新闻*|*国内焦点, 头条
+zh*|*新闻*|*uck*|*http://news.baidu.com/n?cmd=1&class=civilnews&tn=rss*|*百度国内新闻*|*国内新闻, 头条
 zh*|*新闻*|*uck*|*http://news.baidu.com/n?cmd=1&class=internews&tn=rss*|*百度国际新闻*|*国际焦点
 zh*|*新闻*|*uck*|*http://news.baidu.com/n?cmd=1&class=mil&tn=rss*|*百度军事新闻
 zh*|*新闻*|*uck*|*http://news.baidu.com/n?cmd=1&class=housenews&tn=rss*|*百度房产新闻
 zh*|*新闻*|*uck*|*http://news.baidu.com/n?cmd=1&class=edunews&tn=rss*|*百度教育新闻
 zh*|*新闻*|*uck*|*http://news.baidu.com/n?cmd=1&class=socianews&tn=rss*|*百度社会新闻
 zh*|*新闻*|*uck*|*http://news.ifeng.com/rss/index.xml*|*凤凰网资讯频道
-zh*|*新闻*|*uck*|*http://news.ifeng.com/rss/mainland.xml*|*凤凰网大陆频道
-zh*|*新闻*|*uck*|*http://news.ifeng.com/rss/taiwan.xml*|*凤凰网台湾频道
-zh*|*新闻*|*uck*|*http://news.ifeng.com/rss/society.xml*|*凤凰网社会频道
-zh*|*新闻*|*uck*|*http://news.ifeng.com/rss/photo.xml*|*凤凰网图片频道
 zh*|*新闻*|*uck*|*http://zaobao.feedsportal.com/c/34003/f/616934/index.rss*|*联合早报
 zh*|*财经*|*uck*|*http://cn.reuters.feedsportal.com/chinaNews*|*路透社中国财经*|*财经焦点
 zh*|*财经*|*uck*|*http://news.baidu.com/n?cmd=1&class=finannews&tn=rss*|*财经新闻
@@ -20,12 +16,7 @@ zh*|*财经*|*uck*|*http://cn.reuters.feedsportal.com/financialServicesNews*|*�
 zh*|*财经*|*uck*|*http://china.caixin.com/news/rss/100300241.xml*|*财经网 财经新闻
 zh*|*财经*|*uck*|*http://rich.online.sh.cn/rich/gb/special/rich.xml*|*上海财经频道
 zh*|*财经*|*uck*|*http://economy.caixin.com/news/rss/100300184.xml*|*财新网经济频道
-zh*|*时尚*|*uck*|*http://news.baidu.com/n?cmd=1&class=healthnews&tn=rss*|*百度女人焦点新闻*|*时尚焦点
 zh*|*时尚*|*uck*|*http://yoka.dynamic.feedsportal.com/pf/589029/rss.yoka.com/beauty/weeky.xml*|*YOKA美容周记
-zh*|*时尚*|*uck*|*http://yoka.dynamic.feedsportal.com/pf/589040/rss.yoka.com/shopping/clggp.xml*|*YOKA购物频道
-zh*|*时尚*|*uck*|*http://yoka.dynamic.feedsportal.com/pf/589040/rss.yoka.com/shopping/lxzt.xml*|*YOKA时尚流购物频道
-zh*|*时尚*|*uck*|*http://yoka.dynamic.feedsportal.com/pf/589040/rss.yoka.com/shopping/byhp.xml*|*YOKA本月红品
-zh*|*时尚*|*uck*|*http://yoka.dynamic.feedsportal.com/pf/589040/rss.yoka.com/shopping/drsd.xml*|*YOKA达人搜店
 zh*|*时尚*|*uck*|*http://yoka.dynamic.feedsportal.com/pf/589029/rss.yoka.com/beauty/class.xml*|*YOKA风尚彩妆
 zh*|*时尚*|*uck*|*http://yoka.dynamic.feedsportal.com/pf/589029/rss.yoka.com/beauty/starface.xml*|*YOKA明星美颜
 zh*|*时尚*|*uck*|*http://yoka.dynamic.feedsportal.com/pf/589033/rss.yoka.com/fashion/video.xml*|*YOKA服装周记
@@ -34,14 +25,11 @@ zh*|*时尚*|*uck*|*http://yoka.dynamic.feedsportal.com/pf/589033/rss.yoka.com/f
 zh*|*时尚*|*uck*|*http://yoka.dynamic.feedsportal.com/pf/589033/rss.yoka.com/fashion/starwear.xml*|*YOKA明星衣品
 zh*|*时尚*|*uck*|*http://yoka.dynamic.feedsportal.com/pf/589036/rss.yoka.com/life/foods.xml*|*YOKA美食美酒
 zh*|*时尚*|*uck*|*http://yoka.dynamic.feedsportal.com/pf/589036/rss.yoka.com/life/meiqi.xml*|*YOKA美好家居
-zh*|*娱乐*|*uck*|*http://news.baidu.com/n?cmd=1&class=enternews&tn=rss*|*百度娱乐焦点新闻*|*娱乐焦点
+zh*|*时尚*|*uck*|*http://happy.online.sh.cn/happy/gb/node/happy.xml*|*时尚上海
 zh*|*娱乐*|*uck*|*http://cn.reuters.feedsportal.com/CNEntNews*|*路透社娱乐体育
 zh*|*娱乐*|*uck*|*http://www.zdomo.com/news.aspx/rss*|*多芒播报
 zh*|*娱乐*|*uck*|*http://feeds.qzone.qq.com/cgi-bin/cgi_rss_out?uin=772937290*|*时尚占星
 zh*|*娱乐*|*uck*|*http://www.250.im/feed*|*250恶搞网站
-zh*|*娱乐*|*uck*|*http://feed.mtime.com/my/seemovie/feed.rss*|*电影频道
-zh*|*科技*|*uck*|*http://news.baidu.com/n?cmd=1&class=technnews&tn=rss*|*科技频道*|*科技焦点
-zh*|*科技*|*uck*|*http://news.baidu.com/n?cmd=1&class=internet&tn=rss*|*互联网频道*|*科技焦点
 zh*|*科技*|*uck*|*http://www.guokr.com/rss/*|*果壳网
 zh*|*科技*|*uck*|*http://news.baidu.com/n?cmd=1&class=gamenews&tn=rss*|*游戏频道
 zh*|*科技*|*uck*|*http://cn.reuters.feedsportal.com/CNTechNews*|*路透社电子频道
@@ -61,8 +49,6 @@ zh*|*科技*|*uck*|*http://www.theverge.com/rss/index.xml*|*The Verge
 zh*|*科技*|*uck*|*http://news.weiphone.com/rss.xml*|*威锋网
 zh*|*科技*|*uck*|*http://www.guao.hk/feed*|*古奥
 zh*|*科技*|*uck*|*http://www.iapps.im/feed*|*爱应用
-zh*|*科技*|*uck*|*http://www.leiphone.com/feed*|*雷锋网
-zh*|*科技*|*uck*|*http://www.igao7.com/feed*|*爱搞机
 zh*|*科技*|*uck*|*http://www.huxiu.com/rss/0.xml*|*虎嗅网
 zh*|*科技*|*uck*|*http://www.ifanr.com/feed*|*爱范儿
 zh*|*科技*|*uck*|*http://rss.tgbus.com/nds.xml*|*电玩巴士 NDS频道
@@ -75,7 +61,6 @@ zh*|*科技*|*uck*|*http://feed.yixieshi.com/*|*互联网的一些事
 zh*|*科技*|*uck*|*http://www.ixna.net/rss/*|*臭鱼的交互设计
 zh*|*科技*|*uck*|*http://chinabyte.feedsportal.com/c/33256/f/558827/index.rss*|*比特网
 zh*|*科技*|*uck*|*http://www.blogjava.net/rss*|*Blogjava技术社区
-zh*|*科技*|*uck*|*http://www.cppblog.com/tx7do/Rss.aspx*|*C++博客
 zh*|*科技*|*uck*|*http://isux.tencent.com/feed*|*腾讯ISUX用户体验中心
 zh*|*科技*|*uck*|*http://feeds.geekpark.net/*|*极客公园
 zh*|*科技*|*uck*|*http://feed.williamlong.info/*|*月光博客
@@ -90,10 +75,8 @@ zh*|*生活*|*uck*|*http://rss.yoka.com/news/all.xml*|*YOKA最新时尚
 zh*|*生活*|*uck*|*http://yoka.dynamic.feedsportal.com/pf/589029/rss.yoka.com/beauty/face.xml*|*YOKA美肤沙龙
 zh*|*生活*|*uck*|*http://www.trends.com.cn/rss/column.xml*|*时尚网
 zh*|*生活*|*uck*|*http://yoka.dynamic.feedsportal.com/pf/589029/rss.yoka.com/beauty/mxbd.xml*|*YOKA明星宝典
-zh*|*生活*|*uck*|*http://happy.online.sh.cn/happy/gb/node/happy.xml*|*时尚上海
 zh*|*生活*|*uck*|*http://yoka.dynamic.feedsportal.com/pf/589029/rss.yoka.com/beauty/ytqx.xml*|*YOKA窈窕曲线
 zh*|*生活*|*uck*|*http://fanhcy.com/feed*|*饭后茶娱
-zh*|*体育*|*uck*|*http://news.baidu.com/n?cmd=1&class=sportnews&tn=rss*|*体育新闻*|*体育焦点
 zh*|*体育*|*nuck*|*http://cn.reuters.com/rssFeed/cnsportsNews?mrss=true*|*路透中文体育短讯
 zh*|*体育*|*uck*|*http://sports.ifeng.com/rss/index.xml*|*凤凰网体育频道
 zh*|*体育*|*uck*|*http://rss.sina.com.cn/roll/sports/hot_roll.xml*|*新浪体育
