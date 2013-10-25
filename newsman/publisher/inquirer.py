@@ -103,8 +103,9 @@ def get_categories(language=None, country=None, version=None):
                     category_name = category.replace('%s::' % country, '')
                     if category_name not in categories:
                         categories[category_name] = []
-                    if item['feed_title'] not in categories[category_name]:
-                        feed_format = {'order':len(categories[category_name]), 'text':item['feed_title']}
+
+                    feed_format = {'order':len(categories[category_name]), 'text':item['feed_title']}
+                    if feed_format not in categories[category_name]:
                         categories[category_name].append(feed_format)
 
             if 'labels' in item and item['labels']:
@@ -116,8 +117,9 @@ def get_categories(language=None, country=None, version=None):
                         label_name = label_split[1]
                         if category_name not in categories:
                             categories[category_name] = []
-                        if label_name not in categories[category_name]:
-                            label_format = {'order':len(categories[category_name]), 'text':label_name}
+
+                        label_format = {'order':len(categories[category_name]), 'text':label_name}
+                        if label_format not in categories[category_name]:
                             categories[category_name].append(label_format)
         # reformat
         output = []
