@@ -67,7 +67,7 @@ def _convert(language='en', country=None):
             for logo in logo_list:
                 logo_clean = logo.replace('.png', "")
                 if logo_clean in link:
-                    logo_path = "%s%_%s/%s" % (LOGOS_PREFIX, language, country, logo)
+                    logo_path = "%s%s_%s/%s" % (LOGOS_PREFIX, language, country, logo)
                     if labels:
                         new_feeds_list.write('%s*|*%s*|*%s*|*%s*|*%s*|*%s*|*%s\n' % (language, category, transcoder, link, name_dict[link], logo_path, labels))
                     else:
