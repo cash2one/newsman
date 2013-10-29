@@ -32,10 +32,10 @@ def _parse_task(line):
     if line:
         task = line.strip().split('*|*')
         # task[1] refers to categories
-        if len(task) == 5:
-            return task[0].strip(), task[1].strip(), task[2].strip(), task[3].strip(), task[4].strip(), None
-        elif len(task) == 6:
-            return task[0].strip(), task[1].strip(), task[2].strip(), task[3].strip(), task[4].strip(), task[5].strip()
+        if len(task) == 6:
+            return task[0].strip(), task[1].strip(), task[2].strip(), task[3].strip(), task[4].strip(), task[5].strip(), None
+        elif len(task) == 7:
+            return task[0].strip(), task[1].strip(), task[2].strip(), task[3].strip(), task[4].strip(), task[5].strip(), task[6].strip()
         else:
             return None
     else:
@@ -58,7 +58,7 @@ def _convert(language='en', country=None):
 
     for line in lines:
         if line.strip():
-            language, category, transcoder, feed_link, feed_title, labels = _parse_task(line)
+            language, category, transcoder, feed_link, feed_title, feed_image, labels = _parse_task(line)
             if feed_link:
                 category = '%s::%s' % (country, category)
 
@@ -70,7 +70,7 @@ def _convert(language='en', country=None):
 
                 existing_item = db_feeds.find_one({'feed_link':feed_link})
                 if not existing_item:
-                    _id = db_feeds.save({'language': language, 'countries':[country], 'feed_link': feed_link, 'categories': [category], 'labels':labels, 'feed_title': feed_title, 'latest_update': None, 'updated_times': 0, 'transcoder': transcoder})
+                    _id = db_feeds.save({'language': language, 'countries':[country], 'feed_link': feed_link, 'categories': [category], 'labels':labels, 'feed_title': feed_title, 'latest_update': None, 'updated_times': 0, 'transcoder': transcoder, 'image':feed_image})
                     db_id_list.write(str(_id) + '\n')
                 else:
                     new_item = existing_item
@@ -93,6 +93,7 @@ def _convert(language='en', country=None):
 
                     new_item['transcoder'] = transcoder
                     new_item['feed_title'] = feed_title
+                    new_item['image'] = feed_image
                     db_feeds.update({'_id': existing_item['_id']}, new_item)
                     db_id_list.write(str(existing_item['_id']) + '\n')
             else:
