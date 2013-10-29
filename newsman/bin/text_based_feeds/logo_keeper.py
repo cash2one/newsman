@@ -20,13 +20,13 @@ import os
 
 # CONSTANTS
 from config.settings import FEED_REGISTRAR
-#LOGOS_PREFIX = '/home/work/Downloads/newsman/newsman/bin/text_based_feeds/logos/'
+LOGOS_PREFIX = '/home/work/Downloads/newsman/newsman/bin/text_based_feeds/logos/'
 #LOGOS_PREFIX = '/home/ubuntu/Downloads/newsman/newsman/bin/text_based_feeds/logos/'
-LOGOS_PREFIX = '/home/jinyuan/Downloads/newsman/newsman/bin/text_based_feeds/logos/'
+#LOGOS_PREFIX = '/home/jinyuan/Downloads/newsman/newsman/bin/text_based_feeds/logos/'
 
-#FILE_PREFIX = '/home/work/Downloads/newsman/newsman/bin/text_based_feeds/feed_lists/'
+FILE_PREFIX = '/home/work/Downloads/newsman/newsman/bin/text_based_feeds/feed_lists/'
 #FILE_PREFIX = '/home/ubuntu/Downloads/newsman/newsman/bin/text_based_feeds/feed_lists/'
-FILE_PREFIX = '/home/jinyuan/Downloads/newsman/newsman/bin/text_based_feeds/feed_lists/'
+#FILE_PREFIX = '/home/jinyuan/Downloads/newsman/newsman/bin/text_based_feeds/feed_lists/'
 
 
 def _parse_task(line):
