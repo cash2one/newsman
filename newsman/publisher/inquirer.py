@@ -119,7 +119,8 @@ def get_categories(language=None, country=None, version=None):
                         if category_name not in categories:
                             categories[category_name] = []
 
-                        label_image = '%s%s_%s/%s.png' % (LOGO_PUBLIC_PREFIX, language, country, label_name)
+                        label_name_shrinked = label_name.replace(' ', '')
+                        label_image = '%s%s_%s/%s.png' % (LOGO_PUBLIC_PREFIX, language, country, label_name_shrinked)
                         label_format = {'order':len(categories[category_name]), 'text':label_name, 'image':label_image}
                         if label_format not in categories[category_name]:
                             categories[category_name].append(label_format)
