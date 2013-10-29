@@ -93,7 +93,7 @@ def _convert(language='en', country=None):
 
                     new_item['transcoder'] = transcoder
                     new_item['feed_title'] = feed_title
-                    new_item['feed_logo'] = feed_logo
+                    new_item['feed_logo'] = {'url':feed_logo, 'width':71, 'height':60}
                     db_feeds.update({'_id': existing_item['_id']}, new_item)
                     db_id_list.write(str(existing_item['_id']) + '\n')
             else:
