@@ -21,6 +21,7 @@ import os
 # CONSTANTS
 from config.settings import FEED_REGISTRAR
 LOGOS_PREFIX = '/home/work/nginx/html/logos/'
+LOGOS_PUBLIC_PREFIX = 'http://mobile-global.baidu.com/logos/'
 #LOGOS_PREFIX = '/home/jinyuan/Downloads/newsman/newsman/bin/text_based_feeds/logos/'
 
 FILE_PREFIX = '/home/work/newsman/newsman/bin/text_based_feeds/feed_lists/'
@@ -66,7 +67,7 @@ def _convert(language='en', country=None):
             for logo in logo_list:
                 logo_clean = logo.replace('.png', "").lower()
                 if logo_clean in link.lower():
-                    logo_path = "%s%s_%s/%s" % (LOGOS_PREFIX, language, country, logo)
+                    logo_path = "%s%s_%s/%s" % (LOGOS_PUBLIC_PREFIX, language, country, logo)
                     if labels:
                         new_feeds_list.write('%s*|*%s*|*%s*|*%s*|*%s*|*%s*|*%s\n' % (language, category, transcoder, link, title, logo_path, labels))
                     else:
