@@ -69,9 +69,9 @@ def _convert(language='en', country=None):
                 if logo_clean in link:
                     logo_path = "%s%s_%s/%s" % (LOGOS_PREFIX, language, country, logo)
                     if labels:
-                        new_feeds_list.write('%s*|*%s*|*%s*|*%s*|*%s*|*%s*|*%s\n' % (language, category, transcoder, link, name_dict[link], logo_path, labels))
+                        new_feeds_list.write('%s*|*%s*|*%s*|*%s*|*%s*|*%s*|*%s\n' % (language, category, transcoder, link, title, logo_path, labels))
                     else:
-                        new_feeds_list.write('%s*|*%s*|*%s*|*%s*|*%s*|*%s\n' % (language, category, transcoder, link, name_dict[link], logo_path))
+                        new_feeds_list.write('%s*|*%s*|*%s*|*%s*|*%s*|*%s\n' % (language, category, transcoder, link, title, logo_path))
                     break
 
     new_feeds_list.close()
