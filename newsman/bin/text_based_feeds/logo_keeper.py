@@ -64,6 +64,7 @@ def _convert(language='en', country=None):
     for line in lines:
         if line.strip():
             language, category, transcoder, link, title, labels = _parse_task(line)
+            found_logo = False
             for logo in logo_list:
                 logo_clean = logo.replace('.png', "")
                 if logo_clean in link:
@@ -72,7 +73,10 @@ def _convert(language='en', country=None):
                         new_feeds_list.write('%s*|*%s*|*%s*|*%s*|*%s*|*%s*|*%s\n' % (language, category, transcoder, link, title, logo_path, labels))
                     else:
                         new_feeds_list.write('%s*|*%s*|*%s*|*%s*|*%s*|*%s\n' % (language, category, transcoder, link, title, logo_path))
+                    found_logo = True
                     break
+            if not found_logo:
+                print title
 
     new_feeds_list.close()
 
