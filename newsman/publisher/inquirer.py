@@ -34,6 +34,7 @@ from settings import HOTNEWS_TITLE_PT
 from settings import HOTNEWS_TITLE_TH
 from settings import HOTNEWS_TITLE_ZH
 from settings import LANGUAGES
+from settings import LOGO_PUBLIC_PREFIX
 
 HOTNEWS_TITLE = {'en': HOTNEWS_TITLE_EN, 'ja': HOTNEWS_TITLE_JA, 'th': HOTNEWS_TITLE_TH, 'pt': HOTNEWS_TITLE_PT, 'in':
                   HOTNEWS_TITLE_IN, 'ar': HOTNEWS_TITLE_AR, 'zh': HOTNEWS_TITLE_ZH}
@@ -118,7 +119,8 @@ def get_categories(language=None, country=None, version=None):
                         if category_name not in categories:
                             categories[category_name] = []
 
-                        label_format = {'order':len(categories[category_name]), 'text':label_name}
+                        label_image = '%s%s_%s/%s.png' % (LOGO_PUBLIC_PREFIX, language, country, label_name)
+                        label_format = {'order':len(categories[category_name]), 'text':label_name, 'image':label_image}
                         if label_format not in categories[category_name]:
                             categories[category_name].append(label_format)
         # reformat

@@ -77,6 +77,7 @@ NEWS_TEMPLATE_ARABIC = LOCAL % 'STATIC/news/templates/index_arabic.html'
 # uck transcoding web service url
 UCK_TRANSCODING = 'http://gate.baidu.com/tc?m=8&from=bdpc_browser&src='
 UCK_TRANSCODING_NEW = 'http://m.baidu.com/openapp?/webapp?debug=1&from=bd_international&onlyspdebug=1&structpage&siteType=7&nextpage=1&siteappid=1071361&src='
+LOGO_PUBLIC_PREFIX = 'http://mobile-global.baidu.com/logos/'
 
 # meta info for a new page
 TRANSCODED_ENCODING = '<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>\n'
@@ -97,7 +98,7 @@ HOTNEWS_TITLE_JA = '人気ニュース'
 HOTNEWS_TITLE_IN = 'Berita Terbaru'
 HOTNEWS_TITLE_TH = 'ข่าวฮิต'
 HOTNEWS_TITLE_AR = 'أخبار عاجلة'
-HOTNEWS_TITLE_ZH = '查看原始网页'
+HOTNEWS_TITLE_ZH = '头条'
 
 # expirations 
 DATABASE_REMOVAL_DAYS = 365
