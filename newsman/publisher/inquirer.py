@@ -104,7 +104,7 @@ def get_categories(language=None, country=None, version=None):
                     if category_name not in categories:
                         categories[category_name] = []
 
-                    feed_format = {'order':len(categories[category_name]), 'text':item['feed_title']}
+                    feed_format = {'order':len(categories[category_name]), 'text':item['feed_title'], 'image':item['feed_logo']}
                     if feed_format not in categories[category_name]:
                         categories[category_name].append(feed_format)
 
