@@ -58,7 +58,7 @@ def _convert(language='en', country=None):
 
     for line in lines:
         if line.strip():
-            language, category, transcoder, feed_link, feed_title, feed_image, labels = _parse_task(line)
+            language, category, transcoder, feed_link, feed_title, feed_logo, labels = _parse_task(line)
             if feed_link:
                 category = '%s::%s' % (country, category)
 
@@ -70,7 +70,7 @@ def _convert(language='en', country=None):
 
                 existing_item = db_feeds.find_one({'feed_link':feed_link})
                 if not existing_item:
-                    _id = db_feeds.save({'language': language, 'countries':[country], 'feed_link': feed_link, 'categories': [category], 'labels':labels, 'feed_title': feed_title, 'latest_update': None, 'updated_times': 0, 'transcoder': transcoder, 'image':feed_image})
+                    _id = db_feeds.save({'language': language, 'countries':[country], 'feed_link': feed_link, 'categories': [category], 'labels':labels, 'feed_title': feed_title, 'latest_update': None, 'updated_times': 0, 'transcoder': transcoder, 'feed_logo':feed_logo})
                     db_id_list.write(str(_id) + '\n')
                 else:
                     new_item = existing_item
@@ -93,7 +93,7 @@ def _convert(language='en', country=None):
 
                     new_item['transcoder'] = transcoder
                     new_item['feed_title'] = feed_title
-                    new_item['image'] = feed_image
+                    new_item['feed_logo'] = feed_logo
                     db_feeds.update({'_id': existing_item['_id']}, new_item)
                     db_id_list.write(str(existing_item['_id']) + '\n')
             else:
