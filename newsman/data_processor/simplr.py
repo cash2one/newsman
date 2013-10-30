@@ -32,7 +32,7 @@ class Simplr:
         'unlikely_candidates': re.compile("combx|comment|community|disqus|extra|foot|header|menu|remark|rss|shoutbox|sidebar|sponsor|ad-break|agegate|pagination|pager|popup|tweet|twitter", re.I),
         'ok_maybe_its_a_candidate': re.compile("and|article|body|column|main|shadow", re.I),
         'positive': re.compile("article|body|content|entry|hentry|main|page|pagination|post|text|blog|story|image", re.I),
-        'negative': re.compile("combx|comment|com|contact|foot|footer|footnote|masthead|media|meta|outbrain|promo|related|scroll|shoutbox|sidebar|sponsor|shopping|tags|tool|widget", re.I),
+        'negative': re.compile("combx|comment|com|contact|foot|footer|footnote|masthead|media|meta|outbrain|promo|related|scroll|shoutbox|sidebar|sponsor|shopping|tags|tool|widget|link", re.I),
         'extraneous': re.compile("print|archive|comment|discuss|e[\-]?mail|share|reply|all|login|sign|single", re.I),
         'div_to_p_elements': re.compile("<(a|blockquote|dl|div|img|ol|p|pre|table|ul)", re.I),
         'replace_brs': re.compile("(<br[^>]*>[ \n\r\t]*){2,}", re.I),
@@ -92,6 +92,8 @@ class Simplr:
             unlikely_match_string = elem.get('id', '') + elem.get('class', '')
 
             if self.regexps['unlikely_candidates'].search(unlikely_match_string) and not self.regexps['ok_maybe_its_a_candidate'].search(unlikely_match_string) and elem.name != 'body':
+                #print 'Deleted', elem
+                #print
                 elem.extract()
                 continue
 
@@ -122,18 +124,23 @@ class Simplr:
             content_score = 1
             content_score += inner_text.count(',')
             content_score += inner_text.count(u'，')
+            #content_score += inner_text.count('、')
+            #content_score += inner_text.count(u'、')
             content_score += min(math.floor(len(inner_text) / 100), 3)
-            #print content_score, inner_text
-            #print
-
             self.candidates[parent_hash]['score'] += content_score
 
             if grand_parent_node:
                 self.candidates[grand_parent_hash][
                     'score'] += content_score / 2
 
+            print content_score, inner_text
+            #print '%s   Parent:  %s' % (self.candidates[parent_hash]['score'], parent_node.text)
+            #print '%s   Grand:   %s' % (self.candidates[grand_parent_hash]['score'], grand_parent_node.text)
+            print
+            print
+
         top_candidate = None
-        #print '-------------------------------------------------'
+        print '----------------------------------------------------------------'
 
         for key in self.candidates:
             # the more links and captions it has, the lower score
@@ -141,14 +148,17 @@ class Simplr:
                 'score'] * (1 - self._get_link_density(self.candidates[key]['node']))
             if not top_candidate or self.candidates[key]['score'] > top_candidate['score']:
                 top_candidate = self.candidates[key]
-        #print top_candidate
-        #print
-        #print '--------------------------------------------------'
 
         content = ''
         if top_candidate:
             content = top_candidate['node']
+            print 'Top Candidate'
+            print content
+            print
+            print '------------------------------------------------------------'
+
             content = self._clean_article(content)
+
         return content
 
     def _clean_article(self, content):
@@ -164,11 +174,15 @@ class Simplr:
 
         self._clean_conditionally(content, "table")
         self._clean_conditionally(content, "ul")
+        print 'Before removing div'
+        print content
+        print
+        print '----------------------------------------------------------------'
         self._clean_conditionally(content, "div")
-        #print 'After removing div'
-        #print content
-        #print
-        #print '---------------------------------------------------------------'
+        print 'After removing div'
+        print content
+        print
+        print '----------------------------------------------------------------'
         self._clean_style(content)
 
         self._fix_images_path(content)
@@ -216,16 +230,17 @@ class Simplr:
                 new_tags_list.append(node)
 
         for node in new_tags_list:
-            weight = self._get_class_weight(node.div)
+            weight = self._get_class_weight(node)
             hash_node = hash(str(node))
             if hash_node in self.candidates:
                 content_score = self.candidates[hash_node]['score']
             else:
                 content_score = 0
-            #print node
+            print node
 
             if weight + content_score < 0:
                 node.extract()
+                print 'Deleted!'
             else:
                 p = len(node.findAll("p"))
                 img = len(node.findAll("img"))
@@ -255,10 +270,10 @@ class Simplr:
                 elif (embed_count == 1 and content_length < 35) or embed_count > 1:
                     to_remove = True
 
-                #print weight, p, img, li, input, link_density, content_length, to_remove
+                print weight, p, img, li, input, link_density, content_length, to_remove
                 if to_remove:
                     node.extract()
-            #print
+            print
 
     def _get_title(self):
         title = ''
@@ -376,6 +391,10 @@ class Simplr:
                      new_src_arr.params, new_src_arr.query,
                      new_src_arr.fragment))
                 img['src'] = new_src
+
+            # optimization made for asahi.com
+            if 'asahicom.jp' in img['src'] and img['src'].endswith('_commL.jpg'):
+                img['src'] = img['src'].replace('_commL.jpg', '_comm.jpg')
 
 
 def convert(url, language):

@@ -9,7 +9,8 @@ sys.path.append('..')
 
 def main(url, language):
     from data_processor import simplr
-    print simplr.convert(url, language)
+    title, content, images = simplr.convert(url, language)
+    print content
 
 if __name__ == "__main__":
     main(sys.argv[1], sys.argv[2])
