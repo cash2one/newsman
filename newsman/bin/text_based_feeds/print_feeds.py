@@ -8,6 +8,9 @@ sys.path.append('../..')
 
 from config.settings import Collection, db
 import feedparser
+FILE_PREFIX = '/home/work/newsman/newsman/bin/text_based_feeds/feed_lists/'
+#FILE_PREFIX = '/home/ubuntu/newsman/newsman/bin/text_based_feeds/feed_lists/'
+#FILE_PREFIX = '/home/jinyuan/Downloads/newsman/newsman/bin/text_based_feeds/feed_lists/'
 
 
 def _parse_task(line):
