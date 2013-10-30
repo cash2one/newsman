@@ -1,9 +1,15 @@
-import sys
+#!/usr/bin/env python 
+#-*- coding: utf-8 -*- 
 
-def main(url):
-    from simplr import Readability
-    r = Readability(url)
-    print str(r.content)
+import sys 
+reload(sys) 
+sys.setdefaultencoding('UTF-8')
+sys.path.append('..')
+
+
+def main(url, language):
+    from data_processor import simplr
+    print simplr.convert(url, language)
 
 if __name__ == "__main__":
-    main(sys.argv[1])
+    main(sys.argv[1], sys.argv[2])

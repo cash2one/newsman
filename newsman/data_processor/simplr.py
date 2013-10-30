@@ -14,7 +14,7 @@ reload(sys)
 sys.setdefaultencoding("utf-8")
 sys.path.append("..")
 
-from BeautifulSoup import BeautifulSoup
+from BeautifulSoup import BeautifulSoup, Comment
 from config.settings import logger
 import image_helper
 import transcoder
@@ -24,12 +24,14 @@ import re
 import tinysegmenter
 import urlparse
 
+import pdb
+
 
 class Simplr:
     regexps = {
         'unlikely_candidates': re.compile("combx|comment|community|disqus|extra|foot|header|menu|remark|rss|shoutbox|sidebar|sponsor|ad-break|agegate|pagination|pager|popup|tweet|twitter", re.I),
         'ok_maybe_its_a_candidate': re.compile("and|article|body|column|main|shadow", re.I),
-        'positive': re.compile("article|body|content|entry|hentry|main|page|pagination|post|text|blog|story", re.I),
+        'positive': re.compile("article|body|content|entry|hentry|main|page|pagination|post|text|blog|story|image", re.I),
         'negative': re.compile("combx|comment|com|contact|foot|footer|footnote|masthead|media|meta|outbrain|promo|related|scroll|shoutbox|sidebar|sponsor|shopping|tags|tool|widget", re.I),
         'extraneous': re.compile("print|archive|comment|discuss|e[\-]?mail|share|reply|all|login|sign|single", re.I),
         'div_to_p_elements': re.compile("<(a|blockquote|dl|div|img|ol|p|pre|table|ul)", re.I),
@@ -121,6 +123,8 @@ class Simplr:
             content_score += inner_text.count(',')
             content_score += inner_text.count(u'，')
             content_score += min(math.floor(len(inner_text) / 100), 3)
+            #print content_score, inner_text
+            #print
 
             self.candidates[parent_hash]['score'] += content_score
 
@@ -129,12 +133,17 @@ class Simplr:
                     'score'] += content_score / 2
 
         top_candidate = None
+        #print '-------------------------------------------------'
 
         for key in self.candidates:
+            # the more links and captions it has, the lower score
             self.candidates[key]['score'] = self.candidates[key][
                 'score'] * (1 - self._get_link_density(self.candidates[key]['node']))
             if not top_candidate or self.candidates[key]['score'] > top_candidate['score']:
                 top_candidate = self.candidates[key]
+        #print top_candidate
+        #print
+        #print '--------------------------------------------------'
 
         content = ''
         if top_candidate:
@@ -143,7 +152,7 @@ class Simplr:
         return content
 
     def _clean_article(self, content):
-        self._clean_style(content)
+        self._clean_comments(content)
         self._clean(content, 'h1')
         self._clean(content, 'object')
         self._clean_conditionally(content, "form")
@@ -156,6 +165,11 @@ class Simplr:
         self._clean_conditionally(content, "table")
         self._clean_conditionally(content, "ul")
         self._clean_conditionally(content, "div")
+        #print 'After removing div'
+        #print content
+        #print
+        #print '---------------------------------------------------------------'
+        self._clean_style(content)
 
         self._fix_images_path(content)
 
@@ -181,6 +195,10 @@ class Simplr:
                 continue
             target.extract()
 
+    def _clean_comments(self, e):
+        comments = e.findAll(text=lambda text:isinstance(text, Comment))
+        [comment.extract() for comment in comments]
+
     def _clean_style(self, e):
         for elem in e.findAll(True):
             del elem['class']
@@ -190,13 +208,21 @@ class Simplr:
     def _clean_conditionally(self, e, tag):
         tags_list = e.findAll(tag)
 
+        new_tags_list = []
         for node in tags_list:
-            weight = self._get_class_weight(node)
+            if node.parent in tags_list:
+                continue
+            else:
+                new_tags_list.append(node)
+
+        for node in new_tags_list:
+            weight = self._get_class_weight(node.div)
             hash_node = hash(str(node))
             if hash_node in self.candidates:
                 content_score = self.candidates[hash_node]['score']
             else:
                 content_score = 0
+            #print node
 
             if weight + content_score < 0:
                 node.extract()
@@ -224,13 +250,15 @@ class Simplr:
                     to_remove = True
                 elif weight < 25 and link_density > 0.2:
                     to_remove = True
-                elif weight >= 25 and link_density > 0.5:
-                    to_remove = True
+                #elif weight >= 25 and link_density > 0.5:
+                #    to_remove = True
                 elif (embed_count == 1 and content_length < 35) or embed_count > 1:
                     to_remove = True
 
+                #print weight, p, img, li, input, link_density, content_length, to_remove
                 if to_remove:
                     node.extract()
+            #print
 
     def _get_title(self):
         title = ''
@@ -303,17 +331,18 @@ class Simplr:
 
     def _get_class_weight(self, node):
         weight = 0
-        if 'class' in node:
-            if self.regexps['negative'].search(node['class']):
-                weight -= 25
-            if self.regexps['positive'].search(node['class']):
-                weight += 25
+        if node:
+            if node.get('class'):
+                if self.regexps['negative'].search(node['class']):
+                    weight -= 25
+                if self.regexps['positive'].search(node['class']):
+                    weight += 25
 
-        if 'id' in node:
-            if self.regexps['negative'].search(node['id']):
-                weight -= 25
-            if self.regexps['positive'].search(node['id']):
-                weight += 25
+            if node.get('id'):
+                if self.regexps['negative'].search(node['id']):
+                    weight -= 25
+                if self.regexps['positive'].search(node['id']):
+                    weight += 25
 
         return weight
 
@@ -357,6 +386,7 @@ def convert(url, language):
         logger.error("Cannot transcode nothing!")
         return None, None, None
 
+    #pdb.set_trace()
     try:
         readable = Simplr(url, language)
         if readable:
