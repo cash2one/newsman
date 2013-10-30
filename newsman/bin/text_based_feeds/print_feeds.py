@@ -38,7 +38,7 @@ def _find(language, country):
         ss = feedparser.parse(link)
         feed_title = ss['feed']['title'] if ss and 'title' in ss['feed'] else None
         print "[%s]" % str(feed_title), link
-        feed_titles.write("%s*|*%s" % (link, str(feed_title)))
+        feed_titles.write("%s*|*%s\n" % (link, str(feed_title)))
     feed_titles.close()
 
     """
