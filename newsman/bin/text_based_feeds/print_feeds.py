@@ -36,7 +36,7 @@ def _find(language, country):
         language, category, transcoder, link = _parse_task(line)
         ss = feedparser.parse(link)
         feed_title = ss['feed']['title'] if ss and 'title' in ss['feed'] else None
-        print "[%s]" % feed_title, link
+        print "[%s]" % str(feed_title), link
 
     """
     col = Collection(db, 'feeds')
