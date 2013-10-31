@@ -41,9 +41,9 @@ PUBLIC = 'http://mobile-global.baidu.com/news/%s'  # hk01-hao123-mob01/mob02
 #PUBLIC = 'http://54.251.107.116/%s'                # AWS singapore
 #PUBLIC = 'http://54.232.81.44/%s'                  # AWS sao paolo
 #PUBLIC = 'http://54.248.227.71/%s'                 # AWS tokyo
-#LOCAL = '/home/work/%s'                            # official server prefix
+LOCAL = '/home/work/%s'                            # official server prefix
 #LOCAL = '/home/ubuntu/%s'                          # AWS server prefix
-LOCAL = '/home/jinyuan/Downloads/%s'               # local server prefix
+#LOCAL = '/home/jinyuan/Downloads/%s'               # local server prefix
 
 # code base folder for updating
 CODE_BASE = LOCAL % 'newsman'
