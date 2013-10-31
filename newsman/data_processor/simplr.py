@@ -133,14 +133,14 @@ class Simplr:
                 self.candidates[grand_parent_hash][
                     'score'] += content_score / 2
 
-            print content_score, inner_text
+            #print content_score, inner_text
             #print '%s   Parent:  %s' % (self.candidates[parent_hash]['score'], parent_node.text)
             #print '%s   Grand:   %s' % (self.candidates[grand_parent_hash]['score'], grand_parent_node.text)
-            print
-            print
+            #print
+            #print
 
         top_candidate = None
-        print '----------------------------------------------------------------'
+        #print '----------------------------------------------------------------'
 
         for key in self.candidates:
             # the more links and captions it has, the lower score
@@ -152,10 +152,10 @@ class Simplr:
         content = ''
         if top_candidate:
             content = top_candidate['node']
-            print 'Top Candidate'
-            print content
-            print
-            print '------------------------------------------------------------'
+            #print 'Top Candidate'
+            #print content
+            #print
+            #print '------------------------------------------------------------'
 
             content = self._clean_article(content)
 
@@ -174,15 +174,15 @@ class Simplr:
 
         self._clean_conditionally(content, "table")
         self._clean_conditionally(content, "ul")
-        print 'Before removing div'
-        print content
-        print
-        print '----------------------------------------------------------------'
+        #print 'Before removing div'
+        #print content
+        #print
+        #print '----------------------------------------------------------------'
         self._clean_conditionally(content, "div")
-        print 'After removing div'
-        print content
-        print
-        print '----------------------------------------------------------------'
+        #print 'After removing div'
+        #print content
+        #print
+        #print '----------------------------------------------------------------'
         self._clean_style(content)
 
         self._fix_images_path(content)
@@ -236,11 +236,11 @@ class Simplr:
                 content_score = self.candidates[hash_node]['score']
             else:
                 content_score = 0
-            print node
+            #print node
 
             if weight + content_score < 0:
                 node.extract()
-                print 'Deleted!'
+                #print 'Deleted!'
             else:
                 p = len(node.findAll("p"))
                 img = len(node.findAll("img"))
@@ -270,10 +270,10 @@ class Simplr:
                 elif (embed_count == 1 and content_length < 35) or embed_count > 1:
                     to_remove = True
 
-                print weight, p, img, li, input, link_density, content_length, to_remove
+                #print weight, p, img, li, input, link_density, content_length, to_remove
                 if to_remove:
                     node.extract()
-            print
+            #print
 
     def _get_title(self):
         title = ''
