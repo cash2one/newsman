@@ -1,19 +1,16 @@
 ja*|*ニュース*|*chengdujin*|*http://news.goo.ne.jp/rss/topstories/gootop/index.rdf*|*GOO 注目*|*トップニュース
 ja*|*ニュース*|*chengdujin*|*http://sankei.jp.msn.com/rss/news/points.xml*|*MSN産経ニュース 注目*|*トップニュース
 ja*|*ニュース*|*chengdujin*|*http://news.nifty.com/rss/topics_all.xml*|*Nifty すべての注目*|*トップニュース
-ja*|*ニュース*|*chengdujin*|*http://news.goo.ne.jp/rss/topstories/nation/index.rdf*|*GOOi*|*国内
+ja*|*ニュース*|*chengdujin*|*http://news.goo.ne.jp/rss/topstories/nation/index.rdf*|*GOO*|*国内
 ja*|*ニュース*|*chengdujin*|*http://sankei.jp.msn.com/rss/news/politics.xml*|*産経新聞　政治*|*国内
 ja*|*ニュース*|*chengdujin*|*http://news.goo.ne.jp/rss/topstories/world/index.rdf*|*GOO 国際*|*海外
 ja*|*ニュース*|*chengdujin*|*http://sankei.jp.msn.com/rss/news/world.xml*|*MSN産経ニュース　国際*|*海外
 ja*|*ニュース*|*chengdujin*|*http://news.nifty.com/rss/topics_world.xml*|*Nifty 国際*|*海外
-ja*|*ニュース*|*chengdujin*|*http://sankei.jp.msn.com/rss/news/world.xml*|*MSN産経ニュース　国際
 ja*|*ニュース*|*chengdujin*|*http://rss.excite.co.jp/rss/excite/odd*|*エキサイト
 ja*|*ニュース*|*chengdujin*|*http://www3.asahi.com/rss/international.rdf*|*朝日新聞　国際
 ja*|*ニュース*|*chengdujin*|*http://feeds.cnn.co.jp/rss/cnn/cnn.rdf*|*CNN日本
 ja*|*ニュース*|*chengdujin*|*http://www.iza.ne.jp/news/world/NwCateRSS.rdf*|*イザ
 ja*|*ニュース*|*chengdujin*|*http://feeds.reuters.com/reuters/JPWorldNews*|*ロイター日本
-ja*|*ニュース*|*chengdujin*|*http://news.goo.ne.jp/rss/topstories/nation/index.rdf*|*GOO
-ja*|*ニュース*|*chengdujin*|*http://sankei.jp.msn.com/rss/news/politics.xml*|*産経新聞　政治
 ja*|*ニュース*|*chengdujin*|*http://news.nifty.com/rss/topics_domestic.xml*|*Nifty
 ja*|*ニュース*|*chengdujin*|*http://rss.excite.co.jp/rss/excite/bitpost*|*エキサイト投稿コネタ
 ja*|*ニュース*|*chengdujin*|*http://www3.asahi.com/rss/national.rdf*|*朝日新聞　国内
@@ -51,5 +48,4 @@ ja*|*健康*|*chengdujin*|*http://komachi-rss.yomiuri.co.jp/rss/yol/komachi/rss0
 ja*|*旅行*|*chengdujin*|*http://4travel.jp/rdf/travelogue_all_new.xml*|*4travel
 ja*|*旅行*|*chengdujin*|*http://community.travel.yahoo.co.jp/domestic/blog.html?m=rss*|*Yahoo ブログ
 ja*|*旅行*|*chengdujin*|*http://rss.asahi.com/rss/asahi/travel.rdf*|*朝日新聞　旅行
-ja*|*旅行*|*chengdujin*|*http://www3.asahi.com/rss/health.rdf*|*朝日新聞　健康
 ja*|*旅行*|*chengdujin*|*http://komachi-rss.yomiuri.co.jp/rss/yol/komachi/rss07*|*読売新聞　小町
