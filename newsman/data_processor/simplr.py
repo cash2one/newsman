@@ -31,8 +31,8 @@ class Simplr:
     regexps = {
         'unlikely_candidates': re.compile("combx|comment|community|disqus|extra|foot|header|menu|remark|rss|shoutbox|sidebar|sponsor|ad-break|agegate|pagination|pager|popup|tweet|twitter", re.I),
         'ok_maybe_its_a_candidate': re.compile("and|article|body|column|main|shadow", re.I),
-        'positive': re.compile("article|body|content|entry|hentry|main|page|pagination|post|text|blog|story|image|row|cbox", re.I),
-        'negative': re.compile("combx|comment|com|contact|foot|footer|footnote|masthead|media|meta|outbrain|promo|related|scroll|shoutbox|sidebar|sponsor|shopping|tags|tool|widget|link", re.I),
+        'positive': re.compile("article|blog|body|content|entry|hentry|image|main|page|pagination|post|story|text", re.I),
+        'negative': re.compile("combx|comment|com|contact|foot|footer|footnote|genre|logo|masthead|media|meta|outbrain|promo|ranking|related|scroll|shoutbox|sidebar|sponsor|shopping|tags|tool|widget|link", re.I),
         'extraneous': re.compile("print|archive|comment|discuss|e[\-]?mail|share|reply|all|login|sign|single", re.I),
         'div_to_p_elements': re.compile("<(a|blockquote|dl|div|img|ol|p|pre|table|ul)", re.I),
         'replace_brs': re.compile("(<br[^>]*>[ \n\r\t]*){2,}", re.I),
@@ -409,6 +409,10 @@ class Simplr:
             # optimization made for asahi.com
             if 'asahicom.jp' in img['src'] and img['src'].endswith('_commL.jpg'):
                 img['src'] = img['src'].replace('_commL.jpg', '_comm.jpg')
+
+            # optimization made for excite.co.jp
+            if 'image.excite.co.jp' in img['src'] and img['src'].endswith('_s.jpg'):
+                img['src'] = img['src'].replace('_s.jpg', '.jpeg')
 
 
 def convert(url, language):
