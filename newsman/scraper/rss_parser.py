@@ -53,7 +53,7 @@ def _get_actual_link(prefix, link):
         html_wrapper = soup.find(name=html_tag, attrs={'class':html_class})
         if html_wrapper:
             actual_suffix = html_wrapper.find('a')['href'] 
-            actual_link = '%s%s' % (prefix, actual_suffix)
+            actual_link = str('%s%s' % (prefix, actual_suffix))
             return actual_link
         else:
             return None
