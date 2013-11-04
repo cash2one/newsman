@@ -99,6 +99,13 @@ class Simplr:
                 s = elem.renderContents(encoding=None)
                 if not self.regexps['div_to_p_elements'].search(s):
                     elem.name = 'p'
+                """
+                else:
+                    if elem.get('class'):
+                        if re.compile('image', re.I).search(elem['class']):
+                            elem.name = 'p'
+                            #print 'hello there', elem
+                """
 
         for node in self.html.findAll('p'):
             parent_node = node.parent
