@@ -31,7 +31,7 @@ class Simplr:
     regexps = {
         'unlikely_candidates': re.compile("combx|comment|community|disqus|extra|foot|header|menu|remark|rss|shoutbox|sidebar|sponsor|ad-break|agegate|pagination|pager|popup|tweet|twitter", re.I),
         'ok_maybe_its_a_candidate': re.compile("and|article|body|column|main|shadow", re.I),
-        'positive': re.compile("article|body|content|entry|hentry|main|page|pagination|post|text|blog|story|image", re.I),
+        'positive': re.compile("article|body|content|entry|hentry|main|page|pagination|post|text|blog|story|image|row|cbox", re.I),
         'negative': re.compile("combx|comment|com|contact|foot|footer|footnote|masthead|media|meta|outbrain|promo|related|scroll|shoutbox|sidebar|sponsor|shopping|tags|tool|widget|link", re.I),
         'extraneous': re.compile("print|archive|comment|discuss|e[\-]?mail|share|reply|all|login|sign|single", re.I),
         'div_to_p_elements': re.compile("<(a|blockquote|dl|div|img|ol|p|pre|table|ul)", re.I),
@@ -92,8 +92,6 @@ class Simplr:
             unlikely_match_string = elem.get('id', '') + elem.get('class', '')
 
             if self.regexps['unlikely_candidates'].search(unlikely_match_string) and not self.regexps['ok_maybe_its_a_candidate'].search(unlikely_match_string) and elem.name != 'body':
-                #print 'Deleted', elem
-                #print
                 elem.extract()
                 continue
 
@@ -116,10 +114,14 @@ class Simplr:
             if parent_hash not in self.candidates:
                 self.candidates[
                     parent_hash] = self._initialize_node(parent_node)
+                #print 'pn-class', parent_hash, parent_node.get('class'), self._get_class_weight(parent_node)
+                #print 'pn-id', parent_hash, parent_node.get('id'), self._get_class_weight(parent_node)
 
             if grand_parent_node and grand_parent_hash not in self.candidates:
                 self.candidates[grand_parent_hash] = self._initialize_node(
                     grand_parent_node)
+                #print 'gpn-class', grand_parent_hash, grand_parent_node.get('class'), self._get_class_weight(grand_parent_node)
+                #print 'gpn-id', grand_parent_hash, grand_parent_node.get('id'), self._get_class_weight(grand_parent_node)
 
             content_score = 1
             content_score += inner_text.count(',')
@@ -127,21 +129,23 @@ class Simplr:
             #content_score += inner_text.count('、')
             #content_score += inner_text.count(u'、')
             content_score += min(math.floor(len(inner_text) / 100), 3)
+            #print content_score, node
+            #print 'OLD %s %s  Parent' % (self.candidates[parent_hash]['score'], parent_hash)
+            #print 'OLD %s %s  Grand' % (self.candidates[grand_parent_hash]['score'], grand_parent_hash)
             self.candidates[parent_hash]['score'] += content_score
 
             if grand_parent_node:
                 self.candidates[grand_parent_hash][
                     'score'] += content_score / 2
 
-            #print content_score, inner_text
-            #print '%s   Parent:  %s' % (self.candidates[parent_hash]['score'], parent_node.text)
-            #print '%s   Grand:   %s' % (self.candidates[grand_parent_hash]['score'], grand_parent_node.text)
+            #print 'NEW %s %s  Parent' % (self.candidates[parent_hash]['score'], parent_hash)
+            #print 'NEW %s %s  Grand' % (self.candidates[grand_parent_hash]['score'], grand_parent_hash)
             #print
             #print
 
-        top_candidate = None
         #print '----------------------------------------------------------------'
 
+        top_candidate = None
         for key in self.candidates:
             # the more links and captions it has, the lower score
             self.candidates[key]['score'] = self.candidates[key][
@@ -240,7 +244,6 @@ class Simplr:
 
             if weight + content_score < 0:
                 node.extract()
-                #print 'Deleted!'
             else:
                 p = len(node.findAll("p"))
                 img = len(node.findAll("img"))
@@ -349,14 +352,18 @@ class Simplr:
         if node:
             if node.get('class'):
                 if self.regexps['negative'].search(node['class']):
+                    #print 'no-1'
                     weight -= 25
                 if self.regexps['positive'].search(node['class']):
+                    #print 'yes-1'
                     weight += 25
 
             if node.get('id'):
                 if self.regexps['negative'].search(node['id']):
+                    #print 'no-2'
                     weight -= 25
                 if self.regexps['positive'].search(node['id']):
+                    #print 'yes-2'
                     weight += 25
 
         return weight
