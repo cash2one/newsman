@@ -24,8 +24,8 @@ LOGOS_PREFIX = '/home/work/nginx/html/logos/'
 LOGOS_PUBLIC_PREFIX = 'http://mobile-global.baidu.com/logos/'
 #LOGOS_PREFIX = '/home/jinyuan/Downloads/newsman/newsman/bin/text_based_feeds/logos/'
 
-FILE_PREFIX = '/home/work/newsman/newsman/bin/text_based_feeds/feed_lists/'
-#FILE_PREFIX = '/home/jinyuan/Downloads/newsman/newsman/bin/text_based_feeds/feed_lists/'
+#FILE_PREFIX = '/home/work/newsman/newsman/bin/text_based_feeds/feed_lists/'
+FILE_PREFIX = '/home/jinyuan/Downloads/newsman/newsman/bin/text_based_feeds/feed_lists/'
 
 
 def _parse_task(line):
