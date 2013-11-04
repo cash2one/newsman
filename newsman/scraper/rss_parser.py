@@ -33,6 +33,33 @@ import urllib2
 from config.settings import LANGUAGES
 from config.settings import MEMORY_RESTORATION_DAYS
 
+HIDDEN_LINKS = {'http://news.goo.ne.jp/':('div', 'lead fs16 bold'), 'http://news.nifty.com/':('li', 'headnews')}
+
+
+def _get_actual_link(prefix, link):
+    """
+    find the actual news link
+    """
+    if not prefix or not link:
+        logger.error('Method malformed! Prefix:[%s], Link:[%s]' % (prefix, link))
+
+    try:
+        actual_link = None
+        raw_data = urllib2.urlopen(link)
+        data = raw_data.readlines()
+        # str() is critical
+        soup = BeautifulStoneSoup(str(data))
+        html_tag, html_class = HIDDEN_LINKS[prefix]
+        html_wrapper = soup.find(name=html_tag, attrs={'class':html_class})
+        if html_wrapper:
+            actual_link = html_wrapper.find('a')['href'] 
+            return actual_link
+        else:
+            return None
+    except Exception as k:
+        logger.info('Cannot open %s' % k)
+        return None
+
 
 # TODO: add more boundary checks
 # TODO: [register unsupported date format](http://pythonhosted.org/feedparser/date-parsing.html#advanced-date)
@@ -62,7 +89,18 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
 
         # article original link
         if e.link:
-            entry['link'] = e.link.strip()
+            original_link = e.link.strip() 
+            matched_prefix = [link for link in HIDDEN_LINKS if original_link.startswith(link)]
+            found_prefix = matched_prefix[0] if matched_prefix else None
+            if found_prefix:
+                actual_link = _get_actual_link(found_prefix, original_link)
+                if actual_link:
+                    entry['link'] = actual_link
+                else:
+                    logger.info('No actual link found!')
+                    return None
+            else:
+                entry['link'] = original_link
         else:
             logger.info('Feed malformed! No link found!')
             return None
