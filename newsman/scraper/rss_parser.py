@@ -32,8 +32,8 @@ import urllib2
 # CONSTANTS
 from config.settings import LANGUAGES
 from config.settings import MEMORY_RESTORATION_DAYS
-
-HIDDEN_LINKS = {'http://news.goo.ne.jp/':('div', 'lead fs16 bold'), 'http://news.nifty.com/':('li', 'headnews')}
+# prefix should not end with a slash
+HIDDEN_LINKS = {'http://news.goo.ne.jp':('div', 'lead fs16 bold'), 'http://news.nifty.com':('li', 'headnews')}
 
 
 def _get_actual_link(prefix, link):
@@ -52,7 +52,8 @@ def _get_actual_link(prefix, link):
         html_tag, html_class = HIDDEN_LINKS[prefix]
         html_wrapper = soup.find(name=html_tag, attrs={'class':html_class})
         if html_wrapper:
-            actual_link = html_wrapper.find('a')['href'] 
+            actual_suffix = html_wrapper.find('a')['href'] 
+            actual_link = '%s%s' % (prefix, actual_suffix)
             return actual_link
         else:
             return None
