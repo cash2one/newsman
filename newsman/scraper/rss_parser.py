@@ -34,6 +34,7 @@ from config.settings import LANGUAGES
 from config.settings import MEMORY_RESTORATION_DAYS
 # prefix should not end with a slash
 HIDDEN_LINKS = {'http://news.goo.ne.jp':('div', 'lead fs16 bold'), 'http://news.nifty.com':('li', 'headnews')}
+AD_LINKS = 'http://rss.rssad.jp/rss/ad/'
 
 
 def _get_actual_link(prefix, link):
@@ -91,17 +92,21 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
         # article original link
         if e.link:
             original_link = e.link.strip() 
-            matched_prefix = [link for link in HIDDEN_LINKS if original_link.startswith(link)]
-            found_prefix = matched_prefix[0] if matched_prefix else None
-            if found_prefix:
-                actual_link = _get_actual_link(found_prefix, original_link)
-                if actual_link:
-                    entry['link'] = actual_link
+            if not original_link.startswith(AD_LINKS):
+                matched_prefix = [link for link in HIDDEN_LINKS if original_link.startswith(link)]
+                found_prefix = matched_prefix[0] if matched_prefix else None
+                if found_prefix:
+                    actual_link = _get_actual_link(found_prefix, original_link)
+                    if actual_link:
+                        entry['link'] = actual_link
+                    else:
+                        logger.info('No actual link found!')
+                        return None
                 else:
-                    logger.info('No actual link found!')
-                    return None
+                    entry['link'] = original_link
             else:
-                entry['link'] = original_link
+                logger.info('Advertising link %s' % original_link)
+                return None
         else:
             logger.info('Feed malformed! No link found!')
             return None
