@@ -29,9 +29,9 @@ import pdb
 
 class Simplr:
     regexps = {
-        'unlikely_candidates': re.compile("combx|comment|community|disqus|extra|foot|header|menu|remark|rss|shoutbox|sidebar|sponsor|ad-break|agegate|pagination|pager|popup|tweet|twitter", re.I),
+        'unlikely_candidates': re.compile("button|combx|comment|community|disqus|extra|foot|header|menu|remark|rss|shoutbox|sidebar|sponsor|sns|ad-break|agegate|pagination|pager|popup|tweet|twitter", re.I),
         'ok_maybe_its_a_candidate': re.compile("and|article|body|column|main|shadow", re.I),
-        'positive': re.compile("article|blog|body|content|entry|hentry|image|main|page|pagination|post|story|text", re.I),
+        'positive': re.compile("article|blog|body|content|entry|hentry|image|main|page|pagination|photo|post|story|text", re.I),
         'negative': re.compile("combx|comment|com|contact|foot|footer|footnote|genre|logo|masthead|media|meta|outbrain|promo|ranking|related|scroll|shoutbox|sidebar|sponsor|shopping|tags|tool|widget|link", re.I),
         'extraneous': re.compile("print|archive|comment|discuss|e[\-]?mail|share|reply|all|login|sign|single", re.I),
         'div_to_p_elements': re.compile("<(a|blockquote|dl|div|img|ol|p|pre|table|ul)", re.I),
@@ -95,6 +95,11 @@ class Simplr:
                 elem.extract()
                 continue
 
+            # remove site-specific segments
+            if self.url.startswith('http://community.travel.yahoo.co.jp/') and re.compile('pt02|pt10', re.I).search(unlikely_match_string):
+                elem.extract()
+                continue
+
             if elem.name == 'div':
                 s = elem.renderContents(encoding=None)
                 if not self.regexps['div_to_p_elements'].search(s):
@@ -102,9 +107,8 @@ class Simplr:
                 """
                 else:
                     if elem.get('class'):
-                        if re.compile('image', re.I).search(elem['class']):
+                        if re.compile('image|photo', re.I).search(elem['class']):
                             elem.name = 'p'
-                            #print 'hello there', elem
                 """
 
         for node in self.html.findAll('p'):
@@ -136,21 +140,21 @@ class Simplr:
             #content_score += inner_text.count('、')
             #content_score += inner_text.count(u'、')
             content_score += min(math.floor(len(inner_text) / 100), 3)
-            #print content_score, node
+            print content_score, node
             #print 'OLD %s %s  Parent' % (self.candidates[parent_hash]['score'], parent_hash)
             #print 'OLD %s %s  Grand' % (self.candidates[grand_parent_hash]['score'], grand_parent_hash)
             self.candidates[parent_hash]['score'] += content_score
 
             if grand_parent_node:
                 self.candidates[grand_parent_hash][
-                    'score'] += content_score / 2
+                    'score'] += content_score * 0.7
 
-            #print 'NEW %s %s  Parent' % (self.candidates[parent_hash]['score'], parent_hash)
-            #print 'NEW %s %s  Grand' % (self.candidates[grand_parent_hash]['score'], grand_parent_hash)
-            #print
-            #print
+            print 'NEW %s %s  Parent' % (self.candidates[parent_hash]['score'], parent_hash)
+            print 'NEW %s %s  Grand' % (self.candidates[grand_parent_hash]['score'], grand_parent_hash)
+            print
+            print
 
-        #print '----------------------------------------------------------------'
+        print '----------------------------------------------------------------'
 
         top_candidate = None
         for key in self.candidates:
@@ -247,7 +251,7 @@ class Simplr:
                 content_score = self.candidates[hash_node]['score']
             else:
                 content_score = 0
-            #print node
+            print node
 
             if weight + content_score < 0:
                 node.extract()
@@ -280,10 +284,10 @@ class Simplr:
                 elif (embed_count == 1 and content_length < 35) or embed_count > 1:
                     to_remove = True
 
-                #print weight, p, img, li, input, link_density, content_length, to_remove
+                print weight, p, img, li, input, link_density, content_length, to_remove
                 if to_remove:
                     node.extract()
-            #print
+            print
 
     def _get_title(self):
         title = ''
@@ -375,6 +379,7 @@ class Simplr:
 
         return weight
 
+
     def _get_link_density(self, node):
         links = node.findAll('a')
         text_length = len(node.text)
@@ -386,6 +391,7 @@ class Simplr:
             link_length += len(link.text)
 
         return link_length / text_length
+
 
     def _fix_images_path(self, node):
         imgs = node.findAll('img')
