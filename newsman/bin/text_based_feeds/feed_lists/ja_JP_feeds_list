@@ -21,7 +21,7 @@ ja*|*経済*|*chengdujin*|*http://sankei.jp.msn.com/rss/news/economy.xml*|*産�
 ja*|*経済*|*chengdujin*|*http://news.nifty.com/rss/topics_economy.xml*|*Nifty 経済
 ja*|*経済*|*chengdujin*|*http://www3.asahi.com/rss/business.rdf*|*朝日新聞　経済
 ja*|*経済*|*chengdujin*|*http://rss.rssad.jp/rss/iza/economy*|*イザ　経済
-ja*|*経済*|*chengdujin*|*http://feeds.reuters.com/reuters/JPBusinessNews*|*ロイター日本　日本経済
+ja*|*経済*|*chengdujin*|*http://feeds.reuters.com/reuters/JPBusinessNews*|*ロイター日本　経済
 ja*|*エンタメ*|*chengdujin*|*http://news.goo.ne.jp/rss/topstories/entertainment/index.rdf*|*GOO　エンターテインメント
 ja*|*エンタメ*|*chengdujin*|*http://sankei.jp.msn.com/rss/news/entertainments.xml*|*産経新聞　エンターテインメント
 ja*|*エンタメ*|*chengdujin*|*http://news.nifty.com/rss/topics_entame.xml*|*Nifty　エンターテインメント
@@ -44,8 +44,5 @@ ja*|*テクノロジー*|*chengdujin*|*http://feeds.reuters.com/reuters/JPTechno
 ja*|*健康*|*chengdujin*|*http://rss.asahi.com/rss/asahi/health.rdf*|*朝日新聞　健康
 ja*|*健康*|*chengdujin*|*http://sankei.jp.msn.com/rss/news/life.xml*|*産経新聞　ライフ
 ja*|*健康*|*chengdujin*|*http://www.nikkeibp.co.jp/rss/medical.rdf*|*日経BP
-ja*|*健康*|*chengdujin*|*http://komachi-rss.yomiuri.co.jp/rss/yol/komachi/rss09*|*読売　小町
-ja*|*旅行*|*chengdujin*|*http://4travel.jp/rdf/travelogue_all_new.xml*|*4travel
 ja*|*旅行*|*chengdujin*|*http://community.travel.yahoo.co.jp/domestic/blog.html?m=rss*|*Yahoo ブログ
 ja*|*旅行*|*chengdujin*|*http://rss.asahi.com/rss/asahi/travel.rdf*|*朝日新聞　旅行
-ja*|*旅行*|*chengdujin*|*http://komachi-rss.yomiuri.co.jp/rss/yol/komachi/rss07*|*読売新聞　小町
