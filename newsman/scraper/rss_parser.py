@@ -31,7 +31,7 @@ import urllib2
 
 # CONSTANTS
 from config.settings import LANGUAGES
-from config.settings import MEMORY_RESTORATION_DAYS
+from config.settings import DATABASE_REMOVAL_DAYS
 # prefix should not end with a slash
 HIDDEN_LINKS = {'http://news.goo.ne.jp':('div', 'lead fs16 bold'), 'http://news.nifty.com':('li', 'headnews')}
 AD_LINKS = 'http://rss.rssad.jp/rss/ad/'
@@ -290,7 +290,7 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
         see if the entry's updated time is earlier than needed
         """
         deadline = datetime.utcfromtimestamp(
-            entry['updated']) + timedelta(days=MEMORY_RESTORATION_DAYS)
+            entry['updated']) + timedelta(days=DATABASE_REMOVAL_DAYS)
         return True if deadline > datetime.now() else False
 
     try:
