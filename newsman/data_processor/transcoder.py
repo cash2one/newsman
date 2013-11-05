@@ -297,7 +297,7 @@ def prepare_link(url):
         return None
 
     try:
-        html = urllib2.urlopen(url, timeout=UCK_TIMEOUT).read()
+        html = str(urllib2.urlopen(url, timeout=UCK_TIMEOUT).read())
         if html:
             detected = chardet.detect(html)
             if detected:

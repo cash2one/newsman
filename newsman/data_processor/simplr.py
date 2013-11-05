@@ -26,6 +26,9 @@ import urlparse
 
 import pdb
 
+# CONSTANTS
+HIDDEN_IMAGE = {'http://sankei.jp.msn.com/':('div', {'class':'img250 imgright'}), 'http://www.cnn.co.jp/':('div', {'id':'leaf_large_image', 'class':'img-caption'}), 'http://news.goo.ne.jp/':('p', {'class':'imager'}), 'http://jp.reuters.com/':('td', {'id':"articlePhoto", 'class':"articlePhoto"})}
+
 
 class Simplr:
     regexps = {
@@ -45,6 +48,7 @@ class Simplr:
         'next_link': re.compile("(next|weiter|continue|>([^\|]|$)|»([^\|]|$))", re.I),
         'prev_link': re.compile("(prev|earl|old|new|<|«)", re.I)
     }
+
 
     def __init__(self, url, language):
         """
@@ -68,17 +72,21 @@ class Simplr:
         self.content = self._get_article()
         self.images = self._get_images()
 
+
     def _remove_script(self):
         for elem in self.html.findAll("script"):
             elem.extract()
+
 
     def _remove_style(self):
         for elem in self.html.findAll("style"):
             elem.extract()
 
+
     def _remove_link(self):
         for elem in self.html.findAll("link"):
             elem.extract()
+
 
     def _get_images(self):
         if self.content:
@@ -86,6 +94,7 @@ class Simplr:
             return image_helper.find_images(self.content)
         else:
             return None
+
 
     def _get_article(self):
         for elem in self.html.findAll(True):
@@ -140,7 +149,7 @@ class Simplr:
             #content_score += inner_text.count('、')
             #content_score += inner_text.count(u'、')
             content_score += min(math.floor(len(inner_text) / 100), 3)
-            print content_score, node
+            #print content_score, node
             #print 'OLD %s %s  Parent' % (self.candidates[parent_hash]['score'], parent_hash)
             #print 'OLD %s %s  Grand' % (self.candidates[grand_parent_hash]['score'], grand_parent_hash)
             self.candidates[parent_hash]['score'] += content_score
@@ -149,12 +158,12 @@ class Simplr:
                 self.candidates[grand_parent_hash][
                     'score'] += content_score * 0.7
 
-            print 'NEW %s %s  Parent' % (self.candidates[parent_hash]['score'], parent_hash)
-            print 'NEW %s %s  Grand' % (self.candidates[grand_parent_hash]['score'], grand_parent_hash)
-            print
-            print
+            #print 'NEW %s %s  Parent' % (self.candidates[parent_hash]['score'], parent_hash)
+            #print 'NEW %s %s  Grand' % (self.candidates[grand_parent_hash]['score'], grand_parent_hash)
+            #print
+            #print
 
-        print '----------------------------------------------------------------'
+        #print '----------------------------------------------------------------'
 
         top_candidate = None
         for key in self.candidates:
@@ -175,6 +184,7 @@ class Simplr:
             content = self._clean_article(content)
 
         return content
+
 
     def _clean_article(self, content):
         self._clean_comments(content)
@@ -201,10 +211,27 @@ class Simplr:
         self._clean_style(content)
 
         self._fix_images_path(content)
+        self._fix_links_path(content)
+
+        # image retriver
+        article_image = None
+        matched_link = [link for link in HIDDEN_IMAGE if self.url.startswith(link)]
+        if matched_link:
+            html_tag, html_attrs = HIDDEN_IMAGE[matched_link[0]]
+            found_image = content.find(name=html_tag, attrs=html_attrs)
+            if not found_image:
+                article_image = self.html.find(name=html_tag, attrs=html_attrs)
+                if article_image:
+                    self._fix_images_path(article_image)
+                    self._fix_links_path(article_image)
 
         content = content.renderContents(encoding=None)
+        if article_image:
+            article_image = article_image.renderContents(encoding=None)
+            content = article_image + content
         content = self.regexps['kill_breaks'].sub("<br />", content)
         return content
+
 
     def _clean(self, e, tag):
         target_list = e.findAll(tag)
@@ -224,15 +251,18 @@ class Simplr:
                 continue
             target.extract()
 
+
     def _clean_comments(self, e):
         comments = e.findAll(text=lambda text:isinstance(text, Comment))
         [comment.extract() for comment in comments]
+
 
     def _clean_style(self, e):
         for elem in e.findAll(True):
             del elem['class']
             del elem['id']
             del elem['style']
+
 
     def _clean_conditionally(self, e, tag):
         tags_list = e.findAll(tag)
@@ -251,7 +281,7 @@ class Simplr:
                 content_score = self.candidates[hash_node]['score']
             else:
                 content_score = 0
-            print node
+            #print node
 
             if weight + content_score < 0:
                 node.extract()
@@ -284,10 +314,11 @@ class Simplr:
                 elif (embed_count == 1 and content_length < 35) or embed_count > 1:
                     to_remove = True
 
-                print weight, p, img, li, input, link_density, content_length, to_remove
+                #print weight, p, img, li, input, link_density, content_length, to_remove
                 if to_remove:
                     node.extract()
-            print
+            #print
+
 
     def _get_title(self):
         title = ''
@@ -296,6 +327,7 @@ class Simplr:
         except:
             pass
         return title
+
 
     def _get_short_title(self):
         title = ''
@@ -343,6 +375,7 @@ class Simplr:
             pass
         return title
 
+
     def _initialize_node(self, node):
         content_score = 0
 
@@ -357,6 +390,7 @@ class Simplr:
 
         content_score += self._get_class_weight(node)
         return {'score': content_score, 'node': node}
+
 
     def _get_class_weight(self, node):
         weight = 0
@@ -393,6 +427,26 @@ class Simplr:
         return link_length / text_length
 
 
+    def _fix_links_path(self, node):
+        atags = node.findAll('a')
+        for atag in atags:
+            href = atag.get('href', None)
+            if not href:
+                atag.extract()
+                continue
+
+            if 'http://' != href[:7] and 'https://' != href[:8]:
+                new_href = urlparse.urljoin(self.url, href)
+
+                new_href_arr = urlparse.urlparse(new_href)
+                new_path = posixpath.normpath(new_href_arr[2])
+                new_href = urlparse.urlunparse(
+                    (new_href_arr.scheme, new_href_arr.netloc, new_path,
+                     new_href_arr.params, new_href_arr.query,
+                     new_href_arr.fragment))
+                atag['href'] = new_href
+
+
     def _fix_images_path(self, node):
         imgs = node.findAll('img')
         for img in imgs:
@@ -400,6 +454,15 @@ class Simplr:
             if not src:
                 img.extract()
                 continue
+
+            # remove width or height attributes
+            from copy import copy
+            attrs = copy(img.attrs)
+            for attr in attrs:
+                if attr[0] == 'width' or attr[0] == 'height':
+                    img.attrs.remove(attr)
+            attrs = None
+            del attrs
 
             if 'http://' != src[:7] and 'https://' != src[:8]:
                 new_src = urlparse.urljoin(self.url, src)
@@ -419,6 +482,26 @@ class Simplr:
             # optimization made for excite.co.jp
             if 'image.excite.co.jp' in img['src'] and img['src'].endswith('_s.jpg'):
                 img['src'] = img['src'].replace('_s.jpg', '.jpeg')
+
+            # optimization made for news.goo.ne.jp
+            if 'img.news.goo.ne.jp' in img['src'] and img['src'].endswith('.jpg'):
+                img['src'] = img['src'].replace('/s_', '/m_')
+
+            # optimization made for jp.reuters.com
+            if 's1.reutersmedia.net/resources/r/' in img['src']:
+                from furl import furl
+                f = furl(img['src'])
+                if 'll' in f.args:
+                    del f.args['ll']
+                if 'pl' in f.args:
+                    del f.args['pl']
+                if 'fw' in f.args:
+                    del f.args['fw']
+                if 'fh' in f.args:
+                    del f.args['fh']
+                if 'w' in f.args:
+                    del f.args['w']
+                img['src'] = f.url
 
 
 def convert(url, language):
