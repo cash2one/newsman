@@ -32,10 +32,10 @@ HIDDEN_IMAGE = {'http://sankei.jp.msn.com/':('div', {'class':'img250 imgright'})
 
 class Simplr:
     regexps = {
-        'unlikely_candidates': re.compile("button|combx|comment|community|disqus|extra|foot|header|menu|remark|rss|shoutbox|sidebar|sponsor|sns|ad-break|agegate|pagination|pager|popup|tweet|twitter", re.I),
+        'unlikely_candidates': re.compile("banner|button|combx|comment|community|copyright|disqus|extra|foot|header|menu|remark|rss|shoutbox|sidebar|sponsor|sns|ad-break|agegate|pagination|pager|popup|posted|pr|tweet|twitter", re.I),
         'ok_maybe_its_a_candidate': re.compile("and|article|body|column|main|shadow", re.I),
         'positive': re.compile("article|blog|body|content|entry|hentry|image|main|page|pagination|photo|post|story|text", re.I),
-        'negative': re.compile("combx|comment|com|contact|foot|footer|footnote|genre|logo|masthead|media|meta|outbrain|promo|ranking|related|scroll|shoutbox|sidebar|sponsor|shopping|tags|tool|widget|link", re.I),
+        'negative': re.compile("banner|combx|comment|com|contact|foot|footer|footnote|genre|logo|masthead|media|meta|outbrain|pr|promo|ranking|related|scroll|shoutbox|sidebar|sponsor|shopping|tags|tool|widget|link", re.I),
         'extraneous': re.compile("print|archive|comment|discuss|e[\-]?mail|share|reply|all|login|sign|single", re.I),
         'div_to_p_elements': re.compile("<(a|blockquote|dl|div|img|ol|p|pre|table|ul)", re.I),
         'replace_brs': re.compile("(<br[^>]*>[ \n\r\t]*){2,}", re.I),
@@ -106,6 +106,10 @@ class Simplr:
 
             # remove site-specific segments
             if self.url.startswith('http://community.travel.yahoo.co.jp/') and re.compile('pt02|pt10', re.I).search(unlikely_match_string):
+                elem.extract()
+                continue
+
+            if self.url.startswith('http://news.nifty.com/') and re.compile('pr|banner', re.I).search(unlikely_match_string):
                 elem.extract()
                 continue
 
@@ -486,6 +490,10 @@ class Simplr:
             # optimization made for news.goo.ne.jp
             if 'img.news.goo.ne.jp' in img['src'] and img['src'].endswith('.jpg'):
                 img['src'] = img['src'].replace('/s_', '/m_')
+
+            # optimization made for sankei.jp.msn.com
+            if 'http://sankei.jp.msn.com/' in img['src'] and img['src'].endswith('-n1.jpg'):
+                img['src'] = img['src'].replace('-n1.jpg', '-p1.jpg')
 
             # optimization made for jp.reuters.com
             if 's1.reutersmedia.net/resources/r/' in img['src']:
