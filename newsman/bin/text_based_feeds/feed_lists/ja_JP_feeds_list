@@ -1,48 +1,48 @@
-ja*|*ニュース*|*chengdujin*|*http://news.goo.ne.jp/rss/topstories/gootop/index.rdf*|*GOO 注目*|*トップニュース
-ja*|*ニュース*|*chengdujin*|*http://sankei.jp.msn.com/rss/news/points.xml*|*MSN産経ニュース 注目*|*トップニュース
-ja*|*ニュース*|*chengdujin*|*http://news.nifty.com/rss/topics_all.xml*|*Nifty すべての注目*|*トップニュース
-ja*|*ニュース*|*chengdujin*|*http://news.goo.ne.jp/rss/topstories/nation/index.rdf*|*GOO*|*国内
-ja*|*ニュース*|*chengdujin*|*http://sankei.jp.msn.com/rss/news/politics.xml*|*産経新聞　政治*|*国内
-ja*|*ニュース*|*chengdujin*|*http://news.goo.ne.jp/rss/topstories/world/index.rdf*|*GOO 国際*|*海外
-ja*|*ニュース*|*chengdujin*|*http://sankei.jp.msn.com/rss/news/world.xml*|*MSN産経ニュース　国際*|*海外
-ja*|*ニュース*|*chengdujin*|*http://news.nifty.com/rss/topics_world.xml*|*Nifty 国際*|*海外
-ja*|*ニュース*|*chengdujin*|*http://rss.excite.co.jp/rss/excite/odd*|*エキサイト
-ja*|*ニュース*|*chengdujin*|*http://www3.asahi.com/rss/international.rdf*|*朝日新聞　国際
-ja*|*ニュース*|*chengdujin*|*http://feeds.cnn.co.jp/rss/cnn/cnn.rdf*|*CNN日本
-ja*|*ニュース*|*chengdujin*|*http://rss.rssad.jp/rss/iza/world*|*イザ 国際
-ja*|*ニュース*|*chengdujin*|*http://feeds.reuters.com/reuters/JPWorldNews*|*ロイター日本
-ja*|*ニュース*|*chengdujin*|*http://news.nifty.com/rss/topics_domestic.xml*|*Nifty
-ja*|*ニュース*|*chengdujin*|*http://rss.excite.co.jp/rss/excite/bitpost*|*エキサイト投稿コネタ
-ja*|*ニュース*|*chengdujin*|*http://www3.asahi.com/rss/national.rdf*|*朝日新聞　国内
-ja*|*ニュース*|*chengdujin*|*http://mainichi.jp/rss/etc/flash.rss*|*毎日新聞
-ja*|*ニュース*|*chengdujin*|*http://rss.rssad.jp/rss/iza/politics*|*イザ　政治
-ja*|*経済*|*chengdujin*|*http://news.goo.ne.jp/rss/topstories/business/index.rdf*|*GOO　経済
-ja*|*経済*|*chengdujin*|*http://sankei.jp.msn.com/rss/news/economy.xml*|*産経新聞　経済
-ja*|*経済*|*chengdujin*|*http://news.nifty.com/rss/topics_economy.xml*|*Nifty 経済
-ja*|*経済*|*chengdujin*|*http://www3.asahi.com/rss/business.rdf*|*朝日新聞　経済
-ja*|*経済*|*chengdujin*|*http://rss.rssad.jp/rss/iza/economy*|*イザ　経済
-ja*|*経済*|*chengdujin*|*http://feeds.reuters.com/reuters/JPBusinessNews*|*ロイター日本　経済
-ja*|*エンタメ*|*chengdujin*|*http://news.goo.ne.jp/rss/topstories/entertainment/index.rdf*|*GOO　エンターテインメント
-ja*|*エンタメ*|*chengdujin*|*http://sankei.jp.msn.com/rss/news/entertainments.xml*|*産経新聞　エンターテインメント
-ja*|*エンタメ*|*chengdujin*|*http://news.nifty.com/rss/topics_entame.xml*|*Nifty　エンターテインメント
-ja*|*エンタメ*|*chengdujin*|*http://rss.asahi.com/rss/asahi/culture.rdf*|*朝日新聞　文化
-ja*|*エンタメ*|*chengdujin*|*http://mainichi.jp/rss/etc/enta.rss*|*毎日新聞　エンターテインメント
-ja*|*エンタメ*|*chengdujin*|*http://rss.rssad.jp/rss/iza/entertainment*|*イザ　エンターテインメント
-ja*|*エンタメ*|*chengdujin*|*http://feeds.reuters.com/reuters/JPEntertainment*|*GOO　スポーツ
-ja*|*スポーツ*|*chengdujin*|*http://news.goo.ne.jp/rss/topstories/sports/index.rdf*|*GOO スポーツ
-ja*|*スポーツ*|*chengdujin*|*http://sankei.jp.msn.com/rss/news/sports.xml*|*産経新聞　スポーツ
-ja*|*スポーツ*|*chengdujin*|*http://news.nifty.com/rss/topics_sports.xml*|*Nifty スポーツ
-ja*|*スポーツ*|*chengdujin*|*http://www3.asahi.com/rss/sports.rdf*|*朝日新聞　スポーツ
-ja*|*スポーツ*|*chengdujin*|*http://mainichi.jp/rss/etc/sports.rss*|*毎日新聞　スポーツ
-ja*|*スポーツ*|*chengdujin*|*http://feeds.reuters.com/reuters/JPSportsNews*|*ロイター日本　日本スポーツ
-ja*|*テクノロジー*|*chengdujin*|*http://feeds.japan.cnet.com/rss/cnet/all.rdf*|*CNET 日本
-ja*|*テクノロジー*|*chengdujin*|*http://sankei.jp.msn.com/rss/news/science.xml*|*産経新聞　サイエンス
-ja*|*テクノロジー*|*chengdujin*|*http://news.nifty.com/rss/topics_technology.xml*|*Nifty テクノロジー
-ja*|*テクノロジー*|*chengdujin*|*http://www3.asahi.com/rss/digital.rdf*|*朝日新聞　デジタル
-ja*|*テクノロジー*|*chengdujin*|*http://rss.rssad.jp/rss/iza/it*|*イザ　デジタル
-ja*|*テクノロジー*|*chengdujin*|*http://feeds.reuters.com/reuters/JPTechnologyNews*|*ロイター　テクノロジー
-ja*|*健康*|*chengdujin*|*http://rss.asahi.com/rss/asahi/health.rdf*|*朝日新聞　健康
-ja*|*健康*|*chengdujin*|*http://sankei.jp.msn.com/rss/news/life.xml*|*産経新聞　ライフ
-ja*|*健康*|*chengdujin*|*http://www.nikkeibp.co.jp/rss/medical.rdf*|*日経BP
-ja*|*旅行*|*chengdujin*|*http://community.travel.yahoo.co.jp/domestic/blog.html?m=rss*|*Yahoo ブログ
-ja*|*旅行*|*chengdujin*|*http://rss.asahi.com/rss/asahi/travel.rdf*|*朝日新聞　旅行
+ja*|*ニュース*|*chengdujin*|*http://news.goo.ne.jp/rss/topstories/gootop/index.rdf*|*GOO 注目*|*http://mobile-global.baidu.com/logos/ja_JP/goo.png*|*トップニュース
+ja*|*ニュース*|*chengdujin*|*http://sankei.jp.msn.com/rss/news/points.xml*|*MSN産経ニュース 注目*|*http://mobile-global.baidu.com/logos/ja_JP/msn.png*|*トップニュース
+ja*|*ニュース*|*chengdujin*|*http://news.nifty.com/rss/topics_all.xml*|*Nifty すべての注目*|*http://mobile-global.baidu.com/logos/ja_JP/nifty.png*|*トップニュース
+ja*|*ニュース*|*chengdujin*|*http://news.goo.ne.jp/rss/topstories/nation/index.rdf*|*GOO*|*http://mobile-global.baidu.com/logos/ja_JP/goo.png*|*国内
+ja*|*ニュース*|*chengdujin*|*http://sankei.jp.msn.com/rss/news/politics.xml*|*産経新聞　政治*|*http://mobile-global.baidu.com/logos/ja_JP/msn.png*|*国内
+ja*|*ニュース*|*chengdujin*|*http://news.goo.ne.jp/rss/topstories/world/index.rdf*|*GOO 国際*|*http://mobile-global.baidu.com/logos/ja_JP/goo.png*|*海外
+ja*|*ニュース*|*chengdujin*|*http://sankei.jp.msn.com/rss/news/world.xml*|*MSN産経ニュース　国際*|*http://mobile-global.baidu.com/logos/ja_JP/msn.png*|*海外
+ja*|*ニュース*|*chengdujin*|*http://news.nifty.com/rss/topics_world.xml*|*Nifty 国際*|*http://mobile-global.baidu.com/logos/ja_JP/nifty.png*|*海外
+ja*|*ニュース*|*chengdujin*|*http://rss.excite.co.jp/rss/excite/odd*|*エキサイト*|*http://mobile-global.baidu.com/logos/ja_JP/excite.png
+ja*|*ニュース*|*chengdujin*|*http://www3.asahi.com/rss/international.rdf*|*朝日新聞　国際*|*http://mobile-global.baidu.com/logos/ja_JP/asahi.png
+ja*|*ニュース*|*chengdujin*|*http://feeds.cnn.co.jp/rss/cnn/cnn.rdf*|*CNN日本*|*http://mobile-global.baidu.com/logos/ja_JP/cnn.png
+ja*|*ニュース*|*chengdujin*|*http://rss.rssad.jp/rss/iza/world*|*イザ 国際*|*http://mobile-global.baidu.com/logos/ja_JP/iza.png
+ja*|*ニュース*|*chengdujin*|*http://feeds.reuters.com/reuters/JPWorldNews*|*ロイター日本*|*http://mobile-global.baidu.com/logos/ja_JP/reuters.png
+ja*|*ニュース*|*chengdujin*|*http://news.nifty.com/rss/topics_domestic.xml*|*Nifty*|*http://mobile-global.baidu.com/logos/ja_JP/nifty.png
+ja*|*ニュース*|*chengdujin*|*http://rss.excite.co.jp/rss/excite/bitpost*|*エキサイト投稿コネタ*|*http://mobile-global.baidu.com/logos/ja_JP/excite.png
+ja*|*ニュース*|*chengdujin*|*http://www3.asahi.com/rss/national.rdf*|*朝日新聞　国内*|*http://mobile-global.baidu.com/logos/ja_JP/asahi.png
+ja*|*ニュース*|*chengdujin*|*http://mainichi.jp/rss/etc/flash.rss*|*毎日新聞*|*http://mobile-global.baidu.com/logos/ja_JP/mainichi.png
+ja*|*ニュース*|*chengdujin*|*http://rss.rssad.jp/rss/iza/politics*|*イザ　政治*|*http://mobile-global.baidu.com/logos/ja_JP/iza.png
+ja*|*経済*|*chengdujin*|*http://news.goo.ne.jp/rss/topstories/business/index.rdf*|*GOO　経済*|*http://mobile-global.baidu.com/logos/ja_JP/goo.png
+ja*|*経済*|*chengdujin*|*http://sankei.jp.msn.com/rss/news/economy.xml*|*産経新聞　経済*|*http://mobile-global.baidu.com/logos/ja_JP/msn.png
+ja*|*経済*|*chengdujin*|*http://news.nifty.com/rss/topics_economy.xml*|*Nifty 経済*|*http://mobile-global.baidu.com/logos/ja_JP/nifty.png
+ja*|*経済*|*chengdujin*|*http://www3.asahi.com/rss/business.rdf*|*朝日新聞　経済*|*http://mobile-global.baidu.com/logos/ja_JP/asahi.png
+ja*|*経済*|*chengdujin*|*http://rss.rssad.jp/rss/iza/economy*|*イザ　経済*|*http://mobile-global.baidu.com/logos/ja_JP/iza.png
+ja*|*経済*|*chengdujin*|*http://feeds.reuters.com/reuters/JPBusinessNews*|*ロイター日本　経済*|*http://mobile-global.baidu.com/logos/ja_JP/reuters.png
+ja*|*エンタメ*|*chengdujin*|*http://news.goo.ne.jp/rss/topstories/entertainment/index.rdf*|*GOO　エンターテインメント*|*http://mobile-global.baidu.com/logos/ja_JP/goo.png
+ja*|*エンタメ*|*chengdujin*|*http://sankei.jp.msn.com/rss/news/entertainments.xml*|*産経新聞　エンターテインメント*|*http://mobile-global.baidu.com/logos/ja_JP/msn.png
+ja*|*エンタメ*|*chengdujin*|*http://news.nifty.com/rss/topics_entame.xml*|*Nifty　エンターテインメント*|*http://mobile-global.baidu.com/logos/ja_JP/nifty.png
+ja*|*エンタメ*|*chengdujin*|*http://rss.asahi.com/rss/asahi/culture.rdf*|*朝日新聞　文化*|*http://mobile-global.baidu.com/logos/ja_JP/asahi.png
+ja*|*エンタメ*|*chengdujin*|*http://mainichi.jp/rss/etc/enta.rss*|*毎日新聞　エンターテインメント*|*http://mobile-global.baidu.com/logos/ja_JP/mainichi.png
+ja*|*エンタメ*|*chengdujin*|*http://rss.rssad.jp/rss/iza/entertainment*|*イザ　エンターテインメント*|*http://mobile-global.baidu.com/logos/ja_JP/iza.png
+ja*|*エンタメ*|*chengdujin*|*http://feeds.reuters.com/reuters/JPEntertainment*|*ロイター日本　スポーツ*|*http://mobile-global.baidu.com/logos/ja_JP/reuters.png
+ja*|*スポーツ*|*chengdujin*|*http://news.goo.ne.jp/rss/topstories/sports/index.rdf*|*GOO スポーツ*|*http://mobile-global.baidu.com/logos/ja_JP/goo.png
+ja*|*スポーツ*|*chengdujin*|*http://sankei.jp.msn.com/rss/news/sports.xml*|*産経新聞　スポーツ*|*http://mobile-global.baidu.com/logos/ja_JP/msn.png
+ja*|*スポーツ*|*chengdujin*|*http://news.nifty.com/rss/topics_sports.xml*|*Nifty スポーツ*|*http://mobile-global.baidu.com/logos/ja_JP/nifty.png
+ja*|*スポーツ*|*chengdujin*|*http://www3.asahi.com/rss/sports.rdf*|*朝日新聞　スポーツ*|*http://mobile-global.baidu.com/logos/ja_JP/asahi.png
+ja*|*スポーツ*|*chengdujin*|*http://mainichi.jp/rss/etc/sports.rss*|*毎日新聞　スポーツ*|*http://mobile-global.baidu.com/logos/ja_JP/mainichi.png
+ja*|*スポーツ*|*chengdujin*|*http://feeds.reuters.com/reuters/JPSportsNews*|*ロイター日本　日本スポーツ*|*http://mobile-global.baidu.com/logos/ja_JP/reuters.png
+ja*|*テクノロジー*|*chengdujin*|*http://feeds.japan.cnet.com/rss/cnet/all.rdf*|*CNET 日本*|*http://mobile-global.baidu.com/logos/ja_JP/cnet.png
+ja*|*テクノロジー*|*chengdujin*|*http://sankei.jp.msn.com/rss/news/science.xml*|*産経新聞　サイエンス*|*http://mobile-global.baidu.com/logos/ja_JP/msn.png
+ja*|*テクノロジー*|*chengdujin*|*http://news.nifty.com/rss/topics_technology.xml*|*Nifty テクノロジー*|*http://mobile-global.baidu.com/logos/ja_JP/nifty.png
+ja*|*テクノロジー*|*chengdujin*|*http://www3.asahi.com/rss/digital.rdf*|*朝日新聞　デジタル*|*http://mobile-global.baidu.com/logos/ja_JP/asahi.png
+ja*|*テクノロジー*|*chengdujin*|*http://rss.rssad.jp/rss/iza/it*|*イザ　デジタル*|*http://mobile-global.baidu.com/logos/ja_JP/iza.png
+ja*|*テクノロジー*|*chengdujin*|*http://feeds.reuters.com/reuters/JPTechnologyNews*|*ロイター　テクノロジー*|*http://mobile-global.baidu.com/logos/ja_JP/reuters.png
+ja*|*健康*|*chengdujin*|*http://rss.asahi.com/rss/asahi/health.rdf*|*朝日新聞　健康*|*http://mobile-global.baidu.com/logos/ja_JP/asahi.png
+ja*|*健康*|*chengdujin*|*http://sankei.jp.msn.com/rss/news/life.xml*|*産経新聞　ライフ*|*http://mobile-global.baidu.com/logos/ja_JP/msn.png
+ja*|*健康*|*chengdujin*|*http://www.nikkeibp.co.jp/rss/medical.rdf*|*日経BP*|*http://mobile-global.baidu.com/logos/ja_JP/nikkeibp.png
+ja*|*旅行*|*chengdujin*|*http://community.travel.yahoo.co.jp/domestic/blog.html?m=rss*|*Yahoo ブログ*|*http://mobile-global.baidu.com/logos/ja_JP/yahoo.png
+ja*|*旅行*|*chengdujin*|*http://rss.asahi.com/rss/asahi/travel.rdf*|*朝日新聞　旅行*|*http://mobile-global.baidu.com/logos/ja_JP/asahi.png
