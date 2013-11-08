@@ -6,6 +6,7 @@ en*|*News*|*readability*|*http://feeds.feedburner.com/oneindia-all-news*|*One In
 en*|*News*|*readability*|*http://newindianexpress.com/nation/?widgetName=rssfeed&widgetId=276210&getXmlFeed=true*|*Indian Express National*|*http://mobile-global.baidu.com/logos/en_IN/indianexpress.png
 en*|*News*|*readability*|*http://feeds.feedburner.com/ndtv/Lsgd*|*NDTV All India*|*http://mobile-global.baidu.com/logos/en_IN/ndtv.png
 en*|*News*|*readability*|*http://syndication.indianexpress.com/rss/798/latest-news.xml*|*Indian Express Headlines*|*http://mobile-global.baidu.com/logos/en_IN/indianexpress.png
+en*|*News*|*readability*|*http://ibnlive.in.com/ibnrss/rss/india/india.xml*|*IBNLive India News*|*http://mobile-global.baidu.com/logos/en_IN/ibnlive.png*|*Hot News
 en*|*News*|*readability*|*http://www.thehindu.com/news/international/?service=rss*|*The Hindu World*|*http://mobile-global.baidu.com/logos/en_IN/thehindu.png*|*World Headlines
 en*|*News*|*chengdujin*|*http://feeds.huffingtonpost.com/huffingtonpost/LatestNews*|*Huffington Post*|*http://mobile-global.baidu.com/logos/en_IN/huffingtonpost.png
 en*|*News*|*readability*|*http://syndication.indianexpress.com/rss/789/latest-news.xml*|*Indian Express International*|*http://mobile-global.baidu.com/logos/en_IN/indianexpress.png
@@ -14,6 +15,7 @@ en*|*News*|*readability*|*http://feeds.feedburner.com/foxnews/latest*|*Fox News*
 en*|*News*|*chengdujin*|*http://feeds.feedburner.com/ndtv/TqgX*|*NDTV World*|*http://mobile-global.baidu.com/logos/en_IN/ndtv.png
 en*|*News*|*readability*|*http://www.dnaindia.com/syndication/rss,catid-9.xml*|*DNA World*|*http://mobile-global.baidu.com/logos/en_IN/dnaindia.png
 en*|*Business*|*chengdujin*|*http://www.deccanherald.com/rss/business.rss*|*Deccan Herald Business*|*http://mobile-global.baidu.com/logos/en_IN/deccanherald.png
+en*|*Business*|*readability*|*http://ibnlive.in.com/xml/rss/business.xml*|*IBNLive Business*|*http://mobile-global.baidu.com/logos/en_IN/ibnlive.png
 en*|*Business*|*readability*|*http://www.thehindubusinessline.com/industry-and-economy/?service=rss*|*Hindu Business Line Economy*|*http://mobile-global.baidu.com/logos/en_IN/thehindubusinessline.png*|*Business Headlines
 en*|*Business*|*readability*|*http://www.indianexpress.com/rss/37/business.xml*|*Indian Express Business*|*http://mobile-global.baidu.com/logos/en_IN/indianexpress.png
 en*|*Business*|*readability*|*http://feeds.reuters.com/reuters/INbusinessNews*|*Reuters Money*|*http://mobile-global.baidu.com/logos/en_IN/reuters.png
@@ -45,7 +47,9 @@ en*|*Entertainment*|*readability*|*http://feeds.reuters.com/reuters/INhollywood*
 en*|*Entertainment*|*readability*|*http://feeds.reuters.com/reuters/INbollywood*|*Reuters Bollywood*|*http://mobile-global.baidu.com/logos/en_IN/reuters.png
 en*|*Entertainment*|*readability*|*http://feeds.feedburner.com/NDTV-Ent*|*NDTV Entertainment*|*http://mobile-global.baidu.com/logos/en_IN/ndtv.png*|*Entertainment Headlines
 en*|*Entertainment*|*readability*|*http://www.dnaindia.com/syndication/rss,catid-7.xml*|*DNA Entertainment*|*http://mobile-global.baidu.com/logos/en_IN/dnaindia.png
+en*|*Entertainment*|*readability*|*http://ibnlive.in.com/ibnrss/rss/moviesnews/moviesnews.xml*|*IBNLive Movies*|*http://mobile-global.baidu.com/logos/en_IN/ibnlive.png
 en*|*Sports*|*readability*|*http://www.rediff.com/rss/sportsrss.xml*|*Rediff Sports*|*http://mobile-global.baidu.com/logos/en_IN/rediff.png
+en*|*Sports*|*readability*|*http://ibnlive.in.com/xml/rss/sports.xml*|*IBNLive Sports*|*http://mobile-global.baidu.com/logos/en_IN/ibnlive.png*|*Sports Headlines
 en*|*Sports*|*chengdujin*|*http://feeds.hindustantimes.com/HT-Cricket-TopStories*|*Hindustan Times Cricket*|*http://mobile-global.baidu.com/logos/en_IN/hindustantimes.png
 en*|*Sports*|*readability*|*http://www.deccanherald.com/rss/sports.rss*|*Deccan Herald Sports*|*http://mobile-global.baidu.com/logos/en_IN/deccanherald.png
 en*|*Sports*|*readability*|*http://www.thehindu.com/sport/other-sports/?service=rss*|*The Hindu Sports*|*http://mobile-global.baidu.com/logos/en_IN/thehindu.png
