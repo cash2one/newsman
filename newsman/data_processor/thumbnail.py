@@ -27,37 +27,4 @@ from config.settings import UCK_TIMEOUT
 
 
 
-# TODO: relative path could be a url including its suffix like jpg/png
-def generate_thumbnail(image_url, relative_path):
-    """
-    generate a thumbnail
-    """
-    if not image_url or not relative_path:
-        logger.error('Method malformed!')
-        return None
-
-    try:
-        # possible exception raiser
-        image_pil = Image.open(
-            StringIO(urllib2.urlopen(image_url, timeout=UCK_TIMEOUT).read()))
-
-        # generate thumbnail
-        if image_pil.size > MIN_IMAGE_SIZE:
-            # get various paths
-            image_thumbnail_local_path = '%s%si.jpg' % (
-                IMAGES_LOCAL_DIR, relative_path)
-            image_thumbnail_web_path = '%s%s.jpg' % (
-                IMAGES_PUBLIC_DIR, relative_path)
-
-            # thumbnailing
-            image_pil.thumbnail(MIN_IMAGE_SIZE, Image.ANTIALIAS)
-            image_pil = image_pil.convert('RGB')
-            image_pil.save(image_thumbnail_local_path, 'JPEG')
-            return image_thumbnail_web_path
-        else:
-            return image_url
-    except Exception as k:
-        logger.info('Problem:[%s] Source:[%s]' % (str(k), image_url))
-        return None
-
 
