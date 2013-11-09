@@ -178,30 +178,12 @@ def _is_valid_image(image_url):
         logger.error('Method malformed! URL [%s] is incorrect' % image_url)
         return False
 
-    # check if image could be downloaded
-    image_downloaded = None
     try:
-        try:
-            image_downloaded = urllib2.urlopen(image_url, timeout=UCK_TIMEOUT).read()
-        except Exception:
-            logger.info('%s cannot be downloaded' % image_url)
-            return False
-
-        if image_downloaded:
-            # possible exception raiser
-            try:
-                image_pil = Image.open(StringIO(image_downloaded))
-            except Exception as k:
-                logger.info(str(k))
-                return False
-
+        if _url_image_exists(image_url)
             # to avoid line length limit
-            if image_pil.size[0] * image_pil.size[1] > MIN_IMAGE_SIZE[0] * MIN_IMAGE_SIZE[1]:
-                return True
-            else:
-                return False
+            return True if image_pil.size[0] * image_pil.size[1] > MIN_IMAGE_SIZE[0] * MIN_IMAGE_SIZE[1] else False
         else:
-            logger.info('Nothing obtained from %s' % image_url)
+            logger.info('%s is not an image' % image_url)
             return False
     except Exception as k:
         logger.error('%s' % str(k))
@@ -353,12 +335,16 @@ def _url_image_exists(url):
         logger.error('Method malformed!')
         return False
 
-    parse_obj = urlparse.urlparse(url)
-    site = parse_obj.netloc
-    path = parse_obj.path
-    conn = httplib.HTTPConnection(site)
-    conn.request('HEAD', path)
-    response = conn.getresponse()
-    conn.close()
-    ctype = response.getheader('Content-Type')
-    return response.status < 400 and ctype.startswith('image')
+    try:
+        parse_obj = urlparse.urlparse(url)
+        site = parse_obj.netloc
+        path = parse_obj.path
+        conn = httplib.HTTPConnection(site)
+        conn.request('HEAD', path)
+        response = conn.getresponse()
+        conn.close()
+        ctype = response.getheader('Content-Type')
+        return response.status < 400 and ctype.startswith('image')
+    except Excetion as k:
+        logger.info(str(k))
+        return False
