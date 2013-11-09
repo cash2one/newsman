@@ -1,18 +1,16 @@
 ToDos - High Priority
 ----------------------
-1. data_processor代码整理、重构
-2. 整理转码器图片提取模块 [link](http://jackdschultz.com/index.php/2013/09/13/validating-url-as-an-image-in-python/)
-3. URL处理换成gruns/furl
-4. 去掉html内容的代码换成那个bs4
-5. 参照谷歌编码风格
+1. URL处理换成gruns/furl
+2. 去掉html内容的代码换成那个bs4
+3. 参照谷歌编码风格
     [中文](http://zh-google-styleguide.readthedocs.org/en/latest/google-python-styleguide/)
     [EN](http://google-styleguide.googlecode.com/svn/trunk/pyguide.html)
     [link](http://azd325.github.io/blog/2013/08/18/python-strip-tags/)
-6. 采用nose/coverage进行测试
-7. 集成CDN
-8. 新闻摘要
-9. 根据热门关键字搜索图片 [link1](http://jackdschultz.com/index.php/2013/09/19/useful-named-entity-recognition/) [link2](https://gist.github.com/shlomibabluki/6333174)
-10. 修改README
+4. 采用nose/coverage进行测试
+5. 集成CDN
+6. 新闻摘要
+7. 根据热门关键字搜索图片 [link1](http://jackdschultz.com/index.php/2013/09/19/useful-named-entity-recognition/) [link2](https://gist.github.com/shlomibabluki/6333174)
+8. 修改README
 
 ToDos - Low Priority
 ---------------------
@@ -57,6 +55,8 @@ Dones
 24. 数据备份和恢复 
 25. 测试标题提取使用Lassie(多国语言)
 26. 融合[Scrapely](https://github.com/scrapy/scrapely)到转码器中
+27. data_processor代码整理、重构
+28. 整理转码器图片提取模块 [link](http://jackdschultz.com/index.php/2013/09/13/validating-url-as-an-image-in-python/)
 
 ToDos - Generated from docs
 --------------------------

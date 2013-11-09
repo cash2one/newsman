@@ -50,7 +50,7 @@ def _check_image(image):
             image_url = image['url']
             if _is_valid_image(image_url):
                 width, height = get_image_size(image_url)
-                return {'url':image['url'], 'width':width, 'height':height}
+                return {'url': image['url'], 'width': width, 'height': height}
         else:
             if _is_valid_image(image):
                 width, height = get_image_size(image)
@@ -131,7 +131,8 @@ def find_image(link=None):
             image_normalized = normalize(link_clean)
             return image_normalized[0] if image_normalized else None
         else:
-            logger.info('Cannot parse [clean %s] [orginal %s] correctly' % (link_clean, link))
+            logger.info(
+                'Cannot parse [clean %s] [orginal %s] correctly' % (link_clean, link))
             return None
     except Exception as k:
         logger.error(str(k))
