@@ -18,7 +18,6 @@ from BeautifulSoup import BeautifulSoup, NavigableString, Tag
 from config.settings import hparser
 from config.settings import logger
 import image_helper
-import thumbnail
 import urllib2
 
 # CONSTANTS
@@ -55,7 +54,7 @@ def _sanitize(content):
             if img_source:
                 img_tuple = img_source.rpartition('src=')
                 img['src'] = img_tuple[2]
-                width, height = thumbnail.get_image_size(img['src'])
+                width, height = image_helper.get_image_size(img['src'])
                 if width >= 480:
                     img['width'] = '100%'
                     img['height'] = 'auto'
