@@ -22,7 +22,6 @@ import httplib
 import Image
 import os
 import re
-import thumbnail
 import urllib2
 import urlparse
 
@@ -50,12 +49,12 @@ def _check_image(image):
         if isinstance(image, dict) and 'url' in image:
             image_url = image['url']
             if _is_valid_image(image_url):
-                width, height = thumbnail.get_image_size(image_url)
+                width, height = get_image_size(image_url)
                 image = {'url':image['url'], 'width':width, 'height':height}
                 return image
         else:
             if _is_valid_image(image):
-                width, height = thumbnail.get_image_size(image)
+                width, height = get_image_size(image)
                 if width and height:
                     return {'url': image, 'width': width, 'height': height}
                 else:
@@ -188,6 +187,35 @@ def _is_valid_image(image_url):
     except Exception as k:
         logger.error('%s' % str(k))
         return False
+
+
+def get_image_size(image_url):
+    """
+    docs needed
+    """
+    if not image_url:
+        logger.error('Method malformed!')
+        return None, None
+
+    try:
+        image_web = None
+        if isinstance(image_url, str) or isinstance(image_url, unicode):
+            logger.info('opening %s' % image_url)
+            image_web = StringIO(
+                urllib2.urlopen(image_url, timeout=UCK_TIMEOUT).read())
+        else:
+            logger.info('image_url is data')
+            image_web = image_url
+
+        if image_web:
+            im = Image.open(image_web)
+            width, height = im.size
+            return width, height
+        else:
+            return None, None
+    except Exception as k:
+        logger.info('Problem:[%s] Source:[%s]' % (str(k), image_url))
+        return None, None
 
 
 def _link_process(link):
