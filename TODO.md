@@ -1,31 +1,29 @@
 ToDos - High Priority
 ----------------------
-1. URL处理换成gruns/furl
-2. 去掉html内容的代码换成那个bs4
-3. 参照谷歌编码风格
+1. 新闻摘要
+2. 集成CDN
+3. 根据热门关键字搜索图片 [link1](http://jackdschultz.com/index.php/2013/09/19/useful-named-entity-recognition/) [link2](https://gist.github.com/shlomibabluki/6333174)
+4. 参照谷歌编码风格
     [中文](http://zh-google-styleguide.readthedocs.org/en/latest/google-python-styleguide/)
     [EN](http://google-styleguide.googlecode.com/svn/trunk/pyguide.html)
     [link](http://azd325.github.io/blog/2013/08/18/python-strip-tags/)
-4. 采用nose/coverage进行测试
-5. 集成CDN
-6. 新闻摘要
-7. 根据热门关键字搜索图片 [link1](http://jackdschultz.com/index.php/2013/09/19/useful-named-entity-recognition/) [link2](https://gist.github.com/shlomibabluki/6333174)
-8. 修改README
+5. 采用nose/coverage进行测试
+6. 热点新闻提取
+7. 新闻去重
+8. 社交账户好友信息抓取
+9. 抓取Instagram/Flickr内容
+10. 详情页增加夜间、字体大小、分享等代码
+11. 修改README
 
 ToDos - Low Priority
 ---------------------
-1. 抓取Instagram/Flickr内容
-2. 图片判断是否是男人
-3. 判断图片是否是黄图
-4. 社交账户好友信息抓取
-5. 热点新闻提取
-6. 新闻去重
-7. 类别类似新闻
-8. Bugu用户账户代码转移
-9. Minerva代码转移
-10. 详情页增加夜间、字体大小、分享等代码
-11. Feed管理平台
-12. qrconverter类似脚本使用docopt/docopt
+1. 图片判断是否是男人
+2. 判断图片是否是黄图
+3. 类别类似新闻
+4. Bugu用户账户代码转移
+5. Minerva代码转移
+6. Feed管理平台
+7. qrconverter类似脚本使用docopt/docopt
 
 Dones
 ------
@@ -57,6 +55,8 @@ Dones
 26. 融合[Scrapely](https://github.com/scrapy/scrapely)到转码器中
 27. data_processor代码整理、重构
 28. 整理转码器图片提取模块 [link](http://jackdschultz.com/index.php/2013/09/13/validating-url-as-an-image-in-python/)
+29. URL处理换成gruns/furl
+30. 去掉html内容的代码换成那个bs4
 
 ToDos - Generated from docs
 --------------------------
