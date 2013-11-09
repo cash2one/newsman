@@ -18,6 +18,7 @@ from BeautifulSoup import BeautifulSoup
 from config.settings import hparser
 from config.settings import logger
 from cStringIO import StringIO
+import httplib
 import Image
 import os
 import re
@@ -37,47 +38,61 @@ if not os.path.exists(IMAGES_LOCAL_DIR):
     os.mkdir(IMAGES_LOCAL_DIR)
 
 
-def _link_process(link):
+def _check_image(image):
     """
-    get rid of cdn prefix
+    check an image if it matches with MIN_IMAGE_SIZE
     """
-    if not link:
+    if not image:
+        logger.error('Method malformed!')
         return None
 
     try:
-        link = link.replace("\/", "/").strip()
-        image_url_complex = urllib2.unquote(hparser.unescape(link))
-
-        if image_url_complex:
-            # as the name could be http://xxx.com/yyy--http://zzz.jpg
-            # or http://xxx.com/yyy--https://zzz.jpg
-            last_http_index = image_url_complex.rfind('http')
-            image_url = image_url_complex[last_http_index:]
-
-            # response is the signal of a valid image
-            response = None
-            try:
-                response = urllib2.urlopen(image_url, timeout=UCK_TIMEOUT)
-            except urllib2.URLError:
-                path = re.split('https?://?', image_url)[-1]
-                scheme = urlparse.urlparse(image_url).scheme
-                image_url = '%s://%s' % (scheme, path)
-                response = urllib2.urlopen(image_url, timeout=UCK_TIMEOUT)
-            except urllib2.HTTPError as k:
-                logger.info('%s for %s' % (str(k), image_url))
-                return None
-            except Exception as k:
-                logger.info('%s for %s' % (str(k), image_url))
-                return None
-
-            if response:
-                return image_url
-            else:
-                return None
+        if isinstance(image, dict) and 'url' in image:
+            image_url = image['url']
+            if _is_valid_image(image_url):
+                width, height = thumbnail.get_image_size(image_url)
+                image = {'url':image['url'], 'width':width, 'height':height}
+                return image
         else:
-            return None
+            if _is_valid_image(image):
+                width, height = thumbnail.get_image_size(image)
+                if width and height:
+                    return {'url': image, 'width': width, 'height': height}
+                else:
+                    logger.info('Cannot get image size')
+                    return None
+        return None
+    except IOError as k:
+        logger.error(str(k))
+        return None
+
+
+def dedupe_images(images):
+    """
+    remove same images
+    image: {'url':xxx, 'width':yyy, 'height':zzz}
+    images = [image, image, image]
+    """
+    if not images:
+        return None
+
+    image_urls = []
+
+    def _exists(image):
+        """
+        return boolean if image exists in list image_urls
+        """
+        exists = image['url'] in image_urls
+        if not exists:
+            image_urls.append(image['url'])
+            return False
+        else:
+            return True
+
+    try:
+        return filter(lambda x: not _exists(x), images)
     except Exception as k:
-        logger.info('Problem:[%s] Source:[%s]' % (str(k), link))
+        logger.error(str(k))
         return None
 
 
@@ -155,32 +170,107 @@ def find_biggest_image(images=None):
         return None
 
 
-def dedupe_images(images):
+def _is_valid_image(image_url):
     """
-    remove same images
-    image: {'url':xxx, 'width':yyy, 'height':zzz}
-    images = [image, image, image]
+    find out if the image has a resolution larger than MIN_IMAGE_SIZE
     """
-    if not images:
+    if not image_url:
+        logger.error('Method malformed! URL [%s] is incorrect' % image_url)
+        return False
+
+    # check if image could be downloaded
+    image_downloaded = None
+    try:
+        try:
+            image_downloaded = urllib2.urlopen(image_url, timeout=UCK_TIMEOUT).read()
+        except Exception:
+            logger.info('%s cannot be downloaded' % image_url)
+            return False
+
+        if image_downloaded:
+            # possible exception raiser
+            try:
+                image_pil = Image.open(StringIO(image_downloaded))
+            except Exception as k:
+                logger.info(str(k))
+                return False
+
+            # to avoid line length limit
+            if image_pil.size[0] * image_pil.size[1] > MIN_IMAGE_SIZE[0] * MIN_IMAGE_SIZE[1]:
+                return True
+            else:
+                return False
+        else:
+            logger.info('Nothing obtained from %s' % image_url)
+            return False
+    except Exception as k:
+        logger.error('%s' % str(k))
+        return False
+
+
+def _link_process(link):
+    """
+    get rid of cdn prefix
+    """
+    if not link:
         return None
 
-    image_urls = []
+    try:
+        link = link.replace("\/", "/").strip()
+        image_url_complex = urllib2.unquote(hparser.unescape(link))
 
-    def _exists(image):
-        """
-        return boolean if image exists in list image_urls
-        """
-        exists = image['url'] in image_urls
-        if not exists:
-            image_urls.append(image['url'])
-            return False
+        if image_url_complex:
+            # as the name could be http://xxx.com/yyy--http://zzz.jpg
+            # or http://xxx.com/yyy--https://zzz.jpg
+            last_http_index = image_url_complex.rfind('http')
+            image_url = image_url_complex[last_http_index:]
+
+            # response is the signal of a valid image
+            response = None
+            try:
+                response = urllib2.urlopen(image_url, timeout=UCK_TIMEOUT)
+            except urllib2.URLError:
+                path = re.split('https?://?', image_url)[-1]
+                scheme = urlparse.urlparse(image_url).scheme
+                image_url = '%s://%s' % (scheme, path)
+                response = urllib2.urlopen(image_url, timeout=UCK_TIMEOUT)
+            except urllib2.HTTPError as k:
+                logger.info('%s for %s' % (str(k), image_url))
+                return None
+            except Exception as k:
+                logger.info('%s for %s' % (str(k), image_url))
+                return None
+
+            if response:
+                return image_url
+            else:
+                return None
         else:
-            return True
+            return None
+    except Exception as k:
+        logger.info('Problem:[%s] Source:[%s]' % (str(k), link))
+        return None
+
+
+def normalize(images):
+    """
+    for list of images, remove images that don't match with MIN_IMAGE_SIZE;
+    for an image, return None if it doesn't matches with MIN_IMAGE_SIZE
+    """
 
     try:
-        return filter(lambda x: not _exists(x), images)
+        if isinstance(images, str) or isinstance(images, unicode):
+            image = _check_image(images)
+            return [image] if image else None
+        elif isinstance(images, list):
+            images_new = []
+            for image in images:
+                image_new = _check_image(image)
+                if image_new:
+                    images_new.append(image_new)
+            return images_new if images_new else None
     except Exception as k:
-        logger.error(str(k))
+        logger.exception(str(k))
         return None
 
 
@@ -253,51 +343,22 @@ def scale_image(image=None, size_expected=MIN_IMAGE_SIZE,
         return None, None
 
 
-def normalize(images):
+def _url_image_exists(url):
     """
-    for list of images, remove images that don't match with MIN_IMAGE_SIZE;
-    for an image, return None if it doesn't matches with MIN_IMAGE_SIZE
+    Code copied from
+    http://jackdschultz.com/index.php/2013/09/13/validating-url-as-an-image-in-python/
+    Check if the image exists
     """
+    if not url:
+        logger.error('Method malformed!')
+        return False
 
-    def _check_image(image):
-        """
-        check an image if it matches with MIN_IMAGE_SIZE
-        """
-        if not image:
-            logger.error('Method malformed!')
-            return None
-
-        try:
-            if isinstance(image, dict) and 'url' in image:
-                image_url = image['url']
-                if thumbnail.is_valid_image(image_url):
-                    width, height = thumbnail.get_image_size(image_url)
-                    image = {'url':image['url'], 'width':width, 'height':height}
-                    return image
-            else:
-                if thumbnail.is_valid_image(image):
-                    width, height = thumbnail.get_image_size(image)
-                    if width and height:
-                        return {'url': image, 'width': width, 'height': height}
-                    else:
-                        logger.info('Cannot get image size')
-                        return None
-            return None
-        except IOError as k:
-            logger.error(str(k))
-            return None
-
-    try:
-        if isinstance(images, str) or isinstance(images, unicode):
-            image = _check_image(images)
-            return [image] if image else None
-        elif isinstance(images, list):
-            images_new = []
-            for image in images:
-                image_new = _check_image(image)
-                if image_new:
-                    images_new.append(image_new)
-            return images_new if images_new else None
-    except Exception as k:
-        logger.exception(str(k))
-        return None
+    parse_obj = urlparse.urlparse(url)
+    site = parse_obj.netloc
+    path = parse_obj.path
+    conn = httplib.HTTPConnection(site)
+    conn.request('HEAD', path)
+    response = conn.getresponse()
+    conn.close()
+    ctype = response.getheader('Content-Type')
+    return response.status < 400 and ctype.startswith('image')
