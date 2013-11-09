@@ -21,8 +21,6 @@ import urllib2
 
 # CONSTANTS
 from config.settings import MIN_IMAGE_SIZE
-from config.settings import IMAGES_LOCAL_DIR
-from config.settings import IMAGES_PUBLIC_DIR
 from config.settings import UCK_TIMEOUT
 
 
