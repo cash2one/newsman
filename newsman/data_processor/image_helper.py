@@ -169,24 +169,38 @@ def find_biggest_image(images=None):
         return None
 
 
-def _is_valid_image(image_url):
+# TODO: relative path could be a url including its suffix like jpg/png
+def generate_thumbnail(image_url, relative_path):
     """
-    find out if the image has a resolution larger than MIN_IMAGE_SIZE
+    generate a thumbnail
     """
-    if not image_url:
-        logger.error('Method malformed! URL [%s] is incorrect' % image_url)
-        return False
+    if not image_url or not relative_path:
+        logger.error('Method malformed!')
+        return None
 
     try:
-        if _url_image_exists(image_url)
-            # to avoid line length limit
-            return True if image_pil.size[0] * image_pil.size[1] > MIN_IMAGE_SIZE[0] * MIN_IMAGE_SIZE[1] else False
+        # possible exception raiser
+        image_pil = Image.open(
+            StringIO(urllib2.urlopen(image_url, timeout=UCK_TIMEOUT).read()))
+
+        # generate thumbnail
+        if image_pil.size > MIN_IMAGE_SIZE:
+            # get various paths
+            image_thumbnail_local_path = '%s%si.jpg' % (
+                IMAGES_LOCAL_DIR, relative_path)
+            image_thumbnail_web_path = '%s%s.jpg' % (
+                IMAGES_PUBLIC_DIR, relative_path)
+
+            # thumbnailing
+            image_pil.thumbnail(MIN_IMAGE_SIZE, Image.ANTIALIAS)
+            image_pil = image_pil.convert('RGB')
+            image_pil.save(image_thumbnail_local_path, 'JPEG')
+            return image_thumbnail_web_path
         else:
-            logger.info('%s is not an image' % image_url)
-            return False
+            return image_url
     except Exception as k:
-        logger.error('%s' % str(k))
-        return False
+        logger.info('Problem:[%s] Source:[%s]' % (str(k), image_url))
+        return None
 
 
 def get_image_size(image_url):
@@ -216,6 +230,26 @@ def get_image_size(image_url):
     except Exception as k:
         logger.info('Problem:[%s] Source:[%s]' % (str(k), image_url))
         return None, None
+
+
+def _is_valid_image(image_url):
+    """
+    find out if the image has a resolution larger than MIN_IMAGE_SIZE
+    """
+    if not image_url:
+        logger.error('Method malformed! URL [%s] is incorrect' % image_url)
+        return False
+
+    try:
+        if _url_image_exists(image_url)
+            # to avoid line length limit
+            return True if image_pil.size[0] * image_pil.size[1] > MIN_IMAGE_SIZE[0] * MIN_IMAGE_SIZE[1] else False
+        else:
+            logger.info('%s is not an image' % image_url)
+            return False
+    except Exception as k:
+        logger.error('%s' % str(k))
+        return False
 
 
 def _link_process(link):
