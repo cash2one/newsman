@@ -61,30 +61,3 @@ def generate_thumbnail(image_url, relative_path):
         return None
 
 
-def get_image_size(image_url):
-    """
-    docs needed
-    """
-    if not image_url:
-        logger.error('Method malformed!')
-        return None, None
-
-    try:
-        image_web = None
-        if isinstance(image_url, str) or isinstance(image_url, unicode):
-            logger.info('opening %s' % image_url)
-            image_web = StringIO(
-                urllib2.urlopen(image_url, timeout=UCK_TIMEOUT).read())
-        else:
-            logger.info('image_url is data')
-            image_web = image_url
-
-        if image_web:
-            im = Image.open(image_web)
-            width, height = im.size
-            return width, height
-        else:
-            return None, None
-    except Exception as k:
-        logger.info('Problem:[%s] Source:[%s]' % (str(k), image_url))
-        return None, None
