@@ -50,8 +50,7 @@ def _check_image(image):
             image_url = image['url']
             if _is_valid_image(image_url):
                 width, height = get_image_size(image_url)
-                image = {'url':image['url'], 'width':width, 'height':height}
-                return image
+                return {'url':image['url'], 'width':width, 'height':height}
         else:
             if _is_valid_image(image):
                 width, height = get_image_size(image)
@@ -90,6 +89,30 @@ def dedupe_images(images):
 
     try:
         return filter(lambda x: not _exists(x), images)
+    except Exception as k:
+        logger.error(str(k))
+        return None
+
+
+def find_biggest_image(images=None):
+    """
+    find the biggest in resolution from a pile of images
+    """
+    if not images:
+        return None
+
+    try:
+        biggest = None
+        for image in images:
+            resolution_max = MIN_IMAGE_SIZE[0] * MIN_IMAGE_SIZE[1]
+            if 'width' in image and 'height' in image:
+                resolution_image = int(image['width']) * int(image['height'])
+                if resolution_image > resolution_max:
+                    biggest = image
+                    resolution_max = resolution_image
+            else:
+                logger.error('Image malformed! %s' % str(image))
+        return biggest
     except Exception as k:
         logger.error(str(k))
         return None
@@ -140,30 +163,6 @@ def find_images(content=None):
                     images_normalized.append(image_normalized)
 
         return images_normalized
-    except Exception as k:
-        logger.error(str(k))
-        return None
-
-
-def find_biggest_image(images=None):
-    """
-    find the biggest in resolution from a pile of images
-    """
-    if not images:
-        return None
-
-    try:
-        biggest = None
-        for image in images:
-            resolution_max = MIN_IMAGE_SIZE[0] * MIN_IMAGE_SIZE[1]
-            if 'width' in image and 'height' in image:
-                resolution_image = int(image['width']) * int(image['height'])
-                if resolution_image > resolution_max:
-                    biggest = image
-                    resolution_max = resolution_image
-            else:
-                logger.error('Image malformed! %s' % str(image))
-        return biggest
     except Exception as k:
         logger.error(str(k))
         return None
@@ -301,18 +300,18 @@ def normalize(images):
     for list of images, remove images that don't match with MIN_IMAGE_SIZE;
     for an image, return None if it doesn't matches with MIN_IMAGE_SIZE
     """
-
     try:
-        if isinstance(images, str) or isinstance(images, unicode):
-            image = _check_image(images)
-            return [image] if image else None
-        elif isinstance(images, list):
+        if isinstance(images, list):
             images_new = []
             for image in images:
                 image_new = _check_image(image)
                 if image_new:
                     images_new.append(image_new)
             return images_new if images_new else None
+        elif isinstance(images, str) or isinstance(images, unicode):
+            image = _check_image(images)
+            return [image] if image else None
+        return None
     except Exception as k:
         logger.exception(str(k))
         return None
