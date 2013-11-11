@@ -241,7 +241,7 @@ def _is_valid_image(image_url):
         return False
 
     try:
-        if _url_image_exists(image_url)
+        if _url_image_exists(image_url):
             # to avoid line length limit
             return True if image_pil.size[0] * image_pil.size[1] > MIN_IMAGE_SIZE[0] * MIN_IMAGE_SIZE[1] else False
         else:
