@@ -47,6 +47,10 @@ LOCAL = '/home/users/jinyuan/%s'                            # official server pr
 #LOCAL = '/home/ubuntu/%s'                          # AWS server prefix
 #LOCAL = '/home/jinyuan/Downloads/%s'               # local server prefix
 
+# Logo folder
+LOGO_PUBLIC_PREFIX = 'http://220.181.163.36:8080/logos/'
+#LOGO_PUBLIC_PREFIX = 'http://mobile-global.baidu.com/logos/'
+
 # code base folder for updating
 CODE_BASE = LOCAL % 'newsman'
 
@@ -79,7 +83,6 @@ NEWS_TEMPLATE_ARABIC = LOCAL % 'STATIC/news/templates/index_arabic.html'
 # uck transcoding web service url
 UCK_TRANSCODING = 'http://gate.baidu.com/tc?m=8&from=bdpc_browser&src='
 UCK_TRANSCODING_NEW = 'http://m.baidu.com/openapp?/webapp?debug=1&from=bd_international&onlyspdebug=1&structpage&siteType=7&nextpage=1&siteappid=1071361&src='
-LOGO_PUBLIC_PREFIX = 'http://mobile-global.baidu.com/logos/'
 
 # meta info for a new page
 TRANSCODED_ENCODING = '<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>\n'
