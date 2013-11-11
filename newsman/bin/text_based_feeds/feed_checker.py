@@ -19,9 +19,10 @@ from config.settings import db
 
 # CONSTANTS
 from config.settings import FEED_REGISTRAR
+FILE_PREFIX = '/home/users/jinyuan/newsman/newsman/bin/text_based_feeds/feed_lists/'
 #FILE_PREFIX = '/home/work/newsman/newsman/bin/text_based_feeds/feed_lists/'
 #FILE_PREFIX = '/home/ubuntu/newsman/newsman/bin/text_based_feeds/feed_lists/'
-FILE_PREFIX = '/home/jinyuan/Downloads/newsman/newsman/bin/text_based_feeds/feed_lists/'
+#FILE_PREFIX = '/home/jinyuan/Downloads/newsman/newsman/bin/text_based_feeds/feed_lists/'
 
 
 def _parse_task(line):
