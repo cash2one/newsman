@@ -21,8 +21,8 @@ en*|*News*|*readability*|*http://feeds.washingtonpost.com/rss/world*|*Washington
 en*|*News*|*readability*|*http://feeds.foxnews.com/foxnews/national*|*Fox News National*|*http://mobile-global.baidu.com/logos/en_US/foxnews.png
 en*|*News*|*readability*|*http://feeds.foxnews.com/foxnews/world*|*Fox News World*|*http://mobile-global.baidu.com/logos/en_US/foxnews.png
 en*|*News*|*readability*|*http://www.dailymail.co.uk/news/index.rss*|*Daily Mail News*|*http://mobile-global.baidu.com/logos/en_US/dailymail.png
-en*|*News*|*chengdujin*|*https://medium.com/feed/editors-picks*|*Medium Editor's Picks*|*http://mobile-global.baidu.com/logos/en_US/default_icon.png
-en*|*News*|*chengdujin*|*https://medium.com/feed/i-m-h-o*|*Medium I.M.H.O*|*http://mobile-global.baidu.com/logos/en_US/default_icon.png
+en*|*News*|*chengdujin*|*https://medium.com/feed/editors-picks*|*Medium Editor's Picks*|*http://mobile-global.baidu.com/logos/en_US/medium.png
+en*|*News*|*chengdujin*|*https://medium.com/feed/i-m-h-o*|*Medium I.M.H.O*|*http://mobile-global.baidu.com/logos/en_US/medium.png
 en*|*Business*|*readability*|*http://feeds.reuters.com/reuters/businessNews*|*Reuters Business*|*http://mobile-global.baidu.com/logos/en_US/reuters.png*|*Business Headlines
 en*|*Business*|*readability*|*http://www.forbes.com/business/feed2/*|*Forbes Business*|*http://mobile-global.baidu.com/logos/en_US/forbes.png
 en*|*Business*|*readability*|*http://news.yahoo.com/rss/business*|*Yahoo! Business*|*http://mobile-global.baidu.com/logos/en_US/yahoo.png
@@ -44,10 +44,10 @@ en*|*Technology*|*readability*|*http://feeds.popsci.com/c/34567/f/632419/index.r
 en*|*Technology*|*readability*|*http://feeds.feedburner.com/TechCrunch/*|*TechCrunch*|*http://mobile-global.baidu.com/logos/en_US/crunch.png*|*Technology Headlines
 en*|*Technology*|*chengdujin*|*http://feeds.feedburner.com/Mobilecrunch*|*TechCrunch Mobile*|*http://mobile-global.baidu.com/logos/en_US/crunch.png
 en*|*Technology*|*chengdujin*|*http://feeds.foxnews.com/foxnews/tech*|*Fox News Technology*|*http://mobile-global.baidu.com/logos/en_US/foxnews.png
-en*|*Technology*|*chengdujin*|*https://medium.com/feed/tech-talk*|*Medium Tech Talks*|*http://mobile-global.baidu.com/logos/en_US/default_icon.png
-en*|*Technology*|*chengdujin*|*https://medium.com/feed/mobile-culture*|*Medium Mobile Culture*|*http://mobile-global.baidu.com/logos/en_US/default_icon.png
-en*|*Technology*|*chengdujin*|*https://medium.com/feed/geek-empire*|*Medium Geek Empire*|*http://mobile-global.baidu.com/logos/en_US/default_icon.png
-en*|*Technology*|*chengdujin*|*https://medium.com/feed/i-3-video-games*|*Medium I <3 Video Games*|*http://mobile-global.baidu.com/logos/en_US/default_icon.png
+en*|*Technology*|*chengdujin*|*https://medium.com/feed/tech-talk*|*Medium Tech Talks*|*http://mobile-global.baidu.com/logos/en_US/medium.png
+en*|*Technology*|*chengdujin*|*https://medium.com/feed/mobile-culture*|*Medium Mobile Culture*|*http://mobile-global.baidu.com/logos/en_US/medium.png
+en*|*Technology*|*chengdujin*|*https://medium.com/feed/geek-empire*|*Medium Geek Empire*|*http://mobile-global.baidu.com/logos/en_US/medium.png
+en*|*Technology*|*chengdujin*|*https://medium.com/feed/i-3-video-games*|*Medium I <3 Video Games*|*http://mobile-global.baidu.com/logos/en_US/medium.png
 en*|*Fashion*|*readability*|*http://news.yahoo.com/rss/fashion*|*Yahoo! Fashion*|*http://mobile-global.baidu.com/logos/en_US/yahoo.png*|*Fashion Headlines
 en*|*Fashion*|*readability*|*http://www.dailymail.co.uk/femail/index.rss*|*Daily Mail Femail*|*http://mobile-global.baidu.com/logos/en_US/dailymail.png
 en*|*Fashion*|*readability*|*http://feeds.feedburner.com/cyanatrendland*|*Trendland Fashion*|*http://mobile-global.baidu.com/logos/en_US/trendland.png
@@ -92,7 +92,7 @@ en*|*Sports*|*readability*|*http://rssfeeds.usatoday.com/UsatodayTennis-TopStori
 en*|*Sports*|*readability*|*http://rssfeeds.usatoday.com/UsatodaycomNba-TopStories*|*USA Today NBA*|*http://mobile-global.baidu.com/logos/en_US/usatoday.png
 en*|*Sports*|*readability*|*http://rssfeeds.usatoday.com/UsatodaycomSoccer-TopStories*|*USA Today Soccer*|*http://mobile-global.baidu.com/logos/en_US/usatoday.png
 en*|*Sports*|*readability*|*http://www.dailymail.co.uk/sport/index.rss*|*Daily Mail Sports*|*http://mobile-global.baidu.com/logos/en_US/dailymail.png
-en*|*Sports*|*chengdujin*|*https://medium.com/feed/sports-page*|*Medium Sports Page*|*http://mobile-global.baidu.com/logos/en_US/default_icon.png
+en*|*Sports*|*chengdujin*|*https://medium.com/feed/sports-page*|*Medium Sports Page*|*http://mobile-global.baidu.com/logos/en_US/medium.png
 en*|*Lifestyle*|*readability*|*http://feeds.foxnews.com/foxnews/health*|*Fox News Health*|*http://mobile-global.baidu.com/logos/en_US/foxnews.png
 en*|*Lifestyle*|*readability*|*http://feeds.reuters.com/reuters/lifestyle*|*Reuters Lifestyle*|*http://mobile-global.baidu.com/logos/en_US/reuters.png
 en*|*Lifestyle*|*readability*|*http://rss.cnn.com/rss/cnn_travel.rss*|*CNN Travel*|*http://mobile-global.baidu.com/logos/en_US/cnn.png
@@ -110,10 +110,10 @@ en*|*Lifestyle*|*readability*|*http://feeds.denverpost.com/dp-travel*|*Denver Po
 en*|*Lifestyle*|*readability*|*http://feeds.washingtonpost.com/rss/lifestyle*|*Washington Post Lifestyle*|*http://mobile-global.baidu.com/logos/en_US/washingtonpost.png
 en*|*Lifestyle*|*readability*|*http://feeds.foxnews.com/foxnews/internal/travel/mixed*|*Fox News Travel*|*http://mobile-global.baidu.com/logos/en_US/foxnews.png
 en*|*Lifestyle*|*readability*|*http://www.dailymail.co.uk/health/index.rss*|*Daily Mail Health*|*http://mobile-global.baidu.com/logos/en_US/dailymail.png
-en*|*Lifestyle*|*chengdujin*|*https://medium.com/feed/changing-city*|*Medium Changing City*|*http://mobile-global.baidu.com/logos/en_US/default_icon.png
-en*|*Lifestyle*|*chengdujin*|*https://medium.com/feed/click-the-shutter*|*Medium Click the Shutter*|*http://mobile-global.baidu.com/logos/en_US/default_icon.png
-en*|*Lifestyle*|*chengdujin*|*https://medium.com/feed/the-ingredients-2*|*Medium For the Love of Food*|*http://mobile-global.baidu.com/logos/en_US/default_icon.png
-en*|*Lifestyle*|*chengdujin*|*https://medium.com/feed/freelancers-life*|*Medium Freelance Life*|*http://mobile-global.baidu.com/logos/en_US/default_icon.png
-en*|*Lifestyle*|*chengdujin*|*https://medium.com/feed/life-hacks*|*Medium Life Hacks*|*http://mobile-global.baidu.com/logos/en_US/default_icon.png
-en*|*Lifestyle*|*chengdujin*|*https://medium.com/feed/pop-of-culture*|*Medium Pop of Culture*|*http://mobile-global.baidu.com/logos/en_US/default_icon.png
-en*|*Lifestyle*|*chengdujin*|*https://medium.com/feed/world-of-music*|*Medium World of Music*|*http://mobile-global.baidu.com/logos/en_US/default_icon.png
+en*|*Lifestyle*|*chengdujin*|*https://medium.com/feed/changing-city*|*Medium Changing City*|*http://mobile-global.baidu.com/logos/en_US/medium.png
+en*|*Lifestyle*|*chengdujin*|*https://medium.com/feed/click-the-shutter*|*Medium Click the Shutter*|*http://mobile-global.baidu.com/logos/en_US/medium.png
+en*|*Lifestyle*|*chengdujin*|*https://medium.com/feed/the-ingredients-2*|*Medium For the Love of Food*|*http://mobile-global.baidu.com/logos/en_US/medium.png
+en*|*Lifestyle*|*chengdujin*|*https://medium.com/feed/freelancers-life*|*Medium Freelance Life*|*http://mobile-global.baidu.com/logos/en_US/medium.png
+en*|*Lifestyle*|*chengdujin*|*https://medium.com/feed/life-hacks*|*Medium Life Hacks*|*http://mobile-global.baidu.com/logos/en_US/medium.png
+en*|*Lifestyle*|*chengdujin*|*https://medium.com/feed/pop-of-culture*|*Medium Pop of Culture*|*http://mobile-global.baidu.com/logos/en_US/medium.png
+en*|*Lifestyle*|*chengdujin*|*https://medium.com/feed/world-of-music*|*Medium World of Music*|*http://mobile-global.baidu.com/logos/en_US/medium.png
