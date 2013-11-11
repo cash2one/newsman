@@ -36,12 +36,14 @@ hparser = HTMLParser()
 
 
 # CONSTANTS
-PUBLIC = 'http://mobile-global.baidu.com/news/%s'  # hk01-hao123-mob01/mob02
+PUBLIC = 'http://220.181.163.36:8080/news/%s'      # cq01-rdqa-dev067.cq01
+#PUBLIC = 'http://mobile-global.baidu.com/news/%s'  # hk01-hao123-mob01/mob02
 #PUBLIC = 'http://180.76.2.34/%s'                   # hk01-hao123-mob00
 #PUBLIC = 'http://54.251.107.116/%s'                # AWS singapore
 #PUBLIC = 'http://54.232.81.44/%s'                  # AWS sao paolo
 #PUBLIC = 'http://54.248.227.71/%s'                 # AWS tokyo
-LOCAL = '/home/work/%s'                            # official server prefix
+LOCAL = '/home/users/jinyuan/%s'                            # official server prefix
+#LOCAL = '/home/work/%s'                            # official server prefix
 #LOCAL = '/home/ubuntu/%s'                          # AWS server prefix
 #LOCAL = '/home/jinyuan/Downloads/%s'               # local server prefix
 
@@ -103,7 +105,6 @@ HOTNEWS_TITLE_ZH = '头条'
 # expirations 
 DATABASE_REMOVAL_DAYS = 365
 FEED_UPDATE_DAYS = 2
-MEMORY_RESTORATION_DAYS = 20
 MEMORY_EXPIRATION_DAYS = 20
 
 # database names for feeds
