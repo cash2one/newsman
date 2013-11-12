@@ -75,9 +75,9 @@ def get_portal(language=None, country=None, categories=None):
     # special formatting for android-end
     output = []
     for k, v in portal_data.iteritems():
-        if k and v:
+        if i, k and enumerate(v):
             category, feed = k.split('*|*')
-            output.append({'Category':category, 'Feed':feed, 'Images':v})
+            output.append({'Category':category, 'Feed':feed, 'Images':v, 'order':i})
     return {'Categories': output}
 
 
