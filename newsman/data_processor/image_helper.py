@@ -250,7 +250,7 @@ def _is_valid_image(image_url):
             logger.info('%s is not an image' % image_url)
             return False
     except Exception as k:
-        logger.error('%s' % str(k))
+        logger.error('%s [%s]' % (image_url, str(k)))
         return False
 
 
