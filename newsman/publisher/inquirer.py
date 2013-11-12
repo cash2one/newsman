@@ -37,7 +37,7 @@ from settings import LANGUAGES
 from settings import LOGO_PUBLIC_PREFIX
 
 HOTNEWS_TITLE = {'en': HOTNEWS_TITLE_EN, 'ja': HOTNEWS_TITLE_JA, 'th': HOTNEWS_TITLE_TH, 'pt': HOTNEWS_TITLE_PT, 'in':
-                  HOTNEWS_TITLE_IN, 'ar': HOTNEWS_TITLE_AR, 'zh': HOTNEWS_TITLE_ZH}
+                 HOTNEWS_TITLE_IN, 'ar': HOTNEWS_TITLE_AR, 'zh': HOTNEWS_TITLE_ZH}
 
 
 def get_portal(language=None, country=None, categories=None):
@@ -60,13 +60,15 @@ def get_portal(language=None, country=None, categories=None):
     for user_subscription in categories:
         user_subscription = user_subscription.replace('+', ' ')
         category, feed = user_subscription.split('*|*')
-        entries = get_latest_entries(language=language, country=country, category=category, feed=feed, limit=search_limit)
+        entries = get_latest_entries(
+            language=language, country=country, category=category, feed=feed, limit=search_limit)
         # 'category A': [{'title':'xxx', 'image':'http://yyy.com/zzz.jpg'}]
         # image: category_image
         portal_data[user_subscription] = []
         for entry in entries:
             if 'category_image' in entry and entry['category_image'] and entry['category_image'] != 'None' and entry['category_image'] != 'null':
-                item = {'title': entry['title'], 'image': entry['category_image'], 'updated': entry['updated']}
+                item = {'title': entry['title'], 'image': entry[
+                    'category_image'], 'updated': entry['updated']}
                 portal_data[user_subscription].append(item)
                 # limit the number of category_image to
                 if len(portal_data[user_subscription]) == images_limit:
@@ -77,7 +79,8 @@ def get_portal(language=None, country=None, categories=None):
     for k, v in portal_data.iteritems():
         if i, k and enumerate(v):
             category, feed = k.split('*|*')
-            output.append({'Category':category, 'Feed':feed, 'Images':v, 'order':i})
+            output.append(
+                {'Category': category, 'Feed': feed, 'Images': v, 'order': i})
     return {'Categories': output}
 
 
@@ -94,7 +97,7 @@ def get_categories(language=None, country=None, version=None):
         return None
 
     col = Collection(db, FEED_REGISTRAR)
-    items = col.find({'countries':country})
+    items = col.find({'countries': country})
     if items:
         categories = {}
         for item in items:
@@ -105,7 +108,8 @@ def get_categories(language=None, country=None, version=None):
                     if category_name not in categories:
                         categories[category_name] = []
 
-                    feed_format = {'order':len(categories[category_name]), 'text':item['feed_title'], 'image':item['feed_logo']}
+                    feed_format = {'order': len(categories[category_name]), 'text': item[
+                        'feed_title'], 'image': item['feed_logo']}
                     if feed_format not in categories[category_name]:
                         categories[category_name].append(feed_format)
 
@@ -113,27 +117,31 @@ def get_categories(language=None, country=None, version=None):
                 # add label to the category dictionary
                 for label in item['labels']:
                     if label.startswith(country):
-                        label_split = label.replace('%s::' % country, "").split('::')
+                        label_split = label.replace(
+                            '%s::' % country, "").split('::')
                         category_name = label_split[0]
                         label_name = label_split[1]
                         if category_name not in categories:
                             categories[category_name] = []
 
                         label_name_shrinked = label_name.replace(' ', '')
-                        label_image = {'url':'%s%s_%s/%s.png' % (LOGO_PUBLIC_PREFIX, language, country, label_name_shrinked), 'width':71, 'height':60}
-                        label_format = {'order':len(categories[category_name]), 'text':label_name, 'image':label_image}
+                        label_image = {'url': '%s%s_%s/%s.png' % (
+                            LOGO_PUBLIC_PREFIX, language, country, label_name_shrinked), 'width': 71, 'height': 60}
+                        label_format = {
+                            'order': len(categories[category_name]), 'text': label_name, 'image': label_image}
                         if label_format not in categories[category_name]:
                             categories[category_name].append(label_format)
         # reformat
         output = []
         for k, v in categories.iteritems():
-            category_format = {'text':k}
-            output.append({'Category':category_format, 'Feeds':v})
-        version_latest = hashlib.md5(json.dumps(categories, sort_keys=True)).hexdigest()
+            category_format = {'text': k}
+            output.append({'Category': category_format, 'Feeds': v})
+        version_latest = hashlib.md5(
+            json.dumps(categories, sort_keys=True)).hexdigest()
 
         # compare versions
         if not version or version != version_latest:
-            return {'Categories':output, 'Version':version_latest}
+            return {'Categories': output, 'Version': version_latest}
         else:
             return None
     else:
@@ -192,7 +200,8 @@ def get_latest_entries(language=None, country=None, category=None, feed=None, li
                     else:
                         dirty_expired_ids.append(entry_id)
             else:  # memory + database
-                entry_ids = rclient.zrevrange(class_name, 0, entry_ids_total - 1)
+                entry_ids = rclient.zrevrange(
+                    class_name, 0, entry_ids_total - 1)
 
                 last_entry_in_memory = None
                 dirty_expired_ids = []
@@ -218,11 +227,15 @@ def get_latest_entries(language=None, country=None, category=None, feed=None, li
                 # query only one of its values
                 if label_name:
                     feeds = Collection(db, FEED_REGISTRAR)
-                    feed_lists = feeds.find({'labels':label_name}, {'feed_title':1})
-                    feed_names = [feed_list['feed_title'] for feed_list in feed_lists]
-                    items = col.find({'updated': {'$lt':last_entry_in_memory_updated}, 'feed':{'$in':feed_names}}).sort('updated', -1).limit(limit_in_database)
+                    feed_lists = feeds.find(
+                        {'labels': label_name}, {'feed_title': 1})
+                    feed_names = [feed_list['feed_title']
+                                  for feed_list in feed_lists]
+                    items = col.find({'updated': {'$lt': last_entry_in_memory_updated}, 'feed': {'$in': feed_names}}).sort(
+                        'updated', -1).limit(limit_in_database)
                 else:
-                    items = col.find({'updated': {'$lt':last_entry_in_memory_updated}, 'feed':feed}).sort('updated', -1).limit(limit_in_database)
+                    items = col.find({'updated': {'$lt': last_entry_in_memory_updated}, 'feed': feed}).sort(
+                        'updated', -1).limit(limit_in_database)
 
                 for item in items:
                     if start_id and str(item['_id']) == start_id:
@@ -245,18 +258,20 @@ def get_latest_entries(language=None, country=None, category=None, feed=None, li
 
             return entries
         else:
-            raise ConnectionError('Find nothing about %s in memory' % class_name)
-    except ConnectionError:  
+            raise ConnectionError(
+                'Find nothing about %s in memory' % class_name)
+    except ConnectionError:
         # query the database
         items = []
         col = Collection(db, language)
         if label_name:
             feeds = Collection(db, FEED_REGISTRAR)
-            feed_lists = feeds.find({'labels':label_name}, {'feed_title':1})
+            feed_lists = feeds.find({'labels': label_name}, {'feed_title': 1})
             feed_names = [feed_list['feed_title'] for feed_list in feed_lists]
-            items = col.find({'feed':{'$in':feed_names}}).sort('updated', -1).limit(limit)
+            items = col.find({'feed': {'$in': feed_names}}).sort(
+                'updated', -1).limit(limit)
         else:
-            items = col.find({'feed':feed}).sort('updated', -1).limit(limit)
+            items = col.find({'feed': feed}).sort('updated', -1).limit(limit)
 
         for item in items:
             if start_id and str(item['_id']) == start_id:
@@ -329,7 +344,8 @@ def get_previous_entries(language=None, country=None, category=None, feed=None, 
 
         if END_ID_IN_MEMORY:  # see if data in memory suffice
             if limit_in_memory >= limit:  # purely get from memory
-                entry_ids = rclient.zrevrange(class_name, entry_ids_total - end_id_index, entry_ids_total - end_id_index + limit - 1)
+                entry_ids = rclient.zrevrange(
+                    class_name, entry_ids_total - end_id_index, entry_ids_total - end_id_index + limit - 1)
 
                 dirty_expired_ids = []
                 for entry_id in entry_ids:
@@ -340,7 +356,8 @@ def get_previous_entries(language=None, country=None, category=None, feed=None, 
                         dirty_expired_ids.append(entry_id)
             else:  # memory + database
                 # memory
-                entry_ids = rclient.zrevrange(class_name, entry_ids_total - end_id_index, entry_ids_total - end_id_index + limit_in_memory - 1)
+                entry_ids = rclient.zrevrange(
+                    class_name, entry_ids_total - end_id_index, entry_ids_total - end_id_index + limit_in_memory - 1)
 
                 last_entry_in_memory = None
                 dirty_expired_ids = []
@@ -362,11 +379,15 @@ def get_previous_entries(language=None, country=None, category=None, feed=None, 
                 # query only one of its values
                 if label_name:
                     feeds = Collection(db, FEED_REGISTRAR)
-                    feed_lists = feeds.find({'labels':label_name}, {'feed_title':1})
-                    feed_names = [feed_list['feed_title'] for feed_list in feed_lists]
-                    items = col.find({'updated': {'$lt':last_entry_in_memory_updated}, 'feed':{'$in':feed_names}}).sort('updated', -1).limit(limit_in_database)
+                    feed_lists = feeds.find(
+                        {'labels': label_name}, {'feed_title': 1})
+                    feed_names = [feed_list['feed_title']
+                                  for feed_list in feed_lists]
+                    items = col.find({'updated': {'$lt': last_entry_in_memory_updated}, 'feed': {'$in': feed_names}}).sort(
+                        'updated', -1).limit(limit_in_database)
                 else:
-                    items = col.find({'updated': {'$lt':last_entry_in_memory_updated}, 'feed':feed}).sort('updated', -1).limit(limit_in_database)
+                    items = col.find({'updated': {'$lt': last_entry_in_memory_updated}, 'feed': feed}).sort(
+                        'updated', -1).limit(limit_in_database)
 
                 for item in items:
                     # string-ify all the values: ObjectId
@@ -386,34 +407,43 @@ def get_previous_entries(language=None, country=None, category=None, feed=None, 
 
             return entries
         else:
-            raise ConnectionError('Find nothing about %s in memory' % class_name)
-    except ConnectionError:  
+            raise ConnectionError(
+                'Find nothing about %s in memory' % class_name)
+    except ConnectionError:
         # no memory or data in memory are not enough, so query database
         items = []
         col = Collection(db, language)
         if end_id:
-            end_id_entry = col.find_one({'_id':ObjectId(end_id)})
-                
+            end_id_entry = col.find_one({'_id': ObjectId(end_id)})
+
             if end_id_entry:
                 end_id_updated = float(end_id_entry['updated'])
 
                 if label_name:
                     feeds = Collection(db, FEED_REGISTRAR)
-                    feed_lists = feeds.find({'labels':label_name}, {'feed_title':1})
-                    feed_names = [feed_list['feed_title'] for feed_list in feed_lists]
-                    items = col.find({'updated': {'$lt': end_id_updated}, 'feed':{'$in':feed_names}}).sort('updated', -1).limit(limit)
+                    feed_lists = feeds.find(
+                        {'labels': label_name}, {'feed_title': 1})
+                    feed_names = [feed_list['feed_title']
+                                  for feed_list in feed_lists]
+                    items = col.find({'updated': {'$lt': end_id_updated}, 'feed': {'$in': feed_names}}).sort(
+                        'updated', -1).limit(limit)
                 else:
-                    items = col.find({'updated': {'$lt': end_id_updated}, 'feed':feed}).sort('updated', -1).limit(limit)
+                    items = col.find({'updated': {'$lt': end_id_updated}, 'feed': feed}).sort(
+                        'updated', -1).limit(limit)
             else:
                 return None
-        else: # get the most recent limit number of entries
+        else:  # get the most recent limit number of entries
             if label_name:
                 feeds = Collection(db, FEED_REGISTRAR)
-                feed_lists = feeds.find({'labels':label_name}, {'feed_title':1})
-                feed_names = [feed_list['feed_title'] for feed_list in feed_lists]
-                items = col.find({'feed':{'$in':feed_names}}).sort('updated', -1).limit(limit)
+                feed_lists = feeds.find(
+                    {'labels': label_name}, {'feed_title': 1})
+                feed_names = [feed_list['feed_title']
+                              for feed_list in feed_lists]
+                items = col.find({'feed': {'$in': feed_names}}).sort(
+                    'updated', -1).limit(limit)
             else:
-                items = col.find({'feed':feed}).sort('updated', -1).limit(limit)
+                items = col.find({'feed': feed}).sort(
+                    'updated', -1).limit(limit)
 
         for item in items:
             # string-ify all the values: ObjectId
