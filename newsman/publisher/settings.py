@@ -80,6 +80,9 @@ NEWS_TEMPLATE_2 = LOCAL % 'STATIC/news/templates/news2.html'
 NEWS_TEMPLATE_3 = LOCAL % 'STATIC/news/templates/news3.html'
 NEWS_TEMPLATE_ARABIC = LOCAL % 'STATIC/news/templates/index_arabic.html'
 
+# Stop words
+STOP_WORDS = "%s/newsman/data_processor/stopwords/" % CODE_BASE 
+
 # uck transcoding web service url
 UCK_TRANSCODING = 'http://gate.baidu.com/tc?m=8&from=bdpc_browser&src='
 UCK_TRANSCODING_NEW = 'http://m.baidu.com/openapp?/webapp?debug=1&from=bd_international&onlyspdebug=1&structpage&siteType=7&nextpage=1&siteappid=1071361&src='
