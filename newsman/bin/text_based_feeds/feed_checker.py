@@ -47,7 +47,8 @@ def _convert(language='en', country=None):
     Note. 1. categories: [(), ()]
     """
     # read in file content
-    feeds_list = open('%s%s_%s_feeds_list' % (FILE_PREFIX, language, country), 'r')
+    feeds_list = open('%s%s_%s_feeds_list' %
+                      (FILE_PREFIX, language, country), 'r')
     lines = feeds_list.readlines()
     feeds_list.close()
 
@@ -55,7 +56,8 @@ def _convert(language='en', country=None):
 
     for line in lines:
         if line.strip():
-            language, category, transcoder, link, title, labels = _parse_task(line)
+            language, category, transcoder, link, title, labels = _parse_task(
+                line)
             # link check
             if link not in link_dict:
                 link_dict[link] = title
