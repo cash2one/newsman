@@ -33,7 +33,8 @@ import urllib2
 from config.settings import LANGUAGES
 from config.settings import DATABASE_REMOVAL_DAYS
 # prefix should not end with a slash
-HIDDEN_LINKS = {'http://news.goo.ne.jp':('div', 'lead fs16 bold'), 'http://news.nifty.com':('li', 'headnews')}
+HIDDEN_LINKS = {'http://news.goo.ne.jp':
+                ('div', 'lead fs16 bold'), 'http://news.nifty.com': ('li', 'headnews')}
 AD_LINKS = 'http://rss.rssad.jp/rss/ad/'
 
 
@@ -42,7 +43,8 @@ def _get_actual_link(prefix, link):
     find the actual news link
     """
     if not prefix or not link:
-        logger.error('Method malformed! Prefix:[%s], Link:[%s]' % (prefix, link))
+        logger.error(
+            'Method malformed! Prefix:[%s], Link:[%s]' % (prefix, link))
 
     try:
         actual_link = None
@@ -51,9 +53,9 @@ def _get_actual_link(prefix, link):
         # str() is critical
         soup = BeautifulStoneSoup(str(data))
         html_tag, html_class = HIDDEN_LINKS[prefix]
-        html_wrapper = soup.find(name=html_tag, attrs={'class':html_class})
+        html_wrapper = soup.find(name=html_tag, attrs={'class': html_class})
         if html_wrapper:
-            actual_suffix = html_wrapper.find('a')['href'] 
+            actual_suffix = html_wrapper.find('a')['href']
             actual_link = str('%s%s' % (prefix, actual_suffix))
             return actual_link
         else:
@@ -91,9 +93,10 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
 
         # article original link
         if e.link:
-            original_link = e.link.strip() 
+            original_link = e.link.strip()
             if not original_link.startswith(AD_LINKS):
-                matched_prefix = [link for link in HIDDEN_LINKS if original_link.startswith(link)]
+                matched_prefix = [
+                    link for link in HIDDEN_LINKS if original_link.startswith(link)]
                 found_prefix = matched_prefix[0] if matched_prefix else None
                 if found_prefix:
                     actual_link = _get_actual_link(found_prefix, original_link)
@@ -364,7 +367,8 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
                                 logger.info('Cannot parse %s' % e['link'])
                                 continue
                         else:
-                            logger.info('No infomation found for %s-th entry' % i)
+                            logger.info(
+                                'No infomation found for %s-th entry' % i)
                             continue
 
                     if entries:
