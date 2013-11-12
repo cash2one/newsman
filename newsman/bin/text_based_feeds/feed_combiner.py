@@ -47,11 +47,13 @@ def _convert(language='en', country=None):
     Note. 1. categories: [(), ()]
     """
     # read in file content
-    feeds_list = open('%s%s_%s_feeds_list' % (FILE_PREFIX, language, country), 'r')
+    feeds_list = open('%s%s_%s_feeds_list' %
+                      (FILE_PREFIX, language, country), 'r')
     lines = feeds_list.readlines()
     feeds_list.close()
 
-    feed_names = open('%s%s_%s_feed_titles' % (FILE_PREFIX, language, country), 'r')
+    feed_names = open('%s%s_%s_feed_titles' %
+                      (FILE_PREFIX, language, country), 'r')
     names = feed_names.readlines()
     feed_names.close()
     name_dict = {}
@@ -60,16 +62,19 @@ def _convert(language='en', country=None):
             name_splits = name.strip().split('*|*')
             name_dict[name_splits[0].strip()] = name_splits[1].strip()
 
-    new_feeds_list = open('%s%s_%s_feeds_list_new' % (FILE_PREFIX, language, country), 'w')
+    new_feeds_list = open('%s%s_%s_feeds_list_new' %
+                          (FILE_PREFIX, language, country), 'w')
 
     for line in lines:
         if line.strip():
             language, category, transcoder, link, labels = _parse_task(line)
             if link in name_dict:
                 if labels:
-                    new_feeds_list.write('%s*|*%s*|*%s*|*%s*|*%s*|*%s\n' % (language, category, transcoder, link, name_dict[link], labels))
+                    new_feeds_list.write('%s*|*%s*|*%s*|*%s*|*%s*|*%s\n' % (
+                        language, category, transcoder, link, name_dict[link], labels))
                 else:
-                    new_feeds_list.write('%s*|*%s*|*%s*|*%s*|*%s\n' % (language, category, transcoder, link, name_dict[link]))
+                    new_feeds_list.write('%s*|*%s*|*%s*|*%s*|*%s\n' % (
+                        language, category, transcoder, link, name_dict[link]))
             else:
                 print link
 
