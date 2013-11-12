@@ -135,12 +135,9 @@ class PyTeaser:
         """
         compute word-frenquecy map
         """
-        if not article:
-            logger.error("Method malformed!")
-            return None
-
         try:
-            pass
+            for sentence in self.sentences:
+                words = self._segment_text(sentence.strip())
         except Exception as k:
             logger.error(str(k))
             return None
