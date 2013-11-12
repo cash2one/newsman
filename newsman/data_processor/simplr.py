@@ -27,7 +27,9 @@ import urlparse
 import pdb
 
 # CONSTANTS
-HIDDEN_IMAGE = {'http://sankei.jp.msn.com/':('div', {'class':'img250 imgright'}), 'http://www.cnn.co.jp/':('div', {'id':'leaf_large_image', 'class':'img-caption'}), 'http://news.goo.ne.jp/':('p', {'class':'imager'}), 'http://jp.reuters.com/':('td', {'id':"articlePhoto", 'class':"articlePhoto"})}
+HIDDEN_IMAGE = {
+    'http://sankei.jp.msn.com/': ('div', {'class': 'img250 imgright'}), 'http://www.cnn.co.jp/': ('div', {'id': 'leaf_large_image', 'class': 'img-caption'}),
+    'http://news.goo.ne.jp/': ('p', {'class': 'imager'}), 'http://jp.reuters.com/': ('td', {'id': "articlePhoto", 'class': "articlePhoto"})}
 
 
 class Simplr:
@@ -48,7 +50,6 @@ class Simplr:
         'next_link': re.compile("(next|weiter|continue|>([^\|]|$)|»([^\|]|$))", re.I),
         'prev_link': re.compile("(prev|earl|old|new|<|«)", re.I)
     }
-
 
     def __init__(self, url, language):
         """
@@ -72,21 +73,17 @@ class Simplr:
         self.content = self._get_article()
         self.images = self._get_images()
 
-
     def _remove_script(self):
         for elem in self.html.findAll("script"):
             elem.extract()
-
 
     def _remove_style(self):
         for elem in self.html.findAll("style"):
             elem.extract()
 
-
     def _remove_link(self):
         for elem in self.html.findAll("link"):
             elem.extract()
-
 
     def _get_images(self):
         if self.content:
@@ -94,7 +91,6 @@ class Simplr:
             return image_helper.find_images(self.content)
         else:
             return None
-
 
     def _get_article(self):
         for elem in self.html.findAll(True):
@@ -138,14 +134,17 @@ class Simplr:
             if parent_hash not in self.candidates:
                 self.candidates[
                     parent_hash] = self._initialize_node(parent_node)
-                #print 'pn-class', parent_hash, parent_node.get('class'), self._get_class_weight(parent_node)
-                #print 'pn-id', parent_hash, parent_node.get('id'), self._get_class_weight(parent_node)
+                # print 'pn-class', parent_hash, parent_node.get('class'), self._get_class_weight(parent_node)
+                # print 'pn-id', parent_hash, parent_node.get('id'),
+                # self._get_class_weight(parent_node)
 
             if grand_parent_node and grand_parent_hash not in self.candidates:
                 self.candidates[grand_parent_hash] = self._initialize_node(
                     grand_parent_node)
-                #print 'gpn-class', grand_parent_hash, grand_parent_node.get('class'), self._get_class_weight(grand_parent_node)
-                #print 'gpn-id', grand_parent_hash, grand_parent_node.get('id'), self._get_class_weight(grand_parent_node)
+                # print 'gpn-class', grand_parent_hash, grand_parent_node.get('class'), self._get_class_weight(grand_parent_node)
+                # print 'gpn-id', grand_parent_hash,
+                # grand_parent_node.get('id'),
+                # self._get_class_weight(grand_parent_node)
 
             content_score = 1
             content_score += inner_text.count(',')
@@ -153,21 +152,23 @@ class Simplr:
             #content_score += inner_text.count('、')
             #content_score += inner_text.count(u'、')
             content_score += min(math.floor(len(inner_text) / 100), 3)
-            #print content_score, node
-            #print 'OLD %s %s  Parent' % (self.candidates[parent_hash]['score'], parent_hash)
-            #print 'OLD %s %s  Grand' % (self.candidates[grand_parent_hash]['score'], grand_parent_hash)
+            # print content_score, node
+            # print 'OLD %s %s  Parent' % (self.candidates[parent_hash]['score'], parent_hash)
+            # print 'OLD %s %s  Grand' %
+            # (self.candidates[grand_parent_hash]['score'], grand_parent_hash)
             self.candidates[parent_hash]['score'] += content_score
 
             if grand_parent_node:
                 self.candidates[grand_parent_hash][
                     'score'] += content_score * 0.7
 
-            #print 'NEW %s %s  Parent' % (self.candidates[parent_hash]['score'], parent_hash)
-            #print 'NEW %s %s  Grand' % (self.candidates[grand_parent_hash]['score'], grand_parent_hash)
-            #print
-            #print
+            # print 'NEW %s %s  Parent' % (self.candidates[parent_hash]['score'], parent_hash)
+            # print 'NEW %s %s  Grand' % (self.candidates[grand_parent_hash]['score'], grand_parent_hash)
+            # print
+            # print
 
-        #print '----------------------------------------------------------------'
+        # print
+        # '----------------------------------------------------------------'
 
         top_candidate = None
         for key in self.candidates:
@@ -180,15 +181,15 @@ class Simplr:
         content = ''
         if top_candidate:
             content = top_candidate['node']
-            #print 'Top Candidate'
-            #print content
-            #print
-            #print '------------------------------------------------------------'
+            # print 'Top Candidate'
+            # print content
+            # print
+            # print
+            # '------------------------------------------------------------'
 
             content = self._clean_article(content)
 
         return content
-
 
     def _clean_article(self, content):
         self._clean_comments(content)
@@ -203,15 +204,17 @@ class Simplr:
 
         self._clean_conditionally(content, "table")
         self._clean_conditionally(content, "ul")
-        #print 'Before removing div'
-        #print content
-        #print
-        #print '----------------------------------------------------------------'
+        # print 'Before removing div'
+        # print content
+        # print
+        # print
+        # '----------------------------------------------------------------'
         self._clean_conditionally(content, "div")
-        #print 'After removing div'
-        #print content
-        #print
-        #print '----------------------------------------------------------------'
+        # print 'After removing div'
+        # print content
+        # print
+        # print
+        # '----------------------------------------------------------------'
         self._clean_style(content)
 
         self._fix_images_path(content)
@@ -219,7 +222,8 @@ class Simplr:
 
         # image retriver
         article_image = None
-        matched_link = [link for link in HIDDEN_IMAGE if self.url.startswith(link)]
+        matched_link = [
+            link for link in HIDDEN_IMAGE if self.url.startswith(link)]
         if matched_link:
             html_tag, html_attrs = HIDDEN_IMAGE[matched_link[0]]
             found_image = content.find(name=html_tag, attrs=html_attrs)
@@ -235,7 +239,6 @@ class Simplr:
             content = article_image + content
         content = self.regexps['kill_breaks'].sub("<br />", content)
         return content
-
 
     def _clean(self, e, tag):
         target_list = e.findAll(tag)
@@ -255,18 +258,15 @@ class Simplr:
                 continue
             target.extract()
 
-
     def _clean_comments(self, e):
-        comments = e.findAll(text=lambda text:isinstance(text, Comment))
+        comments = e.findAll(text=lambda text: isinstance(text, Comment))
         [comment.extract() for comment in comments]
-
 
     def _clean_style(self, e):
         for elem in e.findAll(True):
             del elem['class']
             del elem['id']
             del elem['style']
-
 
     def _clean_conditionally(self, e, tag):
         tags_list = e.findAll(tag)
@@ -285,7 +285,7 @@ class Simplr:
                 content_score = self.candidates[hash_node]['score']
             else:
                 content_score = 0
-            #print node
+            # print node
 
             if weight + content_score < 0:
                 node.extract()
@@ -313,16 +313,16 @@ class Simplr:
                     to_remove = True
                 elif weight < 25 and link_density > 0.2:
                     to_remove = True
-                #elif weight >= 25 and link_density > 0.5:
+                # elif weight >= 25 and link_density > 0.5:
                 #    to_remove = True
                 elif (embed_count == 1 and content_length < 35) or embed_count > 1:
                     to_remove = True
 
-                #print weight, p, img, li, input, link_density, content_length, to_remove
+                # print weight, p, img, li, input, link_density,
+                # content_length, to_remove
                 if to_remove:
                     node.extract()
-            #print
-
+            # print
 
     def _get_title(self):
         title = ''
@@ -331,7 +331,6 @@ class Simplr:
         except:
             pass
         return title
-
 
     def _get_short_title(self):
         title = ''
@@ -379,7 +378,6 @@ class Simplr:
             pass
         return title
 
-
     def _initialize_node(self, node):
         content_score = 0
 
@@ -395,28 +393,26 @@ class Simplr:
         content_score += self._get_class_weight(node)
         return {'score': content_score, 'node': node}
 
-
     def _get_class_weight(self, node):
         weight = 0
         if node:
             if node.get('class'):
                 if self.regexps['negative'].search(node['class']):
-                    #print 'no-1'
+                    # print 'no-1'
                     weight -= 25
                 if self.regexps['positive'].search(node['class']):
-                    #print 'yes-1'
+                    # print 'yes-1'
                     weight += 25
 
             if node.get('id'):
                 if self.regexps['negative'].search(node['id']):
-                    #print 'no-2'
+                    # print 'no-2'
                     weight -= 25
                 if self.regexps['positive'].search(node['id']):
-                    #print 'yes-2'
+                    # print 'yes-2'
                     weight += 25
 
         return weight
-
 
     def _get_link_density(self, node):
         links = node.findAll('a')
@@ -429,7 +425,6 @@ class Simplr:
             link_length += len(link.text)
 
         return link_length / text_length
-
 
     def _fix_links_path(self, node):
         atags = node.findAll('a')
@@ -449,7 +444,6 @@ class Simplr:
                      new_href_arr.params, new_href_arr.query,
                      new_href_arr.fragment))
                 atag['href'] = new_href
-
 
     def _fix_images_path(self, node):
         imgs = node.findAll('img')
@@ -520,7 +514,7 @@ def convert(url, language):
         logger.error("Cannot transcode nothing!")
         return None, None, None
 
-    #pdb.set_trace()
+    # pdb.set_trace()
     try:
         readable = Simplr(url, language)
         if readable:
