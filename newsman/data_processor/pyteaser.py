@@ -147,6 +147,7 @@ class PyTeaser:
         """
         try:
             words = self._segment_text(self.article)
+
             # remove stop words
         except Exception as k:
             logger.error(str(k))
