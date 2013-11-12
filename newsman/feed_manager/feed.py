@@ -19,7 +19,7 @@ import database as db_feeds
 import feedparser
 from scraper import rss
 import socket
-socket.setdefaulttimeout(10) # 10 seconds
+socket.setdefaulttimeout(10)  # 10 seconds
 
 
 def _read_source(d=None, feed_link=None, language=None, categories=None):
