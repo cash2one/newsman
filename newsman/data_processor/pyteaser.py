@@ -123,6 +123,7 @@ class PyTeaser:
                 # remove punctuation
                 words = [word for word in words if word not in cj_punctuation]
             elif self.language == 'zh':
+                jieba.enable_parallel(4)
                 seg_list = jieba.cut(text)
                 for seg in seg_list:
                     words.append(seg)
@@ -145,8 +146,8 @@ class PyTeaser:
         compute word-frenquecy map
         """
         try:
-            if self.languange == 'zh' or self.language == 'ja':
-                segmenter = tiny
+            words = self._segment_text(self.article)
+            # remove stop words
         except Exception as k:
             logger.error(str(k))
             return None
