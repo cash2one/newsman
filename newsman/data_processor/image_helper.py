@@ -243,7 +243,8 @@ def _is_valid_image(image_url):
     try:
         if _url_image_exists(image_url):
             # to avoid line length limit
-            image_pil = Image.open(StringIO(urllib2.urlopen(image_url, timeout=UCK_TIMEOUT).read()))
+            image_pil = Image.open(
+                StringIO(urllib2.urlopen(image_url, timeout=UCK_TIMEOUT).read()))
             return True if image_pil.size[0] * image_pil.size[1] > MIN_IMAGE_SIZE[0] * MIN_IMAGE_SIZE[1] else False
         else:
             logger.info('%s is not an image' % image_url)
@@ -350,7 +351,8 @@ def scale_image(image=None, size_expected=MIN_IMAGE_SIZE,
                 # resize
                 size_new = width_new, height_new
                 # possible exception raiser
-                image_data = Image.open(StringIO(urllib2.urlopen(image['url'], timeout=UCK_TIMEOUT).read()))
+                image_data = Image.open(
+                    StringIO(urllib2.urlopen(image['url'], timeout=UCK_TIMEOUT).read()))
                 image_data.thumbnail(size_new, Image.ANTIALIAS)
 
                 # crop
@@ -407,6 +409,6 @@ def _url_image_exists(url):
         conn.close()
         ctype = response.getheader('Content-Type')
         return response.status < 400 and ctype.startswith('image')
-    except Excetion as k:
+    except Exception as k:
         logger.info(str(k))
         return False
