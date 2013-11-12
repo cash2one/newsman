@@ -125,12 +125,13 @@ class PyTeaser:
                 # remove punctuation
                 import string
                 words = [word.lower() for word in words if word not in string.punctuation]
+            return words
         except Exception as k:
             logger.error(str(k))
             return None
 
 
-    def _find_keywords(self, article=None):
+    def _find_keywords(self):
         """
         compute word-frenquecy map
         """
