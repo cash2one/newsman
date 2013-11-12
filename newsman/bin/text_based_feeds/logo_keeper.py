@@ -59,24 +59,30 @@ def _convert(language='en', country=None):
     logo_list = os.listdir('%s%s_%s' % (LOGOS_PREFIX, language, country))
 
     # read in file content
-    feeds_list = open('%s%s_%s_feeds_list' % (FILE_PREFIX, language, country), 'r')
+    feeds_list = open('%s%s_%s_feeds_list' %
+                      (FILE_PREFIX, language, country), 'r')
     lines = feeds_list.readlines()
     feeds_list.close()
 
-    new_feeds_list = open('%s%s_%s_feeds_list_new' % (FILE_PREFIX, language, country), 'w')
+    new_feeds_list = open('%s%s_%s_feeds_list_new' %
+                          (FILE_PREFIX, language, country), 'w')
 
     for line in lines:
         if line.strip():
-            language, category, transcoder, link, title, labels = _parse_task(line)
+            language, category, transcoder, link, title, labels = _parse_task(
+                line)
             found_logo = False
             for logo in logo_list:
                 logo_clean = logo.replace('.png', "").lower()
                 if logo_clean in link.lower():
-                    logo_path = "%s%s_%s/%s" % (LOGOS_PUBLIC_PREFIX, language, country, logo)
+                    logo_path = "%s%s_%s/%s" % (
+                        LOGOS_PUBLIC_PREFIX, language, country, logo)
                     if labels:
-                        new_feeds_list.write('%s*|*%s*|*%s*|*%s*|*%s*|*%s*|*%s\n' % (language, category, transcoder, link, title, logo_path, labels))
+                        new_feeds_list.write('%s*|*%s*|*%s*|*%s*|*%s*|*%s*|*%s\n' % (
+                            language, category, transcoder, link, title, logo_path, labels))
                     else:
-                        new_feeds_list.write('%s*|*%s*|*%s*|*%s*|*%s*|*%s\n' % (language, category, transcoder, link, title, logo_path))
+                        new_feeds_list.write('%s*|*%s*|*%s*|*%s*|*%s*|*%s\n' % (
+                            language, category, transcoder, link, title, logo_path))
                     found_logo = True
                     break
             if not found_logo:
