@@ -26,6 +26,9 @@ import nltk
 import tinysegmenter
 import urllib2
 
+# CONSTANTS
+from config.settings import STOP_WORDS
+
 
 class PyTeaser:
     """
@@ -42,23 +45,23 @@ class PyTeaser:
         self.link = link
         self.blog = blog
         self.category = category
-        self.sentences = None
 
 
     def summarize(self):
         """
         summarize is the entry to summarization
         3. segement title
-        4. compute keywords of the article
         5. find the 'top' keywords
         6. compute score of each sentence
         7. output the first x sentences in ranking
         """
         # 'clean' the article
-        _clean_article()
+        self._clean_article()
 
-        # split article into sentences
-        _split_article()
+        # find keywords of the article
+        keywords = self._find_keywords()
+        # find top keywords
+        topwords = self._find_top_keywords(keywords)
 
 
     def _clean_article(self):
@@ -88,15 +91,17 @@ class PyTeaser:
         use nltk or other engines to split the article into sentences
         """
         try:
+            sentences = None
             # special: thai, arabic
             if self.language == 'zh' or self.language == 'ja':
                 cj_sent_tokenizer = nltk.RegexpTokenizer(u'[^!?.！？。．]*[!?.！？。]*')
-                self.sentences = cj_sent_tokenizer.tokenize(self.article)
+                sentences = cj_sent_tokenizer.tokenize(self.article)
             else:  # latin-based
-                self.sentences = nltk.sent_tokenize(self.article)
+                sentences = nltk.sent_tokenize(self.article)
 
             # remove spaces
-            self.sentences = [sentence.strip() for sentence in sentences]
+            sentences = [sentence.strip() for sentence in sentences]
+            return sentences
         except Exception as k:
             logger.error(str(k))
             return None
@@ -149,12 +154,26 @@ class PyTeaser:
             words = self._segment_text(self.article)
 
             # remove stop words
+            stopwords_path = '%s%s' % (STOP_WORDS, self.language)
+            # ar, en, id, ja, pt, th, zh
+            f = open(stopwords_path, 'r')
+            stopwords = f.readlines()
+            f.close()
+            words = [word for word in words if word not in stopwords]
+            
+            # distinct words
+            kwords = list(set(words))
+            
+            # word-frenquency
+            keywords = [(kword, words.count(kword)) for kword in kwords]
+            keywords = sorted(keywords, key=lambda x:-x[1])
+            return keywords
         except Exception as k:
             logger.error(str(k))
             return None
 
 
-    def _find_top_keywords(keywords=None, link=None, blog=None, category=None):
+    def _find_top_keywords(self, keywords=None):
         """
         compute top-scored keywords
         """
@@ -169,10 +188,10 @@ class PyTeaser:
             return None
 
 
-    def _score_sentences(article=None, title=None, topwords=None):
+    def _score_sentences(self, sentence=None, topwords=None):
         """
         """
-        if not article or not title or not topwords:
+        if not sentences or not topwords:
             logger.error("Method malformed!")
             return None
 
