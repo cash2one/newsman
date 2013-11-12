@@ -22,6 +22,7 @@ from config.settings import hparser
 from config.settings import logger
 import html2text
 import nltk
+import tinysegmenter
 import urllib2
 
 
@@ -109,7 +110,21 @@ class PyTeaser:
             return None
 
         try:
-            pass
+            # put the text in the right encoding
+            if isinstance(text, str):
+                text = text.decode(chardet.detect(self.article)['encoding'], 'ignore')
+
+            if self.language == 'zh' or self.language == 'ja':
+                segmenter = tinysegmenter.TinySegmenter()
+                words = segmenter.tokenize(text)
+                cj_punctuation = u"-〃〈-「『【［[〈《（(｛{」』】］]〉》）)｝}。．.!！?？、-〟〰-＃％-＊，-／：-；-＠-＿｛｝｟-･‐-―“-”…-‧﹏"
+                words = [word for word in words if word not in cj_punctuation]
+            else:
+                from nltk.tokenize import *
+                words = WordPunctTokenizer.tokenize(text)
+                # remove punctuation
+                import string
+                words = [word.lower() for word in words if word not in string.punctuation]
         except Exception as k:
             logger.error(str(k))
             return None
