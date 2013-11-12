@@ -23,7 +23,9 @@ from config.settings import FEED_REGISTRAR
 from config.settings import MEMORY_EXPIRATION_DAYS
 
 # list of fields stored in memory
-field_list = ['_id', 'category_image', 'feed', 'hotnews_image', 'image', 'labels', 'language', 'link', 'mp3', 'summary', 'thumbnail_image', 'title', 'transcoded', 'updated']
+field_list = [
+    '_id', 'category_image', 'feed', 'hotnews_image', 'image', 'labels',
+    'language', 'link', 'mp3', 'summary', 'thumbnail_image', 'title', 'transcoded', 'updated']
 
 
 def update(entry=None, expiration=None):
@@ -43,25 +45,29 @@ def update(entry=None, expiration=None):
         for field in entry:
             if field in field_list:
                 entry_reduced[field] = entry[field]
-        
+
         # add an entry to memory
         # add a piece of news into memory
         rclient.set(entry_reduced['_id'], entry_reduced)
 
         # expired in redis is counted in seconds
-        expiration = MEMORY_EXPIRATION_DAYS * 24 * 60 * 60 if not expiration else expiration
+        expiration = MEMORY_EXPIRATION_DAYS * 24 * \
+            60 * 60 if not expiration else expiration
         rclient.expire(entry_reduced['_id'], expiration)
 
         # add entry ids to the RSS list
-        rclient.zadd("news::%s::%s" % (entry_reduced['language'], entry_reduced['feed']), entry_reduced['updated'], entry_reduced['_id'])
+        rclient.zadd("news::%s::%s" %
+                     (entry_reduced['language'], entry_reduced['feed']), entry_reduced['updated'], entry_reduced['_id'])
 
         # add entry ids to the label list
         col = Collection(db, FEED_REGISTRAR)
-        item = col.find_one({'feed_title':entry_reduced['feed']}, {'labels':1})
+        item = col.find_one(
+            {'feed_title': entry_reduced['feed']}, {'labels': 1})
         if item and 'labels' in item and item['labels']:
             for label in item['labels']:
                 # a label is a combination of country, category and label
-                rclient.zadd('news::%s::%s' % (entry_reduced['language'], label), entry_reduced['updated'], entry_reduced['_id'])
+                rclient.zadd('news::%s::%s' %
+                             (entry_reduced['language'], label), entry_reduced['updated'], entry_reduced['_id'])
         # final return
         return True
     except ConnectionError:
