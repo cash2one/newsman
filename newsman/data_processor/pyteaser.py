@@ -21,6 +21,7 @@ import chardet
 from config.settings import hparser
 from config.settings import logger
 import html2text
+import nltk
 import urllib2
 
 
@@ -39,6 +40,7 @@ class PyTeaser:
         self.link = link
         self.blog = blog
         self.category = category
+        self.sentences = None
 
 
     def summarize(self):
@@ -84,7 +86,15 @@ class PyTeaser:
         use nltk or other engines to split the article into sentences
         """
         try:
-            pass
+            # special: thai, arabic
+            if self.language == 'zh' or self.language == 'ja':
+                cj_sent_tokenizer = nltk.RegexpTokenizer(u'[^!?.！？。．]*[!?.！？。]*')
+                self.sentences = cj_sent_tokenizer.tokenize(self.article)
+            else:  # latin-based
+                self.sentences = nltk.sent_tokenize(self.article)
+
+            # remove spaces
+            self.sentences = [sentence.strip() for sentence in sentences]
         except Exception as k:
             logger.error(str(k))
             return None
