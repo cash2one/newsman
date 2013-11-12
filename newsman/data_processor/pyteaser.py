@@ -21,6 +21,7 @@ import chardet
 from config.settings import hparser
 from config.settings import logger
 import html2text
+import jieba
 import nltk
 import tinysegmenter
 import urllib2
@@ -114,10 +115,18 @@ class PyTeaser:
             if isinstance(text, str):
                 text = text.decode(chardet.detect(self.article)['encoding'], 'ignore')
 
-            if self.language == 'zh' or self.language == 'ja':
+            # chinese and japanese punctuation
+            cj_punctuation = u"-〃〈-「『【［[〈《（(｛{」』】］]〉》）)｝}。．.!！?？、-〟〰-＃％-＊，-／：-；-＠-＿｛｝｟-･‐-―“-”…-‧﹏"
+            if self.language == 'ja':
                 segmenter = tinysegmenter.TinySegmenter()
                 words = segmenter.tokenize(text)
-                cj_punctuation = u"-〃〈-「『【［[〈《（(｛{」』】］]〉》）)｝}。．.!！?？、-〟〰-＃％-＊，-／：-；-＠-＿｛｝｟-･‐-―“-”…-‧﹏"
+                # remove punctuation
+                words = [word for word in words if word not in cj_punctuation]
+            elif self.language == 'zh':
+                seg_list = jieba.cut(text)
+                for seg in seg_list:
+                    words.append(seg)
+                # remove punctuation
                 words = [word for word in words if word not in cj_punctuation]
             else:
                 from nltk.tokenize import *
@@ -136,8 +145,8 @@ class PyTeaser:
         compute word-frenquecy map
         """
         try:
-            for sentence in self.sentences:
-                words = self._segment_text(sentence.strip())
+            if self.languange == 'zh' or self.language == 'ja':
+                segmenter = tiny
         except Exception as k:
             logger.error(str(k))
             return None
