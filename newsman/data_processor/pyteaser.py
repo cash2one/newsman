@@ -15,48 +15,99 @@ Arabic, Chinese, Japanese, Portugues and Indonesian
 import sys 
 reload(sys) 
 sys.setdefaultencoding('UTF-8')
+sys.path.append('..')
 
+from config.settings import logger
+import html2text
 
 
 def _score_sentences(article=None, title=None, topwords=None):
     """
     """
-    pass
+    if not article or not title or not topwords:
+        logger.error("Method malformed!")
+        return None
+
+    try:
+        pass
+    except Exception as k:
+        logger.error(str(k))
+        return None
 
 
 def _find_top_keywords(keywords=None, link=None, blog=None, category=None):
     """
     compute top-scored keywords
     """
-    pass
+    if not keywords:
+        logger.error("Method malformed!")
+        return None
+
+    try:
+        pass
+    except Exception as k:
+        logger.error(str(k))
+        return None
 
 
 def _find_keywords(article=None):
     """
     compute word-frenquecy map
     """
-    pass
+    if not article:
+        logger.error("Method malformed!")
+        return None
+
+    try:
+        pass
+    except Exception as k:
+        logger.error(str(k))
+        return None
 
 
 def _segment_text(text=None):
     """
     segment thext into words
     """
-    pass
+    if not text:
+        logger.error("Method malformed!")
+        return None
+
+    try:
+        pass
+    except Exception as k:
+        logger.error(str(k))
+        return None
 
 
 def _split_article(article=None):
     """
     use nltk or other engines to split the article into sentences
     """
-    pass
+    if not article:
+        logger.error("Method malformed!")
+        return None
+
+    try:
+        pass
+    except Exception as k:
+        logger.error(str(k))
+        return None
 
 
 def _clean_article(article=None):
     """
     remove html tags, images, links from the article, and encode it appropriately
     """
-    pass
+    if not article:
+        logger.error("Method malformed!")
+        return None
+
+    try:
+        pass
+    except Exception as k:
+        logger.error(str(k))
+        return None
 
 
 def summarize(language=None, title=None, article=None, link=None, blog=None, category=None):
