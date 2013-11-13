@@ -179,7 +179,7 @@ class PyTeaser:
             words = self._segment_text(self.article)
 
             # remove stop words
-            stopwords_path = '%s%s' % (STOP_WORDS, self.language)
+            stopwords_path = '%s%s_stopwords' % (STOP_WORDS, self.language)
             # ar, en, id, ja, pt, th, zh
             f = open(stopwords_path, 'r')
             stopwords = f.readlines()
