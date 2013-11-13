@@ -35,6 +35,8 @@ from config.settings import KEYWORD_REGISTRAR
 from config.settings import STOP_WORDS
 from config.settings import THAI_WORDCUT_INPUT
 from config.settings import THAI_WORDCUT_OUTPUT
+from config.settings import TOP_KEYWORDS_LIMIT
+from config.settings import SCORED_SENTENCE_LIMIT
 
 
 class PyTeaser:
@@ -213,8 +215,7 @@ class PyTeaser:
 
         try:
             col = Collection(db, KEYWORD_REGISTRAR)
-            TOP_KEYWORDS = 10
-            top_keywords = keywords[:TOP_KEYWORDS]
+            top_keywords = keywords[:TOP_KEYWORDS_LIMIT]
             topwords = []
 
             for top_keyword in top_keywords:
@@ -431,7 +432,7 @@ class PyTeaser:
             return None
 
         try:
-            sentences_scored_limited = sentences_scored[:5]
+            sentences_scored_limited = sentences_scored[:SCORED_SENTENCE_LIMIT]
             # reorder sentence by their position in article
             # order by increasing
             sentences_scored_limited = sorted(sentences_scored_limited, key=lambda x:x[2])
