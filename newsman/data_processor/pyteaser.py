@@ -110,6 +110,8 @@ class PyTeaser:
             if self.language == 'zh' or self.language == 'ja':
                 cj_sent_tokenizer = nltk.RegexpTokenizer(u'[^!?.！？。．]*[!?.！？。]*')
                 sentences = cj_sent_tokenizer.tokenize(self.article)
+            elif self.language == 'th':
+                sentences = self.article.split()
             else:  # latin-based
                 sentences = nltk.sent_tokenize(self.article)
 
