@@ -18,6 +18,7 @@ sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
 import chardet
+from config.settings import Collection, db
 from config.settings import hparser
 from config.settings import logger
 import html2text
