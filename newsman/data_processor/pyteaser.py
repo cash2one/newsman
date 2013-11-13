@@ -215,16 +215,43 @@ class PyTeaser:
             return None
 
 
-    def _summation_based_selection(self):
+    def _summation_based_selection(self, words, keywords):
         """
+        simple implementation of summation-based selection algorithm
         """
-        pass
+        if not words or not keywords:
+            logger.error('Method malformed!')
+            return 0
+
+        try:
+            word_in_keywords_score = 0
+            for word in words:
+                for keyword in keywords:
+                    keyword_word = keyword[0]
+                    keyword_count = keyword[1]
+                    if word == keyword:
+                        word_in_keywords_score += keyword_count 
+                        break
+            sbs_score = 1.0 / abs(len(words)) * word_in_keywords_score
+            return sbs_score
+        except Exception as k:
+            logger.error(str(k))
+            return 0
 
 
     def _density_based_selection(self):
         """
+        simple implementation of density-based selection algorithm
         """
-        pass
+        if not words or not keywords:
+            logger.error('Method malformed!')
+            return 0
+
+        try:
+            pass
+        except Exception as k:
+            logger.error(str(k))
+            return 0
 
 
     def _score_sentence_position(self, position, sentence_total):
@@ -321,6 +348,7 @@ class PyTeaser:
 
             for count, sentence in enumerate(sentences):
                 sentence_words = self._segment_text(sentence)
+
                 # 1. title-sentence
                 title_score = self._score_title(sentence_words)
                 # 2. sentence length
@@ -328,8 +356,8 @@ class PyTeaser:
                 # 3. sentence position in article
                 sentence_position_score = self._score_sentence_position(count, len(sentences))
                 # 4. sentence-keywords
-                sbs_score = self._summation_based_selection() 
-                dbs_score = self._density_based_selection()
+                sbs_score = self._summation_based_selection(sentence_words, topwords) 
+                dbs_score = self._density_based_selection(sentence_words, topwords)
                 keyword_score = (sbs_score + dbs_score) / 2.0 * 10.0
 
                 sentence_score = title_score * 1.5 + keyword_score * 2.0 + sentence_length_score * 0.5 + sentence_position_score * 1.0 / 4.0
