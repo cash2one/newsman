@@ -215,6 +215,18 @@ class PyTeaser:
             return None
 
 
+    def _summation_based_selection(self):
+        """
+        """
+        pass
+
+
+    def _density_based_selection(self):
+        """
+        """
+        pass
+
+
     def _score_sentence_position(self, position, sentence_total):
         """
         score the sence by its position in the article
@@ -297,13 +309,16 @@ class PyTeaser:
 
     def _score_sentences(self, topwords=None):
         """
+        compute four factors to score a sentence
         """
         if not topwords:
             logger.error("Method malformed!")
             return None
 
         try:
+            sentences_with_score = []
             sentences = self._split_article()
+
             for count, sentence in enumerate(sentences):
                 sentence_words = self._segment_text(sentence)
                 # 1. title-sentence
@@ -312,6 +327,15 @@ class PyTeaser:
                 sentence_length_score = self._score_sentence_length(sentence_words)
                 # 3. sentence position in article
                 sentence_position_score = self._score_sentence_position(count, len(sentences))
+                # 4. sentence-keywords
+                sbs_score = self._summation_based_selection() 
+                dbs_score = self._density_based_selection()
+                keyword_score = (sbs_score + dbs_score) / 2.0 * 10.0
+
+                sentence_score = title_score * 1.5 + keyword_score * 2.0 + sentence_length_score * 0.5 + sentence_position_score * 1.0 / 4.0
+                sentences_with_score.append((sentence, sentence_score, count))
+
+            return sentences_with_score
         except Exception as k:
             logger.error(str(k))
             return None
