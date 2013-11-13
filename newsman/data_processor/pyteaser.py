@@ -145,6 +145,9 @@ class PyTeaser:
             # thai punctuation, from
             # http://blogs.transparent.com/thai/thai-punctuation-marks-other-characters-part-2/
             thai_punctuation = u"อ์()“!,๛ๆฯฯลฯ?."
+            # lating punctuation
+            #latin_punctuation = "’“”," + string.punctuation
+            latin_punctuation = string.punctuation
 
             words = []
             # word segment
@@ -152,14 +155,14 @@ class PyTeaser:
                 segmenter = tinysegmenter.TinySegmenter()
                 words = segmenter.tokenize(text)
                 # remove punctuation
-                words = [word for word in words if word not in cj_punctuation]
+                words = [word.strip() for word in words if word.strip() and word not in cj_punctuation]
             elif self.language == 'zh':
                 jieba.enable_parallel(4)
                 seg_list = jieba.cut(text)
                 for seg in seg_list:
                     words.append(seg)
                 # remove punctuation
-                words = [word for word in words if word not in cj_punctuation]
+                words = [word.strip() for word in words if word.strip() and word not in cj_punctuation]
             elif self.language == 'th':
                 response = subprocess.Popen('''swath -m max < %s 2>&1 | tee %s''' % (
                     THAI_WORDCUT_INPUT, THAI_WORDCUT_OUTPUT), stdout=subprocess.PIPE, shell=True)
@@ -168,15 +171,15 @@ class PyTeaser:
                     if 'error' not in content or 'permission' not in content:
                         content = content.strip()
                         words = [
-                            word for word in content.split("|") if word.strip()]
+                            word.strip() for word in content.split("|") if word.strip()]
                         # remove punctuation
                         words = [
                             word for word in words if word not in thai_punctuation]
             else:
                 words = WordPunctTokenizer().tokenize(text)
                 # remove punctuation
-                words = [word.lower()
-                         for word in words if word not in string.punctuation]
+                words = [word.strip().lower()
+                         for word in words if word.strip() and word.strip() not in latin_punctuation]
             return words
         except Exception as k:
             logger.error(str(k))
@@ -194,6 +197,7 @@ class PyTeaser:
             # ar, en, id, ja, pt, th, zh
             f = open(stopwords_path, 'r')
             stopwords = f.readlines()
+            stopwords = [stopword.strip() for stopword in stopwords if stopword.strip()]
             f.close()
             words = [word for word in words if word not in stopwords]
 
@@ -233,16 +237,20 @@ class PyTeaser:
                 col.save({'word': word, 'count': count, 'link': self.link, 'blog':
                          self.blog, 'category': self.category, 'language': self.language})
 
-                article_score = count / words_count
-                blog_score = reduce(lambda x, y: x + y, [item['count'] for item in col.find(
-                    {'word': word, 'blog': self.blog}, {'count': 1, '_id': 0})]) / blog_count
-                category_score = reduce(lambda x, y: x + y, [item['count'] for item in col.find(
-                    {'word': word, 'category': self.category}, {'count': 1, '_id': 0})]) / category_count
+                article_score = float(count) / float(words_count)
+                blog_score = float(reduce(lambda x, y: x + y, [item['count'] for item in col.find(
+                    {'word': word, 'blog': self.blog}, {'count': 1, '_id': 0})])) / float(blog_count)
+                category_score = float(reduce(lambda x, y: x + y, [item['count'] for item in col.find(
+                    {'word': word, 'category': self.category}, {'count': 1, '_id': 0})])) / float(category_count)
 
                 word_score = article_score * 1.5 + blog_score + category_score
                 topwords.append((word, word_score))
 
             topwords = sorted(topwords, key=lambda x: -x[1])
+            #print '-------------------------------------'
+            #for topword in topwords:
+            #    print topword[0]
+            #print '-------------------------------------'
             return topwords
         except Exception as k:
             logger.error(str(k))
@@ -262,11 +270,12 @@ class PyTeaser:
                 for keyword in keywords:
                     keyword_word = keyword[0]
                     keyword_count = keyword[1]
-                    if word == keyword_word:
+                    if word in keyword_word or keyword_word in word:
                         word_in_keywords_score = word_in_keywords_score + \
                             keyword_count
                         break
-            sbs_score = 1.0 / abs(len(words)) * word_in_keywords_score
+            #print len(words), word_in_keywords_score
+            sbs_score = 1.0 / float(abs(len(words))) * float(word_in_keywords_score)
             return sbs_score
         except Exception as k:
             logger.error(str(k))
@@ -288,7 +297,7 @@ class PyTeaser:
                 for keyword in keywords:
                     keyword_word = keyword[0]
                     keyword_count = keyword[1]
-                    if word == keyword_word and keyword_count > 0:
+                    if (word in keyword_word or keyword_word in word) and keyword_count > 0:
                         word_in_keywords_score_with_index.append(
                             (keyword_count, index))
                         word_in_keywords_count = word_in_keywords_count + 1
@@ -299,18 +308,20 @@ class PyTeaser:
             # 1: [(a, 1), (b, 2), (c, 3), (d, 4)]
             # 2: [(b, 2), (c, 3), (d, 4)]
             # 3: [((a, 1), (b, 2)), ((b, 2), (c, 3)), ((c, 3), (d, 4))]
+            #print word_in_keywords_score_with_index
             word_in_keywords_score_with_index_sliced = word_in_keywords_score_with_index[
                 1:]
             word_in_keywords_zipped = zip(
                 word_in_keywords_score_with_index, word_in_keywords_score_with_index_sliced)
 
-            word_in_keywords_sum_each = [(item[0][0] * item[1][0]) / pow((item[0][1] - item[1][1]), 2)
+            word_in_keywords_sum_each = [float(item[0][0] * item[1][0]) / float(pow((item[0][1] - item[1][1]), 2))
                                          for item in word_in_keywords_zipped]
             word_in_keywords_sum = reduce(
                 lambda x, y: x + y, word_in_keywords_sum_each) if word_in_keywords_sum_each else 0
 
-            dbs_score = (1.0 / (word_in_keywords_count * (word_in_keywords_count + 1.0))) * \
-                word_in_keywords_sum
+            #print word_in_keywords_count, word_in_keywords_sum
+            dbs_score = 1.0 / float(word_in_keywords_count) * float(word_in_keywords_count + 1.0) * \
+                float(word_in_keywords_sum)
             return dbs_score
         except Exception as k:
             logger.error(str(k))
@@ -320,12 +331,12 @@ class PyTeaser:
         """
         score the sence by its position in the article
         """
-        if not position or not sentence_total:
+        if position == None or not sentence_total:
             logger.error('Method Malformed!')
             return 0
 
         try:
-            normalized = position / sentence_total
+            normalized = float(position) / float(sentence_total)
             sentence_position_score = 0
 
             if normalized > 0 and normalized <= 0.1:
@@ -366,7 +377,7 @@ class PyTeaser:
 
         try:
             IDEAL_SENTENCE_LENGTH = 20  # unicode words
-            sentence_length_score = (IDEAL_SENTENCE_LENGTH - abs(
+            sentence_length_score = float(IDEAL_SENTENCE_LENGTH - abs(
                 IDEAL_SENTENCE_LENGTH - len(sentence_words))) / float(IDEAL_SENTENCE_LENGTH)
             return sentence_length_score
         except Exception as k:
@@ -387,7 +398,7 @@ class PyTeaser:
                 # filter out words that are not in title
                 sentence_words = [
                     sentence_word for sentence_word in sentence_words if sentence_word in title_words]
-                title_score = len(sentence_words) / len(title_words)
+                title_score = float(len(sentence_words)) / float(len(title_words))
                 return title_score
             else:
                 return 0
@@ -423,11 +434,12 @@ class PyTeaser:
                     sentence_words, topwords)
                 dbs_score = self._density_based_selection(
                     sentence_words, topwords)
-                keyword_score = (sbs_score + dbs_score) / 2.0 * 10.0
+                keyword_score = float(sbs_score + dbs_score) / 2.0 * 10.0
 
-                sentence_score = title_score * 1.5 + keyword_score * 2.0 + \
+                sentence_score = float(title_score * 1.5 + keyword_score * 2.0 + \
                     sentence_length_score * 0.5 + \
-                    sentence_position_score * 1.0 / 4.0
+                    sentence_position_score * 1.0) / 4.0
+                #print sentence, sentence_score, title_score, sentence_length_score, sentence_position_score, '[', sbs_score, dbs_score, ']'
                 sentences_scored.append((sentence, sentence_score, index))
 
             # rank sentences by their scores
@@ -464,13 +476,35 @@ class PyTeaser:
 
 
 if __name__ == '__main__':
-    #language = 'en'
-    #title = "Astronomic news: the universe may not be expanding after all"
-    #text = """Now that conventional thinking has been turned on its head in a paper by Prof Christof Wetterich at the University of Heidelberg in Germany. He points out that the tell-tale light emitted by atoms is also governed by the masses of their constituent particles, notably their electrons. The way these absorb and emit light would shift towards the blue part of the spectrum if atoms were to grow in mass, and to the red if they lost it.  Because the frequency or ÒpitchÓ of light increases with mass, Prof Wetterich argues that masses could have been lower long ago. If they had been constantly increasing, the colours of old galaxies would look red-shifted Ð and the degree of red shift would depend on how far away they were from Earth. ÒNone of my colleagues has so far found any fault [with this],Ó he says.  Although his research has yet to be published in a peer-reviewed publication, Nature reports that the idea that the universe is not expanding at all Ð or even contracting Ð is being taken seriously by some experts, such as Dr HongSheng Zhao, a cosmologist at the University of St Andrews who has worked on an alternative theory of gravity. ÒI see no fault in [Prof WetterichÕs] mathematical treatment,Ó he says. ÒThere were rudimentary versions of this idea two decades ago, and I think it is fascinating to explore this alternative representation of the cosmic expansion, where the evolution of the universe is like a piano keyboard played out from low to high pitch.Ó  Prof Wetterich takes the detached, even playful, view that his work marks a change in perspective, with two different views of reality: either the distances between galaxies grow, as in the traditional balloon picture, or the size of atoms shrinks, increasing their mass. Or itÕs a complex blend of the two. One benefit of this idea is that he is able to rid physics of the singularity at the start of time, a nasty infinity where the laws of physics break down. Instead, the Big Bang is smeared over the distant past: the first note of the ''cosmic pianoÕÕ was long and low-pitched.  Harry Cliff, a physicist working at CERN who is the Science MuseumÕs fellow of modern science, thinks it striking that a universe where particles are getting heavier could look identical to one where space/time is expanding. ÒFinding two different ways of thinking about the same problem often leads to new insights,Ó he says. ÒString theory, for instance, is full of 'dualitiesÕ like this, which allow theorists to pick whichever view makes their calculations simpler.Ó  If this idea turns out to be right Ð and that is a very big if Ð it could pave the way for new ways to think about our universe. If we are lucky, they might even be as revolutionary as Edwin HubbleÕs, almost a century ago.  Roger Highfield is director of external affairs at the Science Museum"""
+    language = 'en'
+    title = "McDonald's Theory"
+    
+    text = """I use a trick with co-workers when we’re trying to decide where to eat for lunch and no one has any ideas. I recommend McDonald’s.
+    
+    An interesting thing happens. Everyone unanimously agrees that we can’t possibly go to McDonald’s, and better lunch suggestions emerge. Magic!
+    
+    It’s as if we’ve broken the ice with the worst possible idea, and now that the discussion has started, people suddenly get very creative. I call it the McDonald’s Theory: people are inspired to come up with good ideas to ward off bad ones.
+    
+    This is a technique I use a lot at work. Projects start in different ways. Sometimes you’re handed a formal brief. Sometimes you hear a rumor that something might be coming so you start thinking about it early. Other times you’ve been playing with an idea for months or years before sharing with your team. There’s no defined process for all creative work, but I’ve come to believe that all creative endeavors share one thing: the second step is easier than the first. Always.
+    
+    Anne Lamott advocates “shitty first drafts,” Nike tells us to “Just Do It,” and I recommend McDonald’s just to get people so grossed out they come up with a better idea. It’s all the same thing. Lamott, Nike, and McDonald’s Theory are all saying that the first step isn’t as hard as we make it out to be. Once I got an email from Steve Jobs, and it was just one word: “Go!” Exactly. Dive in. Do. Stop over-thinking it.
+    
+    The next time you have an idea rolling around in your head, find the courage to quiet your inner critic just long enough to get a piece of paper and a pen, then just start sketching it. “But I don’t have a long time for this!” you might think. Or, “The idea is probably stupid,” or, “Maybe I’ll go online and click around for—”
+    
+    No. Shut up. Stop sabotaging yourself.
+    
+    The same goes for groups of people at work. The next time a project is being discussed in its early stages, grab a marker, go to the board, and throw something up there. The idea will probably be stupid, but that’s good! McDonald’s Theory teaches us that it will trigger the group into action.
+    
+    It takes a crazy kind of courage, of focus, of foolhardy perseverance to quiet all those doubts long enough to move forward. But it’s possible, you just have to start. Bust down that first barrier and just get things on the page. It’s not the kind of thing you can do in your head, you have to write something, sketch something, do something, and then revise off it.
+    
+    Not sure how to start? Sketch a few shapes, then label them. Say, “This is probably crazy, but what if we.…” and try to make your sketch fit the problem you’re trying to solve. Like a magic spell, the moment you put the stuff on the board, something incredible will happen. The room will see your ideas, will offer their own, will revise your thinking, and by the end of 15 minutes, 30 minutes, an hour, you’ll have made progress.
+    
+    That’s how it’s done."""
 
-    language = 'ja'
-    title = "日印との関係重視、ブータン首相インタビュー…中国と国交樹立急がず"
-    text = """【ティンプー＝岩田智雄】親日国として知られるブータンのツェリン・トブゲイ首相（４８）が５日、首都ティンプーの首相府で産経新聞の単独インタビューに応じ、日本と隣国インドとの関係を重視していく方針を強調した。国境問題を抱える中国との早期の国交樹立については、否定的な見解を示した。
+    #language = 'ja'
+    #title = "日印との関係重視、ブータン首相インタビュー…中国と国交樹立急がず"
+    """
+    text = 【ティンプー＝岩田智雄】親日国として知られるブータンのツェリン・トブゲイ首相（４８）が５日、首都ティンプーの首相府で産経新聞の単独インタビューに応じ、日本と隣国インドとの関係を重視していく方針を強調した。国境問題を抱える中国との早期の国交樹立については、否定的な見解を示した。
     
     　首相就任後、日本メディアのインタビューに応じたのは初めて。７月の総選挙で当時野党の国民民主党を率いて勝利したトブゲイ氏は、日本政府がブータンでの大使館開設を検討していることを「非常に良いニュースだ」と評価、「２国間関係は極めて良好で、発展させていく政策に前政権から変更はない」と述べた。
     
