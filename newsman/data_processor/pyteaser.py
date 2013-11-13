@@ -118,7 +118,7 @@ class PyTeaser:
                 sentences = nltk.sent_tokenize(self.article)
 
             # remove spaces
-            sentences = [sentence.strip() for sentence in sentences]
+            sentences = [sentence.strip() for sentence in sentences if sentence.strip()]
             return sentences
         except Exception as k:
             logger.error(str(k))
