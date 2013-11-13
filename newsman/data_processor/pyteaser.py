@@ -94,7 +94,6 @@ class PyTeaser:
             # body_width = 0 disables text wrapping
             html_stripper.body_width = 0
             self.article = html_stripper.handle(self.article).strip("#")
-            print self.article
 
             # convert to appropriate encoding
             if isinstance(self.article, str):
