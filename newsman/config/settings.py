@@ -113,8 +113,9 @@ DATABASE_REMOVAL_DAYS = 365
 FEED_UPDATE_DAYS = 2
 MEMORY_EXPIRATION_DAYS = 20
 
-# database names for feeds
+# database names
 FEED_REGISTRAR = 'feeds'
+KEYWORD_REGISTRAR = 'keywords'
 
 # settings used in summarizing
 PARAGRAPH_CRITERIA = 40
