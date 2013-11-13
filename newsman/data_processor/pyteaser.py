@@ -59,9 +59,12 @@ class PyTeaser:
         self._clean_article()
 
         # find keywords of the article
-        keywords = self._find_keywords()
+        compound_keywords = self._find_keywords()
+        keywords = compound_keywords[0]
+        words_count = compound_keywords[1]
+
         # find top keywords
-        topwords = self._find_top_keywords(keywords)
+        topwords = self._find_top_keywords(keywords, words_count)
 
 
     def _clean_article(self):
@@ -167,22 +170,26 @@ class PyTeaser:
             # word-frenquency
             keywords = [(kword, words.count(kword)) for kword in kwords]
             keywords = sorted(keywords, key=lambda x:-x[1])
-            return keywords
+
+            return (keywords, len(words))
         except Exception as k:
             logger.error(str(k))
             return None
 
 
-    def _find_top_keywords(self, keywords=None):
+    def _find_top_keywords(self, keywords=None, words_count=None):
         """
         compute top-scored keywords
         """
-        if not keywords:
+        if not keywords or not words_count:
             logger.error("Method malformed!")
             return None
 
         try:
-            pass
+            TOP_KEYWORDS = 10
+            top_keywords = keywords[:TOP_KEYWORDS]
+            for top_keyword in top_keywords:
+                pass
         except Exception as k:
             logger.error(str(k))
             return None
