@@ -156,7 +156,7 @@ class PyTeaser:
                     words.append(seg)
                 # remove punctuation
                 words = [word for word in words if word not in cj_punctuation]
-            elif self.lanuage == 'th':
+            elif self.language == 'th':
                 response = subprocess.Popen('''swath -m max < %s 2>&1 | tee %s''' % (
                     THAI_WORDCUT_INPUT, THAI_WORDCUT_OUTPUT), stdout=subprocess.PIPE, shell=True)
                 content, error = response.communicate()
