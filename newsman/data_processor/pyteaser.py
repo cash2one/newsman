@@ -215,7 +215,7 @@ class PyTeaser:
             return None
 
 
-    def _summation_based_selection(self, words, keywords):
+    def _summation_based_selection(self, words=None, keywords=None):
         """
         simple implementation of summation-based selection algorithm
         """
@@ -229,8 +229,8 @@ class PyTeaser:
                 for keyword in keywords:
                     keyword_word = keyword[0]
                     keyword_count = keyword[1]
-                    if word == keyword:
-                        word_in_keywords_score += keyword_count 
+                    if word == keyword_word:
+                        word_in_keywords_score = word_in_keywords_score + keyword_count 
                         break
             sbs_score = 1.0 / abs(len(words)) * word_in_keywords_score
             return sbs_score
@@ -239,7 +239,7 @@ class PyTeaser:
             return 0
 
 
-    def _density_based_selection(self):
+    def _density_based_selection(self, word=None, keywords=None):
         """
         simple implementation of density-based selection algorithm
         """
@@ -248,7 +248,31 @@ class PyTeaser:
             return 0
 
         try:
-            pass
+            # compute number of keyword and its index in words
+            word_in_keywords_count = 1
+            word_in_keywords_score_with_index = []
+            for word in words:
+                for index, keyword in enumerate(keywords):
+                    keyword_word = keyword[0]
+                    keyword_count = keyword[1]
+                    if word == keyword_word and keyword_count > 0:
+                        word_in_keywords_score_with_index.append((keyword_count, index)) 
+                        word_in_keywords_count = word_in_keywords_count + 1
+                        break
+
+            # zip keyword-count-index
+            # 1: -_score_with_index 2: -_score_with_index_sliced 3: _zipped
+            # 1: [(a, 1), (b, 2), (c, 3), (d, 4)]
+            # 2: [(b, 2), (c, 3), (d, 4)]
+            # 3: [((a, 1), (b, 2)), ((b, 2), (c, 3)), ((c, 3), (d, 4))] 
+            word_in_keywords_score_with_index_sliced = word_in_keywords_score_with_index[1:]
+            word_in_keywords_zipped = zip(word_in_keywords_score_with_index, word_in_keywords_score_with_index_sliced)
+
+            word_in_keywords_sum_each = [(item[0][0] * item[1][0]) / pow((item[0][1] - item[1][1]), 2)  for item in word_in_keywords_zipped]
+            word_in_keywords_sum = reduce(lambda x, y: x + y, word_in_keywords_sum_each)
+
+            dbs_score = (1.0 / (word_in_keywords_count * (word_in_keywords_count + 1.0))) * word_in_keywords_sum
+            return dbs_score
         except Exception as k:
             logger.error(str(k))
             return 0
@@ -346,7 +370,7 @@ class PyTeaser:
             sentences_with_score = []
             sentences = self._split_article()
 
-            for count, sentence in enumerate(sentences):
+            for index, sentence in enumerate(sentences):
                 sentence_words = self._segment_text(sentence)
 
                 # 1. title-sentence
@@ -354,14 +378,14 @@ class PyTeaser:
                 # 2. sentence length
                 sentence_length_score = self._score_sentence_length(sentence_words)
                 # 3. sentence position in article
-                sentence_position_score = self._score_sentence_position(count, len(sentences))
+                sentence_position_score = self._score_sentence_position(index, len(sentences))
                 # 4. sentence-keywords
                 sbs_score = self._summation_based_selection(sentence_words, topwords) 
                 dbs_score = self._density_based_selection(sentence_words, topwords)
                 keyword_score = (sbs_score + dbs_score) / 2.0 * 10.0
 
                 sentence_score = title_score * 1.5 + keyword_score * 2.0 + sentence_length_score * 0.5 + sentence_position_score * 1.0 / 4.0
-                sentences_with_score.append((sentence, sentence_score, count))
+                sentences_with_score.append((sentence, sentence_score, index))
 
             return sentences_with_score
         except Exception as k:
