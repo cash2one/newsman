@@ -28,6 +28,7 @@ import tinysegmenter
 import urllib2
 
 # CONSTANTS
+from config.settings import KEYWORD_REGISTRAR
 from config.settings import STOP_WORDS
 
 
@@ -187,10 +188,28 @@ class PyTeaser:
             return None
 
         try:
+            col = Collection(db, KEYWORD_REGISTRAR)
             TOP_KEYWORDS = 10
             top_keywords = keywords[:TOP_KEYWORDS]
+            topwords = []
+
             for top_keyword in top_keywords:
-                pass
+                word = top_keyword[0]
+                count = top_keyword[1]
+
+                blog_count = col.find({'blog':self.blog, 'language':self.language}).count() + 1.0
+                category_count = col.find({'category':self.category, 'language':self.language}).count() + 1.0
+                col.save({'word':word, 'count':count, 'link':self.link, 'blog':self.blog, 'category':self.category, 'language':self.language})
+
+                article_score = count / words_count
+                blog_score = reduce(lambda x, y: x + y, [item['count'] for item in col.find({'word':word, 'blog':self.blog}, {'count':1, '_id':0})]) / blog_count
+                category_score = reduce(lambda x, y: x + y, [item['count'] for item in col.find({'word':word, 'category':self.category}, {'count':1, '_id':0})]) / category_count
+
+                word_score = article_score * 1.5 + blog_score + category_score
+                topwords.append((word, word_score))
+
+            topwords = sorted(topwords, key=lambda x:-x[1])
+            return topwords
         except Exception as k:
             logger.error(str(k))
             return None
