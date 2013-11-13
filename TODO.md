@@ -1,19 +1,20 @@
 ToDos - High Priority
 ----------------------
 1. 新闻摘要
-2. 集成CDN
-3. 根据热门关键字搜索图片 [link1](http://jackdschultz.com/index.php/2013/09/19/useful-named-entity-recognition/) [link2](https://gist.github.com/shlomibabluki/6333174)
-4. 参照谷歌编码风格
+3. 社交(Twitter/WeChat)信息抓取
+3. 详情页增加夜间、字体大小、分享等代码
+4. 集成CDN
+5. 新闻去重
+6. 抓取Instagram/Flickr内容
+7. 热点新闻提取
+8. 根据热门关键字搜索图片 [link1](http://jackdschultz.com/index.php/2013/09/19/useful-named-entity-recognition/) [link2](https://gist.github.com/shlomibabluki/6333174)
+9. 参照谷歌编码风格
     [中文](http://zh-google-styleguide.readthedocs.org/en/latest/google-python-styleguide/)
     [EN](http://google-styleguide.googlecode.com/svn/trunk/pyguide.html)
     [link](http://azd325.github.io/blog/2013/08/18/python-strip-tags/)
-5. 采用nose/coverage进行测试
-6. 热点新闻提取
-7. 新闻去重
-8. 社交账户好友信息抓取
-9. 抓取Instagram/Flickr内容
-10. 详情页增加夜间、字体大小、分享等代码
+10. 采用nose/coverage进行测试
 11. 修改README
+12. 过一遍代码的Todo
 
 ToDos - Low Priority
 ---------------------
