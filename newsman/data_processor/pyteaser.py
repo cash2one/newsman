@@ -304,13 +304,14 @@ class PyTeaser:
 
         try:
             sentences = self._split_article()
-            for sentence in sentences:
+            for count, sentence in enumerate(sentences):
                 sentence_words = self._segment_text(sentence)
                 # 1. title-sentence
                 title_score = self._score_title(sentence_words)
                 # 2. sentence length
                 sentence_length_score = self._score_sentence_length(sentence_words)
                 # 3. sentence position in article
+                sentence_position_score = self._score_sentence_position(count, len(sentences))
         except Exception as k:
             logger.error(str(k))
             return None
