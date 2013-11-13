@@ -91,6 +91,8 @@ class PyTeaser:
             html_stripper.ignore_links = True
             html_stripper.ignore_images = True
             html_stripper.ignore_emphasis = True
+            # body_width = 0 disables text wrapping
+            html_stripper.body_width = 0
             self.article = html_stripper.handle(self.article).strip("#")
             print self.article
 
