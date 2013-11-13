@@ -33,6 +33,8 @@ import urllib2
 # CONSTANTS
 from config.settings import KEYWORD_REGISTRAR
 from config.settings import STOP_WORDS
+from config.settings import THAI_WORDCUT_INPUT
+from config.settings import THAI_WORDCUT_OUTPUT
 
 
 class PyTeaser:
@@ -155,12 +157,14 @@ class PyTeaser:
                 # remove punctuation
                 words = [word for word in words if word not in cj_punctuation]
             elif self.lanuage == 'th':
-                response = subprocess.Popen('''swath -m max < %s 2>&1 | tee %s''' % (), stdout=subprocess.PIPE, shell=True)
+                response = subprocess.Popen('''swath -m max < %s 2>&1 | tee %s''' % (THAI_WORDCUT_INPUT, THAI_WORDCUT_OUTPUT), stdout=subprocess.PIPE, shell=True)
                 content, error = response.communicate()
-                content = content.strip()
-                words = [word for word in content.split("|") if word.strip()]
-                for word in words:
-                    print word
+                if not error and content:
+                    if 'error' not in content or 'permission' not in content:
+                        content = content.strip()
+                        words = [word for word in content.split("|") if word.strip()]
+                        # remove punctuation
+                        words = [word for word in words if word not in thai_punctuation]
             else:
                 words = WordPunctTokenizer.tokenize(text)
                 # remove punctuation
