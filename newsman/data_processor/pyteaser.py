@@ -169,7 +169,7 @@ class PyTeaser:
                         words = [
                             word for word in words if word not in thai_punctuation]
             else:
-                words = WordPunctTokenizer.tokenize(text)
+                words = WordPunctTokenizer().tokenize(text)
                 # remove punctuation
                 words = [word.lower()
                          for word in words if word not in string.punctuation]
