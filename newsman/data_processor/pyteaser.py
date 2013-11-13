@@ -296,6 +296,7 @@ class PyTeaser:
             # 1: [(a, 1), (b, 2), (c, 3), (d, 4)]
             # 2: [(b, 2), (c, 3), (d, 4)]
             # 3: [((a, 1), (b, 2)), ((b, 2), (c, 3)), ((c, 3), (d, 4))]
+            print word_in_keywords_score_with_index
             word_in_keywords_score_with_index_sliced = word_in_keywords_score_with_index[
                 1:]
             word_in_keywords_zipped = zip(
@@ -304,7 +305,7 @@ class PyTeaser:
             word_in_keywords_sum_each = [(item[0][0] * item[1][0]) / pow((item[0][1] - item[1][1]), 2)
                                          for item in word_in_keywords_zipped]
             word_in_keywords_sum = reduce(
-                lambda x, y: x + y, word_in_keywords_sum_each)
+                lambda x, y: x + y, word_in_keywords_sum_each) if word_in_keywords_sum_each else 0
 
             dbs_score = (1.0 / (word_in_keywords_count * (word_in_keywords_count + 1.0))) * \
                 word_in_keywords_sum
