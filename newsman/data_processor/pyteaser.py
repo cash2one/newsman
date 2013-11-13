@@ -214,16 +214,60 @@ class PyTeaser:
             logger.error(str(k))
             return None
 
+    
+    def _score_sentence_length(self, sentence_words):
+        """
+        score the sentence by its length
+        """
+        if not sentence_words:
+            logger.error("Method malformed!")
+            return 0
 
-    def _score_sentences(self, sentence=None, topwords=None):
+        try:
+            IDEAL_SENTENCE_LENGTH = 20 # unicode words
+            sentence_length_score = (IDEAL_SENTENCE_LENGTH - abs(IDEAL_SENTENCE_LENGTH - len(sentence_words))) / float(IDEAL_SENTENCE_LENGTH)
+            return sentence_length_score
+        except Exception as k:
+            logger.error(str(k))
+            return 0
+
+
+    def _score_title(self, sentence_words=None):
+        """
+        compute number of title words in a sentence
+        """
+        if not sentence_words:
+            logger.error("Method malformed!")
+            return 0
+
+        try:
+            title_words = self._segment_text(self.title) 
+            if title_words:
+                # filter out words that are not in title
+                sentence_words = [sentence_word for sentence_word in sentence_words if sentence_word in title_words]
+                title_score = len(sentence_words) / len(title_words)
+                return title_score
+            else:
+                returen 0
+        except Exception as k:
+            logger.error(str(k))
+            return 0
+
+
+    def _score_sentences(self, topwords=None):
         """
         """
-        if not sentences or not topwords:
+        if not topwords:
             logger.error("Method malformed!")
             return None
 
         try:
-            pass
+            sentences = self._split_article()
+            for sentence in sentences:
+                sentence_words = self._segment_text(sentence)
+                # 1. title-sentence
+                title_score = self._score_title(sentence_words)
+                # 2. sentence length
         except Exception as k:
             logger.error(str(k))
             return None
