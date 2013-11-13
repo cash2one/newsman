@@ -18,6 +18,7 @@ import chardet
 from config.settings import logger
 import html2text
 import nltk
+from pyteaser import PyTeaser
 
 # CONSTANTS
 from config.settings import PARAGRAPH_CRITERIA
@@ -39,9 +40,11 @@ def _get_shorter_text(content, language, limit):
                 chardet.detect(content)['encoding'], 'ignore')
 
         # break text by sentence
-        if language.startswith('zh') or language == 'ja':
+        if language == 'zh' or language == 'ja':
             jp_sent_tokenizer = nltk.RegexpTokenizer(u'[^!?.！？。．]*[!?.！？。]*')
             sentences = jp_sent_tokenizer.tokenize(content)
+        if language == 'th':
+            sentences = content.split()
         else:  # supports latin-based, thai and arabic
             sentences = nltk.sent_tokenize(content)
 
@@ -125,34 +128,32 @@ def _get_summary(content, language):
 
 def extract(summary, transcoded, language):
     """
-    get the summary/first paragraph, text only
+    get the summary from the source, first paragraph or summary
     """
     if not summary and not transcoded:
         logger.error('No data is found!')
         return None
 
     try:
-        result_summary = result_first_paragraph = ""
+        result_summary = ""
 
-        # if summary from rss provider is found
-        #     use summary, but limit the number of words
-        if summary:
-            result_summary = _get_summary(summary, language)
-        #    if result_summary:
-        #        print '  SUMMARY:', len(result_summary), result_summary
-
-        # else if summary could be generated
-        #     use summary, limit the number of words
-
-        # else find first paragraph from transcoded
-        #     also limit the number of words
+        # set the number of sentences
+        # limit the number of words
         if transcoded:
-            result_first_paragraph = _get_first_paragraph(transcoded, language)
-        #    if result_first_paragraph:
-        # print '  FIRST PARAGRAPH:', len(result_first_paragraph),
-        # result_first_paragraph
+            teaser = PyTeaser()
+            result_summary = teaser.summarize()
 
-        return result_summary if result_summary else result_first_paragraph if result_first_paragraph else None
+        # if summary from rss provider is found use summary, but limit 
+        # the number of words
+        if not result_summary and summary:
+            result_summary = _get_summary(summary, language)
+
+        # else find first paragraph from transcoded also limit the 
+        # number of words
+        if not result_summary and transcoded:
+            result_summary = _get_first_paragraph(transcoded, language)
+
+        return result_summary
     except Exception as k:
         logger.error(str(k))
         return None
