@@ -99,6 +99,7 @@ def _get_first_paragraph(content, language):
         h.ignore_links = True
         h.ignore_images = True
         h.ignore_emphasis = True
+        h.body_width = 0
         paragraphs = (h.handle(content)).strip('#').split("\n\n")
         for paragraph in paragraphs:
             if paragraph and _is_valid(paragraph, language):

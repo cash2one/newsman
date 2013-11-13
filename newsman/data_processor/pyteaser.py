@@ -92,6 +92,7 @@ class PyTeaser:
             html_stripper.ignore_images = True
             html_stripper.ignore_emphasis = True
             self.article = html_stripper.handle(self.article).strip("#")
+            print self.article
 
             # convert to appropriate encoding
             if isinstance(self.article, str):
@@ -466,39 +467,17 @@ if __name__ == '__main__':
     #title = "Astronomic news: the universe may not be expanding after all"
     #text = """Now that conventional thinking has been turned on its head in a paper by Prof Christof Wetterich at the University of Heidelberg in Germany. He points out that the tell-tale light emitted by atoms is also governed by the masses of their constituent particles, notably their electrons. The way these absorb and emit light would shift towards the blue part of the spectrum if atoms were to grow in mass, and to the red if they lost it.  Because the frequency or ÒpitchÓ of light increases with mass, Prof Wetterich argues that masses could have been lower long ago. If they had been constantly increasing, the colours of old galaxies would look red-shifted Ð and the degree of red shift would depend on how far away they were from Earth. ÒNone of my colleagues has so far found any fault [with this],Ó he says.  Although his research has yet to be published in a peer-reviewed publication, Nature reports that the idea that the universe is not expanding at all Ð or even contracting Ð is being taken seriously by some experts, such as Dr HongSheng Zhao, a cosmologist at the University of St Andrews who has worked on an alternative theory of gravity. ÒI see no fault in [Prof WetterichÕs] mathematical treatment,Ó he says. ÒThere were rudimentary versions of this idea two decades ago, and I think it is fascinating to explore this alternative representation of the cosmic expansion, where the evolution of the universe is like a piano keyboard played out from low to high pitch.Ó  Prof Wetterich takes the detached, even playful, view that his work marks a change in perspective, with two different views of reality: either the distances between galaxies grow, as in the traditional balloon picture, or the size of atoms shrinks, increasing their mass. Or itÕs a complex blend of the two. One benefit of this idea is that he is able to rid physics of the singularity at the start of time, a nasty infinity where the laws of physics break down. Instead, the Big Bang is smeared over the distant past: the first note of the ''cosmic pianoÕÕ was long and low-pitched.  Harry Cliff, a physicist working at CERN who is the Science MuseumÕs fellow of modern science, thinks it striking that a universe where particles are getting heavier could look identical to one where space/time is expanding. ÒFinding two different ways of thinking about the same problem often leads to new insights,Ó he says. ÒString theory, for instance, is full of 'dualitiesÕ like this, which allow theorists to pick whichever view makes their calculations simpler.Ó  If this idea turns out to be right Ð and that is a very big if Ð it could pave the way for new ways to think about our universe. If we are lucky, they might even be as revolutionary as Edwin HubbleÕs, almost a century ago.  Roger Highfield is director of external affairs at the Science Museum"""
 
-    language = 'zh'
-    title = "陈毅之子对三中全会放惊言：政改要等一百年"
-    text = """中共三中全会正在北京〝闭门〞召开，已故中共十大元帅陈毅之子陈小鲁近日在接受外媒访问时，公开评论三中全会说，中共高层讨论重点仍然在于经济改革，直指中共的政制改革〝可能还要多等一百年〞。不过有评论指，中共能不能走过5年都是问题。 
+    language = 'ja'
+    title = "日印との関係重視、ブータン首相インタビュー…中国と国交樹立急がず"
+    text = """【ティンプー＝岩田智雄】親日国として知られるブータンのツェリン・トブゲイ首相（４８）が５日、首都ティンプーの首相府で産経新聞の単独インタビューに応じ、日本と隣国インドとの関係を重視していく方針を強調した。国境問題を抱える中国との早期の国交樹立については、否定的な見解を示した。
     
-    英国《金融时报》报导说，针对外界认为三中全会或讨论改革议题，陈小鲁认为，十八届三中全会重点在于经济体制改革，譬如土地流转、金融改革等，因为各地为高速发展欠债太多，〝环境债，污染债，水资源短缺，产能过剩，怎么办？就是要调整结构，就是咬牙忍住。〞
+    　首相就任後、日本メディアのインタビューに応じたのは初めて。７月の総選挙で当時野党の国民民主党を率いて勝利したトブゲイ氏は、日本政府がブータンでの大使館開設を検討していることを「非常に良いニュースだ」と評価、「２国間関係は極めて良好で、発展させていく政策に前政権から変更はない」と述べた。
     
-    陈小鲁表明对三中全会〝没啥期待〞，因为〝队伍还是原来的队伍，也没有换人〞、〝中国的政治体制改革，可能要一百年，你得培养几代人〞。
+    　農業、道路や橋の建設、教育分野での日本からの援助の拡大と円借款の供与に期待を示すとともに、「将来の日本訪問を楽しみにしている」と語った。
     
-    其实早在去年，曾为新任中共中央总书记的习近平博士论文导师、被戏称为〝国师〞的清华大学教授孙立平就曾指出中共的治国理念与法治格格不入，而且认为中共要转型、要处理历史问题，唯一办法是与历史切割。
-    他还预言说，中共当局如果错失切割的历史机会，中共的统治模式不可能维系多久，〝10年可能到不了，5年可能差不多〞。
+    　トブゲイ氏は前政権の対中接近で後退したと批判されるインドとの関係改善に取り組んでいる。インドについて「とても緊密な友人であり隣人だ。経済でブータンを大いに助けてくれている。大国と小国の関係のモデルだ」とし、緊密な関係を維持すると表明した。
     
-    三中全会高层博弈的重点
-    
-    香港《苹果日报》认为，中共300多名中共中央委员、候补委员多是地方诸侯（省委书记、省长）及部门首长、央企负责人等，当他们面临地方或部门利益受损、权力削减甚至大权旁落，未必心甘情愿，出声表〝异议〞势所必然。国企、司法、行政和土地改革应该是在会上引起激辩的方面，也是博弈的重点。
-    
-    报导引述国情专家、北京理工大学经济学教授胡星斗观点称，国企改革阻力非常大，因国企领导人多是太子党担任，他们握有重权，家族影响力大，涉及庞大既得利益，要改革等于从他们手中抢蛋糕。
-    资料显示，现时垄断且暴利的央企掌门人多是太子党；十八届中委、候补中委和中纪委委员中，至少有近20人是来自央企。
-    
-    胡星斗还认为，司法改革要法院脱离地方归中央管理，有利司法公正，必然招致地方政府的不满，因为他们再不能把司法当作地方行政帮凶。
-    
-    报导还指出，土地改革变相制止地方政府随意掠夺农地，各级政府目前赖以支撑的财政来源将中断；而行政机构改革意味大量官员下岗，这些改革都对地方官员不利，必然遭到阻力。
-    
-    中共正在溃败慢慢地烂掉
-    
-    中共人大退休教授张同新对《美国之音》说：〝改革开放三十多年，中共现在已经进入了一个新的阶段，总结走过的路程，根据现在形势发生的变化，那种希望三中全会上看到中国有一个‘重大改变’，我认为，这是不现实的，不会有根本性变化。〞
-    
-    人大另外一位教授周孝正对《美国之音》表示，他接触的知识界人士对三中全会根本就不关心，大家起码嘴上没有表现出兴趣：〝我身边这些知识份子根本就不谈（三中全会）这事。我也没有听任何人说过。我想跟他们说，他们也不说。〞
-    
-    周孝正说，清华大学孙立平教授提出了所谓中国社会〝溃败论〞，并说很多中国知识界人士赞同这种分析中国社会现状的观点，而〝三中全会〞医治不了中国社会的这种疾患。
-    
-    周孝正：〝清华大学有一个教授叫孙立平。他有一个观点叫‘溃败’。他说，这个社会不会动荡，因为动荡需要有理想主义。现在的社会是烂掉了，所以叫溃败。溃败阶段，大家‘抬头向钱看，低头向钱看，只有向钱看，才能向前看’。
-    
-    周孝正指出，对于改革大家就没有什么信心了。贫富差距这么大，官员越来越腐败，看看社会上这些事情，包括北京这个污染，雾霾都成为常态了。不刮风，肯定雾霾。孙立平的话是对的，现在是溃败，慢慢地烂掉。"""
-
+    　一方、中国に関し、「すべての国、特に隣人との友好が大切で、中国もそうだというのが現実だ」としながらも、今後の対中関係については「優先事項は国境問題を解決することだ」と強調した。その上で、前政権が一時、検討した中国との外交関係の樹立に関し、「他の問題は国境問題の解決後だ」と明らかにした。"""
+ 
     teaser = PyTeaser(language, title, text)
     print teaser.summarize()
