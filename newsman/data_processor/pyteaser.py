@@ -214,6 +214,47 @@ class PyTeaser:
             logger.error(str(k))
             return None
 
+
+    def _score_sentence_position(self, position, sentence_total):
+        """
+        score the sence by its position in the article
+        """
+        if not position or not sentence_total:
+            logger.error('Method Malformed!')
+            return 0
+
+        try:
+            normalized = positon / sentence_total
+            sentence_position_score = 0
+
+            if normalized > 0 and normalized <= 0.1:
+                sentence_position_score = 0.17
+            elif normalized > 0.1 and normalized <= 0.2:
+                sentence_position_score = 0.23
+            elif normalized > 0.2 and normalized <= 0.3:
+                sentence_position_score = 0.14
+            elif normalized > 0.3 and normalized <= 0.4:
+                sentence_position_score = 0.08
+            elif normalized > 0.4 and normalized <= 0.5:
+                sentence_position_score = 0.05
+            elif normalized > 0.5 and normalized <= 0.6:
+                sentence_position_score = 0.04
+            elif normalized > 0.6 and normalized <= 0.7:
+                sentence_position_score = 0.06
+            elif normalized > 0.7 and normalized <= 0.8:
+                sentence_position_score = 0.04
+            elif normalized > 0.8 and normalized <= 0.9:
+                sentence_position_score = 0.04
+            elif normalized > 0.9 and normalized <= 1.0:
+                sentence_position_score = 0.15
+            else:
+                sentence_position_score = 0
+
+            return sentence_position_score
+        except Exception as k:
+            logger.error(str(k))
+            return 0
+
     
     def _score_sentence_length(self, sentence_words):
         """
@@ -268,6 +309,8 @@ class PyTeaser:
                 # 1. title-sentence
                 title_score = self._score_title(sentence_words)
                 # 2. sentence length
+                sentence_length_score = self._score_sentence_length(sentence_words)
+                # 3. sentence position in article
         except Exception as k:
             logger.error(str(k))
             return None
