@@ -143,6 +143,7 @@ class PyTeaser:
 
             # chinese and japanese punctuation
             cj_punctuation = u"-〃〈-「『【［[〈《（(｛{」』】］]〉》）)｝}。．.!！?？、-〟〰-＃％-＊，-／：-；-＠-＿｛｝｟-･‐-―“-”…-‧﹏"
+            # thai punctuation, from http://blogs.transparent.com/thai/thai-punctuation-marks-other-characters-part-2/
             thai_punctuation = u"อ์()“!,๛ๆฯฯลฯ?."
 
             # word segment
