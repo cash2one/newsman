@@ -94,8 +94,9 @@ class PyTeaser:
             self.article = html_stripper.handle(self.article).strip("#")
 
             # convert to appropriate encoding
-            self.article = self.article.decode(
-                chardet.detect(self.article)['encoding'], 'ignore')
+            if isinstance(self.article, str):
+                self.article = self.article.decode(
+                    chardet.detect(self.article)['encoding'], 'ignore')
         except Exception as k:
             logger.error(str(k))
             return None
@@ -135,7 +136,7 @@ class PyTeaser:
             # put the text in the right encoding
             if isinstance(text, str):
                 text = text.decode(
-                    chardet.detect(self.article)['encoding'], 'ignore')
+                    chardet.detect(text)['encoding'], 'ignore')
 
             # chinese and japanese punctuation
             cj_punctuation = u"-〃〈-「『【［[〈《（(｛{」』】］]〉》）)｝}。．.!！?？、-〟〰-＃％-＊，-／：-；-＠-＿｛｝｟-･‐-―“-”…-‧﹏"
@@ -312,7 +313,7 @@ class PyTeaser:
             logger.error(str(k))
             return 0
 
-    def _score_sentence_position(self, position, sentence_total):
+    def _score_sentence_position(self, position=None, sentence_total=None):
         """
         score the sence by its position in the article
         """
@@ -352,7 +353,7 @@ class PyTeaser:
             logger.error(str(k))
             return 0
 
-    def _score_sentence_length(self, sentence_words):
+    def _score_sentence_length(self, sentence_words=None):
         """
         score the sentence by its length
         """
@@ -413,7 +414,7 @@ class PyTeaser:
                     sentence_words)
                 # 3. sentence position in article
                 sentence_position_score = self._score_sentence_position(
-                    index, len(sentences))
+                    index + 1, len(sentences))
                 # 4. sentence-keywords
                 sbs_score = self._summation_based_selection(
                     sentence_words, topwords)
@@ -433,7 +434,7 @@ class PyTeaser:
             logger.error(str(k))
             return None
 
-    def _render(self, sentences_scored):
+    def _render(self, sentences_scored=None):
         """
         select indicated number of key sentences, rank them by their original 
         position in the article and output in JSON
@@ -453,7 +454,7 @@ class PyTeaser:
 
             sentences_selected = '\n\n'.join(
                 [item[0] for item in sentences_scored_limited])
-            return output
+            return sentences_selected
         except Exception as k:
             logger.error(str(k))
             return None
