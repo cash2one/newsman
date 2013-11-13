@@ -127,11 +127,11 @@ def _get_summary(content, language):
         return None
 
 
-def extract(summary, transcoded, language):
+def extract(language, title, content, summary, link, feed, category):
     """
     get the summary from the source, first paragraph or summary
     """
-    if not summary and not transcoded:
+    if not summary and not content:
         logger.error('No data is found!')
         return None
 
@@ -140,8 +140,8 @@ def extract(summary, transcoded, language):
 
         # set the number of sentences
         # limit the number of words
-        if transcoded:
-            teaser = PyTeaser()
+        if content:
+            teaser = PyTeaser(language, title, content, link, feed, category)
             result_summary = teaser.summarize()
 
         # if summary from rss provider is found use summary, but limit 
@@ -151,8 +151,8 @@ def extract(summary, transcoded, language):
 
         # else find first paragraph from transcoded also limit the 
         # number of words
-        if not result_summary and transcoded:
-            result_summary = _get_first_paragraph(transcoded, language)
+        if not result_summary and content:
+            result_summary = _get_first_paragraph(content, language)
 
         return result_summary
     except Exception as k:
