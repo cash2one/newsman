@@ -281,8 +281,8 @@ class PyTeaser:
             # compute number of keyword and its index in words
             word_in_keywords_count = 1
             word_in_keywords_score_with_index = []
-            for word in words:
-                for index, keyword in enumerate(keywords):
+            for index, word in enumerate(words):
+                for keyword in keywords:
                     keyword_word = keyword[0]
                     keyword_count = keyword[1]
                     if word == keyword_word and keyword_count > 0:
