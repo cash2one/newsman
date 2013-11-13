@@ -386,7 +386,7 @@ class PyTeaser:
                 title_score = len(sentence_words) / len(title_words)
                 return title_score
             else:
-                returen 0
+                return 0
         except Exception as k:
             logger.error(str(k))
             return 0
