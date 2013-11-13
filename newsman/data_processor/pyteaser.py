@@ -24,6 +24,8 @@ from config.settings import logger
 import html2text
 import jieba
 import nltk
+from nltk.tokenize import *
+import string
 import tinysegmenter
 import urllib2
 
@@ -67,6 +69,13 @@ class PyTeaser:
 
         # find top keywords
         topwords = self._find_top_keywords(keywords, words_count)
+
+        # compute sentence scores
+        sentences_scored = self._score_sentences(topwords)
+
+        # render the data
+        sentences_selected = self._render(sentences_scored)
+        return sentences_selected
 
 
     def _clean_article(self):
@@ -140,10 +149,8 @@ class PyTeaser:
                 # remove punctuation
                 words = [word for word in words if word not in cj_punctuation]
             else:
-                from nltk.tokenize import *
                 words = WordPunctTokenizer.tokenize(text)
                 # remove punctuation
-                import string
                 words = [word.lower() for word in words if word not in string.punctuation]
             return words
         except Exception as k:
@@ -367,7 +374,7 @@ class PyTeaser:
             return None
 
         try:
-            sentences_with_score = []
+            sentences_scored = []
             sentences = self._split_article()
 
             for index, sentence in enumerate(sentences):
@@ -385,9 +392,35 @@ class PyTeaser:
                 keyword_score = (sbs_score + dbs_score) / 2.0 * 10.0
 
                 sentence_score = title_score * 1.5 + keyword_score * 2.0 + sentence_length_score * 0.5 + sentence_position_score * 1.0 / 4.0
-                sentences_with_score.append((sentence, sentence_score, index))
+                sentences_scored.append((sentence, sentence_score, index))
 
-            return sentences_with_score
+            # rank sentences by their scores
+            sentences_scored = sorted(sentences_scored, key=lambda x:-x[1])
+            return sentences_scored
+        except Exception as k:
+            logger.error(str(k))
+            return None
+
+
+    def _render(self, sentences_scored):
+        """
+        select indicated number of key sentences, rank them by their original 
+        position in the article and output in JSON
+
+        sentence_scored: (sentence, score, index)
+        """
+        if not sentences_scored:
+            logger.error('Method malformed!')
+            return None
+
+        try:
+            sentences_scored_limited = sentences_scored[:5]
+            # reorder sentence by their position in article
+            # order by increasing
+            sentences_scored_limited = sorted(sentences_scored_limited, key=lambda x:x[2])
+
+            sentences_selected = '\n\n'.join([item[0] for item in sentences_scored_limited])
+            return output
         except Exception as k:
             logger.error(str(k))
             return None
@@ -395,4 +428,4 @@ class PyTeaser:
 
 if __name__ == '__main__':
     teaser = PyTeaser()
-    teaser.summarize()
+    #teaser.summarize()
