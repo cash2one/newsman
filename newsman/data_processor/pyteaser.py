@@ -1,5 +1,5 @@
-#!/usr/bin/env python 
-#-*- coding: utf-8 -*- 
+#!/usr/bin/env python
+#-*- coding: utf-8 -*-
 
 """
 PyTeaser is a Python version of [TextTeaser]<https://github.com/MojoJolo/textteaser/>
@@ -12,8 +12,8 @@ Arabic, Chinese, Japanese, Portugues and Indonesian
 # @created Nov. 12, 2013
 
 
-import sys 
-reload(sys) 
+import sys
+reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
@@ -40,6 +40,7 @@ from config.settings import SCORED_SENTENCE_LIMIT
 
 
 class PyTeaser:
+
     """
     PyTeaser extracts key sentences from an article
     """
@@ -54,7 +55,6 @@ class PyTeaser:
         self.link = link
         self.blog = blog
         self.category = category
-
 
     def summarize(self):
         """
@@ -82,7 +82,6 @@ class PyTeaser:
         sentences_selected = self._render(sentences_scored)
         return sentences_selected
 
-
     def _clean_article(self):
         """
         remove html tags, images, links from the article, and encode it appropriately
@@ -99,11 +98,11 @@ class PyTeaser:
             self.article = html_stripper.handle(self.article).strip("#")
 
             # convert to appropriate encoding
-            self.article = self.article.decode(chardet.detect(self.article)['encoding'], 'ignore')
+            self.article = self.article.decode(
+                chardet.detect(self.article)['encoding'], 'ignore')
         except Exception as k:
             logger.error(str(k))
             return None
-
 
     def _split_article(self):
         """
@@ -113,7 +112,8 @@ class PyTeaser:
             sentences = None
             # special: thai, arabic
             if self.language == 'zh' or self.language == 'ja':
-                cj_sent_tokenizer = nltk.RegexpTokenizer(u'[^!?.！？。．]*[!?.！？。]*')
+                cj_sent_tokenizer = nltk.RegexpTokenizer(
+                    u'[^!?.！？。．]*[!?.！？。]*')
                 sentences = cj_sent_tokenizer.tokenize(self.article)
             elif self.language == 'th':
                 sentences = self.article.split()
@@ -127,7 +127,6 @@ class PyTeaser:
             logger.error(str(k))
             return None
 
-
     def _segment_text(self, text=None):
         """
         segment thext into words
@@ -139,11 +138,13 @@ class PyTeaser:
         try:
             # put the text in the right encoding
             if isinstance(text, str):
-                text = text.decode(chardet.detect(self.article)['encoding'], 'ignore')
+                text = text.decode(
+                    chardet.detect(self.article)['encoding'], 'ignore')
 
             # chinese and japanese punctuation
             cj_punctuation = u"-〃〈-「『【［[〈《（(｛{」』】］]〉》）)｝}。．.!！?？、-〟〰-＃％-＊，-／：-；-＠-＿｛｝｟-･‐-―“-”…-‧﹏"
-            # thai punctuation, from http://blogs.transparent.com/thai/thai-punctuation-marks-other-characters-part-2/
+            # thai punctuation, from
+            # http://blogs.transparent.com/thai/thai-punctuation-marks-other-characters-part-2/
             thai_punctuation = u"อ์()“!,๛ๆฯฯลฯ?."
 
             # word segment
@@ -160,23 +161,26 @@ class PyTeaser:
                 # remove punctuation
                 words = [word for word in words if word not in cj_punctuation]
             elif self.lanuage == 'th':
-                response = subprocess.Popen('''swath -m max < %s 2>&1 | tee %s''' % (THAI_WORDCUT_INPUT, THAI_WORDCUT_OUTPUT), stdout=subprocess.PIPE, shell=True)
+                response = subprocess.Popen('''swath -m max < %s 2>&1 | tee %s''' % (
+                    THAI_WORDCUT_INPUT, THAI_WORDCUT_OUTPUT), stdout=subprocess.PIPE, shell=True)
                 content, error = response.communicate()
                 if not error and content:
                     if 'error' not in content or 'permission' not in content:
                         content = content.strip()
-                        words = [word for word in content.split("|") if word.strip()]
+                        words = [
+                            word for word in content.split("|") if word.strip()]
                         # remove punctuation
-                        words = [word for word in words if word not in thai_punctuation]
+                        words = [
+                            word for word in words if word not in thai_punctuation]
             else:
                 words = WordPunctTokenizer.tokenize(text)
                 # remove punctuation
-                words = [word.lower() for word in words if word not in string.punctuation]
+                words = [word.lower()
+                         for word in words if word not in string.punctuation]
             return words
         except Exception as k:
             logger.error(str(k))
             return None
-
 
     def _find_keywords(self):
         """
@@ -192,19 +196,18 @@ class PyTeaser:
             stopwords = f.readlines()
             f.close()
             words = [word for word in words if word not in stopwords]
-            
+
             # distinct words
             kwords = list(set(words))
-            
+
             # word-frenquency
             keywords = [(kword, words.count(kword)) for kword in kwords]
-            keywords = sorted(keywords, key=lambda x:-x[1])
+            keywords = sorted(keywords, key=lambda x: -x[1])
 
             return (keywords, len(words))
         except Exception as k:
             logger.error(str(k))
             return None
-
 
     def _find_top_keywords(self, keywords=None, words_count=None):
         """
@@ -223,23 +226,27 @@ class PyTeaser:
                 word = top_keyword[0]
                 count = top_keyword[1]
 
-                blog_count = col.find({'blog':self.blog, 'language':self.language}).count() + 1.0
-                category_count = col.find({'category':self.category, 'language':self.language}).count() + 1.0
-                col.save({'word':word, 'count':count, 'link':self.link, 'blog':self.blog, 'category':self.category, 'language':self.language})
+                blog_count = col.find(
+                    {'blog': self.blog, 'language': self.language}).count() + 1.0
+                category_count = col.find(
+                    {'category': self.category, 'language': self.language}).count() + 1.0
+                col.save({'word': word, 'count': count, 'link': self.link, 'blog':
+                         self.blog, 'category': self.category, 'language': self.language})
 
                 article_score = count / words_count
-                blog_score = reduce(lambda x, y: x + y, [item['count'] for item in col.find({'word':word, 'blog':self.blog}, {'count':1, '_id':0})]) / blog_count
-                category_score = reduce(lambda x, y: x + y, [item['count'] for item in col.find({'word':word, 'category':self.category}, {'count':1, '_id':0})]) / category_count
+                blog_score = reduce(lambda x, y: x + y, [item['count'] for item in col.find(
+                    {'word': word, 'blog': self.blog}, {'count': 1, '_id': 0})]) / blog_count
+                category_score = reduce(lambda x, y: x + y, [item['count'] for item in col.find(
+                    {'word': word, 'category': self.category}, {'count': 1, '_id': 0})]) / category_count
 
                 word_score = article_score * 1.5 + blog_score + category_score
                 topwords.append((word, word_score))
 
-            topwords = sorted(topwords, key=lambda x:-x[1])
+            topwords = sorted(topwords, key=lambda x: -x[1])
             return topwords
         except Exception as k:
             logger.error(str(k))
             return None
-
 
     def _summation_based_selection(self, words=None, keywords=None):
         """
@@ -256,14 +263,14 @@ class PyTeaser:
                     keyword_word = keyword[0]
                     keyword_count = keyword[1]
                     if word == keyword_word:
-                        word_in_keywords_score = word_in_keywords_score + keyword_count 
+                        word_in_keywords_score = word_in_keywords_score + \
+                            keyword_count
                         break
             sbs_score = 1.0 / abs(len(words)) * word_in_keywords_score
             return sbs_score
         except Exception as k:
             logger.error(str(k))
             return 0
-
 
     def _density_based_selection(self, word=None, keywords=None):
         """
@@ -282,7 +289,8 @@ class PyTeaser:
                     keyword_word = keyword[0]
                     keyword_count = keyword[1]
                     if word == keyword_word and keyword_count > 0:
-                        word_in_keywords_score_with_index.append((keyword_count, index)) 
+                        word_in_keywords_score_with_index.append(
+                            (keyword_count, index))
                         word_in_keywords_count = word_in_keywords_count + 1
                         break
 
@@ -290,19 +298,23 @@ class PyTeaser:
             # 1: -_score_with_index 2: -_score_with_index_sliced 3: _zipped
             # 1: [(a, 1), (b, 2), (c, 3), (d, 4)]
             # 2: [(b, 2), (c, 3), (d, 4)]
-            # 3: [((a, 1), (b, 2)), ((b, 2), (c, 3)), ((c, 3), (d, 4))] 
-            word_in_keywords_score_with_index_sliced = word_in_keywords_score_with_index[1:]
-            word_in_keywords_zipped = zip(word_in_keywords_score_with_index, word_in_keywords_score_with_index_sliced)
+            # 3: [((a, 1), (b, 2)), ((b, 2), (c, 3)), ((c, 3), (d, 4))]
+            word_in_keywords_score_with_index_sliced = word_in_keywords_score_with_index[
+                1:]
+            word_in_keywords_zipped = zip(
+                word_in_keywords_score_with_index, word_in_keywords_score_with_index_sliced)
 
-            word_in_keywords_sum_each = [(item[0][0] * item[1][0]) / pow((item[0][1] - item[1][1]), 2)  for item in word_in_keywords_zipped]
-            word_in_keywords_sum = reduce(lambda x, y: x + y, word_in_keywords_sum_each)
+            word_in_keywords_sum_each = [(item[0][0] * item[1][0]) / pow((item[0][1] - item[1][1]), 2)
+                                         for item in word_in_keywords_zipped]
+            word_in_keywords_sum = reduce(
+                lambda x, y: x + y, word_in_keywords_sum_each)
 
-            dbs_score = (1.0 / (word_in_keywords_count * (word_in_keywords_count + 1.0))) * word_in_keywords_sum
+            dbs_score = (1.0 / (word_in_keywords_count * (word_in_keywords_count + 1.0))) * \
+                word_in_keywords_sum
             return dbs_score
         except Exception as k:
             logger.error(str(k))
             return 0
-
 
     def _score_sentence_position(self, position, sentence_total):
         """
@@ -344,7 +356,6 @@ class PyTeaser:
             logger.error(str(k))
             return 0
 
-    
     def _score_sentence_length(self, sentence_words):
         """
         score the sentence by its length
@@ -354,13 +365,13 @@ class PyTeaser:
             return 0
 
         try:
-            IDEAL_SENTENCE_LENGTH = 20 # unicode words
-            sentence_length_score = (IDEAL_SENTENCE_LENGTH - abs(IDEAL_SENTENCE_LENGTH - len(sentence_words))) / float(IDEAL_SENTENCE_LENGTH)
+            IDEAL_SENTENCE_LENGTH = 20  # unicode words
+            sentence_length_score = (IDEAL_SENTENCE_LENGTH - abs(
+                IDEAL_SENTENCE_LENGTH - len(sentence_words))) / float(IDEAL_SENTENCE_LENGTH)
             return sentence_length_score
         except Exception as k:
             logger.error(str(k))
             return 0
-
 
     def _score_title(self, sentence_words=None):
         """
@@ -371,10 +382,11 @@ class PyTeaser:
             return 0
 
         try:
-            title_words = self._segment_text(self.title) 
+            title_words = self._segment_text(self.title)
             if title_words:
                 # filter out words that are not in title
-                sentence_words = [sentence_word for sentence_word in sentence_words if sentence_word in title_words]
+                sentence_words = [
+                    sentence_word for sentence_word in sentence_words if sentence_word in title_words]
                 title_score = len(sentence_words) / len(title_words)
                 return title_score
             else:
@@ -382,7 +394,6 @@ class PyTeaser:
         except Exception as k:
             logger.error(str(k))
             return 0
-
 
     def _score_sentences(self, topwords=None):
         """
@@ -402,24 +413,29 @@ class PyTeaser:
                 # 1. title-sentence
                 title_score = self._score_title(sentence_words)
                 # 2. sentence length
-                sentence_length_score = self._score_sentence_length(sentence_words)
+                sentence_length_score = self._score_sentence_length(
+                    sentence_words)
                 # 3. sentence position in article
-                sentence_position_score = self._score_sentence_position(index, len(sentences))
+                sentence_position_score = self._score_sentence_position(
+                    index, len(sentences))
                 # 4. sentence-keywords
-                sbs_score = self._summation_based_selection(sentence_words, topwords) 
-                dbs_score = self._density_based_selection(sentence_words, topwords)
+                sbs_score = self._summation_based_selection(
+                    sentence_words, topwords)
+                dbs_score = self._density_based_selection(
+                    sentence_words, topwords)
                 keyword_score = (sbs_score + dbs_score) / 2.0 * 10.0
 
-                sentence_score = title_score * 1.5 + keyword_score * 2.0 + sentence_length_score * 0.5 + sentence_position_score * 1.0 / 4.0
+                sentence_score = title_score * 1.5 + keyword_score * 2.0 + \
+                    sentence_length_score * 0.5 + \
+                    sentence_position_score * 1.0 / 4.0
                 sentences_scored.append((sentence, sentence_score, index))
 
             # rank sentences by their scores
-            sentences_scored = sorted(sentences_scored, key=lambda x:-x[1])
+            sentences_scored = sorted(sentences_scored, key=lambda x: -x[1])
             return sentences_scored
         except Exception as k:
             logger.error(str(k))
             return None
-
 
     def _render(self, sentences_scored):
         """
@@ -436,9 +452,11 @@ class PyTeaser:
             sentences_scored_limited = sentences_scored[:SCORED_SENTENCE_LIMIT]
             # reorder sentence by their position in article
             # order by increasing
-            sentences_scored_limited = sorted(sentences_scored_limited, key=lambda x:x[2])
+            sentences_scored_limited = sorted(
+                sentences_scored_limited, key=lambda x: x[2])
 
-            sentences_selected = '\n\n'.join([item[0] for item in sentences_scored_limited])
+            sentences_selected = '\n\n'.join(
+                [item[0] for item in sentences_scored_limited])
             return output
         except Exception as k:
             logger.error(str(k))
@@ -447,4 +465,4 @@ class PyTeaser:
 
 if __name__ == '__main__':
     teaser = PyTeaser()
-    #teaser.summarize()
+    # teaser.summarize()
