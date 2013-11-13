@@ -321,7 +321,7 @@ class PyTeaser:
             return 0
 
         try:
-            normalized = positon / sentence_total
+            normalized = position / sentence_total
             sentence_position_score = 0
 
             if normalized > 0 and normalized <= 0.1:
