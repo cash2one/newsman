@@ -268,7 +268,7 @@ class PyTeaser:
             logger.error(str(k))
             return 0
 
-    def _density_based_selection(self, word=None, keywords=None):
+    def _density_based_selection(self, words=None, keywords=None):
         """
         simple implementation of density-based selection algorithm
         """
