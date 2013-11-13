@@ -81,7 +81,11 @@ NEWS_TEMPLATE_3 = LOCAL % 'STATIC/news/templates/news3.html'
 NEWS_TEMPLATE_ARABIC = LOCAL % 'STATIC/news/templates/index_arabic.html'
 
 # Stop words
-STOP_WORDS = "%s/newsman/data_processor/stopwords/" % CODE_BASE 
+STOP_WORDS = "%s/newsman/data_processor/NLP/" % CODE_BASE 
+
+# Thai segmentation input and output file
+THAI_WORDCUT_INPUT = "%s/newsman/data_processor/NLP/thai_wordcut_input" % CODE_BASE 
+THAI_WORDCUT_OUTPUT = "%s/newsman/data_processor/NLP/thai_wordcut_output" % CODE_BASE 
 
 # uck transcoding web service url
 UCK_TRANSCODING = 'http://gate.baidu.com/tc?m=8&from=bdpc_browser&src='

@@ -26,6 +26,7 @@ import jieba
 import nltk
 from nltk.tokenize import *
 import string
+import subprocess
 import tinysegmenter
 import urllib2
 
@@ -138,6 +139,9 @@ class PyTeaser:
 
             # chinese and japanese punctuation
             cj_punctuation = u"-〃〈-「『【［[〈《（(｛{」』】］]〉》）)｝}。．.!！?？、-〟〰-＃％-＊，-／：-；-＠-＿｛｝｟-･‐-―“-”…-‧﹏"
+            thai_punctuation = u"อ์()“!,๛ๆฯฯลฯ?."
+
+            # word segment
             if self.language == 'ja':
                 segmenter = tinysegmenter.TinySegmenter()
                 words = segmenter.tokenize(text)
@@ -150,6 +154,13 @@ class PyTeaser:
                     words.append(seg)
                 # remove punctuation
                 words = [word for word in words if word not in cj_punctuation]
+            elif self.lanuage == 'th':
+                response = subprocess.Popen('''swath -m max < %s 2>&1 | tee %s''' % (), stdout=subprocess.PIPE, shell=True)
+                content, error = response.communicate()
+                content = content.strip()
+                words = [word for word in content.split("|") if word.strip()]
+                for word in words:
+                    print word
             else:
                 words = WordPunctTokenizer.tokenize(text)
                 # remove punctuation
