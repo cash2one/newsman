@@ -16,9 +16,9 @@ sys.setdefaultencoding('UTF-8')
 import feedparser
 
 # CONSTANTS
-#FILE_SUFFIX = '/home/users/jinyuan/newsman/newsman/tools/text_based_feeds/feed_lists/'
 #FILE_SUFFIX = '/home/work/newsman/newsman/tools/text_based_feeds/feed_lists/'
-FILE_SUFFIX = '/home/jinyuan/Downloads/newsman/newsman/tools/text_based_feeds/feed_lists/'
+#FILE_SUFFIX = '/home/users/jinyuan/newsman/newsman/tools/text_based_feeds/feed_lists/'
+#FILE_SUFFIX = '/home/jinyuan/Downloads/newsman/newsman/tools/text_based_feeds/feed_lists/'
 HTTP_CODES = {301: 'RSS address is permanently moved to a new place.',
               302: 'RSS address is temporarily moved to a new place.',
               304: 'RSS has not published new content.',
