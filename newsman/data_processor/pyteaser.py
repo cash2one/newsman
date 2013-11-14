@@ -33,8 +33,8 @@ import urllib2
 # CONSTANTS
 from config.settings import KEYWORD_REGISTRAR
 from config.settings import STOP_WORDS
-from config.settings import THAI_WORDCUT_INPUT
-from config.settings import THAI_WORDCUT_OUTPUT
+from config.settings import THAI_WORDSEG
+from config.settings import THAI_WORDSEG_DICT
 from config.settings import TOP_KEYWORDS_LIMIT
 from config.settings import SCORED_SENTENCE_LIMIT
 
@@ -167,17 +167,20 @@ class PyTeaser:
                 # remove punctuation
                 words = [word.strip() for word in words if word.strip() and word not in cj_punctuation]
             elif self.language == 'th':
-                f = open(THAI_WORDCUT_INPUT, 'w')
-                f.write(self.bak)
-                f.close()
-                response = subprocess.Popen('''swath -m max < %s 2>&1 | tee %s''' % (
-                    THAI_WORDCUT_INPUT, THAI_WORDCUT_OUTPUT), stdout=subprocess.PIPE, shell=True)
+                response = subprocess.Popen('''echo %s | %s %s/scw.conf %s''' % (
+                    text, THAI_WORDSEG, THAI_WORDSEG_DICT, THAI_WORDSEG_DICT), stdout=subprocess.PIPE, shell=True)
                 content, error = response.communicate()
                 if not error and content:
                     if 'error' not in content or 'permission' not in content:
                         content = content.strip()
-                        words = [
-                            word.strip() for word in content.split("|") if word.strip()]
+                        paragraphs = [paragraph.strip() for paragraph in content.split('\n') if paragraph.strip()]
+                        for paragraph in paragraphs:
+                            modes = [mode.strip() for mode in paragraph.split('\t') if mode.strip()]
+                            # modes[0]: the orginal
+                            # modes[1]: phrase seg
+                            # modes[2]: basic wordseg
+                            # modes[3]: subphrase seg
+                            words = [word.strip() for word in modes[2].split('|') if word.strip()]
                         # remove punctuation
                         words = [
                             word for word in words if word not in thai_punctuation]
