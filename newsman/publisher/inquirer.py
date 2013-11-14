@@ -67,7 +67,7 @@ def get_portal(language=None, country=None, categories=None):
         portal_data[user_subscription] = []
         for entry in entries:
             if 'category_image' in entry and entry['category_image'] and entry['category_image'] != 'None' and entry['category_image'] != 'null':
-                if isinstance(entry['cateogry_image']):
+                if isinstance(entry['cateogry_image'], str):
                     entry['category_image'] = eval(entry['category_image'])
                 item = {'title': entry['title'], 'image': entry[
                     'category_image'], 'updated': entry['updated']}
@@ -111,7 +111,7 @@ def get_categories(language=None, country=None, version=None):
                         categories[category_name] = []
 
                     feed_format = {'order': len(categories[category_name]), 'text': item[
-                        'feed_title'], 'image': item['feed_logo']}
+                        'feed_title'], 'image': item['feed_logo'] if 'feed_logo' in item else None}
                     if feed_format not in categories[category_name]:
                         categories[category_name].append(feed_format)
 
