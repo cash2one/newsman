@@ -131,7 +131,7 @@ def extract(language, title, content, summary, link, feed, category):
     """
     get the summary from the source, first paragraph or summary
     """
-    if not summary or not content or not title or not language:
+    if not content or not title or not language:
         logger.error('No data is found!')
         return None
 
