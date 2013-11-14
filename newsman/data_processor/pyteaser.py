@@ -167,8 +167,8 @@ class PyTeaser:
                 # remove punctuation
                 words = [word.strip() for word in words if word.strip() and word not in cj_punctuation]
             elif self.language == 'th':
-                response = subprocess.Popen('''echo %s | %s %s/scw.conf %s''' % (
-                    text, THAI_WORDSEG, THAI_WORDSEG_DICT, THAI_WORDSEG_DICT), stdout=subprocess.PIPE, shell=True)
+                command = 'echo "%s" | %s %s/scw.conf %s' % (str(text), THAI_WORDSEG, THAI_WORDSEG_DICT, THAI_WORDSEG_DICT)
+                response = subprocess.Popen(comand, stdout=subprocess.PIPE, shell=True)
                 content, error = response.communicate()
                 if not error and content:
                     if 'error' not in content or 'permission' not in content:
