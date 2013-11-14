@@ -12,10 +12,10 @@ scrape is a task to scrape rss resources
 import sys
 reload(sys)
 sys.setdefaultencoding('UTF-8')
-sys.path.append('/home/users/jinyuan/newsman/newsman')
-# sys.path.append('/home/work/newsman/newsman')
-# sys.path.append('/home/ubuntu/newsman/newsman')
-# sys.path.append('/home/jinyuan/Downloads/newsman/newsman')
+#sys.path.append('/home/users/jinyuan/newsman/newsman')
+sys.path.append('/home/work/newsman/newsman')
+#sys.path.append('/home/ubuntu/newsman/newsman')
+#sys.path.append('/home/jinyuan/Downloads/newsman/newsman')
 
 from config.settings import Collection, db
 from config.settings import logger
