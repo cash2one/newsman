@@ -27,7 +27,7 @@ db = Database(con, 'news')
 # redis rclient
 import redis
 from redis import ConnectionError
-rclient = redis.StrictRedis(host='10.240.35.40', port=6379)
+rclient = redis.StrictRedis(host='10.240.35.40', port=6379, socket_timeout=5)
 #rclient = redis.StrictRedis(host='127.0.0.1')
 
 # htmlparser to do unescaping

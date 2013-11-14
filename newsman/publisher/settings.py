@@ -27,7 +27,7 @@ db = Database(con, 'news')
 # redis rclient
 import redis
 from redis import ConnectionError
-rclient = redis.StrictRedis(host='10.240.35.40', port=6379)
+rclient = redis.StrictRedis(host='10.240.35.40', port=6379, socket_timeout=5)
 #rclient = redis.StrictRedis(host='127.0.0.1')
 
 # htmlparser to do unescaping
@@ -42,10 +42,10 @@ PUBLIC = 'http://220.181.163.36:8080/news/%s'      # cq01-rdqa-dev067.cq01
 #PUBLIC = 'http://54.251.107.116/%s'                # AWS singapore
 #PUBLIC = 'http://54.232.81.44/%s'                  # AWS sao paolo
 #PUBLIC = 'http://54.248.227.71/%s'                 # AWS tokyo
-#LOCAL = '/home/users/jinyuan/%s'                            # official server prefix
+LOCAL = '/home/users/jinyuan/%s'                            # official server prefix
 #LOCAL = '/home/work/%s'                            # official server prefix
 #LOCAL = '/home/ubuntu/%s'                          # AWS server prefix
-LOCAL = '/home/jinyuan/Downloads/%s'               # local server prefix
+#LOCAL = '/home/jinyuan/Downloads/%s'               # local server prefix
 
 # Logo folder
 LOGO_PUBLIC_PREFIX = 'http://220.181.163.36:8080/logos/'
