@@ -73,7 +73,7 @@ def _read_http(environ):
     # f.close()
     if result:
         for r in result:
-            if r.has_key('_id'):
+            if isinstance(r, dict) and r.has_key('_id'):
                 r['_id'] = str(r['_id'])
         result_json = json.dumps(result, encoding="utf-8")
         return result_json.replace('": null', '": None')  # which is stupid
