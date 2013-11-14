@@ -67,6 +67,8 @@ def get_portal(language=None, country=None, categories=None):
         portal_data[user_subscription] = []
         for entry in entries:
             if 'category_image' in entry and entry['category_image'] and entry['category_image'] != 'None' and entry['category_image'] != 'null':
+                if isinstance(entry['cateogry_image']):
+                    entry['category_image'] = eval(entry['category_image'])
                 item = {'title': entry['title'], 'image': entry[
                     'category_image'], 'updated': entry['updated']}
                 portal_data[user_subscription].append(item)
@@ -76,8 +78,8 @@ def get_portal(language=None, country=None, categories=None):
 
     # special formatting for android-end
     output = []
-    for k, v in portal_data.iteritems():
-        if i, k and enumerate(v):
+    for i, k, v in enumerate(portal_data.iteritems()):
+        if k and v:
             category, feed = k.split('*|*')
             output.append(
                 {'Category': category, 'Feed': feed, 'Images': v, 'order': i})
