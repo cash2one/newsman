@@ -64,12 +64,13 @@ class Text2Image:
         """
         try:
             img_fraction = 1.7
-            self._font = ImageFont.truetype(DEFAULT_FONT_PATH, DEFAULT_FONT_SIZE)
+            font_size = DEFAULT_FONT_SIZE
+            self._font = ImageFont.truetype(DEFAULT_FONT_PATH, font_size)
 
             # adjust font size by text
             while self._font.getsize(self._text)[0] < img_fraction * self._image.size[0]:
                 font_size += 1
-                self._font = ImageFont.truetype(self.FULL_PATH_TO_FONT, fontsize)
+                self._font = ImageFont.truetype(DEFAULT_FONT_PATH, font_size)
         except Exception as k:
             logger.error(str(k))
     
