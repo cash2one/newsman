@@ -94,7 +94,8 @@ UCK_TRANSCODING_NEW = 'http://m.baidu.com/openapp?/webapp?debug=1&from=bd_intern
 TRANSCODED_ENCODING = '<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>\n'
 
 # Font used to generate text-based image
-FONT_PATH = "/usr/share/fonts/dejavu/DejaVuSans.ttf"
+DEFAULT_FONT_PATH = "/usr/share/fonts/dejavu/DejaVuSans.ttf"
+DEFAULT_FONT_SIZE = 1
 
 # words on 'opening origial page' button
 TRANSCODING_BTN_EN = 'Original page'
