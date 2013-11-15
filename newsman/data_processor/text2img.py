@@ -18,6 +18,7 @@ import chardet
 from config.settings import logger
 from PIL import Image, FontFile, ImageFont, ImageDraw
 import nltk
+import subprocess
 import textwrap
 
 # CONSTATNS
@@ -117,8 +118,8 @@ class Text2Image:
                             # modes[1]: phrase seg
                             # modes[2]: basic wordseg
                             # modes[3]: subphrase seg
-                            phrases = [phrase.strip()
-                                     for phrase in modes[1].split('|') if phrase.strip()]
+                            sentences = [sentence.strip()
+                                     for sentence in modes[1].split('|') if sentence.strip()]
             else:  # latin-based
                 sentences = nltk.sent_tokenize(self._text)
 
