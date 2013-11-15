@@ -66,14 +66,12 @@ class Text2Image:
             return None
 
         try:
-            img_fraction = 1.7
+            img_fraction = 0.85
             self._font = ImageFont.truetype(DEFAULT_FONT_PATH, self._font_size)
 
             # adjust font size by text
             while self._font.getsize(line)[0] < img_fraction * self._image.size[0]:
-                print self._font.getsize(self._text)[0], self._image.size[0]
                 self._font_size += 1
-                print self._font_size
                 self._font = ImageFont.truetype(DEFAULT_FONT_PATH, self._font_size)
         except Exception as k:
             logger.error(str(k))
@@ -83,7 +81,7 @@ class Text2Image:
         """
         wrap text by default width
         """
-        lines = textwrap.wrap(self._text, self._image.size[0])
+        lines = textwrap.wrap(self._text, 25)
         return lines
     
     def _add_text_to_image(self):
@@ -91,16 +89,19 @@ class Text2Image:
         convert text to image
         """
         lines = self._parse_text()
-        print lines[0]
         self._set_font_size(lines[0])
 
         try:
             for count, line in enumerate(lines):
                 width, height = self._font.getsize(line)
-                self._draw.text((0, (count * height) + 2), line, fill=self._font_color, font=self._font)
+                if ((count + 1) * height + height + 30) < self._image.size[1]:
+                    line = "......"
+                    self._draw.text((15, ((count + 1) * height) + 15), line, fill=self._font_color, font=self._font)
+                    break
+                else:
+                    self._draw.text((15, ((count + 1) * height) + 15), line, fill=self._font_color, font=self._font)
 
             textimage_local_path = "%s%s" % (IMAGES_LOCAL_DIR, self._textimage_relative_path)
-            print textimage_local_path
             self._image.save(textimage_local_path, "PNG")
         except Exception as k:
             logger.error(str(k))
