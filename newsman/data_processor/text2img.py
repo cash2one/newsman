@@ -14,6 +14,7 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
+import chardet
 from config.settings import logger
 from PIL import Image, FontFile, ImageFont, ImageDraw
 import nltk
@@ -85,11 +86,22 @@ class Text2Image:
         """
         try:
             sentences = None
+
+            # convert to appropriate encoding
+            if isinstance(self._text, str):
+                self._text = self._text.decode(
+                    chardet.detect(self._text)['encoding'], 'ignore')
+
             # special: thai, arabic
             if self._language == 'zh' or self._language == 'ja':
-                cj_sent_tokenizer = nltk.RegexpTokenizer(
-                    u'[^!?.！？。．]*[!?、.！？。]*')
-                sentences = cj_sent_tokenizer.tokenize(self._text)
+                #cj_punctuation = u"""-|〃|〈|-|「|『|【|［|[|〈|《|（|(|｛|{|」|』|】|］|]|〉|》|）|)|｝|}|。|．|.|!|！|?|？|、|-|〟|〰|-|＃|％|-|＊|，|-|／|：|-|；|-|＠|-|＿|｛|｝|｟|-|･|‐|-|―|“|-|”|…|-|‧|﹏"""
+                cj_punctuation = u"""？|、|“|-|”|…"""
+                #cj_sent_tokenizer = nltk.RegexpTokenizer(u'[^!?.！？。．]*[!?、.！？。]*')
+                import re
+                sentences = re.split(cj_punctuation, self._text)
+                #sentences = cj_sent_tokenizer.tokenize(self._text)
+                for s in sentences:
+                    print str(s)
             elif self._language == 'th':
                 sentences = self._text.split()
             else:  # latin-based
@@ -98,20 +110,30 @@ class Text2Image:
             sentences = [sentence.strip()
                          for sentence in sentences if sentence.strip()]
 
-            if self._language in ['en', 'in', 'pt']:
+            if self._language in ['en', 'in', 'pt', 'ja']:
                 lines = []
                 for sentence in sentences:
                     splits = textwrap.wrap(sentence, 25)
                     lines.extend(splits)
+                lines = [[line, False] for line in lines]
 
                 sentences = []
                 for index in xrange(len(lines)):
+                    current_line = lines[index][0]
+                    current_marker = lines[index][1]
+
                     if index + 1 < len(lines):
-                        possible = "%s %s" % (lines[index], lines[index + 1])
-                        if len(textwrap.wrap(possible, 25)) == 1:
-                            sentences.append(possible)  
-                        else:
-                            sentences.append(lines[index])
+                        next_line = lines[index+1][0]
+                        if not current_marker:
+                            possible = "%s %s" % (current_line, next_line)
+                            if len(textwrap.wrap(possible, 25)) == 1:
+                                sentences.append(possible)  
+                                lines[index+1][1] = True
+                            else:
+                                sentences.append(current_line)
+                    else:
+                        if not current_marker:
+                            sentences.append(current_line)
             return sentences
         except Exception as k:
             logger.error(str(k))
@@ -150,6 +172,6 @@ if __name__ == "__main__":
     #text = "skdfjasldkfjadsl;fjads, sdfksodfksdf. jsidfjo. Typhoon-hit town that saw less death but all the destruction feels forgotten as aid passes by"
 
     language = 'ja'
-    text = u"日印との関係重視、ブータン首相インタビュー…中国と国交樹立急がず"
+    text = "日印との関係重視、ブータン首相インタビュー…中国と国交樹立急がず"
     test = Text2Image(language, text, "test1.png")
     test.get_image()
