@@ -117,13 +117,14 @@ class PyTeaser:
                 sentences = cj_sent_tokenizer.tokenize(self.article)
             elif self.language == 'th':
                 sentences = self.article.split()
-                #print len(sentences)
-                #print sentences
+                # print len(sentences)
+                # print sentences
             else:  # latin-based
                 sentences = nltk.sent_tokenize(self.article)
 
             # remove spaces
-            sentences = [sentence.strip() for sentence in sentences if sentence.strip()]
+            sentences = [sentence.strip()
+                         for sentence in sentences if sentence.strip()]
             return sentences
         except Exception as k:
             logger.error(str(k))
@@ -158,29 +159,36 @@ class PyTeaser:
                 segmenter = tinysegmenter.TinySegmenter()
                 words = segmenter.tokenize(text)
                 # remove punctuation
-                words = [word.strip() for word in words if word.strip() and word not in cj_punctuation]
+                words = [word.strip()
+                         for word in words if word.strip() and word not in cj_punctuation]
             elif self.language == 'zh':
                 jieba.enable_parallel(4)
                 seg_list = jieba.cut(text)
                 for seg in seg_list:
                     words.append(seg)
                 # remove punctuation
-                words = [word.strip() for word in words if word.strip() and word not in cj_punctuation]
+                words = [word.strip()
+                         for word in words if word.strip() and word not in cj_punctuation]
             elif self.language == 'th':
-                command = 'echo "%s" | %s %s/scw.conf %s' % (str(text), THAI_WORDSEG, THAI_WORDSEG_DICT, THAI_WORDSEG_DICT)
-                response = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
+                command = 'echo "%s" | %s %s/scw.conf %s' % (
+                    str(text), THAI_WORDSEG, THAI_WORDSEG_DICT, THAI_WORDSEG_DICT)
+                response = subprocess.Popen(
+                    command, stdout=subprocess.PIPE, shell=True)
                 content, error = response.communicate()
                 if not error and content:
                     if 'error' not in content or 'permission' not in content:
                         content = content.strip()
-                        paragraphs = [paragraph.strip() for paragraph in content.split('\n') if paragraph.strip()]
+                        paragraphs = [paragraph.strip()
+                                      for paragraph in content.split('\n') if paragraph.strip()]
                         for paragraph in paragraphs:
-                            modes = [mode.strip() for mode in paragraph.split('\t') if mode.strip()]
+                            modes = [mode.strip()
+                                     for mode in paragraph.split('\t') if mode.strip()]
                             # modes[0]: the orginal
                             # modes[1]: phrase seg
                             # modes[2]: basic wordseg
                             # modes[3]: subphrase seg
-                            words = [word.strip() for word in modes[2].split('|') if word.strip()]
+                            words = [word.strip()
+                                     for word in modes[2].split('|') if word.strip()]
                         # remove punctuation
                         words = [
                             word for word in words if word not in thai_punctuation]
@@ -206,7 +214,8 @@ class PyTeaser:
             # ar, en, id, ja, pt, th, zh
             f = open(stopwords_path, 'r')
             stopwords = f.readlines()
-            stopwords = [stopword.strip() for stopword in stopwords if stopword.strip()]
+            stopwords = [stopword.strip()
+                         for stopword in stopwords if stopword.strip()]
             f.close()
             words = [word for word in words if word not in stopwords]
 
@@ -256,10 +265,10 @@ class PyTeaser:
                 topwords.append((word, word_score))
 
             topwords = sorted(topwords, key=lambda x: -x[1])
-            #print '-------------------------------------'
-            #for topword in topwords:
+            # print '-------------------------------------'
+            # for topword in topwords:
             #    print topword[0]
-            #print '-------------------------------------'
+            # print '-------------------------------------'
             return topwords
         except Exception as k:
             logger.error(str(k))
@@ -283,8 +292,9 @@ class PyTeaser:
                         word_in_keywords_score = word_in_keywords_score + \
                             keyword_count
                         break
-            #print len(words), word_in_keywords_score
-            sbs_score = 1.0 / float(abs(len(words))) * float(word_in_keywords_score)
+            # print len(words), word_in_keywords_score
+            sbs_score = 1.0 / \
+                float(abs(len(words))) * float(word_in_keywords_score)
             return sbs_score
         except Exception as k:
             logger.error(str(k))
@@ -317,7 +327,7 @@ class PyTeaser:
             # 1: [(a, 1), (b, 2), (c, 3), (d, 4)]
             # 2: [(b, 2), (c, 3), (d, 4)]
             # 3: [((a, 1), (b, 2)), ((b, 2), (c, 3)), ((c, 3), (d, 4))]
-            #print word_in_keywords_score_with_index
+            # print word_in_keywords_score_with_index
             word_in_keywords_score_with_index_sliced = word_in_keywords_score_with_index[
                 1:]
             word_in_keywords_zipped = zip(
@@ -328,7 +338,7 @@ class PyTeaser:
             word_in_keywords_sum = reduce(
                 lambda x, y: x + y, word_in_keywords_sum_each) if word_in_keywords_sum_each else 0
 
-            #print word_in_keywords_count, word_in_keywords_sum
+            # print word_in_keywords_count, word_in_keywords_sum
             dbs_score = 1.0 / float(word_in_keywords_count) * float(word_in_keywords_count + 1.0) * \
                 float(word_in_keywords_sum)
             return dbs_score
@@ -407,7 +417,8 @@ class PyTeaser:
                 # filter out words that are not in title
                 sentence_words = [
                     sentence_word for sentence_word in sentence_words if sentence_word in title_words]
-                title_score = float(len(sentence_words)) / float(len(title_words))
+                title_score = float(
+                    len(sentence_words)) / float(len(title_words))
                 return title_score
             else:
                 return 0
@@ -445,10 +456,12 @@ class PyTeaser:
                     sentence_words, topwords)
                 keyword_score = float(sbs_score + dbs_score) / 2.0 * 10.0
 
-                sentence_score = float(title_score * 1.5 + keyword_score * 2.0 + \
-                    sentence_length_score * 0.5 + \
-                    sentence_position_score * 1.0) / 4.0
-                #print sentence, sentence_score, title_score, sentence_length_score, sentence_position_score, '[', sbs_score, dbs_score, ']'
+                sentence_score = float(title_score * 1.5 + keyword_score * 2.0 +
+                                       sentence_length_score * 0.5 +
+                                       sentence_position_score * 1.0) / 4.0
+                # print sentence, sentence_score, title_score,
+                # sentence_length_score, sentence_position_score, '[',
+                # sbs_score, dbs_score, ']'
                 sentences_scored.append((sentence, sentence_score, index))
 
             # rank sentences by their scores
@@ -523,7 +536,7 @@ if __name__ == '__main__':
     　トブゲイ氏は前政権の対中接近で後退したと批判されるインドとの関係改善に取り組んでいる。インドについて「とても緊密な友人であり隣人だ。経済でブータンを大いに助けてくれている。大国と小国の関係のモデルだ」とし、緊密な関係を維持すると表明した。
     
     　一方、中国に関し、「すべての国、特に隣人との友好が大切で、中国もそうだというのが現実だ」としながらも、今後の対中関係については「優先事項は国境問題を解決することだ」と強調した。その上で、前政権が一時、検討した中国との外交関係の樹立に関し、「他の問題は国境問題の解決後だ」と明らかにした。"""
- 
+
     """
     language = 'zh'
     title = "百度推金融中心，为啥要属于移动事业部？"
