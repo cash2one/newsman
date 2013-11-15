@@ -42,10 +42,10 @@ PUBLIC = 'http://mobile-global.baidu.com/news/%s'  # hk01-hao123-mob01/mob02
 #PUBLIC = 'http://54.232.81.44/%s'                  # AWS sao paolo
 #PUBLIC = 'http://54.248.227.71/%s'                 # AWS tokyo
 
-#LOCAL = '/home/work/%s'                            # official server prefix
+LOCAL = '/home/work/%s'                            # official server prefix
 #LOCAL = '/home/users/jinyuan/%s'                            # official server prefix
 #LOCAL = '/home/ubuntu/%s'                          # AWS server prefix
-LOCAL = '/home/jinyuan/Downloads/%s'               # local server prefix
+#LOCAL = '/home/jinyuan/Downloads/%s'               # local server prefix
 
 #LOGO_PUBLIC_PREFIX = 'http://mobile-global.baidu.com/logos/'
 LOGO_PUBLIC_PREFIX = 'http://220.181.163.36:8080/logos/'
@@ -98,7 +98,7 @@ TRANSCODED_ENCODING = '<meta http-equiv="Content-Type" content="text/html; chars
 #DEFAULT_FONT_PATH = "/home/jinyuan/Downloads/fonts/en_ubuntu/UbuntuMono-R.ttf"
 #DEFAULT_FONT_PATH = "/home/jinyuan/Downloads/fonts/ja_ipaexm/ipaexm.ttf"
 #DEFAULT_FONT_PATH = "/home/jinyuan/Downloads/fonts/zh_yahei/msyh.ttf"
-DEFAULT_FONT_PATH = "/home/jinyuan/Downloads/fonts/th_tlwg/TlwgMono.ttf"
+DEFAULT_FONT_PATH = "/home/work/fonts/th_tlwg/TlwgMono.ttf"
 DEFAULT_FONT_SIZE = 1
 DEFAULT_TEXT_WIDTH = 50
 
