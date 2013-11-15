@@ -96,6 +96,7 @@ TRANSCODED_ENCODING = '<meta http-equiv="Content-Type" content="text/html; chars
 # Font used to generate text-based image
 DEFAULT_FONT_PATH = "/usr/share/fonts/dejavu/DejaVuSans.ttf"
 DEFAULT_FONT_SIZE = 1
+DEFAULT_TEXT_WIDTH = 50
 
 # words on 'opening origial page' button
 TRANSCODING_BTN_EN = 'Original page'
