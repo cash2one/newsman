@@ -74,6 +74,7 @@ def _convert(language='en', country=None):
 
                 existing_item = db_feeds.find_one({'feed_link': feed_link})
                 if not existing_item:
+                    feed_logo = {'url': feed_logo, 'width': 71, 'height': 60}
                     _id = db_feeds.save({'language': language, 'countries': [country], 'feed_link': feed_link, 'categories': [
                                         category], 'labels': labels, 'feed_title': feed_title, 'latest_update': None, 'updated_times': 0, 'transcoder': transcoder, 'feed_logo': feed_logo})
                     db_id_list.write(str(_id) + '\n')
