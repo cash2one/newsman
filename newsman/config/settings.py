@@ -45,7 +45,7 @@ hparser = HTMLParser()
 #LOCAL = '/home/work/%s'                            # official server prefix
 #LOCAL = '/home/users/jinyuan/%s'                            # official server prefix
 #LOCAL = '/home/ubuntu/%s'                          # AWS server prefix
-#LOCAL = '/home/jinyuan/Downloads/%s'               # local server prefix
+LOCAL = '/home/jinyuan/Downloads/%s'               # local server prefix
 
 #LOGO_PUBLIC_PREFIX = 'http://mobile-global.baidu.com/logos/'
 #LOGO_PUBLIC_PREFIX = 'http://220.181.163.36:8080/logos/'
@@ -94,7 +94,8 @@ UCK_TRANSCODING_NEW = 'http://m.baidu.com/openapp?/webapp?debug=1&from=bd_intern
 TRANSCODED_ENCODING = '<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>\n'
 
 # Font used to generate text-based image
-DEFAULT_FONT_PATH = "/usr/share/fonts/dejavu/DejaVuSans.ttf"
+#DEFAULT_FONT_PATH = "/usr/share/fonts/dejavu/DejaVuSans.ttf"
+DEFAULT_FONT_PATH = "/usr/share/fonts/truetype/ttf-dejavu/DejaVuSans.ttf"
 DEFAULT_FONT_SIZE = 1
 DEFAULT_TEXT_WIDTH = 50
 
