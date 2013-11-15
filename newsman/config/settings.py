@@ -95,8 +95,10 @@ TRANSCODED_ENCODING = '<meta http-equiv="Content-Type" content="text/html; chars
 
 # Font used to generate text-based image
 #DEFAULT_FONT_PATH = "/usr/share/fonts/dejavu/DejaVuSans.ttf"
-#DEFAULT_FONT_PATH = "/home/jinyuan/Downloads/ubuntu-font-family/UbuntuMono-R.ttf"
-DEFAULT_FONT_PATH = "/home/jinyuan/Downloads/ipaexm00201/ipaexm.ttf"
+#DEFAULT_FONT_PATH = "/home/jinyuan/Downloads/fonts/en_ubuntu/UbuntuMono-R.ttf"
+#DEFAULT_FONT_PATH = "/home/jinyuan/Downloads/fonts/ja_ipaexm/ipaexm.ttf"
+#DEFAULT_FONT_PATH = "/home/jinyuan/Downloads/fonts/zh_yahei/msyh.ttf"
+DEFAULT_FONT_PATH = "/home/jinyuan/Downloads/fonts/th_tlwg/TlwgMono.ttf"
 DEFAULT_FONT_SIZE = 1
 DEFAULT_TEXT_WIDTH = 50
 
