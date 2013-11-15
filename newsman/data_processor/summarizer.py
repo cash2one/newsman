@@ -141,8 +141,9 @@ def extract(language, title, content, summary, link, feed, category):
         # set the number of sentences
         # limit the number of words
         if content:
-            teaser = PyTeaser(language, title, content, link, feed, category)
-            result_summary = teaser.summarize()
+            if language in ['en', 'ja', 'pt']:
+             teaser = PyTeaser(language, title, content, link, feed, category)
+             result_summary = teaser.summarize()
 
         # if summary from rss provider is found use summary, but limit 
         # the number of words
