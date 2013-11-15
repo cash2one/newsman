@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #-*- coding: utf-8 -*-
 
-""" 
+"""
 summarizer extracts summary or first paragraph from news
 """
 # @author chengdujin
@@ -142,15 +142,16 @@ def extract(language, title, content, summary, link, feed, category):
         # limit the number of words
         if content:
             if language in ['en', 'ja', 'pt']:
-             teaser = PyTeaser(language, title, content, link, feed, category)
-             result_summary = teaser.summarize()
+                teaser = PyTeaser(
+                    language, title, content, link, feed, category)
+                result_summary = teaser.summarize()
 
-        # if summary from rss provider is found use summary, but limit 
+        # if summary from rss provider is found use summary, but limit
         # the number of words
         if not result_summary and summary:
             result_summary = _get_summary(summary, language)
 
-        # else find first paragraph from transcoded also limit the 
+        # else find first paragraph from transcoded also limit the
         # number of words
         if not result_summary and content:
             result_summary = _get_first_paragraph(content, language)
