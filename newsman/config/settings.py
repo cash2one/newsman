@@ -42,13 +42,13 @@ PUBLIC = 'http://mobile-global.baidu.com/news/%s'  # hk01-hao123-mob01/mob02
 #PUBLIC = 'http://54.232.81.44/%s'                  # AWS sao paolo
 #PUBLIC = 'http://54.248.227.71/%s'                 # AWS tokyo
 
-#LOCAL = '/home/work/%s'                            # official server prefix
+LOCAL = '/home/work/%s'                            # official server prefix
 #LOCAL = '/home/users/jinyuan/%s'                            # official server prefix
 #LOCAL = '/home/ubuntu/%s'                          # AWS server prefix
-LOCAL = '/home/jinyuan/Downloads/%s'               # local server prefix
+#LOCAL = '/home/jinyuan/Downloads/%s'               # local server prefix
 
 #LOGO_PUBLIC_PREFIX = 'http://mobile-global.baidu.com/logos/'
-#LOGO_PUBLIC_PREFIX = 'http://220.181.163.36:8080/logos/'
+LOGO_PUBLIC_PREFIX = 'http://220.181.163.36:8080/logos/'
 
 # code base folder for updating
 CODE_BASE = LOCAL % 'newsman'
@@ -95,7 +95,7 @@ TRANSCODED_ENCODING = '<meta http-equiv="Content-Type" content="text/html; chars
 
 # Font used to generate text-based image
 #DEFAULT_FONT_PATH = "/usr/share/fonts/dejavu/DejaVuSans.ttf"
-DEFAULT_FONT_PATH = "/usr/share/fonts/truetype/ttf-dejavu/DejaVuSans.ttf"
+#DEFAULT_FONT_PATH = "/home/jinyuan/Downloads/ubuntu-font-family/UbuntuMono-R.ttf"
 DEFAULT_FONT_SIZE = 1
 DEFAULT_TEXT_WIDTH = 50
 

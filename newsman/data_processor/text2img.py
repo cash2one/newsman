@@ -16,6 +16,7 @@ sys.path.append('..')
 
 from config.settings import logger
 from PIL import Image, FontFile, ImageFont, ImageDraw
+import nltk
 import textwrap
 
 # CONSTATNS
@@ -30,10 +31,11 @@ class Text2Image:
     Converts text into image
     """
     
-    def __init__(self, text=None, textimage_relative_path=None, background_color='#FFFFFF', font_color='#000000'):
-        if not text or not textimage_relative_path:
+    def __init__(self, language=None, text=None, textimage_relative_path=None, background_color='#FFFFFF', font_color='#000000'):
+        if not language or not text or not textimage_relative_path:
             logger.error("Method malformed!")
             
+        self._language = language
         self._text = text
         self._background_color = background_color
         self._font_color = font_color
@@ -79,11 +81,42 @@ class Text2Image:
     
     def _parse_text(self):
         """
-        wrap text by default width
+        use nltk or other engines to split text into sentences
         """
-        lines = textwrap.wrap(self._text, 25)
-        return lines
-    
+        try:
+            sentences = None
+            # special: thai, arabic
+            if self._language == 'zh' or self._language == 'ja':
+                cj_sent_tokenizer = nltk.RegexpTokenizer(
+                    u'[^!?.！？。．]*[!?、.！？。]*')
+                sentences = cj_sent_tokenizer.tokenize(self._text)
+            elif self._language == 'th':
+                sentences = self._text.split()
+            else:  # latin-based
+                sentences = nltk.sent_tokenize(self._text)
+
+            sentences = [sentence.strip()
+                         for sentence in sentences if sentence.strip()]
+
+            if self._language in ['en', 'in', 'pt']:
+                lines = []
+                for sentence in sentences:
+                    splits = textwrap.wrap(sentence, 25)
+                    lines.extend(splits)
+
+                sentences = []
+                for index in xrange(len(lines)):
+                    if index + 1 < len(lines):
+                        possible = "%s %s" % (lines[index], lines[index + 1])
+                        if len(textwrap.wrap(possible, 25)) == 1:
+                            sentences.append(possible)  
+                        else:
+                            sentences.append(lines[index])
+            return sentences
+        except Exception as k:
+            logger.error(str(k))
+            return None
+
     def _add_text_to_image(self):
         """
         convert text to image
@@ -94,12 +127,13 @@ class Text2Image:
         try:
             for count, line in enumerate(lines):
                 width, height = self._font.getsize(line)
-                if ((count + 1) * height + height + 30) < self._image.size[1]:
+                if ((count + 2) * height + height + 20) > self._image.size[1]:
                     line = "......"
-                    self._draw.text((15, ((count + 1) * height) + 15), line, fill=self._font_color, font=self._font)
+                    self._draw.text((self._image.size[0] / 2 - 20, ((count + 1) * height) + 10), line, fill=self._font_color, font=self._font)
                     break
                 else:
-                    self._draw.text((15, ((count + 1) * height) + 15), line, fill=self._font_color, font=self._font)
+                    print text
+                    self._draw.text((15, ((count + 1) * height) + 10), line, fill=self._font_color, font=self._font)
 
             textimage_local_path = "%s%s" % (IMAGES_LOCAL_DIR, self._textimage_relative_path)
             self._image.save(textimage_local_path, "PNG")
@@ -112,6 +146,10 @@ class Text2Image:
 
 
 if __name__ == "__main__":
-    text = "Typhoon-hit town that saw less death but all the destruction feels forgotten as aid passes by"
-    test = Text2Image(text, "test1.png")
+    #language = 'en'
+    #text = "skdfjasldkfjadsl;fjads, sdfksodfksdf. jsidfjo. Typhoon-hit town that saw less death but all the destruction feels forgotten as aid passes by"
+
+    language = 'ja'
+    text = u"日印との関係重視、ブータン首相インタビュー…中国と国交樹立急がず"
+    test = Text2Image(language, text, "test1.png")
     test.get_image()
