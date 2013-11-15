@@ -117,8 +117,8 @@ class PyTeaser:
                 sentences = cj_sent_tokenizer.tokenize(self.article)
             elif self.language == 'th':
                 sentences = self.article.split()
-                print len(sentences)
-                print sentences
+                #print len(sentences)
+                #print sentences
             else:  # latin-based
                 sentences = nltk.sent_tokenize(self.article)
 
@@ -550,4 +550,4 @@ if __name__ == '__main__':
     อย่างไรก็ตาม การดำเนินการดังกล่าวเป็น 1 ใน 4 มาตรการอารยะขัดขืนที่ นายสุเทพ เทือกสุบรรณ อดีตส.ส.สุราษฎร์ธานี พรรคประชาธิปัตย์ ในฐานะแกนนำการชุมนุมประกาศบนเวทีก่อนหน้านี้"""
 
     teaser = PyTeaser(language, title, text)
-    print teaser.summarize()
+    print str(teaser.summarize())
