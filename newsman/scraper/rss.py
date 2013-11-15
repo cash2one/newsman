@@ -183,6 +183,8 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
                     biggest = image_helper.find_biggest_image(entry['images'])
                     if biggest:
                         entry = _generate_images(biggest, entry, rand)
+                else: # generate a text-image with summary
+                    pass
                 # for older version users
                 entry['image'] = entry['thumbnail_image'][
                     'url'] if 'thumbnail_image' in entry and entry['thumbnail_image'] else None
