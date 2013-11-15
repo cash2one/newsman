@@ -131,7 +131,13 @@ def get_categories(language=None, country=None, version=None):
                             LOGO_PUBLIC_PREFIX, language, country, label_name_shrinked), 'width': 71, 'height': 60}
                         label_format = {
                             'order': len(categories[category_name]), 'text': label_name, 'image': label_image}
-                        if label_format not in categories[category_name]:
+
+                        LABEL_ADDED = False
+                        for label_format_added in categories[category_name]:
+                            if label_format_added['text'] == label_name:
+                                LABEL_ADDED = True
+                                break
+                        if not LABEL_ADDED: 
                             categories[category_name].append(label_format)
         # reformat
         output = []

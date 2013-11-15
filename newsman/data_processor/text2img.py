@@ -21,8 +21,6 @@ import textwrap
 # CONSTATNS
 from config.settings import CATEGORY_IMAGE_SIZE 
 from config.settings import DEFAULT_FONT_PATH
-from config.settings import DEFAULT_FONT_SIZE
-from config.settings import DEFAULT_TEXT_WIDTH
 from config.settings import IMAGES_LOCAL_DIR
 from config.settings import IMAGES_PUBLIC_DIR
 
@@ -40,12 +38,12 @@ class Text2Image:
         self._background_color = background_color
         self._font_color = font_color
         self._textimage_relative_path = textimage_relative_path
+        self._font_size = 1
         self._image = None
         self._draw = None
         self._font = None
 
         self._set_background()
-        self._set_font_size()
         self._add_text_to_image()
         
     def _set_background(self):
@@ -57,28 +55,35 @@ class Text2Image:
             self._draw = ImageDraw.Draw(self._image)
         except Exception as k:
             logger.error(str(k))
+            return None
     
-    def _set_font_size(self):
+    def _set_font_size(self, line=None):
         """
         set font size on the image
         """
+        if not line:
+            logger.error("Method malformed!")
+            return None
+
         try:
             img_fraction = 1.7
-            font_size = DEFAULT_FONT_SIZE
-            self._font = ImageFont.truetype(DEFAULT_FONT_PATH, font_size)
+            self._font = ImageFont.truetype(DEFAULT_FONT_PATH, self._font_size)
 
             # adjust font size by text
-            while self._font.getsize(self._text)[0] < img_fraction * self._image.size[0]:
-                font_size += 1
-                self._font = ImageFont.truetype(DEFAULT_FONT_PATH, font_size)
+            while self._font.getsize(line)[0] < img_fraction * self._image.size[0]:
+                print self._font.getsize(self._text)[0], self._image.size[0]
+                self._font_size += 1
+                print self._font_size
+                self._font = ImageFont.truetype(DEFAULT_FONT_PATH, self._font_size)
         except Exception as k:
             logger.error(str(k))
+            return None
     
     def _parse_text(self):
         """
         wrap text by default width
         """
-        lines = textwrap.wrap(self._text, DEFAULT_TEXT_WIDTH)
+        lines = textwrap.wrap(self._text, self._image.size[0])
         return lines
     
     def _add_text_to_image(self):
@@ -86,12 +91,16 @@ class Text2Image:
         convert text to image
         """
         lines = self._parse_text()
+        print lines[0]
+        self._set_font_size(lines[0])
+
         try:
             for count, line in enumerate(lines):
                 width, height = self._font.getsize(line)
                 self._draw.text((0, (count * height) + 2), line, fill=self._font_color, font=self._font)
 
             textimage_local_path = "%s%s" % (IMAGES_LOCAL_DIR, self._textimage_relative_path)
+            print textimage_local_path
             self._image.save(textimage_local_path, "PNG")
         except Exception as k:
             logger.error(str(k))
@@ -99,3 +108,9 @@ class Text2Image:
     def get_image(self):
         textimage_public_path = "%s%s" % (IMAGES_PUBLIC_DIR, self._textimage_relative_path)
         return textimage_public_path
+
+
+if __name__ == "__main__":
+    text = "Typhoon-hit town that saw less death but all the destruction feels forgotten as aid passes by"
+    test = Text2Image(text, "test1.png")
+    test.get_image()
