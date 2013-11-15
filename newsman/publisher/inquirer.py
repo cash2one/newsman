@@ -67,7 +67,7 @@ def get_portal(language=None, country=None, categories=None):
         portal_data[user_subscription] = []
         for entry in entries:
             if 'category_image' in entry and entry['category_image'] and entry['category_image'] != 'None' and entry['category_image'] != 'null':
-                if isinstance(entry['cateogry_image'], str):
+                if isinstance(entry['category_image'], str):
                     entry['category_image'] = eval(entry['category_image'])
                 item = {'title': entry['title'], 'image': entry[
                     'category_image'], 'updated': entry['updated']}
