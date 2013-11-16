@@ -63,11 +63,11 @@ def _convert(language='en', country=None):
             language, category, transcoder, feed_link, feed_title, feed_logo, labels = _parse_task(
                 line)
             if feed_link:
-                category = '%s::%s' % (country, category)
+                category = u'%s::%s' % (country, category)
 
                 # break labels
                 if labels:
-                    labels = ['%s::%s' % (category, label.strip())
+                    labels = [u'%s::%s' % (category, label.strip())
                               for label in labels.split(',')]
 
                 existing_item = db_feeds.find_one({'feed_link': feed_link})
@@ -88,8 +88,9 @@ def _convert(language='en', country=None):
                         new_item['categories'] = [category]
 
                     if 'labels' in existing_item and existing_item['labels'] and labels:
-                        existing_item['labels'].extend(labels)
-                        new_item['labels'] = list(set(existing_item['labels']))
+			            if not set(existing_item['labels']).issuperset(set(labels)):
+                            existing_item['labels'].extend(labels)
+                            new_item['labels'] = list(set(existing_item['labels']))
                     else:
                         new_item['labels'] = labels
 
