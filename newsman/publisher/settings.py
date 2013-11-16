@@ -36,19 +36,19 @@ hparser = HTMLParser()
 
 
 # CONSTANTS
-#PUBLIC = 'http://mobile-global.baidu.com/news/%s'  # hk01-hao123-mob01/mob02
+PUBLIC = 'http://mobile-global.baidu.com/news/%s'  # hk01-hao123-mob01/mob02
 #PUBLIC = 'http://220.181.163.36:8080/news/%s'      # cq01-rdqa-dev067.cq01
 #PUBLIC = 'http://54.251.107.116/%s'                # AWS singapore
 #PUBLIC = 'http://54.232.81.44/%s'                  # AWS sao paolo
 #PUBLIC = 'http://54.248.227.71/%s'                 # AWS tokyo
 
-#LOCAL = '/home/work/%s'                            # official server prefix
+LOCAL = '/home/work/%s'                            # official server prefix
 #LOCAL = '/home/users/jinyuan/%s'                            # official server prefix
 #LOCAL = '/home/ubuntu/%s'                          # AWS server prefix
 #LOCAL = '/home/jinyuan/Downloads/%s'               # local server prefix
 
 #LOGO_PUBLIC_PREFIX = 'http://mobile-global.baidu.com/logos/'
-#LOGO_PUBLIC_PREFIX = 'http://220.181.163.36:8080/logos/'
+LOGO_PUBLIC_PREFIX = 'http://220.181.163.36:8080/logos/'
 
 # code base folder for updating
 CODE_BASE = LOCAL % 'newsman'
@@ -94,10 +94,18 @@ UCK_TRANSCODING_NEW = 'http://m.baidu.com/openapp?/webapp?debug=1&from=bd_intern
 TRANSCODED_ENCODING = '<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>\n'
 
 # Font used to generate text-based image
-DEFAULT_FONT_PATH = "/usr/share/fonts/dejavu/DejaVuSans.ttf"
-#DEFAULT_FONT_PATH = "/usr/share/fonts/truetype/ttf-dejavu/DejaVuSans.ttf"
-DEFAULT_FONT_SIZE = 1
-DEFAULT_TEXT_WIDTH = 50
+FONT_PATH_EN = "/home/work/fonts/ubuntu-font/Ubuntu-R.ttf"
+FONT_PATH_IN = "/home/work/fonts/ubuntu-font/Ubuntu-R.ttf"
+FONT_PATH_JA = "/home/work/fonts/ja_ipaexm/ipaexm.ttf"
+FONT_PATH_PT = "/home/work/fonts/ubuntu-font/Ubuntu-R.ttf"
+FONT_PATH_TH = "/home/work/fonts/th_tlwg/Loma.ttf"
+FONT_PATH_ZH = "/home/work/fonts/zh_yahei/msyh.ttf"
+TEXT_WIDTH_EN = 22
+TEXT_WIDTH_IN = 22
+TEXT_WIDTH_JA = 10
+TEXT_WIDTH_PT = 22
+TEXT_WIDTH_TH = 20
+TEXT_WIDTH_ZH = 12
 
 # words on 'opening origial page' button
 TRANSCODING_BTN_EN = 'Original page'
