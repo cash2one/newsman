@@ -19,6 +19,7 @@ from config.settings import logger
 from datetime import datetime, timedelta
 from data_processor import image_helper
 from data_processor import summarizer
+from data_processor import text2img
 from data_processor import transcoder
 from data_processor import tts_provider
 import database as db_news
@@ -156,7 +157,8 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
             if entry['transcoded']:
                 # [OPTIONAL] summary
                 if entry['summary'] or raw_transcoded_content:
-                    summary_found = summarizer.extract(entry['language'], entry['title'], raw_transcoded_content, entry['summary'], entry['link'], entry['feed'], '*|*'.join(entry['categories']))
+                    summary_found = summarizer.extract(entry['language'], entry['title'], raw_transcoded_content, entry[
+                                                       'summary'], entry['link'], entry['feed'], '*|*'.join(entry['categories']))
                     if summary_found:
                         entry['summary'] = summary_found
                 entry['summary'] = entry[
@@ -183,11 +185,14 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
                     biggest = image_helper.find_biggest_image(entry['images'])
                     if biggest:
                         entry = _generate_images(biggest, entry, rand)
-                else: # generate a text-image with summary
-                    pass
                 # for older version users
                 entry['image'] = entry['thumbnail_image'][
                     'url'] if 'thumbnail_image' in entry and entry['thumbnail_image'] else None
+
+                # if no category_image is found, generate a text-image
+                if 'category_image' not in entry or ('category_image' in entry and not entry['category_image']):
+                    text_img = text2img.Text2Image(language, text, path)
+                    entry['text_image'] = text_img.get_image()
 
                 # [OPTIONAL] google tts not for indonesian
                 if entry['language'] != 'in':

@@ -198,7 +198,7 @@ class Text2Image:
         # length evaluation should be done in str, not unicode
         longest_sentence = max([(len(str(sentence)), index)
                                for index, sentence in enumerate(sentences)], key=lambda x: x[0])
-        print '[longest sentence]', str(sentences[longest_sentence[1]])
+        #print '[longest sentence]', str(sentences[longest_sentence[1]])
         # longest_sentence: (sentence_length, sentence_index)
         self._set_font_size(sentences[longest_sentence[1]])
 
@@ -211,7 +211,7 @@ class Text2Image:
                         count * height) + height / 2 + 10 + count * 8), sentence, fill=self._font_color, font=self._font)
                     break
                 else:
-                    print str(sentence)
+                    #print str(sentence)
                     self._draw.text(
                         (18, ((count + 1) * height) + 10 + count * 8), sentence, fill=self._font_color, font=self._font)
 
@@ -247,6 +247,6 @@ if __name__ == "__main__":
     language = 'pt'
     text = "Este resultado é explicado depois de a Avianca Holdings S.A. alcançar, no período julho-setembro de 2013, um lucro líquido ajustado de R$ 230,17 milhões (US$ 99,1 milhões), disse a companhia em um comunicado."
 
-    print str(text)
+    #print str(text)
     test = Text2Image(language, text, "test1.png", "#000000", "#FFFFFF")
     test.get_image()
