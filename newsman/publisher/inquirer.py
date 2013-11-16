@@ -65,7 +65,16 @@ def get_portal(language=None, country=None, categories=None):
         # 'category A': [{'title':'xxx', 'image':'http://yyy.com/zzz.jpg'}]
         # image: category_image
         portal_data[user_subscription] = []
+        text_image_item = None
         for entry in entries:
+            # only one text_image is necessary
+            if 'text_image' in entry and entry['text_image'] and not text_image_item:
+                if isinstance(entry['text_image'], str):
+                    entry['text_image'] = eval(entry['text_image'])
+                text_image = entry['text_image']
+                text_image_item = {'title': entry['title'], 'image':text_image, 'updated':entry['updated']}
+
+            # search for category_image
             if 'category_image' in entry and entry['category_image'] and entry['category_image'] != 'None' and entry['category_image'] != 'null':
                 if isinstance(entry['category_image'], str):
                     entry['category_image'] = eval(entry['category_image'])
@@ -75,6 +84,10 @@ def get_portal(language=None, country=None, categories=None):
                 # limit the number of category_image to
                 if len(portal_data[user_subscription]) == images_limit:
                     break
+
+        # can't find any category image, use text image instead, if available
+        if len(portal_data[user_subscription]) < 1 and text_image_item:
+            portal_data[user_subscription].append(text_image_item)
 
     # special formatting for android-end
     output = []
