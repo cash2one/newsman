@@ -225,7 +225,8 @@ class Text2Image:
     def get_image(self):
         textimage_public_path = "%s%s" % (
             IMAGES_PUBLIC_DIR, self._textimage_relative_path)
-        return textimage_public_path
+        textimage = {'url':textimage_public_path, 'width':CATEGORY_IMAGE_SIZE[0], 'height':CATEGORY_IMAGE_SIZE[1]}
+        return textimage
 
 
 if __name__ == "__main__":

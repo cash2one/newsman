@@ -52,8 +52,8 @@ def get_portal(language=None, country=None, categories=None):
     if country not in COUNTRIES:
         return None
 
-    search_limit = 60
-    images_limit = 2
+    search_limit = 70
+    images_limit = 1
     portal_data = {}
     categories = urllib2.unquote(categories.strip()).split(',')
 
