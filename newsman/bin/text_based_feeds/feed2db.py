@@ -70,8 +70,6 @@ def _convert(language='en', country=None):
                     labels = ['%s::%s' % (category, label.strip())
                               for label in labels.split(',')]
 
-                print feed_link
-
                 existing_item = db_feeds.find_one({'feed_link': feed_link})
                 if not existing_item:
                     feed_logo = {'url': feed_logo, 'width': 71, 'height': 60}
