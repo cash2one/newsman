@@ -94,12 +94,12 @@ UCK_TRANSCODING_NEW = 'http://m.baidu.com/openapp?/webapp?debug=1&from=bd_intern
 TRANSCODED_ENCODING = '<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>\n'
 
 # Font used to generate text-based image
-FONT_PATH_EN = "/home/work/fonts/ubuntu-font/Ubuntu-R.ttf"
-FONT_PATH_IN = "/home/work/fonts/ubuntu-font/Ubuntu-R.ttf"
-FONT_PATH_JA = "/home/work/fonts/ja_ipaexm/ipaexm.ttf"
-FONT_PATH_PT = "/home/work/fonts/ubuntu-font/Ubuntu-R.ttf"
-FONT_PATH_TH = "/home/work/fonts/th_tlwg/Loma.ttf"
-FONT_PATH_ZH = "/home/work/fonts/zh_yahei/msyh.ttf"
+FONT_PATH_EN = LOCAL % "fonts/ubuntu-font/Ubuntu-R.ttf"
+FONT_PATH_IN = LOCAL % "fonts/ubuntu-font/Ubuntu-R.ttf"
+FONT_PATH_JA = LOCAL % "fonts/ja_ipaexm/ipaexm.ttf"
+FONT_PATH_PT = LOCAL % "fonts/ubuntu-font/Ubuntu-R.ttf"
+FONT_PATH_TH = LOCAL % "fonts/th_tlwg/Loma.ttf"
+FONT_PATH_ZH = LOCAL % "fonts/zh_yahei/msyh.ttf"
 TEXT_WIDTH_EN = 22
 TEXT_WIDTH_IN = 22
 TEXT_WIDTH_JA = 10
