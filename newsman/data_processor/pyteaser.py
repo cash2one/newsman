@@ -49,13 +49,12 @@ class PyTeaser:
         if not language or not title or not article:
             logger.error('Method malformed!')
 
-        self.language = language
-        self.title = title
-        self.article = article
-        self.bak = article
-        self.link = link
-        self.blog = blog
-        self.category = category
+        self._language = language
+        self._title = title
+        self._article = article
+        self._link = link
+        self._blog = blog
+        self._category = category
 
     def summarize(self):
         """
@@ -85,7 +84,7 @@ class PyTeaser:
         """
         try:
             # convert to normal encoding
-            self.article = str(urllib2.unquote(hparser.unescape(self.article)))
+            self._article = str(urllib2.unquote(hparser.unescape(self._article)))
 
             # remove unnecessary parts
             html_stripper = html2text.HTML2Text()
@@ -94,12 +93,12 @@ class PyTeaser:
             html_stripper.ignore_emphasis = True
             # body_width = 0 disables text wrapping
             html_stripper.body_width = 0
-            self.article = html_stripper.handle(self.article).strip("#")
+            self._article = html_stripper.handle(self._article).strip("#")
 
             # convert to appropriate encoding
-            if isinstance(self.article, str):
-                self.article = self.article.decode(
-                    chardet.detect(self.article)['encoding'], 'ignore')
+            if isinstance(self._article, str):
+                self._article = self._article.decode(
+                    chardet.detect(self._article)['encoding'], 'ignore')
         except Exception as k:
             logger.error(str(k))
             return None
@@ -111,16 +110,16 @@ class PyTeaser:
         try:
             sentences = None
             # special: thai, arabic
-            if self.language == 'zh' or self.language == 'ja':
+            if self._language == 'zh' or self._language == 'ja':
                 cj_sent_tokenizer = nltk.RegexpTokenizer(
                     u'[^!?.！？。．]*[!?.！？。]*')
-                sentences = cj_sent_tokenizer.tokenize(self.article)
-            elif self.language == 'th':
-                sentences = self.article.split()
+                sentences = cj_sent_tokenizer.tokenize(self._article)
+            elif self._language == 'th':
+                sentences = self._article.split()
                 # print len(sentences)
                 # print sentences
             else:  # latin-based
-                sentences = nltk.sent_tokenize(self.article)
+                sentences = nltk.sent_tokenize(self._article)
 
             # remove spaces
             sentences = [sentence.strip()
@@ -155,13 +154,13 @@ class PyTeaser:
 
             words = []
             # word segment
-            if self.language == 'ja':
+            if self._language == 'ja':
                 segmenter = tinysegmenter.TinySegmenter()
                 words = segmenter.tokenize(text)
                 # remove punctuation
                 words = [word.strip()
                          for word in words if word.strip() and word not in cj_punctuation]
-            elif self.language == 'zh':
+            elif self._language == 'zh':
                 jieba.enable_parallel(4)
                 seg_list = jieba.cut(text)
                 for seg in seg_list:
@@ -169,7 +168,7 @@ class PyTeaser:
                 # remove punctuation
                 words = [word.strip()
                          for word in words if word.strip() and word not in cj_punctuation]
-            elif self.language == 'th':
+            elif self._language == 'th':
                 command = 'echo "%s" | %s %s/scw.conf %s' % (
                     str(text), THAI_WORDSEG, THAI_WORDSEG_DICT, THAI_WORDSEG_DICT)
                 response = subprocess.Popen(
@@ -207,10 +206,10 @@ class PyTeaser:
         compute word-frenquecy map
         """
         try:
-            words = self._segment_text(self.article)
+            words = self._segment_text(self._article)
 
             # remove stop words
-            stopwords_path = '%s%s_stopwords' % (STOP_WORDS, self.language)
+            stopwords_path = '%s%s_stopwords' % (STOP_WORDS, self._language)
             # ar, en, id, ja, pt, th, zh
             f = open(stopwords_path, 'r')
             stopwords = f.readlines()
@@ -249,17 +248,17 @@ class PyTeaser:
                 count = top_keyword[1]
 
                 blog_count = col.find(
-                    {'blog': self.blog, 'language': self.language}).count() + 1.0
+                    {'blog': self._blog, 'language': self._language}).count() + 1.0
                 category_count = col.find(
-                    {'category': self.category, 'language': self.language}).count() + 1.0
-                col.save({'word': word, 'count': count, 'link': self.link, 'blog':
-                         self.blog, 'category': self.category, 'language': self.language})
+                    {'category': self._category, 'language': self._language}).count() + 1.0
+                col.save({'word': word, 'count': count, 'link': self._link, 'blog':
+                         self._blog, 'category': self._category, 'language': self._language})
 
                 article_score = float(count) / float(words_count)
                 blog_score = float(reduce(lambda x, y: x + y, [item['count'] for item in col.find(
-                    {'word': word, 'blog': self.blog}, {'count': 1, '_id': 0})])) / float(blog_count)
+                    {'word': word, 'blog': self._blog}, {'count': 1, '_id': 0})])) / float(blog_count)
                 category_score = float(reduce(lambda x, y: x + y, [item['count'] for item in col.find(
-                    {'word': word, 'category': self.category}, {'count': 1, '_id': 0})])) / float(category_count)
+                    {'word': word, 'category': self._category}, {'count': 1, '_id': 0})])) / float(category_count)
 
                 word_score = article_score * 1.5 + blog_score + category_score
                 topwords.append((word, word_score))
@@ -412,7 +411,7 @@ class PyTeaser:
             return 0
 
         try:
-            title_words = self._segment_text(self.title)
+            title_words = self._segment_text(self._title)
             if title_words:
                 # filter out words that are not in title
                 sentence_words = [
@@ -553,14 +552,12 @@ if __name__ == '__main__':
     对于百度移动事业部的老大李明远来说，在做成贴吧、地图后，能否成功在移动端建立起一个完善的账号体系，也成为他的第三个挑战。"""
 
     language = 'th'
-    title = "โดนแล้ว! เด็กปชป.รุมลั่นนกหวีดใส่'จาตุรนต์'"
-    text = """เด็กปชป.รุม ลั่น นกหวีดใส่ นายจาตุรนต์ ฉายแสง รมว.ศึกษาธิการ ตาม 4 มาตรการอารยะขัดขืน ของ สุเทพ เทือกสุบรรณ อดีต ส.ส.ปชป. 
+    title = """เตรียมประกาศยุทธศาสตร์พัฒนาคุณภาพผู้เรียน"""
+    text = """รมว.ศึกษาธิการ เผย การเดินหน้ายกระดับคุณภาพมาตรฐานการศึกษาไทยทั้ง 5 ด้าน มีความคืบหน้ามาก โดยจะมีการรณรงค์ให้ครูและนักเรีียนมีความเข้าใจเพื่อยกระดับผลสัมฤทธิ์ การประเมินผลนานาชาติ (PISA) เพื่อนำเอาข้อมูลที่ได้มาสนับสนุนเพื่อยกระดับคุณภาพการเรียนการสอนให้กับโรงเรียนขยายโอกาสต่อไป...
     
-    วันที่ 13 พ.ย. ผู้สื่อข่าวรายงานว่า ผู้ใช้เว็บไซต์ยูทูบชื่อ "สถานีบันเทิง ลาดกระบัง" ได้โพสต์คลิปภาพชื่อ "อารยะขัดขืน เป่านกหวีดใส่ จาตุรนต์ ฉายแสง" ความยาว 32 วินาที โดยภายในภาพเป็นบุคคลคล้าย อดีต ส.ส. พรรคประชาธิปัตย์ ที่ลาออกก่อนหน้านี้ เพื่อเป็นแกนนำการชุมนุมต่อต้าน ร่างพ.ร.บ.นิรโทษกรรม อาทิ นายจุมพล จุลใส อดีตส.ส.ชุมพร นายณัฐพล ทีปสุวรรณ อดีตส.ส.กทม. และนายสาทิตย์ วงศ์หนองเตย อดีต ส.ส.ตรัง รวมทั้งส.ส.ของพรรค อาทิ นายแทนคุณ จิตต์อิสระ น.ส.อรอนงค์ กาญจนชูศักดิ์ ส.ส.กทม. และนายกุลเดช พัวพัฒนกุล ส.ส.อุทัยธานี ทั้งหมดแต่งกายชุดสีดำ 
+    นายจาตุรนต์ ฉายแสง รมว.ศึกษาธิการ กล่าวภายหลังการประชุมเสวนา “กลยุทธ์การเร่งรัดคุณภาพผู้เรียนสู่การยกระดับคุณภาพการศึกษาไทยตามนโยบาย” ว่า การเดินหน้ายกระดับคุณภาพมาตรฐานการศึกษาไทยทั้ง 5 ด้าน ได้แก่ 1.แผนยุทธศาสตร์การพัฒนาคุณภาพการจัดการเรียนการสอนเพื่อยกระดับผลสัมฤทธิ์ การประเมินผลนานาชาติ (PISA) 2.แผนยุทธศาสตร์การเร่งรัดการอ่านออก เขียนได้ และทวิภาษา 3.แผนการดำเนินงานด้านภาษาจีน ภาษาอังกฤษและภาษาต่างประเทศที่สองอื่นๆ 4.แผนพัฒนาทักษะการคิดวิเคราะห์ และ 5.แผนการพัฒนาการวัดและประเมินสมรรถนะของผู้เรียน มีความคืบหน้าไปมาก และจะประกาศเป็นยุทธศาสตร์ มาตรการ และแผนงานสู่การปฏิบัติที่จะทำให้เห็นถึงการปฏิรูปการศึกษาที่เกิดการเปลี่ยนแปลงที่ชัดเจน เช่น จะปรับเปลี่ยนการเรียนการสอนวิชาภาษาต่างๆอย่างไรให้เด็กคิด วิเคราะห์ และเข้าใจง่ายขึ้น รวมถึงรณรงค์ให้ครู และนักเรียนมีความเข้าใจเพื่อยกระดับผลสัมฤทธิ์ทางการศึกษา PISA ให้สูงขึ้น
     
-    ได้ร่วมกันเป่านกหวีด ใส่ นายจาตุรนต์ ฉายแสง รมว.ศึกษาธิการ ขณะกำลังเดินออกจากสถานที่แห่งหนึ่ง เพื่อเดินขึ้นรถ ซึ่งจากการตรวจสอบพบว่า สถานที่ดังกล่าวคือ โรงแรมปริ๊นเซส หลานหลวง ถนนหลานหลวง ซึ่งอยู่ไม่ไกลมากนัก จากสถานที่จัดการชุมนุม 
-    
-    อย่างไรก็ตาม การดำเนินการดังกล่าวเป็น 1 ใน 4 มาตรการอารยะขัดขืนที่ นายสุเทพ เทือกสุบรรณ อดีตส.ส.สุราษฎร์ธานี พรรคประชาธิปัตย์ ในฐานะแกนนำการชุมนุมประกาศบนเวทีก่อนหน้านี้"""
+    รมว.ศึกษาธิการกล่าวต่อว่า ส่วนข้อมูลของคณะกรรมการกำหนดแผนยุทธศาสตร์การพัฒนา คุณภาพการจัดการเรียนการสอนเพื่อยกระดับผลสัมฤทธิ์ PISA ได้นำเสนอข้อมูลว่าสาเหตุที่โรงเรียนขยายโอกาสทางการศึกษามีผลสัมฤทธิ์ทางการเรียนต่ำกว่าโรงเรียนประเภทอื่นๆ เนื่องจากได้รับการสนับสนุนด้านทรัพยากร และครูค่อนข้างน้อยนั้น ก็จะนำมาเป็นข้อมูลสนับสนุนเพื่อยกระดับคุณภาพการเรียนการสอนให้กับโรงเรียนขยายโอกาสต่อไป."""
 
     teaser = PyTeaser(language, title, text)
     print str(teaser.summarize())
