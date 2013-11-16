@@ -72,7 +72,8 @@ def get_portal(language=None, country=None, categories=None):
                 if isinstance(entry['text_image'], str):
                     entry['text_image'] = eval(entry['text_image'])
                 text_image = entry['text_image']
-                text_image_item = {'title': entry['title'], 'image':text_image, 'updated':entry['updated']}
+                text_image_item = {
+                    'title': entry['title'], 'image': text_image, 'updated': entry['updated']}
 
             # search for category_image
             if 'category_image' in entry and entry['category_image'] and entry['category_image'] != 'None' and entry['category_image'] != 'null':
@@ -124,9 +125,11 @@ def get_categories(language=None, country=None, version=None):
                         categories[category_name] = []
 
                     if 'feed_logo' in item and item['feed_logo']:
-                        feed_format = {'order': len(categories[category_name]), 'text': item['feed_title'], 'image': item['feed_logo']}
+                        feed_format = {'order': len(categories[category_name]), 'text': item[
+                            'feed_title'], 'image': item['feed_logo']}
                     else:
-                        feed_format = {'order': len(categories[category_name]), 'text': item['feed_title']}
+                        feed_format = {
+                            'order': len(categories[category_name]), 'text': item['feed_title']}
                     if feed_format not in categories[category_name]:
                         categories[category_name].append(feed_format)
 
@@ -152,7 +155,7 @@ def get_categories(language=None, country=None, version=None):
                             if label_format_added['text'] == label_name:
                                 LABEL_ADDED = True
                                 break
-                        if not LABEL_ADDED: 
+                        if not LABEL_ADDED:
                             categories[category_name].append(label_format)
         # reformat
         output = []
