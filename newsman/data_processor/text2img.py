@@ -1,5 +1,5 @@
-#!/usr/bin/env python 
-#-*- coding: utf-8 -*- 
+#!/usr/bin/env python
+#-*- coding: utf-8 -*-
 
 """
 text2img converts text into an image
@@ -9,8 +9,8 @@ text2img converts text into an image
 # @created Nov. 15, 2013
 
 
-import sys 
-reload(sys) 
+import sys
+reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
@@ -23,7 +23,7 @@ import subprocess
 import textwrap
 
 # CONSTATNS
-from config.settings import CATEGORY_IMAGE_SIZE 
+from config.settings import CATEGORY_IMAGE_SIZE
 from config.settings import FONT_PATH_EN
 from config.settings import FONT_PATH_IN
 from config.settings import FONT_PATH_JA
@@ -43,14 +43,15 @@ from config.settings import THAI_WORDSEG_DICT
 
 
 class Text2Image:
+
     """
     Converts text into image
     """
-    
+
     def __init__(self, language=None, text=None, textimage_relative_path=None, background_color='#FFFFFF', font_color='#000000'):
         if not language or not text or not textimage_relative_path:
             logger.error("Method malformed!")
-            
+
         self._language = language
         self._text = text
         self._background_color = background_color
@@ -62,25 +63,26 @@ class Text2Image:
         self._font = None
 
         # danamic loading specific import
-        FONT_PATH = 'FONT_PATH_%s' % self._language.upper() 
-        TEXT_WIDTH = 'TEXT_WIDTH_%s' % self._language.upper() 
+        FONT_PATH = 'FONT_PATH_%s' % self._language.upper()
+        TEXT_WIDTH = 'TEXT_WIDTH_%s' % self._language.upper()
         self._font_path = eval(FONT_PATH)
         self._text_width = eval(TEXT_WIDTH)
 
         self._set_background()
         self._add_text_to_image()
-        
+
     def _set_background(self):
         """
         set the image background
         """
         try:
-            self._image = Image.new("RGB", CATEGORY_IMAGE_SIZE, self._background_color)
+            self._image = Image.new(
+                "RGB", CATEGORY_IMAGE_SIZE, self._background_color)
             self._draw = ImageDraw.Draw(self._image)
         except Exception as k:
             logger.error(str(k))
             return None
-    
+
     def _set_font_size(self, line=None):
         """
         set font size on the image
@@ -96,12 +98,13 @@ class Text2Image:
             # adjust font size by text
             while self._font.getsize(line)[0] < img_fraction * self._image.size[0]:
                 self._font_size = self._font_size + 1
-                #print self._font_size, self._font.getsize(line)[0]
-                self._font = ImageFont.truetype(self._font_path, self._font_size)
+                # print self._font_size, self._font.getsize(line)[0]
+                self._font = ImageFont.truetype(
+                    self._font_path, self._font_size)
         except Exception as k:
             logger.error(str(k))
             return None
-    
+
     def _parse_text(self):
         """
         use nltk or other engines to split text into sentences
@@ -119,60 +122,67 @@ class Text2Image:
                 cj_punctuation = u"""-|〃|。|．|\.|!|！|\?|？|、|-|〟|〰|-|-|＊|，|,|-|／|：|-|；|-|-|＿|-|･|‐|-|―|-|…|-|‧|﹏"""
                 sentences = re.split(cj_punctuation, self._text)
             elif self._language == 'th':
-                command = 'echo "%s" | %s %s/scw.conf %s' % (str(text), THAI_WORDSEG, THAI_WORDSEG_DICT, THAI_WORDSEG_DICT)
-                response = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
+                command = 'echo "%s" | %s %s/scw.conf %s' % (
+                    str(text), THAI_WORDSEG, THAI_WORDSEG_DICT, THAI_WORDSEG_DICT)
+                response = subprocess.Popen(
+                    command, stdout=subprocess.PIPE, shell=True)
                 content, error = response.communicate()
                 if not error and content:
                     if 'error' not in content or 'permission' not in content:
                         content = content.strip()
-                        paragraphs = [paragraph.strip() for paragraph in content.split('\n') if paragraph.strip()]
+                        paragraphs = [paragraph.strip()
+                                      for paragraph in content.split('\n') if paragraph.strip()]
                         for paragraph in paragraphs:
                             # modes[0]: the orginal
                             # modes[1]: phrase seg
                             # modes[2]: basic wordseg
                             # modes[3]: subphrase seg
-                            modes = [mode.strip() for mode in paragraph.split('\t') if mode.strip()]
-                            #for mode in modes:
+                            modes = [mode.strip()
+                                     for mode in paragraph.split('\t') if mode.strip()]
+                            # for mode in modes:
                             #    print  str(mode)
-                            # u'|' is very crucial(, instead of '|') 
-                            sentences = [sentence for sentence in modes[1].split(u'|') if sentence]
+                            # u'|' is very crucial(, instead of '|')
+                            sentences = [
+                                sentence for sentence in modes[1].split(u'|') if sentence]
             else:  # latin-based
                 sentences = nltk.sent_tokenize(self._text)
 
             # remove void lines
-            sentences = [sentence.strip() for sentence in sentences if sentence.strip()]
+            sentences = [sentence.strip()
+                         for sentence in sentences if sentence.strip()]
 
             if self._language in ['en', 'in', 'pt', 'ja', 'zh', 'th']:
                 lines = []
                 for sentence in sentences:
                     splits = textwrap.wrap(sentence, self._text_width)
-                    #print str(' | '.join(splits))
+                    # print str(' | '.join(splits))
                     lines.extend(splits)
 
                 sentences = []
                 previous_line = None
                 for index in xrange(len(lines)):
                     current_line = lines[index]
-                    #print str(current_line)
+                    # print str(current_line)
                     if previous_line:
-                        #print '  previous', str(previous_line) 
-                        possible_line = u"%s %s" % (previous_line, current_line)
+                        # print '  previous', str(previous_line)
+                        possible_line = u"%s %s" % (
+                            previous_line, current_line)
                         if len(textwrap.wrap(possible_line, self._text_width)) == 1:
-                            #print '    possible', str(possible_line)
+                            # print '    possible', str(possible_line)
                             previous_line = possible_line
                         else:
-                            #print '    no possible', str(current_line)
+                            # print '    no possible', str(current_line)
                             sentences.append(previous_line)
                             previous_line = current_line
                     else:
-                        #print '  no previous', str(current_line)
+                        # print '  no previous', str(current_line)
                         previous_line = current_line
                     # if current_line is the last one, add it to list
                     if index + 1 == len(lines):
                         sentences.append(previous_line)
 
-            #print 
-            #for s in sentences:
+            # print
+            # for s in sentences:
             #    print '*', str(s)
             return sentences
         except Exception as k:
@@ -186,7 +196,8 @@ class Text2Image:
         sentences = self._parse_text()
         # pick up the longest sentence
         # length evaluation should be done in str, not unicode
-        longest_sentence = max([(len(str(sentence)), index) for index, sentence in enumerate(sentences)], key=lambda x:x[0])
+        longest_sentence = max([(len(str(sentence)), index)
+                               for index, sentence in enumerate(sentences)], key=lambda x: x[0])
         print '[longest sentence]', str(sentences[longest_sentence[1]])
         # longest_sentence: (sentence_length, sentence_index)
         self._set_font_size(sentences[longest_sentence[1]])
@@ -196,20 +207,24 @@ class Text2Image:
                 width, height = self._font.getsize(sentence)
                 if ((count + 2) * height + height + 10 + count * 16) > self._image.size[1]:
                     sentence = ". . . . . ."
-                    self._draw.text(((self._image.size[0] - 30) / 2 - self._font.getsize(sentence)[0] / 2, (count * height) + height / 2 + 10 + count * 8), sentence, fill=self._font_color, font=self._font)
+                    self._draw.text(((self._image.size[0] - 30) / 2 - self._font.getsize(sentence)[0] / 2, (
+                        count * height) + height / 2 + 10 + count * 8), sentence, fill=self._font_color, font=self._font)
                     break
                 else:
                     print str(sentence)
-                    self._draw.text((18, ((count + 1) * height) + 10 + count * 8), sentence, fill=self._font_color, font=self._font)
+                    self._draw.text(
+                        (18, ((count + 1) * height) + 10 + count * 8), sentence, fill=self._font_color, font=self._font)
 
-            textimage_local_path = "%s%s" % (IMAGES_LOCAL_DIR, self._textimage_relative_path)
-            #print textimage_local_path
+            textimage_local_path = "%s%s" % (
+                IMAGES_LOCAL_DIR, self._textimage_relative_path)
+            # print textimage_local_path
             self._image.save(textimage_local_path, "PNG")
         except Exception as k:
             logger.error(str(k))
-            
+
     def get_image(self):
-        textimage_public_path = "%s%s" % (IMAGES_PUBLIC_DIR, self._textimage_relative_path)
+        textimage_public_path = "%s%s" % (
+            IMAGES_PUBLIC_DIR, self._textimage_relative_path)
         return textimage_public_path
 
 
