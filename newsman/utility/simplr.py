@@ -486,8 +486,11 @@ class Simplr:
                 img['src'] = img['src'].replace('/s_', '/m_')
 
             # optimization made for sankei.jp.msn.com
-            if 'http://sankei.jp.msn.com/' in img['src'] and img['src'].endswith('-n1.jpg'):
-                img['src'] = img['src'].replace('-n1.jpg', '-p1.jpg')
+            if 'http://sankei.jp.msn.com/' in img['src']:
+                if img['src'].endswith('-n1.jpg'):
+                    img['src'] = img['src'].replace('-n1.jpg', '-p1.jpg')
+                elif img['src'].endswith('-s1.jpg'):
+                    img['src'] = img['src'].replace('-s1.jpg', '-p1.jpg')
 
             # optimization made for jp.reuters.com
             if 's1.reutersmedia.net/resources/r/' in img['src']:
