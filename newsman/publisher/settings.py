@@ -37,7 +37,7 @@ hparser = HTMLParser()
 
 # CONSTANTS
 #PUBLIC = 'http://mobile-global.baidu.com/news/%s'  # hk01-hao123-mob01/mob02
-#PUBLIC = 'http://220.181.163.36:8080/news/%s'      # cq01-rdqa-dev067.cq01
+PUBLIC = 'http://220.181.163.36:8080/news/%s'      # cq01-rdqa-dev067.cq01
 #PUBLIC = 'http://54.251.107.116/%s'                # AWS singapore
 #PUBLIC = 'http://54.232.81.44/%s'                  # AWS sao paolo
 #PUBLIC = 'http://54.248.227.71/%s'                 # AWS tokyo
@@ -45,7 +45,7 @@ hparser = HTMLParser()
 #LOCAL = '/home/work/%s'                            # official server prefix
 #LOCAL = '/home/users/jinyuan/%s'                            # official server prefix
 #LOCAL = '/home/ubuntu/%s'                          # AWS server prefix
-#LOCAL = '/home/jinyuan/Downloads/%s'               # local server prefix
+LOCAL = '/home/jinyuan/Downloads/%s'               # local server prefix
 
 #LOGO_PUBLIC_PREFIX = 'http://mobile-global.baidu.com/logos/'
 LOGO_PUBLIC_PREFIX = 'http://220.181.163.36:8080/logos/'
@@ -80,7 +80,7 @@ NEWS_TEMPLATE_3 = LOCAL % 'STATIC/news/templates/news3.html'
 NEWS_TEMPLATE_ARABIC = LOCAL % 'STATIC/news/templates/index_arabic.html'
 
 # Stop words
-STOP_WORDS = "%s/newsman/data_processor/NLP/" % CODE_BASE 
+STOP_WORDS = "%s/newsman/data_processor/data/" % CODE_BASE 
 
 # Thai segmentation input and output file
 THAI_WORDSEG = LOCAL % "wordseg_thai/wordseg_thai"
