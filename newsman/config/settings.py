@@ -143,7 +143,7 @@ PARAGRAPH_CRITERIA = 40
 SUMMARY_LENGTH_LIMIT = 500
 
 # request connection timeouts
-UCK_TIMEOUT = 40  # 14 seconds timeout
+UCK_TIMEOUT = 60  # 14 seconds timeout
 GOOGLE_TTS_TIMEOUT = 120  # 2 minutes timeout
 
 # supported languages

@@ -157,7 +157,7 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
             if entry['transcoded']:
                 # [OPTIONAL] summary
                 if entry['summary'] or raw_transcoded_content:
-                    summary_found = summarizer.extract(entry['language'], entry['title'], raw_transcoded_content, entry[
+                    summary_found = summarizer.extract(entry['language'], entry['title'], str(raw_transcoded_content), entry[
                                                        'summary'], entry['link'], entry['feed'], '*|*'.join(entry['categories']))
                     if summary_found:
                         entry['summary'] = summary_found
