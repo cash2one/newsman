@@ -84,7 +84,8 @@ class PyTeaser:
         """
         try:
             # convert to normal encoding
-            self._article = str(urllib2.unquote(hparser.unescape(self._article)))
+            self._article = str(
+                urllib2.unquote(hparser.unescape(self._article)))
 
             # remove unnecessary parts
             html_stripper = html2text.HTML2Text()
