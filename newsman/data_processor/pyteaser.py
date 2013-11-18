@@ -32,7 +32,7 @@ import urllib2
 
 # CONSTANTS
 from config.settings import KEYWORD_REGISTRAR
-from config.settings import DATA
+from config.settings import DATA_PATH
 from config.settings import THAI_WORDSEG
 from config.settings import THAI_WORDSEG_DICT
 from config.settings import TOP_KEYWORDS_LIMIT
@@ -209,7 +209,7 @@ class PyTeaser:
             words = self._segment_text(self._article)
 
             # remove stop words
-            stopwords_path = '%s%s_stopwords' % (DATA, self._language)
+            stopwords_path = '%s%s_stopwords' % (DATA_PATH, self._language)
             # ar, en, id, ja, pt, th, zh
             f = open(stopwords_path, 'r')
             stopwords = f.readlines()
