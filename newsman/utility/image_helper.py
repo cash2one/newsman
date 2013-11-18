@@ -153,7 +153,8 @@ def find_images(content=None):
             f = open(content, 'r')
             content = f.read()
 
-        soup = BeautifulSoup(content.decode('utf-8', 'ignore'))
+        #soup = BeautifulSoup(content.decode('utf-8', 'ignore'))
+        soup = BeautifulSoup(str(content))
         images_normalized = []
         images = soup.findAll('img')
 
@@ -270,6 +271,10 @@ def _link_process(link):
             # or http://xxx.com/yyy--https://zzz.jpg
             last_http_index = image_url_complex.rfind('http')
             image_url = image_url_complex[last_http_index:]
+
+            # gif is not needed
+            if image_url.endswith('.gif') or image_url.endswith('.GIF'):
+                return None
 
             # response is the signal of a valid image
             response = None
