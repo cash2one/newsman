@@ -19,7 +19,7 @@ import calendar
 import chardet
 from config.settings import hparser
 from config.settings import logger
-from data_processor import image_helper
+from utility import image_helper
 from datetime import datetime, timedelta
 import feedparser
 import html2text
