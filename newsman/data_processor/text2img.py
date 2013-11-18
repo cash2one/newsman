@@ -76,8 +76,8 @@ class Text2Image:
         set the image background
         """
         try:
-            self._image = Image.new(
-                "RGB", CATEGORY_IMAGE_SIZE, self._background_color)
+            #self._image = Image.new("RGB", CATEGORY_IMAGE_SIZE, self._background_color)
+            self._image = Image.open("/home/jinyuan/Downloads/newsman/newsman/data_processor/pixel.jpg")
             self._draw = ImageDraw.Draw(self._image)
         except Exception as k:
             logger.error(str(k))
@@ -213,7 +213,7 @@ class Text2Image:
                 else:
                     # print str(sentence)
                     self._draw.text(
-                        (18, ((count + 1) * height) + 10 + count * 8), sentence, fill=self._font_color, font=self._font)
+                        (20, ((count + 1) * height) + 10 + count * 8), sentence, fill=self._font_color, font=self._font)
 
             textimage_local_path = "%s%s" % (
                 IMAGES_LOCAL_DIR, self._textimage_relative_path)
