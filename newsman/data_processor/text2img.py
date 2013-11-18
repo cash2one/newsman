@@ -24,6 +24,7 @@ import textwrap
 
 # CONSTATNS
 from config.settings import CATEGORY_IMAGE_SIZE
+from config.settings import DATA_PATH
 from config.settings import FONT_PATH_EN
 from config.settings import FONT_PATH_IN
 from config.settings import FONT_PATH_JA
@@ -77,7 +78,7 @@ class Text2Image:
         """
         try:
             #self._image = Image.new("RGB", CATEGORY_IMAGE_SIZE, self._background_color)
-            self._image = Image.open("/home/jinyuan/Downloads/newsman/newsman/data_processor/pixel.jpg")
+            self._image = Image.open("%s/pixel.jpg" % DATA_PATH)
             self._draw = ImageDraw.Draw(self._image)
         except Exception as k:
             logger.error(str(k))
