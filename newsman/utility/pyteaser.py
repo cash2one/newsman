@@ -63,20 +63,23 @@ class PyTeaser:
         # 'clean' the article
         self._clean_article()
 
-        # find keywords of the article
-        compound_keywords = self._find_keywords()
-        keywords = compound_keywords[0]
-        words_count = compound_keywords[1]
+        if self._article:
+            # find keywords of the article
+            compound_keywords = self._find_keywords()
+            if compound_keywords:
+                keywords = compound_keywords[0]
+                words_count = compound_keywords[1]
 
-        # find top keywords
-        topwords = self._find_top_keywords(keywords, words_count)
-
-        # compute sentence scores
-        sentences_scored = self._score_sentences(topwords)
-
-        # render the data
-        sentences_selected = self._render(sentences_scored)
-        return sentences_selected
+                # find top keywords
+                topwords = self._find_top_keywords(keywords, words_count)
+                if topwords:
+                    # compute sentence scores
+                    sentences_scored = self._score_sentences(topwords)
+                    if sentences_scored:
+                        # render the data
+                        sentences_selected = self._render(sentences_scored)
+                        return sentences_selected
+        return None
 
     def _clean_article(self):
         """
