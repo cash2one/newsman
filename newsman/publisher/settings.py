@@ -79,8 +79,8 @@ NEWS_TEMPLATE_2 = LOCAL % 'STATIC/news/templates/news2.html'
 NEWS_TEMPLATE_3 = LOCAL % 'STATIC/news/templates/news3.html'
 NEWS_TEMPLATE_ARABIC = LOCAL % 'STATIC/news/templates/index_arabic.html'
 
-# Stop words
-STOP_WORDS = "%s/newsman/data_processor/data/" % CODE_BASE 
+# Data paths
+DATA_PATH = "%s/newsman/data/" % CODE_BASE 
 
 # Thai segmentation input and output file
 THAI_WORDSEG = LOCAL % "wordseg_thai/wordseg_thai"
