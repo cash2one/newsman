@@ -339,7 +339,7 @@ def convert(language="en", title=None, link=None, updated=None, feed=None, trans
             title_new, content, images = _transcode(
                 link_clean, transcoders, language)
             # remove null content
-            content = content.strip()
+            content = content.strip() if content else None
 
             # in case no title is found from feed information
             if not title:
