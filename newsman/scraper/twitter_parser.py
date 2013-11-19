@@ -22,3 +22,12 @@ consumer_key = "hySdhZgpj5gF12kRWMoVpQ"
 consumer_secret = "2AkrRg89SdJL0qHkHwuP933fiBaNTioChMpxRdoicUQ"
 
 api = twitter.Api(consumer_key, consumer_secret, access_token_key, access_token_secret)
+
+def parse():
+    """
+    """
+    pass
+
+
+if __name__ == "__main__":
+    pass
