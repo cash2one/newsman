@@ -13,18 +13,19 @@ import sys
 reload(sys) 
 sys.setdefaultencoding('UTF-8')
 
+from config.settings import ACCESS_TOKEN_KEY
+from config.settings import ACCESS_TOKEN_SECRET
+from config.settings import consumer_key
+from config.settings import consumer_secret
 import twitter
 import urllib2
 
-access_token_key = "24129666-M47Q6pDLZXLQy1UITxkijkTdKfkvTcBpleidNPjac"
-access_token_secret = "0zHhqV5gmrmsnjiOEOBCvqxORwsjVC5ax4mM3dCDZ7RLk"
-consumer_key = "hySdhZgpj5gF12kRWMoVpQ"
-consumer_secret = "2AkrRg89SdJL0qHkHwuP933fiBaNTioChMpxRdoicUQ"
 
 api = twitter.Api(consumer_key, consumer_secret, access_token_key, access_token_secret)
 
-def parse():
+def parse(screen_name, feed_id, feed_title, language, categories):
     """
+    Connect twitter and parses the timeline
     """
     pass
 
