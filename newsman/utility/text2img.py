@@ -78,7 +78,7 @@ class Text2Image:
         """
         try:
             #self._image = Image.new("RGB", CATEGORY_IMAGE_SIZE, self._background_color)
-            self._image = Image.open("%s/pixel.jpg" % DATA_PATH)
+            self._image = Image.open("%s/home_bg.png" % DATA_PATH)
             self._draw = ImageDraw.Draw(self._image)
         except Exception as k:
             logger.error(str(k))
