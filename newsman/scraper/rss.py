@@ -191,14 +191,11 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
 
                 # [OPTIONAL] text image
                 # if no category_image is found, generate a text-image
-                """
                 if 'category_image' not in entry or ('category_image' in entry and not entry['category_image']):
                     image_relative_path = '%s_%s_%s_%i' % (
                         entry['language'], entry['feed_id'], entry['updated'], rand)
                     text_img = text2img.Text2Image(
                         language, entry['title'], '%s_textimage.png' % image_relative_path)
-                    entry['text_image'] = text_img.get_image()
-                """
 
                 # [OPTIONAL] google tts not for indonesian
                 if entry['language'] != 'in':
