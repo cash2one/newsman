@@ -25,7 +25,7 @@ for item in items:
             print item['feed_link'], str(feed_title)
             output[country].append('%s*|*%s' % (item['feed_link'], str(feed_title)))
         else:
-            print ">>>",str(item['feed_title'])
+            print ">>>", str(item['feed_title'])
 
 f = open('test', 'w')
 for k, v in output.iteritems():

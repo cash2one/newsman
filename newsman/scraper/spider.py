@@ -22,7 +22,7 @@ from utility import summarizer
 from utility import text2img
 from utility import transcoder
 from utility import tts_provider
-import database as db_news
+from scraper import database as db_news
 from feed_manager import database as db_feeds
 import memory
 import random

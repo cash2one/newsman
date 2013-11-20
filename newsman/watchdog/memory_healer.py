@@ -24,7 +24,7 @@ from scraper import memory
 import time
 
 # CONSTANTS
-from config.settings import MEMORY_RESTORATION_DAYS
+from config.settings import MEMORY_EXPIRATION_DAYS
 from config.settings import LANGUAGES
 
 
@@ -36,7 +36,7 @@ def _expired(updated):
         return 0
 
     deadline = datetime.utcfromtimestamp(
-        updated) + timedelta(days=MEMORY_RESTORATION_DAYS)
+        updated) + timedelta(days=MEMORY_EXPIRATION_DAYS)
     time_left = deadline - datetime.now()
     return time_left.days * 60 * 60 * 24 + time_left.seconds
 
@@ -64,7 +64,7 @@ def restore():
                 # find valid time to filter out expired items
                 current_utc_time_posix = calendar.timegm(time.gmtime())
                 active_datetime = datetime.utcfromtimestamp(
-                    current_utc_time_posix) - timedelta(days=MEMORY_RESTORATION_DAYS)
+                    current_utc_time_posix) - timedelta(days=MEMORY_EXPIRATION_DAYS)
                 active_posix = calendar.timegm(active_datetime.timetuple())
 
                 items = col.find(

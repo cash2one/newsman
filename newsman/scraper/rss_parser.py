@@ -168,7 +168,7 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
         # article's summary
         try:
             # its possible summary is html-based
-            summary = urllib2.unquote(hparser.unescap(e.summary))
+            summary = urllib2.unquote(hparser.unescape(e.summary))
             if isinstance(summary, str):
                 summary_encoding = chardet.detect(summary)['encoding']
                 summary = summary.decode(summary_encoding, 'ignore')
