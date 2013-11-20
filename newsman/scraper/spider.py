@@ -281,9 +281,6 @@ def update(feed_link=None, feed_id=None, language=None, categories=None, transco
     if not feed_id and not (feed_link and language):
         logger.error('Method malformed!')
         return None
-    if not parser_type:
-        logger.error('No parser information!')
-        return None
 
     try:
         # try to find the feed in database
@@ -307,7 +304,7 @@ def update(feed_link=None, feed_id=None, language=None, categories=None, transco
                 # parse rss reading from remote rss servers
                 entries, status_new, feed_title_new, etag_new, modified_new, reason_new = rss_parser.parse(feed_link, feed_id, feed_title, language, categories, etag, modified)
             elif parser_type == 'twitter':
-                entries, status_new, feed_title_new, etag_new, modified_new, reason_new = twitter_parser.parse(feed_link, feed_id, feed_title, language, categories, etag)
+                entries, status_new, feed_title_new, etag_new, reason_new = twitter_parser.parse(feed_link, feed_id, feed_title, language, categories, etag)
             else:
                 pass
 
