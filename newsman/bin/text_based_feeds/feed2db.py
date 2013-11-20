@@ -22,7 +22,7 @@ from config.settings import FEED_REGISTRAR
 #FILE_PREFIX = '/home/work/newsman/newsman/bin/text_based_feeds/feed_lists/'
 #FILE_PREFIX = '/home/users/jinyuan/newsman/newsman/bin/text_based_feeds/feed_lists/'
 #FILE_PREFIX = '/home/ubuntu/newsman/newsman/bin/text_based_feeds/feed_lists/'
-#FILE_PREFIX = '/home/jinyuan/Downloads/newsman/newsman/bin/text_based_feeds/feed_lists/'
+FILE_PREFIX = '/home/jinyuan/Downloads/newsman/newsman/bin/text_based_feeds/feed_lists/'
 
 
 def _parse_task(line):
@@ -60,7 +60,7 @@ def _convert(language='en', country=None):
 
     for line in lines:
         if line.strip():
-            language, category, transcoder, feed_link, feed_title, feed_logo, labels = _parse_task(
+            parser, category, transcoder, feed_link, feed_title, feed_logo, labels = _parse_task(
                 line)
             if feed_link:
                 category = u'%s::%s' % (country, category)
@@ -73,22 +73,21 @@ def _convert(language='en', country=None):
                 existing_item = db_feeds.find_one({'feed_link': feed_link})
                 if not existing_item:
                     feed_logo = {'url': feed_logo, 'width': 71, 'height': 60}
-                    _id = db_feeds.save({'language': language, 'countries': [country], 'feed_link': feed_link, 'categories': [
-                                        category], 'labels': labels, 'feed_title': feed_title, 'latest_update': None, 'updated_times': 0, 'transcoder': transcoder, 'feed_logo': feed_logo})
+                    _id = db_feeds.save({'language': language, 'countries': [country], 'feed_link': feed_link, 'categories': [category], 'labels': labels, 'feed_title': feed_title, 'latest_update': None, 'updated_times': 0, 'transcoder': transcoder, 'feed_logo': feed_logo, 'parser':parser})
                     db_id_list.write(str(_id) + '\n')
                 else:
                     new_item = existing_item
                     new_item['language'] = language
+                    new_item['parser'] = parser
 
                     if 'categories' in existing_item and existing_item['categories'] and category:
                         existing_item['categories'].append(category)
-                        new_item['categories'] = list(
-                            set(existing_item['categories']))
+                        new_item['categories'] = list(set(existing_item['categories']))
                     else:
                         new_item['categories'] = [category]
 
                     if 'labels' in existing_item and existing_item['labels'] and labels:
-			            if not set(existing_item['labels']).issuperset(set(labels)):
+                        if not set(existing_item['labels']).issuperset(set(labels)):
                             existing_item['labels'].extend(labels)
                             new_item['labels'] = list(set(existing_item['labels']))
                     else:
