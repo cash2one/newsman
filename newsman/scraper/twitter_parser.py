@@ -44,16 +44,16 @@ def _read_entry(status):
             entry['title'] = ''.join(splits)
             entry['updated_human'] = status.created_at
             entry['updated'] = status.created_at_in_seconds
-            for url in s.urls:
+            for url in status.urls:
                 req = urllib2.Request(url.url)
                 resp = urllib2.urlopen(req)
                 entry['link'] = resp.geturl()
             entry['tags'] = []
-            for hashtag in s.hashtags:
+            for hashtag in status.hashtags:
                 entry[tags].append(hashtag.text)
 
             # check link
-            if not entry['link'] or not entry['updated']:
+            if 'link' not in entry or not entry['link'] or not entry['updated']:
                 return None
             else:
                 return entry
@@ -87,7 +87,7 @@ def parse(screen_name=None, feed_id=None, feed_title=None, language=None, catego
     try:
         # since_id is the latest stored tweet id
         # count limits the number of replies, maxium 200
-        statuses = api.GetUserTimeline(screen_name, since_id=etag)
+        statuses = api.GetUserTimeline(screen_name=screen_name, since_id=etag)
         entries = []
         etag_new = None
         for status in statuses:
