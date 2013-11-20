@@ -31,20 +31,55 @@ def _read_entry(status):
     """
     if not status:
         logger.error("Method malformed!")
+        return None
+
+    try:
+        if status.text:
+            entry = {}
+            splits = [t.strip() for t in status.text.split() if t.strip() and not t.startswith('#') and 't.co' not in t]
+            entry['title'] = ''.join(splits)
+            entry['updated_human'] = status.created_at
+            entry['updated'] = status.created_at_in_seconds
+            for url in s.urls:
+                req = urllib2.Request(url.url)
+                resp = urllib2.urlopen(req)
+                entry['link'] = resp.geturl()
+            entry['tags'] = []
+            for hashtag in s.hashtags:
+                entry[tags].append(hashtag.text)
+
+            # check link
+            if not entry['link'] or not entry['updated']:
+                return None
+            else:
+                return entry
+        else:
+            return None
+    except Exception as k:
+        logger.error(str(k))
+        return None
 
 
 def parse(screen_name, feed_id, feed_title, language, categories, etag):
     """
     Connect twitter and parses the timeline
     """
-    count = 200
     # since_id is the latest stored tweet id
     # count limits the number of replies, maxium 200
+    count = 200
     statuses = api.GetUserTimeline(screen_name, since_id=etag, count=count)
     entries = []
-    for s in statuses:
-        entry = _read_entry()
+    etag_new = None
+    for status in statuses:
+        if not etag_new:
+            etag_new = status.id
+        entry = _read_entry(status)
         if entry:
+            # supplement other information
+            entry['feed_id'] = feed_id
+            entry['feed'] = feed_title
+            entry['language'] = language
+            entry['categories'] = categories
             entries.append(entry)
 
 
