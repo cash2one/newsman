@@ -100,11 +100,11 @@ FONT_PATH_JA = LOCAL % "fonts/ja_ipaexm/ipaexm.ttf"
 FONT_PATH_PT = LOCAL % "fonts/ubuntu-font/Ubuntu-R.ttf"
 FONT_PATH_TH = LOCAL % "fonts/th_tlwg/Loma.ttf"
 FONT_PATH_ZH = LOCAL % "fonts/zh_yahei/msyh.ttf"
-TEXT_WIDTH_EN = 25
-TEXT_WIDTH_IN = 25
+TEXT_WIDTH_EN = 26
+TEXT_WIDTH_IN = 26
 TEXT_WIDTH_JA = 11
-TEXT_WIDTH_PT = 23
-TEXT_WIDTH_TH = 24
+TEXT_WIDTH_PT = 26
+TEXT_WIDTH_TH = 25
 TEXT_WIDTH_ZH = 12
 
 # Twitter API
