@@ -296,9 +296,12 @@ def update(feed_link=None, feed_id=None, language=None, categories=None, transco
             language = feed['language']
             categories = feed['categories']
             transcoder_type = feed['transcoder']
-            feed_title = feed['feed_title'] if 'feed_title' in feed else None
-            etag = feed['etag'] if 'etag' in feed else None
-            modified = feed['modified'] if 'modified' in feed else None
+            feed_title = feed_title_new = feed['feed_title'] if 'feed_title' in feed else None
+            etag = etag_new = feed['etag'] if 'etag' in feed else None
+            modified = modified_new = feed['modified'] if 'modified' in feed else None
+            status_new = None
+            reason_new = None
+            entries = None
 
             if parser_type == 'rss':
                 # parse rss reading from remote rss servers
