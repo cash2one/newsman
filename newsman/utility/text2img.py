@@ -124,7 +124,7 @@ class Text2Image:
                 sentences = re.split(cj_punctuation, self._text)
             elif self._language == 'th':
                 command = 'echo "%s" | %s %s/scw.conf %s' % (
-                    str(text), THAI_WORDSEG, THAI_WORDSEG_DICT, THAI_WORDSEG_DICT)
+                    str(self._text), THAI_WORDSEG, THAI_WORDSEG_DICT, THAI_WORDSEG_DICT)
                 response = subprocess.Popen(
                     command, stdout=subprocess.PIPE, shell=True)
                 content, error = response.communicate()
