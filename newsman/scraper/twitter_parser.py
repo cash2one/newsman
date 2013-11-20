@@ -60,28 +60,48 @@ def _read_entry(status):
         return None
 
 
-def parse(screen_name, feed_id, feed_title, language, categories, etag):
+def parse(screen_name=None, feed_id=None, feed_title=None, language=None, categories=None, etag=None):
     """
     Connect twitter and parses the timeline
     """
-    # since_id is the latest stored tweet id
-    # count limits the number of replies, maxium 200
-    count = 200
-    statuses = api.GetUserTimeline(screen_name, since_id=etag, count=count)
-    entries = []
-    etag_new = None
-    for status in statuses:
-        if not etag_new:
-            etag_new = status.id
-        entry = _read_entry(status)
-        if entry:
-            # supplement other information
-            entry['feed_id'] = feed_id
-            entry['feed'] = feed_title
-            entry['language'] = language
-            entry['categories'] = categories
-            entries.append(entry)
+    if not screen_name:
+        logger.error('No screen name found!')
+        return None, None, None, None, None, None
+    if not feed_id:
+        logger.error('Feed not registered!')
+        return None, None, None, None, None, None
+    if not feed_title:
+        logger.error('Feed does not have a name!')
+        return None, None, None, None, None, None
+    if not language or language not in LANGUAGES:
+        logger.error('Language %s not supported!' % language)
+        return None, None, None, None, None, None 
+    if not categories:
+        logger.error('No category is found!')
+        return None, None, None, None, None, None 
+        
+    try:
+        # since_id is the latest stored tweet id
+        # count limits the number of replies, maxium 200
+        statuses = api.GetUserTimeline(screen_name, since_id=etag)
+        entries = []
+        etag_new = None
+        for status in statuses:
+            if not etag_new:
+                etag_new = status.id
+            entry = _read_entry(status)
+            if entry:
+                # supplement other information
+                entry['feed_id'] = feed_id
+                entry['feed'] = feed_title
+                entry['language'] = language
+                entry['categories'] = categories
+                entries.append(entry)
+        return entries, 200, feed_title, etag_new if etag_new else etag, None, 'Ok' 
+    except Exception as k:
+        logger.error(str(k))
+        return None, None, None, None, None, str(k) 
 
 
 if __name__ == "__main__":
-    pass
+    parse('2chnews_j', 'xxxx', '2ch matome', 'ja', ['JP::News'], None)
