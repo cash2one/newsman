@@ -50,7 +50,7 @@ def _read_entry(status):
                 entry['link'] = resp.geturl()
             entry['tags'] = []
             for hashtag in status.hashtags:
-                entry[tags].append(hashtag.text)
+                entry['tags'].append(hashtag.text)
 
             # check link
             if 'link' not in entry or not entry['link'] or not entry['updated']:
