@@ -296,6 +296,7 @@ def update(feed_link=None, feed_id=None, language=None, categories=None, transco
             language = feed['language']
             categories = feed['categories']
             transcoder_type = feed['transcoder']
+            parser_type = feed['parser']
             feed_title = feed_title_new = feed[
                 'feed_title'] if 'feed_title' in feed else None
             etag = etag_new = feed['etag'] if 'etag' in feed else None
