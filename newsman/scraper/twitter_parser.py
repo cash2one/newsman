@@ -12,6 +12,7 @@ Twitter parser parses specific twitter account in real time
 import sys 
 reload(sys) 
 sys.setdefaultencoding('UTF-8')
+sys.path.append('..')
 
 from config.settings import logger
 import twitter
@@ -25,7 +26,7 @@ from config.settings import TWITTER_CONSUMER_KEY
 from config.settings import TWITTER_CONSUMER_SECRET
 
 # twitter api interface
-api = twitter.Api(consumer_key, consumer_secret, access_token_key, access_token_secret)
+api = twitter.Api(TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET, TWITTER_ACCESS_TOKEN_KEY, TWITTER_ACCESS_TOKEN_SECRET)
 
 
 def _read_entry(status):
