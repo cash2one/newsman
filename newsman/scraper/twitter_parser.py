@@ -64,11 +64,11 @@ def _read_entry(status):
         return None
 
 
-def parse(screen_name=None, feed_id=None, feed_title=None, language=None, categories=None, etag=None):
+def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categories=None, etag=None):
     """
     Connect twitter and parses the timeline
     """
-    if not screen_name:
+    if not feed_link:
         logger.error('No screen name found!')
         return None, None, None, None, None
     if not feed_id:
@@ -85,6 +85,7 @@ def parse(screen_name=None, feed_id=None, feed_title=None, language=None, catego
         return None, None, None, None, None 
         
     try:
+        screen_name = feed_link.split('/')[-1]
         # since_id is the latest stored tweet id
         # count limits the number of replies, maxium 200
         statuses = api.GetUserTimeline(screen_name=screen_name, since_id=etag)
