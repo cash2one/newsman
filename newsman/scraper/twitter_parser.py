@@ -51,6 +51,8 @@ def _read_entry(status):
             entry['tags'] = []
             for hashtag in status.hashtags:
                 entry['tags'].append(hashtag.text)
+            entry['summary'] = None
+            entry['images'] = []
 
             # check link
             if 'link' not in entry or not entry['link'] or not entry['updated']:

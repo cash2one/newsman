@@ -221,7 +221,7 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
                     entry['updated'], DATABASE_REMOVAL_DAYS)
 
                 # [OPTIONAL] if logger is used, this could be removed
-                entry['error'] = entry['error'] if entry['error'] else None
+                entry['error'] = entry['error'] if 'error' in entry and entry['error'] else None
 
                 # [MUST-HAVE] update new entry to db_news
                 # each entry is added with _id
