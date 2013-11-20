@@ -87,16 +87,16 @@ def get_portal(language=None, country=None, categories=None):
                     break
 
         # can't find any category image, use text image instead, if available
-        if len(portal_data[user_subscription]) < 1 and text_image_item:
+        if not portal_data[user_subscription] and text_image_item:
             portal_data[user_subscription].append(text_image_item)
 
     # special formatting for android-end
     output = []
-    for i, k, v in enumerate(portal_data.iteritems()):
+    for k, v in portal_data.iteritems():
         if k and v:
             category, feed = k.split('*|*')
             output.append(
-                {'Category': category, 'Feed': feed, 'Images': v, 'order': i})
+                {'Category': category, 'Feed': feed, 'Images': v})
     return {'Categories': output}
 
 

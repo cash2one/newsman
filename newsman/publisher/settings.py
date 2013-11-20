@@ -100,12 +100,18 @@ FONT_PATH_JA = LOCAL % "fonts/ja_ipaexm/ipaexm.ttf"
 FONT_PATH_PT = LOCAL % "fonts/ubuntu-font/Ubuntu-R.ttf"
 FONT_PATH_TH = LOCAL % "fonts/th_tlwg/Loma.ttf"
 FONT_PATH_ZH = LOCAL % "fonts/zh_yahei/msyh.ttf"
-TEXT_WIDTH_EN = 22
-TEXT_WIDTH_IN = 22
-TEXT_WIDTH_JA = 10
-TEXT_WIDTH_PT = 22
-TEXT_WIDTH_TH = 20
+TEXT_WIDTH_EN = 25
+TEXT_WIDTH_IN = 25
+TEXT_WIDTH_JA = 11
+TEXT_WIDTH_PT = 23
+TEXT_WIDTH_TH = 24
 TEXT_WIDTH_ZH = 12
+
+# Twitter API
+TWITTER_ACCESS_TOKEN_KEY = "24129666-M47Q6pDLZXLQy1UITxkijkTdKfkvTcBpleidNPjac"
+TWITTER_ACCESS_TOKEN_SECRET = "0zHhqV5gmrmsnjiOEOBCvqxORwsjVC5ax4mM3dCDZ7RLk"
+TWITTER_CONSUMER_KEY = "hySdhZgpj5gF12kRWMoVpQ"
+TWITTER_CONSUMER_SECRET = "2AkrRg89SdJL0qHkHwuP933fiBaNTioChMpxRdoicUQ"
 
 # words on 'opening origial page' button
 TRANSCODING_BTN_EN = 'Original page'
@@ -143,7 +149,7 @@ PARAGRAPH_CRITERIA = 40
 SUMMARY_LENGTH_LIMIT = 500
 
 # request connection timeouts
-UCK_TIMEOUT = 40  # 14 seconds timeout
+UCK_TIMEOUT = 60  # 14 seconds timeout
 GOOGLE_TTS_TIMEOUT = 120  # 2 minutes timeout
 
 # supported languages

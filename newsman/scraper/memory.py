@@ -25,7 +25,7 @@ from config.settings import MEMORY_EXPIRATION_DAYS
 # list of fields stored in memory
 field_list = [
     '_id', 'category_image', 'feed', 'hotnews_image', 'image', 'labels',
-    'language', 'link', 'mp3', 'summary', 'thumbnail_image', 'title', 'transcoded', 'updated']
+    'language', 'link', 'mp3', 'summary', 'text_image', 'thumbnail_image', 'title', 'transcoded', 'updated']
 
 
 def update(entry=None, expiration=None):

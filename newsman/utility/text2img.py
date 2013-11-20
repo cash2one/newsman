@@ -49,7 +49,7 @@ class Text2Image:
     Converts text into image
     """
 
-    def __init__(self, language=None, text=None, textimage_relative_path=None, background_color='#FFFFFF', font_color='#000000'):
+    def __init__(self, language=None, text=None, textimage_relative_path=None, background_color='#000000', font_color='#FFFFFF'):
         if not language or not text or not textimage_relative_path:
             logger.error("Method malformed!")
 
@@ -206,15 +206,15 @@ class Text2Image:
         try:
             for count, sentence in enumerate(sentences):
                 width, height = self._font.getsize(sentence)
-                if ((count + 2) * height + height + 10 + count * 16) > self._image.size[1]:
+                if ((count + 1.5) * height + 15 + count * 16) > self._image.size[1]:
                     sentence = ". . . . . ."
                     self._draw.text(((self._image.size[0] - 30) / 2 - self._font.getsize(sentence)[0] / 2, (
-                        count * height) + height / 2 + 10 + count * 8), sentence, fill=self._font_color, font=self._font)
+                        (count - 1) * height) + 15 + height / 2 + count * 8), sentence, fill=self._font_color, font=self._font)
                     break
                 else:
                     # print str(sentence)
                     self._draw.text(
-                        (20, ((count + 1) * height) + 10 + count * 8), sentence, fill=self._font_color, font=self._font)
+                        (20, (count * height) + 15 + count * 8), sentence, fill=self._font_color, font=self._font)
 
             textimage_local_path = "%s%s" % (
                 IMAGES_LOCAL_DIR, self._textimage_relative_path)

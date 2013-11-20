@@ -196,7 +196,7 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
                     image_relative_path = '%s_%s_%s_%i' % (
                         entry['language'], entry['feed_id'], entry['updated'], rand)
                     text_img = text2img.Text2Image(
-                        language, text, '%s_textimage' % image_relative_path)
+                        language, entry['title'], '%s_textimage.png' % image_relative_path)
                     entry['text_image'] = text_img.get_image()
                 """
 
