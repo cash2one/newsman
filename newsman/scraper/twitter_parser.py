@@ -14,12 +14,15 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 
 from config.settings import logger
+import twitter
+import urllib2
+
+# CONSTANTS
+from config.settings import LANGUAGES
 from config.settings import TWITTER_ACCESS_TOKEN_KEY
 from config.settings import TWITTER_ACCESS_TOKEN_SECRET
 from config.settings import TWITTER_CONSUMER_KEY
 from config.settings import TWITTER_CONSUMER_SECRET
-import twitter
-import urllib2
 
 # twitter api interface
 api = twitter.Api(consumer_key, consumer_secret, access_token_key, access_token_secret)
