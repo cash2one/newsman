@@ -70,19 +70,19 @@ def parse(screen_name=None, feed_id=None, feed_title=None, language=None, catego
     """
     if not screen_name:
         logger.error('No screen name found!')
-        return None, None, None, None, None, None
+        return None, None, None, None, None
     if not feed_id:
         logger.error('Feed not registered!')
-        return None, None, None, None, None, None
+        return None, None, None, None, None
     if not feed_title:
         logger.error('Feed does not have a name!')
-        return None, None, None, None, None, None
+        return None, None, None, None, None
     if not language or language not in LANGUAGES:
         logger.error('Language %s not supported!' % language)
-        return None, None, None, None, None, None 
+        return None, None, None, None, None 
     if not categories:
         logger.error('No category is found!')
-        return None, None, None, None, None, None 
+        return None, None, None, None, None 
         
     try:
         # since_id is the latest stored tweet id
@@ -101,10 +101,10 @@ def parse(screen_name=None, feed_id=None, feed_title=None, language=None, catego
                 entry['language'] = language
                 entry['categories'] = categories
                 entries.append(entry)
-        return entries, 200, feed_title, etag_new if etag_new else etag, None, 'Ok' 
+        return entries, 200, feed_title, etag_new if etag_new else etag, 'Ok' 
     except Exception as k:
         logger.error(str(k))
-        return None, None, None, None, None, str(k) 
+        return None, None, None, None, str(k) 
 
 
 if __name__ == "__main__":

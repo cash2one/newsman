@@ -28,6 +28,7 @@ import memory
 import random
 import rss_parser
 import time
+import twitter_parser
 from watchdog import clean_disk, clean_database
 
 # CONSTANTS
@@ -269,7 +270,7 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
 
 
 # TODO: code to remove added items if things suck at database/memory
-def update(feed_link=None, feed_id=None, language=None, categories=None, transcoder_type='chengdujin'):
+def update(feed_link=None, feed_id=None, language=None, categories=None, transcoder_type='chengdujin', parser_type=None):
     """
     update could be called
     1. from task procedure: feed_id
@@ -279,6 +280,9 @@ def update(feed_link=None, feed_id=None, language=None, categories=None, transco
     """
     if not feed_id and not (feed_link and language):
         logger.error('Method malformed!')
+        return None
+    if not parser_type:
+        logger.error('No parser information!')
         return None
 
     try:
@@ -299,9 +303,13 @@ def update(feed_link=None, feed_id=None, language=None, categories=None, transco
             etag = feed['etag'] if 'etag' in feed else None
             modified = feed['modified'] if 'modified' in feed else None
 
-            # parse rss reading from remote rss servers
-            entries, status_new, feed_title_new, etag_new, modified_new, reason_new = rss_parser.parse(
-                feed_link, feed_id, feed_title, language, categories, etag, modified)
+            if parser_type == 'rss':
+                # parse rss reading from remote rss servers
+                entries, status_new, feed_title_new, etag_new, modified_new, reason_new = rss_parser.parse(feed_link, feed_id, feed_title, language, categories, etag, modified)
+            elif parser_type == 'twitter':
+                entries, status_new, feed_title_new, etag_new, modified_new, reason_new = twitter_parser.parse(feed_link, feed_id, feed_title, language, categories, etag)
+            else:
+                pass
 
             if entries:
                 # filter out existing entries in db_news
