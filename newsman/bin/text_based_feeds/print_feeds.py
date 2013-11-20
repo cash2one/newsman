@@ -33,7 +33,18 @@ def _find(language, country):
     lines = feeds_list.readlines()
     feeds_list.close()
     
+    """
     feed_titles = open('%s%s_%s_feed_titles' % (FILE_PREFIX, language, country), 'w')
+    for line in lines:
+        language, category, transcoder, link = _parse_task(line)
+        ss = feedparser.parse(link)
+        feed_title = ss['feed']['title'] if ss and 'title' in ss['feed'] else None
+        print "[%s]" % str(feed_title), link
+        feed_titles.write("%s*|*%s\n" % (link, str(feed_title)))
+    feed_titles.close()
+    """
+
+    feed_titles = open('%s%s_%s_feed_list_new' % (FILE_PREFIX, language, country), 'w')
     for line in lines:
         language, category, transcoder, link = _parse_task(line)
         ss = feedparser.parse(link)

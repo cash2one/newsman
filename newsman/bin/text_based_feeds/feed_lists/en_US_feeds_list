@@ -1,114 +1,114 @@
-en*|*News*|*readability*|*http://feeds.reuters.com/reuters/topNews*|*Reuters Top News*|*http://220.181.163.36:8080/logos/en_US/reuters.png*|*Hot News
-en*|*News*|*readability*|*http://feeds.foxnews.com/foxnews/latest*|*Fox News Latest*|*http://220.181.163.36:8080/logos/en_US/foxnews.png*|*Hot News
-en*|*News*|*readability*|*http://www.dailymail.co.uk/news/headlines/index.rss*|*Daily Mail Headlines*|*http://220.181.163.36:8080/logos/en_US/dailymail.png*|*Hot News
-en*|*News*|*readability*|*http://feeds.reuters.com/reuters/worldNews*|*Reuters World*|*http://220.181.163.36:8080/logos/en_US/reuters.png*|*World Headlines
-en*|*News*|*chengdujin*|*http://www.theglobeandmail.com/news/world/?service=rss*|*Globe & Mail World*|*http://220.181.163.36:8080/logos/en_US/globeandmail.png
-en*|*News*|*chengdujin*|*http://news.nationalpost.com/category/news/world/feed/*|*National Post World*|*http://220.181.163.36:8080/logos/en_US/nationalpost.png*|*World Headlines
-en*|*News*|*readability*|*http://feeds.reuters.com/Reuters/domesticNews*|*Reuters US*|*http://220.181.163.36:8080/logos/en_US/reuters.png*|*National News Headlines
-en*|*News*|*chengdujin*|*http://www.theglobeandmail.com/news/national/?service=rss*|*Globe & Mail National*|*http://220.181.163.36:8080/logos/en_US/globeandmail.png
-en*|*News*|*readability*|*http://feeds.reuters.com/Reuters/PoliticsNews*|*Reuters Politics*|*http://220.181.163.36:8080/logos/en_US/reuters.png*|*Politics Headlines
-en*|*News*|*readability*|*http://feeds.washingtonpost.com/rss/politics*|*Washington Post Politics*|*http://220.181.163.36:8080/logos/en_US/washingtonpost.png*|*Politics Headlines
-en*|*News*|*readability*|*http://feeds.foxnews.com/foxnews/politics*|*Fox News Politics*|*http://220.181.163.36:8080/logos/en_US/foxnews.png*|*Politics Headlines
-en*|*News*|*readability*|*http://news.yahoo.com/rss/world*|*Yahoo! World*|*http://220.181.163.36:8080/logos/en_US/yahoo.png*|*World Headlines
-en*|*News*|*readability*|*http://news.yahoo.com/rss/us*|*Yahoo! US*|*http://220.181.163.36:8080/logos/en_US/yahoo.png
-en*|*News*|*readability*|*http://news.yahoo.com/rss/politics*|*Yahoo! Politics*|*http://220.181.163.36:8080/logos/en_US/yahoo.png
-en*|*News*|*readability*|*http://rss.cnn.com/rss/cnn_world.rss*|*CNN World*|*http://220.181.163.36:8080/logos/en_US/cnn.png*|*World Headlines
-en*|*News*|*readability*|*http://rss.cnn.com/rss/cnn_us.rss*|*CNN US*|*http://220.181.163.36:8080/logos/en_US/cnn.png*|*National News Headlines
-en*|*News*|*readability*|*http://feeds.bbci.co.uk/news/world/rss.xml*|*BBC World*|*http://220.181.163.36:8080/logos/en_US/bbc.png
-en*|*News*|*readability*|*http://feeds.bbci.co.uk/news/world/us_and_canada/rss.xml*|*BBC US & Canada*|*http://220.181.163.36:8080/logos/en_US/bbc.png
-en*|*News*|*readability*|*http://feeds.washingtonpost.com/rss/national*|*Washington Post National*|*http://220.181.163.36:8080/logos/en_US/washingtonpost.png
-en*|*News*|*readability*|*http://feeds.washingtonpost.com/rss/world*|*Washington Post World*|*http://220.181.163.36:8080/logos/en_US/washingtonpost.png
-en*|*News*|*readability*|*http://feeds.foxnews.com/foxnews/national*|*Fox News National*|*http://220.181.163.36:8080/logos/en_US/foxnews.png*|*National News Headlines
-en*|*News*|*readability*|*http://feeds.foxnews.com/foxnews/world*|*Fox News World*|*http://220.181.163.36:8080/logos/en_US/foxnews.png
-en*|*News*|*readability*|*http://www.dailymail.co.uk/news/index.rss*|*Daily Mail News*|*http://220.181.163.36:8080/logos/en_US/dailymail.png
-en*|*News*|*chengdujin*|*https://medium.com/feed/editors-picks*|*Medium Editor's Picks*|*http://220.181.163.36:8080/logos/en_US/medium.png
-en*|*News*|*chengdujin*|*https://medium.com/feed/i-m-h-o*|*Medium I.M.H.O*|*http://220.181.163.36:8080/logos/en_US/medium.png
-en*|*Business*|*readability*|*http://feeds.reuters.com/reuters/businessNews*|*Reuters Business*|*http://220.181.163.36:8080/logos/en_US/reuters.png*|*Business Headlines
-en*|*Business*|*readability*|*http://www.forbes.com/business/feed2/*|*Forbes Business*|*http://220.181.163.36:8080/logos/en_US/forbes.png*|*Business Headlines
-en*|*Business*|*readability*|*http://news.yahoo.com/rss/business*|*Yahoo! Business*|*http://220.181.163.36:8080/logos/en_US/yahoo.png
-en*|*Business*|*readability*|*http://www.huffingtonpost.com/feeds/verticals/business/index.xml*|*Huffington Post Business*|*http://220.181.163.36:8080/logos/en_US/huffingtonpost.png*|*Business Headlines
-en*|*Business*|*readability*|*http://www.businessweek.com/feeds/homepage.rss*|*Businessweek News*|*http://220.181.163.36:8080/logos/en_US/businessweek.png*|*Business Headlines
-en*|*Business*|*readability*|*http://feeds.feedburner.com/clusterstock?format=xml*|*Business Insider Finance*|*http://220.181.163.36:8080/logos/en_US/clusterstock.png
-en*|*Business*|*chengdujin*|*http://feeds.feedburner.com/AtlanticBusinessChannel*|*The Atlantic Business*|*http://220.181.163.36:8080/logos/en_US/atlantic.png
-en*|*Business*|*readability*|*http://www.economist.com/feeds/print-sections/77/business.xml*|*The Economist Business*|*http://220.181.163.36:8080/logos/en_US/economist.png
-en*|*Business*|*chengdujin*|*http://rss.cnn.com/rss/edition_business.rss*|*CNN Business*|*http://220.181.163.36:8080/logos/en_US/cnn.png
-en*|*Business*|*readability*|*http://feeds.washingtonpost.com/rss/business*|*Washington Post Business*|*http://220.181.163.36:8080/logos/en_US/washingtonpost.png
-en*|*Technology*|*readability*|*http://feeds.foxnews.com/foxnews/science*|*Fox News Science*|*http://220.181.163.36:8080/logos/en_US/foxnews.png
-en*|*Technology*|*chengdujin*|*http://www.engadget.com/rss.xml*|*Engadget*|*http://220.181.163.36:8080/logos/en_US/engadget.png*|*Technology Headlines
-en*|*Technology*|*chengdujin*|*http://feeds.reuters.com/reuters/technologyNews*|*Reuters Technology*|*http://220.181.163.36:8080/logos/en_US/reuters.png
-en*|*Technology*|*chengdujin*|*http://feeds.feedburner.com/ommalik*|*GigaOM*|*http://220.181.163.36:8080/logos/en_US/ommalik.png
-en*|*Technology*|*readability*|*http://feeds2.feedburner.com/thenextwebtopstories*|*The Next Web*|*http://220.181.163.36:8080/logos/en_US/nextweb.png*|*Technology Headlines
-en*|*Technology*|*chengdujin*|*http://readwrite.com/main/feed/articles.xml*|*ReadWriteWeb*|*http://220.181.163.36:8080/logos/en_US/readwrite.png
-en*|*Technology*|*readability*|*http://feeds.wired.com/wired/index*|*Wired Magazine*|*http://220.181.163.36:8080/logos/en_US/wired.png*|*Technology Headlines
-en*|*Technology*|*readability*|*http://feeds.popsci.com/c/34567/f/632419/index.rss*|*Popular Science*|*http://220.181.163.36:8080/logos/en_US/popsci.png
-en*|*Technology*|*readability*|*http://feeds.feedburner.com/TechCrunch/*|*TechCrunch*|*http://220.181.163.36:8080/logos/en_US/crunch.png*|*Technology Headlines
-en*|*Technology*|*chengdujin*|*http://feeds.feedburner.com/Mobilecrunch*|*TechCrunch Mobile*|*http://220.181.163.36:8080/logos/en_US/crunch.png
-en*|*Technology*|*chengdujin*|*http://feeds.foxnews.com/foxnews/tech*|*Fox News Technology*|*http://220.181.163.36:8080/logos/en_US/foxnews.png
-en*|*Technology*|*chengdujin*|*https://medium.com/feed/tech-talk*|*Medium Tech Talks*|*http://220.181.163.36:8080/logos/en_US/medium.png
-en*|*Technology*|*chengdujin*|*https://medium.com/feed/mobile-culture*|*Medium Mobile Culture*|*http://220.181.163.36:8080/logos/en_US/medium.png
-en*|*Technology*|*chengdujin*|*https://medium.com/feed/geek-empire*|*Medium Geek Empire*|*http://220.181.163.36:8080/logos/en_US/medium.png
-en*|*Technology*|*chengdujin*|*https://medium.com/feed/i-3-video-games*|*Medium I <3 Video Games*|*http://220.181.163.36:8080/logos/en_US/medium.png
-en*|*Fashion*|*readability*|*http://news.yahoo.com/rss/fashion*|*Yahoo! Fashion*|*http://220.181.163.36:8080/logos/en_US/yahoo.png*|*Fashion Headlines
-en*|*Fashion*|*readability*|*http://www.dailymail.co.uk/femail/index.rss*|*Daily Mail Femail*|*http://220.181.163.36:8080/logos/en_US/dailymail.png*|*Fashion Headlines
-en*|*Fashion*|*readability*|*http://feeds.feedburner.com/cyanatrendland*|*Trendland Fashion*|*http://220.181.163.36:8080/logos/en_US/trendland.png*|*Fashion Headlines
-en*|*Fashion*|*readability*|*http://www.refinery29.com/index.xml*|*Refinery29*|*http://220.181.163.36:8080/logos/en_US/refinery29.png*|*Fashion Headlines
-en*|*Fashion*|*chengdujin*|*http://feeds.feedburner.com/TheBudgetFashionista*|*The Budget Fashionista*|*http://220.181.163.36:8080/logos/en_US/budgetfashionista.png
-en*|*Entertainment*|*readability*|*http://rssfeeds.usatoday.com/usatoday-LifeTopStories*|*USA Today Entertainment*|*http://220.181.163.36:8080/logos/en_US/usatoday.png
-en*|*Entertainment*|*readability*|*http://feeds.foxnews.com/foxnews/entertainment*|*Fox News Entertainment*|*http://220.181.163.36:8080/logos/en_US/foxnews.png
-en*|*Entertainment*|*readability*|*http://news.yahoo.com/rss/entertainment*|*Yahoo! Entertainment*|*http://220.181.163.36:8080/logos/en_US/yahoo.png*|*Entertainment Headlines
-en*|*Entertainment*|*readability*|*http://feeds.washingtonpost.com/rss/entertainment*|*Washington Post Entertainment*|*http://220.181.163.36:8080/logos/en_US/washingtonpost.png
-en*|*Entertainment*|*readability*|*http://feeds.reuters.com/reuters/entertainment*|*Reuters Entertainment*|*http://220.181.163.36:8080/logos/en_US/reuters.png*|*Entertainment Headlines
-en*|*Entertainment*|*readability*|*http://www.huffingtonpost.com/feeds/verticals/entertainment/index.xml*|*Huffington Post Entertainment*|*http://220.181.163.36:8080/logos/en_US/huffingtonpost.png*|*Entertainment Headlines
-en*|*Entertainment*|*chengdujin*|*http://www.mtv.com/rss/news/news_full.jhtml*|*MTV News*|*http://220.181.163.36:8080/logos/en_US/mtv.png*|*Entertainment Headlines
-en*|*Entertainment*|*chengdujin*|*http://feeds.abcnews.com/abcnews/entertainmentheadlines*|*ABC Entertainment*|*http://220.181.163.36:8080/logos/en_US/abcnews.png
-en*|*Entertainment*|*chengdujin*|*http://feeds.movieweb.com/movieweb_news?format=xml*|*MovieWeb Movies*|*http://220.181.163.36:8080/logos/en_US/movieweb.png
-en*|*Entertainment*|*chengdujin*|*http://feeds.feedburner.com/thr/film*|*Hollywood Reporter Movies*|*http://220.181.163.36:8080/logos/en_US/thr.png
-en*|*Entertainment*|*chengdujin*|*http://rss.cnn.com/rss/edition_entertainment.rss*|*CNN Entertainment*|*http://220.181.163.36:8080/logos/en_US/cnn.png
-en*|*Entertainment*|*readability*|*http://feeds.eonline.com/eonline/thesoup*|*E! Online (US) The Soup*|*http://220.181.163.36:8080/logos/en_US/eonline.png
-en*|*Entertainment*|*readability*|*http://syndication.eonline.com/syndication/feeds/rssfeeds/trends.xml*|*E! Online (US) Trends*|*http://220.181.163.36:8080/logos/en_US/eonline.png
-en*|*Entertainment*|*readability*|*http://syndication.eonline.com/syndication/feeds/rssfeeds/topstories.xml*|*E! Online (US)*|*http://220.181.163.36:8080/logos/en_US/eonline.png
-en*|*Entertainment*|*readability*|*http://rssfeeds.usatoday.com/UsatodaycomMovies-TopStories*|*USA Today Movies*|*http://220.181.163.36:8080/logos/en_US/usatoday.png
-en*|*Entertainment*|*readability*|*http://rssfeeds.usatoday.com/UsatodaycomMusic-TopStories*|*USA Today Music*|*http://220.181.163.36:8080/logos/en_US/usatoday.png
-en*|*Entertainment*|*readability*|*http://feeds.denverpost.com/dp-entertainment*|*Denver Post Entertainment*|*http://220.181.163.36:8080/logos/en_US/denverpost.png
-en*|*Entertainment*|*readability*|*http://www.dailymail.co.uk/tvshowbiz/index.rss*|*Daily Mail TV Show Biz*|*http://220.181.163.36:8080/logos/en_US/dailymail.png
-en*|*Sports*|*readability*|*http://rssfeeds.usatoday.com/UsatodaycomSports-TopStories*|*USA Today Sports*|*http://220.181.163.36:8080/logos/en_US/usatoday.png
-en*|*Sports*|*readability*|*http://feeds.foxnews.com/foxnews/sports*|*Fox News Sports*|*http://220.181.163.36:8080/logos/en_US/foxnews.png
-en*|*Sports*|*readability*|*http://feeds.washingtonpost.com/rss/sports*|*Washington Post Sports*|*http://220.181.163.36:8080/logos/en_US/washingtonpost.png
-en*|*Sports*|*readability*|*http://sports.espn.go.com/espn/rss/news*|*ESPN Sports*|*http://220.181.163.36:8080/logos/en_US/espn.png*|*Sports Headlines
-en*|*Sports*|*readability*|*http://feeds.reuters.com/reuters/sportsNews*|*Reuters Sports*|*http://220.181.163.36:8080/logos/en_US/reuters.png*|*Sports Headlines
-en*|*Sports*|*readability*|*http://www.huffingtonpost.com/feeds/verticals/sports/index.xml*|*Huffington Post Sports*|*http://220.181.163.36:8080/logos/en_US/huffingtonpost.png
-en*|*Sports*|*chengdujin*|*http://rss.cbc.ca/lineup/sports.xml*|*CBC Sports*|*http://220.181.163.36:8080/logos/en_US/cbc.png
-en*|*Sports*|*readability*|*http://feeds.bbci.co.uk/sport/0/rss.xml*|*BBC Sports*|*http://220.181.163.36:8080/logos/en_US/bbc.png
-en*|*Sports*|*readability*|*http://news.yahoo.com/rss/sports*|*Yahoo! Sports*|*http://220.181.163.36:8080/logos/en_US/yahoo.png*|*Sports Headlines
-en*|*Sports*|*chengdujin*|*http://www.theguardian.com/uk/sport/rss*|*The Guardian Sports*|*http://220.181.163.36:8080/logos/en_US/guardian.png
-en*|*Sports*|*chengdujin*|*http://rss.cnn.com/rss/edition_football.rss*|*CNN Football*|*http://220.181.163.36:8080/logos/en_US/cnn.png
-en*|*Sports*|*readability*|*http://rssfeeds.usatoday.com/UsatodaycomGolf-TopStories*|*USA Today Golf*|*http://220.181.163.36:8080/logos/en_US/usatoday.png
-en*|*Sports*|*readability*|*http://rssfeeds.usatoday.com/topmotorsports*|*USA Today Motor Sports*|*http://220.181.163.36:8080/logos/en_US/usatoday.png
-en*|*Sports*|*readability*|*http://rssfeeds.usatoday.com/UsatodaycomNfl-TopStories*|*USA Today NFL*|*http://220.181.163.36:8080/logos/en_US/usatoday.png
-en*|*Sports*|*readability*|*http://rssfeeds.usatoday.com/UsatodayTennis-TopStories*|*USA Today Tennis*|*http://220.181.163.36:8080/logos/en_US/usatoday.png
-en*|*Sports*|*readability*|*http://rssfeeds.usatoday.com/UsatodaycomNba-TopStories*|*USA Today NBA*|*http://220.181.163.36:8080/logos/en_US/usatoday.png
-en*|*Sports*|*readability*|*http://rssfeeds.usatoday.com/UsatodaycomSoccer-TopStories*|*USA Today Soccer*|*http://220.181.163.36:8080/logos/en_US/usatoday.png
-en*|*Sports*|*readability*|*http://www.dailymail.co.uk/sport/index.rss*|*Daily Mail Sports*|*http://220.181.163.36:8080/logos/en_US/dailymail.png
-en*|*Sports*|*chengdujin*|*https://medium.com/feed/sports-page*|*Medium Sports Page*|*http://220.181.163.36:8080/logos/en_US/medium.png
-en*|*Lifestyle*|*readability*|*http://feeds.foxnews.com/foxnews/health*|*Fox News Health*|*http://220.181.163.36:8080/logos/en_US/foxnews.png*|*Lifestyle Headlines
-en*|*Lifestyle*|*readability*|*http://feeds.reuters.com/reuters/lifestyle*|*Reuters Lifestyle*|*http://220.181.163.36:8080/logos/en_US/reuters.png*|*Lifestyle Headlines
-en*|*Lifestyle*|*readability*|*http://rss.cnn.com/rss/cnn_travel.rss*|*CNN Travel*|*http://220.181.163.36:8080/logos/en_US/cnn.png*|*Lifestyle Headlines
-en*|*Lifestyle*|*chengdujin*|*http://intelligenttravel.nationalgeographic.com/feed/*|*Intelligent Travel*|*http://220.181.163.36:8080/logos/en_US/nationalgeographic.png*|*Lifestyle Headlines
-en*|*Lifestyle*|*readability*|*http://news.yahoo.com/rss/health*|*Yahoo! Health*|*http://220.181.163.36:8080/logos/en_US/yahoo.png
-en*|*Lifestyle*|*chengdujin*|*http://feeds.feedburner.com/AtlanticFood*|*The Atlantic Health*|*http://220.181.163.36:8080/logos/en_US/atlantic.png
-en*|*Lifestyle*|*readability*|*http://feeds.reuters.com/reuters/healthNews*|*Reuters Health*|*http://220.181.163.36:8080/logos/en_US/reuters.png
-en*|*Lifestyle*|*readability*|*http://feeds.bbci.co.uk/news/health/rss.xml*|*BBC Health*|*http://220.181.163.36:8080/logos/en_US/bbc.png
-en*|*Lifestyle*|*chengdujin*|*http://rss.cnn.com/rss/cnn_health.rss*|*CNN Health*|*http://220.181.163.36:8080/logos/en_US/cnn.png
-en*|*Lifestyle*|*chengdujin*|*http://rss.cbc.ca/lineup/health.xml*|*CBC Health*|*http://220.181.163.36:8080/logos/en_US/cbc.png
-en*|*Lifestyle*|*chengdujin*|*http://www.usnews.com/rss/health-news*|*US News Health*|*http://220.181.163.36:8080/logos/en_US/usnews.png
-en*|*Lifestyle*|*readability*|*http://feeds.denverpost.com/dp-travel*|*Denver Post Travel*|*http://220.181.163.36:8080/logos/en_US/denverpost.png
-en*|*Lifestyle*|*readability*|*http://feeds.washingtonpost.com/rss/lifestyle*|*Washington Post Lifestyle*|*http://220.181.163.36:8080/logos/en_US/washingtonpost.png
-en*|*Lifestyle*|*readability*|*http://feeds.foxnews.com/foxnews/internal/travel/mixed*|*Fox News Travel*|*http://220.181.163.36:8080/logos/en_US/foxnews.png
-en*|*Lifestyle*|*readability*|*http://www.dailymail.co.uk/health/index.rss*|*Daily Mail Health*|*http://220.181.163.36:8080/logos/en_US/dailymail.png
-en*|*Lifestyle*|*chengdujin*|*https://medium.com/feed/changing-city*|*Medium Changing City*|*http://220.181.163.36:8080/logos/en_US/medium.png
-en*|*Lifestyle*|*chengdujin*|*https://medium.com/feed/click-the-shutter*|*Medium Click the Shutter*|*http://220.181.163.36:8080/logos/en_US/medium.png
-en*|*Lifestyle*|*chengdujin*|*https://medium.com/feed/the-ingredients-2*|*Medium For the Love of Food*|*http://220.181.163.36:8080/logos/en_US/medium.png
-en*|*Lifestyle*|*chengdujin*|*https://medium.com/feed/freelancers-life*|*Medium Freelance Life*|*http://220.181.163.36:8080/logos/en_US/medium.png
-en*|*Lifestyle*|*chengdujin*|*https://medium.com/feed/life-hacks*|*Medium Life Hacks*|*http://220.181.163.36:8080/logos/en_US/medium.png
-en*|*Lifestyle*|*chengdujin*|*https://medium.com/feed/pop-of-culture*|*Medium Pop of Culture*|*http://220.181.163.36:8080/logos/en_US/medium.png
-en*|*Lifestyle*|*chengdujin*|*https://medium.com/feed/world-of-music*|*Medium World of Music*|*http://220.181.163.36:8080/logos/en_US/medium.png
+rss*|*News*|*readability*|*http://feeds.reuters.com/reuters/topNews*|*Reuters Top News*|*http://220.181.163.36:8080/logos/en_US/reuters.png*|*Hot News
+rss*|*News*|*readability*|*http://feeds.foxnews.com/foxnews/latest*|*Fox News Latest*|*http://220.181.163.36:8080/logos/en_US/foxnews.png*|*Hot News
+rss*|*News*|*readability*|*http://www.dailymail.co.uk/news/headlines/index.rss*|*Daily Mail Headlines*|*http://220.181.163.36:8080/logos/en_US/dailymail.png*|*Hot News
+rss*|*News*|*readability*|*http://feeds.reuters.com/reuters/worldNews*|*Reuters World*|*http://220.181.163.36:8080/logos/en_US/reuters.png*|*World Headlines
+rss*|*News*|*chengdujin*|*http://www.theglobeandmail.com/news/world/?service=rss*|*Globe & Mail World*|*http://220.181.163.36:8080/logos/en_US/globeandmail.png
+rss*|*News*|*chengdujin*|*http://news.nationalpost.com/category/news/world/feed/*|*National Post World*|*http://220.181.163.36:8080/logos/en_US/nationalpost.png*|*World Headlines
+rss*|*News*|*readability*|*http://feeds.reuters.com/Reuters/domesticNews*|*Reuters US*|*http://220.181.163.36:8080/logos/en_US/reuters.png*|*National News Headlines
+rss*|*News*|*chengdujin*|*http://www.theglobeandmail.com/news/national/?service=rss*|*Globe & Mail National*|*http://220.181.163.36:8080/logos/en_US/globeandmail.png
+rss*|*News*|*readability*|*http://feeds.reuters.com/Reuters/PoliticsNews*|*Reuters Politics*|*http://220.181.163.36:8080/logos/en_US/reuters.png*|*Politics Headlines
+rss*|*News*|*readability*|*http://feeds.washingtonpost.com/rss/politics*|*Washington Post Politics*|*http://220.181.163.36:8080/logos/en_US/washingtonpost.png*|*Politics Headlines
+rss*|*News*|*readability*|*http://feeds.foxnews.com/foxnews/politics*|*Fox News Politics*|*http://220.181.163.36:8080/logos/en_US/foxnews.png*|*Politics Headlines
+rss*|*News*|*readability*|*http://news.yahoo.com/rss/world*|*Yahoo! World*|*http://220.181.163.36:8080/logos/en_US/yahoo.png*|*World Headlines
+rss*|*News*|*readability*|*http://news.yahoo.com/rss/us*|*Yahoo! US*|*http://220.181.163.36:8080/logos/en_US/yahoo.png
+rss*|*News*|*readability*|*http://news.yahoo.com/rss/politics*|*Yahoo! Politics*|*http://220.181.163.36:8080/logos/en_US/yahoo.png
+rss*|*News*|*readability*|*http://rss.cnn.com/rss/cnn_world.rss*|*CNN World*|*http://220.181.163.36:8080/logos/en_US/cnn.png*|*World Headlines
+rss*|*News*|*readability*|*http://rss.cnn.com/rss/cnn_us.rss*|*CNN US*|*http://220.181.163.36:8080/logos/en_US/cnn.png*|*National News Headlines
+rss*|*News*|*readability*|*http://feeds.bbci.co.uk/news/world/rss.xml*|*BBC World*|*http://220.181.163.36:8080/logos/en_US/bbc.png
+rss*|*News*|*readability*|*http://feeds.bbci.co.uk/news/world/us_and_canada/rss.xml*|*BBC US & Canada*|*http://220.181.163.36:8080/logos/en_US/bbc.png
+rss*|*News*|*readability*|*http://feeds.washingtonpost.com/rss/national*|*Washington Post National*|*http://220.181.163.36:8080/logos/en_US/washingtonpost.png
+rss*|*News*|*readability*|*http://feeds.washingtonpost.com/rss/world*|*Washington Post World*|*http://220.181.163.36:8080/logos/en_US/washingtonpost.png
+rss*|*News*|*readability*|*http://feeds.foxnews.com/foxnews/national*|*Fox News National*|*http://220.181.163.36:8080/logos/en_US/foxnews.png*|*National News Headlines
+rss*|*News*|*readability*|*http://feeds.foxnews.com/foxnews/world*|*Fox News World*|*http://220.181.163.36:8080/logos/en_US/foxnews.png
+rss*|*News*|*readability*|*http://www.dailymail.co.uk/news/index.rss*|*Daily Mail News*|*http://220.181.163.36:8080/logos/en_US/dailymail.png
+rss*|*News*|*chengdujin*|*https://medium.com/feed/editors-picks*|*Medium Editor's Picks*|*http://220.181.163.36:8080/logos/en_US/medium.png
+rss*|*News*|*chengdujin*|*https://medium.com/feed/i-m-h-o*|*Medium I.M.H.O*|*http://220.181.163.36:8080/logos/en_US/medium.png
+rss*|*Business*|*readability*|*http://feeds.reuters.com/reuters/businessNews*|*Reuters Business*|*http://220.181.163.36:8080/logos/en_US/reuters.png*|*Business Headlines
+rss*|*Business*|*readability*|*http://www.forbes.com/business/feed2/*|*Forbes Business*|*http://220.181.163.36:8080/logos/en_US/forbes.png*|*Business Headlines
+rss*|*Business*|*readability*|*http://news.yahoo.com/rss/business*|*Yahoo! Business*|*http://220.181.163.36:8080/logos/en_US/yahoo.png
+rss*|*Business*|*readability*|*http://www.huffingtonpost.com/feeds/verticals/business/index.xml*|*Huffington Post Business*|*http://220.181.163.36:8080/logos/en_US/huffingtonpost.png*|*Business Headlines
+rss*|*Business*|*readability*|*http://www.businessweek.com/feeds/homepage.rss*|*Businessweek News*|*http://220.181.163.36:8080/logos/en_US/businessweek.png*|*Business Headlines
+rss*|*Business*|*readability*|*http://feeds.feedburner.com/clusterstock?format=xml*|*Business Insider Finance*|*http://220.181.163.36:8080/logos/en_US/clusterstock.png
+rss*|*Business*|*chengdujin*|*http://feeds.feedburner.com/AtlanticBusinessChannel*|*The Atlantic Business*|*http://220.181.163.36:8080/logos/en_US/atlantic.png
+rss*|*Business*|*readability*|*http://www.economist.com/feeds/print-sections/77/business.xml*|*The Economist Business*|*http://220.181.163.36:8080/logos/en_US/economist.png
+rss*|*Business*|*chengdujin*|*http://rss.cnn.com/rss/edition_business.rss*|*CNN Business*|*http://220.181.163.36:8080/logos/en_US/cnn.png
+rss*|*Business*|*readability*|*http://feeds.washingtonpost.com/rss/business*|*Washington Post Business*|*http://220.181.163.36:8080/logos/en_US/washingtonpost.png
+rss*|*Technology*|*readability*|*http://feeds.foxnews.com/foxnews/science*|*Fox News Science*|*http://220.181.163.36:8080/logos/en_US/foxnews.png
+rss*|*Technology*|*chengdujin*|*http://www.engadget.com/rss.xml*|*Engadget*|*http://220.181.163.36:8080/logos/en_US/engadget.png*|*Technology Headlines
+rss*|*Technology*|*chengdujin*|*http://feeds.reuters.com/reuters/technologyNews*|*Reuters Technology*|*http://220.181.163.36:8080/logos/en_US/reuters.png
+rss*|*Technology*|*chengdujin*|*http://feeds.feedburner.com/ommalik*|*GigaOM*|*http://220.181.163.36:8080/logos/en_US/ommalik.png
+rss*|*Technology*|*readability*|*http://feeds2.feedburner.com/thenextwebtopstories*|*The Next Web*|*http://220.181.163.36:8080/logos/en_US/nextweb.png*|*Technology Headlines
+rss*|*Technology*|*chengdujin*|*http://readwrite.com/main/feed/articles.xml*|*ReadWriteWeb*|*http://220.181.163.36:8080/logos/en_US/readwrite.png
+rss*|*Technology*|*readability*|*http://feeds.wired.com/wired/index*|*Wired Magazine*|*http://220.181.163.36:8080/logos/en_US/wired.png*|*Technology Headlines
+rss*|*Technology*|*readability*|*http://feeds.popsci.com/c/34567/f/632419/index.rss*|*Popular Science*|*http://220.181.163.36:8080/logos/en_US/popsci.png
+rss*|*Technology*|*readability*|*http://feeds.feedburner.com/TechCrunch/*|*TechCrunch*|*http://220.181.163.36:8080/logos/en_US/crunch.png*|*Technology Headlines
+rss*|*Technology*|*chengdujin*|*http://feeds.feedburner.com/Mobilecrunch*|*TechCrunch Mobile*|*http://220.181.163.36:8080/logos/en_US/crunch.png
+rss*|*Technology*|*chengdujin*|*http://feeds.foxnews.com/foxnews/tech*|*Fox News Technology*|*http://220.181.163.36:8080/logos/en_US/foxnews.png
+rss*|*Technology*|*chengdujin*|*https://medium.com/feed/tech-talk*|*Medium Tech Talks*|*http://220.181.163.36:8080/logos/en_US/medium.png
+rss*|*Technology*|*chengdujin*|*https://medium.com/feed/mobile-culture*|*Medium Mobile Culture*|*http://220.181.163.36:8080/logos/en_US/medium.png
+rss*|*Technology*|*chengdujin*|*https://medium.com/feed/geek-empire*|*Medium Geek Empire*|*http://220.181.163.36:8080/logos/en_US/medium.png
+rss*|*Technology*|*chengdujin*|*https://medium.com/feed/i-3-video-games*|*Medium I <3 Video Games*|*http://220.181.163.36:8080/logos/en_US/medium.png
+rss*|*Fashion*|*readability*|*http://news.yahoo.com/rss/fashion*|*Yahoo! Fashion*|*http://220.181.163.36:8080/logos/en_US/yahoo.png*|*Fashion Headlines
+rss*|*Fashion*|*readability*|*http://www.dailymail.co.uk/femail/index.rss*|*Daily Mail Femail*|*http://220.181.163.36:8080/logos/en_US/dailymail.png*|*Fashion Headlines
+rss*|*Fashion*|*readability*|*http://feeds.feedburner.com/cyanatrendland*|*Trendland Fashion*|*http://220.181.163.36:8080/logos/en_US/trendland.png*|*Fashion Headlines
+rss*|*Fashion*|*readability*|*http://www.refinery29.com/index.xml*|*Refinery29*|*http://220.181.163.36:8080/logos/en_US/refinery29.png*|*Fashion Headlines
+rss*|*Fashion*|*chengdujin*|*http://feeds.feedburner.com/TheBudgetFashionista*|*The Budget Fashionista*|*http://220.181.163.36:8080/logos/en_US/budgetfashionista.png
+rss*|*Entertainment*|*readability*|*http://rssfeeds.usatoday.com/usatoday-LifeTopStories*|*USA Today Entertainment*|*http://220.181.163.36:8080/logos/en_US/usatoday.png
+rss*|*Entertainment*|*readability*|*http://feeds.foxnews.com/foxnews/entertainment*|*Fox News Entertainment*|*http://220.181.163.36:8080/logos/en_US/foxnews.png
+rss*|*Entertainment*|*readability*|*http://news.yahoo.com/rss/entertainment*|*Yahoo! Entertainment*|*http://220.181.163.36:8080/logos/en_US/yahoo.png*|*Entertainment Headlines
+rss*|*Entertainment*|*readability*|*http://feeds.washingtonpost.com/rss/entertainment*|*Washington Post Entertainment*|*http://220.181.163.36:8080/logos/en_US/washingtonpost.png
+rss*|*Entertainment*|*readability*|*http://feeds.reuters.com/reuters/entertainment*|*Reuters Entertainment*|*http://220.181.163.36:8080/logos/en_US/reuters.png*|*Entertainment Headlines
+rss*|*Entertainment*|*readability*|*http://www.huffingtonpost.com/feeds/verticals/entertainment/index.xml*|*Huffington Post Entertainment*|*http://220.181.163.36:8080/logos/en_US/huffingtonpost.png*|*Entertainment Headlines
+rss*|*Entertainment*|*chengdujin*|*http://www.mtv.com/rss/news/news_full.jhtml*|*MTV News*|*http://220.181.163.36:8080/logos/en_US/mtv.png*|*Entertainment Headlines
+rss*|*Entertainment*|*chengdujin*|*http://feeds.abcnews.com/abcnews/entertainmentheadlines*|*ABC Entertainment*|*http://220.181.163.36:8080/logos/en_US/abcnews.png
+rss*|*Entertainment*|*chengdujin*|*http://feeds.movieweb.com/movieweb_news?format=xml*|*MovieWeb Movies*|*http://220.181.163.36:8080/logos/en_US/movieweb.png
+rss*|*Entertainment*|*chengdujin*|*http://feeds.feedburner.com/thr/film*|*Hollywood Reporter Movies*|*http://220.181.163.36:8080/logos/en_US/thr.png
+rss*|*Entertainment*|*chengdujin*|*http://rss.cnn.com/rss/edition_entertainment.rss*|*CNN Entertainment*|*http://220.181.163.36:8080/logos/en_US/cnn.png
+rss*|*Entertainment*|*readability*|*http://feeds.eonline.com/eonline/thesoup*|*E! Online (US) The Soup*|*http://220.181.163.36:8080/logos/en_US/eonline.png
+rss*|*Entertainment*|*readability*|*http://syndication.eonline.com/syndication/feeds/rssfeeds/trends.xml*|*E! Online (US) Trends*|*http://220.181.163.36:8080/logos/en_US/eonline.png
+rss*|*Entertainment*|*readability*|*http://syndication.eonline.com/syndication/feeds/rssfeeds/topstories.xml*|*E! Online (US)*|*http://220.181.163.36:8080/logos/en_US/eonline.png
+rss*|*Entertainment*|*readability*|*http://rssfeeds.usatoday.com/UsatodaycomMovies-TopStories*|*USA Today Movies*|*http://220.181.163.36:8080/logos/en_US/usatoday.png
+rss*|*Entertainment*|*readability*|*http://rssfeeds.usatoday.com/UsatodaycomMusic-TopStories*|*USA Today Music*|*http://220.181.163.36:8080/logos/en_US/usatoday.png
+rss*|*Entertainment*|*readability*|*http://feeds.denverpost.com/dp-entertainment*|*Denver Post Entertainment*|*http://220.181.163.36:8080/logos/en_US/denverpost.png
+rss*|*Entertainment*|*readability*|*http://www.dailymail.co.uk/tvshowbiz/index.rss*|*Daily Mail TV Show Biz*|*http://220.181.163.36:8080/logos/en_US/dailymail.png
+rss*|*Sports*|*readability*|*http://rssfeeds.usatoday.com/UsatodaycomSports-TopStories*|*USA Today Sports*|*http://220.181.163.36:8080/logos/en_US/usatoday.png
+rss*|*Sports*|*readability*|*http://feeds.foxnews.com/foxnews/sports*|*Fox News Sports*|*http://220.181.163.36:8080/logos/en_US/foxnews.png
+rss*|*Sports*|*readability*|*http://feeds.washingtonpost.com/rss/sports*|*Washington Post Sports*|*http://220.181.163.36:8080/logos/en_US/washingtonpost.png
+rss*|*Sports*|*readability*|*http://sports.espn.go.com/espn/rss/news*|*ESPN Sports*|*http://220.181.163.36:8080/logos/en_US/espn.png*|*Sports Headlines
+rss*|*Sports*|*readability*|*http://feeds.reuters.com/reuters/sportsNews*|*Reuters Sports*|*http://220.181.163.36:8080/logos/en_US/reuters.png*|*Sports Headlines
+rss*|*Sports*|*readability*|*http://www.huffingtonpost.com/feeds/verticals/sports/index.xml*|*Huffington Post Sports*|*http://220.181.163.36:8080/logos/en_US/huffingtonpost.png
+rss*|*Sports*|*chengdujin*|*http://rss.cbc.ca/lineup/sports.xml*|*CBC Sports*|*http://220.181.163.36:8080/logos/en_US/cbc.png
+rss*|*Sports*|*readability*|*http://feeds.bbci.co.uk/sport/0/rss.xml*|*BBC Sports*|*http://220.181.163.36:8080/logos/en_US/bbc.png
+rss*|*Sports*|*readability*|*http://news.yahoo.com/rss/sports*|*Yahoo! Sports*|*http://220.181.163.36:8080/logos/en_US/yahoo.png*|*Sports Headlines
+rss*|*Sports*|*chengdujin*|*http://www.theguardian.com/uk/sport/rss*|*The Guardian Sports*|*http://220.181.163.36:8080/logos/en_US/guardian.png
+rss*|*Sports*|*chengdujin*|*http://rss.cnn.com/rss/edition_football.rss*|*CNN Football*|*http://220.181.163.36:8080/logos/en_US/cnn.png
+rss*|*Sports*|*readability*|*http://rssfeeds.usatoday.com/UsatodaycomGolf-TopStories*|*USA Today Golf*|*http://220.181.163.36:8080/logos/en_US/usatoday.png
+rss*|*Sports*|*readability*|*http://rssfeeds.usatoday.com/topmotorsports*|*USA Today Motor Sports*|*http://220.181.163.36:8080/logos/en_US/usatoday.png
+rss*|*Sports*|*readability*|*http://rssfeeds.usatoday.com/UsatodaycomNfl-TopStories*|*USA Today NFL*|*http://220.181.163.36:8080/logos/en_US/usatoday.png
+rss*|*Sports*|*readability*|*http://rssfeeds.usatoday.com/UsatodayTennis-TopStories*|*USA Today Tennis*|*http://220.181.163.36:8080/logos/en_US/usatoday.png
+rss*|*Sports*|*readability*|*http://rssfeeds.usatoday.com/UsatodaycomNba-TopStories*|*USA Today NBA*|*http://220.181.163.36:8080/logos/en_US/usatoday.png
+rss*|*Sports*|*readability*|*http://rssfeeds.usatoday.com/UsatodaycomSoccer-TopStories*|*USA Today Soccer*|*http://220.181.163.36:8080/logos/en_US/usatoday.png
+rss*|*Sports*|*readability*|*http://www.dailymail.co.uk/sport/index.rss*|*Daily Mail Sports*|*http://220.181.163.36:8080/logos/en_US/dailymail.png
+rss*|*Sports*|*chengdujin*|*https://medium.com/feed/sports-page*|*Medium Sports Page*|*http://220.181.163.36:8080/logos/en_US/medium.png
+rss*|*Lifestyle*|*readability*|*http://feeds.foxnews.com/foxnews/health*|*Fox News Health*|*http://220.181.163.36:8080/logos/en_US/foxnews.png*|*Lifestyle Headlines
+rss*|*Lifestyle*|*readability*|*http://feeds.reuters.com/reuters/lifestyle*|*Reuters Lifestyle*|*http://220.181.163.36:8080/logos/en_US/reuters.png*|*Lifestyle Headlines
+rss*|*Lifestyle*|*readability*|*http://rss.cnn.com/rss/cnn_travel.rss*|*CNN Travel*|*http://220.181.163.36:8080/logos/en_US/cnn.png*|*Lifestyle Headlines
+rss*|*Lifestyle*|*chengdujin*|*http://intelligenttravel.nationalgeographic.com/feed/*|*Intelligent Travel*|*http://220.181.163.36:8080/logos/en_US/nationalgeographic.png*|*Lifestyle Headlines
+rss*|*Lifestyle*|*readability*|*http://news.yahoo.com/rss/health*|*Yahoo! Health*|*http://220.181.163.36:8080/logos/en_US/yahoo.png
+rss*|*Lifestyle*|*chengdujin*|*http://feeds.feedburner.com/AtlanticFood*|*The Atlantic Health*|*http://220.181.163.36:8080/logos/en_US/atlantic.png
+rss*|*Lifestyle*|*readability*|*http://feeds.reuters.com/reuters/healthNews*|*Reuters Health*|*http://220.181.163.36:8080/logos/en_US/reuters.png
+rss*|*Lifestyle*|*readability*|*http://feeds.bbci.co.uk/news/health/rss.xml*|*BBC Health*|*http://220.181.163.36:8080/logos/en_US/bbc.png
+rss*|*Lifestyle*|*chengdujin*|*http://rss.cnn.com/rss/cnn_health.rss*|*CNN Health*|*http://220.181.163.36:8080/logos/en_US/cnn.png
+rss*|*Lifestyle*|*chengdujin*|*http://rss.cbc.ca/lineup/health.xml*|*CBC Health*|*http://220.181.163.36:8080/logos/en_US/cbc.png
+rss*|*Lifestyle*|*chengdujin*|*http://www.usnews.com/rss/health-news*|*US News Health*|*http://220.181.163.36:8080/logos/en_US/usnews.png
+rss*|*Lifestyle*|*readability*|*http://feeds.denverpost.com/dp-travel*|*Denver Post Travel*|*http://220.181.163.36:8080/logos/en_US/denverpost.png
+rss*|*Lifestyle*|*readability*|*http://feeds.washingtonpost.com/rss/lifestyle*|*Washington Post Lifestyle*|*http://220.181.163.36:8080/logos/en_US/washingtonpost.png
+rss*|*Lifestyle*|*readability*|*http://feeds.foxnews.com/foxnews/internal/travel/mixed*|*Fox News Travel*|*http://220.181.163.36:8080/logos/en_US/foxnews.png
+rss*|*Lifestyle*|*readability*|*http://www.dailymail.co.uk/health/index.rss*|*Daily Mail Health*|*http://220.181.163.36:8080/logos/en_US/dailymail.png
+rss*|*Lifestyle*|*chengdujin*|*https://medium.com/feed/changing-city*|*Medium Changing City*|*http://220.181.163.36:8080/logos/en_US/medium.png
+rss*|*Lifestyle*|*chengdujin*|*https://medium.com/feed/click-the-shutter*|*Medium Click the Shutter*|*http://220.181.163.36:8080/logos/en_US/medium.png
+rss*|*Lifestyle*|*chengdujin*|*https://medium.com/feed/the-ingredients-2*|*Medium For the Love of Food*|*http://220.181.163.36:8080/logos/en_US/medium.png
+rss*|*Lifestyle*|*chengdujin*|*https://medium.com/feed/freelancers-life*|*Medium Freelance Life*|*http://220.181.163.36:8080/logos/en_US/medium.png
+rss*|*Lifestyle*|*chengdujin*|*https://medium.com/feed/life-hacks*|*Medium Life Hacks*|*http://220.181.163.36:8080/logos/en_US/medium.png
+rss*|*Lifestyle*|*chengdujin*|*https://medium.com/feed/pop-of-culture*|*Medium Pop of Culture*|*http://220.181.163.36:8080/logos/en_US/medium.png
+rss*|*Lifestyle*|*chengdujin*|*https://medium.com/feed/world-of-music*|*Medium World of Music*|*http://220.181.163.36:8080/logos/en_US/medium.png
