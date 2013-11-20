@@ -197,6 +197,7 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
                         entry['language'], entry['feed_id'], entry['updated'], rand)
                     text_img = text2img.Text2Image(
                         language, entry['title'], '%s_textimage.png' % image_relative_path)
+                    entry['text_image'] = text_img.get_image()
 
                 # [OPTIONAL] google tts not for indonesian
                 if entry['language'] != 'in':
