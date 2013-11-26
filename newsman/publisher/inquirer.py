@@ -122,16 +122,16 @@ def get_categories(language=None, country=None, version=None):
             category_name = None
             for category, category_order in item['categories'].iteritems():
                 if category.startswith(country):
-                    category_name = category.replace('%s::' % country, '')
+                    category_name = str(category.replace('%s::' % country, ''))
                     if category_name not in categories:
                         categories[category_name] = []
 
                     if 'feed_logo' in item and item['feed_logo']:
-                        feed_format = {'order': 100000, 'text': item[
-                            'feed_title'], 'image': item['feed_logo']}
+                        # to string-ify the unicode
+                        feed_logo = {'url':str(item['feed_logo']['url']), 'width':str(item['feed_logo']['width']), 'height':str(item['feed_logo']['height'])}
+                        feed_format = {'order': 100000, 'text': str(item['feed_title']), 'image': feed_logo}
                     else:
-                        feed_format = {
-                            'order': 100000, 'text': item['feed_title']}
+                        feed_format = {'order': 100000, 'text': str(item['feed_title'])}
                     categories[category_name].append(feed_format)
 
             ITEM_ADDED = False
@@ -140,7 +140,7 @@ def get_categories(language=None, country=None, version=None):
                     ITEM_ADDED = True
                     break
             if not ITEM_ADDED:
-                output.append({'Category':{'text':category_name, 'order':category_order}})
+                output.append({'Category':{'text':category_name, 'order':int(category_order)}})
 
             # add label to the category dictionary
             if 'labels' in item and item['labels']:
@@ -148,16 +148,14 @@ def get_categories(language=None, country=None, version=None):
                     if label.startswith(country):
                         label_split = label.replace(
                             '%s::' % country, "").split('::')
-                        category_name = label_split[0]
-                        label_name = label_split[1]
+                        category_name = str(label_split[0])
+                        label_name = str(label_split[1])
                         if category_name not in categories:
                             categories[category_name] = []
 
                         label_name_shrinked = label_name.replace(' ', '')
-                        label_image = {'url': '%s%s_%s/%s.png' % (
-                            LOGO_PUBLIC_PREFIX, language, country, label_name_shrinked), 'width': 71, 'height': 60}
-                        label_format = {
-                            'order': label_order, 'text': label_name, 'image': label_image}
+                        label_image = {'url': '%s%s_%s/%s.png' % (LOGO_PUBLIC_PREFIX, language, country, label_name_shrinked), 'width': 71, 'height': 60}
+                        label_format = {'order': int(label_order), 'text': label_name, 'image': label_image}
 
                         LABEL_ADDED = False
                         for label_format_added in categories[category_name]:
@@ -166,12 +164,14 @@ def get_categories(language=None, country=None, version=None):
                                 break
                         if not LABEL_ADDED:
                             categories[category_name].append(label_format)
+
         # reformat
         for item in output:
             category_name = item['Category']['text']
             feeds_and_labels = categories[category_name]
             item['Feeds'] = feeds_and_labels
 
+        # compute version number
         version_latest = hashlib.md5(
             json.dumps(categories, sort_keys=True)).hexdigest()
 
@@ -263,10 +263,8 @@ def get_latest_entries(language=None, country=None, category=None, feed=None, li
                 # query only one of its values
                 if label_name:
                     feeds = Collection(db, FEED_REGISTRAR)
-                    feed_lists = feeds.find(
-                        {'labels': label_name}, {'feed_title': 1})
-                    feed_names = [feed_list['feed_title']
-                                  for feed_list in feed_lists]
+                    feed_lists = feeds.find({'%s.%s' % ('labels', label_name): {'$exists':True}}, {'feed_title': 1})
+                    feed_names = [feed_list['feed_title'] for feed_list in feed_lists]
                     items = col.find({'updated': {'$lt': last_entry_in_memory_updated}, 'feed': {'$in': feed_names}}).sort(
                         'updated', -1).limit(limit_in_database)
                 else:
@@ -302,7 +300,7 @@ def get_latest_entries(language=None, country=None, category=None, feed=None, li
         col = Collection(db, language)
         if label_name:
             feeds = Collection(db, FEED_REGISTRAR)
-            feed_lists = feeds.find({'labels': label_name}, {'feed_title': 1})
+            feed_lists = feeds.find({'%s.%s' % ('labels', label_name): {'$exists':True}}, {'feed_title': 1})
             feed_names = [feed_list['feed_title'] for feed_list in feed_lists]
             items = col.find({'feed': {'$in': feed_names}}).sort(
                 'updated', -1).limit(limit)
@@ -415,8 +413,7 @@ def get_previous_entries(language=None, country=None, category=None, feed=None, 
                 # query only one of its values
                 if label_name:
                     feeds = Collection(db, FEED_REGISTRAR)
-                    feed_lists = feeds.find(
-                        {'labels': label_name}, {'feed_title': 1})
+                    feed_lists = feeds.find({'%s.%s' % ('labels', label_name): {'$exists':True}}, {'feed_title': 1})
                     feed_names = [feed_list['feed_title']
                                   for feed_list in feed_lists]
                     items = col.find({'updated': {'$lt': last_entry_in_memory_updated}, 'feed': {'$in': feed_names}}).sort(
@@ -457,8 +454,7 @@ def get_previous_entries(language=None, country=None, category=None, feed=None, 
 
                 if label_name:
                     feeds = Collection(db, FEED_REGISTRAR)
-                    feed_lists = feeds.find(
-                        {'labels': label_name}, {'feed_title': 1})
+                    feed_lists = feeds.find({'%s.%s' % ('labels', label_name): {'$exists':True}}, {'feed_title': 1})
                     feed_names = [feed_list['feed_title']
                                   for feed_list in feed_lists]
                     items = col.find({'updated': {'$lt': end_id_updated}, 'feed': {'$in': feed_names}}).sort(
@@ -471,8 +467,7 @@ def get_previous_entries(language=None, country=None, category=None, feed=None, 
         else:  # get the most recent limit number of entries
             if label_name:
                 feeds = Collection(db, FEED_REGISTRAR)
-                feed_lists = feeds.find(
-                    {'labels': label_name}, {'feed_title': 1})
+                feed_lists = feeds.find({'%s.%s' % ('labels', label_name): {'$exists':True}}, {'feed_title': 1})
                 feed_names = [feed_list['feed_title']
                               for feed_list in feed_lists]
                 items = col.find({'feed': {'$in': feed_names}}).sort(
