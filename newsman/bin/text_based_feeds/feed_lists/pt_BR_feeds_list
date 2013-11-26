@@ -1,23 +1,23 @@
-rss*|*Notícias*|*uck*|*http://g1.globo.com/dynamo/rss2.xml*|*G1 Notícias*|*http://220.181.163.36:8080/logos/pt_BR/globo.png
-rss*|*Notícias*|*uck*|*http://br.noticias.yahoo.com/rss/brasil*|*Yahoo Brasil*|*http://220.181.163.36:8080/logos/pt_BR/yahoo.png
-rss*|*Notícias*|*uck*|*http://estadao.feedsportal.com/c/33043/f/534106/index.rss*|*Estadão Política*|*http://220.181.163.36:8080/logos/pt_BR/estadao.png
-rss*|*Notícias*|*uck*|*http://ultimosegundo.ig.com.br/brasil/rss.xml*|*iG Notícias*|*http://220.181.163.36:8080/logos/pt_BR/ig.png
-rss*|*Tecnologia*|*uck*|*http://feeds.folha.uol.com.br/tec/rss091.xml*|*Folha de S.Paulo Tec*|*http://220.181.163.36:8080/logos/pt_BR/folha.png
-rss*|*Tecnologia*|*uck*|*http://g1.globo.com/dynamo/tecnologia/rss2.xml*|*G1 Tecnologia*|*http://220.181.163.36:8080/logos/pt_BR/globo.png
-rss*|*Tecnologia*|*uck*|*http://estadao.feedsportal.com/c/33043/f/534110/index.rss*|*Estadão Ciência*|*http://220.181.163.36:8080/logos/pt_BR/estadao.png
-rss*|*Tecnologia*|*uck*|*http://www.r7.com/data/rss/tecnologiaCiencia.xml*|*R7 Ciência*|*http://220.181.163.36:8080/logos/pt_BR/R7.png
-rss*|*Tecnologia*|*uck*|*http://tecnologia.ig.com.br/rss.xml*|*iG Tecnologia*|*http://220.181.163.36:8080/logos/pt_BR/ig.png
-rss*|*Esportes*|*uck*|*http://estadao.feedsportal.com/c/33043/f/534114/index.rss*|*Estadão Esportes*|*http://220.181.163.36:8080/logos/pt_BR/estadao.png
-rss*|*Esportes*|*uck*|*http://esportes.terra.com.br/rss/Controller?channelid=2d19f517cd779310VgnVCM5000009ccceb0aRCRD&ctName=atomo-noticia&lg=pt-br*|*Terra Esportes*|*http://220.181.163.36:8080/logos/pt_BR/terra.png
-rss*|*Esportes*|*uck*|*http://esporte.ig.com.br/rss.xml*|*iG Esportes*|*http://220.181.163.36:8080/logos/pt_BR/ig.png
-rss*|*Diversão*|*uck*|*http://diversao.terra.com.br/rss/Controller?channelid=8a8775b4786b2310VgnVCM3000009af154d0RCRD&ctName=atomo-noticia&lg=pt-br*|*Terra Diversão*|*http://220.181.163.36:8080/logos/pt_BR/terra.png
-rss*|*Diversão*|*uck*|*http://br.noticias.yahoo.com/rss/entretenimento*|*Yahoo Entretenimento*|*http://220.181.163.36:8080/logos/pt_BR/yahoo.png
-rss*|*Diversão*|*uck*|*http://www.r7.com/data/rss/famososTv.xml*|*R7 Famosos e TV*|*http://220.181.163.36:8080/logos/pt_BR/R7.png
-rss*|*Diversão*|*uck*|*http://www.r7.com/data/rss/modaBeleza.xml*|*R7 Moda e Beleza*|*http://220.181.163.36:8080/logos/pt_BR/R7.png
-rss*|*Negócios*|*uck*|*http://br.noticias.yahoo.com/rss/economia*|*Yahoo Economia*|*http://220.181.163.36:8080/logos/pt_BR/yahoo.png
-rss*|*Negócios*|*uck*|*http://g1.globo.com/dynamo/economia/rss2.xml*|*G1 Economia*|*http://220.181.163.36:8080/logos/pt_BR/globo.png
-rss*|*Negócios*|*uck*|*http://br.economia.feedsportal.com/c/33512/f/584953/index.rss*|*iG Economia*|*http://220.181.163.36:8080/logos/pt_BR/ig.png
-rss*|*Estilo de Vida*|*uck*|*http://g1.globo.com/dynamo/turismo-e-viagem/rss2.xml*|*G1 Turismo e Viagem*|*http://220.181.163.36:8080/logos/pt_BR/globo.png
-rss*|*Estilo de Vida*|*uck*|*http://www.r7.com/data/rss/saude.xml*|*R7 Saúde*|*http://220.181.163.36:8080/logos/pt_BR/R7.png
-rss*|*Estilo de Vida*|*uck*|*http://br.noticias.yahoo.com/rss/saude*|*Yahoo Saúde*|*http://220.181.163.36:8080/logos/pt_BR/yahoo.png
-rss*|*Estilo de Vida*|*uck*|*http://estadao.feedsportal.com/c/33043/f/534109/index.rss*|*Estadão Saúde*|*http://220.181.163.36:8080/logos/pt_BR/estadao.png
+rss*|*Notícias-->0*|*uck*|*http://g1.globo.com/dynamo/rss2.xml*|*G1 Notícias*|*http://220.181.163.36:8080/logos/pt_BR/globo.png
+rss*|*Notícias-->0*|*uck*|*http://br.noticias.yahoo.com/rss/brasil*|*Yahoo Brasil*|*http://220.181.163.36:8080/logos/pt_BR/yahoo.png
+rss*|*Notícias-->0*|*uck*|*http://estadao.feedsportal.com/c/33043/f/534106/index.rss*|*Estadão Política*|*http://220.181.163.36:8080/logos/pt_BR/estadao.png
+rss*|*Notícias-->0*|*uck*|*http://ultimosegundo.ig.com.br/brasil/rss.xml*|*iG Notícias*|*http://220.181.163.36:8080/logos/pt_BR/ig.png
+rss*|*Tecnologia-->3*|*uck*|*http://feeds.folha.uol.com.br/tec/rss091.xml*|*Folha de S.Paulo Tec*|*http://220.181.163.36:8080/logos/pt_BR/folha.png
+rss*|*Tecnologia-->3*|*uck*|*http://g1.globo.com/dynamo/tecnologia/rss2.xml*|*G1 Tecnologia*|*http://220.181.163.36:8080/logos/pt_BR/globo.png
+rss*|*Tecnologia-->3*|*uck*|*http://estadao.feedsportal.com/c/33043/f/534110/index.rss*|*Estadão Ciência*|*http://220.181.163.36:8080/logos/pt_BR/estadao.png
+rss*|*Tecnologia-->3*|*uck*|*http://www.r7.com/data/rss/tecnologiaCiencia.xml*|*R7 Ciência*|*http://220.181.163.36:8080/logos/pt_BR/R7.png
+rss*|*Tecnologia-->3*|*uck*|*http://tecnologia.ig.com.br/rss.xml*|*iG Tecnologia*|*http://220.181.163.36:8080/logos/pt_BR/ig.png
+rss*|*Esportes-->2*|*uck*|*http://estadao.feedsportal.com/c/33043/f/534114/index.rss*|*Estadão Esportes*|*http://220.181.163.36:8080/logos/pt_BR/estadao.png
+rss*|*Esportes-->2*|*uck*|*http://esportes.terra.com.br/rss/Controller?channelid=2d19f517cd779310VgnVCM5000009ccceb0aRCRD&ctName=atomo-noticia&lg=pt-br*|*Terra Esportes*|*http://220.181.163.36:8080/logos/pt_BR/terra.png
+rss*|*Esportes-->2*|*uck*|*http://esporte.ig.com.br/rss.xml*|*iG Esportes*|*http://220.181.163.36:8080/logos/pt_BR/ig.png
+rss*|*Diversão-->4*|*uck*|*http://diversao.terra.com.br/rss/Controller?channelid=8a8775b4786b2310VgnVCM3000009af154d0RCRD&ctName=atomo-noticia&lg=pt-br*|*Terra Diversão*|*http://220.181.163.36:8080/logos/pt_BR/terra.png
+rss*|*Diversão-->4*|*uck*|*http://br.noticias.yahoo.com/rss/entretenimento*|*Yahoo Entretenimento*|*http://220.181.163.36:8080/logos/pt_BR/yahoo.png
+rss*|*Diversão-->4*|*uck*|*http://www.r7.com/data/rss/famososTv.xml*|*R7 Famosos e TV*|*http://220.181.163.36:8080/logos/pt_BR/R7.png
+rss*|*Diversão-->4*|*uck*|*http://www.r7.com/data/rss/modaBeleza.xml*|*R7 Moda e Beleza*|*http://220.181.163.36:8080/logos/pt_BR/R7.png
+rss*|*Negócios-->1*|*uck*|*http://br.noticias.yahoo.com/rss/economia*|*Yahoo Economia*|*http://220.181.163.36:8080/logos/pt_BR/yahoo.png
+rss*|*Negócios-->1*|*uck*|*http://g1.globo.com/dynamo/economia/rss2.xml*|*G1 Economia*|*http://220.181.163.36:8080/logos/pt_BR/globo.png
+rss*|*Negócios-->1*|*uck*|*http://br.economia.feedsportal.com/c/33512/f/584953/index.rss*|*iG Economia*|*http://220.181.163.36:8080/logos/pt_BR/ig.png
+rss*|*Estilo de Vida-->5*|*uck*|*http://g1.globo.com/dynamo/turismo-e-viagem/rss2.xml*|*G1 Turismo e Viagem*|*http://220.181.163.36:8080/logos/pt_BR/globo.png
+rss*|*Estilo de Vida-->5*|*uck*|*http://www.r7.com/data/rss/saude.xml*|*R7 Saúde*|*http://220.181.163.36:8080/logos/pt_BR/R7.png
+rss*|*Estilo de Vida-->5*|*uck*|*http://br.noticias.yahoo.com/rss/saude*|*Yahoo Saúde*|*http://220.181.163.36:8080/logos/pt_BR/yahoo.png
+rss*|*Estilo de Vida-->5*|*uck*|*http://estadao.feedsportal.com/c/33043/f/534109/index.rss*|*Estadão Saúde*|*http://220.181.163.36:8080/logos/pt_BR/estadao.png
