@@ -60,38 +60,47 @@ def _convert(language='en', country=None):
 
     for line in lines:
         if line.strip():
-            parser, category, transcoder, feed_link, feed_title, feed_logo, labels = _parse_task(
+            parser, category_and_order, transcoder, feed_link, feed_title, feed_logo, labels_and_orders = _parse_task(
                 line)
             if feed_link:
-                category = u'%s::%s' % (country, category)
+                category_and_order_splits = category_and_order.split('-->')
+                category = category_order = None
+                if len(category_and_order_splits) > 1:
+                    category = u'%s::%s' % (country, category_and_order_splits[0].strip())
+                    category_order = category_and_order_splits[1].strip()
+                else:
+                    category = u'%s::%s' % (country, category_and_order_splits[0])
 
                 # break labels
-                if labels:
-                    labels = [u'%s::%s' % (category, label.strip())
-                              for label in labels.split(',')]
+                labels = {}
+                if labels_and_orders:
+
+                    labels_and_orders_splits = labels_and_orders.split(',')
+                    for label_and_order in labels_and_orders_splits:
+                        label_and_order_splits = label_and_order.strip().split('-->')
+                        # every label has a label and its order, unlike category
+                        label = u'%s::%s' % (category, label_and_order_splits[0].strip())
+                        label_order = label_and_order_splits[1].strip()
+                        labels[label] = label_order
 
                 existing_item = db_feeds.find_one({'feed_link': feed_link})
                 if not existing_item:
                     feed_logo = {'url': feed_logo, 'width': 71, 'height': 60}
-                    _id = db_feeds.save({'language': language, 'countries': [country], 'feed_link': feed_link, 'categories': [category], 'labels': labels, 'feed_title': feed_title, 'latest_update': None, 'updated_times': 0, 'transcoder': transcoder, 'feed_logo': feed_logo, 'parser':parser})
+                    _id = db_feeds.save({'language': language, 'countries': [country], 'feed_link': feed_link, 'categories': {category: category_order}, 'labels': labels, 'feed_title': feed_title, 'latest_update': None, 'updated_times': 0, 'transcoder': transcoder, 'feed_logo': feed_logo, 'parser':parser})
                     db_id_list.write(str(_id) + '\n')
                 else:
-                    new_item = existing_item
-                    new_item['language'] = language
-                    new_item['parser'] = parser
+                    existing_item['language'] = language
+                    existing_item['parser'] = parser
 
-                    if 'categories' in existing_item and existing_item['categories'] and category:
-                        existing_item['categories'].append(category)
-                        new_item['categories'] = list(set(existing_item['categories']))
-                    else:
-                        new_item['categories'] = [category]
+                    # categories --> {category:order, category:order}
+                    if isinstance(existing_item['categories'], list):
+                        existing_item['categories'] = {}
+                    existing_item['categories'][category] = category_order
 
-                    if 'labels' in existing_item and existing_item['labels'] and labels:
-                        if not set(existing_item['labels']).issuperset(set(labels)):
-                            existing_item['labels'].extend(labels)
-                            new_item['labels'] = list(set(existing_item['labels']))
-                    else:
-                        new_item['labels'] = labels
+                    # labels --> {label:order, label:order}
+                    if isinstance(existing_item['labels'], list):
+                        existing_item['labels'] = {}
+                    existing_item['labels'] = dict(existing_item['labels'].items() + labels.items())
 
                     existing_item['countries'].extend([country])
                     new_item['countries'] = list(
