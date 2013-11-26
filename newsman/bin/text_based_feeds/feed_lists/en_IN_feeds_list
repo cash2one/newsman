@@ -1,61 +1,61 @@
-rss*|*News*|*readability*|*http://www.dnaindia.com/services/rss/news-latest.xml*|*DNA Latest News*|*http://mobile-global.baidu.com/logos/en_IN/dnaindia.png
-rss*|*News*|*readability*|*http://www.dnaindia.com/syndication/rss,catid-2.xml*|*DNA India News*|*http://mobile-global.baidu.com/logos/en_IN/dnaindia.png
-rss*|*News*|*readability*|*http://www.deccanherald.com/rss/national.rss*|*Deccan Herald National*|*http://mobile-global.baidu.com/logos/en_IN/deccanherald.png
-rss*|*News*|*readability*|*http://www.thehindu.com/news/national/?service=rss*|*The Hindu National*|*http://mobile-global.baidu.com/logos/en_IN/thehindu.png*|*India Headlines-->1, Hot News-->0
-rss*|*News*|*readability*|*http://feeds.feedburner.com/oneindia-all-news*|*One India News*|*http://mobile-global.baidu.com/logos/en_IN/oneindia.png*|*India Headlines-->1
-rss*|*News*|*readability*|*http://newindianexpress.com/nation/?widgetName=rssfeed&widgetId=276210&getXmlFeed=true*|*Indian Express National*|*http://mobile-global.baidu.com/logos/en_IN/indianexpress.png
-rss*|*News*|*readability*|*http://feeds.feedburner.com/ndtv/Lsgd*|*NDTV All India*|*http://mobile-global.baidu.com/logos/en_IN/ndtv.png*|*India Headlines-->1
-rss*|*News*|*readability*|*http://syndication.indianexpress.com/rss/798/latest-news.xml*|*Indian Express Headlines*|*http://mobile-global.baidu.com/logos/en_IN/indianexpress.png
-rss*|*News*|*readability*|*http://ibnlive.in.com/ibnrss/rss/india/india.xml*|*IBNLive India News*|*http://mobile-global.baidu.com/logos/en_IN/ibnlive.png*|*Hot News-->0
-rss*|*News*|*readability*|*http://www.thehindu.com/news/international/?service=rss*|*The Hindu World*|*http://mobile-global.baidu.com/logos/en_IN/thehindu.png*|*World Headlines-->2, Hot News-->0
-rss*|*News*|*chengdujin*|*http://feeds.huffingtonpost.com/huffingtonpost/LatestNews*|*Huffington Post*|*http://mobile-global.baidu.com/logos/en_IN/huffingtonpost.png
-rss*|*News*|*readability*|*http://syndication.indianexpress.com/rss/789/latest-news.xml*|*Indian Express International*|*http://mobile-global.baidu.com/logos/en_IN/indianexpress.png
-rss*|*News*|*chengdujin*|*http://feeds.theguardian.com/theguardian/uk/rss*|*Guardian*|*http://mobile-global.baidu.com/logos/en_IN/guardian.png
-rss*|*News*|*readability*|*http://feeds.feedburner.com/foxnews/latest*|*Fox News*|*http://mobile-global.baidu.com/logos/en_IN/foxnews.png
-rss*|*News*|*chengdujin*|*http://feeds.feedburner.com/ndtv/TqgX*|*NDTV World*|*http://mobile-global.baidu.com/logos/en_IN/ndtv.png*|*World Headlines-->2
-rss*|*News*|*readability*|*http://www.dnaindia.com/syndication/rss,catid-9.xml*|*DNA World*|*http://mobile-global.baidu.com/logos/en_IN/dnaindia.png*|*World Headlines-->2
-rss*|*Business*|*chengdujin*|*http://www.deccanherald.com/rss/business.rss*|*Deccan Herald Business*|*http://mobile-global.baidu.com/logos/en_IN/deccanherald.png
-rss*|*Business*|*readability*|*http://ibnlive.in.com/xml/rss/business.xml*|*IBNLive Business*|*http://mobile-global.baidu.com/logos/en_IN/ibnlive.png
-rss*|*Business*|*readability*|*http://www.thehindubusinessline.com/industry-and-economy/?service=rss*|*Hindu Business Line Economy*|*http://mobile-global.baidu.com/logos/en_IN/thehindubusinessline.png*|*Business Headlines-->0
-rss*|*Business*|*readability*|*http://www.indianexpress.com/rss/37/business.xml*|*Indian Express Business*|*http://mobile-global.baidu.com/logos/en_IN/indianexpress.png*|*Business Headlines-->0
-rss*|*Business*|*readability*|*http://feeds.reuters.com/reuters/INbusinessNews*|*Reuters Money*|*http://mobile-global.baidu.com/logos/en_IN/reuters.png
-rss*|*Business*|*readability*|*http://timesofindia.feedsportal.com/c/33039/f/533919/index.rss*|*Times of India Business*|*http://mobile-global.baidu.com/logos/en_IN/timesofindia.png*|*Business Headlines-->0
-rss*|*Business*|*readability*|*http://feeds.feedburner.com/NDTV-Business*|*NDTV Profit*|*http://mobile-global.baidu.com/logos/en_IN/ndtv.png
-rss*|*Business*|*readability*|*http://www.dnaindia.com/syndication/rss,catid-4.xml*|*DNA Money*|*http://mobile-global.baidu.com/logos/en_IN/dnaindia.png
-rss*|*Technology*|*chengdujin*|*http://www.engadget.com/rss.xml*|*Engadget*|*http://mobile-global.baidu.com/logos/en_IN/engadget.png*|*Technology Headlines-->0
-rss*|*Technology*|*readability*|*http://feeds.feedburner.com/NDTV-Tech*|*NDTV Technology*|*http://mobile-global.baidu.com/logos/en_IN/ndtv.png
-rss*|*Technology*|*chengdujin*|*http://feeds.reuters.com/reuters/INtechnologyNews*|*Reuters Technology*|*http://mobile-global.baidu.com/logos/en_IN/reuters.png
-rss*|*Technology*|*chengdujin*|*http://timesofindia.feedsportal.com/c/33039/f/533923/index.rss*|*Times of India Technology*|*http://mobile-global.baidu.com/logos/en_IN/timesofindia.png
-rss*|*Technology*|*readability*|*http://www.dnaindia.com/syndication/rss,catid-5.xml*|*DNA Science & Tech*|*http://mobile-global.baidu.com/logos/en_IN/dnaindia.png
-rss*|*Technology*|*chengdujin*|*http://feeds.feedburner.com/ommalik*|*GigaOM*|*http://mobile-global.baidu.com/logos/en_IN/ommalik.png
-rss*|*Technology*|*readability*|*http://feeds2.feedburner.com/thenextwebtopstories*|*The Next Web*|*http://mobile-global.baidu.com/logos/en_IN/nextweb.png*|*Technology Headlines-->0
-rss*|*Technology*|*chengdujin*|*http://readwrite.com/main/feed/articles.xml*|*ReadWriteWeb*|*http://mobile-global.baidu.com/logos/en_IN/readwrite.png*|*Technology Headlines-->0
-rss*|*Technology*|*readability*|*http://feeds.wired.com/wired/index*|*Wired Magazine*|*http://mobile-global.baidu.com/logos/en_IN/wired.png
-rss*|*Technology*|*readability*|*http://feeds.popsci.com/c/34567/f/632419/index.rss*|*Popular Science*|*http://mobile-global.baidu.com/logos/en_IN/popsci.png
-rss*|*Technology*|*readability*|*http://feeds.feedburner.com/TechCrunch/*|*TechCrunch*|*http://mobile-global.baidu.com/logos/en_IN/crunch.png
-rss*|*Lifestyle*|*readability*|*http://syndication.indianexpress.com/rss/802/latest-news.xml*|*Indian Express Lifestyle*|*http://mobile-global.baidu.com/logos/en_IN/indianexpress.png
-rss*|*Lifestyle*|*readability*|*http://www.medianama.com/feed/*|*MediaNama*|*http://mobile-global.baidu.com/logos/en_IN/medianama.png*|*Lifestyle Headlines-->0
-rss*|*Lifestyle*|*readability*|*http://www.newkerala.com/health-news.xml*|*New Kerala Health*|*http://mobile-global.baidu.com/logos/en_IN/newkerala.png
-rss*|*Lifestyle*|*chengdujin*|*http://feeds.reuters.com/reuters/INlifestyle*|*Reuters Lifestyle*|*http://mobile-global.baidu.com/logos/en_IN/reuters.png*|*Lifestyle Headlines-->0
-rss*|*Lifestyle*|*chengdujin*|*http://timesofindia.feedsportal.com/c/33039/f/533929/index.rss*|*Times of India Lifestyle*|*http://mobile-global.baidu.com/logos/en_IN/timesofindia.png
-rss*|*Lifestyle*|*readability*|*http://www.dnaindia.com/syndication/rss,catid-1058783.xml*|*DNA Health*|*http://mobile-global.baidu.com/logos/en_IN/dnaindia.png*|*Lifestyle Headlines-->0
-rss*|*Entertainment*|*readability*|*http://www.deccanherald.com/rss/entertainment.rss*|*Deccan Herald Entertainment*|*http://mobile-global.baidu.com/logos/en_IN/deccanherald.png*|*Entertainment Headlines-->0
-rss*|*Entertainment*|*chengdujin*|*http://www.bollywoodhungama.com/rss/news.xml*|*Bollywood Hungama Entertainment*|*http://mobile-global.baidu.com/logos/en_IN/bollywoodhungama.png
-rss*|*Entertainment*|*readability*|*http://timesofindia.feedsportal.com/c/33039/f/534006/index.rss*|*Times of India Movies*|*http://mobile-global.baidu.com/logos/en_IN/timesofindia.png
-rss*|*Entertainment*|*readability*|*http://feeds.reuters.com/reuters/INhollywood*|*Reuters Hollywood*|*http://mobile-global.baidu.com/logos/en_IN/reuters.png
-rss*|*Entertainment*|*readability*|*http://feeds.feedburner.com/NDTV-Ent*|*NDTV Entertainment*|*http://mobile-global.baidu.com/logos/en_IN/ndtv.png*|*Entertainment Headlines-->0
-rss*|*Entertainment*|*readability*|*http://www.dnaindia.com/syndication/rss,catid-7.xml*|*DNA Entertainment*|*http://mobile-global.baidu.com/logos/en_IN/dnaindia.png
-rss*|*Entertainment*|*readability*|*http://ibnlive.in.com/ibnrss/rss/moviesnews/moviesnews.xml*|*IBNLive Movies*|*http://mobile-global.baidu.com/logos/en_IN/ibnlive.png*|*Entertainment Headlines-->0
-rss*|*Sports*|*readability*|*http://www.rediff.com/rss/sportsrss.xml*|*Rediff Sports*|*http://mobile-global.baidu.com/logos/en_IN/rediff.png
-rss*|*Sports*|*readability*|*http://ibnlive.in.com/xml/rss/sports.xml*|*IBNLive Sports*|*http://mobile-global.baidu.com/logos/en_IN/ibnlive.png*|*Sports Headlines-->0
-rss*|*Sports*|*chengdujin*|*http://feeds.hindustantimes.com/HT-Cricket-TopStories*|*Hindustan Times Cricket*|*http://mobile-global.baidu.com/logos/en_IN/hindustantimes.png*|*Sports Headlines-->0
-rss*|*Sports*|*readability*|*http://www.deccanherald.com/rss/sports.rss*|*Deccan Herald Sports*|*http://mobile-global.baidu.com/logos/en_IN/deccanherald.png
-rss*|*Sports*|*readability*|*http://www.thehindu.com/sport/other-sports/?service=rss*|*The Hindu Sports*|*http://mobile-global.baidu.com/logos/en_IN/thehindu.png*|*Sports Headlines-->0
-rss*|*Sports*|*readability*|*http://www.espncricinfo.com/rss/content/story/feeds/0.xml*|*ESPN Cricket*|*http://mobile-global.baidu.com/logos/en_IN/espncricinfo.png
-rss*|*Sports*|*chengdujin*|*http://timesofindia.feedsportal.com/c/33039/f/533921/index.rss*|*Times of India Sports*|*http://mobile-global.baidu.com/logos/en_IN/timesofindia.png
-rss*|*Sports*|*readability*|*http://feeds.reuters.com/reuters/INcricketNews*|*Reuters Cricket*|*http://mobile-global.baidu.com/logos/en_IN/reuters.png
-rss*|*Sports*|*readability*|*http://syndication.indianexpress.com/rss/785/latest-news.xml*|*Indian Express Sports*|*http://mobile-global.baidu.com/logos/en_IN/indianexpress.png
-rss*|*Sports*|*readability*|*http://www.dnaindia.com/syndication/rss,catid-6.xml*|*DNA Sports*|*http://mobile-global.baidu.com/logos/en_IN/dnaindia.png
-rss*|*Fashion*|*chengdujin*|*http://feeds.feedburner.com/cyanatrendland*|*Trendland Fashion*|*http://mobile-global.baidu.com/logos/en_IN/trendland.png
-rss*|*Fashion*|*readability*|*http://www.refinery29.com/index.xml*|*Refinery29 Fashion*|*http://mobile-global.baidu.com/logos/en_IN/refinery29.png
-rss*|*Fashion*|*chengdujin*|*http://feeds.feedburner.com/youlookfab*|*YouLookFab Fashion*|*http://mobile-global.baidu.com/logos/en_IN/youlookfab.png
+rss*|*News-->0*|*readability*|*http://www.dnaindia.com/services/rss/news-latest.xml*|*DNA Latest News*|*http://mobile-global.baidu.com/logos/en_IN/dnaindia.png
+rss*|*News-->0*|*readability*|*http://www.dnaindia.com/syndication/rss,catid-2.xml*|*DNA India News*|*http://mobile-global.baidu.com/logos/en_IN/dnaindia.png
+rss*|*News-->0*|*readability*|*http://www.deccanherald.com/rss/national.rss*|*Deccan Herald National*|*http://mobile-global.baidu.com/logos/en_IN/deccanherald.png
+rss*|*News-->0*|*readability*|*http://www.thehindu.com/news/national/?service=rss*|*The Hindu National*|*http://mobile-global.baidu.com/logos/en_IN/thehindu.png*|*India Headlines-->1, Hot News-->0
+rss*|*News-->0*|*readability*|*http://feeds.feedburner.com/oneindia-all-news*|*One India News*|*http://mobile-global.baidu.com/logos/en_IN/oneindia.png*|*India Headlines-->1
+rss*|*News-->0*|*readability*|*http://newindianexpress.com/nation/?widgetName=rssfeed&widgetId=276210&getXmlFeed=true*|*Indian Express National*|*http://mobile-global.baidu.com/logos/en_IN/indianexpress.png
+rss*|*News-->0*|*readability*|*http://feeds.feedburner.com/ndtv/Lsgd*|*NDTV All India*|*http://mobile-global.baidu.com/logos/en_IN/ndtv.png*|*India Headlines-->1
+rss*|*News-->0*|*readability*|*http://syndication.indianexpress.com/rss/798/latest-news.xml*|*Indian Express Headlines*|*http://mobile-global.baidu.com/logos/en_IN/indianexpress.png
+rss*|*News-->0*|*readability*|*http://ibnlive.in.com/ibnrss/rss/india/india.xml*|*IBNLive India News*|*http://mobile-global.baidu.com/logos/en_IN/ibnlive.png*|*Hot News-->0
+rss*|*News-->0*|*readability*|*http://www.thehindu.com/news/international/?service=rss*|*The Hindu World*|*http://mobile-global.baidu.com/logos/en_IN/thehindu.png*|*World Headlines-->2, Hot News-->0
+rss*|*News-->0*|*chengdujin*|*http://feeds.huffingtonpost.com/huffingtonpost/LatestNews*|*Huffington Post*|*http://mobile-global.baidu.com/logos/en_IN/huffingtonpost.png
+rss*|*News-->0*|*readability*|*http://syndication.indianexpress.com/rss/789/latest-news.xml*|*Indian Express International*|*http://mobile-global.baidu.com/logos/en_IN/indianexpress.png
+rss*|*News-->0*|*chengdujin*|*http://feeds.theguardian.com/theguardian/uk/rss*|*Guardian*|*http://mobile-global.baidu.com/logos/en_IN/guardian.png
+rss*|*News-->0*|*readability*|*http://feeds.feedburner.com/foxnews/latest*|*Fox News*|*http://mobile-global.baidu.com/logos/en_IN/foxnews.png
+rss*|*News-->0*|*chengdujin*|*http://feeds.feedburner.com/ndtv/TqgX*|*NDTV World*|*http://mobile-global.baidu.com/logos/en_IN/ndtv.png*|*World Headlines-->2
+rss*|*News-->0*|*readability*|*http://www.dnaindia.com/syndication/rss,catid-9.xml*|*DNA World*|*http://mobile-global.baidu.com/logos/en_IN/dnaindia.png*|*World Headlines-->2
+rss*|*Business-->1*|*chengdujin*|*http://www.deccanherald.com/rss/business.rss*|*Deccan Herald Business*|*http://mobile-global.baidu.com/logos/en_IN/deccanherald.png
+rss*|*Business-->1*|*readability*|*http://ibnlive.in.com/xml/rss/business.xml*|*IBNLive Business*|*http://mobile-global.baidu.com/logos/en_IN/ibnlive.png
+rss*|*Business-->1*|*readability*|*http://www.thehindubusinessline.com/industry-and-economy/?service=rss*|*Hindu Business Line Economy*|*http://mobile-global.baidu.com/logos/en_IN/thehindubusinessline.png*|*Business Headlines-->0
+rss*|*Business-->1*|*readability*|*http://www.indianexpress.com/rss/37/business.xml*|*Indian Express Business*|*http://mobile-global.baidu.com/logos/en_IN/indianexpress.png*|*Business Headlines-->0
+rss*|*Business-->1*|*readability*|*http://feeds.reuters.com/reuters/INbusinessNews*|*Reuters Money*|*http://mobile-global.baidu.com/logos/en_IN/reuters.png
+rss*|*Business-->1*|*readability*|*http://timesofindia.feedsportal.com/c/33039/f/533919/index.rss*|*Times of India Business*|*http://mobile-global.baidu.com/logos/en_IN/timesofindia.png*|*Business Headlines-->0
+rss*|*Business-->1*|*readability*|*http://feeds.feedburner.com/NDTV-Business*|*NDTV Profit*|*http://mobile-global.baidu.com/logos/en_IN/ndtv.png
+rss*|*Business-->1*|*readability*|*http://www.dnaindia.com/syndication/rss,catid-4.xml*|*DNA Money*|*http://mobile-global.baidu.com/logos/en_IN/dnaindia.png
+rss*|*Technology-->2*|*chengdujin*|*http://www.engadget.com/rss.xml*|*Engadget*|*http://mobile-global.baidu.com/logos/en_IN/engadget.png*|*Technology Headlines-->0
+rss*|*Technology-->2*|*readability*|*http://feeds.feedburner.com/NDTV-Tech*|*NDTV Technology*|*http://mobile-global.baidu.com/logos/en_IN/ndtv.png
+rss*|*Technology-->2*|*chengdujin*|*http://feeds.reuters.com/reuters/INtechnologyNews*|*Reuters Technology*|*http://mobile-global.baidu.com/logos/en_IN/reuters.png
+rss*|*Technology-->2*|*chengdujin*|*http://timesofindia.feedsportal.com/c/33039/f/533923/index.rss*|*Times of India Technology*|*http://mobile-global.baidu.com/logos/en_IN/timesofindia.png
+rss*|*Technology-->2*|*readability*|*http://www.dnaindia.com/syndication/rss,catid-5.xml*|*DNA Science & Tech*|*http://mobile-global.baidu.com/logos/en_IN/dnaindia.png
+rss*|*Technology-->2*|*chengdujin*|*http://feeds.feedburner.com/ommalik*|*GigaOM*|*http://mobile-global.baidu.com/logos/en_IN/ommalik.png
+rss*|*Technology-->2*|*readability*|*http://feeds2.feedburner.com/thenextwebtopstories*|*The Next Web*|*http://mobile-global.baidu.com/logos/en_IN/nextweb.png*|*Technology Headlines-->0
+rss*|*Technology-->2*|*chengdujin*|*http://readwrite.com/main/feed/articles.xml*|*ReadWriteWeb*|*http://mobile-global.baidu.com/logos/en_IN/readwrite.png*|*Technology Headlines-->0
+rss*|*Technology-->2*|*readability*|*http://feeds.wired.com/wired/index*|*Wired Magazine*|*http://mobile-global.baidu.com/logos/en_IN/wired.png
+rss*|*Technology-->2*|*readability*|*http://feeds.popsci.com/c/34567/f/632419/index.rss*|*Popular Science*|*http://mobile-global.baidu.com/logos/en_IN/popsci.png
+rss*|*Technology-->2*|*readability*|*http://feeds.feedburner.com/TechCrunch/*|*TechCrunch*|*http://mobile-global.baidu.com/logos/en_IN/crunch.png
+rss*|*Lifestyle-->6*|*readability*|*http://syndication.indianexpress.com/rss/802/latest-news.xml*|*Indian Express Lifestyle*|*http://mobile-global.baidu.com/logos/en_IN/indianexpress.png
+rss*|*Lifestyle-->6*|*readability*|*http://www.medianama.com/feed/*|*MediaNama*|*http://mobile-global.baidu.com/logos/en_IN/medianama.png*|*Lifestyle Headlines-->0
+rss*|*Lifestyle-->6*|*readability*|*http://www.newkerala.com/health-news.xml*|*New Kerala Health*|*http://mobile-global.baidu.com/logos/en_IN/newkerala.png
+rss*|*Lifestyle-->6*|*chengdujin*|*http://feeds.reuters.com/reuters/INlifestyle*|*Reuters Lifestyle*|*http://mobile-global.baidu.com/logos/en_IN/reuters.png*|*Lifestyle Headlines-->0
+rss*|*Lifestyle-->6*|*chengdujin*|*http://timesofindia.feedsportal.com/c/33039/f/533929/index.rss*|*Times of India Lifestyle*|*http://mobile-global.baidu.com/logos/en_IN/timesofindia.png
+rss*|*Lifestyle-->6*|*readability*|*http://www.dnaindia.com/syndication/rss,catid-1058783.xml*|*DNA Health*|*http://mobile-global.baidu.com/logos/en_IN/dnaindia.png*|*Lifestyle Headlines-->0
+rss*|*Entertainment-->4*|*readability*|*http://www.deccanherald.com/rss/entertainment.rss*|*Deccan Herald Entertainment*|*http://mobile-global.baidu.com/logos/en_IN/deccanherald.png*|*Entertainment Headlines-->0
+rss*|*Entertainment-->4*|*chengdujin*|*http://www.bollywoodhungama.com/rss/news.xml*|*Bollywood Hungama Entertainment*|*http://mobile-global.baidu.com/logos/en_IN/bollywoodhungama.png
+rss*|*Entertainment-->4*|*readability*|*http://timesofindia.feedsportal.com/c/33039/f/534006/index.rss*|*Times of India Movies*|*http://mobile-global.baidu.com/logos/en_IN/timesofindia.png
+rss*|*Entertainment-->4*|*readability*|*http://feeds.reuters.com/reuters/INhollywood*|*Reuters Hollywood*|*http://mobile-global.baidu.com/logos/en_IN/reuters.png
+rss*|*Entertainment-->4*|*readability*|*http://feeds.feedburner.com/NDTV-Ent*|*NDTV Entertainment*|*http://mobile-global.baidu.com/logos/en_IN/ndtv.png*|*Entertainment Headlines-->0
+rss*|*Entertainment-->4*|*readability*|*http://www.dnaindia.com/syndication/rss,catid-7.xml*|*DNA Entertainment*|*http://mobile-global.baidu.com/logos/en_IN/dnaindia.png
+rss*|*Entertainment-->4*|*readability*|*http://ibnlive.in.com/ibnrss/rss/moviesnews/moviesnews.xml*|*IBNLive Movies*|*http://mobile-global.baidu.com/logos/en_IN/ibnlive.png*|*Entertainment Headlines-->0
+rss*|*Sports-->3*|*readability*|*http://www.rediff.com/rss/sportsrss.xml*|*Rediff Sports*|*http://mobile-global.baidu.com/logos/en_IN/rediff.png
+rss*|*Sports-->3*|*readability*|*http://ibnlive.in.com/xml/rss/sports.xml*|*IBNLive Sports*|*http://mobile-global.baidu.com/logos/en_IN/ibnlive.png*|*Sports Headlines-->0
+rss*|*Sports-->3*|*chengdujin*|*http://feeds.hindustantimes.com/HT-Cricket-TopStories*|*Hindustan Times Cricket*|*http://mobile-global.baidu.com/logos/en_IN/hindustantimes.png*|*Sports Headlines-->0
+rss*|*Sports-->3*|*readability*|*http://www.deccanherald.com/rss/sports.rss*|*Deccan Herald Sports*|*http://mobile-global.baidu.com/logos/en_IN/deccanherald.png
+rss*|*Sports-->3*|*readability*|*http://www.thehindu.com/sport/other-sports/?service=rss*|*The Hindu Sports*|*http://mobile-global.baidu.com/logos/en_IN/thehindu.png*|*Sports Headlines-->0
+rss*|*Sports-->3*|*readability*|*http://www.espncricinfo.com/rss/content/story/feeds/0.xml*|*ESPN Cricket*|*http://mobile-global.baidu.com/logos/en_IN/espncricinfo.png
+rss*|*Sports-->3*|*chengdujin*|*http://timesofindia.feedsportal.com/c/33039/f/533921/index.rss*|*Times of India Sports*|*http://mobile-global.baidu.com/logos/en_IN/timesofindia.png
+rss*|*Sports-->3*|*readability*|*http://feeds.reuters.com/reuters/INcricketNews*|*Reuters Cricket*|*http://mobile-global.baidu.com/logos/en_IN/reuters.png
+rss*|*Sports-->3*|*readability*|*http://syndication.indianexpress.com/rss/785/latest-news.xml*|*Indian Express Sports*|*http://mobile-global.baidu.com/logos/en_IN/indianexpress.png
+rss*|*Sports-->3*|*readability*|*http://www.dnaindia.com/syndication/rss,catid-6.xml*|*DNA Sports*|*http://mobile-global.baidu.com/logos/en_IN/dnaindia.png
+rss*|*Fashion-->5*|*chengdujin*|*http://feeds.feedburner.com/cyanatrendland*|*Trendland Fashion*|*http://mobile-global.baidu.com/logos/en_IN/trendland.png
+rss*|*Fashion-->5*|*readability*|*http://www.refinery29.com/index.xml*|*Refinery29 Fashion*|*http://mobile-global.baidu.com/logos/en_IN/refinery29.png
+rss*|*Fashion-->5*|*chengdujin*|*http://feeds.feedburner.com/youlookfab*|*YouLookFab Fashion*|*http://mobile-global.baidu.com/logos/en_IN/youlookfab.png
