@@ -22,7 +22,7 @@ from config.settings import FEED_REGISTRAR
 #FILE_PREFIX = '/home/work/newsman/newsman/bin/text_based_feeds/feed_lists/'
 #FILE_PREFIX = '/home/users/jinyuan/newsman/newsman/bin/text_based_feeds/feed_lists/'
 #FILE_PREFIX = '/home/ubuntu/newsman/newsman/bin/text_based_feeds/feed_lists/'
-#FILE_PREFIX = '/home/jinyuan/Downloads/newsman/newsman/bin/text_based_feeds/feed_lists/'
+FILE_PREFIX = '/home/jinyuan/Downloads/newsman/newsman/bin/text_based_feeds/feed_lists/'
 
 
 def _parse_task(line):
@@ -74,7 +74,6 @@ def _convert(language='en', country=None):
                 # break labels
                 labels = {}
                 if labels_and_orders:
-
                     labels_and_orders_splits = labels_and_orders.split(',')
                     for label_and_order in labels_and_orders_splits:
                         label_and_order_splits = label_and_order.strip().split('-->')
@@ -100,17 +99,20 @@ def _convert(language='en', country=None):
                     # labels --> {label:order, label:order}
                     if isinstance(existing_item['labels'], list):
                         existing_item['labels'] = {}
-                    existing_item['labels'] = dict(existing_item['labels'].items() + labels.items())
+                    if existing_item['labels']:
+                        existing_item['labels'] = dict(existing_item['labels'].items() + labels.items())
+                    else:
+                        existing_item['labels'] = labels
 
                     existing_item['countries'].extend([country])
-                    new_item['countries'] = list(
+                    existing_item['countries'] = list(
                         set(existing_item['countries']))
 
-                    new_item['transcoder'] = transcoder
-                    new_item['feed_title'] = feed_title
-                    new_item['feed_logo'] = {
+                    existing_item['transcoder'] = transcoder
+                    existing_item['feed_title'] = feed_title
+                    existing_item['feed_logo'] = {
                         'url': feed_logo, 'width': 71, 'height': 60}
-                    db_feeds.update({'_id': existing_item['_id']}, new_item)
+                    db_feeds.update({'_id': existing_item['_id']}, existing_item)
                     db_id_list.write(str(existing_item['_id']) + '\n')
             else:
                 continue
