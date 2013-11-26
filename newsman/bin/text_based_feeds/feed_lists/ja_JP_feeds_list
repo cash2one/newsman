@@ -16,8 +16,8 @@ rss*|*ニュース-->0*|*chengdujin*|*http://mainichi.jp/rss/etc/flash.rss*|*毎
 rss*|*ニュース-->0*|*chengdujin*|*http://rss.yomiuri.co.jp/rss/yol/topstories*|*読売新聞 ニュース*|*http://220.181.163.36:8080/logos/ja_JP/yomiuri.png
 rss*|*ニュース-->0*|*chengdujin*|*http://www.huffingtonpost.jp/feeds/verticals/japan/news.xml*|*Huffington Post ニュース*|*http://220.181.163.36:8080/logos/ja_JP/huffingtonpost.png
 rss*|*ニュース-->0*|*chengdujin*|*http://www.kyodo.co.jp/feed/*|*共同通信社*|*http://220.181.163.36:8080/logos/ja_JP/kyodo.png
-twitter*|*ニュース-->0*|*chengdujin*|*https://twitter.com/navermatomenews*|*NAVERまとめ*|*http://220.181.163.36:8080/logos/ja_JP/default_icon.png
-twitter*|*ニュース-->0*|*chengdujin*|*https://twitter.com/2chnews_j*|*2chニュース*|*http://220.181.163.36:8080/logos/ja_JP/default_icon.png
+twitter*|*ニュース-->0*|*chengdujin*|*https://twitter.com/navermatomenews*|*NAVERまとめ*|*http://220.181.163.36:8080/logos/ja_JP/navermatome.png
+twitter*|*ニュース-->0*|*chengdujin*|*https://twitter.com/2chnews_j*|*2chニュース*|*http://220.181.163.36:8080/logos/ja_JP/2ch.png
 rss*|*経済-->1*|*chengdujin*|*http://news.goo.ne.jp/rss/topstories/business/index.rdf*|*GOO　経済*|*http://220.181.163.36:8080/logos/ja_JP/goo.png
 rss*|*経済-->1*|*chengdujin*|*http://sankei.jp.msn.com/rss/news/economy.xml*|*産経新聞　経済*|*http://220.181.163.36:8080/logos/ja_JP/msn.png
 rss*|*経済-->1*|*chengdujin*|*http://news.nifty.com/rss/topics_economy.xml*|*Nifty 経済*|*http://220.181.163.36:8080/logos/ja_JP/nifty.png
