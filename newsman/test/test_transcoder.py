@@ -6,7 +6,7 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append("..")
 
-from utility import transcoder
+from processor import transcoder
 
 
 def _main(language, url, trans):

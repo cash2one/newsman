@@ -6,7 +6,7 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append("..")
 
-from utility import baidu_uck
+from processor import baidu_uck
 
 
 def _main(url):

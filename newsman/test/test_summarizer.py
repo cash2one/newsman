@@ -8,7 +8,7 @@ sys.path.append("..")
 
 from config import Collection
 from config import db
-from utility import summarizer
+from processor import summarizer
 
 
 def main():

@@ -17,11 +17,11 @@ sys.path.append('..')
 import calendar
 from config.settings import logger
 from datetime import datetime, timedelta
-from utility import image_helper
-from utility import summarizer
-from utility import text2img
-from utility import transcoder
-from utility import tts_provider
+from processor import image_helper
+from processor import summarizer
+from processor import text2img
+from processor import transcoder
+from processor import tts_provider
 from spider import database as db_news
 from feed_manager import database as db_feeds
 import memory

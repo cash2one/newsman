@@ -8,7 +8,7 @@ sys.path.append('..')
 
 
 def main(url, language):
-    from utility import simplr
+    from processor import simplr
     title, content, images = simplr.convert(url, language)
     print content
 
