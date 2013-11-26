@@ -1,17 +1,17 @@
-rss*|*ニュース-->0*|*chengdujin*|*http://news.goo.ne.jp/rss/topstories/gootop/index.rdf*|*GOO 注目*|*http://220.181.163.36:8080/logos/ja_JP/goo.png*|*トップニュース
-rss*|*ニュース-->0*|*chengdujin*|*http://sankei.jp.msn.com/rss/news/points.xml*|*MSN産経ニュース 注目*|*http://220.181.163.36:8080/logos/ja_JP/msn.png*|*トップニュース
-rss*|*ニュース-->0*|*chengdujin*|*http://news.nifty.com/rss/topics_all.xml*|*Nifty すべての注目*|*http://220.181.163.36:8080/logos/ja_JP/nifty.png*|*トップニュース
-rss*|*ニュース-->0*|*chengdujin*|*http://news.goo.ne.jp/rss/topstories/nation/index.rdf*|*GOO*|*http://220.181.163.36:8080/logos/ja_JP/goo.png*|*国内ニュース
-rss*|*ニュース-->0*|*chengdujin*|*http://sankei.jp.msn.com/rss/news/politics.xml*|*産経新聞　政治*|*http://220.181.163.36:8080/logos/ja_JP/msn.png*|*国内ニュース
-rss*|*ニュース-->0*|*chengdujin*|*http://news.goo.ne.jp/rss/topstories/world/index.rdf*|*GOO 国際*|*http://220.181.163.36:8080/logos/ja_JP/goo.png*|*海外ニュース
-rss*|*ニュース-->0*|*chengdujin*|*http://sankei.jp.msn.com/rss/news/world.xml*|*MSN産経ニュース　国際*|*http://220.181.163.36:8080/logos/ja_JP/msn.png*|*海外ニュース
-rss*|*ニュース-->0*|*chengdujin*|*http://news.nifty.com/rss/topics_world.xml*|*Nifty 国際*|*http://220.181.163.36:8080/logos/ja_JP/nifty.png*|*海外ニュース
+rss*|*ニュース-->0*|*chengdujin*|*http://news.goo.ne.jp/rss/topstories/gootop/index.rdf*|*GOO 注目*|*http://220.181.163.36:8080/logos/ja_JP/goo.png
+rss*|*ニュース-->0*|*chengdujin*|*http://sankei.jp.msn.com/rss/news/points.xml*|*MSN産経ニュース 注目*|*http://220.181.163.36:8080/logos/ja_JP/msn.png*|*トップニュース-->0
+rss*|*ニュース-->0*|*chengdujin*|*http://news.nifty.com/rss/topics_all.xml*|*Nifty すべての注目*|*http://220.181.163.36:8080/logos/ja_JP/nifty.png*|*トップニュース-->0
+rss*|*ニュース-->0*|*chengdujin*|*http://news.goo.ne.jp/rss/topstories/nation/index.rdf*|*GOO*|*http://220.181.163.36:8080/logos/ja_JP/goo.png*|*国内ニュース-->1
+rss*|*ニュース-->0*|*chengdujin*|*http://sankei.jp.msn.com/rss/news/politics.xml*|*産経新聞　政治*|*http://220.181.163.36:8080/logos/ja_JP/msn.png*|*国内ニュース-->1
+rss*|*ニュース-->0*|*chengdujin*|*http://news.goo.ne.jp/rss/topstories/world/index.rdf*|*GOO 国際*|*http://220.181.163.36:8080/logos/ja_JP/goo.png*|*海外ニュース-->2
+rss*|*ニュース-->0*|*chengdujin*|*http://sankei.jp.msn.com/rss/news/world.xml*|*MSN産経ニュース　国際*|*http://220.181.163.36:8080/logos/ja_JP/msn.png*|*海外ニュース-->2
+rss*|*ニュース-->0*|*chengdujin*|*http://news.nifty.com/rss/topics_world.xml*|*Nifty 国際*|*http://220.181.163.36:8080/logos/ja_JP/nifty.png*|*海外ニュース-->2
 rss*|*ニュース-->0*|*chengdujin*|*http://rss.excite.co.jp/rss/excite/odd*|*エキサイト*|*http://220.181.163.36:8080/logos/ja_JP/excite.png
 rss*|*ニュース-->0*|*chengdujin*|*http://www3.asahi.com/rss/international.rdf*|*朝日新聞　国際*|*http://220.181.163.36:8080/logos/ja_JP/asahi.png
-rss*|*ニュース-->0*|*chengdujin*|*http://feeds.cnn.co.jp/rss/cnn/cnn.rdf*|*CNN日本*|*http://220.181.163.36:8080/logos/ja_JP/cnn.png
+rss*|*ニュース-->0*|*chengdujin*|*http://feeds.cnn.co.jp/rss/cnn/cnn.rdf*|*CNN日本*|*http://220.181.163.36:8080/logos/ja_JP/cnn.png*|*トップニュース-->0
 rss*|*ニュース-->0*|*chengdujin*|*http://feeds.reuters.com/reuters/JPWorldNews*|*ロイター日本*|*http://220.181.163.36:8080/logos/ja_JP/reuters.png
 rss*|*ニュース-->0*|*chengdujin*|*http://news.nifty.com/rss/topics_domestic.xml*|*Nifty*|*http://220.181.163.36:8080/logos/ja_JP/nifty.png
-rss*|*ニュース-->0*|*chengdujin*|*http://www3.asahi.com/rss/national.rdf*|*朝日新聞　国内*|*http://220.181.163.36:8080/logos/ja_JP/asahi.png
+rss*|*ニュース-->0*|*chengdujin*|*http://www3.asahi.com/rss/national.rdf*|*朝日新聞　国内*|*http://220.181.163.36:8080/logos/ja_JP/asahi.png*|*国内ニュース-->1
 rss*|*ニュース-->0*|*chengdujin*|*http://mainichi.jp/rss/etc/flash.rss*|*毎日新聞*|*http://220.181.163.36:8080/logos/ja_JP/mainichi.png
 rss*|*ニュース-->0*|*chengdujin*|*http://rss.yomiuri.co.jp/rss/yol/topstories*|*読売新聞 ニュース*|*http://220.181.163.36:8080/logos/ja_JP/yomiuri.png
 rss*|*ニュース-->0*|*chengdujin*|*http://www.huffingtonpost.jp/feeds/verticals/japan/news.xml*|*Huffington Post ニュース*|*http://220.181.163.36:8080/logos/ja_JP/huffingtonpost.png
