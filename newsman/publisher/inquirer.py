@@ -116,26 +116,35 @@ def get_categories(language=None, country=None, version=None):
     items = col.find({'countries': country})
     if items:
         categories = {}
+        output = []
         for item in items:
             # add rss to the category dictionary
-            for category in item['categories']:
+            category_name = None
+            for category, category_order in item['categories'].iteritems():
                 if category.startswith(country):
                     category_name = category.replace('%s::' % country, '')
                     if category_name not in categories:
                         categories[category_name] = []
 
                     if 'feed_logo' in item and item['feed_logo']:
-                        feed_format = {'order': len(categories[category_name]), 'text': item[
+                        feed_format = {'order': 100000, 'text': item[
                             'feed_title'], 'image': item['feed_logo']}
                     else:
                         feed_format = {
-                            'order': len(categories[category_name]), 'text': item['feed_title']}
-                    if feed_format not in categories[category_name]:
-                        categories[category_name].append(feed_format)
+                            'order': 100000, 'text': item['feed_title']}
+                    categories[category_name].append(feed_format)
 
+            ITEM_ADDED = False
+            for item in output:
+                if item['Category']['text'] == category_name:
+                    ITEM_ADDED = True
+                    break
+            if not ITEM_ADDED:
+                output.append({'Category':{'text':category_name, 'order':category_order}})
+
+            # add label to the category dictionary
             if 'labels' in item and item['labels']:
-                # add label to the category dictionary
-                for label in item['labels']:
+                for label, label_order in item['labels'].iteritems:
                     if label.startswith(country):
                         label_split = label.replace(
                             '%s::' % country, "").split('::')
@@ -148,7 +157,7 @@ def get_categories(language=None, country=None, version=None):
                         label_image = {'url': '%s%s_%s/%s.png' % (
                             LOGO_PUBLIC_PREFIX, language, country, label_name_shrinked), 'width': 71, 'height': 60}
                         label_format = {
-                            'order': len(categories[category_name]), 'text': label_name, 'image': label_image}
+                            'order': label_order, 'text': label_name, 'image': label_image}
 
                         LABEL_ADDED = False
                         for label_format_added in categories[category_name]:
@@ -158,10 +167,11 @@ def get_categories(language=None, country=None, version=None):
                         if not LABEL_ADDED:
                             categories[category_name].append(label_format)
         # reformat
-        output = []
-        for k, v in categories.iteritems():
-            category_format = {'text': k}
-            output.append({'Category': category_format, 'Feeds': v})
+        for item in output:
+            category_name = item['Category']['text']
+            feeds_and_labels = categories[category_name]
+            item['Feeds'] = feeds_and_labels
+
         version_latest = hashlib.md5(
             json.dumps(categories, sort_keys=True)).hexdigest()
 
