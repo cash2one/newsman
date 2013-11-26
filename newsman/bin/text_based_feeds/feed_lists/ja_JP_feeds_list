@@ -1,59 +1,59 @@
-rss*|*ニュース*|*chengdujin*|*http://news.goo.ne.jp/rss/topstories/gootop/index.rdf*|*GOO 注目*|*http://220.181.163.36:8080/logos/ja_JP/goo.png*|*トップニュース
-rss*|*ニュース*|*chengdujin*|*http://sankei.jp.msn.com/rss/news/points.xml*|*MSN産経ニュース 注目*|*http://220.181.163.36:8080/logos/ja_JP/msn.png*|*トップニュース
-rss*|*ニュース*|*chengdujin*|*http://news.nifty.com/rss/topics_all.xml*|*Nifty すべての注目*|*http://220.181.163.36:8080/logos/ja_JP/nifty.png*|*トップニュース
-rss*|*ニュース*|*chengdujin*|*http://news.goo.ne.jp/rss/topstories/nation/index.rdf*|*GOO*|*http://220.181.163.36:8080/logos/ja_JP/goo.png*|*国内ニュース
-rss*|*ニュース*|*chengdujin*|*http://sankei.jp.msn.com/rss/news/politics.xml*|*産経新聞　政治*|*http://220.181.163.36:8080/logos/ja_JP/msn.png*|*国内ニュース
-rss*|*ニュース*|*chengdujin*|*http://news.goo.ne.jp/rss/topstories/world/index.rdf*|*GOO 国際*|*http://220.181.163.36:8080/logos/ja_JP/goo.png*|*海外ニュース
-rss*|*ニュース*|*chengdujin*|*http://sankei.jp.msn.com/rss/news/world.xml*|*MSN産経ニュース　国際*|*http://220.181.163.36:8080/logos/ja_JP/msn.png*|*海外ニュース
-rss*|*ニュース*|*chengdujin*|*http://news.nifty.com/rss/topics_world.xml*|*Nifty 国際*|*http://220.181.163.36:8080/logos/ja_JP/nifty.png*|*海外ニュース
-rss*|*ニュース*|*chengdujin*|*http://rss.excite.co.jp/rss/excite/odd*|*エキサイト*|*http://220.181.163.36:8080/logos/ja_JP/excite.png
-rss*|*ニュース*|*chengdujin*|*http://www3.asahi.com/rss/international.rdf*|*朝日新聞　国際*|*http://220.181.163.36:8080/logos/ja_JP/asahi.png
-rss*|*ニュース*|*chengdujin*|*http://feeds.cnn.co.jp/rss/cnn/cnn.rdf*|*CNN日本*|*http://220.181.163.36:8080/logos/ja_JP/cnn.png
-rss*|*ニュース*|*chengdujin*|*http://feeds.reuters.com/reuters/JPWorldNews*|*ロイター日本*|*http://220.181.163.36:8080/logos/ja_JP/reuters.png
-rss*|*ニュース*|*chengdujin*|*http://news.nifty.com/rss/topics_domestic.xml*|*Nifty*|*http://220.181.163.36:8080/logos/ja_JP/nifty.png
-rss*|*ニュース*|*chengdujin*|*http://www3.asahi.com/rss/national.rdf*|*朝日新聞　国内*|*http://220.181.163.36:8080/logos/ja_JP/asahi.png
-rss*|*ニュース*|*chengdujin*|*http://mainichi.jp/rss/etc/flash.rss*|*毎日新聞*|*http://220.181.163.36:8080/logos/ja_JP/mainichi.png
-rss*|*ニュース*|*chengdujin*|*http://rss.yomiuri.co.jp/rss/yol/topstories*|*読売新聞 ニュース*|*http://220.181.163.36:8080/logos/ja_JP/yomiuri.png
-rss*|*ニュース*|*chengdujin*|*http://www.huffingtonpost.jp/feeds/verticals/japan/news.xml*|*Huffington Post ニュース*|*http://220.181.163.36:8080/logos/ja_JP/huffingtonpost.png
-rss*|*ニュース*|*chengdujin*|*http://www.kyodo.co.jp/feed/*|*共同通信社*|*http://220.181.163.36:8080/logos/ja_JP/kyodo.png
-twitter*|*ニュース*|*chengdujin*|*https://twitter.com/navermatomenews*|*NAVERまとめ*|*http://220.181.163.36:8080/logos/ja_JP/default_icon.png
-twitter*|*ニュース*|*chengdujin*|*https://twitter.com/2chnews_j*|*2chニュース*|*http://220.181.163.36:8080/logos/ja_JP/default_icon.png
-rss*|*経済*|*chengdujin*|*http://news.goo.ne.jp/rss/topstories/business/index.rdf*|*GOO　経済*|*http://220.181.163.36:8080/logos/ja_JP/goo.png
-rss*|*経済*|*chengdujin*|*http://sankei.jp.msn.com/rss/news/economy.xml*|*産経新聞　経済*|*http://220.181.163.36:8080/logos/ja_JP/msn.png
-rss*|*経済*|*chengdujin*|*http://news.nifty.com/rss/topics_economy.xml*|*Nifty 経済*|*http://220.181.163.36:8080/logos/ja_JP/nifty.png
-rss*|*経済*|*chengdujin*|*http://www3.asahi.com/rss/business.rdf*|*朝日新聞　経済*|*http://220.181.163.36:8080/logos/ja_JP/asahi.png
-rss*|*経済*|*chengdujin*|*http://feeds.reuters.com/reuters/JPBusinessNews*|*ロイター日本　経済*|*http://220.181.163.36:8080/logos/ja_JP/reuters.png
-rss*|*エンタメ*|*chengdujin*|*http://news.goo.ne.jp/rss/topstories/entertainment/index.rdf*|*GOO　エンターテインメント*|*http://220.181.163.36:8080/logos/ja_JP/goo.png
-rss*|*エンタメ*|*chengdujin*|*http://sankei.jp.msn.com/rss/news/entertainments.xml*|*産経新聞　エンターテインメント*|*http://220.181.163.36:8080/logos/ja_JP/msn.png
-rss*|*エンタメ*|*chengdujin*|*http://news.nifty.com/rss/topics_entame.xml*|*Nifty　エンターテインメント*|*http://220.181.163.36:8080/logos/ja_JP/nifty.png
-rss*|*エンタメ*|*chengdujin*|*http://rss.asahi.com/rss/asahi/culture.rdf*|*朝日新聞　文化*|*http://220.181.163.36:8080/logos/ja_JP/asahi.png
-rss*|*エンタメ*|*chengdujin*|*http://mainichi.jp/rss/etc/enta.rss*|*毎日新聞　エンターテインメント*|*http://220.181.163.36:8080/logos/ja_JP/mainichi.png
-rss*|*エンタメ*|*chengdujin*|*http://feeds.reuters.com/reuters/JPEntertainment*|*ロイター日本　スポーツ*|*http://220.181.163.36:8080/logos/ja_JP/reuters.png
-rss*|*スポーツ*|*chengdujin*|*http://news.goo.ne.jp/rss/topstories/sports/index.rdf*|*GOO スポーツ*|*http://220.181.163.36:8080/logos/ja_JP/goo.png
-rss*|*スポーツ*|*chengdujin*|*http://sankei.jp.msn.com/rss/news/sports.xml*|*産経新聞　スポーツ*|*http://220.181.163.36:8080/logos/ja_JP/msn.png
-rss*|*スポーツ*|*chengdujin*|*http://news.nifty.com/rss/topics_sports.xml*|*Nifty スポーツ*|*http://220.181.163.36:8080/logos/ja_JP/nifty.png
-rss*|*スポーツ*|*chengdujin*|*http://www3.asahi.com/rss/sports.rdf*|*朝日新聞　スポーツ*|*http://220.181.163.36:8080/logos/ja_JP/asahi.png
-rss*|*スポーツ*|*chengdujin*|*http://mainichi.jp/rss/etc/sports.rss*|*毎日新聞　スポーツ*|*http://220.181.163.36:8080/logos/ja_JP/mainichi.png
-rss*|*スポーツ*|*chengdujin*|*http://feeds.reuters.com/reuters/JPSportsNews*|*ロイター日本　日本スポーツ*|*http://220.181.163.36:8080/logos/ja_JP/reuters.png
-rss*|*テクノロジー*|*chengdujin*|*http://feeds.japan.cnet.com/rss/cnet/all.rdf*|*CNET 日本*|*http://220.181.163.36:8080/logos/ja_JP/cnet.png
-rss*|*テクノロジー*|*chengdujin*|*http://sankei.jp.msn.com/rss/news/science.xml*|*産経新聞　サイエンス*|*http://220.181.163.36:8080/logos/ja_JP/msn.png
-rss*|*テクノロジー*|*chengdujin*|*http://news.nifty.com/rss/topics_technology.xml*|*Nifty テクノロジー*|*http://220.181.163.36:8080/logos/ja_JP/nifty.png
-rss*|*テクノロジー*|*chengdujin*|*http://www3.asahi.com/rss/digital.rdf*|*朝日新聞　デジタル*|*http://220.181.163.36:8080/logos/ja_JP/asahi.png
-rss*|*テクノロジー*|*chengdujin*|*http://feeds.reuters.com/reuters/JPTechnologyNews*|*ロイター　テクノロジー*|*http://220.181.163.36:8080/logos/ja_JP/reuters.png
-rss*|*テクノロジー*|*chengdujin*|*http://feed.rssad.jp/rss/techcrunch/feed*|*TechCrunch 日本 *|*http://220.181.163.36:8080/logos/ja_JP/crunch.png
-rss*|*テクノロジー*|*chengdujin*|*http://feeds.gizmodo.jp/rss/gizmodo/index.xml*|*Gizmodo 日本 *|*http://220.181.163.36:8080/logos/ja_JP/gizmodo.png
-rss*|*ライフスタイル*|*chengdujin*|*http://rss.asahi.com/rss/asahi/health.rdf*|*朝日新聞　健康*|*http://220.181.163.36:8080/logos/ja_JP/asahi.png
-rss*|*ライフスタイル*|*chengdujin*|*http://sankei.jp.msn.com/rss/news/life.xml*|*産経新聞　ライフ*|*http://220.181.163.36:8080/logos/ja_JP/msn.png
-rss*|*ライフスタイル*|*chengdujin*|*http://www.nikkeibp.co.jp/rss/medical.rdf*|*日経BP*|*http://220.181.163.36:8080/logos/ja_JP/nikkeibp.png
-rss*|*ライフスタイル*|*chengdujin*|*http://community.travel.yahoo.co.jp/domestic/blog.html?m=rss*|*Yahoo ブログ*|*http://220.181.163.36:8080/logos/ja_JP/yahoo.png
-rss*|*ライフスタイル*|*chengdujin*|*http://rss.asahi.com/rss/asahi/travel.rdf*|*朝日新聞　旅行*|*http://220.181.163.36:8080/logos/ja_JP/asahi.png
-rss*|*ライフスタイル*|*chengdujin*|*http://komachi-rss.yomiuri.co.jp/rss/yol/komachi/rss09*|*読売新聞　旅行*|*http://220.181.163.36:8080/logos/ja_JP/yomiuri.png
-rss*|*ライフスタイル*|*chengdujin*|*http://komachi-rss.yomiuri.co.jp/rss/yol/komachi/rss07*|*読売新聞　ファッション*|*http://220.181.163.36:8080/logos/ja_JP/yomiuri.png
-rss*|*ライフスタイル*|*chengdujin*|*http://komachi-rss.yomiuri.co.jp/rss/yol/komachi/rss08*|*読売新聞　趣味*|*http://220.181.163.36:8080/logos/ja_JP/yomiuri.png
-rss*|*ライフスタイル*|*chengdujin*|*http://komachi-rss.yomiuri.co.jp/rss/yol/komachi/rss02*|*読売新聞　キャリア*|*http://220.181.163.36:8080/logos/ja_JP/yomiuri.png
-rss*|*ライフスタイル*|*chengdujin*|*http://komachi-rss.yomiuri.co.jp/rss/yol/komachi/rss01*|*読売新聞　生活*|*http://220.181.163.36:8080/logos/ja_JP/yomiuri.png
-rss*|*ライフスタイル*|*chengdujin*|*http://wooris.jp/feed*|*WooRis（ウーリス）*|*http://220.181.163.36:8080/logos/ja_JP/wooris.png
-rss*|*ライフスタイル*|*chengdujin*|*http://feeds.kotaku.jp/rss/kotaku/index.xml*|*Kotaku 日本*|*http://220.181.163.36:8080/logos/ja_JP/kotaku.png
-rss*|*ライフスタイル*|*chengdujin*|*http://www.roomie.jp/feed/*|*roomie（ルーミー）*|*http://220.181.163.36:8080/logos/ja_JP/roomie.png
-rss*|*ライフスタイル*|*chengdujin*|*http://www.huffingtonpost.jp/feeds/verticals/japan/blog.xml*|*Huffinton Post ブログ*|*http://220.181.163.36:8080/logos/ja_JP/huffingtonpost.png
-rss*|*ライフスタイル*|*chengdujin*|*http://feeds.lifehacker.jp/rss/lifehacker/index.xml*|*ライフハッカー 日本*|*http://220.181.163.36:8080/logos/ja_JP/lifehacker.png
+rss*|*ニュース-->0*|*chengdujin*|*http://news.goo.ne.jp/rss/topstories/gootop/index.rdf*|*GOO 注目*|*http://220.181.163.36:8080/logos/ja_JP/goo.png*|*トップニュース
+rss*|*ニュース-->0*|*chengdujin*|*http://sankei.jp.msn.com/rss/news/points.xml*|*MSN産経ニュース 注目*|*http://220.181.163.36:8080/logos/ja_JP/msn.png*|*トップニュース
+rss*|*ニュース-->0*|*chengdujin*|*http://news.nifty.com/rss/topics_all.xml*|*Nifty すべての注目*|*http://220.181.163.36:8080/logos/ja_JP/nifty.png*|*トップニュース
+rss*|*ニュース-->0*|*chengdujin*|*http://news.goo.ne.jp/rss/topstories/nation/index.rdf*|*GOO*|*http://220.181.163.36:8080/logos/ja_JP/goo.png*|*国内ニュース
+rss*|*ニュース-->0*|*chengdujin*|*http://sankei.jp.msn.com/rss/news/politics.xml*|*産経新聞　政治*|*http://220.181.163.36:8080/logos/ja_JP/msn.png*|*国内ニュース
+rss*|*ニュース-->0*|*chengdujin*|*http://news.goo.ne.jp/rss/topstories/world/index.rdf*|*GOO 国際*|*http://220.181.163.36:8080/logos/ja_JP/goo.png*|*海外ニュース
+rss*|*ニュース-->0*|*chengdujin*|*http://sankei.jp.msn.com/rss/news/world.xml*|*MSN産経ニュース　国際*|*http://220.181.163.36:8080/logos/ja_JP/msn.png*|*海外ニュース
+rss*|*ニュース-->0*|*chengdujin*|*http://news.nifty.com/rss/topics_world.xml*|*Nifty 国際*|*http://220.181.163.36:8080/logos/ja_JP/nifty.png*|*海外ニュース
+rss*|*ニュース-->0*|*chengdujin*|*http://rss.excite.co.jp/rss/excite/odd*|*エキサイト*|*http://220.181.163.36:8080/logos/ja_JP/excite.png
+rss*|*ニュース-->0*|*chengdujin*|*http://www3.asahi.com/rss/international.rdf*|*朝日新聞　国際*|*http://220.181.163.36:8080/logos/ja_JP/asahi.png
+rss*|*ニュース-->0*|*chengdujin*|*http://feeds.cnn.co.jp/rss/cnn/cnn.rdf*|*CNN日本*|*http://220.181.163.36:8080/logos/ja_JP/cnn.png
+rss*|*ニュース-->0*|*chengdujin*|*http://feeds.reuters.com/reuters/JPWorldNews*|*ロイター日本*|*http://220.181.163.36:8080/logos/ja_JP/reuters.png
+rss*|*ニュース-->0*|*chengdujin*|*http://news.nifty.com/rss/topics_domestic.xml*|*Nifty*|*http://220.181.163.36:8080/logos/ja_JP/nifty.png
+rss*|*ニュース-->0*|*chengdujin*|*http://www3.asahi.com/rss/national.rdf*|*朝日新聞　国内*|*http://220.181.163.36:8080/logos/ja_JP/asahi.png
+rss*|*ニュース-->0*|*chengdujin*|*http://mainichi.jp/rss/etc/flash.rss*|*毎日新聞*|*http://220.181.163.36:8080/logos/ja_JP/mainichi.png
+rss*|*ニュース-->0*|*chengdujin*|*http://rss.yomiuri.co.jp/rss/yol/topstories*|*読売新聞 ニュース*|*http://220.181.163.36:8080/logos/ja_JP/yomiuri.png
+rss*|*ニュース-->0*|*chengdujin*|*http://www.huffingtonpost.jp/feeds/verticals/japan/news.xml*|*Huffington Post ニュース*|*http://220.181.163.36:8080/logos/ja_JP/huffingtonpost.png
+rss*|*ニュース-->0*|*chengdujin*|*http://www.kyodo.co.jp/feed/*|*共同通信社*|*http://220.181.163.36:8080/logos/ja_JP/kyodo.png
+twitter*|*ニュース-->0*|*chengdujin*|*https://twitter.com/navermatomenews*|*NAVERまとめ*|*http://220.181.163.36:8080/logos/ja_JP/default_icon.png
+twitter*|*ニュース-->0*|*chengdujin*|*https://twitter.com/2chnews_j*|*2chニュース*|*http://220.181.163.36:8080/logos/ja_JP/default_icon.png
+rss*|*経済-->1*|*chengdujin*|*http://news.goo.ne.jp/rss/topstories/business/index.rdf*|*GOO　経済*|*http://220.181.163.36:8080/logos/ja_JP/goo.png
+rss*|*経済-->1*|*chengdujin*|*http://sankei.jp.msn.com/rss/news/economy.xml*|*産経新聞　経済*|*http://220.181.163.36:8080/logos/ja_JP/msn.png
+rss*|*経済-->1*|*chengdujin*|*http://news.nifty.com/rss/topics_economy.xml*|*Nifty 経済*|*http://220.181.163.36:8080/logos/ja_JP/nifty.png
+rss*|*経済-->1*|*chengdujin*|*http://www3.asahi.com/rss/business.rdf*|*朝日新聞　経済*|*http://220.181.163.36:8080/logos/ja_JP/asahi.png
+rss*|*経済-->1*|*chengdujin*|*http://feeds.reuters.com/reuters/JPBusinessNews*|*ロイター日本　経済*|*http://220.181.163.36:8080/logos/ja_JP/reuters.png
+rss*|*エンタメ-->3*|*chengdujin*|*http://news.goo.ne.jp/rss/topstories/entertainment/index.rdf*|*GOO　エンターテインメント*|*http://220.181.163.36:8080/logos/ja_JP/goo.png
+rss*|*エンタメ-->3*|*chengdujin*|*http://sankei.jp.msn.com/rss/news/entertainments.xml*|*産経新聞　エンターテインメント*|*http://220.181.163.36:8080/logos/ja_JP/msn.png
+rss*|*エンタメ-->3*|*chengdujin*|*http://news.nifty.com/rss/topics_entame.xml*|*Nifty　エンターテインメント*|*http://220.181.163.36:8080/logos/ja_JP/nifty.png
+rss*|*エンタメ-->3*|*chengdujin*|*http://rss.asahi.com/rss/asahi/culture.rdf*|*朝日新聞　文化*|*http://220.181.163.36:8080/logos/ja_JP/asahi.png
+rss*|*エンタメ-->3*|*chengdujin*|*http://mainichi.jp/rss/etc/enta.rss*|*毎日新聞　エンターテインメント*|*http://220.181.163.36:8080/logos/ja_JP/mainichi.png
+rss*|*エンタメ-->3*|*chengdujin*|*http://feeds.reuters.com/reuters/JPEntertainment*|*ロイター日本　スポーツ*|*http://220.181.163.36:8080/logos/ja_JP/reuters.png
+rss*|*スポーツ-->4*|*chengdujin*|*http://news.goo.ne.jp/rss/topstories/sports/index.rdf*|*GOO スポーツ*|*http://220.181.163.36:8080/logos/ja_JP/goo.png
+rss*|*スポーツ-->4*|*chengdujin*|*http://sankei.jp.msn.com/rss/news/sports.xml*|*産経新聞　スポーツ*|*http://220.181.163.36:8080/logos/ja_JP/msn.png
+rss*|*スポーツ-->4*|*chengdujin*|*http://news.nifty.com/rss/topics_sports.xml*|*Nifty スポーツ*|*http://220.181.163.36:8080/logos/ja_JP/nifty.png
+rss*|*スポーツ-->4*|*chengdujin*|*http://www3.asahi.com/rss/sports.rdf*|*朝日新聞　スポーツ*|*http://220.181.163.36:8080/logos/ja_JP/asahi.png
+rss*|*スポーツ-->4*|*chengdujin*|*http://mainichi.jp/rss/etc/sports.rss*|*毎日新聞　スポーツ*|*http://220.181.163.36:8080/logos/ja_JP/mainichi.png
+rss*|*スポーツ-->4*|*chengdujin*|*http://feeds.reuters.com/reuters/JPSportsNews*|*ロイター日本　日本スポーツ*|*http://220.181.163.36:8080/logos/ja_JP/reuters.png
+rss*|*テクノロジー-->2*|*chengdujin*|*http://feeds.japan.cnet.com/rss/cnet/all.rdf*|*CNET 日本*|*http://220.181.163.36:8080/logos/ja_JP/cnet.png
+rss*|*テクノロジー-->2*|*chengdujin*|*http://sankei.jp.msn.com/rss/news/science.xml*|*産経新聞　サイエンス*|*http://220.181.163.36:8080/logos/ja_JP/msn.png
+rss*|*テクノロジー-->2*|*chengdujin*|*http://news.nifty.com/rss/topics_technology.xml*|*Nifty テクノロジー*|*http://220.181.163.36:8080/logos/ja_JP/nifty.png
+rss*|*テクノロジー-->2*|*chengdujin*|*http://www3.asahi.com/rss/digital.rdf*|*朝日新聞　デジタル*|*http://220.181.163.36:8080/logos/ja_JP/asahi.png
+rss*|*テクノロジー-->2*|*chengdujin*|*http://feeds.reuters.com/reuters/JPTechnologyNews*|*ロイター　テクノロジー*|*http://220.181.163.36:8080/logos/ja_JP/reuters.png
+rss*|*テクノロジー-->2*|*chengdujin*|*http://feed.rssad.jp/rss/techcrunch/feed*|*TechCrunch 日本 *|*http://220.181.163.36:8080/logos/ja_JP/crunch.png
+rss*|*テクノロジー-->2*|*chengdujin*|*http://feeds.gizmodo.jp/rss/gizmodo/index.xml*|*Gizmodo 日本 *|*http://220.181.163.36:8080/logos/ja_JP/gizmodo.png
+rss*|*ライフスタイル-->5*|*chengdujin*|*http://rss.asahi.com/rss/asahi/health.rdf*|*朝日新聞　健康*|*http://220.181.163.36:8080/logos/ja_JP/asahi.png
+rss*|*ライフスタイル-->5*|*chengdujin*|*http://sankei.jp.msn.com/rss/news/life.xml*|*産経新聞　ライフ*|*http://220.181.163.36:8080/logos/ja_JP/msn.png
+rss*|*ライフスタイル-->5*|*chengdujin*|*http://www.nikkeibp.co.jp/rss/medical.rdf*|*日経BP*|*http://220.181.163.36:8080/logos/ja_JP/nikkeibp.png
+rss*|*ライフスタイル-->5*|*chengdujin*|*http://community.travel.yahoo.co.jp/domestic/blog.html?m=rss*|*Yahoo ブログ*|*http://220.181.163.36:8080/logos/ja_JP/yahoo.png
+rss*|*ライフスタイル-->5*|*chengdujin*|*http://rss.asahi.com/rss/asahi/travel.rdf*|*朝日新聞　旅行*|*http://220.181.163.36:8080/logos/ja_JP/asahi.png
+rss*|*ライフスタイル-->5*|*chengdujin*|*http://komachi-rss.yomiuri.co.jp/rss/yol/komachi/rss09*|*読売新聞　旅行*|*http://220.181.163.36:8080/logos/ja_JP/yomiuri.png
+rss*|*ライフスタイル-->5*|*chengdujin*|*http://komachi-rss.yomiuri.co.jp/rss/yol/komachi/rss07*|*読売新聞　ファッション*|*http://220.181.163.36:8080/logos/ja_JP/yomiuri.png
+rss*|*ライフスタイル-->5*|*chengdujin*|*http://komachi-rss.yomiuri.co.jp/rss/yol/komachi/rss08*|*読売新聞　趣味*|*http://220.181.163.36:8080/logos/ja_JP/yomiuri.png
+rss*|*ライフスタイル-->5*|*chengdujin*|*http://komachi-rss.yomiuri.co.jp/rss/yol/komachi/rss02*|*読売新聞　キャリア*|*http://220.181.163.36:8080/logos/ja_JP/yomiuri.png
+rss*|*ライフスタイル-->5*|*chengdujin*|*http://komachi-rss.yomiuri.co.jp/rss/yol/komachi/rss01*|*読売新聞　生活*|*http://220.181.163.36:8080/logos/ja_JP/yomiuri.png
+rss*|*ライフスタイル-->5*|*chengdujin*|*http://wooris.jp/feed*|*WooRis（ウーリス）*|*http://220.181.163.36:8080/logos/ja_JP/wooris.png
+rss*|*ライフスタイル-->5*|*chengdujin*|*http://feeds.kotaku.jp/rss/kotaku/index.xml*|*Kotaku 日本*|*http://220.181.163.36:8080/logos/ja_JP/kotaku.png
+rss*|*ライフスタイル-->5*|*chengdujin*|*http://www.roomie.jp/feed/*|*roomie（ルーミー）*|*http://220.181.163.36:8080/logos/ja_JP/roomie.png
+rss*|*ライフスタイル-->5*|*chengdujin*|*http://www.huffingtonpost.jp/feeds/verticals/japan/blog.xml*|*Huffinton Post ブログ*|*http://220.181.163.36:8080/logos/ja_JP/huffingtonpost.png
+rss*|*ライフスタイル-->5*|*chengdujin*|*http://feeds.lifehacker.jp/rss/lifehacker/index.xml*|*ライフハッカー 日本*|*http://220.181.163.36:8080/logos/ja_JP/lifehacker.png
