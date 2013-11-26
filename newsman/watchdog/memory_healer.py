@@ -20,7 +20,7 @@ import calendar
 from config.settings import Collection, db
 from config.settings import rclient
 from datetime import datetime, timedelta
-from scraper import memory
+from spider import memory
 import time
 
 # CONSTANTS

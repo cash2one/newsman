@@ -19,7 +19,7 @@ sys.setdefaultencoding('UTF-8')
 
 from config.settings import Collection, db
 from config.settings import logger
-from scraper import spider
+from spider import scraper
 
 # CONSTANTS
 from config.settings import FEED_REGISTRAR
@@ -35,7 +35,7 @@ def _update(feed_ids):
 
     try:
         for feed_id in feed_ids:
-            updated = spider.update(feed_id=feed_id)
+            updated = scraper.update(feed_id=feed_id)
             if not updated:
                 logger.info('Nothing got updated from %s' % feed_id)
             else:

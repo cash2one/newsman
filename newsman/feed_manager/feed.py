@@ -17,7 +17,7 @@ sys.path.append("..")
 from config.settings import logger
 import database as db_feeds
 import feedparser
-from scraper import spider
+from spider import scraper
 import socket
 socket.setdefaulttimeout(10)  # 10 seconds
 
@@ -77,7 +77,7 @@ def add(feed_link=None, language=None, categories=None, transcoder_type="chengdu
                 if feed_id:
                     # add entries of this feed
                     # the FINAL return
-                    return spider.update(feed_link=feed_link, feed_id=feed_id, language=language, categories=categories, transcoder_type=transcoder_type)
+                    return scraper.update(feed_link=feed_link, feed_id=feed_id, language=language, categories=categories, transcoder_type=transcoder_type)
                 else:
                     logger.error('Cannot save feed in database')
                     return None
