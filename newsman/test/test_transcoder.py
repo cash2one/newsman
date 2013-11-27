@@ -10,7 +10,7 @@ from processor import transcoder
 
 
 def _main(language, url, trans):
-    print transcoder.convert(language, '123 test', url, trans, 'test')
+    print transcoder.convert(language, '123 test', url, 1385035380, 'Engadget', trans, 'test')
 
 if __name__ == "__main__":
     url = sys.argv[1]
