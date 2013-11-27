@@ -103,8 +103,8 @@ def find_biggest_image(images=None):
 
     try:
         biggest = None
+        resolution_max = MIN_IMAGE_SIZE[0] * MIN_IMAGE_SIZE[1]
         for image in images:
-            resolution_max = MIN_IMAGE_SIZE[0] * MIN_IMAGE_SIZE[1]
             if 'width' in image and 'height' in image:
                 resolution_image = int(image['width']) * int(image['height'])
                 if resolution_image > resolution_max:
