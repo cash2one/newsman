@@ -413,7 +413,8 @@ def _url_image_exists(url):
         response = conn.getresponse()
         conn.close()
         ctype = response.getheader('Content-Type')
-        return response.status < 400 and ctype.startswith('image')
+        #return response.status < 400 and ctype.startswith('image')
+        return response.status < 400
     except Exception as k:
         logger.info(str(k))
         return False
