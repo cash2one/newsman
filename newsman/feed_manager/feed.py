@@ -66,6 +66,9 @@ def add(feed_link=None, language=None, categories=None, transcoder_type="chengdu
     if not feed_link or not language:
         logger.error("[feed.add] ERROR: Method not well formed!")
         return None
+    if not isinstance(categories, dict):
+        logger.error('categories should be a dictionary')
+        return None
 
     try:
         d = feedparser.parse(feed_link)

@@ -122,7 +122,7 @@ def remove_feed(language=None, feed=None):
     return 'OK'
 
 
-def add_feed_to_label(language=None, feed=None, label=None):
+def add_feed_to_label(language=None, feed=None, label=None, label_order=None):
     """
     Ad hoc add a feed to label. This mainly deals with history data
     """
@@ -134,7 +134,7 @@ def add_feed_to_label(language=None, feed=None, label=None):
     item = feeds.find_one({'feed_title': feed})
     if item:
         if label not in item['labels']:
-            item['labels'].append(label)
+            item['labels'][label] = label_order
             feeds.update({'_id': item['_id']}. item)
 
             # add entries in memory of the feed
@@ -188,9 +188,9 @@ def remove_feed_from_label(language=None, feed=None, label=None):
 
     # remove label in feed
     feeds = Collection(db, FEED_REGISTRAR)
-    item = feeds.find_one({'feed_title': feed, 'labels': label})
+    item = feeds.find_one({'feed_title': feed, '%s.%s' % ('labels', label): {'$exists': True}})
     if item:
-        item['labels'].remove(label)
+        item['labels'].pop(label)
         feeds.update({'_id': item['_id']}, item)
         return 'OK'
 
@@ -216,15 +216,12 @@ def remove_label(language=None, label=None):
 
     # operate on database with or without memory
     feeds = Collection(db, FEED_REGISTRAR)
-    items = feeds.find({'language': language, 'labels': label})
+    items = feeds.find({'language': language, '%s.%s' % ('labels', label): {'$exists': True}})
     if items:
         for item in items:
-            new_item = item
             _id = item['_id']
-            labels = item['labels']
-            labels.remove(label)
-            new_item['labels'] = labels
-            feeds.update({'_id': _id}, new_item)
+            item['labels'].pop(label)
+            feeds.update({'_id': _id}, item)
         return 'OK'
     return None
 
@@ -237,35 +234,30 @@ def update_label(language=None, label=None):
         return None
 
     feeds = Collection(db, FEED_REGISTRAR)
-    items = feeds.find({'language'=language, 'labels': label})
+    items = feeds.find({'language'=language, '%s.%s' % ('labels', label): {'$exists': True}})
     if items:
         feeds_with_label = [item['feed_title'] for item in items]
 
-    if feeds_with_label:
-        label_name_in_memory = 'news::%s::%s' % (language, label)
-        # remove all existing data regarding this label in memory
-        if rclient.exsits(label_name_in_memory):
-            label_total_in_memory = rclient.zcard(label_name_in_memory)
-            # remove sequence in label_name_in_memory
-            rclient.zremrangebyrank(
-                label_name_in_memory, 0, label_total_in_memory)
+        if feeds_with_label:
+            label_name_in_memory = 'news::%s::%s' % (language, label)
+            # remove all existing data regarding this label in memory
+            if rclient.exsits(label_name_in_memory):
+                label_total_in_memory = rclient.zcard(label_name_in_memory)
+                # remove sequence in label_name_in_memory
+                rclient.zremrangebyrank(label_name_in_memory, 0, label_total_in_memory)
 
-            # reload entries of feeds to the sequence
-            ids_all = rclient.keys('*')
-            for id_in_memory in ids_all:
-                if 'news' not in id_in_memory and '::' not in id_in_memory:
-                    item = eval(rclient.get(id_in_memory))
-                    if item['feed'] in feeds_with_label:
-                        rclient.zadd(
-                            label_name_in_memory, item['updated'], item['_id'])
-            return 'OK'
-        else:
-            return None
-    else:
-        return None
+                # reload entries of feeds to the sequence
+                ids_all = rclient.keys('*')
+                for id_in_memory in ids_all:
+                    if 'news' not in id_in_memory and '::' not in id_in_memory:
+                        item = eval(rclient.get(id_in_memory))
+                        if item['feed'] in feeds_with_label:
+                            rclient.zadd(label_name_in_memory, item['updated'], item['_id'])
+                return 'OK'
+    return None
 
 
-def modify_label(language=None, label_old=None, label_new=None):
+def modify_label(language=None, label_old=None, label_new=None, label_new_order=None):
     """
     Call this one if the name a label is changed
     """
@@ -274,12 +266,14 @@ def modify_label(language=None, label_old=None, label_new=None):
 
     # update feeds with old label names to new ones
     feeds = Collection(db, FEED_REGISTRAR)
+
+    items = feeds.find({'%s.%s' % ('labels', label_old): {'$exists':True}})
     items = feeds.find({'labels': label_old})
     if items:
         for item in items:
             if label_old in item['labels']:
-                item['labels'].remove(label_old)
-                item['labels'].append(label_new)
+                item['labels'].pop(label_old)
+                item['labels'][label_new] = label_new_order
                 feeds.update({'_id': item['_id']}, item)
 
     # rename old label to new one in memory

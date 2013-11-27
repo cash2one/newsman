@@ -295,7 +295,7 @@ def update(feed_link=None, feed_id=None, language=None, categories=None, transco
             feed_id = str(feed['_id'])
             feed_link = feed['feed_link']
             language = feed['language']
-            categories = feed['categories']
+            categories = feed['categories'].keys()
             transcoder_type = feed['transcoder']
             parser_type = feed['parser']
             feed_title = feed_title_new = feed[
