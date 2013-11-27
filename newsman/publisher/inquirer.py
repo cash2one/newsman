@@ -134,12 +134,12 @@ def get_categories(language=None, country=None, version=None):
                         feed_format = {'order': 100000, 'text': str(item['feed_title'])}
                     categories[category_name].append(feed_format)
 
-            ITEM_ADDED = False
-            for item in output:
-                if item['Category']['text'] == category_name:
-                    ITEM_ADDED = True
+            CAT_ADDED = False
+            for cat in output:
+                if cat['Category']['text'] == category_name:
+                    CAT_ADDED = True
                     break
-            if not ITEM_ADDED:
+            if not CAT_ADDED:
                 output.append({'Category':{'text':category_name, 'order':int(category_order)}})
 
             # add label to the category dictionary
