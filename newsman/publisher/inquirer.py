@@ -169,7 +169,7 @@ def get_categories(language=None, country=None, version=None):
             category_name = item['Category']['text']
             feeds_and_labels = categories[category_name]
             item['Feeds'] = feeds_and_labels
-            item['Order'] = item['Cateogry']['order']
+            item['Order'] = item['Category']['order']
             item['Category'].pop('order')
 
         # compute version number
