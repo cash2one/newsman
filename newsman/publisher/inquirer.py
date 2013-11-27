@@ -144,10 +144,9 @@ def get_categories(language=None, country=None, version=None):
 
             # add label to the category dictionary
             if 'labels' in item and item['labels']:
-                for label, label_order in item['labels'].iteritems:
+                for label, label_order in item['labels'].iteritems():
                     if label.startswith(country):
-                        label_split = label.replace(
-                            '%s::' % country, "").split('::')
+                        label_split = label.replace('%s::' % country, "").split('::')
                         category_name = str(label_split[0])
                         label_name = str(label_split[1])
                         if category_name not in categories:
