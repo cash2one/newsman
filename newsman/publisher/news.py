@@ -63,7 +63,7 @@ def _read_http(environ):
     bundle = {}
     # note, CREATE output BY HAND and CHMOD it before executing the following
     # or you will get a "You don't have permission to ...."
-    # f = open('/var/www/wsgi/output', 'w')
+    # f = open('/home/work/output', 'w')
     for key in bin_data.keys():
         bundle[key] = bin_data[key].value
     # f.write('Command\n%s\n\n' % str(bundle))
