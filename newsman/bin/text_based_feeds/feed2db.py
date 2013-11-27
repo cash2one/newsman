@@ -66,26 +66,32 @@ def _convert(language='en', country=None):
                 category_and_order_splits = category_and_order.split('-->')
                 category = category_order = None
                 if len(category_and_order_splits) > 1:
-                    category = u'%s::%s' % (country, category_and_order_splits[0].strip())
+                    category = u'%s::%s' % (
+                        country, category_and_order_splits[0].strip())
                     category_order = category_and_order_splits[1].strip()
                 else:
-                    category = u'%s::%s' % (country, category_and_order_splits[0])
+                    category = u'%s::%s' % (
+                        country, category_and_order_splits[0])
 
                 # break labels
                 labels = {}
                 if labels_and_orders:
                     labels_and_orders_splits = labels_and_orders.split(',')
                     for label_and_order in labels_and_orders_splits:
-                        label_and_order_splits = label_and_order.strip().split('-->')
-                        # every label has a label and its order, unlike category
-                        label = u'%s::%s' % (category, label_and_order_splits[0].strip())
+                        label_and_order_splits = label_and_order.strip().split(
+                            '-->')
+                        # every label has a label and its order, unlike
+                        # category
+                        label = u'%s::%s' % (
+                            category, label_and_order_splits[0].strip())
                         label_order = label_and_order_splits[1].strip()
                         labels[label] = label_order
 
                 existing_item = db_feeds.find_one({'feed_link': feed_link})
                 if not existing_item:
                     feed_logo = {'url': feed_logo, 'width': 71, 'height': 60}
-                    _id = db_feeds.save({'language': language, 'countries': [country], 'feed_link': feed_link, 'categories': {category: category_order}, 'labels': labels, 'feed_title': feed_title, 'latest_update': None, 'updated_times': 0, 'transcoder': transcoder, 'feed_logo': feed_logo, 'parser':parser})
+                    _id = db_feeds.save({'language': language, 'countries': [country], 'feed_link': feed_link, 'categories': {
+                                        category: category_order}, 'labels': labels, 'feed_title': feed_title, 'latest_update': None, 'updated_times': 0, 'transcoder': transcoder, 'feed_logo': feed_logo, 'parser': parser})
                     db_id_list.write(str(_id) + '\n')
                 else:
                     existing_item['language'] = language
@@ -100,7 +106,8 @@ def _convert(language='en', country=None):
                     if isinstance(existing_item['labels'], list):
                         existing_item['labels'] = {}
                     if existing_item['labels']:
-                        existing_item['labels'] = dict(existing_item['labels'].items() + labels.items())
+                        existing_item['labels'] = dict(
+                            existing_item['labels'].items() + labels.items())
                     else:
                         existing_item['labels'] = labels
 
@@ -112,7 +119,8 @@ def _convert(language='en', country=None):
                     existing_item['feed_title'] = feed_title
                     existing_item['feed_logo'] = {
                         'url': feed_logo, 'width': 71, 'height': 60}
-                    db_feeds.update({'_id': existing_item['_id']}, existing_item)
+                    db_feeds.update(
+                        {'_id': existing_item['_id']}, existing_item)
                     db_id_list.write(str(existing_item['_id']) + '\n')
             else:
                 continue
