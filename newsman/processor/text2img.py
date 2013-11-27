@@ -94,7 +94,7 @@ class Text2Image:
             return None
 
         try:
-            img_fraction = 0.83
+            img_fraction = 0.67
             self._font = ImageFont.truetype(self._font_path, self._font_size)
 
             # adjust font size by text
@@ -215,7 +215,7 @@ class Text2Image:
         try:
             for count, sentence in enumerate(sentences):
                 width, height = self._font.getsize(sentence)
-                if ((count + 1.5) * height + 30 + count * 16) > self._image.size[1]:
+                if ((count + 2) * height + 30 + count * 16) > self._image.size[1]:
                     sentence = ". . . . . ."
                     self._draw.text(((self._image.size[0] - 30) / 2 - self._font.getsize(sentence)[0] / 2, (
                         (count - 1) * height) + 30 + height / 2 + count * 8), sentence, fill=self._font_color, font=self._font)
