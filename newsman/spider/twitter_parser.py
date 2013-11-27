@@ -1,5 +1,5 @@
-#!/usr/bin/env python 
-#-*- coding: utf-8 -*- 
+#!/usr/bin/env python
+#-*- coding: utf-8 -*-
 
 """
 Twitter parser parses specific twitter account in real time
@@ -9,8 +9,8 @@ Twitter parser parses specific twitter account in real time
 # @created Nov. 19, 2013
 
 
-import sys 
-reload(sys) 
+import sys
+reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
@@ -26,7 +26,8 @@ from config.settings import TWITTER_CONSUMER_KEY
 from config.settings import TWITTER_CONSUMER_SECRET
 
 # twitter api interface
-api = twitter.Api(TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET, TWITTER_ACCESS_TOKEN_KEY, TWITTER_ACCESS_TOKEN_SECRET)
+api = twitter.Api(TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET,
+                  TWITTER_ACCESS_TOKEN_KEY, TWITTER_ACCESS_TOKEN_SECRET)
 
 
 def _read_entry(status):
@@ -40,7 +41,8 @@ def _read_entry(status):
     try:
         if status.text:
             entry = {}
-            splits = [t.strip() for t in status.text.split() if t.strip() and not t.startswith('#') and 't.co' not in t]
+            splits = [t.strip()
+                      for t in status.text.split() if t.strip() and not t.startswith('#') and 't.co' not in t]
             entry['title'] = ''.join(splits)
             entry['updated_human'] = status.created_at
             entry['updated'] = status.created_at_in_seconds
@@ -81,11 +83,11 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
         return None, None, None, None, None
     if not language or language not in LANGUAGES:
         logger.error('Language %s not supported!' % language)
-        return None, None, None, None, None 
+        return None, None, None, None, None
     if not categories:
         logger.error('No category is found!')
-        return None, None, None, None, None 
-        
+        return None, None, None, None, None
+
     try:
         screen_name = feed_link.split('/')[-1]
         # since_id is the latest stored tweet id
@@ -104,10 +106,10 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
                 entry['language'] = language
                 entry['categories'] = categories
                 entries.append(entry)
-        return entries, 200, feed_title, etag_new if etag_new else etag, 'Ok' 
+        return entries, 200, feed_title, etag_new if etag_new else etag, 'Ok'
     except Exception as k:
         logger.error(str(k))
-        return None, None, None, None, str(k) 
+        return None, None, None, None, str(k)
 
 
 if __name__ == "__main__":
