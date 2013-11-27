@@ -21,6 +21,7 @@ import nltk
 import re
 import subprocess
 import textwrap
+import tinysegmenter
 
 # CONSTATNS
 from config.settings import CATEGORY_IMAGE_SIZE
@@ -119,9 +120,13 @@ class Text2Image:
                     chardet.detect(self._text)['encoding'], 'ignore')
 
             # special: thai, arabic
-            if self._language == 'zh' or self._language == 'ja':
+            if self._language == 'zh':
                 cj_punctuation = u"""-|〃|。|．|\.|!|！|\?|？|、|-|〟|〰|-|-|＊|，|,|-|／|：|-|；|-|-|＿|-|･|‐|-|―|-|…|-|‧|﹏"""
                 sentences = re.split(cj_punctuation, self._text)
+            if self._language == 'ja':
+                segmenter = tinysegmenter.TinySegmenter()
+                sentences = segmenter.tokenize(self._text)
+                sentences = [sentence for sentence in sentences if sentence.strip()]
             elif self._language == 'th':
                 command = 'echo "%s" | %s %s/scw.conf %s' % (
                     str(self._text), THAI_WORDSEG, THAI_WORDSEG_DICT, THAI_WORDSEG_DICT)
@@ -144,7 +149,7 @@ class Text2Image:
                             #    print  str(mode)
                             # u'|' is very crucial(, instead of '|')
                             sentences = [
-                                sentence for sentence in modes[1].split(u'|') if sentence]
+                                sentence for sentence in modes[2].split(u'|') if sentence]
             else:  # latin-based
                 sentences = nltk.sent_tokenize(self._text)
 
@@ -166,8 +171,12 @@ class Text2Image:
                     # print str(current_line)
                     if previous_line:
                         # print '  previous', str(previous_line)
-                        possible_line = u"%s %s" % (
-                            previous_line, current_line)
+                        possible_line = ""
+                        if self._language in ['en', 'in', 'pt']:
+                            possible_line = u"%s %s" % (previous_line, current_line)
+                        else:
+                            possible_line = u"%s%s" % (previous_line, current_line)
+
                         if len(textwrap.wrap(possible_line, self._text_width)) == 1:
                             # print '    possible', str(possible_line)
                             previous_line = possible_line

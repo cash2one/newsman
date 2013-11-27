@@ -191,7 +191,7 @@ class PyTeaser:
                             # modes[2]: basic wordseg
                             # modes[3]: subphrase seg
                             words = [word.strip()
-                                     for word in modes[2].split('|') if word.strip()]
+                                     for word in modes[2].split(u'|') if word.strip()]
                         # remove punctuation
                         words = [
                             word for word in words if word not in thai_punctuation]
