@@ -501,67 +501,69 @@ class PyTeaser:
 
 
 if __name__ == '__main__':
-    """
     language = 'en'
-    title = "McDonald's Theory"
-    
-    text = I use a trick with co-workers when we’re trying to decide where to eat for lunch and no one has any ideas. I recommend McDonald’s.
-    
-    An interesting thing happens. Everyone unanimously agrees that we can’t possibly go to McDonald’s, and better lunch suggestions emerge. Magic!
-    
-    It’s as if we’ve broken the ice with the worst possible idea, and now that the discussion has started, people suddenly get very creative. I call it the McDonald’s Theory: people are inspired to come up with good ideas to ward off bad ones.
-    
-    This is a technique I use a lot at work. Projects start in different ways. Sometimes you’re handed a formal brief. Sometimes you hear a rumor that something might be coming so you start thinking about it early. Other times you’ve been playing with an idea for months or years before sharing with your team. There’s no defined process for all creative work, but I’ve come to believe that all creative endeavors share one thing: the second step is easier than the first. Always.
-    
-    Anne Lamott advocates “shitty first drafts,” Nike tells us to “Just Do It,” and I recommend McDonald’s just to get people so grossed out they come up with a better idea. It’s all the same thing. Lamott, Nike, and McDonald’s Theory are all saying that the first step isn’t as hard as we make it out to be. Once I got an email from Steve Jobs, and it was just one word: “Go!” Exactly. Dive in. Do. Stop over-thinking it.
-    
-    The next time you have an idea rolling around in your head, find the courage to quiet your inner critic just long enough to get a piece of paper and a pen, then just start sketching it. “But I don’t have a long time for this!” you might think. Or, “The idea is probably stupid,” or, “Maybe I’ll go online and click around for—”
-    
-    No. Shut up. Stop sabotaging yourself.
-    
-    The same goes for groups of people at work. The next time a project is being discussed in its early stages, grab a marker, go to the board, and throw something up there. The idea will probably be stupid, but that’s good! McDonald’s Theory teaches us that it will trigger the group into action.
-    
-    It takes a crazy kind of courage, of focus, of foolhardy perseverance to quiet all those doubts long enough to move forward. But it’s possible, you just have to start. Bust down that first barrier and just get things on the page. It’s not the kind of thing you can do in your head, you have to write something, sketch something, do something, and then revise off it.
-    
-    Not sure how to start? Sketch a few shapes, then label them. Say, “This is probably crazy, but what if we.…” and try to make your sketch fit the problem you’re trying to solve. Like a magic spell, the moment you put the stuff on the board, something incredible will happen. The room will see your ideas, will offer their own, will revise your thinking, and by the end of 15 minutes, 30 minutes, an hour, you’ll have made progress.
-    
-    That’s how it’s done."""
+    title = "Apple Literally Stole My Thunder"
+    text = """I’ve been a developer for iOS since one could develop for iOS. And I’ve created a lot of apps, some very successful. As such, I’ve had my fair share of rejections, both warranted and unwarranted. I’m not one to complain, but this latest is simply unbearable.
 
-    """
-    language = 'ja'
-    title = "日印との関係重視、ブータン首相インタビュー…中国と国交樹立急がず"
-    text = 【ティンプー＝岩田智雄】親日国として知られるブータンのツェリン・トブゲイ首相（４８）が５日、首都ティンプーの首相府で産経新聞の単独インタビューに応じ、日本と隣国インドとの関係を重視していく方針を強調した。国境問題を抱える中国との早期の国交樹立については、否定的な見解を示した。
-    
-    　首相就任後、日本メディアのインタビューに応じたのは初めて。７月の総選挙で当時野党の国民民主党を率いて勝利したトブゲイ氏は、日本政府がブータンでの大使館開設を検討していることを「非常に良いニュースだ」と評価、「２国間関係は極めて良好で、発展させていく政策に前政権から変更はない」と述べた。
-    
-    　農業、道路や橋の建設、教育分野での日本からの援助の拡大と円借款の供与に期待を示すとともに、「将来の日本訪問を楽しみにしている」と語った。
-    
-    　トブゲイ氏は前政権の対中接近で後退したと批判されるインドとの関係改善に取り組んでいる。インドについて「とても緊密な友人であり隣人だ。経済でブータンを大いに助けてくれている。大国と小国の関係のモデルだ」とし、緊密な関係を維持すると表明した。
-    
-    　一方、中国に関し、「すべての国、特に隣人との友好が大切で、中国もそうだというのが現実だ」としながらも、今後の対中関係については「優先事項は国境問題を解決することだ」と強調した。その上で、前政権が一時、検討した中国との外交関係の樹立に関し、「他の問題は国境問題の解決後だ」と明らかにした。"""
+The first app I ever developed is still sitting in iTunes Connect. At the time it was innovative, but the world has moved on. Back before there was “an app for that”—before the most popular sites, even Google, became mobile (or responsive)—there was an app I made called, simply, “Images.”
 
-    """
-    language = 'zh'
-    title = "百度推金融中心，为啥要属于移动事业部？"
-    text = 昨天（10月28日）百度正式上线的“百发”应该已经无人不知了。然而，相比8%，12万等数字还有百度金融中心到底是不是互联网金融产品的争论，更让人感兴趣的是，百发依托的“百度金融中心”平台在28日贴出的一张销售额的数据图上，明确写着“百度移动云事业部钱包及支付发展部”，也就是说，针对个人用户的百度金融中心隶属于李明远负责的百度移动云事业部。
-    
-    从金融小闭环切入，建立完善的账号体系
-    
-    根据百度方提供的数据，移动APP月度有效时间占比截止目前较PC已经超过80%。这个移动事业部旗下的金融中心，同时挑明了百度在移动端的布局和战略。虽然在搜索、分发方向业务十分成熟，但是百度一直面临一个无法回避的问题：不同于腾讯和阿里，百度缺乏一个完善的账号体系。虽然旗下产品众多，但不管是PC端还是移动端，百度还未能在用户与账号之间建立一种难以分割的强联系。
-    
-    在腾讯和阿里分别从移动通讯和电商切入移动端建立了自己的账号体系后，百度该从何处切入建立自己完善的账号体系成为当务之急，而现在看来，百度选择了金融——用金融理财产品推进支付工具百付宝，再通过百付宝建立起一套完善的账号体系：一边借助自己的分发能力拉拢应用开发者植入百度支付SDK，一边通过百度系应用为自己的支付体系吸引更多用户，将业务由金融推向其他，应该是百度将面向个人用户的“百度金融中心”放在移动云事业部旗下的重要原因。
-    
-    而在体系被建立起来之后，百度在移动端的选择面会更广：按照百度自己对于百付宝移动支付业务的描述，前向收费中的对象包括百度音乐和百度游戏（看来百度也要进军游戏了，今天还有一则消息说阿里要进军游戏产业）；甚至更进一步，百度可以借着自己的搜索能力将原先在互联网折戟沉沙的，包括电商在内的业务重新做一次尝试（比如今天推出那个“静态页面”）；而且移动支付属于底层核心业务，可以以不同的形态与现有产品结合，百度的战略已经比较清晰。
-    
-    对于百度移动事业部的老大李明远来说，在做成贴吧、地图后，能否成功在移动端建立起一个完善的账号体系，也成为他的第三个挑战。"""
+It did one thing, and it did it well: show you images of whatever you searched for. Essentially, it did what Google Images does now on their mobile-optimized site: show you a text field with large, swipable images below. The idea was, if you were out at a party and didn’t know what a honeybadger looked like, you could get that info to share in as few taps as possible.
 
-    language = 'th'
-    title = """เตรียมประกาศยุทธศาสตร์พัฒนาคุณภาพผู้เรียน"""
-    text = """รมว.ศึกษาธิการ เผย การเดินหน้ายกระดับคุณภาพมาตรฐานการศึกษาไทยทั้ง 5 ด้าน มีความคืบหน้ามาก โดยจะมีการรณรงค์ให้ครูและนักเรีียนมีความเข้าใจเพื่อยกระดับผลสัมฤทธิ์ การประเมินผลนานาชาติ (PISA) เพื่อนำเอาข้อมูลที่ได้มาสนับสนุนเพื่อยกระดับคุณภาพการเรียนการสอนให้กับโรงเรียนขยายโอกาสต่อไป...
-    
-    นายจาตุรนต์ ฉายแสง รมว.ศึกษาธิการ กล่าวภายหลังการประชุมเสวนา “กลยุทธ์การเร่งรัดคุณภาพผู้เรียนสู่การยกระดับคุณภาพการศึกษาไทยตามนโยบาย” ว่า การเดินหน้ายกระดับคุณภาพมาตรฐานการศึกษาไทยทั้ง 5 ด้าน ได้แก่ 1.แผนยุทธศาสตร์การพัฒนาคุณภาพการจัดการเรียนการสอนเพื่อยกระดับผลสัมฤทธิ์ การประเมินผลนานาชาติ (PISA) 2.แผนยุทธศาสตร์การเร่งรัดการอ่านออก เขียนได้ และทวิภาษา 3.แผนการดำเนินงานด้านภาษาจีน ภาษาอังกฤษและภาษาต่างประเทศที่สองอื่นๆ 4.แผนพัฒนาทักษะการคิดวิเคราะห์ และ 5.แผนการพัฒนาการวัดและประเมินสมรรถนะของผู้เรียน มีความคืบหน้าไปมาก และจะประกาศเป็นยุทธศาสตร์ มาตรการ และแผนงานสู่การปฏิบัติที่จะทำให้เห็นถึงการปฏิรูปการศึกษาที่เกิดการเปลี่ยนแปลงที่ชัดเจน เช่น จะปรับเปลี่ยนการเรียนการสอนวิชาภาษาต่างๆอย่างไรให้เด็กคิด วิเคราะห์ และเข้าใจง่ายขึ้น รวมถึงรณรงค์ให้ครู และนักเรียนมีความเข้าใจเพื่อยกระดับผลสัมฤทธิ์ทางการศึกษา PISA ให้สูงขึ้น
-    
-    รมว.ศึกษาธิการกล่าวต่อว่า ส่วนข้อมูลของคณะกรรมการกำหนดแผนยุทธศาสตร์การพัฒนา คุณภาพการจัดการเรียนการสอนเพื่อยกระดับผลสัมฤทธิ์ PISA ได้นำเสนอข้อมูลว่าสาเหตุที่โรงเรียนขยายโอกาสทางการศึกษามีผลสัมฤทธิ์ทางการเรียนต่ำกว่าโรงเรียนประเภทอื่นๆ เนื่องจากได้รับการสนับสนุนด้านทรัพยากร และครูค่อนข้างน้อยนั้น ก็จะนำมาเป็นข้อมูลสนับสนุนเพื่อยกระดับคุณภาพการเรียนการสอนให้กับโรงเรียนขยายโอกาสต่อไป."""
+Apple rejected it. Back then, you were just rejected, with no rhyme nor reason. You actually had to write in just to request you be given an explanation. I did just that. The reason: porn. Since you could type in anything and get an image for it, you could also type in lewd text and possibly receive an explicit image. Any app that allowed this, they said, would be rejected. Nevermind that you could also go to Google images using the native Safari app and do exactly the same thing.
+
+I fought, but lost. This was a big enough “fuck you” that I swore I’d never write another iPhone app.
+
+The App Store eventually became more transparent and logical with its review process. And I didn’t stop developing iPhone apps for more than a few months: I enjoyed it too much, and knew, for better or worse, that it was the future. That app still sits there, never to see the light of day. It was a lot of work back then, for nothing, but I’ve moved on to create a few successful indie apps.
+
+My latest rejection, however, has me fuming — of a weather app I developed a few months ago. Now, I personally see weather apps, like to-do apps and flashlight apps before them, to be one of those lowest-common-denominator apps. They’re relatively easy to build, so lots of them get built by mediocre developers, and the store gets overrun. I was fully aware of this going in.
+
+“There was thunderous applause.”
+Which is why I was determined to build something magical, something I’d not seen before. While Apple’s own weather app had nice realistic graphics of weather conditions, other apps were trending toward a very minimal interface using a simple vector icon to represent the weather. I wanted to build something that would appear as if you were looking out of a window. I created OpenGL animations for various weather conditions, including a thunderstorm. Not a video, mind you, but computer generated conditions that looked and moved realistically—weather CGI, essentially. Apple rejected it on the grounds that it was too simple: “We encourage you to review your app concept and evaluate whether you can incorporate additional content and features.”
+
+Originally I wanted to test the waters for such an interface, to see if people would like it before I added additional features—but I was willing to play ball. So I added some things I’d planned to hold off until later. The app integrated with your calendar. It showed hourly forecasts with minute-by-minute precision, and beyond. It showed sunrise and sunset with its animations and a nice moon at the correct phase. It would even notify you of inclement weather without you having to lift a finger.
+
+It was also rejected. This time, the reason read: “It is less about a specific quantity of features…Rather, it is about the experience the app provides.” Does this strike anyone as unfair?
+
+Apple states, in legalese:
+
+“Apps should be engaging and exciting, enabling users to do something they couldn’t do before; or to do something in a way they couldn’t do before or better than they could do it before.”
+Everyone can get to the weather, that’s a given. But no one had built anything that let you do it this way before. I eventually gave up, though. I suppose I trusted Apple—if they said that no one wanted to see weather in a beautiful realistic animation, then no one wanted to see it.
+
+You might understand my shock when they unveiled a revamped weather app today. And its most defining new feature? Animated weather. Rain fell, snow drifted, hail dropped, and thunderstorms stormed—just as my app had so confidently done months before. And the audience loved it. When the lightning flashed, there was thunderous applause.
+
+I’m not naive enough to claim Apple actually took my idea. I’m sure they happened to be working on a similar concept. I’m just saying they may have unfairly biased the review process, not wishing for someone to debut a key new aspect of their beloved OS before they were able to do so—not wanting anyone to steal their thunder.
+
+According to Apple, no one wanted a flashy weather app. They were so certain of this, they built one themselves.I’ve been a developer for iOS since one could develop for iOS. And I’ve created a lot of apps, some very successful. As such, I’ve had my fair share of rejections, both warranted and unwarranted. I’m not one to complain, but this latest is simply unbearable.
+
+The first app I ever developed is still sitting in iTunes Connect. At the time it was innovative, but the world has moved on. Back before there was “an app for that”—before the most popular sites, even Google, became mobile (or responsive)—there was an app I made called, simply, “Images.”
+
+It did one thing, and it did it well: show you images of whatever you searched for. Essentially, it did what Google Images does now on their mobile-optimized site: show you a text field with large, swipable images below. The idea was, if you were out at a party and didn’t know what a honeybadger looked like, you could get that info to share in as few taps as possible.
+
+Apple rejected it. Back then, you were just rejected, with no rhyme nor reason. You actually had to write in just to request you be given an explanation. I did just that. The reason: porn. Since you could type in anything and get an image for it, you could also type in lewd text and possibly receive an explicit image. Any app that allowed this, they said, would be rejected. Nevermind that you could also go to Google images using the native Safari app and do exactly the same thing.
+
+I fought, but lost. This was a big enough “fuck you” that I swore I’d never write another iPhone app.
+
+The App Store eventually became more transparent and logical with its review process. And I didn’t stop developing iPhone apps for more than a few months: I enjoyed it too much, and knew, for better or worse, that it was the future. That app still sits there, never to see the light of day. It was a lot of work back then, for nothing, but I’ve moved on to create a few successful indie apps.
+
+My latest rejection, however, has me fuming — of a weather app I developed a few months ago. Now, I personally see weather apps, like to-do apps and flashlight apps before them, to be one of those lowest-common-denominator apps. They’re relatively easy to build, so lots of them get built by mediocre developers, and the store gets overrun. I was fully aware of this going in.
+
+“There was thunderous applause.”
+Which is why I was determined to build something magical, something I’d not seen before. While Apple’s own weather app had nice realistic graphics of weather conditions, other apps were trending toward a very minimal interface using a simple vector icon to represent the weather. I wanted to build something that would appear as if you were looking out of a window. I created OpenGL animations for various weather conditions, including a thunderstorm. Not a video, mind you, but computer generated conditions that looked and moved realistically—weather CGI, essentially. Apple rejected it on the grounds that it was too simple: “We encourage you to review your app concept and evaluate whether you can incorporate additional content and features.”
+
+Originally I wanted to test the waters for such an interface, to see if people would like it before I added additional features—but I was willing to play ball. So I added some things I’d planned to hold off until later. The app integrated with your calendar. It showed hourly forecasts with minute-by-minute precision, and beyond. It showed sunrise and sunset with its animations and a nice moon at the correct phase. It would even notify you of inclement weather without you having to lift a finger.
+
+It was also rejected. This time, the reason read: “It is less about a specific quantity of features…Rather, it is about the experience the app provides.” Does this strike anyone as unfair?
+
+Apple states, in legalese:
+
+“Apps should be engaging and exciting, enabling users to do something they couldn’t do before; or to do something in a way they couldn’t do before or better than they could do it before.”
+Everyone can get to the weather, that’s a given. But no one had built anything that let you do it this way before. I eventually gave up, though. I suppose I trusted Apple—if they said that no one wanted to see weather in a beautiful realistic animation, then no one wanted to see it.
+
+You might understand my shock when they unveiled a revamped weather app today. And its most defining new feature? Animated weather. Rain fell, snow drifted, hail dropped, and thunderstorms stormed—just as my app had so confidently done months before. And the audience loved it. When the lightning flashed, there was thunderous applause.
+
+I’m not naive enough to claim Apple actually took my idea. I’m sure they happened to be working on a similar concept. I’m just saying they may have unfairly biased the review process, not wishing for someone to debut a key new aspect of their beloved OS before they were able to do so—not wanting anyone to steal their thunder.
+
+According to Apple, no one wanted a flashy weather app. They were so certain of this, they built one themselves."""
 
     teaser = PyTeaser(language, title, text)
     print str(teaser.summarize())
