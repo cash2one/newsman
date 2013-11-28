@@ -9,7 +9,7 @@ sys.path.append('..')
 from spider import scraper
 
 #entries = scraper.update(feed_link='http://news.yahoo.com/rss/world', feed_id='520b7da3680ccf3c10e93d55', language='en')
-entries = scraper.update(feed_link='http://www.engadget.com/rss.xml', feed_id='520b7da3680ccf3c10e93d5b', language='en')
+entries = scraper.update(feed_link='5296e329f5d7e618279360ef', feed_id='http://rssfeeds.sanook.com/rss/feeds/sanook/news.index.xml', language='th')
 #entries = scraper.update(feed_link='http://www.mtv.com/rss/news/news_full.jhtml', feed_id='520b7da3680ccf3c10e93d6e', language='en')
 #entries = scraper.update(feed_link='http://feeds.reuters.com/reuters/healthNews', feed_id='520b7da3680ccf3c10e93d4b', language='en')
 
