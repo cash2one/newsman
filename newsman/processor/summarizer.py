@@ -118,7 +118,13 @@ def _get_summary(content, language):
         return None
 
     try:
-        paragraphs = content.split("\n\n")
+        # strip off html code
+        h = html2text.HTML2Text()
+        h.ignore_links = True
+        h.ignore_images = True
+        h.ignore_emphasis = True
+        h.body_width = 0
+        paragraphs = (h.handle(content)).strip('#').split("\n\n")
         for paragraph in paragraphs:
             if paragraph and _is_valid(paragraph, language):
                 return _get_shorter_text(paragraph, language, SUMMARY_LENGTH_LIMIT)
@@ -141,7 +147,7 @@ def extract(language, title, content, summary, link, feed, category):
         # set the number of sentences
         # limit the number of words
         if content:
-            if language in ['en', 'ja', 'pt']:
+            if language in ['en', 'ja', 'pt', 'th']:
                 teaser = PyTeaser(
                     language, title, content, link, feed, category)
                 result_summary = teaser.summarize()
