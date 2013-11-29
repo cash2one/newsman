@@ -23,6 +23,7 @@ from config.settings import hparser
 from config.settings import logger
 import html2text
 import jieba
+import math
 import nltk
 from nltk.tokenize import *
 import re
@@ -73,8 +74,6 @@ class PyTeaser:
 
                 # find top keywords
                 topwords = self._find_top_keywords(keywords, words_count)
-                for t in topwords:
-                    print t[0]
                 if topwords:
                     # compute sentence scores
                     sentences_scored = self._score_sentences(topwords)
@@ -206,27 +205,22 @@ class PyTeaser:
         """
         try:
             words = self._segment_text(self._article)
-            #print len(words)
-            #f = open('/home/jinyuan/Downloads/chengdujin.output', 'w')
-            #for t in words:
-            #    f.write('%s\n' % t)
-            #f.close()
 
             # remove stop words
             stopwords_path = '%s%s_stopwords' % (DATA_PATH, self._language)
             # ar, en, id, ja, pt, th, zh
             f = open(stopwords_path, 'r')
             stopwords = f.readlines()
-            stopwords = [stopword.strip()
-                         for stopword in stopwords if stopword.strip()]
+            #stopwords = [stopword.strip() for stopword in stopwords if stopword.strip()]
+            stopwords = [str(re.sub(r'[^\w ]', "", unicode(stopword.strip()), flags=re.UNICODE)) for stopword in stopwords if stopword.strip()]
             f.close()
-            words = [word for word in words if word not in stopwords]
+            words_filtered = [word for word in words if word not in stopwords]
 
             # distinct words
-            kwords = list(set(words))
+            kwords = list(set(words_filtered))
 
             # word-frenquency
-            keywords = [(kword, words.count(kword)) for kword in kwords]
+            keywords = [(kword, words_filtered.count(kword)) for kword in kwords]
             keywords = sorted(keywords, key=lambda x: -x[1])
 
             return (keywords, len(words))
@@ -243,7 +237,7 @@ class PyTeaser:
             return None
 
         try:
-            col = Collection(db, KEYWORD_REGISTRAR)
+            #col = Collection(db, KEYWORD_REGISTRAR)
             top_keywords = keywords[:TOP_KEYWORDS_LIMIT]
             topwords = []
 
@@ -251,28 +245,28 @@ class PyTeaser:
                 word = top_keyword[0]
                 count = top_keyword[1]
 
+                """
                 blog_count = col.find(
                     {'blog': self._blog, 'language': self._language}).count() + 1.0
                 category_count = col.find(
                     {'category': self._category, 'language': self._language}).count() + 1.0
                 col.save({'word': word, 'count': count, 'link': self._link, 'blog':
                          self._blog, 'category': self._category, 'language': self._language})
+                """
 
-                article_score = float(count) / float(words_count)
+                article_score = float(count) * 1.0 / float(words_count)
+                """
                 blog_score = float(reduce(lambda x, y: x + y, [item['count'] for item in col.find(
                     {'word': word, 'blog': self._blog}, {'count': 1, '_id': 0})])) / float(blog_count)
                 category_score = float(reduce(lambda x, y: x + y, [item['count'] for item in col.find(
                     {'word': word, 'category': self._category}, {'count': 1, '_id': 0})])) / float(category_count)
+                """
 
                 #word_score = article_score * 1.5 + blog_score + category_score
                 word_score = article_score * 1.5
                 topwords.append((word, word_score))
 
             topwords = sorted(topwords, key=lambda x: -x[1])
-            # print '-------------------------------------'
-            # for topword in topwords:
-            #    print topword[0]
-            # print '-------------------------------------'
             return topwords
         except Exception as k:
             logger.error(str(k))
@@ -296,7 +290,6 @@ class PyTeaser:
                         word_in_keywords_score = word_in_keywords_score + \
                             keyword_count
                         break
-            # print len(words), word_in_keywords_score
             sbs_score = 1.0 / \
                 float(abs(len(words))) * float(word_in_keywords_score)
             return sbs_score
@@ -331,7 +324,6 @@ class PyTeaser:
             # 1: [(a, 1), (b, 2), (c, 3), (d, 4)]
             # 2: [(b, 2), (c, 3), (d, 4)]
             # 3: [((a, 1), (b, 2)), ((b, 2), (c, 3)), ((c, 3), (d, 4))]
-            # print word_in_keywords_score_with_index
             word_in_keywords_score_with_index_sliced = word_in_keywords_score_with_index[
                 1:]
             word_in_keywords_zipped = zip(
@@ -342,7 +334,6 @@ class PyTeaser:
             word_in_keywords_sum = reduce(
                 lambda x, y: x + y, word_in_keywords_sum_each) if word_in_keywords_sum_each else 0
 
-            # print word_in_keywords_count, word_in_keywords_sum
             dbs_score = 1.0 / float(word_in_keywords_count) * float(word_in_keywords_count + 1.0) * \
                 float(word_in_keywords_sum)
             return dbs_score
@@ -400,8 +391,7 @@ class PyTeaser:
 
         try:
             IDEAL_SENTENCE_LENGTH = 20  # unicode words
-            sentence_length_score = float(IDEAL_SENTENCE_LENGTH - abs(
-                IDEAL_SENTENCE_LENGTH - len(sentence_words))) / float(IDEAL_SENTENCE_LENGTH)
+            sentence_length_score = 1.0 - math.fabs(IDEAL_SENTENCE_LENGTH - len(sentence_words)) / float(IDEAL_SENTENCE_LENGTH)
             return sentence_length_score
         except Exception as k:
             logger.error(str(k))
@@ -463,7 +453,6 @@ class PyTeaser:
                 sentence_score = float(title_score * 1.5 + keyword_score * 2.0 +
                                        sentence_length_score * 0.5 +
                                        sentence_position_score * 1.0) / 4.0
-                # print sentence, sentence_score, title_score,
                 # sentence_length_score, sentence_position_score, '[',
                 # sbs_score, dbs_score, ']'
                 sentences_scored.append((sentence, sentence_score, index))
@@ -503,63 +492,28 @@ class PyTeaser:
 
 if __name__ == '__main__':
     language = 'en'
-    title = "Don’t go to art schoolDon’t go to art school"
-    text = """The traditional approach is failing us. It’s time for a change.
+    title = "McDonald’s Theory"
+    text = """I use a trick with co-workers when we’re trying to decide where to eat for lunch and no one has any ideas. I recommend McDonald’s.
 
-I’ve had it.
+An interesting thing happens. Everyone unanimously agrees that we can’t possibly go to McDonald’s, and better lunch suggestions emerge. Magic!
 
-I will no longer encourage aspiring artists to attend art school. I just won’t do it. Unless you’re given a full ride scholarship (or have parents with money to burn), attending art school is a waste of your money.
+It’s as if we’ve broken the ice with the worst possible idea, and now that the discussion has started, people suddenly get very creative. I call it the McDonald’s Theory: people are inspired to come up with good ideas to ward off bad ones.
 
-I have a diploma from the best public art school in the nation. Prior to that I attended the best private art school in the nation. I’m not some flaky, disgruntled art graduate, either. I have a quite successful career, thankyouverymuch.
+This is a technique I use a lot at work. Projects start in different ways. Sometimes you’re handed a formal brief. Sometimes you hear a rumor that something might be coming so you start thinking about it early. Other times you’ve been playing with an idea for months or years before sharing with your team. There’s no defined process for all creative work, but I’ve come to believe that all creative endeavors share one thing: the second step is easier than the first. Always.
 
-But I am saddened and ashamed at art schools and their blatant exploitation of students. Graduates are woefully ill-prepared for the realities of being professional artists and racked with obscene amounts of debt. By their own estimation, the cost of a four year education at RISD is $245,816. As way of comparison, the cost of a diploma from Harvard Law School is a mere $236,100.
+Anne Lamott advocates “shitty first drafts,” Nike tells us to “Just Do It,” and I recommend McDonald’s just to get people so grossed out they come up with a better idea. It’s all the same thing. Lamott, Nike, and McDonald’s Theory are all saying that the first step isn’t as hard as we make it out to be. Once I got an email from Steve Jobs, and it was just one word: “Go!” Exactly. Dive in. Do. Stop over-thinking it.
 
-This is embarrassing. It’s downright shameful. That any art school should deceive its students into believing that this is a smart decision is cruel and unusual.
+The next time you have an idea rolling around in your head, find the courage to quiet your inner critic just long enough to get a piece of paper and a pen, then just start sketching it. “But I don’t have a long time for this!” you might think. Or, “The idea is probably stupid,” or, “Maybe I’ll go online and click around for—”
 
-Artists are neither doctors nor lawyers. We do not, on average, make huge six-figure salaries. We can make livable salaries, certainly. Even comfortable salaries. But we ain’t usually making a quarter mil a year. Hate to break it to you. An online debt repayment calculator recommended a salary exceeding $400,000 in order to pay off a RISD education within 10 years.
+No. Shut up. Stop sabotaging yourself.
 
-Don’t do it.
+The same goes for groups of people at work. The next time a project is being discussed in its early stages, grab a marker, go to the board, and throw something up there. The idea will probably be stupid, but that’s good! McDonald’s Theory teaches us that it will trigger the group into action.
 
-Don’t start your career with debilitating debt.
+It takes a crazy kind of courage, of focus, of foolhardy perseverance to quiet all those doubts long enough to move forward. But it’s possible, you just have to start. Bust down that first barrier and just get things on the page. It’s not the kind of thing you can do in your head, you have to write something, sketch something, do something, and then revise off it.
 
-Please. I beg you. Think long and hard whether you’re willing to pay student loan companies $3000 every single month for the next 10 years.
+Not sure how to start? Sketch a few shapes, then label them. Say, “This is probably crazy, but what if we.…” and try to make your sketch fit the problem you’re trying to solve. Like a magic spell, the moment you put the stuff on the board, something incredible will happen. The room will see your ideas, will offer their own, will revise your thinking, and by the end of 15 minutes, 30 minutes, an hour, you’ll have made progress.
 
-You’ve got other options.
-You don’t have to go to college to be an artist. Not once have I needed my diploma to get a job. Nobody cares. The education is all that matters. The work that you produce should be your sole concern.
-
-There are excellent atelier schools all over the world that offer superior education for a mere fraction of the price. Here are a few:
-
-Watt’s Atelier
-Los Angeles Academy of Figurative Arts
-The Safehouse Atelier
-There are more. Many, many more. And none of them will cost nearly as much as a traditional four year school.
-
-And then there are the online options. The availability of drawing and painting resources is incredible.
-
-Sitting at a computer I have direct access to artists all over the world. I have the combined wisdom of the artistic community to pull from at my leisure. For less than a few grand a year I can view more educational material than I would see at any art school. You can get a year of access to all of the Gnomon Workshop’s videos for the cost of a few days at the average art school.
-
-With all of these options it can be a little daunting. So you know what? I’ve come up with a plan for you. Do this:
-
-The $10k Ultimate Art Education
-$500 - Buy an annual subscription to The Gnomon Workshop and watch every single video they have.
-$404.95 - Buy Glenn Vilppu’s Anatomy Lectures and watch all of them.
-$190 - Buy all of these books and read them cover to cover.
-$1040 ($20/week x 52 weeks) - Weekly figure drawing sessions. Look up nearby colleges and art groups and find a weekly session to attend.
-$2500 - Sign up for a SmART School Mentorship when you feel ready to get one-on-one guidance to push your abilities.
-$2400 - Sign up for four classes from CGMA. Get taught by professionals in the industry on exactly the skills you want to learn.
-Free - Watch all of these keynotes.
-Free - Study other things for free. Suggested topics: business, history, philosophy, English, literature, marketing, and anything else you might be interested in.
-$500 - Throughout the year, use at least this much money to visit museums in your area. And not just art museums. All museums.
-Free - Create accountability. One of the great advantages to attending a school is the comradery. So use the internet to create your own. Go join a forum where you can give and receive critique on the work you’re developing. There are many different ones out there that can suit whatever flavor you prefer.
-The rest - Materials. Buy yourself some good art materials to create with. Whether digital or traditional. Don’t skimp.
-There. For less than a quarter of the tuition for RISD you’ve got yourself a killer education. You’ve received more quality, focused education than I think you’ll find at any art school.
-
-Moving forward
-There has never been a better time to be an artist. I’m inspired by the sheer quantity and quality of internet resources available to artists.
-
-But I encourage all aspiring artists to think long and hard about their options. Student loans are unforgivable through bankruptcy and can wreck your financial future. Establishing a career while under the unceasing brutality of student loans makes an already difficult task nearly impossible.
-
-Find another path. Art is a wonderful, beautiful, fulfilling pursuit. Don’t ruin it with a mountain of debt."""
+That’s how it’s done."""
 
 
     teaser = PyTeaser(language, title, text)
