@@ -211,9 +211,9 @@ class PyTeaser:
             # ar, en, id, ja, pt, th, zh
             f = open(stopwords_path, 'r')
             stopwords = f.readlines()
+            f.close()
             #stopwords = [stopword.strip() for stopword in stopwords if stopword.strip()]
             stopwords = [str(re.sub(r'[^\w ]', "", unicode(stopword.strip()), flags=re.UNICODE)) for stopword in stopwords if stopword.strip()]
-            f.close()
             words_filtered = [word for word in words if word not in stopwords]
 
             # distinct words
@@ -245,24 +245,7 @@ class PyTeaser:
                 word = top_keyword[0]
                 count = top_keyword[1]
 
-                """
-                blog_count = col.find(
-                    {'blog': self._blog, 'language': self._language}).count() + 1.0
-                category_count = col.find(
-                    {'category': self._category, 'language': self._language}).count() + 1.0
-                col.save({'word': word, 'count': count, 'link': self._link, 'blog':
-                         self._blog, 'category': self._category, 'language': self._language})
-                """
-
                 article_score = float(count) * 1.0 / float(words_count)
-                """
-                blog_score = float(reduce(lambda x, y: x + y, [item['count'] for item in col.find(
-                    {'word': word, 'blog': self._blog}, {'count': 1, '_id': 0})])) / float(blog_count)
-                category_score = float(reduce(lambda x, y: x + y, [item['count'] for item in col.find(
-                    {'word': word, 'category': self._category}, {'count': 1, '_id': 0})])) / float(category_count)
-                """
-
-                #word_score = article_score * 1.5 + blog_score + category_score
                 word_score = article_score * 1.5
                 topwords.append((word, word_score))
 
@@ -290,8 +273,7 @@ class PyTeaser:
                         word_in_keywords_score = word_in_keywords_score + \
                             keyword_count
                         break
-            sbs_score = 1.0 / \
-                float(abs(len(words))) * float(word_in_keywords_score)
+            sbs_score = (1.0 / math.fabs(len(words)) * float(word_in_keywords_score))
             return sbs_score
         except Exception as k:
             logger.error(str(k))
@@ -513,7 +495,7 @@ It takes a crazy kind of courage, of focus, of foolhardy perseverance to quiet a
 
 Not sure how to start? Sketch a few shapes, then label them. Say, “This is probably crazy, but what if we.…” and try to make your sketch fit the problem you’re trying to solve. Like a magic spell, the moment you put the stuff on the board, something incredible will happen. The room will see your ideas, will offer their own, will revise your thinking, and by the end of 15 minutes, 30 minutes, an hour, you’ll have made progress.
 
-That’s how it’s done."""
+That’s how it’s done"""
 
 
     teaser = PyTeaser(language, title, text)
