@@ -38,7 +38,7 @@ hparser = HTMLParser()
 # CONSTANTS
 #PUBLIC = 'http://mobile-global.baidu.com/news/%s'  # hk01-hao123-mob01/mob02.hk01
 #PUBLIC = 'http://220.181.163.36:8080/news/%s'      # cq01-rdqa-dev067.cq01
-#PUBLIC = 'http://180.76.2.34/news/%s'              # hk01-hao123-mob00.hk01
+PUBLIC = 'http://180.76.2.34/news/%s'              # hk01-hao123-mob00.hk01
 #PUBLIC = 'http://54.251.107.116/%s'                # AWS singapore
 #PUBLIC = 'http://54.232.81.44/%s'                  # AWS sao paolo
 #PUBLIC = 'http://54.248.227.71/%s'                 # AWS tokyo
@@ -46,7 +46,7 @@ hparser = HTMLParser()
 #LOCAL = '/home/work/%s'                            # official server prefix
 #LOCAL = '/home/users/jinyuan/%s'                   # test server in China
 #LOCAL = '/home/ubuntu/%s'                          # AWS server prefix
-#LOCAL = '/home/jinyuan/Downloads/%s'               # local server prefix
+LOCAL = '/home/jinyuan/Downloads/%s'               # local server prefix
 
 #LOGO_PUBLIC_PREFIX = 'http://mobile-global.baidu.com/logos/'
 LOGO_PUBLIC_PREFIX = 'http://220.181.163.36:8080/logos/'
@@ -134,7 +134,7 @@ HOTNEWS_TITLE_ZH = '头条'
 
 # Summarization
 TOP_KEYWORDS_LIMIT = 10
-SCORED_SENTENCE_LIMIT = 3
+SCORED_SENTENCE_LIMIT = 5
 
 # expirations 
 DATABASE_REMOVAL_DAYS = 365
