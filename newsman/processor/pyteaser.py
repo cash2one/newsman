@@ -73,6 +73,8 @@ class PyTeaser:
 
                 # find top keywords
                 topwords = self._find_top_keywords(keywords, words_count)
+                for t in topwords:
+                    print t[0]
                 if topwords:
                     # compute sentence scores
                     sentences_scored = self._score_sentences(topwords)
@@ -191,8 +193,8 @@ class PyTeaser:
                         words = [
                             word for word in words if word not in thai_punctuation]
             else:
-                words = re.findall(r'\w+', unicode(text), flags=re.UNICODE)
-                words = [word.strip().lower() for word in words if word.strip()]
+                text = re.sub(r'[^\w ]', "", unicode(text), flags=re.UNICODE)
+                words = [str(word).strip('.').lower() for word in text.split()]
             return words
         except Exception as k:
             logger.error(str(k))
@@ -204,6 +206,11 @@ class PyTeaser:
         """
         try:
             words = self._segment_text(self._article)
+            #print len(words)
+            #f = open('/home/jinyuan/Downloads/chengdujin.output', 'w')
+            #for t in words:
+            #    f.write('%s\n' % t)
+            #f.close()
 
             # remove stop words
             stopwords_path = '%s%s_stopwords' % (DATA_PATH, self._language)
@@ -257,7 +264,8 @@ class PyTeaser:
                 category_score = float(reduce(lambda x, y: x + y, [item['count'] for item in col.find(
                     {'word': word, 'category': self._category}, {'count': 1, '_id': 0})])) / float(category_count)
 
-                word_score = article_score * 1.5 + blog_score + category_score
+                #word_score = article_score * 1.5 + blog_score + category_score
+                word_score = article_score * 1.5
                 topwords.append((word, word_score))
 
             topwords = sorted(topwords, key=lambda x: -x[1])
@@ -495,38 +503,63 @@ class PyTeaser:
 
 if __name__ == '__main__':
     language = 'en'
-    title = "Apple Literally Stole My Thunder"
-    text = """I’ve been a developer for iOS since one could develop for iOS. And I’ve created a lot of apps, some very successful. As such, I’ve had my fair share of rejections, both warranted and unwarranted. I’m not one to complain, but this latest is simply unbearable.
+    title = "Don’t go to art schoolDon’t go to art school"
+    text = """The traditional approach is failing us. It’s time for a change.
 
-The first app I ever developed is still sitting in iTunes Connect. At the time it was innovative, but the world has moved on. Back before there was “an app for that”—before the most popular sites, even Google, became mobile (or responsive)—there was an app I made called, simply, “Images.”
+I’ve had it.
 
-It did one thing, and it did it well: show you images of whatever you searched for. Essentially, it did what Google Images does now on their mobile-optimized site: show you a text field with large, swipable images below. The idea was, if you were out at a party and didn’t know what a honeybadger looked like, you could get that info to share in as few taps as possible.
+I will no longer encourage aspiring artists to attend art school. I just won’t do it. Unless you’re given a full ride scholarship (or have parents with money to burn), attending art school is a waste of your money.
 
-Apple rejected it. Back then, you were just rejected, with no rhyme nor reason. You actually had to write in just to request you be given an explanation. I did just that. The reason: porn. Since you could type in anything and get an image for it, you could also type in lewd text and possibly receive an explicit image. Any app that allowed this, they said, would be rejected. Nevermind that you could also go to Google images using the native Safari app and do exactly the same thing.
+I have a diploma from the best public art school in the nation. Prior to that I attended the best private art school in the nation. I’m not some flaky, disgruntled art graduate, either. I have a quite successful career, thankyouverymuch.
 
-I fought, but lost. This was a big enough “fuck you” that I swore I’d never write another iPhone app.
+But I am saddened and ashamed at art schools and their blatant exploitation of students. Graduates are woefully ill-prepared for the realities of being professional artists and racked with obscene amounts of debt. By their own estimation, the cost of a four year education at RISD is $245,816. As way of comparison, the cost of a diploma from Harvard Law School is a mere $236,100.
 
-The App Store eventually became more transparent and logical with its review process. And I didn’t stop developing iPhone apps for more than a few months: I enjoyed it too much, and knew, for better or worse, that it was the future. That app still sits there, never to see the light of day. It was a lot of work back then, for nothing, but I’ve moved on to create a few successful indie apps.
+This is embarrassing. It’s downright shameful. That any art school should deceive its students into believing that this is a smart decision is cruel and unusual.
 
-My latest rejection, however, has me fuming — of a weather app I developed a few months ago. Now, I personally see weather apps, like to-do apps and flashlight apps before them, to be one of those lowest-common-denominator apps. They’re relatively easy to build, so lots of them get built by mediocre developers, and the store gets overrun. I was fully aware of this going in.
+Artists are neither doctors nor lawyers. We do not, on average, make huge six-figure salaries. We can make livable salaries, certainly. Even comfortable salaries. But we ain’t usually making a quarter mil a year. Hate to break it to you. An online debt repayment calculator recommended a salary exceeding $400,000 in order to pay off a RISD education within 10 years.
 
-“There was thunderous applause.”
-Which is why I was determined to build something magical, something I’d not seen before. While Apple’s own weather app had nice realistic graphics of weather conditions, other apps were trending toward a very minimal interface using a simple vector icon to represent the weather. I wanted to build something that would appear as if you were looking out of a window. I created OpenGL animations for various weather conditions, including a thunderstorm. Not a video, mind you, but computer generated conditions that looked and moved realistically—weather CGI, essentially. Apple rejected it on the grounds that it was too simple: “We encourage you to review your app concept and evaluate whether you can incorporate additional content and features.”
+Don’t do it.
 
-Originally I wanted to test the waters for such an interface, to see if people would like it before I added additional features—but I was willing to play ball. So I added some things I’d planned to hold off until later. The app integrated with your calendar. It showed hourly forecasts with minute-by-minute precision, and beyond. It showed sunrise and sunset with its animations and a nice moon at the correct phase. It would even notify you of inclement weather without you having to lift a finger.
+Don’t start your career with debilitating debt.
 
-It was also rejected. This time, the reason read: “It is less about a specific quantity of features…Rather, it is about the experience the app provides.” Does this strike anyone as unfair?
+Please. I beg you. Think long and hard whether you’re willing to pay student loan companies $3000 every single month for the next 10 years.
 
-Apple states, in legalese:
+You’ve got other options.
+You don’t have to go to college to be an artist. Not once have I needed my diploma to get a job. Nobody cares. The education is all that matters. The work that you produce should be your sole concern.
 
-“Apps should be engaging and exciting, enabling users to do something they couldn’t do before; or to do something in a way they couldn’t do before or better than they could do it before.”
-Everyone can get to the weather, that’s a given. But no one had built anything that let you do it this way before. I eventually gave up, though. I suppose I trusted Apple—if they said that no one wanted to see weather in a beautiful realistic animation, then no one wanted to see it.
+There are excellent atelier schools all over the world that offer superior education for a mere fraction of the price. Here are a few:
 
-You might understand my shock when they unveiled a revamped weather app today. And its most defining new feature? Animated weather. Rain fell, snow drifted, hail dropped, and thunderstorms stormed—just as my app had so confidently done months before. And the audience loved it. When the lightning flashed, there was thunderous applause.
+Watt’s Atelier
+Los Angeles Academy of Figurative Arts
+The Safehouse Atelier
+There are more. Many, many more. And none of them will cost nearly as much as a traditional four year school.
 
-I’m not naive enough to claim Apple actually took my idea. I’m sure they happened to be working on a similar concept. I’m just saying they may have unfairly biased the review process, not wishing for someone to debut a key new aspect of their beloved OS before they were able to do so—not wanting anyone to steal their thunder.
+And then there are the online options. The availability of drawing and painting resources is incredible.
 
-According to Apple, no one wanted a flashy weather app. They were so certain of this, they built one themselves."""
+Sitting at a computer I have direct access to artists all over the world. I have the combined wisdom of the artistic community to pull from at my leisure. For less than a few grand a year I can view more educational material than I would see at any art school. You can get a year of access to all of the Gnomon Workshop’s videos for the cost of a few days at the average art school.
+
+With all of these options it can be a little daunting. So you know what? I’ve come up with a plan for you. Do this:
+
+The $10k Ultimate Art Education
+$500 - Buy an annual subscription to The Gnomon Workshop and watch every single video they have.
+$404.95 - Buy Glenn Vilppu’s Anatomy Lectures and watch all of them.
+$190 - Buy all of these books and read them cover to cover.
+$1040 ($20/week x 52 weeks) - Weekly figure drawing sessions. Look up nearby colleges and art groups and find a weekly session to attend.
+$2500 - Sign up for a SmART School Mentorship when you feel ready to get one-on-one guidance to push your abilities.
+$2400 - Sign up for four classes from CGMA. Get taught by professionals in the industry on exactly the skills you want to learn.
+Free - Watch all of these keynotes.
+Free - Study other things for free. Suggested topics: business, history, philosophy, English, literature, marketing, and anything else you might be interested in.
+$500 - Throughout the year, use at least this much money to visit museums in your area. And not just art museums. All museums.
+Free - Create accountability. One of the great advantages to attending a school is the comradery. So use the internet to create your own. Go join a forum where you can give and receive critique on the work you’re developing. There are many different ones out there that can suit whatever flavor you prefer.
+The rest - Materials. Buy yourself some good art materials to create with. Whether digital or traditional. Don’t skimp.
+There. For less than a quarter of the tuition for RISD you’ve got yourself a killer education. You’ve received more quality, focused education than I think you’ll find at any art school.
+
+Moving forward
+There has never been a better time to be an artist. I’m inspired by the sheer quantity and quality of internet resources available to artists.
+
+But I encourage all aspiring artists to think long and hard about their options. Student loans are unforgivable through bankruptcy and can wreck your financial future. Establishing a career while under the unceasing brutality of student loans makes an already difficult task nearly impossible.
+
+Find another path. Art is a wonderful, beautiful, fulfilling pursuit. Don’t ruin it with a mountain of debt."""
 
 
     teaser = PyTeaser(language, title, text)
