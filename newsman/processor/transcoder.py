@@ -23,6 +23,7 @@ from config.settings import logger
 import image_helper
 import os
 import simplr
+from slimmer import html_slimmer
 import threading
 import time
 import urllib2
@@ -346,6 +347,8 @@ def convert(language="en", title=None, link=None, updated=None, feed=None, trans
                 title = title_new
 
             if content and title:
+                # slimmer the content
+                content = html_slimmer(content)
                 if not stdout:
                     # embed content in template
                     news = _compose(language, title, updated, feed, _sanitize(content), images)

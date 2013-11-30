@@ -505,7 +505,6 @@ class Simplr:
 
             # optimization made for jp.reuters.com
             if 's1.reutersmedia.net/resources/r/' in img['src']:
-                from furl import furl
                 f = furl(img['src'])
                 if 'll' in f.args:
                     del f.args['ll']
