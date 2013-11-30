@@ -16,6 +16,7 @@ sys.path.append("..")
 
 from BeautifulSoup import BeautifulSoup, Comment
 from config.settings import logger
+from furl import furl
 import image_helper
 import transcoder
 import math
@@ -484,6 +485,16 @@ class Simplr:
             # optimization made for news.goo.ne.jp
             if 'img.news.goo.ne.jp' in img['src'] and img['src'].endswith('.jpg'):
                 img['src'] = img['src'].replace('/s_', '/m_')
+
+            # optimization made for img.mainichi.jp
+            if 'img.mainichi.jp' in img['src'] and img['src'].endswith('.jpg'):
+                f = furl(self.url)
+                # 20131201k0000m040041000c
+                mainichi_id = f.pathstr.split('/')[-1][:-5]
+                mainichi_year = mainichi_id[:4]
+                mainichi_month = mainichi_id[4:6]
+                mainichi_day = mainichi_id[6:8]
+                img['src'] = "http://mainichi.jp/graph/%s/%s/%s/%s/image/001.jpg" % (mainichi_year, mainichi_month, mainichi_day, mainichi_id)
 
             # optimization made for sankei.jp.msn.com
             if 'http://sankei.jp.msn.com/' in img['src']:

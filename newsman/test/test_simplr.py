@@ -10,7 +10,10 @@ sys.path.append('..')
 def main(url, language):
     from processor import simplr
     title, content, images = simplr.convert(url, language)
-    print content
+    #import re
+    #a = re.sub(">\s+<", "><", unicode(content))
+    from slimmer import html_slimmer
+    print html_slimmer(content)
 
 if __name__ == "__main__":
     main(sys.argv[1], sys.argv[2])
