@@ -192,7 +192,10 @@ class PyTeaser:
                         words = [
                             word for word in words if word not in thai_punctuation]
             else:
-                text = re.sub(r'[^\w ]', "", unicode(text), flags=re.UNICODE)
+                # for python 2.6
+                text = re.compile(r'[^\w ]', flags=re.UNICODE).sub("", unicode(text))
+                # for python 2.7
+                #text = re.sub(r'[^\w ]', "", unicode(text), flags=re.UNICODE)
                 words = [str(word).strip('.').lower() for word in text.split()]
             return words
         except Exception as k:
@@ -213,7 +216,7 @@ class PyTeaser:
             stopwords = f.readlines()
             f.close()
             #stopwords = [stopword.strip() for stopword in stopwords if stopword.strip()]
-            stopwords = [str(re.sub(r'[^\w ]', "", unicode(stopword.strip()), flags=re.UNICODE)) for stopword in stopwords if stopword.strip()]
+            stopwords = [str(re.sub(r'[^\w ]', flags=re.UNICODE).sub("", unicode(stopword.strip()))) for stopword in stopwords if stopword.strip()]
             words_filtered = [word for word in words if word not in stopwords]
 
             # distinct words
