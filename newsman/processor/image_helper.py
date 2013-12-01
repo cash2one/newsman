@@ -19,7 +19,7 @@ from config.settings import hparser
 from config.settings import logger
 from cStringIO import StringIO
 import httplib
-import Image
+from PIL import Image
 import os
 import re
 import urllib2
@@ -244,8 +244,12 @@ def _is_valid_image(image_url):
     try:
         if _url_image_exists(image_url):
             # to avoid line length limit
-            image_pil = Image.open(
-                StringIO(urllib2.urlopen(image_url, timeout=UCK_TIMEOUT).read()))
+            #f = requests.get(image_url, headers={'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:16.0) Gecko/20100101 Firefox/16.0,gzip(gfe)'}, timeout=UCK_TIMEOUT)
+            #opener = urllib2.build_opener()
+            #opener.addheaders = [('User-agent', 'Mozilla/5.0')]
+            #response = opener.open(image_url, timeout=UCK_TIMEOUT)
+            response = urllib2.urlopen(image_url, timeout=UCK_TIMEOUT)
+            image_pil = Image.open(StringIO(response.read()))
             return True if image_pil.size[0] * image_pil.size[1] > MIN_IMAGE_SIZE[0] * MIN_IMAGE_SIZE[1] else False
         else:
             logger.info('%s is not an image' % image_url)
@@ -346,7 +350,6 @@ def scale_image(image=None, size_expected=MIN_IMAGE_SIZE,
         if width >= width_expected and height >= height_expected:
             if resize_by_width:
                 height_new = width_expected * height / width
-                width_new = width_expected
             else:
                 width_new = height_expected * width / height
                 height_new = height_expected
