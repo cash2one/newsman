@@ -344,12 +344,13 @@ def scale_image(image=None, size_expected=MIN_IMAGE_SIZE,
     try:
         width = int(image['width'])
         height = int(image['height'])
-        width_expected = size_expected[0]
-        height_expected = size_expected[1]
+        width_expected = int(size_expected[0])
+        height_expected = int(size_expected[1])
 
         if width >= width_expected and height >= height_expected:
             if resize_by_width:
                 height_new = width_expected * height / width
+                width_new = width_expected
             else:
                 width_new = height_expected * width / height
                 height_new = height_expected
