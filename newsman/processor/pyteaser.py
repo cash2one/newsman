@@ -216,7 +216,7 @@ class PyTeaser:
             stopwords = f.readlines()
             f.close()
             #stopwords = [stopword.strip() for stopword in stopwords if stopword.strip()]
-            stopwords = [str(re.sub(r'[^\w ]', flags=re.UNICODE).sub("", unicode(stopword.strip()))) for stopword in stopwords if stopword.strip()]
+            stopwords = [str(re.compile(r'[^\w ]', flags=re.UNICODE).sub("", unicode(stopword.strip()))) for stopword in stopwords if stopword.strip()]
             words_filtered = [word for word in words if word not in stopwords]
 
             # distinct words
