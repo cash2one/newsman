@@ -36,10 +36,10 @@ HIDDEN_IMAGE = {
 
 class Simplr:
     regexps = {
-        'unlikely_candidates': re.compile("banner|button|combx|comment|community|copyright|disqus|extra|foot|header|menu|remark|rss|shoutbox|sidebar|sponsor|sns|ad-break|agegate|pagination|pager|popup|posted|pr|tweet|twitter", re.I),
+        'unlikely_candidates': re.compile("banner|button|combx|comment|community|copyright|disqus|extra|foot|header|menu|remark|rss|poll|shoutbox|sidebar|sponsor|sns|ad-break|agegate|pagination|pager|popup|posted|pr|tweet|twitter", re.I),
         'ok_maybe_its_a_candidate': re.compile("and|article|body|column|main|shadow", re.I),
         'positive': re.compile("article|blog|body|content|entry|hentry|image|main|page|pagination|photo|post|story|text", re.I),
-        'negative': re.compile("banner|combx|comment|com|contact|foot|footer|footnote|genre|logo|masthead|media|meta|outbrain|pr|promo|ranking|related|scroll|shoutbox|sidebar|sponsor|shopping|tags|tool|widget|link", re.I),
+        'negative': re.compile("banner|combx|comment|com|contact|foot|footer|footnote|genre|logo|masthead|media|meta|outbrain|poll|pr|promo|ranking|related|scroll|shoutbox|sidebar|sponsor|shopping|tags|tool|widget|link", re.I),
         'extraneous': re.compile("print|archive|comment|discuss|e[\-]?mail|share|reply|all|login|sign|single", re.I),
         'div_to_p_elements': re.compile("<(a|blockquote|dl|div|img|ol|p|pre|table|ul)", re.I),
         'replace_brs': re.compile("(<br[^>]*>[ \n\r\t]*){2,}", re.I),
@@ -95,6 +95,8 @@ class Simplr:
             return None
 
     def _get_article(self):
+        _ignored_image = None
+
         for elem in self.html.findAll(True):
             unlikely_match_string = elem.get('id', '') + elem.get('class', '')
 
@@ -115,12 +117,11 @@ class Simplr:
                 s = elem.renderContents(encoding=None)
                 if not self.regexps['div_to_p_elements'].search(s):
                     elem.name = 'p'
-                """
-                else:
-                    if elem.get('class'):
-                        if re.compile('image|photo', re.I).search(elem['class']):
-                            elem.name = 'p'
-                """
+            else:
+                if self.url.startswith('http://jp.reuters.com/'):
+                    if elem.get('id') and elem.get('id') == 'articlePhoto':
+                        elem.name = 'p'
+                        _ignored_image = elem
 
         for node in self.html.findAll('p'):
             parent_node = node.parent
@@ -154,7 +155,7 @@ class Simplr:
             #content_score += inner_text.count('、')
             #content_score += inner_text.count(u'、')
             content_score += min(math.floor(len(inner_text) / 100), 3)
-            # print content_score, node
+            #print content_score, node
             # print 'OLD %s %s  Parent' % (self.candidates[parent_hash]['score'], parent_hash)
             # print 'OLD %s %s  Grand' %
             # (self.candidates[grand_parent_hash]['score'], grand_parent_hash)
@@ -164,9 +165,9 @@ class Simplr:
                 self.candidates[grand_parent_hash][
                     'score'] += content_score * 0.7
 
-            # print 'NEW %s %s  Parent' % (self.candidates[parent_hash]['score'], parent_hash)
-            # print 'NEW %s %s  Grand' % (self.candidates[grand_parent_hash]['score'], grand_parent_hash)
-            # print
+            #print 'NEW %s %s  Parent' % (self.candidates[parent_hash]['score'], parent_hash)
+            #print 'NEW %s %s  Grand' % (self.candidates[grand_parent_hash]['score'], grand_parent_hash)
+            #print
             # print
 
         # print
@@ -183,6 +184,8 @@ class Simplr:
         content = ''
         if top_candidate:
             content = top_candidate['node']
+            if _ignored_image:
+                content.insert(0, _ignored_image)
             # print 'Top Candidate'
             # print content
             # print
