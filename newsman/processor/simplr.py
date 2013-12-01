@@ -184,8 +184,9 @@ class Simplr:
         content = ''
         if top_candidate:
             content = top_candidate['node']
-            if _ignored_image:
-                content.insert(0, _ignored_image)
+            if _ignored_image and not content.find('img'):
+                if self.url.startswith('http://jp.reuters.com/'):
+                    content.insert(0, _ignored_image)
             # print 'Top Candidate'
             # print content
             # print
@@ -492,16 +493,17 @@ class Simplr:
 
             # optimization made for img.mainichi.jp
             if 'img.mainichi.jp' in img['src'] and img['src'].endswith('.jpg'):
-                f = furl(self.url)
-                # 20131201k0000m040041000c
-                mainichi_id = f.pathstr.split('/')[-1][:-5]
-                mainichi_year = mainichi_id[:4]
-                mainichi_month = mainichi_id[4:6]
-                mainichi_day = mainichi_id[6:8]
-                img['src'] = "http://mainichi.jp/graph/%s/%s/%s/%s/image/001.jpg" % (mainichi_year, mainichi_month, mainichi_day, mainichi_id)
+                if self.url.startswith('http://mainichi.jp'):
+                    f = furl(self.url)
+                    # 20131201k0000m040041000c
+                    mainichi_id = str(f.path).split('/')[-1][:-5]
+                    mainichi_year = mainichi_id[:4]
+                    mainichi_month = mainichi_id[4:6]
+                    mainichi_day = mainichi_id[6:8]
+                    img['src'] = "http://mainichi.jp/graph/%s/%s/%s/%s/image/001.jpg" % (mainichi_year, mainichi_month, mainichi_day, mainichi_id)
 
             # optimization made for sankei.jp.msn.com
-            if 'http://sankei.jp.msn.com/' in img['src']:
+            if 'sankei.jp.msn.com' in img['src']:
                 if img['src'].endswith('-n1.jpg'):
                     img['src'] = img['src'].replace('-n1.jpg', '-p1.jpg')
                 elif img['src'].endswith('-s1.jpg'):
