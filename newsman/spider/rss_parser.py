@@ -111,6 +111,7 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
                 else:
                     entry['link'] = original_link
                 """
+                original_link = urllib2.unquote(hparser.unescape(original_link))
                 f = urlib2.urlopen(original_link)
                 entry['link'] = f.geturl()
             else:
