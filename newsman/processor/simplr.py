@@ -62,8 +62,8 @@ class Simplr:
         self.language = language
 
         self.data = transcoder.prepare_link(self.url)
-        self.data = self.regexps['replace_brs'].sub("</p><p>", self.data)
-        self.data = self.regexps['replace_fonts'].sub("<\g<1>span>", self.data)
+        self.data = self.regexps['replace_brs'].sub("</p><p>", str(self.data))
+        self.data = self.regexps['replace_fonts'].sub("<\g<1>span>", str(self.data))
 
         self.html = BeautifulSoup(self.data)
         self._remove_script()
