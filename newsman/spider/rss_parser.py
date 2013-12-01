@@ -47,8 +47,8 @@ def _get_actual_link(prefix, link):
             'Method malformed! Prefix:[%s], Link:[%s]' % (prefix, link))
 
     try:
-        actual_link = None
         raw_data = urllib2.urlopen(link)
+        """
         data = raw_data.readlines()
         # str() is critical
         soup = BeautifulStoneSoup(str(data))
@@ -60,6 +60,8 @@ def _get_actual_link(prefix, link):
             return actual_link
         else:
             return None
+        """
+        return raw_data.geturl()
     except Exception as k:
         logger.info('Cannot open %s' % k)
         return None
