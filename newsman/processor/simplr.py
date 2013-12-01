@@ -15,6 +15,7 @@ sys.setdefaultencoding("utf-8")
 sys.path.append("..")
 
 from BeautifulSoup import BeautifulSoup, Comment
+import codecs
 from config.settings import logger
 from furl import furl
 import image_helper
@@ -516,7 +517,10 @@ class Simplr:
                     del f.args['fh']
                 if 'w' in f.args:
                     del f.args['w']
-                img['src'] = f.url
+                if f.url.startswith(codecs.BOM_UTF8):
+                    img['src'] = f.url[3:]
+                else:
+                    img['src'] = f.url
 
 
 def convert(url, language):
