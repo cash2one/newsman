@@ -97,6 +97,7 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
         if e.link:
             original_link = e.link.strip()
             if not original_link.startswith(AD_LINKS):
+                """
                 matched_prefix = [
                     link for link in HIDDEN_LINKS if original_link.startswith(link)]
                 found_prefix = matched_prefix[0] if matched_prefix else None
@@ -109,6 +110,9 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
                         return None
                 else:
                     entry['link'] = original_link
+                """
+                f = urlib2.urlopen(original_link)
+                entry['link'] = f.geturl()
             else:
                 logger.info('Advertising link %s' % original_link)
                 return None
