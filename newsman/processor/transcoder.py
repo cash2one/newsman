@@ -303,8 +303,8 @@ def prepare_link(url):
             detected = chardet.detect(html)
             if detected:
                 data = html.decode(detected['encoding'], 'ignore')
-            else:
-                data = html.decode('utf-8', 'ignore')
+            #else:
+            #    data = html.decode('utf-8', 'ignore')
             return hparser.unescape(urllib2.unquote(data))
         else:
             logger.warning("Cannot read %s" % url)
