@@ -38,7 +38,7 @@ class Simplr:
     regexps = {
         'unlikely_candidates': re.compile("banner|button|combx|comment|community|copyright|disqus|extra|foot|header|menu|remark|rss|poll|shoutbox|sidebar|sponsor|sns|ad-break|agegate|pagination|pager|popup|posted|pr|tweet|twitter", re.I),
         'ok_maybe_its_a_candidate': re.compile("and|article|body|column|content|main|post|shadow", re.I),
-        'positive': re.compile("article|blog|body|content|entry|hentry|image|main|page|pagination|photo|post|story|text", re.I),
+        'positive': re.compile("article|blog|body|center|content|entry|hentry|image|main|page|pagination|photo|post|story|text", re.I),
         'negative': re.compile("banner|combx|comment|com|contact|foot|footer|footnote|genre|logo|masthead|media|meta|outbrain|poll|pr|promo|ranking|related|scroll|shoutbox|sidebar|sponsor|shopping|tags|tool|widget|link", re.I),
         'extraneous': re.compile("print|archive|comment|discuss|e[\-]?mail|share|reply|all|login|sign|single", re.I),
         'div_to_p_elements': re.compile("<(a|blockquote|dl|div|img|ol|p|pre|table|ul)", re.I),
@@ -101,6 +101,12 @@ class Simplr:
             unlikely_match_string = elem.get('id', '') + elem.get('class', '')
 
             if self.regexps['unlikely_candidates'].search(unlikely_match_string) and not self.regexps['ok_maybe_its_a_candidate'].search(unlikely_match_string) and elem.name != 'body':
+                #print elem
+                #print self.regexps['unlikely_candidates'].findall(unlikely_match_string)
+                #print elem.get('id') if elem.get('id') else None
+                #print '++++++++++++++++++++++++++++++++++++++++++++'
+                #print
+                #print
                 elem.extract()
                 continue
 
@@ -117,6 +123,8 @@ class Simplr:
                 s = elem.renderContents(encoding=None)
                 if not self.regexps['div_to_p_elements'].search(s):
                     elem.name = 'p'
+                #print elem.get('id') if elem.get('id') else None
+                #print '+++++++++++++++++++++++++++++++++++'
             else:
                 if self.url.startswith('http://jp.reuters.com/'):
                     if elem.get('id') and elem.get('id') == 'articlePhoto':
@@ -127,9 +135,9 @@ class Simplr:
             parent_node = node.parent
             grand_parent_node = parent_node.parent
             inner_text = node.text
-            print node
-            print
-            print
+            #print node
+            #print
+            #print
 
             if not parent_node or len(inner_text) < 20:
                 continue

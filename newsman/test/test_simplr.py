@@ -14,6 +14,7 @@ def main(url, language):
     #a = re.sub(">\s+<", "><", unicode(content))
     #from slimmer import html_slimmer
     #print html_slimmer(content)
+    print "--------------------------------------------------------------------"
     print content
 
 if __name__ == "__main__":
