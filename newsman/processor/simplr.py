@@ -37,7 +37,7 @@ HIDDEN_IMAGE = {
 class Simplr:
     regexps = {
         'unlikely_candidates': re.compile("banner|button|combx|comment|community|copyright|disqus|extra|foot|header|menu|remark|rss|poll|shoutbox|sidebar|sponsor|sns|ad-break|agegate|pagination|pager|popup|posted|pr|tweet|twitter", re.I),
-        'ok_maybe_its_a_candidate': re.compile("and|article|body|column|main|shadow", re.I),
+        'ok_maybe_its_a_candidate': re.compile("and|article|body|column|content|main|post|shadow", re.I),
         'positive': re.compile("article|blog|body|content|entry|hentry|image|main|page|pagination|photo|post|story|text", re.I),
         'negative': re.compile("banner|combx|comment|com|contact|foot|footer|footnote|genre|logo|masthead|media|meta|outbrain|poll|pr|promo|ranking|related|scroll|shoutbox|sidebar|sponsor|shopping|tags|tool|widget|link", re.I),
         'extraneous': re.compile("print|archive|comment|discuss|e[\-]?mail|share|reply|all|login|sign|single", re.I),
@@ -127,6 +127,9 @@ class Simplr:
             parent_node = node.parent
             grand_parent_node = parent_node.parent
             inner_text = node.text
+            print node
+            print
+            print
 
             if not parent_node or len(inner_text) < 20:
                 continue
