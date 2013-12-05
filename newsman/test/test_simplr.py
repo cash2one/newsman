@@ -12,10 +12,10 @@ def main(url, language):
     title, content, images = simplr.convert(url, language)
     #import re
     #a = re.sub(">\s+<", "><", unicode(content))
-    #from slimmer import html_slimmer
-    #print html_slimmer(content)
+    from slimmer import html_slimmer
+    content = html_slimmer(content)
     print "--------------------------------------------------------------------"
-    print content
+    print str(content)
 
 if __name__ == "__main__":
     main(sys.argv[1], sys.argv[2])
