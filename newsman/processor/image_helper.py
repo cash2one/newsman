@@ -188,7 +188,7 @@ def generate_thumbnail(image_url, relative_path):
             response = opener.open(image_url, timeout=UCK_TIMEOUT)
         else:
             response = urllib2.urlopen(image_url, timeout=UCK_TIMEOUT)
-        image_pil = Image.open(StringIO(reponse.read()))
+        image_pil = Image.open(StringIO(response.read()))
 
         # generate thumbnail
         if image_pil.size > MIN_IMAGE_SIZE:
