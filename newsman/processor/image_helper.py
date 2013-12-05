@@ -181,8 +181,14 @@ def generate_thumbnail(image_url, relative_path):
 
     try:
         # possible exception raiser
-        image_pil = Image.open(
-            StringIO(urllib2.urlopen(image_url, timeout=UCK_TIMEOUT).read()))
+        response = None
+        if 'kapook.com' in image_url:
+            opener = urllib2.build_opener()
+            opener.addheaders = [('User-agent', 'Mozilla/5.0'), ('Referer', 'http://www.kapook.com')]
+            response = opener.open(image_url, timeout=UCK_TIMEOUT)
+        else:
+            response = urllib2.urlopen(image_url, timeout=UCK_TIMEOUT)
+        image_pil = Image.open(StringIO(reponse.read()))
 
         # generate thumbnail
         if image_pil.size > MIN_IMAGE_SIZE:
@@ -243,12 +249,13 @@ def _is_valid_image(image_url):
 
     try:
         if _url_image_exists(image_url):
-            # to avoid line length limit
-            #f = requests.get(image_url, headers={'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:16.0) Gecko/20100101 Firefox/16.0,gzip(gfe)'}, timeout=UCK_TIMEOUT)
-            #opener = urllib2.build_opener()
-            #opener.addheaders = [('User-agent', 'Mozilla/5.0')]
-            #response = opener.open(image_url, timeout=UCK_TIMEOUT)
-            response = urllib2.urlopen(image_url, timeout=UCK_TIMEOUT)
+            response = None
+            if 'kapook.com' in image_url:
+                opener = urllib2.build_opener()
+                opener.addheaders = [('User-agent', 'Mozilla/5.0'), ('Referer', 'http://www.kapook.com')]
+                response = opener.open(image_url, timeout=UCK_TIMEOUT)
+            else:
+                response = urllib2.urlopen(image_url, timeout=UCK_TIMEOUT)
             image_pil = Image.open(StringIO(response.read()))
             return True if image_pil.size[0] * image_pil.size[1] > MIN_IMAGE_SIZE[0] * MIN_IMAGE_SIZE[1] else False
         else:
@@ -283,12 +290,22 @@ def _link_process(link):
             # response is the signal of a valid image
             response = None
             try:
-                response = urllib2.urlopen(image_url, timeout=UCK_TIMEOUT)
+                if 'kapook.com' in image_url:
+                    opener = urllib2.build_opener()
+                    opener.addheaders = [('User-agent', 'Mozilla/5.0'), ('Referer', 'http://www.kapook.com')]
+                    response = opener.open(image_url, timeout=UCK_TIMEOUT)
+                else:
+                    response = urllib2.urlopen(image_url, timeout=UCK_TIMEOUT)
             except urllib2.URLError:
                 path = re.split('https?://?', image_url)[-1]
                 scheme = urlparse.urlparse(image_url).scheme
                 image_url = '%s://%s' % (scheme, path)
-                response = urllib2.urlopen(image_url, timeout=UCK_TIMEOUT)
+                if 'kapook.com' in image_url:
+                    opener = urllib2.build_opener()
+                    opener.addheaders = [('User-agent', 'Mozilla/5.0'), ('Referer', 'http://www.kapook.com')]
+                    response = opener.open(image_url, timeout=UCK_TIMEOUT)
+                else:
+                    response = urllib2.urlopen(image_url, timeout=UCK_TIMEOUT)
             except urllib2.HTTPError as k:
                 logger.info('%s for %s' % (str(k), image_url))
                 return None
@@ -360,8 +377,14 @@ def scale_image(image=None, size_expected=MIN_IMAGE_SIZE,
                 # resize
                 size_new = width_new, height_new
                 # possible exception raiser
-                image_data = Image.open(
-                    StringIO(urllib2.urlopen(image['url'], timeout=UCK_TIMEOUT).read()))
+                response = None
+                if 'kapook.com' in image['url']:
+                    opener = urllib2.build_opener()
+                    opener.addheaders = [('User-agent', 'Mozilla/5.0'), ('Referer', 'http://www.kapook.com')]
+                    response = opener.open(image['url'], timeout=UCK_TIMEOUT)
+                else:
+                    response = urllib2.urlopen(image['url'], timeout=UCK_TIMEOUT)
+                image_data = Image.open(StringIO(response.read()))
                 image_data.thumbnail(size_new, Image.ANTIALIAS)
 
                 # crop
