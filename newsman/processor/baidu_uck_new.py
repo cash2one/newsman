@@ -16,7 +16,7 @@ sys.path.append("..")
 
 from config.settings import hparser
 from config.settings import logger
-import image_helper
+import illustrator
 import urllib2
 
 # CONSTANTS
@@ -28,7 +28,7 @@ def _collect_images(content):
     """
     find all images from the content
     """
-    return image_helper.find_images(content)
+    return illustrator.find_images(content)
 
 
 def _transcode(link):
