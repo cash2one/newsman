@@ -44,6 +44,10 @@ class Illustrator:
     """
 
     def __init__(self, image_url=None, image_html=None, image_urls=None, relative_path=None, size_expected=None, resize_by_width=None, crop_by_center=None):
+        if not image_url and not image_urls and not image_html:
+            logger.error('Method malformed!')
+            raise Exception('Method malformed!')
+
         if image_url:
             self._image_url = image_url
         if image_html:
@@ -57,11 +61,6 @@ class Illustrator:
             self._resize_by_width = resize_by_width
             self._crop_by_center = crop_by_center
 
-        # boundary checker
-        if self._image_url or self._image_urls or self._image_html:
-            continue
-        else:
-            break
 
     def _check_image(self, image):
         """
