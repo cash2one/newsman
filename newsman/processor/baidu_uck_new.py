@@ -23,8 +23,6 @@ import urllib2
 from config.settings import UCK_TIMEOUT
 from config.settings import UCK_TRANSCODING_NEW
 
-HEADERS = {'User-Agent': 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36'}
-
 
 def _collect_images(content):
     """
