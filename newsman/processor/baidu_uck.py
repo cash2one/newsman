@@ -21,6 +21,7 @@ import image_helper
 import urllib2
 
 # CONSTANTS
+from config.settings import HEADERS
 from config.settings import UCK_TIMEOUT
 from config.settings import UCK_TRANSCODING
 
