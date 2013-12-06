@@ -2,7 +2,7 @@
 #-*- coding: utf-8 -*-
 
 """
-image_scraper is used to find all images from a web page
+illustrator is used to find all images from a web page
 """
 # @author chengdujin
 # @contact chengdujin@gmail.com
