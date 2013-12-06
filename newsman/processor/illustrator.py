@@ -43,15 +43,13 @@ class Illustrator:
     Illustrator deals with images
     """
 
-    def __init__(self, image_url=None, image_html=None, image_urls=None, image_size=None):
+    def __init__(self, image_url=None, image_html=None, image_urls=None):
         if not image_url and not image_urls and not image_html:
             logger.error('Method malformed!')
             raise Exception('Method malformed!')
 
         if image_url:
             self._image_url = image_url
-            if image_size:
-                self._image_size = image_size
         elif image_html:
             self._image_html = image_html
         elif image_urls:
@@ -71,11 +69,11 @@ class Illustrator:
         try:
             if isinstance(image, dict) and 'url' in image:
                 image_url = image['url']
-                if _is_valid_image(image_url):
+                if self._is_valid_image(image_url):
                     width, height = get_image_size(image_url)
                     return {'url': image['url'], 'width': width, 'height': height}
             else:
-                if _is_valid_image(image):
+                if self._is_valid_image(image):
                     width, height = get_image_size(image)
                     if width and height:
                         return {'url': image, 'width': width, 'height': height}
