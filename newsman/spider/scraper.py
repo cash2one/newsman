@@ -169,9 +169,9 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
                     # images from transcoded are already normalized
                     entry['images'].extend(images_from_transcoded)
                     # remove duplicated images
-                    images_deduped = illustrator.dedupe_images(
+                    images_deduped = illustrator.dedup_images(
                         entry['images']) if entry.has_key('images') and entry['images'] else None
-                    # be cautious dedupe_images might return None if network
+                    # be cautious dedup_images might return None if network
                     # sucks
                     if images_deduped:
                         entry['images'] = images_deduped
