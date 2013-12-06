@@ -18,7 +18,7 @@ from BeautifulSoup import BeautifulSoup, Comment
 import codecs
 from config.settings import logger
 from furl import furl
-import image_helper
+import illustrator
 import transcoder
 import math
 import posixpath
@@ -101,7 +101,7 @@ class Simplr:
         try:
             if self.content:
                 # find_images normalizes images afterwards
-                return image_helper.find_images(self.content)
+                return illustrator.find_images(self.content)
             else:
                 return None
         except Exception as k:
