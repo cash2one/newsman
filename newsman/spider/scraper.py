@@ -17,7 +17,7 @@ sys.path.append('..')
 import calendar
 from config.settings import logger
 from datetime import datetime, timedelta
-from processor import image_helper
+from processor import illustrator
 from processor import summarizer
 from processor import text2img
 from processor import transcoder
@@ -62,13 +62,13 @@ def _generate_images(image=None, entry=None, rand=None):
             entry['language'], entry['feed_id'], entry['updated'], rand)
 
         # hot news image
-        hot_web, hot_local = image_helper.scale_image(
+        hot_web, hot_local = illustrator.scale_image(
             image=image, size_expected=HOT_IMAGE_SIZE, resize_by_width=True, crop_by_center=True, relative_path='%s_hotnews' % image_relative_path)
         entry['hotnews_image'] = hot_web if hot_web else None
         entry['hotnews_image_local'] = hot_local if hot_local else None
 
         # category image
-        category_web, category_local = image_helper.scale_image(
+        category_web, category_local = illustrator.scale_image(
             image=image, size_expected=CATEGORY_IMAGE_SIZE, resize_by_width=True, crop_by_center=False, relative_path='%s_category' % image_relative_path)
         entry['category_image'] = category_web if category_web else None
         entry['category_image_local'] = category_local if category_local else None
@@ -77,19 +77,19 @@ def _generate_images(image=None, entry=None, rand=None):
         # landscape
         if float(image['width']) / float(image['height']) >= THUMBNAIL_STYLE:
             # high resolution
-            thumbnail_web, thumbnail_local = image_helper.scale_image(
+            thumbnail_web, thumbnail_local = illustrator.scale_image(
                 image=image, size_expected=THUMBNAIL_LANDSCAPE_SIZE_HIGH, resize_by_width=True, crop_by_center=True, relative_path='%s_thumbnail' % image_relative_path)
             if not thumbnail_web:
                 # normal resolution
-                thumbnail_web, thumbnail_local = image_helper.scale_image(
+                thumbnail_web, thumbnail_local = illustrator.scale_image(
                     image=image, size_expected=THUMBNAIL_LANDSCAPE_SIZE_NORMAL, resize_by_width=True, crop_by_center=True, relative_path='%s_thumbnail' % image_relative_path)
         else:  # portrait
             # high resolution
-            thumbnail_web, thumbnail_local = image_helper.scale_image(
+            thumbnail_web, thumbnail_local = illustrator.scale_image(
                 image=image, size_expected=THUMBNAIL_PORTRAIT_SIZE_HIGH, resize_by_width=True, crop_by_center=True, relative_path='%s_thumbnail' % image_relative_path)
             if not thumbnail_web:
                 # normal resolution
-                thumbnail_web, thumbnail_local = image_helper.scale_image(
+                thumbnail_web, thumbnail_local = illustrator.scale_image(
                     image=image, size_expected=THUMBNAIL_PORTRAIT_SIZE_NORMAL, resize_by_width=True, crop_by_center=True, relative_path='%s_thumbnail' % image_relative_path)
         entry['thumbnail_image'] = thumbnail_web if thumbnail_web else None
         entry['thumbnail_image_local'] = thumbnail_local if thumbnail_local else None
@@ -169,7 +169,7 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
                     # images from transcoded are already normalized
                     entry['images'].extend(images_from_transcoded)
                     # remove duplicated images
-                    images_deduped = image_helper.dedupe_images(
+                    images_deduped = illustrator.dedupe_images(
                         entry['images']) if entry.has_key('images') and entry['images'] else None
                     # be cautious dedupe_images might return None if network
                     # sucks
@@ -181,7 +181,7 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
                 # [OPTIONAL] generate 3 types of images: thumbnail,
                 # category image and hot news image
                 if entry.has_key('images') and entry['images']:
-                    biggest = image_helper.find_biggest_image(entry['images'])
+                    biggest = illustrator.find_biggest_image(entry['images'])
                     if biggest:
                         entry = _generate_images(biggest, entry, rand)
                 # for older version users
