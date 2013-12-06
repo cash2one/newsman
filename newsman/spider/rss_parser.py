@@ -19,7 +19,7 @@ import calendar
 import chardet
 from config.settings import hparser
 from config.settings import logger
-from processor import image_helper
+from processor import illustrator
 from datetime import datetime, timedelta
 import feedparser
 import html2text
@@ -211,13 +211,13 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
         # u'86'}]
         entry['images'] = []
         try:
-            images = image_helper.normalize(e.media_content)
+            images = illustrator.normalize(e.media_content)
             if images:
                 entry['images'].extend(images)
         except AttributeError as k:
             pass
         try:
-            images = image_helper.normalize(e.media_thumbnail)
+            images = illustrator.normalize(e.media_thumbnail)
             if images:
                 entry['images'].extend(images)
         except AttributeError as k:
@@ -226,7 +226,7 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
             if 'thumbnail' in attribute:
                 # currently set thumbnail to None if its a dictionary
                 image = e[attribute] if isinstance(e[attribute], str) else None
-                image = image_helper.normalize(image)
+                image = illustrator.normalize(image)
                 if image:
                     entry['images'].extend(image)
         try:
@@ -234,7 +234,7 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
             for link in links:
                 if 'type' in link and 'image' in link.type:
                     if 'href' in link:
-                        image = image_helper.normalize(link.href)
+                        image = illustrator.normalize(link.href)
                         if image:
                             entry['images'].extend(image)
         except AttributeError as k:
@@ -244,7 +244,7 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
             soup = BeautifulStoneSoup(entry['summary'])
             if soup.img:
                 if soup.img.get('src'):
-                    images = image_helper.normalize(soup.img['src'])
+                    images = illustrator.normalize(soup.img['src'])
                     if images:
                         entry['images'].extend(images)
         # dedup images is processed at rss.py
