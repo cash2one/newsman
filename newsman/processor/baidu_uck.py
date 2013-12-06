@@ -17,7 +17,7 @@ sys.path.append('..')
 from BeautifulSoup import BeautifulSoup, NavigableString, Tag
 from config.settings import hparser
 from config.settings import logger
-import image_helper
+import illustrator
 import urllib2
 
 # CONSTANTS
@@ -54,7 +54,7 @@ def _sanitize(content):
             if img_source:
                 img_tuple = img_source.rpartition('src=')
                 img['src'] = img_tuple[2]
-                width, height = image_helper.get_image_size(img['src'])
+                width, height = illustrator.get_image_size(img['src'])
                 if width >= 480:
                     img['width'] = '100%'
                     img['height'] = 'auto'
@@ -108,18 +108,18 @@ def _collect_images(data):
         if 'image_list' in data and data.get('image_list'):
             for image in data.get('image_list'):
                 if 'src' in image and image['src']:
-                    image_normalized = image_helper.find_image(
+                    image_normalized = illustrator.find_image(
                         image['src'].strip())
                     if image_normalized:
                         images.append(image_normalized)
 
         # then try to find images in the content
-        images_from_content = image_helper.find_images(data['content'])
+        images_from_content = illustrator.find_images(data['content'])
         if images_from_content:
             images.extend(images_from_content)
 
         # remove duplicated ones
-        images = image_helper.dedupe_images(images) if images else None
+        images = illustrator.dedupe_images(images) if images else None
         return images
     except Exception as k:
         logger.error(str(k))
