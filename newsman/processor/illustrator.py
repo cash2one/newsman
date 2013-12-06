@@ -66,7 +66,7 @@ def _check_image(image):
         return None
 
 
-def dedupe_images(images):
+def dedup_images(images):
     """
     remove same images
     image: {'url':xxx, 'width':yyy, 'height':zzz}
