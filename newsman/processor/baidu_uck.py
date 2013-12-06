@@ -119,7 +119,7 @@ def _collect_images(data):
             images.extend(images_from_content)
 
         # remove duplicated ones
-        images = illustrator.dedupe_images(images) if images else None
+        images = illustrator.dedup_images(images) if images else None
         return images
     except Exception as k:
         logger.error(str(k))
