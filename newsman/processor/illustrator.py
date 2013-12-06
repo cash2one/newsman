@@ -38,6 +38,14 @@ if not os.path.exists(IMAGES_LOCAL_DIR):
     os.mkdir(IMAGES_LOCAL_DIR)
 
 
+class Illustrator:
+    """
+    Illustrator deals with images
+    """
+
+    def __init__(self):
+        pass
+
 def _check_image(image):
     """
     check an image if it matches with MIN_IMAGE_SIZE
