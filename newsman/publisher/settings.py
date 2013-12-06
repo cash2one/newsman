@@ -36,7 +36,7 @@ hparser = HTMLParser()
 
 
 # CONSTANTS
-#PUBLIC = 'http://mobile-global.baidu.com/news/%s'  # hk01-hao123-mob01/mob02.hk01
+#PUBLIC = 'http://s.mobile-global.baidu.com/news/%s'  # hk01-hao123-mob01/mob02.hk01
 #PUBLIC = 'http://220.181.163.36:8080/news/%s'      # cq01-rdqa-dev067.cq01
 #PUBLIC = 'http://180.76.2.34/news/%s'              # hk01-hao123-mob00.hk01
 #PUBLIC = 'http://54.251.107.116/%s'                # AWS singapore
@@ -108,6 +108,9 @@ TEXT_WIDTH_PT = 26
 TEXT_WIDTH_TH = 25
 TEXT_WIDTH_ZH = 12
 
+# headers for url connecting
+HEADERS = {'User-Agent': 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36'}
+
 # Twitter API
 TWITTER_ACCESS_TOKEN_KEY = "24129666-M47Q6pDLZXLQy1UITxkijkTdKfkvTcBpleidNPjac"
 TWITTER_ACCESS_TOKEN_SECRET = "0zHhqV5gmrmsnjiOEOBCvqxORwsjVC5ax4mM3dCDZ7RLk"
@@ -139,7 +142,7 @@ SCORED_SENTENCE_LIMIT = 5
 # expirations 
 DATABASE_REMOVAL_DAYS = 365
 FEED_UPDATE_DAYS = 2
-MEMORY_EXPIRATION_DAYS = 20
+MEMORY_EXPIRATION_DAYS = 10
 
 # database names
 FEED_REGISTRAR = 'feeds'
