@@ -20,7 +20,7 @@ import burify
 import chardet
 from config.settings import hparser
 from config.settings import logger
-import image_helper
+import illustrator
 import os
 import simplr
 from slimmer import html_slimmer
@@ -151,7 +151,7 @@ def _combine(content, images):
 
     try:
         # for now, if there are more than one image, take only one of them
-        biggest = image_helper.find_biggest_image(images)
+        biggest = illustrator.find_biggest_image(images)
         if biggest:
             IMAGE_TAG = '<img src="%s" width="%s" height="%s">'
             image = IMAGE_TAG % (
