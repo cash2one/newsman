@@ -43,26 +43,22 @@ class Illustrator:
     Illustrator deals with images
     """
 
-    def __init__(self, image_url=None, image_html=None, image_urls=None, relative_path=None, image_size=None, size_expected=None, resize_by_width=True, crop_by_center=True):
+    def __init__(self, image_url=None, image_html=None, image_urls=None, image_size=None):
         if not image_url and not image_urls and not image_html:
             logger.error('Method malformed!')
             raise Exception('Method malformed!')
 
         if image_url:
             self._image_url = image_url
-        if image_html:
+            if image_size:
+                self._image_size = image_size
+        elif image_html:
             self._image_html = image_html
-        if image_urls:
+        elif image_urls:
             self._image_urls = image_urls
-        if relative_path:
-            self._relative_path = relative_path
-        if image_size:
-            self._image_size = image_size
-        if size_expected:
-            self._size_expected = size_expected
-            self._resize_by_width = resize_by_width
-            self._crop_by_center = crop_by_center
-
+        else:
+            logger.error('Unrecognized input type!')
+            raise Exception('Unrecognized input type!')
 
     def _check_image(self, image):
         """
@@ -91,60 +87,6 @@ class Illustrator:
             logger.error(str(k))
             return None
 
-
-    def dedup_images(self, images):
-        """
-        remove same images
-        image: {'url':xxx, 'width':yyy, 'height':zzz}
-        images = [image, image, image]
-        """
-        if not images:
-            return None
-
-        image_urls = []
-
-        def _exists(image):
-            """
-            return boolean if image exists in list image_urls
-            """
-            exists = image['url'] in image_urls
-            if not exists:
-                image_urls.append(image['url'])
-                return False
-            else:
-                return True
-
-        try:
-            return filter(lambda x: not _exists(x), images)
-        except Exception as k:
-            logger.error(str(k))
-            return None
-
-
-    def find_biggest_image(self, images=None):
-        """
-        find the biggest in resolution from a pile of images
-        """
-        if not images:
-            return None
-
-        try:
-            biggest = None
-            resolution_max = MIN_IMAGE_SIZE[0] * MIN_IMAGE_SIZE[1]
-            for image in images:
-                if 'width' in image and 'height' in image:
-                    resolution_image = int(image['width']) * int(image['height'])
-                    if resolution_image > resolution_max:
-                        biggest = image
-                        resolution_max = resolution_image
-                else:
-                    logger.error('Image malformed! %s' % str(image))
-            return biggest
-        except Exception as k:
-            logger.error(str(k))
-            return None
-
-
     def find_image(self, link=None):
         """
         find an image from the link
@@ -164,7 +106,6 @@ class Illustrator:
         except Exception as k:
             logger.error(str(k))
             return None
-
 
     def find_images(self, content=None):
         """
@@ -196,43 +137,6 @@ class Illustrator:
             logger.error(str(k))
             return None
 
-
-    # TODO: relative path could be a url including its suffix like jpg/png
-    def generate_thumbnail(self, image_url, relative_path):
-        """
-        generate a thumbnail
-        """
-        if not image_url or not relative_path:
-            logger.error('Method malformed!')
-            return None
-
-        try:
-            # possible exception raiser
-            HEADERS['Referer'] = image_url
-            request = urllib2.Request(image_url, headers=HEADERS)
-            response = urllib2.urlopen(request, timeout=UCK_TIMEOUT)
-            image_pil = Image.open(StringIO(response.read()))
-
-            # generate thumbnail
-            if image_pil.size > MIN_IMAGE_SIZE:
-                # get various paths
-                image_thumbnail_local_path = '%s%si.jpg' % (
-                    IMAGES_LOCAL_DIR, relative_path)
-                image_thumbnail_web_path = '%s%s.jpg' % (
-                    IMAGES_PUBLIC_DIR, relative_path)
-
-                # thumbnailing
-                image_pil.thumbnail(MIN_IMAGE_SIZE, Image.ANTIALIAS)
-                image_pil = image_pil.convert('RGB')
-                image_pil.save(image_thumbnail_local_path, 'JPEG')
-                return image_thumbnail_web_path
-            else:
-                return image_url
-        except Exception as k:
-            logger.info('Problem:[%s] Source:[%s]' % (str(k), image_url))
-            return None
-
-
     def get_image_size(self, image_url):
         """
         docs needed
@@ -263,7 +167,6 @@ class Illustrator:
             logger.info('Problem:[%s] Source:[%s]' % (str(k), image_url))
             return None, None
 
-
     def _is_valid_image(self, image_url):
         """
         find out if the image has a resolution larger than MIN_IMAGE_SIZE
@@ -285,7 +188,6 @@ class Illustrator:
         except Exception as k:
             logger.error('%s [%s]' % (image_url, str(k)))
             return False
-
 
     def _link_process(self, link):
         """
@@ -339,7 +241,6 @@ class Illustrator:
             logger.info('Problem:[%s] Source:[%s]' % (str(k), link))
             return None
 
-
     def normalize(self, images):
         """
         for list of images, remove images that don't match with MIN_IMAGE_SIZE;
@@ -360,86 +261,6 @@ class Illustrator:
         except Exception as k:
             logger.exception(str(k))
             return None
-
-
-    def scale_image(self, size_expected=MIN_IMAGE_SIZE, relative_path=None):
-        """
-        resize an image as requested
-        resize_by_width: resize image according to its width(True)/height(False)
-        crop_by_center: crop image from its center(True) or by point(0, 0)(False)
-        """
-        if not self._image_url 
-            logger.error('Image URL not found!')
-            return None, None
-        if not self._image_size:
-            logger.error('Expected image size not found!')
-            return None, None
-        if not size_expected:
-            logger.error('Expected image size not found!')
-            return None, None
-        if not relative_path:
-            logger.error('Relative path for image storage not found!')
-            return None, None
-
-        try:
-            width = int(image['width'])
-            height = int(image['height'])
-            width_expected = int(self.size_expected[0])
-            height_expected = int(self.size_expected[1])
-
-            if width >= width_expected and height >= height_expected:
-                if resize_by_width:
-                    height_new = width_expected * height / width
-                    width_new = width_expected
-                else:
-                    width_new = height_expected * width / height
-                    height_new = height_expected
-
-                # larger and equal than is important here
-                if width_new >= width_expected and height_new >= height_expected:
-                    # resize
-                    size_new = width_new, height_new
-                    # possible exception raiser
-                    HEADERS['Referer'] = image['url']
-                    request = urllib2.Request(image['url'], headers=HEADERS)
-                    response = urllib2.urlopen(request, timeout=UCK_TIMEOUT)
-                    image_data = Image.open(StringIO(response.read()))
-                    image_data.thumbnail(size_new, Image.ANTIALIAS)
-
-                    # crop
-                    if crop_by_center:
-                        left = (width_new - width_expected) / 2
-                        top = (height_new - height_expected) / 2
-                        right = (width_new + width_expected) / 2
-                        bottom = (height_new + height_expected) / 2
-                        image_cropped = image_data.crop((left, top, right, bottom))
-                    else:
-                        left = 0
-                        top = 0
-                        right = width_expected
-                        bottom = height_expected
-                        image_cropped = image_data.crop((left, top, right, bottom))
-
-                    # storing
-                    if image_cropped:
-                        image_web_path = '%s%s.jpg' % (
-                            IMAGES_PUBLIC_DIR, self.relative_path)
-                        image_local_path = '%s%s.jpg' % (
-                            IMAGES_LOCAL_DIR, self.relative_path)
-                        image_cropped = image_cropped.convert('RGB')
-                        image_cropped.save(image_local_path, 'JPEG')
-                        return {'url': image_web_path, 'width': width_expected, 'height': height_expected}, {'url': image_local_path, 'width': width_expected, 'height': height_expected}
-                    else:
-                        return None, None
-                else:
-                    self._resize_by_width = not self._resize_by_width
-                    return self.scale_image(image)
-            else:
-                return None, None
-        except Exception as k:
-            logger.info(str(k))
-            return None, None
-
 
     def _url_image_exists(self, url):
         """
@@ -465,3 +286,183 @@ class Illustrator:
         except Exception as k:
             logger.info(str(k))
             return False
+
+
+def dedup_images(images=None):
+    """
+    remove same images
+    image: {'url':xxx, 'width':yyy, 'height':zzz}
+    images = [image, image, image]
+    """
+    if not images:
+        logger.error('Image list is found VOID!')
+        return None
+
+    image_urls = []
+
+    def _exists(image):
+        """
+        return boolean if image exists in the image_urls list
+        """
+        if image['url'] not in image_urls:
+            image_urls.append(image['url'])
+            return False
+        else:
+            return True
+
+    try:
+        return filter(lambda x: not _exists(x), images)
+    except Exception as k:
+        logger.info('Problem:[%s]\nSource:[%s]' % (str(k), str(images))
+        return None
+
+
+def find_biggest_image(images=None):
+    """
+    find the biggest image in resolution from a list of images
+    """
+    if not images:
+        logger.error('Image list is found VOID!')
+        return None
+
+    try:
+        biggest = None
+        resolution_max = MIN_IMAGE_SIZE[0] * MIN_IMAGE_SIZE[1]
+        for image in images:
+            if 'width' in image and 'height' in image:
+                resolution_image = int(image['width']) * int(image['height'])
+                if resolution_image > resolution_max:
+                    biggest = image
+                    resolution_max = resolution_image
+            else:
+                logger.error('Height and width not found! %s' % str(image))
+        return biggest
+    except Exception as k:
+        logger.error('Problem:[%s]\nSource:[%s]' % (str(k), str(images))
+        return None
+
+
+# TODO: relative path could be a url including its suffix like jpg/png
+def generate_thumbnail(image_url, referer=None, relative_path):
+    """
+    generate a thumbnail
+    """
+    if not image_url:
+        logger.error('Image URL not found!')
+        return None
+    if not relative_path:
+        logger.error('Relative path for saving image not found!')
+        return None
+
+    try:
+        image_data = None
+        try:
+            if referer:
+                HEADERS['Referer'] = referer
+            request = urllib2.Request(image_url, headers=HEADERS)
+            response = urllib2.urlopen(request, timeout=UCK_TIMEOUT)
+            image_data = Image.open(StringIO(response.read()))
+        except Exception as k:
+            logger.error'Problem:[%s]\nSource:[%s]' % (str(k), str(image_url))
+            return None
+
+        # generate thumbnail
+        if image_data.size > MIN_IMAGE_SIZE:
+            # get various paths
+            image_thumbnail_local_path = '%s%si.jpg' % (IMAGES_LOCAL_DIR, relative_path)
+            image_thumbnail_web_path = '%s%s.jpg' % (IMAGES_PUBLIC_DIR, relative_path)
+
+            # thumbnailing
+            image_data.thumbnail(MIN_IMAGE_SIZE, Image.ANTIALIAS)
+            image_data = image_data.convert('RGB')
+            image_data.save(image_thumbnail_local_path, 'JPEG')
+            return image_thumbnail_web_path
+        else:
+            return image_url
+    except Exception as k:
+        logger.error('Problem:[%s]\nSource:[%s]' % (str(k), str(image_url))
+        return None
+
+
+def scale_image(image_url=None, image_size=None, referer=None, size_expected=MIN_IMAGE_SIZE, resize_by_width=True, crop_by_center=True, relative_path=None):
+    """
+    resize an image as requested
+    resize_by_width: resize image according to its width(True)/height(False)
+    crop_by_center: crop image from its center(True) or by point(0, 0)(False)
+    """
+    if not image_url 
+        logger.error('Image URL not found!')
+        return None, None
+    if not image_size:
+        logger.error('Expected image size not found!')
+        return None, None
+    if not size_expected:
+        logger.error('Expected image size not found!')
+        return None, None
+    if not relative_path:
+        logger.error('Relative path for saving image not found!')
+        return None, None
+
+    try:
+        width = int(image_size[0])
+        height = int(image_size[0])
+        width_expected = int(size_expected[0])
+        height_expected = int(size_expected[1])
+
+        if width >= width_expected and height >= height_expected:
+            if resize_by_width:
+                height_new = width_expected * height / width
+                width_new = width_expected
+            else:
+                width_new = height_expected * width / height
+                height_new = height_expected
+
+            # larger and equal than is important here
+            if width_new >= width_expected and height_new >= height_expected:
+                # resize
+                size_new = width_new, height_new
+
+                image_data = None
+                try:
+                    if referer:
+                        HEADERS['Referer'] = referer
+                    request = urllib2.Request(image_url, headers=HEADERS)
+                    response = urllib2.urlopen(request, timeout=UCK_TIMEOUT)
+                    image_data = Image.open(StringIO(response.read()))
+                except Exception as k:
+                    logger.info('Problem:[%s]\nSource:[%s]' % (str(k), str(image_url))
+                    return None, None
+
+                # resize image according to new size
+                image_data.thumbnail(size_new, Image.ANTIALIAS)
+
+                # crop out unnecessary part
+                if crop_by_center:
+                    left = (width_new - width_expected) / 2
+                    top = (height_new - height_expected) / 2
+                    right = (width_new + width_expected) / 2
+                    bottom = (height_new + height_expected) / 2
+                    image_cropped = image_data.crop((left, top, right, bottom))
+                else:
+                    left = 0
+                    top = 0
+                    right = width_expected
+                    bottom = height_expected
+                    image_cropped = image_data.crop((left, top, right, bottom))
+
+                # save to disk
+                if image_cropped:
+                    image_web_path = '%s%s.jpg' % (IMAGES_PUBLIC_DIR, relative_path)
+                    image_local_path = '%s%s.jpg' % (IMAGES_LOCAL_DIR, relative_path)
+                    image_cropped = image_cropped.convert('RGB')
+                    image_cropped.save(image_local_path, 'JPEG')
+                    return {'url': image_web_path, 'width': width_expected, 'height': height_expected}, {'url': image_local_path, 'width': width_expected, 'height': height_expected}
+                else:
+                    return None, None
+            else:
+                return scale_image(image_url=image_url, image_size=image_size, referer=referer, size_expected=size_expected, resize_by_width=not resize_by_width, crop_by_center=crop_by_center, relative_path=relative_path)
+        else:
+            return None, None
+    except Exception as k:
+        logger.info('Problem:[%s]\nSource:[%s]' % (str(k), str(image_url))
+        return None, None
