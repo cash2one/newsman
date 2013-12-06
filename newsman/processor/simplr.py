@@ -26,8 +26,6 @@ import re
 import tinysegmenter
 import urlparse
 
-import ipdb
-
 # CONSTANTS
 HIDDEN_IMAGE = {
     'http://sankei.jp.msn.com/': ('div', {'class': 'img250 imgright'}), 'http://www.cnn.co.jp/': ('div', {'id': 'leaf_large_image', 'class': 'img-caption'}),

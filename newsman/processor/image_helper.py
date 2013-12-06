@@ -26,6 +26,7 @@ import urllib2
 import urlparse
 
 # CONSTANTS
+from config.settings import HEADERS
 from config.settings import IMAGES_LOCAL_DIR
 from config.settings import IMAGES_PUBLIC_DIR
 from config.settings import MIN_IMAGE_SIZE

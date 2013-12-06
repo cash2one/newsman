@@ -108,6 +108,9 @@ TEXT_WIDTH_PT = 26
 TEXT_WIDTH_TH = 25
 TEXT_WIDTH_ZH = 12
 
+# headers for url connecting
+HEADERS = {'User-Agent': 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36'}
+
 # Twitter API
 TWITTER_ACCESS_TOKEN_KEY = "24129666-M47Q6pDLZXLQy1UITxkijkTdKfkvTcBpleidNPjac"
 TWITTER_ACCESS_TOKEN_SECRET = "0zHhqV5gmrmsnjiOEOBCvqxORwsjVC5ax4mM3dCDZ7RLk"
