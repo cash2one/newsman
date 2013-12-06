@@ -43,7 +43,7 @@ class Illustrator:
     Illustrator deals with images
     """
 
-    def __init__(self, image_url=None, image_html=None, image_urls=None, relative_path=None, size_expected=None, resize_by_width=None, crop_by_center=None):
+    def __init__(self, image_url=None, image_html=None, image_urls=None, relative_path=None, image_size=None, size_expected=None, resize_by_width=True, crop_by_center=True):
         if not image_url and not image_urls and not image_html:
             logger.error('Method malformed!')
             raise Exception('Method malformed!')
@@ -56,6 +56,8 @@ class Illustrator:
             self._image_urls = image_urls
         if relative_path:
             self._relative_path = relative_path
+        if image_size:
+            self._image_size = image_size
         if size_expected:
             self._size_expected = size_expected
             self._resize_by_width = resize_by_width
@@ -360,23 +362,30 @@ class Illustrator:
             return None
 
 
-    # TODO: boundary checker
-    def scale_image(self, image=None, size_expected=MIN_IMAGE_SIZE,
-                    resize_by_width=True, crop_by_center=True, relative_path=None):
+    def scale_image(self, size_expected=MIN_IMAGE_SIZE, relative_path=None):
         """
         resize an image as requested
         resize_by_width: resize image according to its width(True)/height(False)
         crop_by_center: crop image from its center(True) or by point(0, 0)(False)
         """
-        if not image or not size_expected or not relative_path:
-            logger.error('Method malformed!')
+        if not self._image_url 
+            logger.error('Image URL not found!')
+            return None, None
+        if not self._image_size:
+            logger.error('Expected image size not found!')
+            return None, None
+        if not size_expected:
+            logger.error('Expected image size not found!')
+            return None, None
+        if not relative_path:
+            logger.error('Relative path for image storage not found!')
             return None, None
 
         try:
             width = int(image['width'])
             height = int(image['height'])
-            width_expected = int(size_expected[0])
-            height_expected = int(size_expected[1])
+            width_expected = int(self.size_expected[0])
+            height_expected = int(self.size_expected[1])
 
             if width >= width_expected and height >= height_expected:
                 if resize_by_width:
@@ -414,16 +423,17 @@ class Illustrator:
                     # storing
                     if image_cropped:
                         image_web_path = '%s%s.jpg' % (
-                            IMAGES_PUBLIC_DIR, relative_path)
+                            IMAGES_PUBLIC_DIR, self.relative_path)
                         image_local_path = '%s%s.jpg' % (
-                            IMAGES_LOCAL_DIR, relative_path)
+                            IMAGES_LOCAL_DIR, self.relative_path)
                         image_cropped = image_cropped.convert('RGB')
                         image_cropped.save(image_local_path, 'JPEG')
                         return {'url': image_web_path, 'width': width_expected, 'height': height_expected}, {'url': image_local_path, 'width': width_expected, 'height': height_expected}
                     else:
                         return None, None
                 else:
-                    return scale_image(image, size_expected, not resize_by_width, crop_by_center, relative_path)
+                    self._resize_by_width = not self._resize_by_width
+                    return self.scale_image(image)
             else:
                 return None, None
         except Exception as k:
