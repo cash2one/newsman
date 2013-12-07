@@ -289,23 +289,35 @@ def generate_thumbnail(image_url=None, referer=None, relative_path=None):
         return None
 
 
-def scale_image(image_url=None, image_size=None, referer=None, size_expected=MIN_IMAGE_SIZE, resize_by_width=True, crop_by_center=True, relative_path=None):
+def scale_image(image=None, referer=None, size_expected=MIN_IMAGE_SIZE, resize_by_width=True, crop_by_center=True, relative_path=None):
     """
     resize an image as requested
     resize_by_width: resize image according to its width(True)/height(False)
     crop_by_center: crop image from its center(True) or by point(0, 0)(False)
     """
-    if not image_url: 
-        logger.error('Image URL not found!')
-        return None, None
-    if not image_size:
-        logger.error('Expected image size not found!')
+    if not image: 
+        logger.error('Image not found!')
         return None, None
     if not size_expected:
         logger.error('Expected image size not found!')
         return None, None
     if not relative_path:
         logger.error('Relative path for saving image not found!')
+        return None, None
+
+    image_url = image_size = None
+    try:
+        image_url = image['url'] 
+        image_size = image['width'], image['height']
+    except Exception:
+        logger.error('Image [%s] is malformed!' % str(image))
+        return None, None
+
+    if not image_url: 
+        logger.error('Image URL not found!')
+        return None, None
+    if not image_size:
+        logger.error('Expected image size not found!')
         return None, None
 
     try:
