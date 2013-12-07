@@ -58,10 +58,10 @@ def _sanitize(content=None, referer=None):
                 # call NormalizedImage
                 width = height = None
                 try:
-                    ni = NormalizedImage(image['src'], referer)
+                    ni = NormalizedImage(img['src'], referer)
                     width, height = ni.get_image_size()
                 except Exception as k:
-                    logger.info('Problem [%s] for Source [%s]' % (str(k), str(image['src'])))
+                    logger.info('Problem [%s] for Source [%s]' % (str(k), str(img['src'])))
                     continue
                 if width >= 480:
                     img['width'] = '100%'
