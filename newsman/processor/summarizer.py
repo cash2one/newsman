@@ -101,7 +101,8 @@ def _get_first_paragraph(content, language):
         h.ignore_emphasis = True
         h.body_width = 0
         paragraphs = (h.handle(content)).strip('#').split("\n\n")
-        paragraphs = [paragraph for paragraph in paragraphs if paragraph.strip()]
+        paragraphs = [
+            paragraph for paragraph in paragraphs if paragraph.strip()]
         for paragraph in paragraphs:
             if paragraph and _is_valid(paragraph, language):
                 return _get_shorter_text(paragraph, language, SUMMARY_LENGTH_LIMIT)
@@ -126,7 +127,8 @@ def _get_summary(content, language):
         h.ignore_emphasis = True
         h.body_width = 0
         paragraphs = (h.handle(content)).strip('#').split("\n\n")
-        paragraphs = [paragraph for paragraph in paragraphs if paragraph.strip()]
+        paragraphs = [
+            paragraph for paragraph in paragraphs if paragraph.strip()]
         for paragraph in paragraphs:
             if paragraph and _is_valid(paragraph, language):
                 return _get_shorter_text(paragraph, language, SUMMARY_LENGTH_LIMIT)
