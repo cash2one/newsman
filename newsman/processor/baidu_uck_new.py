@@ -61,7 +61,7 @@ def _extract(link):
         except Exception:
             logger.info('Invalid syntax found for New UCK output')
             return None, None, None
-        
+
         data = eval(data_string)
 
         if int(data['status']) == 1:
