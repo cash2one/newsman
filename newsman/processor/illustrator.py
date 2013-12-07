@@ -239,7 +239,7 @@ def find_images(content=None, referer=None):
             if image.get('src'):
                 normalized_image = find_image(image.get('src'), referer)
                 if normalized_image:
-                    normalized_images.append(normalized_image)
+                    normalized_images.extend(normalized_image)
 
         return normalized_images
     except Exception as k:
