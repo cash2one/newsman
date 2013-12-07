@@ -474,7 +474,7 @@ def scale_image(image=None, referer=None, size_expected=MIN_IMAGE_SIZE, resize_b
                         del image_data
                     return None, None
             else:
-                return scale_image(image_url=image_url, image_size=image_size, referer=referer, size_expected=size_expected, resize_by_width=not resize_by_width, crop_by_center=crop_by_center, relative_path=relative_path)
+                return scale_image(image=image, referer=referer, size_expected=size_expected, resize_by_width=not resize_by_width, crop_by_center=crop_by_center, relative_path=relative_path)
         else:
             return None, None
     except Exception as k:
