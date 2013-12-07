@@ -18,6 +18,7 @@ from BeautifulSoup import BeautifulSoup, NavigableString, Tag
 from config.settings import hparser
 from config.settings import logger
 import illustrator
+from illustrator import NormalizedImage
 import urllib2
 
 # CONSTANTS
@@ -27,7 +28,7 @@ from config.settings import UCK_TRANSCODING
 
 # TODO: test the code
 # TODO: remove code that sanitize too much
-def _sanitize(content):
+def _sanitize(content=None, referer=None):
     """
     modified uck content to suit news needs
     """
@@ -54,7 +55,14 @@ def _sanitize(content):
             if img_source:
                 img_tuple = img_source.rpartition('src=')
                 img['src'] = img_tuple[2]
-                width, height = illustrator.get_image_size(img['src'])
+                # call NormalizedImage
+                width = height = None
+                try:
+                    ni = NormalizedImage(image['src'], referer)
+                    width, height = ni.get_image_size()
+                except Exception as k:
+                    logger.info('Problem [%s] for Source [%s]' % (str(k), str(image['src'])))
+                    continue
                 if width >= 480:
                     img['width'] = '100%'
                     img['height'] = 'auto'
@@ -125,7 +133,7 @@ def _collect_images(data):
         return None
 
 
-def _extract(data):
+def _extract(data=None, referer=None):
     """
     extract images and text content
     """
@@ -141,7 +149,7 @@ def _extract(data):
     try:
         # content
         content = data['content'].replace("\\", "")
-        content = _sanitize(content)
+        content = _sanitize(content, referer)
 
         # images
         images = _collect_images(data)
@@ -194,7 +202,7 @@ def convert(link):
                 return None, None, None
 
             # text is sanitized, images are found from image_list
-            title, transcoded, images = _extract(eval(raw_data))
+            title, transcoded, images = _extract(eval(raw_data), link)
             return title, transcoded, images
         else:
             logger.info('Cannot read anything from UCK server')
