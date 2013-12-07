@@ -49,10 +49,14 @@ class NormalizedImage:
         self._image_url, self._image_html = self._analyze(image_url, referer)
         self._image_size = self._calculate_size()
 
-    def _analyze(self, image_url, referer):
+    def _analyze(self, image_url=None, referer=None):
         """
         remove CDN prefix, if any; and read image data
         """
+        if not image_url:
+            logger.error('Method malformed!')
+            raise Exception('Method malformed!')
+
         image_url = image_url.replace("\/", "/").strip()
         image_url = urllib2.unquote(hparser.unescape(image_url))
 
@@ -89,18 +93,18 @@ class NormalizedImage:
                 raise Exception('%s for %s' % (str(k), str(image_url)))
 
         if response and response.status_code < 400 and response.content:
-                # GIF is not supported yet
-                image_url_parsed = requests.utils.urlparse(image_url)
-                image_url_address = image_url_parsed.netloc + image_url_parsed.path
-                if image_url_address.lower().endswith('.gif'):
-                    raise Exception('GIF is not supported! %s' % str(image_url))
-                else:
-                    return str(image_url), str(urllib2.unquote(hparser.unescape(response.content)))
+            # GIF is not supported yet
+            image_url_parsed = requests.utils.urlparse(image_url)
+            image_url_address = image_url_parsed.netloc + image_url_parsed.path
+            if image_url_address.lower().endswith('.gif'):
+                raise Exception('GIF is not supported! %s' % str(image_url))
+            else:
+                return str(image_url), str(urllib2.unquote(hparser.unescape(response.content)))
         else:
             logger.error('Cannot parse %s' % str(image_url))
             raise Exception('Cannot parse %s' % str(image_url))
 
-    def _calculate_size():
+    def _calculate_size(self):
         """
         read data into memory and return the image size
         """
@@ -114,13 +118,13 @@ class NormalizedImage:
             logger.error('Problem:[%s] Source:[%s]' % (str(k), str(self._image_url)))
             return None, None
 
-    def get_image_size():
+    def get_image_size(self):
         """
         output image size
         """
         return self._image_size
 
-    def get_image_url():
+    def get_image_url(self):
         """
         output updated image url
         """
@@ -148,7 +152,7 @@ class NormalizedImage:
             if self._is_valid_image():
                 width, height = self._image_size
                 if width and height:
-                    return [{'url': image, 'width': width, 'height': height}]
+                    return [{'url': self._image_url, 'width': width, 'height': height}]
             return None
         except Exception as k:
             logger.error('Problem:[%s]\nSource:[%s]' % (str(k), str(self._image_url)))
@@ -266,7 +270,7 @@ def find_images(self, content=None):
 
 
 # TODO: relative path could be a url including its suffix like jpg/png
-def generate_thumbnail(image_url, referer=None, relative_path):
+def generate_thumbnail(image_url=None, referer=None, relative_path=None):
     """
     generate a thumbnail
     """
@@ -313,7 +317,7 @@ def scale_image(image_url=None, image_size=None, referer=None, size_expected=MIN
     resize_by_width: resize image according to its width(True)/height(False)
     crop_by_center: crop image from its center(True) or by point(0, 0)(False)
     """
-    if not image_url 
+    if not image_url: 
         logger.error('Image URL not found!')
         return None, None
     if not image_size:
