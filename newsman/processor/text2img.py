@@ -126,7 +126,8 @@ class Text2Image:
             if self._language == 'ja':
                 segmenter = tinysegmenter.TinySegmenter()
                 sentences = segmenter.tokenize(self._text)
-                sentences = [sentence for sentence in sentences if sentence.strip()]
+                sentences = [
+                    sentence for sentence in sentences if sentence.strip()]
             elif self._language == 'th':
                 command = 'echo "%s" | %s %s/scw.conf %s' % (
                     str(self._text), THAI_WORDSEG, THAI_WORDSEG_DICT, THAI_WORDSEG_DICT)
@@ -173,9 +174,11 @@ class Text2Image:
                         # print '  previous', str(previous_line)
                         possible_line = ""
                         if self._language in ['en', 'in', 'pt']:
-                            possible_line = u"%s %s" % (previous_line, current_line)
+                            possible_line = u"%s %s" % (
+                                previous_line, current_line)
                         else:
-                            possible_line = u"%s%s" % (previous_line, current_line)
+                            possible_line = u"%s%s" % (
+                                previous_line, current_line)
 
                         if len(textwrap.wrap(possible_line, self._text_width)) == 1:
                             # print '    possible', str(possible_line)
