@@ -126,7 +126,8 @@ class PyTeaser:
                 sentences = nltk.sent_tokenize(self._article)
 
             # remove spaces
-            sentences = [sentence.strip() for sentence in sentences if sentence.strip()]
+            sentences = [sentence.strip()
+                         for sentence in sentences if sentence.strip()]
             return sentences
         except Exception as k:
             logger.error(str(k))
@@ -193,7 +194,8 @@ class PyTeaser:
                             word for word in words if word not in thai_punctuation]
             else:
                 # for python 2.6
-                text = re.compile(r'[^\w ]', flags=re.UNICODE).sub("", unicode(text))
+                text = re.compile(
+                    r'[^\w ]', flags=re.UNICODE).sub("", unicode(text))
                 # for python 2.7
                 #text = re.sub(r'[^\w ]', "", unicode(text), flags=re.UNICODE)
                 words = [str(word).strip('.').lower() for word in text.split()]
@@ -216,14 +218,16 @@ class PyTeaser:
             stopwords = f.readlines()
             f.close()
             #stopwords = [stopword.strip() for stopword in stopwords if stopword.strip()]
-            stopwords = [str(re.compile(r'[^\w ]', flags=re.UNICODE).sub("", unicode(stopword.strip()))) for stopword in stopwords if stopword.strip()]
+            stopwords = [str(re.compile(r'[^\w ]', flags=re.UNICODE).sub("", unicode(stopword.strip())))
+                         for stopword in stopwords if stopword.strip()]
             words_filtered = [word for word in words if word not in stopwords]
 
             # distinct words
             kwords = list(set(words_filtered))
 
             # word-frenquency
-            keywords = [(kword, words_filtered.count(kword)) for kword in kwords]
+            keywords = [(kword, words_filtered.count(kword))
+                        for kword in kwords]
             keywords = sorted(keywords, key=lambda x: -x[1])
 
             return (keywords, len(words))
@@ -276,7 +280,8 @@ class PyTeaser:
                         word_in_keywords_score = word_in_keywords_score + \
                             keyword_count
                         break
-            sbs_score = (1.0 / math.fabs(len(words)) * float(word_in_keywords_score))
+            sbs_score = (
+                1.0 / math.fabs(len(words)) * float(word_in_keywords_score))
             return sbs_score
         except Exception as k:
             logger.error(str(k))
@@ -376,7 +381,9 @@ class PyTeaser:
 
         try:
             IDEAL_SENTENCE_LENGTH = 20  # unicode words
-            sentence_length_score = 1.0 - math.fabs(IDEAL_SENTENCE_LENGTH - len(sentence_words)) / float(IDEAL_SENTENCE_LENGTH)
+            sentence_length_score = 1.0 - \
+                math.fabs(IDEAL_SENTENCE_LENGTH - len(sentence_words)) / float(
+                    IDEAL_SENTENCE_LENGTH)
             return sentence_length_score
         except Exception as k:
             logger.error(str(k))
@@ -499,7 +506,6 @@ It takes a crazy kind of courage, of focus, of foolhardy perseverance to quiet a
 Not sure how to start? Sketch a few shapes, then label them. Say, “This is probably crazy, but what if we.…” and try to make your sketch fit the problem you’re trying to solve. Like a magic spell, the moment you put the stuff on the board, something incredible will happen. The room will see your ideas, will offer their own, will revise your thinking, and by the end of 15 minutes, 30 minutes, an hour, you’ll have made progress.
 
 That’s how it’s done"""
-
 
     teaser = PyTeaser(language, title, text)
     print str(teaser.summarize())
