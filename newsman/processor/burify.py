@@ -20,11 +20,15 @@ from readability import Document
 import transcoder
 
 
-def _collect_images(content):
+def _collect_images(content, referer):
     """
     find all images from the content
     """
-    return illustrator.find_images(content)
+    if not content:
+        logger.error('Content/HTML found VOID!')
+        return None
+
+    return illustrator.find_images(content, referer)
 
 
 def convert(link):
@@ -41,7 +45,7 @@ def convert(link):
         if data:
             article = Document(data)
             if article:
-                images = _collect_images(article.summary())
+                images = _collect_images(article.summary(), link)
                 return article.short_title(), article.summary(html_partial=False), images
             else:
                 logger.info('Burify cannot recognize the data')
