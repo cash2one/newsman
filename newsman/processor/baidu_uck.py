@@ -61,7 +61,8 @@ def _sanitize(content=None, referer=None):
                     ni = NormalizedImage(img['src'], referer)
                     width, height = ni.get_image_size()
                 except Exception as k:
-                    logger.info('Problem [%s] for Source [%s]' % (str(k), str(img['src'])))
+                    logger.info(
+                        'Problem [%s] for Source [%s]' % (str(k), str(img['src'])))
                     continue
                 if width >= 480:
                     img['width'] = '100%'
@@ -116,7 +117,8 @@ def _collect_images(data=None, referer=None):
         if 'image_list' in data and data.get('image_list'):
             for image in data.get('image_list'):
                 if 'src' in image and image['src']:
-                    image_normalized = illustrator.find_image(image['src'].strip(), referer)
+                    image_normalized = illustrator.find_image(
+                        image['src'].strip(), referer)
                     if image_normalized:
                         images.append(image_normalized)
 
