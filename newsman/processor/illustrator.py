@@ -38,9 +38,11 @@ if not os.path.exists(IMAGES_LOCAL_DIR):
 
 
 class NormalizedImage:
+
     """
     Class of normalized image
     """
+
     def __init__(self, image_url=None, referer=None):
         if not image_url:
             logger.error('Method malformed!')
@@ -71,7 +73,8 @@ class NormalizedImage:
         if referer:
             HEADERS['Referer'] = referer
         try:
-            response = requests.get(image_url, headers=HEADERS, timeout=UCK_TIMEOUT)
+            response = requests.get(
+                image_url, headers=HEADERS, timeout=UCK_TIMEOUT)
             # avoid redirected URL
             image_url = response.url
             # either exception or wrong HTTP code
@@ -85,7 +88,8 @@ class NormalizedImage:
                 scheme = requests.utils.urlparse(image_url).scheme
                 image_url = '%s://%s' % (scheme, path)
 
-                response = requests.get(image_url, headers=HEADERS, timeout=UCK_TIMEOUT)
+                response = requests.get(
+                    image_url, headers=HEADERS, timeout=UCK_TIMEOUT)
                 # avoid redirected URL
                 image_url = response.url
                 if response.status_code >= 400:
@@ -101,9 +105,10 @@ class NormalizedImage:
             if image_url_address.lower().endswith('.gif'):
                 raise Exception('GIF is not supported! %s' % str(image_url))
             else:
-                image_html = urllib2.unquote(hparser.unescape(response.content))
+                image_html = urllib2.unquote(
+                    hparser.unescape(response.content))
                 image_url = self._check_image(image_url, image_html)
-                return str(image_url), str(image_html) 
+                return str(image_url), str(image_html)
         else:
             logger.error('Cannot parse %s' % str(image_url))
             raise Exception('Cannot parse %s' % str(image_url))
@@ -115,7 +120,7 @@ class NormalizedImage:
         try:
             if self._image_html:
                 image_data = Image.open(StringIO(self._image_html))
-                self._image_size = image_data.size  #width, height
+                self._image_size = image_data.size  # width, height
 
                 # clean data
                 if image_data:
@@ -123,7 +128,8 @@ class NormalizedImage:
             else:
                 return None, None
         except Exception as k:
-            logger.error('Problem:[%s] Source:[%s]' % (str(k), str(self._image_url)))
+            logger.error('Problem:[%s] Source:[%s]' %
+                         (str(k), str(self._image_url)))
             return None, None
 
     def _check_image(self, image_url=None, image_html=None):
@@ -141,7 +147,8 @@ class NormalizedImage:
         try:
             response = requests.get(image_url, timeout=UCK_TIMEOUT)
             if response.status_code > 400:
-                raise Exception('Without HEADERS [%s] cannot be reached!' % str(image_url))
+                raise Exception(
+                    'Without HEADERS [%s] cannot be reached!' % str(image_url))
         except Exception as k:
             logger.info('Problem:[%s] Source:[%s]' % (str(k), str(image_url)))
 
@@ -170,9 +177,10 @@ class NormalizedImage:
             logger.error('Image content is found VOID!')
             return None
 
-        # generate relative path 
+        # generate relative path
         pr = requests.utils.urlparse(image_url)
-        relative_path_prefix = str(re.compile(r'[^\w ]', flags=re.UNICODE).sub("", unicode(pr.netloc + pr.path)))
+        relative_path_prefix = str(
+            re.compile(r'[^\w ]', flags=re.UNICODE).sub("", unicode(pr.netloc + pr.path)))
         relative_path_suffix = str(random.randint(0, 100000000))
         relative_path = '%s_%s' % (relative_path_prefix, relative_path_suffix)
 
@@ -212,7 +220,8 @@ class NormalizedImage:
                 return True if width * height > MIN_IMAGE_SIZE[0] * MIN_IMAGE_SIZE[1] else False
             return False
         except Exception as k:
-            logger.error('Problem:[%s] Source:[%s]' % (str(k), str(self._image_url)))
+            logger.error('Problem:[%s] Source:[%s]' %
+                         (str(k), str(self._image_url)))
             return False
 
     def normalize(self):
@@ -227,7 +236,8 @@ class NormalizedImage:
                     return {'url': self._image_url, 'width': width, 'height': height}
             return None
         except Exception as k:
-            logger.error('Problem:[%s]\nSource:[%s]' % (str(k), str(self._image_url)))
+            logger.error('Problem:[%s]\nSource:[%s]' %
+                         (str(k), str(self._image_url)))
             return None
 
 
@@ -347,14 +357,17 @@ def generate_thumbnail(image_url=None, referer=None, relative_path=None):
             response = urllib2.urlopen(request, timeout=UCK_TIMEOUT)
             image_data = Image.open(StringIO(response.read()))
         except Exception as k:
-            logger.error('Problem:[%s]\nSource:[%s]' % (str(k), str(image_url)))
+            logger.error(
+                'Problem:[%s]\nSource:[%s]' % (str(k), str(image_url)))
             return None
 
         # generate thumbnail
         if image_data.size > MIN_IMAGE_SIZE:
             # get various paths
-            image_thumbnail_local_path = '%s%si.jpg' % (IMAGES_LOCAL_DIR, relative_path)
-            image_thumbnail_web_path = '%s%s.jpg' % (IMAGES_PUBLIC_DIR, relative_path)
+            image_thumbnail_local_path = '%s%si.jpg' % (
+                IMAGES_LOCAL_DIR, relative_path)
+            image_thumbnail_web_path = '%s%s.jpg' % (
+                IMAGES_PUBLIC_DIR, relative_path)
 
             # thumbnailing
             image_data.thumbnail(MIN_IMAGE_SIZE, Image.ANTIALIAS)
@@ -381,7 +394,7 @@ def scale_image(image=None, referer=None, size_expected=MIN_IMAGE_SIZE, resize_b
     resize_by_width: resize image according to its width(True)/height(False)
     crop_by_center: crop image from its center(True) or by point(0, 0)(False)
     """
-    if not image: 
+    if not image:
         logger.error('Image not found!')
         return None, None
     if not size_expected:
@@ -393,13 +406,13 @@ def scale_image(image=None, referer=None, size_expected=MIN_IMAGE_SIZE, resize_b
 
     image_url = image_size = None
     try:
-        image_url = image['url'] 
+        image_url = image['url']
         image_size = image['width'], image['height']
     except Exception:
         logger.error('Image [%s] is malformed!' % str(image))
         return None, None
 
-    if not image_url: 
+    if not image_url:
         logger.error('Image URL not found!')
         return None, None
     if not image_size:
@@ -429,10 +442,12 @@ def scale_image(image=None, referer=None, size_expected=MIN_IMAGE_SIZE, resize_b
                 try:
                     if referer:
                         HEADERS['Referer'] = referer
-                    response = requests.get(image_url, headers=HEADERS, timeout=UCK_TIMEOUT)
+                    response = requests.get(
+                        image_url, headers=HEADERS, timeout=UCK_TIMEOUT)
                     image_data = Image.open(StringIO(response.content))
                 except Exception as k:
-                    logger.info('Problem:[%s]\nSource:[%s]' % (str(k), str(image_url)))
+                    logger.info(
+                        'Problem:[%s]\nSource:[%s]' % (str(k), str(image_url)))
                     return None, None
 
                 # resize image according to new size
@@ -455,8 +470,10 @@ def scale_image(image=None, referer=None, size_expected=MIN_IMAGE_SIZE, resize_b
 
                 # save to disk
                 if image_cropped:
-                    image_web_path = '%s%s.jpg' % (IMAGES_PUBLIC_DIR, relative_path)
-                    image_local_path = '%s%s.jpg' % (IMAGES_LOCAL_DIR, relative_path)
+                    image_web_path = '%s%s.jpg' % (
+                        IMAGES_PUBLIC_DIR, relative_path)
+                    image_local_path = '%s%s.jpg' % (
+                        IMAGES_LOCAL_DIR, relative_path)
                     image_cropped = image_cropped.convert('RGB')
                     image_cropped.save(image_local_path, 'JPEG')
 
