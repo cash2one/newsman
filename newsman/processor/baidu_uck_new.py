@@ -24,11 +24,15 @@ from config.settings import UCK_TIMEOUT
 from config.settings import UCK_TRANSCODING_NEW
 
 
-def _collect_images(content):
+def _collect_images(content=None, referer=None):
     """
     find all images from the content
     """
-    return illustrator.find_images(content)
+    if not content:
+        logger.error('Content/HTML is found VOID!')
+        return None
+
+    return illustrator.find_images(content, referer)
 
 
 def _transcode(link):
@@ -65,7 +69,7 @@ def _extract(link):
                 'title'] else data['title']
             content = None if 'content' not in data or not data[
                 'content'] else data['content']
-            images = _collect_images(content)
+            images = _collect_images(content, link)
             return title, content, images
         else:
             logger.info('UCK cannot parse the link: status != 1')
