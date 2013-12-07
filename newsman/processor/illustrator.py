@@ -229,40 +229,26 @@ def find_image(image_url=None, referer=None):
         return None
 
 
-def find_images(self, content=None):
+def find_images(content=None, referer=None):
     """
     find out all images from content and its size info
     """
     if not content:
+        logger.error('Content/HTML is found VOID!')
         return None
-        """
-        if isinstance(images, list):
-            images_new = []
-            for image in images:
-                image_new = _check_image(image)
-                if image_new:
-                    images_new.append(image_new)
-            return images_new if images_new else None
-        """
-    try:
-        # determine the type of content
-        if isinstance(content, str) and content.startswith(TRANSCODED_LOCAL_DIR):
-            # then its a file
-            f = open(content, 'r')
-            content = f.read()
 
-        #soup = BeautifulSoup(content.decode('utf-8', 'ignore'))
+    try:
         soup = BeautifulSoup(str(content))
-        images_normalized = []
         images = soup.findAll('img')
 
+        normalized_images = []
         for image in images:
             if image.get('src'):
-                image_normalized = get_image(image.get('src'))
-                if image_normalized:
-                    images_normalized.append(image_normalized)
+                normalized_image = find_image(image.get('src'), referer)
+                if normalized_image:
+                    normalized_images.append(normalized_image)
 
-        return images_normalized
+        return normalized_images
     except Exception as k:
         logger.error(str(k))
         return None
