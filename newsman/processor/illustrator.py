@@ -29,7 +29,6 @@ from config.settings import HEADERS
 from config.settings import IMAGES_LOCAL_DIR
 from config.settings import IMAGES_PUBLIC_DIR
 from config.settings import MIN_IMAGE_SIZE
-from config.settings import TRANSCODED_LOCAL_DIR
 from config.settings import UCK_TIMEOUT
 
 # creat images local directory if it does not exist
@@ -123,12 +122,6 @@ class NormalizedImage:
         output image size
         """
         return self._image_size
-
-    def get_image_url(self):
-        """
-        output updated image url
-        """
-        return self._image_url
 
     def _is_valid_image(self):
         """
