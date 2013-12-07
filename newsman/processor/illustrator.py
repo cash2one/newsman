@@ -20,6 +20,7 @@ from config.settings import logger
 from cStringIO import StringIO
 from PIL import Image
 import os
+import random
 import re
 import requests
 import urllib2
@@ -47,6 +48,8 @@ class NormalizedImage:
 
         self._image_url, self._image_html = self._analyze(image_url, referer)
         self._image_size = self._calculate_size()
+
+        self._clean_data()
 
     def _analyze(self, image_url=None, referer=None):
         """
@@ -98,7 +101,9 @@ class NormalizedImage:
             if image_url_address.lower().endswith('.gif'):
                 raise Exception('GIF is not supported! %s' % str(image_url))
             else:
-                return str(image_url), str(urllib2.unquote(hparser.unescape(response.content)))
+                image_html = urllib2.unquote(hparser.unescape(response.content))
+                image_url = self._check_image(image_url, image_html)
+                return str(image_url), str(image_html) 
         else:
             logger.error('Cannot parse %s' % str(image_url))
             raise Exception('Cannot parse %s' % str(image_url))
@@ -111,11 +116,81 @@ class NormalizedImage:
             if self._image_html:
                 image_data = Image.open(StringIO(self._image_html))
                 self._image_size = image_data.size  #width, height
+
+                # clean data
+                del image_data
             else:
                 return None, None
         except Exception as k:
             logger.error('Problem:[%s] Source:[%s]' % (str(k), str(self._image_url)))
             return None, None
+
+    def _check_image(self, image_url=None, image_html=None):
+        """
+        Replace orginal image_url with downloaded local copy, if original 
+        image_url could not be reached without HEADERS
+        """
+        if not image_url:
+            logger.error('Image URL is found VOID!')
+            raise Exception('Image URL is found VOID!')
+        if not image_html:
+            logger.error('Image content is found VOID!')
+            raise Exception('Image content is found VOID!')
+
+        try:
+            response = requests.get(image_url, timeout=UCK_TIMEOUT)
+            if response.status_code > 400:
+                raise Exception('Without HEADERS [%s] cannot be reached!' % str(image_url))
+        except Exception as k:
+            logger.info('Problem:[%s] Source:[%s]' % (str(k), str(image_url)))
+
+            # replace original image_url with downloaded local copy
+            image_url_new = self._download_copy(image_url, image_html)
+            return image_url_new if image_url_new else image_url
+
+        # Image is accessible with/without HEADERS
+        return image_url
+
+    def _clean_data():
+        """
+        clean downloaded data from memory
+        """
+        pass
+
+    def _download_copy(self, image_url=None, image_html=None):
+        """
+        Download and replace web image (with local one) if Referer is necessary.
+        """
+        if not image_url:
+            logger.error('Image URL is found VOID!')
+            return None
+        if not image_html:
+            logger.error('Image content is found VOID!')
+            return None
+
+        # generate relative path 
+        pr = urlparse.urlparse(image_url)
+        relative_path_prefix = str(re.compile(r'[^\w ]', flags=re.UNICODE).sub("", unicode(pr.netloc + pr.path)))
+        relative_path_suffix = str(random.randint(0, 100000000))
+        relative_path = '%s_%s' % (relative_path_prefix, relative_path_suffix)
+
+        image_data = None
+        try:
+            image_data = Image.open(StringIO(image_html))
+            image_web_path = '%s%s.jpg' % (IMAGES_PUBLIC_DIR, relative_path)
+            image_local_path = '%s%s.jpg' % (IMAGES_LOCAL_DIR, relative_path)
+            image_data = image_data.convert('RGB')
+            image_data.save(image_local_path, 'JPEG')
+
+            # clean data
+            del image_data
+            return image_web_path
+        except Exception as k:
+            logger.error('Problem:[%s] Source:[%s]' % (str(k), str(image_url)))
+
+        # clean data
+        del image_data
+        return None
 
     def get_image_size(self):
         """
@@ -281,8 +356,13 @@ def generate_thumbnail(image_url=None, referer=None, relative_path=None):
             image_data.thumbnail(MIN_IMAGE_SIZE, Image.ANTIALIAS)
             image_data = image_data.convert('RGB')
             image_data.save(image_thumbnail_local_path, 'JPEG')
+
+            # clean data
+            del image_data
             return image_thumbnail_web_path
         else:
+            # clean data
+            del image_data
             return image_url
     except Exception as k:
         logger.error('Problem:[%s]\nSource:[%s]' % (str(k), str(image_url)))
@@ -343,15 +423,15 @@ def scale_image(image=None, referer=None, size_expected=MIN_IMAGE_SIZE, resize_b
                 try:
                     if referer:
                         HEADERS['Referer'] = referer
-                    request = urllib2.Request(image_url, headers=HEADERS)
-                    response = urllib2.urlopen(request, timeout=UCK_TIMEOUT)
-                    image_data = Image.open(StringIO(response.read()))
+                    response = requests.get(image_url, headers=HEADERS, timeout=UCK_TIMEOUT)
+                    image_data = Image.open(StringIO(response.content))
                 except Exception as k:
                     logger.info('Problem:[%s]\nSource:[%s]' % (str(k), str(image_url)))
                     return None, None
 
                 # resize image according to new size
                 image_data.thumbnail(size_new, Image.ANTIALIAS)
+                image_cropped = None
 
                 # crop out unnecessary part
                 if crop_by_center:
@@ -373,8 +453,15 @@ def scale_image(image=None, referer=None, size_expected=MIN_IMAGE_SIZE, resize_b
                     image_local_path = '%s%s.jpg' % (IMAGES_LOCAL_DIR, relative_path)
                     image_cropped = image_cropped.convert('RGB')
                     image_cropped.save(image_local_path, 'JPEG')
+
+                    # clean data
+                    del image_cropped
+                    del image_data
                     return {'url': image_web_path, 'width': width_expected, 'height': height_expected}, {'url': image_local_path, 'width': width_expected, 'height': height_expected}
                 else:
+                    # clean data
+                    del image_cropped
+                    del image_data
                     return None, None
             else:
                 return scale_image(image_url=image_url, image_size=image_size, referer=referer, size_expected=size_expected, resize_by_width=not resize_by_width, crop_by_center=crop_by_center, relative_path=relative_path)
