@@ -211,13 +211,13 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
         # u'86'}]
         entry['images'] = []
         try:
-            images = illustrator.normalize(e.media_content)
+            images = illustrator.find_images(e.media_content, entry['link'])
             if images:
                 entry['images'].extend(images)
         except AttributeError as k:
             pass
         try:
-            images = illustrator.normalize(e.media_thumbnail)
+            images = illustrator.find_images(e.media_thumbnail, entry['link'])
             if images:
                 entry['images'].extend(images)
         except AttributeError as k:
@@ -226,17 +226,17 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
             if 'thumbnail' in attribute:
                 # currently set thumbnail to None if its a dictionary
                 image = e[attribute] if isinstance(e[attribute], str) else None
-                image = illustrator.normalize(image)
+                image = illustrator.find_image(image, entry['link'])
                 if image:
-                    entry['images'].extend(image)
+                    entry['images'].append(image)
         try:
             links = e.links
             for link in links:
                 if 'type' in link and 'image' in link.type:
                     if 'href' in link:
-                        image = illustrator.normalize(link.href)
+                        image = illustrator.find_image(link.href, entry['link'])
                         if image:
-                            entry['images'].extend(image)
+                            entry['images'].append(image)
         except AttributeError as k:
             pass
 
