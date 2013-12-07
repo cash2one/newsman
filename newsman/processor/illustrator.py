@@ -96,8 +96,8 @@ class NormalizedImage:
 
         if response and response.status_code < 400 and response.content:
             # GIF is not supported yet
-            image_url_parsed = requests.utils.urlparse(image_url)
-            image_url_address = image_url_parsed.netloc + image_url_parsed.path
+            pr = requests.utils.urlparse(image_url)
+            image_url_address = pr.netloc + pr.path
             if image_url_address.lower().endswith('.gif'):
                 raise Exception('GIF is not supported! %s' % str(image_url))
             else:
@@ -118,7 +118,8 @@ class NormalizedImage:
                 self._image_size = image_data.size  #width, height
 
                 # clean data
-                del image_data
+                if image_data:
+                    del image_data
             else:
                 return None, None
         except Exception as k:
@@ -155,7 +156,8 @@ class NormalizedImage:
         """
         clean downloaded data from memory
         """
-        pass
+        if self._image_html:
+            del self._image_html
 
     def _download_copy(self, image_url=None, image_html=None):
         """
@@ -169,7 +171,7 @@ class NormalizedImage:
             return None
 
         # generate relative path 
-        pr = urlparse.urlparse(image_url)
+        pr = requests.utils.urlparse(image_url)
         relative_path_prefix = str(re.compile(r'[^\w ]', flags=re.UNICODE).sub("", unicode(pr.netloc + pr.path)))
         relative_path_suffix = str(random.randint(0, 100000000))
         relative_path = '%s_%s' % (relative_path_prefix, relative_path_suffix)
@@ -183,13 +185,15 @@ class NormalizedImage:
             image_data.save(image_local_path, 'JPEG')
 
             # clean data
-            del image_data
+            if image_data:
+                del image_data
             return image_web_path
         except Exception as k:
             logger.error('Problem:[%s] Source:[%s]' % (str(k), str(image_url)))
 
         # clean data
-        del image_data
+        if image_data:
+            del image_data
         return None
 
     def get_image_size(self):
@@ -358,11 +362,13 @@ def generate_thumbnail(image_url=None, referer=None, relative_path=None):
             image_data.save(image_thumbnail_local_path, 'JPEG')
 
             # clean data
-            del image_data
+            if image_data:
+                del image_data
             return image_thumbnail_web_path
         else:
             # clean data
-            del image_data
+            if image_data:
+                del image_data
             return image_url
     except Exception as k:
         logger.error('Problem:[%s]\nSource:[%s]' % (str(k), str(image_url)))
@@ -455,13 +461,17 @@ def scale_image(image=None, referer=None, size_expected=MIN_IMAGE_SIZE, resize_b
                     image_cropped.save(image_local_path, 'JPEG')
 
                     # clean data
-                    del image_cropped
-                    del image_data
+                    if image_cropped:
+                        del image_cropped
+                    if image_data:
+                        del image_data
                     return {'url': image_web_path, 'width': width_expected, 'height': height_expected}, {'url': image_local_path, 'width': width_expected, 'height': height_expected}
                 else:
                     # clean data
-                    del image_cropped
-                    del image_data
+                    if image_cropped:
+                        del image_cropped
+                    if image_data:
+                        del image_data
                     return None, None
             else:
                 return scale_image(image_url=image_url, image_size=image_size, referer=referer, size_expected=size_expected, resize_by_width=not resize_by_width, crop_by_center=crop_by_center, relative_path=relative_path)
