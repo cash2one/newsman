@@ -152,7 +152,7 @@ class NormalizedImage:
         # Image is accessible with/without HEADERS
         return image_url
 
-    def _clean_data():
+    def _clean_data(self):
         """
         clean downloaded data from memory
         """
