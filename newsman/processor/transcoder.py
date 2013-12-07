@@ -110,11 +110,13 @@ def _compose(language=None, title=None, updated=None, feed=None, content=None, i
 
     try:
         # sub-info
-        updated_sub_info = time.strftime("%m %d, %Y", time.strptime(time.ctime(updated))) if updated else None
+        updated_sub_info = time.strftime(
+            "%m %d, %Y", time.strptime(time.ctime(updated))) if updated else None
         sub_info = '%s | %s' % (feed, updated_sub_info)
 
         # select appropriate template
-        news_template = NEWS_TEMPLATE_2 if images and len(images) > 0 else NEWS_TEMPLATE_3
+        news_template = NEWS_TEMPLATE_2 if images and len(
+            images) > 0 else NEWS_TEMPLATE_3
         f = open(news_template, 'r')
 
         # a template is found
@@ -303,7 +305,7 @@ def prepare_link(url):
             detected = chardet.detect(html)
             if detected:
                 data = html.decode(detected['encoding'], 'ignore')
-            #else:
+            # else:
             #    data = html.decode('utf-8', 'ignore')
             return hparser.unescape(urllib2.unquote(data))
         else:
@@ -326,7 +328,8 @@ def convert(language="en", title=None, link=None, updated=None, feed=None, trans
     * stdout default value False
     """
     if not language or not link:
-        logger.error('Method malformed! language: %s link: %s' % (language, link))
+        logger.error('Method malformed! language: %s link: %s' %
+                     (language, link))
         if not stdout:
             return None, None, None, None
         else:
@@ -351,7 +354,8 @@ def convert(language="en", title=None, link=None, updated=None, feed=None, trans
                 content = html_slimmer(content)
                 if not stdout:
                     # embed content in template
-                    news = _compose(language, title, updated, feed, _sanitize(content), images)
+                    news = _compose(
+                        language, title, updated, feed, _sanitize(content), images)
                     if news:
                         # create web/local path
                         web_path, local_path = _save(news, relative_path)
@@ -374,7 +378,8 @@ def convert(language="en", title=None, link=None, updated=None, feed=None, trans
                     return title, content
             else:
                 if not content:
-                    logger.info('Transcoder %s failed for %s' % (transcoder, link_clean))
+                    logger.info('Transcoder %s failed for %s' %
+                                (transcoder, link_clean))
                 else:
                     logger.info('Cannot find title for %s' % link_clean)
 
@@ -385,7 +390,8 @@ def convert(language="en", title=None, link=None, updated=None, feed=None, trans
                 else:
                     return None, None
         else:
-            logger.error('Link [clean %s] [original %s] cannot be parsed' % (link_clean, link))
+            logger.error(
+                'Link [clean %s] [original %s] cannot be parsed' % (link_clean, link))
             if not stdout:
                 return None, None, None, None
             else:
