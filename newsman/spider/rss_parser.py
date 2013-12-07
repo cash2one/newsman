@@ -241,12 +241,9 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
             pass
 
         if entry.has_key('summary') and entry['summary']:
-            soup = BeautifulStoneSoup(entry['summary'])
-            if soup.img:
-                if soup.img.get('src'):
-                    images = illustrator.normalize(soup.img['src'])
-                    if images:
-                        entry['images'].extend(images)
+            images = illustrator.find_images(entry['summary'], entry['link'])
+            if images:
+                entry['images'].extend(images)
         # dedup images is processed at rss.py
 
         # article's author
