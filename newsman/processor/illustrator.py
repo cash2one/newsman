@@ -18,12 +18,11 @@ from BeautifulSoup import BeautifulSoup
 from config.settings import hparser
 from config.settings import logger
 from cStringIO import StringIO
-import httplib
 from PIL import Image
 import os
 import re
+import requests
 import urllib2
-import urlparse
 
 # CONSTANTS
 from config.settings import HEADERS
@@ -38,252 +37,122 @@ if not os.path.exists(IMAGES_LOCAL_DIR):
     os.mkdir(IMAGES_LOCAL_DIR)
 
 
-class Illustrator:
+class NormalizedImage:
     """
-    Illustrator deals with images
+    Class of normalized image
     """
-
-    def __init__(self, image_url=None, image_html=None, image_urls=None):
-        if not image_url and not image_urls and not image_html:
+    def __init__(self, image_url=None, referer=None):
+        if not image_url:
             logger.error('Method malformed!')
             raise Exception('Method malformed!')
 
-        if image_url:
-            self._image_url = image_url
-        elif image_html:
-            self._image_html = image_html
-        elif image_urls:
-            self._image_urls = image_urls
+        self._image_url, self._image_html = self._analyze(image_url, referer)
+        self._image_size = self._calculate_size()
+
+    def _analyze(self, image_url, referer):
+        """
+        remove CDN prefix, if any; and read image data
+        """
+        image_url = image_url.replace("\/", "/").strip()
+        image_url = urllib2.unquote(hparser.unescape(image_url))
+
+        # as the name could be http://xxx.com/yyy--http://zzz.jpg
+        # or http://xxx.com/yyy--https://zzz.jpg
+        last_http_index = image_url.rfind('http')
+        image_url = image_url[last_http_index:]
+
+        response = None
+        if referer:
+            HEADERS['Referer'] = referer
+        try:
+            response = requests.get(image_url, headers=HEADERS, timeout=UCK_TIMEOUT)
+            # avoid redirected URL
+            image_url = response.url
+            # either exception or wrong HTTP code
+            if response.status_code >= 400:
+                raise Exception('Response code %s' % response.status_code)
+        except Exception as k:
+            logger.info('%s for %s' % (str(k), str(image_url)))
+            try:
+                # CDN URL could be formed as http:/xxxx.jpg
+                path = re.split('https?://?', image_url)[-1]
+                scheme = requests.utils.urlparse(image_url).scheme
+                image_url = '%s://%s' % (scheme, path)
+
+                response = requests.get(image_url, headers=HEADERS, timeout=UCK_TIMEOUT)
+                # avoid redirected URL
+                image_url = response.url
+                if response.status_code >= 400:
+                    raise Exception('Response code %s' % response.status_code)
+            except Exception as k:
+                logger.error('%s for %s' % (str(k), str(image_url)))
+                raise Exception('%s for %s' % (str(k), str(image_url)))
+
+        if response and response.status_code < 400 and response.content:
+                # GIF is not supported yet
+                image_url_parsed = requests.utils.urlparse(image_url)
+                image_url_address = image_url_parsed.netloc + image_url_parsed.path
+                if image_url_address.lower().endswith('.gif'):
+                    raise Exception('GIF is not supported! %s' % str(image_url))
+                else:
+                    return str(image_url), str(urllib2.unquote(hparser.unescape(response.content)))
         else:
-            logger.error('Unrecognized input type!')
-            raise Exception('Unrecognized input type!')
+            logger.error('Cannot parse %s' % str(image_url))
+            raise Exception('Cannot parse %s' % str(image_url))
 
-    def _check_image(self, image):
+    def _calculate_size():
         """
-        check an image if it matches with MIN_IMAGE_SIZE
+        read data into memory and return the image size
         """
-        if not image:
-            logger.error('Method malformed!')
-            return None
-
         try:
-            if isinstance(image, dict) and 'url' in image:
-                image_url = image['url']
-                if self._is_valid_image(image_url):
-                    width, height = get_image_size(image_url)
-                    return {'url': image['url'], 'width': width, 'height': height}
-            else:
-                if self._is_valid_image(image):
-                    width, height = get_image_size(image)
-                    if width and height:
-                        return {'url': image, 'width': width, 'height': height}
-                    else:
-                        logger.info('Cannot get image size')
-                        return None
-            return None
-        except IOError as k:
-            logger.error(str(k))
-            return None
-
-    def find_image(self, link=None):
-        """
-        find an image from the link
-        """
-        if not link:
-            return None
-
-        try:
-            link_clean = _link_process(link)
-            if link_clean:
-                image_normalized = normalize(link_clean)
-                return image_normalized[0] if image_normalized else None
-            else:
-                logger.info(
-                    'Cannot parse [clean %s] [orginal %s] correctly' % (link_clean, link))
-                return None
-        except Exception as k:
-            logger.error(str(k))
-            return None
-
-    def find_images(self, content=None):
-        """
-        find out all images from content and its size info
-        """
-        if not content:
-            return None
-
-        try:
-            # determine the type of content
-            if isinstance(content, str) and content.startswith(TRANSCODED_LOCAL_DIR):
-                # then its a file
-                f = open(content, 'r')
-                content = f.read()
-
-            #soup = BeautifulSoup(content.decode('utf-8', 'ignore'))
-            soup = BeautifulSoup(str(content))
-            images_normalized = []
-            images = soup.findAll('img')
-
-            for image in images:
-                if image.get('src'):
-                    image_normalized = find_image(image.get('src'))
-                    if image_normalized:
-                        images_normalized.append(image_normalized)
-
-            return images_normalized
-        except Exception as k:
-            logger.error(str(k))
-            return None
-
-    def get_image_size(self, image_url):
-        """
-        docs needed
-        """
-        if not image_url:
-            logger.error('Method malformed!')
-            return None, None
-
-        try:
-            image_web = None
-            if isinstance(image_url, str) or isinstance(image_url, unicode):
-                logger.info('opening %s' % image_url)
-                HEADERS['Referer'] = image_url
-                request = urllib2.Request(image_url, headers=HEADERS)
-                response = urllib2.urlopen(request, timeout=UCK_TIMEOUT)
-                image_web = StringIO(response.read())
-            else:
-                logger.info('image_url is data')
-                image_web = image_url
-
-            if image_web:
-                im = Image.open(image_web)
-                width, height = im.size
-                return width, height
+            if self._image_html:
+                image_data = Image.open(StringIO(self._image_html))
+                self._image_size = image_data.size  #width, height
             else:
                 return None, None
         except Exception as k:
-            logger.info('Problem:[%s] Source:[%s]' % (str(k), image_url))
+            logger.error('Problem:[%s] Source:[%s]' % (str(k), str(self._image_url)))
             return None, None
 
-    def _is_valid_image(self, image_url):
+    def get_image_size():
         """
-        find out if the image has a resolution larger than MIN_IMAGE_SIZE
+        output image size
         """
-        if not image_url:
-            logger.error('Method malformed! URL [%s] is incorrect' % image_url)
-            return False
+        return self._image_size
 
-        try:
-            if _url_image_exists(image_url):
-                HEADERS['Referer'] = image_url
-                request = urllib2.Request(image_url, headers=HEADERS)
-                response = urllib2.urlopen(request, timeout=UCK_TIMEOUT)
-                image_pil = Image.open(StringIO(response.read()))
-                return True if image_pil.size[0] * image_pil.size[1] > MIN_IMAGE_SIZE[0] * MIN_IMAGE_SIZE[1] else False
-            else:
-                logger.info('%s is not an image' % image_url)
-                return False
-        except Exception as k:
-            logger.error('%s [%s]' % (image_url, str(k)))
-            return False
-
-    def _link_process(self, link):
+    def get_image_url():
         """
-        get rid of cdn prefix
+        output updated image url
         """
-        if not link:
-            return None
+        return self._image_url
 
-        try:
-            link = link.replace("\/", "/").strip()
-            image_url_complex = urllib2.unquote(hparser.unescape(link))
-
-            if image_url_complex:
-                # as the name could be http://xxx.com/yyy--http://zzz.jpg
-                # or http://xxx.com/yyy--https://zzz.jpg
-                last_http_index = image_url_complex.rfind('http')
-                image_url = image_url_complex[last_http_index:]
-
-                # gif is not needed
-                if image_url.endswith('.gif') or image_url.endswith('.GIF'):
-                    return None
-
-                # response is the signal of a valid image
-                response = None
-                try:
-                    HEADERS['Referer'] = image_url
-                    request = urllib2.Request(image_url, headers=HEADERS)
-                    response = urllib2.urlopen(request, timeout=UCK_TIMEOUT)
-                except urllib2.URLError:
-                    path = re.split('https?://?', image_url)[-1]
-                    scheme = urlparse.urlparse(image_url).scheme
-                    image_url = '%s://%s' % (scheme, path)
-
-                    HEADERS['Referer'] = image_url
-                    request = urllib2.Request(image_url, headers=HEADERS)
-                    response = urllib2.urlopen(request, timeout=UCK_TIMEOUT)
-                except urllib2.HTTPError as k:
-                    logger.info('%s for %s' % (str(k), image_url))
-                    return None
-                except Exception as k:
-                    logger.info('%s for %s' % (str(k), image_url))
-                    return None
-
-                if response:
-                    return image_url
-                else:
-                    return None
-            else:
-                return None
-        except Exception as k:
-            logger.info('Problem:[%s] Source:[%s]' % (str(k), link))
-            return None
-
-    def normalize(self, images):
+    def _is_valid_image(self):
         """
-        for list of images, remove images that don't match with MIN_IMAGE_SIZE;
-        for an image, return None if it doesn't matches with MIN_IMAGE_SIZE
+        check if the image has a resolution larger than MIN_IMAGE_SIZE
         """
         try:
-            if isinstance(images, list):
-                images_new = []
-                for image in images:
-                    image_new = _check_image(image)
-                    if image_new:
-                        images_new.append(image_new)
-                return images_new if images_new else None
-            elif isinstance(images, str) or isinstance(images, unicode):
-                image = _check_image(images)
-                return [image] if image else None
-            return None
+            width, height = self._image_size
+            if width and height:
+                return True if width * height > MIN_IMAGE_SIZE[0] * MIN_IMAGE_SIZE[1] else False
+            return False
         except Exception as k:
-            logger.exception(str(k))
-            return None
-
-    def _url_image_exists(self, url):
-        """
-        Code copied from
-        http://jackdschultz.com/index.php/2013/09/13/validating-url-as-an-image-in-python/
-        Check if the image exists
-        """
-        if not url:
-            logger.error('Method malformed!')
+            logger.error('Problem:[%s] Source:[%s]' % (str(k), str(self._image_url)))
             return False
 
+    def normalize(self):
+        """
+        output image with proper format
+        i.e. {'url':xxx, 'width':yyy, 'height':zzz}
+        """
         try:
-            parse_obj = urlparse.urlparse(url)
-            site = parse_obj.netloc
-            path = parse_obj.path
-            conn = httplib.HTTPConnection(site)
-            conn.request('HEAD', path)
-            response = conn.getresponse()
-            conn.close()
-            ctype = response.getheader('Content-Type')
-            #return response.status < 400 and ctype.startswith('image')
-            return response.status < 400 or ctype.startswith('image')
+            if self._is_valid_image():
+                width, height = self._image_size
+                if width and height:
+                    return [{'url': image, 'width': width, 'height': height}]
+            return None
         except Exception as k:
-            logger.info(str(k))
-            return False
+            logger.error('Problem:[%s]\nSource:[%s]' % (str(k), str(self._image_url)))
+            return None
 
 
 def dedup_images(images=None):
@@ -311,7 +180,7 @@ def dedup_images(images=None):
     try:
         return filter(lambda x: not _exists(x), images)
     except Exception as k:
-        logger.info('Problem:[%s]\nSource:[%s]' % (str(k), str(images))
+        logger.info('Problem:[%s]\nSource:[%s]' % (str(k), str(images)))
         return None
 
 
@@ -336,7 +205,63 @@ def find_biggest_image(images=None):
                 logger.error('Height and width not found! %s' % str(image))
         return biggest
     except Exception as k:
-        logger.error('Problem:[%s]\nSource:[%s]' % (str(k), str(images))
+        logger.error('Problem:[%s]\nSource:[%s]' % (str(k), str(images)))
+        return None
+
+
+def find_image(self):
+    """
+    find an image from the link
+    """
+    try:
+        self._read_link()
+        if self._image_html:   # image data is received from the internet
+            image_normalized = self._normalize()
+            return image_normalized[0] if image_normalized else None
+        else:
+            logger.info('Cannot parse [clean %s] [original %s] correctly' % (link_clean, link))
+            return None
+    except Exception as k:
+        logger.error(str(k))
+        return None
+
+
+def find_images(self, content=None):
+    """
+    find out all images from content and its size info
+    """
+    if not content:
+        return None
+        """
+        if isinstance(images, list):
+            images_new = []
+            for image in images:
+                image_new = _check_image(image)
+                if image_new:
+                    images_new.append(image_new)
+            return images_new if images_new else None
+        """
+    try:
+        # determine the type of content
+        if isinstance(content, str) and content.startswith(TRANSCODED_LOCAL_DIR):
+            # then its a file
+            f = open(content, 'r')
+            content = f.read()
+
+        #soup = BeautifulSoup(content.decode('utf-8', 'ignore'))
+        soup = BeautifulSoup(str(content))
+        images_normalized = []
+        images = soup.findAll('img')
+
+        for image in images:
+            if image.get('src'):
+                image_normalized = get_image(image.get('src'))
+                if image_normalized:
+                    images_normalized.append(image_normalized)
+
+        return images_normalized
+    except Exception as k:
+        logger.error(str(k))
         return None
 
 
@@ -361,7 +286,7 @@ def generate_thumbnail(image_url, referer=None, relative_path):
             response = urllib2.urlopen(request, timeout=UCK_TIMEOUT)
             image_data = Image.open(StringIO(response.read()))
         except Exception as k:
-            logger.error'Problem:[%s]\nSource:[%s]' % (str(k), str(image_url))
+            logger.error('Problem:[%s]\nSource:[%s]' % (str(k), str(image_url)))
             return None
 
         # generate thumbnail
@@ -378,7 +303,7 @@ def generate_thumbnail(image_url, referer=None, relative_path):
         else:
             return image_url
     except Exception as k:
-        logger.error('Problem:[%s]\nSource:[%s]' % (str(k), str(image_url))
+        logger.error('Problem:[%s]\nSource:[%s]' % (str(k), str(image_url)))
         return None
 
 
@@ -428,7 +353,7 @@ def scale_image(image_url=None, image_size=None, referer=None, size_expected=MIN
                     response = urllib2.urlopen(request, timeout=UCK_TIMEOUT)
                     image_data = Image.open(StringIO(response.read()))
                 except Exception as k:
-                    logger.info('Problem:[%s]\nSource:[%s]' % (str(k), str(image_url))
+                    logger.info('Problem:[%s]\nSource:[%s]' % (str(k), str(image_url)))
                     return None, None
 
                 # resize image according to new size
@@ -462,5 +387,5 @@ def scale_image(image_url=None, image_size=None, referer=None, size_expected=MIN
         else:
             return None, None
     except Exception as k:
-        logger.info('Problem:[%s]\nSource:[%s]' % (str(k), str(image_url))
+        logger.info('Problem:[%s]\nSource:[%s]' % (str(k), str(image_url)))
         return None, None
