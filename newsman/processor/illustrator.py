@@ -213,20 +213,19 @@ def find_biggest_image(images=None):
         return None
 
 
-def find_image(self):
+def find_image(image_url=None, referer=None):
     """
     find an image from the link
     """
+    if not image_url:
+        logger.error('Image URL is not found!')
+        return None
+
     try:
-        self._read_link()
-        if self._image_html:   # image data is received from the internet
-            image_normalized = self._normalize()
-            return image_normalized[0] if image_normalized else None
-        else:
-            logger.info('Cannot parse [clean %s] [original %s] correctly' % (link_clean, link))
-            return None
+        ni = NormalizedImage(image_url, referer)
+        return ni.normalize()
     except Exception as k:
-        logger.error(str(k))
+        logger.error('Problem:[%s]\nSource:[%s]' % (str(k), str(image_url)))
         return None
 
 
