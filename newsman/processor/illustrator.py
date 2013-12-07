@@ -145,7 +145,7 @@ class NormalizedImage:
             if self._is_valid_image():
                 width, height = self._image_size
                 if width and height:
-                    return [{'url': self._image_url, 'width': width, 'height': height}]
+                    return {'url': self._image_url, 'width': width, 'height': height}
             return None
         except Exception as k:
             logger.error('Problem:[%s]\nSource:[%s]' % (str(k), str(self._image_url)))
@@ -239,7 +239,7 @@ def find_images(content=None, referer=None):
             if image.get('src'):
                 normalized_image = find_image(image.get('src'), referer)
                 if normalized_image:
-                    normalized_images.extend(normalized_image)
+                    normalized_images.append(normalized_image)
 
         return normalized_images
     except Exception as k:
