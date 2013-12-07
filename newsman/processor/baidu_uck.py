@@ -101,7 +101,7 @@ def _sanitize(content=None, referer=None):
         return None
 
 
-def _collect_images(data):
+def _collect_images(data=None, referer=None):
     """
     find all possible images
     1. image_list
@@ -116,7 +116,7 @@ def _collect_images(data):
         if 'image_list' in data and data.get('image_list'):
             for image in data.get('image_list'):
                 if 'src' in image and image['src']:
-                    image_normalized = illustrator.find_image(image['src'].strip())
+                    image_normalized = illustrator.find_image(image['src'].strip(), referer)
                     if image_normalized:
                         images.append(image_normalized)
 
@@ -152,7 +152,7 @@ def _extract(data=None, referer=None):
         content = _sanitize(content, referer)
 
         # images
-        images = _collect_images(data)
+        images = _collect_images(data, referer)
         images = images if images else None
 
         # title
