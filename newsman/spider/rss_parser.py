@@ -234,7 +234,8 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
             for link in links:
                 if 'type' in link and 'image' in link.type:
                     if 'href' in link:
-                        image = illustrator.find_image(link.href, entry['link'])
+                        image = illustrator.find_image(
+                            link.href, entry['link'])
                         if image:
                             entry['images'].append(image)
         except AttributeError as k:
