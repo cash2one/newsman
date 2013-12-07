@@ -61,8 +61,10 @@ class Simplr:
             self.language = language
 
             self.data = transcoder.prepare_link(self.url)
-            self.data = self.regexps['replace_brs'].sub("</p><p>", str(self.data))
-            self.data = self.regexps['replace_fonts'].sub("<\g<1>span>", str(self.data))
+            self.data = self.regexps['replace_brs'].sub(
+                "</p><p>", str(self.data))
+            self.data = self.regexps['replace_fonts'].sub(
+                "<\g<1>span>", str(self.data))
 
             self.html = BeautifulSoup(self.data)
             self._remove_script()
@@ -113,16 +115,17 @@ class Simplr:
             _ignored_image = None
 
             for elem in self.html.findAll(True):
-                unlikely_match_string = elem.get('id', '') + elem.get('class', '')
+                unlikely_match_string = elem.get(
+                    'id', '') + elem.get('class', '')
 
                 if self.regexps['unlikely_candidates'].search(unlikely_match_string) and not self.regexps['ok_maybe_its_a_candidate'].search(unlikely_match_string) and elem.name != 'body':
-                    #print elem
-                    #print self.regexps['unlikely_candidates'].findall(unlikely_match_string)
-                    #print 'id', elem.get('id') if elem.get('id') else None
-                    #print 'class', elem.get('class') if elem.get('class') else None
-                    #print '++++++++++++++++++++++++++++++++++++++++++++'
-                    #print
-                    #print
+                    # print elem
+                    # print self.regexps['unlikely_candidates'].findall(unlikely_match_string)
+                    # print 'id', elem.get('id') if elem.get('id') else None
+                    # print 'class', elem.get('class') if elem.get('class') else None
+                    # print '++++++++++++++++++++++++++++++++++++++++++++'
+                    # print
+                    # print
                     elem.extract()
                     continue
 
@@ -136,10 +139,10 @@ class Simplr:
                     continue
 
                 if 'kapook.com' in self.url and elem.name == 'table':
-                    #if elem.get('bordercolor') and elem.get('bordercolor') == '#FF0000':
-                    #print elem
-                    #print '&&&&&&&&&&&&&&&&&&&&&&&&&&&'
-                    #print
+                    # if elem.get('bordercolor') and elem.get('bordercolor') == '#FF0000':
+                    # print elem
+                    # print '&&&&&&&&&&&&&&&&&&&&&&&&&&&'
+                    # print
                     elem.extract()
                     continue
 
@@ -150,9 +153,9 @@ class Simplr:
                     else:
                         if 'kapook.com' in self.url:
                             if elem.get('align') and (elem.get('align') == 'center' or elem.get('align') == 'left'):
-                                #print elem
-                                #print '+++++++++++++++++++++++++++++++++++'
-                                #print
+                                # print elem
+                                # print '+++++++++++++++++++++++++++++++++++'
+                                # print
                                 elem.name = 'p'
                 else:
                     if self.url.startswith('http://jp.reuters.com/'):
@@ -163,24 +166,24 @@ class Simplr:
                         if elem.parent.name == 'div':
                             if elem.name == 'img' and elem.parent.get('id') and (elem.parent.get('id') == 'article' or elem.parent.get('id') == 'container2'):
                                 elem.name = 'p'
-                                #print elem
-                                #print elem.parent
-                                #print "**********************"
-                                #print
+                                # print elem
+                                # print elem.parent
+                                # print "**********************"
+                                # print
                             else:
-                                #print elem
-                                #print elem.parent.attrs
-                                #print "**********************"
-                                #print
+                                # print elem
+                                # print elem.parent.attrs
+                                # print "**********************"
+                                # print
                                 pass
 
             for node in self.html.findAll('p'):
                 parent_node = node.parent
                 grand_parent_node = parent_node.parent
                 inner_text = node.text
-                #print node
-                #print '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'
-                #print
+                # print node
+                # print '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'
+                # print
 
                 if not parent_node or len(inner_text) < 20:
                     continue
@@ -209,7 +212,7 @@ class Simplr:
                 #content_score += inner_text.count('、')
                 #content_score += inner_text.count(u'、')
                 content_score += min(math.floor(len(inner_text) / 100), 3)
-                #print content_score, node
+                # print content_score, node
                 # print 'OLD %s %s  Parent' % (self.candidates[parent_hash]['score'], parent_hash)
                 # print 'OLD %s %s  Grand' %
                 # (self.candidates[grand_parent_hash]['score'], grand_parent_hash)
@@ -219,10 +222,10 @@ class Simplr:
                     self.candidates[grand_parent_hash][
                         'score'] += content_score * 0.7
 
-                #print 'NEW %s %s  Parent' % (self.candidates[parent_hash]['score'], parent_hash)
-                #print 'NEW %s %s  Grand' % (self.candidates[grand_parent_hash]['score'], grand_parent_hash)
-                #print '@@@@@'
-                #print
+                # print 'NEW %s %s  Parent' % (self.candidates[parent_hash]['score'], parent_hash)
+                # print 'NEW %s %s  Grand' % (self.candidates[grand_parent_hash]['score'], grand_parent_hash)
+                # print '@@@@@'
+                # print
 
             top_candidate = None
             for key in self.candidates:
@@ -288,7 +291,8 @@ class Simplr:
                 html_tag, html_attrs = HIDDEN_IMAGE[matched_link[0]]
                 found_image = content.find(name=html_tag, attrs=html_attrs)
                 if not found_image:
-                    article_image = self.html.find(name=html_tag, attrs=html_attrs)
+                    article_image = self.html.find(
+                        name=html_tag, attrs=html_attrs)
                     if article_image:
                         self._fix_images_path(article_image)
                         self._fix_links_path(article_image)
@@ -593,7 +597,8 @@ class Simplr:
                         mainichi_year = mainichi_id[:4]
                         mainichi_month = mainichi_id[4:6]
                         mainichi_day = mainichi_id[6:8]
-                        img['src'] = "http://mainichi.jp/graph/%s/%s/%s/%s/image/001.jpg" % (mainichi_year, mainichi_month, mainichi_day, mainichi_id)
+                        img['src'] = "http://mainichi.jp/graph/%s/%s/%s/%s/image/001.jpg" % (
+                            mainichi_year, mainichi_month, mainichi_day, mainichi_id)
 
                 # optimization made for sankei.jp.msn.com
                 if 'sankei.jp.msn.com' in img['src']:
