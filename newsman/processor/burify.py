@@ -48,7 +48,8 @@ def convert(link):
         if data:
             article = Document(data)
             if article:
-                images, content  = _collect_images(article.summary(html_partial=False), link)
+                images, content = _collect_images(
+                    article.summary(html_partial=False), link)
                 return article.short_title(), content, images
             else:
                 logger.info('Burify cannot recognize the data')
