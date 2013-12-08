@@ -32,7 +32,10 @@ def _collect_images(content=None, referer=None):
         logger.error('Content/HTML is found VOID!')
         return None
 
-    return illustrator.find_images(content, referer)
+    images, content_new = illustrator.find_images(content, referer)
+    if content_new and content_new != content:
+        content = content_new
+    return images, content
 
 
 def _transcode(link):
@@ -69,7 +72,7 @@ def _extract(link):
                 'title'] else data['title']
             content = None if 'content' not in data or not data[
                 'content'] else data['content']
-            images = _collect_images(content, link)
+            images, content = _collect_images(content, link)
             return title, content, images
         else:
             logger.info('UCK cannot parse the link: status != 1')
