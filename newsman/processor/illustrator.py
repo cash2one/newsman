@@ -318,7 +318,7 @@ def find_image(image_url=None, referer=None):
         if normalized_image and 'url' in normalized_image:
             image_url_new = normalized_image['url']
             if image_url_new != image_url:
-                normalized_image['orignal_url'] = image_url
+                normalized_image['original_url'] = image_url
             return normalized_image
         else:
             return None
