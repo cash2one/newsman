@@ -123,7 +123,7 @@ def _collect_images(data=None, referer=None):
                         images.append(image_normalized)
 
         # then try to find images in the content
-        images_from_content = illustrator.find_images(data['content'], referer)
+        images_from_content, data['content'] = illustrator.find_images(data['content'], referer)
         if images_from_content:
             images.extend(images_from_content)
 
