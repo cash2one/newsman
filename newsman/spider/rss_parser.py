@@ -242,7 +242,7 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
             pass
 
         if entry.has_key('summary') and entry['summary']:
-            images = illustrator.find_images(entry['summary'], entry['link'])
+            images, entry['summary'] = illustrator.find_images(entry['summary'], entry['link'])
             if images:
                 entry['images'].extend(images)
         # dedup images is processed at rss.py
