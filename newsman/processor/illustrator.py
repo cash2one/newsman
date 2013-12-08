@@ -352,8 +352,9 @@ def find_images(content=None, referer=None, ):
 
         content_new = soup.prettify()
         if ELEMENT_REPLACED and content_new:
-            content = str(html_slimmer(urllib2.unquote(hparser.unescape(content_new))))
-        return normalized_images, content 
+            content = str(
+                html_slimmer(urllib2.unquote(hparser.unescape(content_new))))
+        return normalized_images, content
     except Exception as k:
         logger.error(str(k))
         return None
