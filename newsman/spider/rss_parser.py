@@ -211,13 +211,15 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
         # u'86'}]
         entry['images'] = []
         try:
-            images, media_content_new = illustrator.find_images(e.media_content, entry['link'])
+            images, media_content_new = illustrator.find_images(
+                e.media_content, entry['link'])
             if images:
                 entry['images'].extend(images)
         except AttributeError as k:
             pass
         try:
-            images, media_content_new = illustrator.find_images(e.media_thumbnail, entry['link'])
+            images, media_content_new = illustrator.find_images(
+                e.media_thumbnail, entry['link'])
             if images:
                 entry['images'].extend(images)
         except AttributeError as k:
@@ -242,7 +244,8 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
             pass
 
         if entry.has_key('summary') and entry['summary']:
-            images, entry['summary'] = illustrator.find_images(entry['summary'], entry['link'])
+            images, entry['summary'] = illustrator.find_images(
+                entry['summary'], entry['link'])
             if images:
                 entry['images'].extend(images)
         # dedup images is processed at rss.py
