@@ -103,7 +103,10 @@ class Simplr:
         try:
             if self.content:
                 # find_images normalizes images afterwards
-                return illustrator.find_images(self.content, self.url)
+                images, content_new = illustrator.find_images(self.content, self.url)
+                if content_new and content_new != self.content:
+                    self.content = content_new
+                return images
             else:
                 return None
         except Exception as k:
