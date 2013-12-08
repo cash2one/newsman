@@ -50,7 +50,7 @@ class NormalizedImage:
             raise Exception('Method malformed!')
 
         self._image_url, self._image_html = self._analyze(image_url, referer)
-        self._image_size = self._calculate_size()
+        self._image_size = self._calculate_size(self._image_html)
 
         self._clean_data()
 
