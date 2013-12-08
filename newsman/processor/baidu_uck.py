@@ -129,7 +129,7 @@ def _collect_images(data=None, referer=None):
 
         # remove duplicated ones
         images = illustrator.dedup_images(images) if images else None
-        return images
+        return images, data
     except Exception as k:
         logger.error(str(k))
         return None
@@ -154,7 +154,7 @@ def _extract(data=None, referer=None):
         content = _sanitize(content, referer)
 
         # images
-        images = _collect_images(data, referer)
+        images, data = _collect_images(data, referer)
         images = images if images else None
 
         # title
