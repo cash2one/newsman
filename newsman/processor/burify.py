@@ -28,7 +28,10 @@ def _collect_images(content, referer):
         logger.error('Content/HTML found VOID!')
         return None
 
-    return illustrator.find_images(content, referer)
+    images, content_new = illustrator.find_images(content, referer)
+    if content_new and content_new != content:
+        content = content_new
+    return images, content
 
 
 def convert(link):
@@ -45,8 +48,8 @@ def convert(link):
         if data:
             article = Document(data)
             if article:
-                images = _collect_images(article.summary(), link)
-                return article.short_title(), article.summary(html_partial=False), images
+                images, content  = _collect_images(article.summary(html_partial=False), link)
+                return article.short_title(), content, images
             else:
                 logger.info('Burify cannot recognize the data')
                 return None, None, None
