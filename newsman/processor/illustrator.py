@@ -114,20 +114,22 @@ class NormalizedImage:
             logger.error('Cannot parse %s' % str(image_url))
             raise Exception('Cannot parse %s' % str(image_url))
 
-    def _calculate_size(self):
+    def _calculate_size(self, image_html=None):
         """
         read data into memory and return the image size
         """
-        try:
-            if self._image_html:
-                image_data = Image.open(StringIO(self._image_html))
-                self._image_size = image_data.size  # width, height
+        if not image_html:
+            logger.error('No data is found for [%s]!' % self._image_url)
+            raise Exception('No data is found for [%s]!' % self._image_url)
 
-                # clean data
-                if image_data:
-                    del image_data
-            else:
-                return None, None
+        try:
+            image_data = Image.open(StringIO(image_html))
+            image_size = image_data.size  # width, height
+
+            # clean data
+            if image_data:
+                del image_data
+            return image_size
         except Exception as k:
             logger.error('Problem:[%s] Source:[%s]' %
                          (str(k), str(self._image_url)))
