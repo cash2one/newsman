@@ -211,13 +211,13 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
         # u'86'}]
         entry['images'] = []
         try:
-            images = illustrator.find_images(e.media_content, entry['link'])
+            images, media_content_new = illustrator.find_images(e.media_content, entry['link'])
             if images:
                 entry['images'].extend(images)
         except AttributeError as k:
             pass
         try:
-            images = illustrator.find_images(e.media_thumbnail, entry['link'])
+            images, media_content_new = illustrator.find_images(e.media_thumbnail, entry['link'])
             if images:
                 entry['images'].extend(images)
         except AttributeError as k:
