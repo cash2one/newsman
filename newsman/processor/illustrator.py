@@ -23,6 +23,7 @@ import os
 import random
 import re
 import requests
+from slimmer import html_slimmer
 import urllib2
 
 # CONSTANTS
@@ -210,6 +211,12 @@ class NormalizedImage:
         """
         return self._image_size
 
+    def get_image_url(self):
+        """
+        output latest image url
+        """
+        return self._image_size
+
     def _is_valid_image(self):
         """
         check if the image has a resolution larger than MIN_IMAGE_SIZE
@@ -305,13 +312,20 @@ def find_image(image_url=None, referer=None):
 
     try:
         ni = NormalizedImage(image_url, referer)
-        return ni.normalize()
+        normalized_image = ni.normalize()
+        if normalized_image and 'url' in normalized_image:
+            image_url_new = normalized_image['url']
+            if image_url_new != image_url:
+                normalized_image['orignal_url'] = image_url
+            return normalized_image
+        else:
+            return None
     except Exception as k:
         logger.error('Problem:[%s]\nSource:[%s]' % (str(k), str(image_url)))
         return None
 
 
-def find_images(content=None, referer=None):
+def find_images(content=None, referer=None, ):
     """
     find out all images from content and its size info
     """
@@ -321,16 +335,22 @@ def find_images(content=None, referer=None):
 
     try:
         soup = BeautifulSoup(str(content))
-        images = soup.findAll('img')
-
         normalized_images = []
-        for image in images:
+
+        ELEMENT_REPLACED = False
+        for image in soup.findAll('img'):
             if image.get('src'):
                 normalized_image = find_image(image.get('src'), referer)
                 if normalized_image:
+                    # replace original image link with clean and (local) copy
+                    if 'original_url' in normalized_image and normalized_image['original_url']:
+                        image['src'] = str(normalized_image['url'])
+                        ELEMENT_REPLACED = True
                     normalized_images.append(normalized_image)
 
-        return normalized_images
+        if ELEMENT_REPLACED:
+            content = str(html_slimmer(urllib2.unquote(hparser.unescape(soup.prettify()))))
+        return normalized_images, content 
     except Exception as k:
         logger.error(str(k))
         return None
