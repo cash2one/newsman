@@ -222,6 +222,8 @@ def get_latest_entries(language=None, country=None, category=None, feed=None, li
         class_name = 'news::%s::%s' % (language, feed)
         if not rclient.exists(class_name):
             class_name = 'news::%s::%s' % (language, label_name)
+            if not rclient.exists(class_name):
+                label_name = None
         else:
             # reset label_name as the flag
             label_name = None
@@ -361,6 +363,8 @@ def get_previous_entries(language=None, country=None, category=None, feed=None, 
         class_name = 'news::%s::%s' % (language, feed)
         if not rclient.exists(class_name):
             class_name = 'news::%s::%s' % (language, label_name)
+            if not rclient.exists(class_name):
+                label_name = None
         else:
             # reset label_name as the flag
             label_name = None
