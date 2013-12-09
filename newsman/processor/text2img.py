@@ -129,7 +129,7 @@ class Text2Image:
                 sentences = [
                     sentence for sentence in sentences if sentence.strip()]
             elif self._language == 'th':
-                command = 'echo "%s" | %s %s/scw.conf %s' % (
+                command = 'echo "%s" | %s %s/scw.conf %s 2>/dev/null' % (
                     str(self._text), THAI_WORDSEG, THAI_WORDSEG_DICT, THAI_WORDSEG_DICT)
                 response = subprocess.Popen(
                     command, stdout=subprocess.PIPE, shell=True)

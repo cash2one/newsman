@@ -170,7 +170,7 @@ class PyTeaser:
                 words = [word.strip()
                          for word in words if word.strip() and word not in cj_punctuation]
             elif self._language == 'th':
-                command = 'echo "%s" | %s %s/scw.conf %s' % (
+                command = 'echo "%s" | %s %s/scw.conf %s 2>/dev/null' % (
                     str(text), THAI_WORDSEG, THAI_WORDSEG_DICT, THAI_WORDSEG_DICT)
                 response = subprocess.Popen(
                     command, stdout=subprocess.PIPE, shell=True)
