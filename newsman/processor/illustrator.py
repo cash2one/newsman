@@ -104,9 +104,9 @@ class NormalizedImage:
             # GIF is not supported yet
             pr = requests.utils.urlparse(image_url)
             image_url_address = pr.netloc + pr.path
-            #if image_url_address.lower().endswith('.gif'):
+            # if image_url_address.lower().endswith('.gif'):
             #    raise Exception('GIF is not supported! %s' % str(image_url))
-            #else:
+            # else:
             #image_html = urllib2.unquote(hparser.unescape(response.content))
             image_html = response.content
             image_url = self._check_image(image_url, image_html)
@@ -354,8 +354,8 @@ def find_images(content=None, referer=None, ):
         encoding = chardet.detect(content)['encoding']
         content_new = soup.prettify(encoding=encoding)
         if ELEMENT_REPLACED and content_new:
-            #content = urllib2.unquote(hparser.unescape(content_new))
-            content = content_new
+            content = str(
+                html_slimmer(urllib2.unquote(hparser.unescape(content_new))))
         return normalized_images, content
     except Exception as k:
         logger.error(str(k))
