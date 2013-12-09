@@ -102,12 +102,11 @@ class NormalizedImage:
 
         if response and response.status_code < 400 and response.content:
             # GIF is not supported yet
-            pr = requests.utils.urlparse(image_url)
-            image_url_address = pr.netloc + pr.path
+            #pr = requests.utils.urlparse(image_url)
+            #image_url_address = pr.netloc + pr.path
             # if image_url_address.lower().endswith('.gif'):
             #    raise Exception('GIF is not supported! %s' % str(image_url))
             # else:
-            #image_html = urllib2.unquote(hparser.unescape(response.content))
             image_html = response.content
             image_url = self._check_image(image_url, image_html)
             return str(image_url), str(image_html)
@@ -191,8 +190,10 @@ class NormalizedImage:
         image_data = None
         try:
             image_data = Image.open(StringIO(image_html))
-            image_web_path = '%s%s.jpg' % (IMAGES_PUBLIC_DIR, relative_path)
-            image_local_path = '%s%s.jpg' % (IMAGES_LOCAL_DIR, relative_path)
+            # rely on PIL to tell the format
+            image_format = image_data.format.lower() if image_data and image_data.format else 'jpg'
+            image_web_path = '%s%s.%s' % (IMAGES_PUBLIC_DIR, relative_path, image_format)
+            image_local_path = '%s%s.%s' % (IMAGES_LOCAL_DIR, relative_path, image_format)
             image_data = image_data.convert('RGB')
             image_data.save(image_local_path, 'JPEG')
 
