@@ -15,6 +15,7 @@ sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
 from BeautifulSoup import BeautifulSoup
+import chardet
 from config.settings import hparser
 from config.settings import logger
 from cStringIO import StringIO
@@ -350,10 +351,11 @@ def find_images(content=None, referer=None, ):
                         ELEMENT_REPLACED = True
                     normalized_images.append(normalized_image)
 
-        content_new = soup.prettify()
+        encoding = chardet.detect(content)['encoding']
+        content_new = soup.prettify(encoding=encoding)
         if ELEMENT_REPLACED and content_new:
-            content = str(
-                html_slimmer(urllib2.unquote(hparser.unescape(content_new))))
+            #content = urllib2.unquote(hparser.unescape(content_new))
+            content = content_new
         return normalized_images, content
     except Exception as k:
         logger.error(str(k))
@@ -445,7 +447,7 @@ def scale_image(image=None, referer=None, size_expected=MIN_IMAGE_SIZE, resize_b
 
     try:
         width = int(image_size[0])
-        height = int(image_size[0])
+        height = int(image_size[1])
         width_expected = int(size_expected[0])
         height_expected = int(size_expected[1])
 
