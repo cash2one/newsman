@@ -15,7 +15,6 @@ sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
 from BeautifulSoup import BeautifulSoup
-import chardet
 from config.settings import hparser
 from config.settings import logger
 from cStringIO import StringIO
@@ -355,8 +354,7 @@ def find_images(content=None, referer=None, ):
                         ELEMENT_REPLACED = True
                     normalized_images.append(normalized_image)
 
-        encoding = chardet.detect(content)['encoding']
-        content_new = soup.prettify(encoding=encoding)
+        content_new = soup.prettify(encoding='utf-8')
         if ELEMENT_REPLACED and content_new:
             content = str(
                 html_slimmer(urllib2.unquote(hparser.unescape(content_new))))
