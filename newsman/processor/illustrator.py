@@ -106,7 +106,8 @@ class NormalizedImage:
             #if image_url_address.lower().endswith('.gif'):
             #    raise Exception('GIF is not supported! %s' % str(image_url))
             #else:
-            image_html = urllib2.unquote(hparser.unescape(response.content))
+            #image_html = urllib2.unquote(hparser.unescape(response.content))
+            image_html = response.content
             image_url = self._check_image(image_url, image_html)
             return str(image_url), str(image_html)
         else:
