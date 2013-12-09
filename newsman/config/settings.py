@@ -59,7 +59,7 @@ LOG_FORMAT = "%(levelname)-8s %(asctime)-25s %(lineno)-3d:%(filename)-16s %(mess
 # critical, error, warning, info, debug, notset
 logging.basicConfig(format=LOG_FORMAT)
 logger = logging.getLogger('news-logger')
-logger.setLevel(logging.WARNING)
+logger.setLevel(logging.ERROR)
 
 # paths for generating transcoded files, mp3 and images
 TRANSCODED_LOCAL_DIR = LOCAL % 'STATIC/news/ts/'
