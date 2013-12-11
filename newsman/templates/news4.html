@@ -17,7 +17,7 @@
 		  })();
 		</script>
 	</head>
-	<body class="news3">
+	<body onload="javascript:setFont(0);">
 		<div class="header clearfix">
 			<a class="hd-btn back-btn" href="##">&lt;</a>
 			<a class="hd-btn share-btn" href="##">Share</a>
@@ -25,12 +25,15 @@
 			<a id="font-minus" class="font-minus setFont" href="javascript:setFont(-2);"></a>
         </div>
 		<div class="main">
-			<div class="news-hd">
-				<h1>%s</h1>
-				<p class="sub-info">%s</p>
-			</div>
 			<div class="content">
-				<div class="news-bd">
+				<div class="news-hd">
+					<h1 id="newstitle">%s<i class="tit-ico"></i></h1>
+					<p id="newssubtitle" class="sub-info">%s</p>
+				</div>
+    			<div class="thumb-area">
+    				<img src="static2/img/29intel-articleLarge.jpg" alt="" />
+    			</div>
+				<div id="newscontent" class="news-bd">
                     %s
 				</div>
 			</div>
@@ -40,7 +43,7 @@
 			<div class="wrap">
 				<p class="copyright">Copyright &copy;
 	            <script>
-	                /* <![CDATA[ */ 
+	                /* <![CDATA[ */
 	                document.write(new Date().getFullYear());
 	                /* ]]> */
 	            </script>

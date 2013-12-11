@@ -15,6 +15,13 @@ a:hover{text-decoration:underline;}
 .hd-btn{display:block;width:100px;height:60px;line-height:60px;text-align:center;color:#000;border-right:1px solid #e3e3e3;float:left;}
 .hd-btn:hover{text-decoration:none;}
 .back-btn{font:50px Arial;}
+
+.setFont{display:block;width:50px;height:60px;float:right;line-height:60px;}
+.font-minus{background:url(../img/font-minus.png) no-repeat 50% 50%;}
+.font-plus{background:url(../img/font-plus.png) no-repeat 50% 50%;}
+.font-minus-d{background:url(../img/font-minus-d.png) no-repeat 50% 50%;}
+.font-plus-d{background:url(../img/font-plus-d.png) no-repeat 50% 50%;}
+
 .share-btn{border-right:none;border-left:1px solid #e3e3e3;float:right;text-indent:-9999px;overflow:hidden;background:url(../img/share-ico.png) no-repeat 50% 50%;}
 .thumb-area img{width:100%;}
 .fullBtn{height:2.5em;line-height:2.5em;font-size:18px;text-align:center;display:block;border:1px solid #ccc;border-radius:2px;margin:20px 30px;background-color:#eee;color:#666;}
@@ -23,15 +30,15 @@ a:hover{text-decoration:underline;}
 /*news*/
 .content{padding:0 18px;position:relative;z-index:99;}
 .news-hd{border-bottom:1px solid #ededed;padding-bottom:20px;}
-.news-hd h1{font-size:21px;line-height:1.2;color:#373737;padding:20px 0;position:relative;}
-.news-hd .tit-ico{display:block;width:13px;height:35px;background-color:#5576d3;position:absolute;left:-18px;top:18px;}
+.news-hd h1{font-size:28px;line-height:1.2;color:#373737;padding:20px 0;position:relative;}
+.news-hd .tit-ico{display:block;width:9px;height:35px;background-color:#008DF2;position:absolute;left:-18px;top:18px;}
 .news-hd .sub-info{color:#808080;font-size:14px;line-height:1.4;}
-.news-bd{border-bottom:1px solid #ededed;padding-bottom:15px;}
-.news-bd p{color:#717171;font-size:16px;line-height:1.45;margin:20px 0;}
+.news-bd{border-bottom:1px solid #ededed;padding-top:15px;padding-bottom:15px;}
+.news-bd p{color:#717171;font-size:24px;line-height:1.45;margin:20px 0;}
 .news-bd img{display:block;margin:0 auto;max-width:100%;height:auto;}
 .news-bd .full-pic{max-width:100%;height:auto;}
 
 /*news3*/
-.news3 .news-hd{background-color:#5d7bd5;padding:0 30px 20px;}
+.news3 .news-hd{background-color:#5d7bd5;background:url(../img/bg.png) center no-repeat;background-size:cover;padding:0 30px 20px;}
 .news3 .news-hd h1{color:#fff;}
 .news3 .news-hd .sub-info{color:#afc5fe;}
