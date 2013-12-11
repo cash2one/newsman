@@ -18,36 +18,24 @@
 		</script>
 	</head>
 	<body onload="javascript:setFont(0);">
-		<div class="header clearfix">
+		<!--<div class="header clearfix">
 			<a class="hd-btn back-btn" href="##">&lt;</a>
 			<a class="hd-btn share-btn" href="##">Share</a>
 			<a id="font-plus"  class="font-plus setFont" href="javascript:setFont(2);"></a>
 			<a id="font-minus" class="font-minus setFont" href="javascript:setFont(-2);"></a>
-        </div>
+        </div>-->
 		<div class="main">
 			<div class="content">
 				<div class="news-hd">
 					<h1 id="newstitle">%s<i class="tit-ico"></i></h1>
 					<p id="newssubtitle" class="sub-info">%s</p>
 				</div>
-				<div id="newscontent" class="news-bd">
+				<div id="newscontent" class="news-bd" style="font-size:17px">
                     %s
 				</div>
 			</div>
 			<a class="fullBtn" href="javascript:void(0)" onclick="window.hao123app_webkit_js.btnClicked()">%s</a>
 		</div>
-		<!--<div class="footer">
-			<div class="wrap">
-				<p class="copyright">Copyright &copy;
-	            <script>
-	                /* <![CDATA[ */
-	                document.write(new Date().getFullYear());
-	                /* ]]> */
-	            </script>
-	            Baidu HK</p>
-	            <p>All Rights Reserved</p>
-            </div>
-        </div>-->
 	</body>
 <script>
 var defaultOffset=getCookie('fontOffset');
