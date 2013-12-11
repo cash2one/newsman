@@ -29,9 +29,10 @@ import time
 import urllib2
 
 # CONSTANTS
-from config.settings import NEWS_TEMPLATE_1
-from config.settings import NEWS_TEMPLATE_2
+#from config.settings import NEWS_TEMPLATE_1
+#from config.settings import NEWS_TEMPLATE_2
 from config.settings import NEWS_TEMPLATE_3
+from config.settings import NEWS_TEMPLATE_4
 from config.settings import NEWS_TEMPLATE_ARABIC
 from config.settings import TRANSCODED_LOCAL_DIR
 from config.settings import TRANSCODED_PUBLIC_DIR
@@ -115,7 +116,7 @@ def _compose(language=None, title=None, updated=None, feed=None, content=None, i
         sub_info = '%s | %s' % (feed, updated_sub_info)
 
         # select appropriate template
-        news_template = NEWS_TEMPLATE_2 if images and len(
+        news_template = NEWS_TEMPLATE_4 if images and len(
             images) > 0 else NEWS_TEMPLATE_3
         f = open(news_template, 'r')
 
