@@ -31,11 +31,11 @@ db = Database(con, 'news')
 # redis rclient
 import redis
 from redis import ConnectionError
-rclient = redis.StrictRedis(host='127.0.0.1', port=6379, socket_timeout=5)
+rclient = redis.StrictRedis(host='127.0.0.1', port=6379, socket_timeout=5, charset='utf-8')
 try:
     rclient.ping()
 except ConnectionError:
-    rclient = redis.StrictRedis(host='10.240.37.56', port=6379, socket_timeout=5)
+    rclient = redis.StrictRedis(host='10.240.37.56', port=6379, socket_timeout=5, charset='utf-8')
 
 # htmlparser to do unescaping
 from HTMLParser import HTMLParser
