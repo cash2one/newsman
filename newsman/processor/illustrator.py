@@ -223,30 +223,15 @@ class NormalizedImage:
         """
         return self._image_size
 
-    def _is_valid_image(self):
-        """
-        check if the image has a resolution larger than MIN_IMAGE_SIZE
-        """
-        try:
-            width, height = self._image_size
-            if width and height:
-                return True if width * height > MIN_IMAGE_SIZE[0] * MIN_IMAGE_SIZE[1] else False
-            return False
-        except Exception as k:
-            logger.error('Problem:[%s] Source:[%s]' %
-                         (str(k), str(self._image_url)))
-            return False
-
     def normalize(self):
         """
         output image with proper format
         i.e. {'url':xxx, 'width':yyy, 'height':zzz}
         """
         try:
-            if self._is_valid_image():
-                width, height = self._image_size
-                if width and height:
-                    return {'url': self._image_url, 'width': width, 'height': height}
+            width, height = self._image_size
+            if width and height:
+                return {'url': self._image_url, 'width': width, 'height': height}
             return None
         except Exception as k:
             logger.error('Problem:[%s]\nSource:[%s]' %
@@ -297,9 +282,12 @@ def find_biggest_image(images=None):
         for image in images:
             if 'width' in image and 'height' in image:
                 resolution_image = int(image['width']) * int(image['height'])
-                if resolution_image > resolution_max:
-                    biggest = image
-                    resolution_max = resolution_image
+                if resolution_image > MIN_IMAGE_SIZE[0] * MIN_IMAGE_SIZE[1]:
+                    if resolution_image > resolution_max:
+                        biggest = image
+                        resolution_max = resolution_image
+                else:
+                    logger.error('Image [%s] is not big enough!' % str(image['url']))
             else:
                 logger.error('Height and width not found! %s' % str(image))
         return biggest
