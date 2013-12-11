@@ -30,7 +30,7 @@
 					<h1 id="newstitle">%s<i class="tit-ico"></i></h1>
 					<p id="newssubtitle" class="sub-info">%s</p>
 				</div>
-				<div id="newscontent" class="news-bd" style="font-size:17px">
+				<div id="newscontent" class="news-bd" style="color:#717171;font-size:16px;line-height:1.45;margin:20px 0;">
                     %s
 				</div>
 			</div>
@@ -62,9 +62,9 @@ function setFont(offset_pixel){
         newscontent=document.getElementById('newscontent');
     defaultOffset=new_offset;
     setCookie('fontOffset',defaultOffset,360);
-    newstitle.style.fontSize=(28+defaultOffset)+"px";
+    newstitle.style.fontSize=(21+defaultOffset)+"px";
     newssubtitle.style.fontSize=(14+defaultOffset)+"px";
-    newscontent.style.fontSize=(17+defaultOffset)+"px";
+    newscontent.style.fontSize=(16+defaultOffset)+"px";
 }
 function getCookie(c_name){
     if (document.cookie.length>0){

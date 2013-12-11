@@ -30,7 +30,7 @@ a:hover{text-decoration:underline;}
 /*news*/
 .content{padding:0 18px;position:relative;z-index:99;}
 .news-hd{border-bottom:1px solid #ededed;padding-bottom:20px;}
-.news-hd h1{font-size:28px;line-height:1.2;color:#373737;padding:20px 0;position:relative;}
+.news-hd h1{font-size:21px;line-height:1.2;color:#373737;padding:20px 0;position:relative;}
 .news-hd .tit-ico{display:block;width:9px;height:35px;background-color:#008DF2;position:absolute;left:-18px;top:18px;}
 .news-hd .sub-info{color:#808080;font-size:14px;line-height:1.4;}
 .news-bd{border-bottom:1px solid #ededed;padding-top:15px;padding-bottom:15px;}
