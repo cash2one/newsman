@@ -11,8 +11,8 @@ rss*|*ในประเทศ-->0*|*chengdujin*|*http://www.bangkokbiznews.com/
 rss*|*ในประเทศ-->0*|*chengdujin*|*http://www.thairath.co.th/rss/news.xml*|*ข่าวไทยรัฐออนไลน์ Breaking News*|*http://mobile-global.baidu.com/logos/th_TH/thairath.png
 rss*|*ในประเทศ-->0*|*chengdujin*|*http://www.thairath.co.th/rss/pol.xml*|*ข่าวไทยรัฐออนไลน์ ข่าวการเมือง*|*http://mobile-global.baidu.com/logos/th_TH/thairath.png
 rss*|*ในประเทศ-->0*|*chengdujin*|*http://news.mthai.com/feed*|*Mthai ข่าว*|*http://mobile-global.baidu.com/logos/th_TH/mthai.png*|*ข่าวฮิต-->0
-rss*|*ในประเทศ-->0*|*chengdujin*|*http://www.manager.co.th/RSS/Crime/Crime.xml*|*Manager อาชญากรรม*|*http://mobile-global.baidu.com/logos/th_TH/default_icon.png
-rss*|*ในประเทศ-->0*|*chengdujin*|*http://www.manager.co.th/RSS/Local/Local.xml*|*Manager ในประเทศ*|*http://mobile-global.baidu.com/logos/th_TH/default_icon.png
+rss*|*ในประเทศ-->0*|*chengdujin*|*http://www.manager.co.th/RSS/Crime/Crime.xml*|*Manager อาชญากรรม*|*http://mobile-global.baidu.com/logos/th_TH/manager.png
+rss*|*ในประเทศ-->0*|*chengdujin*|*http://www.manager.co.th/RSS/Local/Local.xml*|*Manager ในประเทศ*|*http://mobile-global.baidu.com/logos/th_TH/manager.png
 rss*|*ต่างประเทศ-->1*|*chengdujin*|*http://www.matichon.co.th/rss/news_world.xml*|*มติชนออนไลน์ ข่าวต่างประเทศ*|*http://mobile-global.baidu.com/logos/th_TH/matichon.png*|*ต่างประเทศ-->0
 rss*|*ต่างประเทศ-->1*|*chengdujin*|*http://news.thaipbs.or.th/rss/world.xml*|*ไทยพีบีเอส ข่าวต่างประเทศ*|*http://mobile-global.baidu.com/logos/th_TH/thaipbs.png*|*ต่างประเทศ-->0
 rss*|*ต่างประเทศ-->1*|*chengdujin*|*http://www.komchadluek.net/rss/foreign.xml*|*คมชัดลึก ต่างประเทศ*|*http://mobile-global.baidu.com/logos/th_TH/komchadluek.png
@@ -35,7 +35,7 @@ rss*|*วิทยาศาสตร์-->3*|*chengdujin*|*http://rssfeeds.sanoo
 rss*|*วิทยาศาสตร์-->3*|*chengdujin*|*http://feeds.posttoday.com/c/33101/f/535971/index.rss*|*Post Today ดิจิตอลไลฟ์*|*http://mobile-global.baidu.com/logos/th_TH/posttoday.png
 rss*|*วิทยาศาสตร์-->3*|*chengdujin*|*http://www.thairath.co.th/rss/tech.xml*|*ข่าวไทยรัฐออนไลน์ ข่าววิทยาการ*|*http://mobile-global.baidu.com/logos/th_TH/thairath.png
 rss*|*วิทยาศาสตร์-->3*|*chengdujin*|*http://tech.mthai.com/feed*|*Mthai เทคโนโลยี*|*http://mobile-global.baidu.com/logos/th_TH/mthai.png
-rss*|*วิทยาศาสตร์-->3*|*chengdujin*|*http://www.manager.co.th/RSS/Game/Game.xml*|*Manager เกม*|*http://mobile-global.baidu.com/logos/th_TH/default_icon.png
+rss*|*วิทยาศาสตร์-->3*|*chengdujin*|*http://www.manager.co.th/RSS/Game/Game.xml*|*Manager เกม*|*http://mobile-global.baidu.com/logos/th_TH/manager.png
 rss*|*บันเทิง-->5*|*chengdujin*|*http://www.komchadluek.net/rss/entertainment.xml*|*คมชัดลึก บันเทิง*|*http://mobile-global.baidu.com/logos/th_TH/komchadluek.png*|*บันเทิง-->0
 rss*|*บันเทิง-->5*|*chengdujin*|*http://feeds.feedburner.com/section-gossip*|*Mthai Gossip Star*|*http://mobile-global.baidu.com/logos/th_TH/mthai.png*|*บันเทิง-->0
 rss*|*บันเทิง-->5*|*chengdujin*|*http://women.kapook.com/star/feed*|*Kapook Women ดารา*|*http://mobile-global.baidu.com/logos/th_TH/kapook.png*|*บันเทิง-->0
@@ -50,7 +50,7 @@ rss*|*กีฬา-->4*|*chengdujin*|*http://www.komchadluek.net/rss/sport.xml*|
 rss*|*กีฬา-->4*|*chengdujin*|*http://feeds.posttoday.com/c/33101/f/535973/index.rss*|*Post Today กีฬา*|*http://mobile-global.baidu.com/logos/th_TH/posttoday.png
 rss*|*กีฬา-->4*|*chengdujin*|*http://www.thairath.co.th/rss/sport.xml*|*ข่าวไทยรัฐออนไลน์ ข่าวกีฬา*|*http://mobile-global.baidu.com/logos/th_TH/thairath.png*|*กีฬา-->0
 rss*|*กีฬา-->4*|*chengdujin*|*http://sport.mthai.com/football-inter/feed*|*Mthai ฟุตบอล*|*http://mobile-global.baidu.com/logos/th_TH/mthai.png
-rss*|*กีฬา-->4*|*chengdujin*|*http://www.manager.co.th/rss/sport/sport.xml*|*Manager กีฬา*|*http://mobile-global.baidu.com/logos/th_TH/default_icon.png
+rss*|*กีฬา-->4*|*chengdujin*|*http://www.manager.co.th/rss/sport/sport.xml*|*Manager กีฬา*|*http://mobile-global.baidu.com/logos/th_TH/manager.png
 rss*|*กีฬา-->4*|*chengdujin*|*http://sport.mthai.com/feed*|*Mthai ข่าวกีฬา*|*http://mobile-global.baidu.com/logos/th_TH/mthai.png
 rss*|*แฟชั่น-->6*|*chengdujin*|*http://women.kapook.com/makeup/feed*|*Kapook Women แต่งหน้า*|*http://mobile-global.baidu.com/logos/th_TH/kapook.png
 rss*|*แฟชั่น-->6*|*chengdujin*|*http://women.kapook.com/skin/feed*|*Kapook Women ผิวสวย*|*http://mobile-global.baidu.com/logos/th_TH/kapook.png
@@ -73,5 +73,5 @@ rss*|*ไลฟ์สไตล์-->7*|*chengdujin*|*http://www.komchadluek.net/
 rss*|*ไลฟ์สไตล์-->7*|*chengdujin*|*http://www.komchadluek.net/rss/horoscope.xml*|*คมชัดลึก ดูดวง-โหราศาสตร์*|*http://mobile-global.baidu.com/logos/th_TH/komchadluek.png
 rss*|*ไลฟ์สไตล์-->7*|*chengdujin*|*http://www.thairath.co.th/rss/life.xml*|*ข่าวไทยรัฐออนไลน์ ข่าวไลฟ์สไตล์*|*http://mobile-global.baidu.com/logos/th_TH/thairath.png
 rss*|*ไลฟ์สไตล์-->7*|*chengdujin*|*http://www.thairath.co.th/rss/edu.xml*|*ข่าวไทยรัฐออนไลน์ ข่าวการศึกษา*|*http://mobile-global.baidu.com/logos/th_TH/thairath.png
-rss*|*ไลฟ์สไตล์-->7*|*chengdujin*|*http://www.manager.co.th/RSS/Campus/Campus.xml*|*Manager Life on Campus*|*http://mobile-global.baidu.com/logos/th_TH/default_icon.png
-rss*|*ไลฟ์สไตล์-->7*|*chengdujin*|*http://www.manager.co.th/RSS/Travel/Travel.xml*|*Manager ท่องเที่ยว*|*http://mobile-global.baidu.com/logos/th_TH/default_icon.png
+rss*|*ไลฟ์สไตล์-->7*|*chengdujin*|*http://www.manager.co.th/RSS/Campus/Campus.xml*|*Manager Life on Campus*|*http://mobile-global.baidu.com/logos/th_TH/manager.png
+rss*|*ไลฟ์สไตล์-->7*|*chengdujin*|*http://www.manager.co.th/RSS/Travel/Travel.xml*|*Manager ท่องเที่ยว*|*http://mobile-global.baidu.com/logos/th_TH/manager.png
