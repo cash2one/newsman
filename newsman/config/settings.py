@@ -82,10 +82,10 @@ MEDIA_PUBLIC_DIR = PUBLIC % 'mid/'
 MEDIA_TEMP_LOCAL_DIR = LOCAL % 'STATIC/news/tmp/'
 
 # templates for new page
-NEWS_TEMPLATE_1 = LOCAL % 'STATIC/news/templates/news1.html'
-NEWS_TEMPLATE_2 = LOCAL % 'STATIC/news/templates/news2.html'
-NEWS_TEMPLATE_3 = LOCAL % 'STATIC/news/templates/news3.html'
-NEWS_TEMPLATE_4 = LOCAL % 'STATIC/news/templates/news4.html'
+NEWS_TEMPLATE_1 = LOCAL % 'STATIC/news/templates/news1.html'  # no image, no font resizing
+NEWS_TEMPLATE_2 = LOCAL % 'STATIC/news/templates/news2.html'  # with image, no font resizing
+NEWS_TEMPLATE_3 = LOCAL % 'STATIC/news/templates/news3.html'  # no image, with font resizing
+NEWS_TEMPLATE_4 = LOCAL % 'STATIC/news/templates/news4.html'  # with image, with font resizing
 NEWS_TEMPLATE_ARABIC = LOCAL % 'STATIC/news/templates/index_arabic.html'
 
 # Data paths
