@@ -20,15 +20,22 @@ import logging
 from pymongo.connection import Connection
 from pymongo.database import Database
 from pymongo.collection import Collection
-from pymongo.errors import CollectionInvalid
-con = Connection('127.0.0.1:27017')
+from pymongo.errors import CollectionInvalid, ConnectionFailure
+con = None
+try:
+    con = Connection('127.0.0.1:27017')
+except ConnectionFailure:
+    con = Connection('10.240.37.56:27017')
 db = Database(con, 'news')
 
 # redis rclient
 import redis
 from redis import ConnectionError
-#rclient = redis.StrictRedis(host='10.240.35.40', port=6379, socket_timeout=5)
 rclient = redis.StrictRedis(host='127.0.0.1', port=6379, socket_timeout=5)
+try:
+    rclient.ping()
+except ConnectionError:
+    rclient = redis.StrictRedis(host='10.240.37.56', port=6379, socket_timeout=5)
 
 # htmlparser to do unescaping
 from HTMLParser import HTMLParser
@@ -78,6 +85,7 @@ MEDIA_TEMP_LOCAL_DIR = LOCAL % 'STATIC/news/tmp/'
 NEWS_TEMPLATE_1 = LOCAL % 'STATIC/news/templates/news1.html'
 NEWS_TEMPLATE_2 = LOCAL % 'STATIC/news/templates/news2.html'
 NEWS_TEMPLATE_3 = LOCAL % 'STATIC/news/templates/news3.html'
+NEWS_TEMPLATE_4 = LOCAL % 'STATIC/news/templates/news4.html'
 NEWS_TEMPLATE_ARABIC = LOCAL % 'STATIC/news/templates/index_arabic.html'
 
 # Data paths
