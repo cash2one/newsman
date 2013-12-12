@@ -11,11 +11,10 @@ from processor import summarizer
 
 def main():
     language = 'th'
-    title = "ผอ.รพ.ตำรวจยัน ถูกม็อบกปท.ตัดไฟไม่กระทบ"
-    summary = """<img height=\"75\" src=\"http://pe2.isanook.com/ns/0/wb/i/ud/266/1334110/497994-01.jpg;c:width=75,height=75;static:p_s1sf_ns_0;file:rssimg_1334110.jpg\" title=\"คปท.ขนกระสอบทรายกั้นหากสลายชุมนุม\" width=\"75\" />   คปท. ยังไม่เคลื่อน ปักหลักสนามม้านางเลิ้งคึกคัก ขนทรายใส่กระสอบทำแนวกั้น ป้องเจ้าหน้าที่ตำรวจสลายชุมนุม"""
-    content = """เมนูข่าวfanpage ค้นหา<div class="c1">หน้าแรกข่าว> การเมือง> ผอ.รพ.ตำรวจยัน ถูกม็อบกปท.ตัดไฟไม่กระทบ <div style="font-weight:bold;">ผอ.รพ.ตำรวจยัน ถูกม็อบกปท.ตัดไฟไม่กระทบ</div><div class="c2">28 พ.ย. 56 15.54 น. </div><img src="http://p3.isanook.com/ns/0/di/nwpt/sanook-news.jpg" alt="S! News" style="border:none;" />สนับสนุนเนื้อหา <br /><img src="http://pe2.isanook.com/ns/0/ud/266/1334120/2.jpg" alt="ผอ.รพ.ตำรวจยัน ถูกม็อบกปท.ตัดไฟไม่กระทบ" /><br /><p>ผอ.รพ.ตำรวจยืนยัน กปท.บุกตัดไฟสำนักงานตำรวจฯไม่กระทบ เพราะใช้หม้อไฟคนละแปลง</p><p>ผู้สื่อข่าวรายงานว่า (28 พ.ย.) จากเหตุการณ์กลุ่มกองทัพประชาชนโคนล้มระบอบทักษิณ (กปท.) ได้เดินทางมาชุมุนมบริเวณหน้าสำนักงานตำรวจแห่งชาติ (สตช.) โดย<strong style="font-weight:700;">พล.ต.ต.ปิยะ อุทาโย โฆษกศูนย์อำนวยการรักษาความสงบเรียบร้อย (ศอ.รส.)</strong>เปิดเผยว่า สำนักงานตำรวจแห่งชาติและโรงพยาบาลตำรวจถูกตัดไฟ โดยทาง รพ.และ สตช. มีระบบไฟฟ้าสำรองแต่สามารถใช้ได้เพียง 3 ชั่วโมง พร้อมกล่าวว่าการกระทำดังกล่าวถือว่ามีความผิดทางกฎหมาย</p><p>ล่าสุด เมื่อเวลา 15.00 น. <strong style="font-weight:700;">พล.ต.ท.จงเจตน์ อาวเจนพงษ์ ผอ.รพ.ตำรวจ</strong>ยืนยันว่า รพ.ตำรวจไม่ได้รับผลกระทบ เพราะใช้หม้อแปลงคนละตัว แต่ทางสตช.น่าจะถูกตัดไฟ ส่วนที่ใช้ไฟสำรองตอนนี้คือสถาบันนิติเวช ขณะที่ผู้สื่อข่าวของสำนักข่าวเนชั่นรายงานจาก รพ.ตำรวจ พบว่า ไฟฟ้ายังใช้การได้ปกติ ขณะที่กลุ่มผู้ชุมนุม กปท.ยังปักหลักอยู่ที่หน้าสตช.</p><p>ขอขอบคุณข้อมูลจากคุณ @noppatjak/ภาพจากคุณ @Chanida_Sr</p><p>ติดตามข่าวด่วน เกาะกระแสข่าวดัง บน Facebook คลิกที่นี่!!</p></div>"""
-    
-    print summarizer.extract(language=language, title=title, content=content, summary=summary, link=None, feed=None, category=None)                                                                                                     
+    title = '10 สุดยอดแก็ดเจ็ตเจ๋ง ๆ แห่งปี 2013 จากนิตยสาร Time'
+    title_new, content, images = simplr.convert('http://men.kapook.com/view78131.html', language)
+    summarized = summarizer.extract(language=language, title=title, content=content, summary=None, link=None, feed=None, category=None)
+    print str(summarized)
 
 
 if __name__ == '__main__':
