@@ -187,8 +187,8 @@ class PyTeaser:
                             # modes[1]: phrase seg
                             # modes[2]: basic wordseg
                             # modes[3]: subphrase seg
-                            words = [word.strip()
-                                     for word in modes[2].split(u'|') if word.strip()]
+                            if len(modes) > 2:
+                                words = [word.strip() for word in modes[2].split(u'|') if word.strip()]
                         # remove punctuation
                         words = [
                             word for word in words if word not in thai_punctuation]
@@ -427,31 +427,29 @@ class PyTeaser:
             for index, sentence in enumerate(sentences):
                 sentence_words = self._segment_text(sentence)
 
-                # 1. title-sentence
-                title_score = self._score_title(sentence_words)
-                # 2. sentence length
-                sentence_length_score = self._score_sentence_length(
-                    sentence_words)
-                # 3. sentence position in article
-                sentence_position_score = self._score_sentence_position(
-                    index + 1, len(sentences))
-                # 4. sentence-keywords
-                sbs_score = self._summation_based_selection(
-                    sentence_words, topwords)
-                dbs_score = self._density_based_selection(
-                    sentence_words, topwords)
-                keyword_score = float(sbs_score + dbs_score) / 2.0 * 10.0
+                if sentence_words:
+                    # 1. title-sentence
+                    title_score = self._score_title(sentence_words)
+                    # 2. sentence length
+                    sentence_length_score = self._score_sentence_length(sentence_words)
+                    # 3. sentence position in article
+                    sentence_position_score = self._score_sentence_position(index + 1, len(sentences))
+                    # 4. sentence-keywords
+                    sbs_score = self._summation_based_selection(sentence_words, topwords)
+                    dbs_score = self._density_based_selection(sentence_words, topwords)
+                    keyword_score = float(sbs_score + dbs_score) / 2.0 * 10.0
 
-                sentence_score = float(title_score * 1.5 + keyword_score * 2.0 +
-                                       sentence_length_score * 0.5 +
-                                       sentence_position_score * 1.0) / 4.0
-                # sentence_length_score, sentence_position_score, '[',
-                # sbs_score, dbs_score, ']'
-                sentences_scored.append((sentence, sentence_score, index))
+                    sentence_score = float(title_score * 1.5 + keyword_score * 2.0 + sentence_length_score * 0.5 + sentence_position_score * 1.0) / 4.0
+                    # sentence_length_score, sentence_position_score, '[',
+                    # sbs_score, dbs_score, ']'
+                    sentences_scored.append((sentence, sentence_score, index))
 
             # rank sentences by their scores
-            sentences_scored = sorted(sentences_scored, key=lambda x: -x[1])
-            return sentences_scored
+            if sentences_scored:
+                sentences_scored = sorted(sentences_scored, key=lambda x: -x[1])
+                return sentences_scored
+            else:
+                return None
         except Exception as k:
             logger.error(str(k))
             return None
