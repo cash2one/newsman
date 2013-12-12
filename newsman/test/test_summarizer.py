@@ -6,6 +6,7 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append("..")
 
+from processor import simplr
 from processor import summarizer
 
 
