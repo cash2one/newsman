@@ -29,6 +29,7 @@ a:hover{text-decoration:underline;}
 
 /*news*/
 .content{padding:0 18px;position:relative;z-index:99;}
+.main{padding-top:20px;}
 .news-hd{border-bottom:1px solid #ededed;padding-bottom:20px;}
 .news-hd h1{font-size:21px;line-height:1.2;color:#373737;padding:20px 0;position:relative;}
 .news-hd .tit-ico{display:block;width:9px;height:35px;background-color:#008DF2;position:absolute;left:-18px;top:18px;}
