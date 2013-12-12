@@ -34,7 +34,7 @@ a:hover{text-decoration:underline;}
 .news-hd .tit-ico{display:block;width:9px;height:35px;background-color:#008DF2;position:absolute;left:-18px;top:18px;}
 .news-hd .sub-info{color:#808080;font-size:14px;line-height:1.4;}
 .news-bd{border-bottom:1px solid #ededed;padding-top:15px;padding-bottom:15px;}
-.news-bd p{color:#717171;line-height:1.45;margin:20px 0;}
+.news-bd p,.news-bd span,.news-bd div{color:#717171;line-height:1.45;margin:20px 0;}
 .news-bd img{display:block;margin:0 auto;max-width:100%;height:auto;}
 .news-bd .full-pic{max-width:100%;height:auto;}
 
