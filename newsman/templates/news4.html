@@ -24,8 +24,8 @@
 					<h1 id="newstitle">%s<i class="tit-ico"></i></h1>
 					<p id="newssubtitle" class="sub-info">%s</p>
 				</div>
-				<div id="newscontent" class="news-bd" style="color:#717171;font-size:16px;line-height:1.45;margin:20px 0;">
-                    %s
+				<div id="newscontent" class="news-bd" style="font-size:17px;">
+				    %s
 				</div>
 			</div>
 			<a class="fullBtn" href="javascript:void(0)" onclick="window.hao123app_webkit_js.btnClicked()">%s</a>
@@ -40,17 +40,17 @@ if(defaultOffset===''){
 }
 function setFont(offset_pixel){
     var new_offset=defaultOffset+offset_pixel;
-    if(new_offset<-6||new_offset>6) return;
-    if(new_offset<=-6){
-        document.getElementById('font-minus').className="font-minus-d setFont";
-    }else{
-        document.getElementById('font-minus').className="font-minus setFont";
-    }
-    if(new_offset>=6){
-        document.getElementById('font-plus').className="font-plus-d setFont";
-    }else{
-        document.getElementById('font-plus').className="font-plus setFont";
-    }
+//    if(new_offset<-6||new_offset>6) return;
+//    if(new_offset<=-6){
+//        document.getElementById('font-minus').className="font-minus-d setFont";
+//    }else{
+//        document.getElementById('font-minus').className="font-minus setFont";
+//    }
+//    if(new_offset>=6){
+//        document.getElementById('font-plus').className="font-plus-d setFont";
+//    }else{
+//        document.getElementById('font-plus').className="font-plus setFont";
+//    }
     var newstitle=document.getElementById('newstitle'),
         newssubtitle=document.getElementById('newssubtitle'),
         newscontent=document.getElementById('newscontent');
@@ -58,7 +58,7 @@ function setFont(offset_pixel){
     setCookie('fontOffset',defaultOffset,360);
     newstitle.style.fontSize=(21+defaultOffset)+"px";
     newssubtitle.style.fontSize=(14+defaultOffset)+"px";
-    newscontent.style.fontSize=(16+defaultOffset)+"px";
+    newscontent.style.fontSize=(17+defaultOffset)+"px";
 }
 function getCookie(c_name){
     if (document.cookie.length>0){
