@@ -283,23 +283,6 @@ def get_latest_entries(language=None, country=None, category=None, feed=None, li
                     items = col.find({'updated': {'$lt': last_entry_in_memory_updated}, 'feed': feed}).sort(
                         'updated', -1).limit(limit_in_database)
 
-                """
-                for item in items:
-                    if start_id and str(item['_id']) == start_id:
-                        return entries
-
-                    # string-ify all the values: ObjectId
-                    new_item = {}
-                    for x, y in item.iteritems():
-                        if not x.endswith('_local'):
-                            if x != 'updated':
-                                new_item[str(x)] = str(y)
-                            # remove 'u' in "{u'url':u'xxx'}"
-                            if x == 'category_image' or x == 'thumbnail_image' or x == 'hotnews_image' or x == 'text_image':
-                                new_item[x] = json.dumps(y, encoding='utf-8')
-                    new_item['updated'] = item['updated']
-                    entries.append(new_item)
-                """
                 for item in items:
                     entries.append(item)
 
@@ -308,12 +291,13 @@ def get_latest_entries(language=None, country=None, category=None, feed=None, li
                 # string-ify all the values: ObjectId
                 new_item = {}
                 for x, y in entry.iteritems():
-                    if not x.endswith('_local'):
+                    if not x.endswith('_local') and x != 'images':
                         if x != 'updated':
                             new_item[str(x)] = str(y)
                         # remove 'u' in "{u'url':u'xxx'}"
                         if x == 'category_image' or x == 'thumbnail_image' or x == 'hotnews_image' or x == 'text_image':
-                            new_item[x] = eval(json.dumps(y, encoding='utf-8'))
+                            image_dumped = json.dumps(y, encoding='utf-8')
+                            new_item[x] = eval(image_dumped) if image_dumped and image_dumped != "null" else "null"
                 new_item['updated'] = entry['updated']
                 new_entries.append(new_item)
 
@@ -349,12 +333,13 @@ def get_latest_entries(language=None, country=None, category=None, feed=None, li
             # string-ify all the values: ObjectId
             new_item = {}
             for x, y in item.iteritems():
-                if not x.endswith('_local'):
+                if not x.endswith('_local') and x != 'images':
                     if x != 'updated':
                         new_item[str(x)] = str(y)
                     # remove 'u' in "{u'url':u'xxx'}"
                     if x == 'category_image' or x == 'thumbnail_image' or x == 'hotnews_image' or x == 'text_image':
-                        new_item[x] = eval(json.dumps(y, encoding='utf-8'))
+                        image_dumped = json.dumps(y, encoding='utf-8')
+                        new_item[x] = eval(image_dumped) if image_dumped and image_dumped != "null" else "null" 
             new_item['updated'] = item['updated']
             entries.append(new_item)
         return entries
@@ -464,20 +449,6 @@ def get_previous_entries(language=None, country=None, category=None, feed=None, 
                     items = col.find({'updated': {'$lt': last_entry_in_memory_updated}, 'feed': feed}).sort(
                         'updated', -1).limit(limit_in_database)
 
-                """
-                for item in items:
-                    # string-ify all the values: ObjectId
-                    new_item = {}
-                    for x, y in item.iteritems():
-                        if not x.endswith('_local'):
-                            if x != 'updated':
-                                new_item[str(x)] = str(y)
-                            # remove 'u' in "{u'url':u'xxx'}"
-                            if x == 'category_image' or x == 'thumbnail_image' or x == 'hotnews_image' or x == 'text_image':
-                                new_item[x] = json.dumps(y, encoding='utf-8')
-                    new_item['updated'] = item['updated']
-                    entries.append(new_item)
-                """
                 for item in items:
                     entries.append(item)
 
@@ -486,12 +457,13 @@ def get_previous_entries(language=None, country=None, category=None, feed=None, 
                 # string-ify all the values: ObjectId
                 new_item = {}
                 for x, y in entry.iteritems():
-                    if not x.endswith('_local'):
+                    if not x.endswith('_local') and x != 'images':
                         if x != 'updated':
                             new_item[str(x)] = str(y)
                         # remove 'u' in "{u'url':u'xxx'}"
                         if x == 'category_image' or x == 'thumbnail_image' or x == 'hotnews_image' or x == 'text_image':
-                            new_item[x] = eval(json.dumps(y, encoding='utf-8'))
+                            image_dumped = json.dumps(y, encoding='utf-8')
+                            new_item[x] = eval(image_dumped) if image_dumped and image_dumped != "null" else "null"
                 new_item['updated'] = entry['updated']
                 new_entries.append(new_item)
 
@@ -546,12 +518,13 @@ def get_previous_entries(language=None, country=None, category=None, feed=None, 
             # string-ify all the values: ObjectId
             new_item = {}
             for x, y in item.iteritems():
-                if not x.endswith('_local'):
+                if not x.endswith('_local') and x != 'images':
                     if x != 'updated':
                         new_item[str(x)] = str(y)
                     # remove 'u' in "{u'url':u'xxx'}"
                     if x == 'category_image' or x == 'thumbnail_image' or x == 'hotnews_image' or x == 'text_image':
-                        new_item[x] = eval(json.dumps(y, encoding='utf-8'))
+                        image_dumped = json.dumps(y, encoding='utf-8')
+                        new_item[x] = eval(image_dumped) if image_dumped and image_dumped != "null" else "null"
             new_item['updated'] = item['updated']
             entries.append(new_item)
         return entries
