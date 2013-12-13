@@ -283,6 +283,7 @@ def get_latest_entries(language=None, country=None, category=None, feed=None, li
                     items = col.find({'updated': {'$lt': last_entry_in_memory_updated}, 'feed': feed}).sort(
                         'updated', -1).limit(limit_in_database)
 
+                """
                 for item in items:
                     if start_id and str(item['_id']) == start_id:
                         return entries
@@ -298,6 +299,23 @@ def get_latest_entries(language=None, country=None, category=None, feed=None, li
                                 new_item[x] = json.dumps(y, encoding='utf-8')
                     new_item['updated'] = item['updated']
                     entries.append(new_item)
+                """
+                for item in items:
+                    entries.append(item)
+
+            new_entries = []
+            for entry in entries:
+                # string-ify all the values: ObjectId
+                new_item = {}
+                for x, y in entry.iteritems():
+                    if not x.endswith('_local'):
+                        if x != 'updated':
+                            new_item[str(x)] = str(y)
+                        # remove 'u' in "{u'url':u'xxx'}"
+                        if x == 'category_image' or x == 'thumbnail_image' or x == 'hotnews_image' or x == 'text_image':
+                            new_item[x] = json.dumps(y, encoding='utf-8')
+                new_item['updated'] = entry['updated']
+                new_entries.append(new_item)
 
             # expired ids not cleaned found
             if dirty_expired_ids:
@@ -306,7 +324,7 @@ def get_latest_entries(language=None, country=None, category=None, feed=None, li
                 clean_memory.clean_by_items(class_name, dirty_expired_ids)
                 logger.warning('Memory contains dirty expired items')
 
-            return entries
+            return new_entries
         else:
             raise ConnectionError(
                 'Find nothing about %s in memory' % class_name)
@@ -446,6 +464,7 @@ def get_previous_entries(language=None, country=None, category=None, feed=None, 
                     items = col.find({'updated': {'$lt': last_entry_in_memory_updated}, 'feed': feed}).sort(
                         'updated', -1).limit(limit_in_database)
 
+                """
                 for item in items:
                     # string-ify all the values: ObjectId
                     new_item = {}
@@ -458,6 +477,23 @@ def get_previous_entries(language=None, country=None, category=None, feed=None, 
                                 new_item[x] = json.dumps(y, encoding='utf-8')
                     new_item['updated'] = item['updated']
                     entries.append(new_item)
+                """
+                for item in items:
+                    entries.append(item)
+
+            new_entries = []
+            for entry in entries:
+                # string-ify all the values: ObjectId
+                new_item = {}
+                for x, y in entry.iteritems():
+                    if not x.endswith('_local'):
+                        if x != 'updated':
+                            new_item[str(x)] = str(y)
+                        # remove 'u' in "{u'url':u'xxx'}"
+                        if x == 'category_image' or x == 'thumbnail_image' or x == 'hotnews_image' or x == 'text_image':
+                            new_item[x] = json.dumps(y, encoding='utf-8')
+                new_item['updated'] = entry['updated']
+                new_entries.append(new_item)
 
             # expired ids not cleaned found
             if dirty_expired_ids:
@@ -466,7 +502,7 @@ def get_previous_entries(language=None, country=None, category=None, feed=None, 
                 clean_memory.clean_by_items(class_name, dirty_expired_ids)
                 logger.warning('Memory contains dirty expired items')
 
-            return entries
+            return new_entries
         else:
             raise ConnectionError(
                 'Find nothing about %s in memory' % class_name)
