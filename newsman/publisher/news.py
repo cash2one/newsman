@@ -12,7 +12,7 @@ news.py is the wsgi interface to connect the request and the backend
 import sys
 reload(sys)
 sys.setdefaultencoding('UTF-8')
-# sys.path.append('/')
+#sys.path.append('/home/work')
 
 import cgi
 import json
