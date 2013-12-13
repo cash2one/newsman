@@ -313,7 +313,7 @@ def get_latest_entries(language=None, country=None, category=None, feed=None, li
                             new_item[str(x)] = str(y)
                         # remove 'u' in "{u'url':u'xxx'}"
                         if x == 'category_image' or x == 'thumbnail_image' or x == 'hotnews_image' or x == 'text_image':
-                            new_item[x] = json.dumps(y, encoding='utf-8')
+                            new_item[x] = eval(json.dumps(y, encoding='utf-8'))
                 new_item['updated'] = entry['updated']
                 new_entries.append(new_item)
 
@@ -354,7 +354,7 @@ def get_latest_entries(language=None, country=None, category=None, feed=None, li
                         new_item[str(x)] = str(y)
                     # remove 'u' in "{u'url':u'xxx'}"
                     if x == 'category_image' or x == 'thumbnail_image' or x == 'hotnews_image' or x == 'text_image':
-                        new_item[x] = json.dumps(y, encoding='utf-8')
+                        new_item[x] = eval(json.dumps(y, encoding='utf-8'))
             new_item['updated'] = item['updated']
             entries.append(new_item)
         return entries
@@ -491,7 +491,7 @@ def get_previous_entries(language=None, country=None, category=None, feed=None, 
                             new_item[str(x)] = str(y)
                         # remove 'u' in "{u'url':u'xxx'}"
                         if x == 'category_image' or x == 'thumbnail_image' or x == 'hotnews_image' or x == 'text_image':
-                            new_item[x] = json.dumps(y, encoding='utf-8')
+                            new_item[x] = eval(json.dumps(y, encoding='utf-8'))
                 new_item['updated'] = entry['updated']
                 new_entries.append(new_item)
 
@@ -551,7 +551,7 @@ def get_previous_entries(language=None, country=None, category=None, feed=None, 
                         new_item[str(x)] = str(y)
                     # remove 'u' in "{u'url':u'xxx'}"
                     if x == 'category_image' or x == 'thumbnail_image' or x == 'hotnews_image' or x == 'text_image':
-                        new_item[x] = json.dumps(y, encoding='utf-8')
+                        new_item[x] = eval(json.dumps(y, encoding='utf-8'))
             new_item['updated'] = item['updated']
             entries.append(new_item)
         return entries
