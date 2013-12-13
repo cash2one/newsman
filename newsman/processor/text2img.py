@@ -149,8 +149,8 @@ class Text2Image:
                             # for mode in modes:
                             #    print  str(mode)
                             # u'|' is very crucial(, instead of '|')
-                            sentences = [
-                                sentence for sentence in modes[2].split(u'|') if sentence]
+                            if len(modes) > 2:
+                                sentences = [sentence for sentence in modes[2].split(u'|') if sentence]
             else:  # latin-based
                 sentences = nltk.sent_tokenize(self._text)
 
