@@ -155,8 +155,8 @@ class Text2Image:
                 sentences = nltk.sent_tokenize(self._text)
 
             # remove void lines
-            sentences = [sentence.strip()
-                         for sentence in sentences if sentence.strip()]
+            if sentences:
+                sentences = [sentence.strip() for sentence in sentences if sentence.strip()]
 
             if self._language in ['en', 'in', 'pt', 'ja', 'zh', 'th']:
                 lines = []
