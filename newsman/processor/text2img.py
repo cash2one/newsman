@@ -236,11 +236,13 @@ class Text2Image:
             logger.error(str(k))
 
     def get_image(self):
-        textimage_public_path = "%s%s" % (
-            IMAGES_PUBLIC_DIR, self._textimage_relative_path)
-        textimage = {'url': textimage_public_path, 'width':
-                     CATEGORY_IMAGE_SIZE[0], 'height': CATEGORY_IMAGE_SIZE[1]}
-        return textimage
+        try:
+            textimage_public_path = "%s%s" % (IMAGES_PUBLIC_DIR, self._textimage_relative_path)
+            textimage = {'url': textimage_public_path, 'width': CATEGORY_IMAGE_SIZE[0], 'height': CATEGORY_IMAGE_SIZE[1]}
+            return textimage
+        except Exception as k:
+            logger.error(str(k))
+            return None
 
 
 if __name__ == "__main__":
