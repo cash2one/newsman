@@ -170,28 +170,32 @@ class PyTeaser:
                 words = [word.strip()
                          for word in words if word.strip() and word not in cj_punctuation]
             elif self._language == 'th':
-                command = 'echo "%s" | %s %s/scw.conf %s 2>/dev/null' % (
-                    str(text), THAI_WORDSEG, THAI_WORDSEG_DICT, THAI_WORDSEG_DICT)
-                response = subprocess.Popen(
-                    command, stdout=subprocess.PIPE, shell=True)
-                content, error = response.communicate()
-                if not error and content:
-                    if 'error' not in content or 'permission' not in content:
-                        content = content.strip()
-                        paragraphs = [paragraph.strip()
-                                      for paragraph in content.split('\n') if paragraph.strip()]
-                        for paragraph in paragraphs:
-                            modes = [mode.strip()
-                                     for mode in paragraph.split('\t') if mode.strip()]
-                            # modes[0]: the orginal
-                            # modes[1]: phrase seg
-                            # modes[2]: basic wordseg
-                            # modes[3]: subphrase seg
-                            if len(modes) > 2:
-                                words = [word.strip() for word in modes[2].split(u'|') if word.strip()]
-                        # remove punctuation
-                        words = [
-                            word for word in words if word not in thai_punctuation]
+                if text and text.strip():
+                    try:
+                        command = 'echo "%s" | %s %s/scw.conf %s 2>/dev/null' % (
+                            str(text.strip()), THAI_WORDSEG, THAI_WORDSEG_DICT, THAI_WORDSEG_DICT)
+                        response = subprocess.Popen(
+                            command, stdout=subprocess.PIPE, shell=True)
+                        content, error = response.communicate()
+                        if not error and content:
+                            if 'error' not in content or 'permission' not in content:
+                                content = content.strip()
+                                paragraphs = [paragraph.strip()
+                                              for paragraph in content.split('\n') if paragraph.strip()]
+                                for paragraph in paragraphs:
+                                    modes = [mode.strip()
+                                             for mode in paragraph.split('\t') if mode.strip()]
+                                    # modes[0]: the orginal [1]: phrase seg
+                                    # [2]: basic wordseg [3]: subphrase seg
+                                    if len(modes) > 2:
+                                        words.extend(
+                                            [word.strip() for word in modes[2].split(u'|') if word.strip()])
+                                # remove punctuation
+                                words = [
+                                    word for word in words if word not in thai_punctuation]
+                    except Exception as k:
+                        logger.error(
+                            'Problem [%s] for [%s]' % (str(k), self._link))
             else:
                 # for python 2.6
                 text = re.compile(
@@ -431,22 +435,28 @@ class PyTeaser:
                     # 1. title-sentence
                     title_score = self._score_title(sentence_words)
                     # 2. sentence length
-                    sentence_length_score = self._score_sentence_length(sentence_words)
+                    sentence_length_score = self._score_sentence_length(
+                        sentence_words)
                     # 3. sentence position in article
-                    sentence_position_score = self._score_sentence_position(index + 1, len(sentences))
+                    sentence_position_score = self._score_sentence_position(
+                        index + 1, len(sentences))
                     # 4. sentence-keywords
-                    sbs_score = self._summation_based_selection(sentence_words, topwords)
-                    dbs_score = self._density_based_selection(sentence_words, topwords)
+                    sbs_score = self._summation_based_selection(
+                        sentence_words, topwords)
+                    dbs_score = self._density_based_selection(
+                        sentence_words, topwords)
                     keyword_score = float(sbs_score + dbs_score) / 2.0 * 10.0
 
-                    sentence_score = float(title_score * 1.5 + keyword_score * 2.0 + sentence_length_score * 0.5 + sentence_position_score * 1.0) / 4.0
+                    sentence_score = float(
+                        title_score * 1.5 + keyword_score * 2.0 + sentence_length_score * 0.5 + sentence_position_score * 1.0) / 4.0
                     # sentence_length_score, sentence_position_score, '[',
                     # sbs_score, dbs_score, ']'
                     sentences_scored.append((sentence, sentence_score, index))
 
             # rank sentences by their scores
             if sentences_scored:
-                sentences_scored = sorted(sentences_scored, key=lambda x: -x[1])
+                sentences_scored = sorted(
+                    sentences_scored, key=lambda x: -x[1])
                 return sentences_scored
             else:
                 return None
