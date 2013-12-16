@@ -112,7 +112,7 @@ class Text2Image:
         use nltk or other engines to split text into sentences
         """
         try:
-            sentences = None
+            sentences = []
 
             # convert to appropriate encoding
             if isinstance(self._text, str):
@@ -129,34 +129,39 @@ class Text2Image:
                 sentences = [
                     sentence for sentence in sentences if sentence.strip()]
             elif self._language == 'th':
-                command = 'echo "%s" | %s %s/scw.conf %s 2>/dev/null' % (
-                    str(self._text), THAI_WORDSEG, THAI_WORDSEG_DICT, THAI_WORDSEG_DICT)
-                response = subprocess.Popen(
-                    command, stdout=subprocess.PIPE, shell=True)
-                content, error = response.communicate()
-                if not error and content:
-                    if 'error' not in content or 'permission' not in content:
-                        content = content.strip()
-                        paragraphs = [paragraph.strip()
-                                      for paragraph in content.split('\n') if paragraph.strip()]
-                        for paragraph in paragraphs:
-                            # modes[0]: the orginal
-                            # modes[1]: phrase seg
-                            # modes[2]: basic wordseg
-                            # modes[3]: subphrase seg
-                            modes = [mode.strip()
-                                     for mode in paragraph.split('\t') if mode.strip()]
-                            # for mode in modes:
-                            #    print  str(mode)
-                            # u'|' is very crucial(, instead of '|')
-                            if len(modes) > 2:
-                                sentences = [sentence for sentence in modes[2].split(u'|') if sentence]
+                if self._text and self._text.strip():
+                    try:
+                        command = 'echo "%s" | %s %s/scw.conf %s 2>/dev/null' % (
+                            str(self._text.strip()), THAI_WORDSEG, THAI_WORDSEG_DICT, THAI_WORDSEG_DICT)
+                        response = subprocess.Popen(
+                            command, stdout=subprocess.PIPE, shell=True)
+                        content, error = response.communicate()
+                        if not error and content:
+                            if 'error' not in content or 'permission' not in content:
+                                content = content.strip()
+                                paragraphs = [paragraph.strip()
+                                              for paragraph in content.split('\n') if paragraph.strip()]
+                                for paragraph in paragraphs:
+                                    # modes[0]: the orginal [1]: phrase seg
+                                    # [2]: basic wordseg [3]: subphrase seg
+                                    modes = [mode.strip()
+                                             for mode in paragraph.split('\t') if mode.strip()]
+                                    # for mode in modes:
+                                    #    print  str(mode)
+                                    # u'|' is very crucial(, instead of '|')
+                                    if len(modes) > 2:
+                                        sentences.extend(
+                                            [sentence for sentence in modes[2].split(u'|') if sentence])
+                    except Exception as k:
+                        logger.error(
+                            'Problem [%s] for [%s]' % (str(k), str(self._text)))
             else:  # latin-based
                 sentences = nltk.sent_tokenize(self._text)
 
             # remove void lines
             if sentences:
-                sentences = [sentence.strip() for sentence in sentences if sentence.strip()]
+                sentences = [sentence.strip()
+                             for sentence in sentences if sentence.strip()]
 
             if self._language in ['en', 'in', 'pt', 'ja', 'zh', 'th']:
                 lines = []
@@ -237,8 +242,10 @@ class Text2Image:
 
     def get_image(self):
         try:
-            textimage_public_path = "%s%s" % (IMAGES_PUBLIC_DIR, self._textimage_relative_path)
-            textimage = {'url': textimage_public_path, 'width': CATEGORY_IMAGE_SIZE[0], 'height': CATEGORY_IMAGE_SIZE[1]}
+            textimage_public_path = "%s%s" % (
+                IMAGES_PUBLIC_DIR, self._textimage_relative_path)
+            textimage = {'url': textimage_public_path, 'width':
+                         CATEGORY_IMAGE_SIZE[0], 'height': CATEGORY_IMAGE_SIZE[1]}
             return textimage
         except Exception as k:
             logger.error(str(k))
