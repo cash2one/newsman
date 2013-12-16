@@ -193,9 +193,13 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
                 if 'category_image' not in entry or ('category_image' in entry and not entry['category_image']):
                     image_relative_path = '%s_%s_%s_%i' % (
                         entry['language'], entry['feed_id'], entry['updated'], rand)
-                    text_img = text2img.Text2Image(
-                        language, entry['title'], '%s_textimage.png' % image_relative_path)
-                    entry['text_image'] = text_img.get_image()
+                    try:
+                        text_img = text2img.Text2Image(
+                            language, entry['title'], '%s_textimage.png' % image_relative_path)
+                        entry['text_image'] = text_img.get_image()
+                    except Exception as k:
+                        logger.error(
+                            'Problem [%s] generating text2image for [%s]' % (str(k), entry['link']))
 
                 # [OPTIONAL] google tts not for indonesian
                 if entry['language'] != 'in':
@@ -322,6 +326,8 @@ def update(feed_link=None, feed_id=None, language=None, categories=None, transco
                 entries = db_news.dedup(entries, language)
 
                 if entries:
+                    logger.error(
+                        '!!!! %s entries got updated!' % str(len(entries)))
                     # and do tts, big_images, image as well as transcode.
                     result = _value_added_process(
                         entries, language, transcoder_type)
@@ -329,6 +335,8 @@ def update(feed_link=None, feed_id=None, language=None, categories=None, transco
                         # feed_title, etag and modified to db_feeds
                         # only feed_id is necessary, others are optional
                         # **kwargs
+                        logger.error(
+                            '!!!! %s entries added to database!' % str(len(entries)))
                         result = db_feeds.update(
                             feed_id=feed_id, status=status_new, feed_title=feed_title_new, etag=etag_new, modified=modified_new, reason=reason_new)
                         if result:
