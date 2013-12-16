@@ -287,9 +287,9 @@ def find_biggest_image(images=None):
                         biggest = image
                         resolution_max = resolution_image
                 else:
-                    logger.error('Image [%s] is not big enough!' % str(image['url']))
+                    logger.info('Image [%s] is not big enough!' % str(image['url']))
             else:
-                logger.error('Height and width not found! %s' % str(image))
+                logger.info('Height and width not found! %s' % str(image))
         return biggest
     except Exception as k:
         logger.error('Problem:[%s]\nSource:[%s]' % (str(k), str(images)))
