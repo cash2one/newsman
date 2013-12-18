@@ -326,7 +326,7 @@ def update(feed_link=None, feed_id=None, language=None, categories=None, transco
                 entries = db_news.dedup(entries, language)
 
                 if entries:
-                    logger.error(
+                    logger.info(
                         '--------------- %s entries of %s received! ---------------' %
                         (str(len(entries)), feed_link))
                     # and do tts, big_images, image as well as transcode.
@@ -338,7 +338,7 @@ def update(feed_link=None, feed_id=None, language=None, categories=None, transco
                         # **kwargs
                         result = db_feeds.update(
                             feed_id=feed_id, status=status_new, feed_title=feed_title_new, etag=etag_new, modified=modified_new, reason=reason_new)
-                        logger.error(
+                        logger.info(
                             '************ %s entries of %s added to database! ************' %
                             (str(len(entries)), feed_link))
                         if result:
