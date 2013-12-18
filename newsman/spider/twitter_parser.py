@@ -106,7 +106,7 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
                 entry['language'] = language
                 entry['categories'] = categories
                 entries.append(entry)
-        return entries, 200, feed_title, etag_new if etag_new else etag, 'Ok'
+        return entries, 200, feed_title, etag_new if etag_new else etag, 'OK'
     except Exception as k:
         logger.error(str(k))
         return None, None, None, None, str(k)
