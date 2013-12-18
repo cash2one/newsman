@@ -172,7 +172,7 @@ class PyTeaser:
             elif self._language == 'th':
                 if text and text.strip():
                     try:
-                        command = 'echo "%s" | %s %s/scw.conf %s 2>/dev/null' % (
+                        command = '''echo \"%s\" | %s %s/scw.conf %s 2>/dev/null''' % (
                             str(text.strip()), THAI_WORDSEG, THAI_WORDSEG_DICT, THAI_WORDSEG_DICT)
                         response = subprocess.Popen(
                             command, stdout=subprocess.PIPE, shell=True)
