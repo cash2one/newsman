@@ -36,12 +36,12 @@ def _update(feed_ids):
     try:
         for index, feed_id in enumerate(feed_ids):
             updated = scraper.update(feed_id=feed_id)
-            logger.info('=============== %s of %s updated ===============' %
-                        (str(index + 1), str(len(feed_ids))))
             if not updated:
-                logger.info('Nothing got updated from %s' % feed_id)
+                logger.error('=============== [%s of %s] nothing updated ===============' % (
+                    str(index + 1), str(len(feed_ids))))
             else:
-                logger.info('%s got updated' % feed_id)
+                logger.error('=============== [%s of %s] updated ===============' % (
+                    str(index + 1), str(len(feed_ids))))
     except Exception as k:
         logger.error(str(k))
         return None
@@ -68,7 +68,7 @@ def _scrape(language='en', country='US'):
     """
     update news from stored feeds
     """
-    logger.info('############### scraping ###############')
+    logger.error('############### scraping ###############')
     _update(_read_feeds(language, country))
 
 
