@@ -301,7 +301,7 @@ def find_image(image_url=None, referer=None):
     find an image from the link
     """
     if not image_url:
-        logger.error('Image URL is not found!')
+        logger.error('Image URL [%s] is not found | Referer [%s]!' % (image_url, referer))
         return None
 
     try:
@@ -319,7 +319,7 @@ def find_image(image_url=None, referer=None):
         return None
 
 
-def find_images(content=None, referer=None, ):
+def find_images(content=None, referer=None):
     """
     find out all images from content and its size info
     """
