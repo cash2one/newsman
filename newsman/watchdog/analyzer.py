@@ -12,10 +12,10 @@ scrape is a task to scrape rss resources
 import sys
 reload(sys)
 sys.setdefaultencoding('UTF-8')
-#sys.path.append('/home/work/newsman/newsman')
-#sys.path.append('/home/users/jinyuan/newsman/newsman')
-#sys.path.append('/home/ubuntu/newsman/newsman')
-#sys.path.append('/home/jinyuan/Downloads/newsman/newsman')
+# sys.path.append('/home/work/newsman/newsman')
+# sys.path.append('/home/users/jinyuan/newsman/newsman')
+# sys.path.append('/home/ubuntu/newsman/newsman')
+# sys.path.append('/home/jinyuan/Downloads/newsman/newsman')
 
 from config.settings import Collection, db
 from config.settings import logger
@@ -34,8 +34,10 @@ def _update(feed_ids):
         return None
 
     try:
-        for feed_id in feed_ids:
+        for index, feed_id in enumerate(feed_ids):
             updated = scraper.update(feed_id=feed_id)
+            logger.info('=============== %s of %s updated ===============' %
+                        (str(index + 1), str(len(feed_ids))))
             if not updated:
                 logger.info('Nothing got updated from %s' % feed_id)
             else:
@@ -45,13 +47,13 @@ def _update(feed_ids):
         return None
 
 
-def _read_feeds(language='en'):
+def _read_feeds(language='en', country='US'):
     """
     read feed information from database feeds
     """
     try:
         db_feeds = Collection(db, FEED_REGISTRAR)
-        items = db_feeds.find({'language': language})
+        items = db_feeds.find({'language': language, 'countries': country})
         if items:
             return [str(item['_id']) for item in items]
         else:
@@ -62,14 +64,15 @@ def _read_feeds(language='en'):
         return None
 
 
-def _scrape(language):
+def _scrape(language='en', country='US'):
     """
     update news from stored feeds
     """
-    logger.info('----------------------scraping-------------------------')
-    _update(_read_feeds(language))
+    logger.info('############### scraping ###############')
+    _update(_read_feeds(language, country))
 
 
 if __name__ == "__main__":
     language = sys.argv[1]
-    _scrape(language)
+    country = sys.argv[2]
+    _scrape(language, country)
