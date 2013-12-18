@@ -264,6 +264,7 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
 
     try:
         # variables d and e follow feedparser tradition
+        feedparser.USER_AGENT = "newsman"
         d = feedparser.parse(feed_link, etag=etag, modified=modified)
         if d:
             # http://pythonhosted.org/feedparser/reference-status.html
