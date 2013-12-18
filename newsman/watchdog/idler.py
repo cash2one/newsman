@@ -36,6 +36,9 @@ def _find_idler():
             {}, {'language': 1, 'latest_update': 1, 'feed_title': 1, 'feed_link': 1, 'reason': 1})
         if feeds:
             for feed in feeds:
+                if feed['language'] in ['zh', 'th', 'pt', 'in', 'en']:
+                    continue
+
                 if 'latest_update' in feed and feed['latest_update']:
                     # read string value from database and convert it into unix
                     # time
