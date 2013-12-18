@@ -24,12 +24,14 @@ from datetime import datetime, timedelta
 import feedparser
 import html2text
 import re
+import requests
 import socket
 socket.setdefaulttimeout(10)  # 10 seconds
 import time
 import urllib2
 
 # CONSTANTS
+from config.settings import HEADERS
 from config.settings import LANGUAGES
 from config.settings import DATABASE_REMOVAL_DAYS
 # prefix should not end with a slash
@@ -97,24 +99,10 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
         if e.link:
             original_link = e.link.strip()
             if not original_link.startswith(AD_LINKS):
-                """
-                matched_prefix = [
-                    link for link in HIDDEN_LINKS if original_link.startswith(link)]
-                found_prefix = matched_prefix[0] if matched_prefix else None
-                if found_prefix:
-                    actual_link = _get_actual_link(found_prefix, original_link)
-                    if actual_link:
-                        entry['link'] = actual_link
-                    else:
-                        logger.info('No actual link found!')
-                        return None
-                else:
-                    entry['link'] = original_link
-                """
                 original_link = urllib2.unquote(
                     hparser.unescape(original_link))
-                f = urllib2.urlopen(original_link)
-                entry['link'] = f.geturl()
+                response = requests.get(original_link, headers=HEADERS)
+                entry['link'] = response.url
             else:
                 logger.info('Advertising link %s' % original_link)
                 return None
