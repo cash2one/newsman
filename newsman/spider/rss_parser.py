@@ -40,38 +40,7 @@ HIDDEN_LINKS = {'http://news.goo.ne.jp':
 AD_LINKS = 'http://rss.rssad.jp/rss/ad/'
 
 
-def _get_actual_link(prefix, link):
-    """
-    find the actual news link
-    """
-    if not prefix or not link:
-        logger.error(
-            'Method malformed! Prefix:[%s], Link:[%s]' % (prefix, link))
-
-    try:
-        raw_data = urllib2.urlopen(link)
-        """
-        data = raw_data.readlines()
-        # str() is critical
-        soup = BeautifulStoneSoup(str(data))
-        html_tag, html_class = HIDDEN_LINKS[prefix]
-        html_wrapper = soup.find(name=html_tag, attrs={'class': html_class})
-        if html_wrapper:
-            actual_suffix = html_wrapper.find('a')['href']
-            actual_link = str('%s%s' % (prefix, actual_suffix))
-            return actual_link
-        else:
-            return None
-        """
-        return raw_data.geturl()
-    except Exception as k:
-        logger.info('Cannot open %s' % k)
-        return None
-
-
-# TODO: add more boundary checks
 # TODO: [register unsupported date format](http://pythonhosted.org/feedparser/date-parsing.html#advanced-date)
-# TODO: add tags
 # TODO: add thumbnail limit(downward)
 def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories=None):
     """
