@@ -52,6 +52,7 @@ class UpdateThread(Process)
                 self.queue.task_done()
             except Exception as k:
                 logger.error(str(k))
+                self.queue.task_done()
                 continue
 
 
