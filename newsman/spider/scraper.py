@@ -17,18 +17,16 @@ sys.path.append('..')
 import calendar
 from config.settings import logger
 from datetime import datetime, timedelta
+from feed_manager import database as db_feeds
+import memory
 from processor import illustrator
 from processor import summarizer
 from processor import text2img
 from processor import transcoder
 from processor import tts_provider
-from spider import database as db_news
-from feed_manager import database as db_feeds
-import memory
 import random
-import rss_parser
+from spider import database as db_news
 import time
-import twitter_parser
 from watchdog import clean_disk, clean_database
 
 # CONSTANTS
@@ -311,10 +309,12 @@ def update(feed_link=None, feed_id=None, language=None, categories=None, transco
             entries = None
 
             if parser_type == 'rss':
+                import rss_parser
                 # parse rss reading from remote rss servers
                 entries, status_new, feed_title_new, etag_new, modified_new, reason_new = rss_parser.parse(
                     feed_link, feed_id, feed_title, language, categories, etag, modified)
             elif parser_type == 'twitter':
+                import twitter_parser
                 entries, status_new, feed_title_new, etag_new, reason_new = twitter_parser.parse(
                     feed_link, feed_id, feed_title, language, categories, etag)
             else:
