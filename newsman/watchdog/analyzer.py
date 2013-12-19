@@ -12,10 +12,10 @@ scrape is a task to scrape rss resources
 import sys
 reload(sys)
 sys.setdefaultencoding('UTF-8')
-#sys.path.append('/home/work/newsman/newsman')
-#sys.path.append('/home/users/jinyuan/newsman/newsman')
-#sys.path.append('/home/ubuntu/newsman/newsman')
-sys.path.append('/home/jinyuan/Downloads/newsman/newsman')
+# sys.path.append('/home/work/newsman/newsman')
+# sys.path.append('/home/users/jinyuan/newsman/newsman')
+# sys.path.append('/home/ubuntu/newsman/newsman')
+# sys.path.append('/home/jinyuan/Downloads/newsman/newsman')
 
 from config.settings import Collection, db
 from config.settings import logger
@@ -29,9 +29,11 @@ queue = Queue.Queue()
 
 
 class UpdateThread(threading.Thread):
+
     """
     Update news rss/twitter ...
     """
+
     def __init__(self, queue):
         threading.Thread.__init__(self)
         self.queue = queue
@@ -41,6 +43,9 @@ class UpdateThread(threading.Thread):
             try:
                 feed_id = self.queue.get()
                 updated = scraper.update(feed_id=feed_id)
+                if updated:
+                    logger.error(
+                        '--------------- %s got updated! ---------------' % updated)
                 self.queue.task_done()
             except Exception as k:
                 logger.error(str(k))
