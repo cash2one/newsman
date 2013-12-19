@@ -467,6 +467,7 @@ def scale_image(image=None, referer=None, size_expected=MIN_IMAGE_SIZE, resize_b
                     return None, None
 
                 # resize image according to new size
+                image_format = image_data.format.lower() if image_data and image_data.format else 'jpg'
                 image_data.thumbnail(size_new, Image.ANTIALIAS)
                 image_cropped = None
 
@@ -486,12 +487,10 @@ def scale_image(image=None, referer=None, size_expected=MIN_IMAGE_SIZE, resize_b
 
                 # save to disk
                 if image_cropped:
-                    image_web_path = '%s%s.jpg' % (
-                        IMAGES_PUBLIC_DIR, relative_path)
-                    image_local_path = '%s%s.jpg' % (
-                        IMAGES_LOCAL_DIR, relative_path)
+                    image_web_path = '%s%s.%s' % (IMAGES_PUBLIC_DIR, relative_path, image_format.lower())
+                    image_local_path = '%s%s.%s' % (IMAGES_LOCAL_DIR, relative_path, image_format.lower())
                     image_cropped = image_cropped.convert('RGB')
-                    image_cropped.save(image_local_path, 'JPEG')
+                    image_cropped.save(image_local_path, image_format)
 
                     # clean data
                     if image_cropped:
