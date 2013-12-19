@@ -94,6 +94,9 @@ def _scrape(language='en', country='US'):
     """
     logger.error('############### scraping ###############')
     _update(_read_feeds(language, country))
+    logger.error(
+        "############### Feeds of %s.%s all got updated! ###############" %
+        (country, language))
 
 
 if __name__ == "__main__":
