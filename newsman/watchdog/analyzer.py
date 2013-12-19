@@ -61,7 +61,7 @@ def _update(feed_ids):
         logger.error("No feed found!")
         return None
 
-    thread_limit = min(len(feed_ids) / 2, 25)
+    thread_limit = min(len(feed_ids) / 2, 20)
     for i in range(thread_limit):
         thread = UpdateThread(queue)
         #thread.setDaemon(True)
