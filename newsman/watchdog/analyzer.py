@@ -42,10 +42,10 @@ class UpdateThread(threading.Thread):
         while True:
             try:
                 feed_id = self.queue.get()
-                updated = scraper.update(feed_id=feed_id)
-                if updated:
+                updated_feed = scraper.update(feed_id=feed_id)
+                if updated_feed:
                     logger.error(
-                        '--------------- %s got updated! ---------------' % updated)
+                        '--------------- %s got updated! ---------------' % updated_feed)
                 self.queue.task_done()
             except Exception as k:
                 logger.error(str(k))
