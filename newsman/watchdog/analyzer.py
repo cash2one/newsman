@@ -60,7 +60,7 @@ def _update(feed_ids):
         logger.error("No feed found!")
         return None
 
-    for i in range(5):
+    for i in range(8):
         thread = UpdateThread(queue)
         thread.setDaemon(True)
         thread.start()
