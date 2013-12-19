@@ -19,10 +19,35 @@ sys.setdefaultencoding('UTF-8')
 
 from config.settings import Collection, db
 from config.settings import logger
+import Queue
 from spider import scraper
+import threading
 
 # CONSTANTS
 from config.settings import FEED_REGISTRAR
+queue = Queue.Queue()
+
+
+class UpdateThread(threading.Thread):
+    """
+    Update news rss/twitter ...
+    """
+    def __init__(self, queue):
+        threading.Thread.__init__(self)
+        self.queue = queue
+
+    def run(self):
+        while True:
+            try:
+                feed_id = self.queue.get()
+                updated = scraper.update(feed_id=feed_id)
+                if not updated:
+                    logger.error('=============== [%s of %s] nothing updated ===============' % (str(index + 1), str(len(feed_ids))))
+                else:
+                    logger.error('=============== [%s of %s] updated ===============' % (str(index + 1), str(len(feed_ids))))
+                self.queue.task_done()
+            except Exception as k:
+                logger.error(str(k))
 
 
 def _update(feed_ids):
@@ -33,18 +58,16 @@ def _update(feed_ids):
         logger.error("No feed found!")
         return None
 
-    try:
-        for index, feed_id in enumerate(feed_ids):
-            updated = scraper.update(feed_id=feed_id)
-            if not updated:
-                logger.error('=============== [%s of %s] nothing updated ===============' % (
-                    str(index + 1), str(len(feed_ids))))
-            else:
-                logger.error('=============== [%s of %s] updated ===============' % (
-                    str(index + 1), str(len(feed_ids))))
-    except Exception as k:
-        logger.error(str(k))
-        return None
+    for i in range(5):
+        thread = UpdateThread(queue)
+        thread.setDaemon(True)
+        thread.start()
+
+    # populate queue with feeds
+    for feed_id in feed_ids:
+        queue.put(feed_id)
+
+    queue.join()
 
 
 def _read_feeds(language='en', country='US'):
