@@ -19,23 +19,26 @@ sys.path.append('/home/jinyuan/Downloads/newsman/newsman')
 
 from config.settings import Collection, db
 from config.settings import logger
+from multiprocessing import Process
 import Queue
 from spider import scraper
-import threading
+from threading import Thread
 
 # CONSTANTS
 from config.settings import FEED_REGISTRAR
 queue = Queue.Queue()
 
 
-class UpdateThread(threading.Thread):
+#class UpdateThread(Thread):
+class UpdateThread(Process)
 
     """
     Update news rss/twitter ...
     """
 
     def __init__(self, queue):
-        threading.Thread.__init__(self)
+        #Thread.__init__(self)
+        super(UpdateThread, self).__init__()
         self.queue = queue
 
     def run(self):
@@ -60,9 +63,9 @@ def _update(feed_ids):
         logger.error("No feed found!")
         return None
 
-    for i in range(8):
+    for i in range(4):
         thread = UpdateThread(queue)
-        thread.setDaemon(True)
+        #thread.setDaemon(True)
         thread.start()
 
     # populate queue with feeds
