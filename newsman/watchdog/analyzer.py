@@ -49,6 +49,7 @@ class UpdateThread(threading.Thread):
                 self.queue.task_done()
             except Exception as k:
                 logger.error(str(k))
+                continue
 
 
 def _update(feed_ids):
