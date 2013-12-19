@@ -69,7 +69,7 @@ def update(feed_id, **kwargs):
             # by default update returns null upon successful update
             # use find_and_modify if a return is needed
             col.update({'_id': ObjectId(feed_id)}, item)
-            return True
+            return item['feed_title'] if 'feed_title' in item and item['feed_title'] else 'Feed Title Not Found'
         else:
             logger.error("No such a _id %s in feeds" % feed_id)
             return None
