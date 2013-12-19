@@ -99,7 +99,7 @@ class PyTeaser:
             html_stripper.ignore_emphasis = True
             # body_width = 0 disables text wrapping
             html_stripper.body_width = 0
-            self._article = html_stripper.handle(self._article).strip("#")
+            self._article = html_stripper.handle(self._article).strip().strip("#").strip()
 
             # convert to appropriate encoding
             if isinstance(self._article, str):
