@@ -131,10 +131,13 @@ class Text2Image:
             elif self._language == 'th':
                 if self._text and self._text.strip():
                     try:
+                        # preprocess text - remove single quote
+                        if self._text.count('"') % 2:
+                            self._text = self._text.replace('"', '')
                         command = '''echo \"%s\" | %s %s/scw.conf %s 2>/dev/null''' % (
-                            str(self._text.strip()), THAI_WORDSEG, THAI_WORDSEG_DICT, THAI_WORDSEG_DICT)
+                            str(self._text.strip().lower()), THAI_WORDSEG, THAI_WORDSEG_DICT, THAI_WORDSEG_DICT)
                         response = subprocess.Popen(
-                            command, stdout=subprocess.PIPE, shell=True)
+                            command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
                         content, error = response.communicate()
                         if not error and content:
                             if 'error' not in content or 'permission' not in content:
@@ -152,6 +155,9 @@ class Text2Image:
                                     if len(modes) > 2:
                                         sentences.extend(
                                             [sentence for sentence in modes[2].split(u'|') if sentence])
+                        elif error:
+                            raise Exception(
+                                '%s over %s' % (str(error), str(self._text.strip())))
                     except Exception as k:
                         logger.error(
                             'Problem [%s] for [%s]' % (str(k), str(self._text)))
