@@ -145,7 +145,8 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
                 h.ignore_images = True
                 h.ignore_links = True
                 h.ignore_emphasis = True
-                paragraphs = (h.handle(summary)).strip('#').split('\n\n')
+                paragraphs = (h.handle(summary)).strip().strip(
+                    '#').strip().split('\n\n')
                 paragraphs_above_limit = []
                 # remove paragraphs that contain less than x number of words
                 for paragraph in paragraphs:
@@ -324,6 +325,8 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
                     language = language if 'language' not in d else d.language
                     # an Exception might be raised from _read_entry
                     entries = []
+                    logger.error(
+                        '--------------- %s begins processing [got updated] ---------------' % feed_title)
                     for i, e in enumerate(d.entries):
                         if e:
                             entry = _read_entry(
