@@ -100,7 +100,8 @@ def _get_first_paragraph(content, language):
         h.ignore_images = True
         h.ignore_emphasis = True
         h.body_width = 0
-        paragraphs = (h.handle(content)).strip('#').split("\n\n")
+        paragraphs = (h.handle(content)).strip().strip(
+            '#').strip().split("\n\n")
         paragraphs = [
             paragraph for paragraph in paragraphs if paragraph.strip()]
         for paragraph in paragraphs:
