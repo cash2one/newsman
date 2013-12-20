@@ -37,15 +37,20 @@ def dedup(entries=None, language=None):
         col = Collection(db, language)
         for entry in entries:
             # find duplicate in the form of the same link or title
-            dup_link = col.find_one({'link': entry['link']})
-            dup_title = col.find_one({'title': entry['title']})
-
-            if dup_link or dup_title:
-                logger.info(
-                    'Find a duplicate for %s' % str(entry['title']))
+            dup_link = col.find_one(
+                {'link': entry['link'], 'feed': entry['feed']})
+            if dup_link:
+                logger.info('Find a duplicate for %s' % str(entry['title']))
                 continue
             else:
-                entries_new.append(entry)
+                dup_title = col.find_one(
+                    {'title': entry['title'], 'feed': entry['feed']})
+                if dup_title:
+                    logger.info(
+                        'Find a duplicate for %s' % str(entry['title']))
+                    continue
+                else:
+                    entries_new.append(entry)
         return entries_new if entries_new else None
     except Exception as k:
         logger.error(str(k))
