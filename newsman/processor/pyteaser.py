@@ -99,7 +99,8 @@ class PyTeaser:
             html_stripper.ignore_emphasis = True
             # body_width = 0 disables text wrapping
             html_stripper.body_width = 0
-            self._article = html_stripper.handle(self._article).strip().strip("#").strip()
+            self._article = html_stripper.handle(
+                self._article).strip().strip("#").strip()
 
             # convert to appropriate encoding
             if isinstance(self._article, str):
@@ -172,10 +173,13 @@ class PyTeaser:
             elif self._language == 'th':
                 if text and text.strip():
                     try:
+                        # preprocess text - remove single
+                        if text.count('"') % 2:
+                            text = text.replace('"', '')
                         command = '''echo \"%s\" | %s %s/scw.conf %s 2>/dev/null''' % (
-                            str(text.strip()), THAI_WORDSEG, THAI_WORDSEG_DICT, THAI_WORDSEG_DICT)
+                            str(text.strip().lower()), THAI_WORDSEG, THAI_WORDSEG_DICT, THAI_WORDSEG_DICT)
                         response = subprocess.Popen(
-                            command, stdout=subprocess.PIPE, shell=True)
+                            command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
                         content, error = response.communicate()
                         if not error and content:
                             if 'error' not in content or 'permission' not in content:
@@ -193,6 +197,9 @@ class PyTeaser:
                                 # remove punctuation
                                 words = [
                                     word for word in words if word not in thai_punctuation]
+                        elif error:
+                            raise Exception(
+                                '%s over %s' % (str(error), str(text.strip())))
                     except Exception as k:
                         logger.error(
                             'Problem [%s] for [%s]' % (str(k), self._link))
