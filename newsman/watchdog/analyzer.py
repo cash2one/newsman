@@ -15,42 +15,45 @@ sys.setdefaultencoding('UTF-8')
 # sys.path.append('/home/work/newsman/newsman')
 # sys.path.append('/home/users/jinyuan/newsman/newsman')
 # sys.path.append('/home/ubuntu/newsman/newsman')
-sys.path.append('/home/jinyuan/Downloads/newsman/newsman')
+# sys.path.append('/home/jinyuan/Downloads/newsman/newsman')
 
 from config.settings import Collection, db
 from config.settings import logger
 import Queue
 from spider import scraper
-from threading import Thread
+import threading
 
 # CONSTANTS
 from config.settings import FEED_REGISTRAR
 queue = Queue.Queue()
 
 
-class UpdateThread(Thread):
+class UpdateThread(threading.Thread):
 
     """
     Update news rss/twitter ...
     """
 
-    def __init__(self, queue):
-        Thread.__init__(self)
-        self.queue = queue
+    def __init__(self, name):
+        threading.Thread.__init__(self)
+        self._name = name
 
     def run(self):
         while True:
             try:
-                feed_id = self.queue.get()
+                feed_id = queue.get()
                 updated_feed = scraper.update(feed_id=feed_id)
                 if updated_feed:
                     logger.error(
-                        '--------------- %s got updated! ---------------' % updated_feed)
-                self.queue.task_done()
+                        '--------------- %s: %s[%s] is successfully updated! ---------------' % (self._name, feed_id, updated_feed))
+                else:
+                    logger.error(
+                        '--------------- %s: %s receives no update! ---------------' % (self._name, feed_id))
+                queue.task_done()
             except Exception as k:
-                logger.error(str(k))
-                self.queue.task_done()
-                continue
+                logger.error(
+                    '+++++++++++++++ %s: [%s] has no update but exception +++++++++++++++' % (self._name, str(k)))
+                queue.task_done()
 
 
 def _update(feed_ids):
@@ -61,15 +64,15 @@ def _update(feed_ids):
         logger.error("No feed found!")
         return None
 
-    thread_limit = min(len(feed_ids) / 2, 20)
-    for i in range(thread_limit):
-        thread = UpdateThread(queue)
-        #thread.setDaemon(True)
-        thread.start()
-
     # populate queue with feeds
     for feed_id in feed_ids:
         queue.put(feed_id)
+
+    thread_limit = min(len(feed_ids) / 2, 25)
+    for i in range(thread_limit):
+        thread = UpdateThread('thread-%i' % i)
+        thread.setDaemon(True)
+        thread.start()
 
     queue.join()
 
