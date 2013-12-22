@@ -21,7 +21,9 @@ import nltk
 from pyteaser import PyTeaser
 
 # CONSTANTS
-from config.settings import PARAGRAPH_CRITERIA
+from config.settings import PARAGRAPH_CRITERIA_LATIN
+from config.settings import PARAGRAPH_CRITERIA_KANJI
+from config.settings import PARAGRAPH_CRITERIA_THAI
 from config.settings import SUMMARY_LENGTH_LIMIT
 
 
@@ -78,13 +80,18 @@ def _is_valid(content, language):
 
         if language.startswith('zh') or language == 'ja':
             words = content
+            if len(words) < PARAGRAPH_CRITERIA_KANJI:
+                return False
+        elif language.startswith('th'):
+            words = content.split()
+            if len(words) < PARAGRAPH_CRITERIA_THAI:
+                return False
         else:
             words = content.split()
+            if len(words) < PARAGRAPH_CRITERIA_LATIN:
+                return False
 
-        if len(words) < PARAGRAPH_CRITERIA:
-            return False
-        else:
-            return True
+        return True
     except Exception as k:
         logger.error(str(k))
         return False
@@ -106,7 +113,11 @@ def _get_first_paragraph(content, language):
             paragraph for paragraph in paragraphs if paragraph.strip()]
         for paragraph in paragraphs:
             if paragraph and _is_valid(paragraph, language):
-                return _get_shorter_text(paragraph, language, SUMMARY_LENGTH_LIMIT)
+                summary = _get_shorter_text(paragraph, language, SUMMARY_LENGTH_LIMIT)
+                if summary:
+                    return summary
+                else:
+                    continue
     except Exception as k:
         logger.error(str(k))
         return None
@@ -131,7 +142,11 @@ def _get_summary(content, language):
         paragraphs = [paragraph for paragraph in paragraphs if paragraph.strip()]
         for paragraph in paragraphs:
             if paragraph and _is_valid(paragraph, language):
-                return _get_shorter_text(paragraph, language, SUMMARY_LENGTH_LIMIT)
+                summary = _get_shorter_text(paragraph, language, SUMMARY_LENGTH_LIMIT)
+                if summary:
+                    return summary
+                else:
+                    continue
     except Exception as k:
         logger.error(str(k))
         return None
