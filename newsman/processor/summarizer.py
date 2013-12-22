@@ -65,6 +65,7 @@ def _get_shorter_text(content, language, limit):
 def _is_valid(content, language):
     """
     check if the content meets the need
+    need: chinese/japanese - more than 40 words
     """
     if not content or not language:
         logger.error('Method malformed!')
@@ -100,8 +101,7 @@ def _get_first_paragraph(content, language):
         h.ignore_images = True
         h.ignore_emphasis = True
         h.body_width = 0
-        paragraphs = (h.handle(content)).strip().strip(
-            '#').strip().split("\n\n")
+        paragraphs = (h.handle(content)).strip().strip('#').strip().split("\n\n")
         paragraphs = [
             paragraph for paragraph in paragraphs if paragraph.strip()]
         for paragraph in paragraphs:
@@ -127,9 +127,8 @@ def _get_summary(content, language):
         h.ignore_images = True
         h.ignore_emphasis = True
         h.body_width = 0
-        paragraphs = (h.handle(content)).strip('#').split("\n\n")
-        paragraphs = [
-            paragraph for paragraph in paragraphs if paragraph.strip()]
+        paragraphs = (h.handle(content)).strip().strip('#').strip().split("\n\n")
+        paragraphs = [paragraph for paragraph in paragraphs if paragraph.strip()]
         for paragraph in paragraphs:
             if paragraph and _is_valid(paragraph, language):
                 return _get_shorter_text(paragraph, language, SUMMARY_LENGTH_LIMIT)
@@ -153,8 +152,7 @@ def extract(language, title, content, summary, link, feed, category):
         # limit the number of words
         if content:
             if language in ['en', 'ja', 'pt', 'th']:
-                teaser = PyTeaser(
-                    language, title, content, link, feed, category)
+                teaser = PyTeaser(language, title, content, link, feed, category)
                 result_summary = teaser.summarize()
 
         # if summary from rss provider is found use summary, but limit
