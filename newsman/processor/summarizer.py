@@ -108,12 +108,14 @@ def _get_first_paragraph(content, language):
         h.ignore_images = True
         h.ignore_emphasis = True
         h.body_width = 0
-        paragraphs = (h.handle(content)).strip().strip('#').strip().split("\n\n")
+        paragraphs = (h.handle(content)).strip().strip(
+            '#').strip().split("\n\n")
         paragraphs = [
             paragraph for paragraph in paragraphs if paragraph.strip()]
         for paragraph in paragraphs:
             if paragraph and _is_valid(paragraph, language):
-                summary = _get_shorter_text(paragraph, language, SUMMARY_LENGTH_LIMIT)
+                summary = _get_shorter_text(
+                    paragraph, language, SUMMARY_LENGTH_LIMIT)
                 if summary:
                     return summary
     except Exception as k:
@@ -136,11 +138,14 @@ def _get_summary(content, language):
         h.ignore_images = True
         h.ignore_emphasis = True
         h.body_width = 0
-        paragraphs = (h.handle(content)).strip().strip('#').strip().split("\n\n")
-        paragraphs = [paragraph for paragraph in paragraphs if paragraph.strip()]
+        paragraphs = (h.handle(content)).strip().strip(
+            '#').strip().split("\n\n")
+        paragraphs = [
+            paragraph for paragraph in paragraphs if paragraph.strip()]
         for paragraph in paragraphs:
             if paragraph and _is_valid(paragraph, language):
-                summary = _get_shorter_text(paragraph, language, SUMMARY_LENGTH_LIMIT)
+                summary = _get_shorter_text(
+                    paragraph, language, SUMMARY_LENGTH_LIMIT)
                 if summary:
                     return summary
     except Exception as k:
@@ -163,7 +168,8 @@ def extract(language, title, content, summary, link, feed, category):
         # limit the number of words
         if content:
             if language in ['en', 'ja', 'pt', 'th']:
-                teaser = PyTeaser(language, title, content, link, feed, category)
+                teaser = PyTeaser(
+                    language, title, content, link, feed, category)
                 result_summary = teaser.summarize()
 
         # if summary from rss provider is found use summary, but limit
