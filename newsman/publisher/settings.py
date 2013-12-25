@@ -44,16 +44,20 @@ hparser = HTMLParser()
 
 # CONSTANTS
 #PUBLIC = 'http://s.mobile-global.baidu.com/news/%s'  # hk01-hao123-mob01/mob02.hk01
-#PUBLIC = 'http://220.181.163.36:8080/news/%s'        # cq01-rdqa-dev067.cq01
 #PUBLIC = 'http://180.76.2.34/news/%s'                # hk01-hao123-mob00.hk01
-#PUBLIC = 'http://54.251.107.116/%s'                  # AWS singapore
-#PUBLIC = 'http://54.232.81.44/%s'                    # AWS sao paolo
-#PUBLIC = 'http://54.248.227.71/%s'                   # AWS tokyo
+#PUBLIC = 'http://180.76.3.51/news/%s'                # hk01-hao123-mob07.hk01
 
 #LOCAL = '/home/work/%s'                            # official server prefix
-#LOCAL = '/home/users/jinyuan/%s'                   # test server in China
-#LOCAL = '/home/ubuntu/%s'                          # AWS server prefix
 #LOCAL = '/home/jinyuan/Downloads/%s'               # local server prefix
+
+# Obsolete
+##PUBLIC = 'http://220.181.163.36:8080/news/%s'        # cq01-rdqa-dev067.cq01
+##PUBLIC = 'http://54.251.107.116/%s'                  # AWS singapore
+##PUBLIC = 'http://54.232.81.44/%s'                    # AWS sao paolo
+##PUBLIC = 'http://54.248.227.71/%s'                   # AWS tokyo
+##LOCAL = '/home/users/jinyuan/%s'                   # test server in China
+##LOCAL = '/home/ubuntu/%s'                          # AWS server prefix
+
 
 LOGO_PUBLIC_PREFIX = 'http://s.mobile-global.baidu.com/logos/'
 #LOGO_PUBLIC_PREFIX = 'http://220.181.163.36:8080/logos/'
@@ -66,7 +70,7 @@ LOG_FORMAT = "%(levelname)-8s %(asctime)-25s %(lineno)-3d:%(filename)-16s %(mess
 # critical, error, warning, info, debug, notset
 logging.basicConfig(format=LOG_FORMAT)
 logger = logging.getLogger('news-logger')
-logger.setLevel(logging.ERROR)
+logger.setLevel(logging.WARNING)
 
 # paths for generating transcoded files, mp3 and images
 TRANSCODED_LOCAL_DIR = LOCAL % 'STATIC/news/ts/'
@@ -109,11 +113,11 @@ FONT_PATH_JA = LOCAL % "fonts/ja_ipaexm/ipaexm.ttf"
 FONT_PATH_PT = LOCAL % "fonts/ubuntu-font/Ubuntu-R.ttf"
 FONT_PATH_TH = LOCAL % "fonts/th_tlwg/Loma.ttf"
 FONT_PATH_ZH = LOCAL % "fonts/zh_yahei/msyh.ttf"
-TEXT_WIDTH_EN = 26
-TEXT_WIDTH_IN = 26
+TEXT_WIDTH_EN = 24
+TEXT_WIDTH_IN = 24
 TEXT_WIDTH_JA = 11
-TEXT_WIDTH_PT = 26
-TEXT_WIDTH_TH = 25
+TEXT_WIDTH_PT = 24
+TEXT_WIDTH_TH = 22
 TEXT_WIDTH_ZH = 12
 
 # headers for url connecting
@@ -157,7 +161,9 @@ FEED_REGISTRAR = 'feeds'
 KEYWORD_REGISTRAR = 'keywords'
 
 # settings used in summarizing
-PARAGRAPH_CRITERIA = 40
+PARAGRAPH_CRITERIA_LATIN = 30
+PARAGRAPH_CRITERIA_KANJI = 40
+PARAGRAPH_CRITERIA_THAI = 18
 SUMMARY_LENGTH_LIMIT = 500
 
 # request connection timeouts
@@ -165,7 +171,7 @@ UCK_TIMEOUT = 60  # 14 seconds timeout
 GOOGLE_TTS_TIMEOUT = 120  # 2 minutes timeout
 
 # supported languages
-LANGUAGES = ['en', 'th', 'in', 'ja', 'pt', 'ar', 'zh']
+LANGUAGES = ['ar', 'en', 'in', 'ja', 'th', 'pt', 'zh']
 # supported countries, in code
 COUNTRIES = ['AU', 'BR', 'CA', 'CN', 'EG', 'FR', 'GB', 'HK', 'ID', 'IN', 'JP', 'KR', 'TH', 'TR', 'TW', 'US', 'VN']
 
