@@ -19,8 +19,8 @@ sys.setdefaultencoding('UTF-8')
 
 from config.settings import Collection, db
 from config.settings import logger
+from parser import scraper
 import Queue
-from spider import scraper
 import threading
 import time
 
