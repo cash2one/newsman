@@ -22,10 +22,27 @@ from config.settings import logger
 import Queue
 from spider import scraper
 import threading
+import time
 
 # CONSTANTS
 from config.settings import FEED_REGISTRAR
-queue = Queue.Queue()
+
+
+class TimeoutQueue(Queue.Queue):
+    def __init__(self):
+        Queue.Queue.__init__(self)
+
+    def join_with_timeout(self, timeout):
+        self.all_tasks_done.acquire()
+        try:
+            endtime = time.time() + timeout
+            while self.unfinished_tasks:
+                remaining = endtime - time.time()
+                if remaining <= 0.0:
+                    raise Exception('+++++++++++++++ [%s] unfinished feeds [%s] +++++++++++++++' % (str(self.unfinished_tasks), str(self.queue)))
+                self.all_tasks_done.wait(remaining)
+        finally:
+            self.all_tasks_done.release()
 
 
 class UpdateThread(threading.Thread):
@@ -45,16 +62,17 @@ class UpdateThread(threading.Thread):
                 updated_feed = scraper.update(feed_id=feed_id)
                 if updated_feed:
                     logger.error(
-                        '--------------- %s: %s[%s] is successfully updated! ---------------' % (self._name, feed_id, updated_feed))
+                        '--------------- %s: %s [%s] is successfully updated! ---------------' % (self._name, feed_id, updated_feed))
                 else:
                     logger.error(
                         '--------------- %s: %s receives no update! ---------------' % (self._name, feed_id))
                 queue.task_done()
             except Exception as k:
-                logger.error(
-                    '+++++++++++++++ %s: [%s] has no update but exception +++++++++++++++' % (self._name, str(k)))
+                logger.error('+++++++++++++++ %s: [%s] has no update but exception +++++++++++++++' % (self._name, str(k)))
                 queue.task_done()
 
+
+queue = TimeoutQueue()
 
 def _update(feed_ids):
     """
@@ -74,7 +92,11 @@ def _update(feed_ids):
         thread.setDaemon(True)
         thread.start()
 
-    queue.join()
+    try:
+        # updating timeout set to 1.5 hours
+        queue.join_with_timeout(5400)
+    except Exception as k:
+        logger.error(str(k))
 
 
 def _read_feeds(language='en', country='US'):
