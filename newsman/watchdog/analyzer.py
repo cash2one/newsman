@@ -29,6 +29,7 @@ from config.settings import FEED_REGISTRAR
 
 
 class TimeoutQueue(Queue.Queue):
+
     def __init__(self):
         Queue.Queue.__init__(self)
 
@@ -39,7 +40,8 @@ class TimeoutQueue(Queue.Queue):
             while self.unfinished_tasks:
                 remaining = endtime - time.time()
                 if remaining <= 0.0:
-                    raise Exception('+++++++++++++++ [%s] unfinished feeds [%s] +++++++++++++++' % (str(self.unfinished_tasks), str(self.queue)))
+                    raise Exception('+++++++++++++++ [%s] unfinished feeds [%s] +++++++++++++++' % (
+                        str(self.unfinished_tasks), str(self.queue)))
                 self.all_tasks_done.wait(remaining)
         finally:
             self.all_tasks_done.release()
@@ -68,11 +70,13 @@ class UpdateThread(threading.Thread):
                         '--------------- %s: %s receives no update! ---------------' % (self._name, feed_id))
                 queue.task_done()
             except Exception as k:
-                logger.error('+++++++++++++++ %s: [%s] has no update but exception +++++++++++++++' % (self._name, str(k)))
+                logger.error(
+                    '+++++++++++++++ %s: [%s] has no update but exception +++++++++++++++' % (self._name, str(k)))
                 queue.task_done()
 
 
 queue = TimeoutQueue()
+
 
 def _update(feed_ids):
     """
