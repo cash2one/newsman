@@ -161,7 +161,7 @@ def _combine(content, images):
                 biggest['url'], str(biggest['width']), str(biggest['height']))
             return "%s %s" % (image, content), images
         else:
-            logger.error('Cannot find biggest image')
+            logger.info('Cannot find biggest image')
             return content, images
     except Exception as k:
         logger.error(str(k))
