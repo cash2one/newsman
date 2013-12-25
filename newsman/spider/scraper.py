@@ -16,6 +16,7 @@ sys.path.append('..')
 
 import calendar
 from config.settings import logger
+import database as db_news
 from datetime import datetime, timedelta
 from feed_manager import database as db_feeds
 import memory
@@ -25,7 +26,6 @@ from processor import text2img
 from processor import transcoder
 from processor import tts_provider
 import random
-from spider import database as db_news
 import time
 from watchdog import clean_disk, clean_database
 
