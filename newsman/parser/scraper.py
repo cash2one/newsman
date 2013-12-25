@@ -356,7 +356,7 @@ def update(feed_link=None, feed_id=None, language=None, categories=None, transco
                 result = db_feeds.update(
                     feed_id=feed_id, status=status_new, feed_title=feed_title_new, etag=etag_new, modified=modified_new, reason=reason_new)
                 if not result:
-                    logger.info('Error found updating feeds database')
+                    logger.error('Error found updating feeds database')
                 return None
         else:
             logger.warning('Register feed in database before updating!')
