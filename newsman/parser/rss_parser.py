@@ -21,6 +21,9 @@ from config.settings import hparser
 from config.settings import logger
 from processor import illustrator
 from datetime import datetime, timedelta
+import warnings
+warnings.filterwarnings(
+    action="ignore", category=DeprecationWarning, module="feedparser")
 import feedparser
 import html2text
 import re
