@@ -116,8 +116,6 @@ def _get_first_paragraph(content, language):
                 summary = _get_shorter_text(paragraph, language, SUMMARY_LENGTH_LIMIT)
                 if summary:
                     return summary
-                else:
-                    continue
     except Exception as k:
         logger.error(str(k))
         return None
@@ -145,8 +143,6 @@ def _get_summary(content, language):
                 summary = _get_shorter_text(paragraph, language, SUMMARY_LENGTH_LIMIT)
                 if summary:
                     return summary
-                else:
-                    continue
     except Exception as k:
         logger.error(str(k))
         return None
