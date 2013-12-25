@@ -17,7 +17,7 @@ sys.path.append("..")
 from config.settings import logger
 import database as db_feeds
 import feedparser
-from spider import scraper
+from parser import scraper
 import socket
 socket.setdefaulttimeout(10)  # 10 seconds
 
