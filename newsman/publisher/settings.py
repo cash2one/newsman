@@ -25,7 +25,7 @@ con = None
 try:
     con = Connection('127.0.0.1:27017')
 except ConnectionFailure:
-    con = Connection('10.240.37.56:27017')
+    con = Connection('10.240.82.21:27017')
 db = Database(con, 'news')
 
 # redis rclient
@@ -35,7 +35,8 @@ rclient = redis.StrictRedis(host='127.0.0.1', port=6379, socket_timeout=5, chars
 try:
     rclient.ping()
 except ConnectionError:
-    rclient = redis.StrictRedis(host='10.240.37.56', port=6379, socket_timeout=5, charset='utf-8')
+    rclient = redis.StrictRedis(host='10.240.82.21', port=7777, socket_timeout=5, charset='utf-8')
+    # dump file: /var/log/dump.rdb
 
 # htmlparser to do unescaping
 from HTMLParser import HTMLParser
@@ -43,11 +44,11 @@ hparser = HTMLParser()
 
 
 # CONSTANTS
-#PUBLIC = 'http://s.mobile-global.baidu.com/news/%s'  # hk01-hao123-mob01/mob02.hk01
+PUBLIC = 'http://s.mobile-global.baidu.com/news/%s'  # hk01-hao123-mob01/mob02.hk01
 #PUBLIC = 'http://180.76.2.34/news/%s'                # hk01-hao123-mob00.hk01
 #PUBLIC = 'http://180.76.3.51/news/%s'                # hk01-hao123-mob07.hk01
 
-#LOCAL = '/home/work/%s'                            # official server prefix
+LOCAL = '/home/work/%s'                            # official server prefix
 #LOCAL = '/home/jinyuan/Downloads/%s'               # local server prefix
 
 # Obsolete
