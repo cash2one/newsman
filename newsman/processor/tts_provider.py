@@ -55,7 +55,7 @@ class GoogleTranslateAPI(threading.Thread):
     def run(self):
         response = subprocess.Popen(
             '''curl --silent --connect-timeout %s -A Mozilla "http://translate.google.com/translate_tts?ie=UTF-8&oe=UTF-8&tl=%s&q=%s"''' %
-            (GOOGLE_TTS_TIMEOUT, self.language, urllib2.quote(self.text)), stdout=subprocess.PIPE, shell=True)
+            (GOOGLE_TTS_TIMEOUT, self.language, urllib2.quote(self.text)), stdout=subprocess.PIPE, shell=True, close_fds=True)
 
         content, error = response.communicate()
         if not error and content:
