@@ -71,6 +71,9 @@ LOG_FORMAT = "%(levelname)-8s %(asctime)-25s %(lineno)-3d:%(filename)-16s %(mess
 logging.basicConfig(format=LOG_FORMAT)
 logger = logging.getLogger('news-logger')
 logger.setLevel(logging.WARNING)
+# supress requests logging info
+requests_log = logging.getLogger("requests")
+requests_log.setLevel(logging.WARNING)
 
 # paths for generating transcoded files, mp3 and images
 TRANSCODED_LOCAL_DIR = LOCAL % 'STATIC/news/ts/'
