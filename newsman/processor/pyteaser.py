@@ -179,7 +179,7 @@ class PyTeaser:
                         command = '''echo \"%s\" | %s %s/scw.conf %s 2>/dev/null''' % (
                             str(text.strip().lower()), THAI_WORDSEG, THAI_WORDSEG_DICT, THAI_WORDSEG_DICT)
                         response = subprocess.Popen(
-                            command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+                            command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True, close_fds=True)
                         content, error = response.communicate()
                         if not error and content:
                             if 'error' not in content or 'permission' not in content:
