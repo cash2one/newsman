@@ -40,8 +40,7 @@ class TimeoutQueue(Queue.Queue):
             while self.unfinished_tasks:
                 remaining = endtime - time.time()
                 if remaining <= 0.0:
-                    raise Exception('+++++++++++++++ [%s] unfinished feeds [%s] +++++++++++++++' % (
-                        str(self.unfinished_tasks), str(self.queue)))
+                    raise Exception('[%s] unfinished feeds [%s]' % (str(self.unfinished_tasks), str(self.queue)))
                 self.all_tasks_done.wait(remaining)
         finally:
             self.all_tasks_done.release()
@@ -64,14 +63,14 @@ class UpdateThread(threading.Thread):
                 updated_feed = scraper.update(feed_id=feed_id)
                 if updated_feed:
                     logger.error(
-                        '--------------- %s: %s [%s] is successfully updated! ---------------' % (self._name, feed_id, updated_feed))
+                        '%s: %s [%s] is successfully updated!' % (self._name, feed_id, updated_feed))
                 else:
                     logger.error(
-                        '--------------- %s: %s receives no update! ---------------' % (self._name, feed_id))
+                        '%s: %s receives no update!' % (self._name, feed_id))
                 queue.task_done()
             except Exception as k:
                 logger.error(
-                    '+++++++++++++++ %s: [%s] has no update but exception +++++++++++++++' % (self._name, str(k)))
+                        '%s: [%s] has no update but exception' % (self._name, str(k)))
                 queue.task_done()
 
 
