@@ -14,12 +14,12 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append("/home/work/newsman/newsman")
 
+from analyzer import memory
 from bson.objectid import ObjectId
 import calendar
 from config.settings import Collection, db
 from config.settings import rclient
 from datetime import datetime, timedelta
-from parser import memory
 import time
 
 # CONSTANTS

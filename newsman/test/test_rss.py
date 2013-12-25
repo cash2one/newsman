@@ -6,7 +6,7 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
-from parser import scraper
+from analyzer import scraper
 
 #entries = scraper.update(feed_id='5257d25509d1f72ff1aa8abc', feed_link='http://hilight.kapook.com/main/feed', language='th')
 #entries = scraper.update(feed_id='5257d25509d1f72ff1aa8abe', feed_link='http://rssfeeds.sanook.com/rss/feeds/sanook/news.index.xml', language='th')

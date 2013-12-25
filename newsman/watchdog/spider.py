@@ -14,9 +14,9 @@ reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('/home/work/newsman/newsman')
 
+from analyzer import scraper
 from config.settings import Collection, db
 from config.settings import logger
-from parser import scraper
 import Queue
 import threading
 import time
