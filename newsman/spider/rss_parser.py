@@ -325,7 +325,8 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
                     language = language if 'language' not in d else d.language
                     # an Exception might be raised from _read_entry
                     entries = []
-                    logger.error('--------------- %s begins processing ---------------' % feed_title)
+                    logger.error(
+                        '--------------- %s begins processing ---------------' % feed_title)
                     for i, e in enumerate(d.entries):
                         if e:
                             entry = _read_entry(
