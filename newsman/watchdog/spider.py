@@ -23,6 +23,7 @@ import time
 
 # CONSTANTS
 from config.settings import FEED_REGISTRAR
+from config.settings import FEED_UPDATE_TIMEOUT
 
 
 class TimeoutQueue(Queue.Queue):
@@ -100,7 +101,7 @@ def _update(feed_ids):
 
     try:
         # updating timeout set to 1.5 hours
-        queue.join_with_timeout(5400)
+        queue.join_with_timeout(FEED_UPDATE_TIMEOUT)
     except Exception as k:
         logger.error(str(k))
 
