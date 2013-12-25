@@ -12,10 +12,7 @@ scrape is a task to scrape rss resources
 import sys
 reload(sys)
 sys.setdefaultencoding('UTF-8')
-# sys.path.append('/home/work/newsman/newsman')
-# sys.path.append('/home/users/jinyuan/newsman/newsman')
-# sys.path.append('/home/ubuntu/newsman/newsman')
-# sys.path.append('/home/jinyuan/Downloads/newsman/newsman')
+sys.path.append('/home/work/newsman/newsman')
 
 from config.settings import Collection, db
 from config.settings import logger
@@ -67,10 +64,10 @@ class UpdateThread(threading.Thread):
                 feed_id = queue.get()
                 updated_feed = scraper.update(feed_id=feed_id)
                 if updated_feed:
-                    logger.error(
+                    logger.warning(
                         '%s: %s [%s] is successfully updated!' % (self._name, feed_id, updated_feed))
                 else:
-                    logger.error(
+                    logger.warning(
                         '%s: %s receives no update!' % (self._name, feed_id))
                 queue.task_done()
             except Exception as k:
@@ -97,7 +94,7 @@ def _update(feed_ids):
 
     thread_limit = min(len(feed_ids) / 2, 25)
     for i in range(thread_limit):
-        thread = UpdateThread('thread-%i' % i)
+        thread = UpdateThread('Thread-%i' % i)
         thread.setDaemon(True)
         thread.start()
 
@@ -129,9 +126,9 @@ def _scrape(language='en', country='US'):
     """
     update news from stored feeds
     """
-    logger.error('############### scraping ###############')
+    logger.warning('############### Scraping begins ###############')
     _update(_read_feeds(language, country))
-    logger.error(
+    logger.warning(
         "############### Feeds of %s_%s all got updated! ###############" %
         (language, country))
 
