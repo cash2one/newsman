@@ -23,6 +23,9 @@ def clean():
     command = "kill -HUP `ps -A -ostat,ppid | grep -e '^[Zz]' | awk '{print $2}'`"
     subprocess.Popen(command, stderr=subprocess.PIPE, shell=True)
 
+    command = "ps -xal | grep p[y]thon | grep '<defunct>' | awk '{print $4}' | xargs kill -9"
+    subprocess.Popen(command, stderr=subprocess.PIPE, shell=True)
+
 
 if __name__ == '__main__':
     clean()
