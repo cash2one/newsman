@@ -328,7 +328,7 @@ def find_images(content=None, referer=None):
         return None
 
     try:
-        soup = BeautifulSoup(str(content))
+        soup = BeautifulSoup(content.decode('utf-8', 'ignore'))
         normalized_images = []
 
         ELEMENT_REPLACED = False
