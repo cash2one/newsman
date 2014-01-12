@@ -28,7 +28,7 @@ import urlparse
 
 # CONSTANTS
 HIDDEN_IMAGE = {
-    'http://sankei.jp.msn.com/': ('div', {'class': 'img250 imgright'}), 'http://www.cnn.co.jp/': ('div', {'id': 'leaf_large_image', 'class': 'img-caption'}),
+    'http://lifestyle.okezone.com':('div', {'id':'pt'}), 'http://sankei.jp.msn.com/': ('div', {'class': 'img250 imgright'}), 'http://www.cnn.co.jp/': ('div', {'id': 'leaf_large_image', 'class': 'img-caption'}),
     'http://news.goo.ne.jp/': ('p', {'class': 'imager'}), 'http://jp.reuters.com/': ('td', {'id': "articlePhoto", 'class': "articlePhoto"})}
 
 
@@ -66,7 +66,7 @@ class Simplr:
             self.data = self.regexps['replace_fonts'].sub(
                 "<\g<1>span>", str(self.data))
 
-            self.html = BeautifulSoup(self.data)
+            self.html = BeautifulSoup(self.data.decode('utf-8', 'ignore'))
             self._remove_script()
             self._remove_style()
             self._remove_link()
@@ -151,7 +151,7 @@ class Simplr:
                     continue
 
                 if elem.name == 'div':
-                    s = elem.renderContents(encoding=None)
+                    s = elem.renderContents(encoding='utf-8')
                     if not self.regexps['div_to_p_elements'].search(s):
                         elem.name = 'p'
                     else:
@@ -259,6 +259,20 @@ class Simplr:
 
     def _clean_article(self, content):
         try:
+            # image retriver
+            article_image = None
+            matched_link = [
+                link for link in HIDDEN_IMAGE if self.url.startswith(link)]
+            if matched_link:
+                html_tag, html_attrs = HIDDEN_IMAGE[matched_link[0]]
+                article_image = content.find(name=html_tag, attrs=html_attrs)
+                if not article_image:
+                    article_image = self.html.find(
+                        name=html_tag, attrs=html_attrs)
+                    if article_image:
+                        self._fix_images_path(article_image)
+                        self._fix_links_path(article_image)
+
             self._clean_comments(content)
             self._clean(content, 'h1')
             self._clean(content, 'object')
@@ -287,23 +301,9 @@ class Simplr:
             self._fix_images_path(content)
             self._fix_links_path(content)
 
-            # image retriver
-            article_image = None
-            matched_link = [
-                link for link in HIDDEN_IMAGE if self.url.startswith(link)]
-            if matched_link:
-                html_tag, html_attrs = HIDDEN_IMAGE[matched_link[0]]
-                found_image = content.find(name=html_tag, attrs=html_attrs)
-                if not found_image:
-                    article_image = self.html.find(
-                        name=html_tag, attrs=html_attrs)
-                    if article_image:
-                        self._fix_images_path(article_image)
-                        self._fix_links_path(article_image)
-
-            content = content.renderContents(encoding=None)
+            content = content.renderContents(encoding='utf-8')
             if article_image:
-                article_image = article_image.renderContents(encoding=None)
+                article_image = article_image.renderContents(encoding='utf-8')
                 content = article_image + content
             content = self.regexps['kill_breaks'].sub("<br />", content)
             return content
@@ -326,7 +326,7 @@ class Simplr:
                 if is_embed and self.regexps['videos'].search(attribute_values):
                     continue
 
-                if is_embed and self.regexps['videos'].search(target.renderContents(encoding=None)):
+                if is_embed and self.regexps['videos'].search(target.renderContents(encoding='utf-8')):
                     continue
                 target.extract()
         except Exception as k:
