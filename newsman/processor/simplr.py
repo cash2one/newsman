@@ -34,10 +34,10 @@ HIDDEN_IMAGE = {
 
 class Simplr:
     regexps = {
-        'unlikely_candidates': re.compile("banner|button|combx|comment|community|copyright|disqus|extra|foot|header|menu|remark|rss|poll|shoutbox|sidebar|sponsor|sns|ad-break|agegate|pagination|pager|popup|posted|pr|tweet|twitter", re.I),
+        'unlikely_candidates': re.compile("banner|button|combx|comment|community|copyright|disqus|extra|foot|header|menu|remark|rss|poll|share|shoutbox|sidebar|sponsor|sns|ad-break|agegate|pagination|pager|popup|posted|pr|tweet|twitter", re.I),
         'ok_maybe_its_a_candidate': re.compile("and|article|body|column|content|main|post|shadow", re.I),
         'positive': re.compile("article|blog|body|content|entry|hentry|image|main|page|pagination|photo|post|story|text", re.I),
-        'negative': re.compile("banner|combx|comment|com|contact|foot|footer|footnote|genre|logo|masthead|media|meta|outbrain|poll|pr|promo|ranking|related|scroll|shoutbox|sidebar|sponsor|shopping|tags|tool|widget|link", re.I),
+        'negative': re.compile("banner|combx|comment|com|contact|foot|footer|footnote|genre|logo|masthead|media|meta|outbrain|poll|pr|promo|ranking|related|scroll|share|shoutbox|sidebar|sponsor|shopping|tags|tool|widget|link", re.I),
         'extraneous': re.compile("print|archive|comment|discuss|e[\-]?mail|share|reply|all|login|sign|single", re.I),
         'div_to_p_elements': re.compile("<(a|blockquote|dl|div|img|ol|p|pre|table|ul)", re.I),
         'replace_brs': re.compile("(<br[^>]*>[ \n\r\t]*){2,}", re.I),
@@ -147,6 +147,10 @@ class Simplr:
                     # print elem
                     # print '&&&&&&&&&&&&&&&&&&&&&&&&&&&'
                     # print
+                    elem.extract()
+                    continue
+
+                if 'okezone.com' in self.url and re.compile('subkanal|date-time fl|author fl', re.I).search(unlikely_match_string):
                     elem.extract()
                     continue
 
