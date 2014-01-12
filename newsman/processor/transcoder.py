@@ -93,7 +93,7 @@ def _save(data, path):
         web_path = '%s%s.html' % (TRANSCODED_PUBLIC_DIR, path)
 
         f = open(local_path, 'w')
-        f.write(urllib2.unquote(hparser.unescape(data)))
+        f.write(urllib2.unquote(hparser.unescape(data)).replace(u'\xa0', ' '))
         f.close()
         return web_path, local_path
     except Exception as k:
@@ -308,7 +308,7 @@ def prepare_link(url):
                 data = html.decode(detected['encoding'], 'ignore')
             # else:
             #    data = html.decode('utf-8', 'ignore')
-            return hparser.unescape(urllib2.unquote(data))
+            return hparser.unescape(urllib2.unquote(data)).replace(u'\xa0', ' ')
         else:
             logger.warning("Cannot read %s" % url)
             return None
