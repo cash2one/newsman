@@ -48,8 +48,8 @@ PUBLIC = 'http://s.mobile-global.baidu.com/news/%s'  # hk01-hao123-mob01/mob02.h
 #PUBLIC = 'http://180.76.2.34/news/%s'                # hk01-hao123-mob00.hk01
 #PUBLIC = 'http://180.76.3.51/news/%s'                # hk01-hao123-mob07.hk01
 
-#LOCAL = '/home/work/%s'                            # official server prefix
-LOCAL = '/home/jinyuan/Downloads/%s'               # local server prefix
+LOCAL = '/home/work/%s'                            # official server prefix
+#LOCAL = '/home/jinyuan/Downloads/%s'               # local server prefix
 
 # Obsolete
 ##PUBLIC = 'http://220.181.163.36:8080/news/%s'        # cq01-rdqa-dev067.cq01
