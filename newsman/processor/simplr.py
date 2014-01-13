@@ -277,7 +277,8 @@ class Simplr:
                 for feature in feature_list:
                     html_tag, html_attrs = feature
                     if not article_image:
-                        article_image = self.html.find(name=html_tag, attrs=html_attrs)
+                        article_image = self.html.find(
+                            name=html_tag, attrs=html_attrs)
                         if article_image:
                             # prune article image
                             self._fix_images_path(article_image)
