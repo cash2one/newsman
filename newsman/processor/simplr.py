@@ -28,8 +28,8 @@ import urlparse
 
 # CONSTANTS
 HIDDEN_IMAGE = {
-    r'http://[\w]*.okezone.com': ('div', {'id': 'pt'}), r'http://[\w]*.inilah.com': ('div', {'class': 'imgbox'}), r'http://sankei.jp.msn.com/': ('div', {'class': 'img250 imgright'}), r'http://www.cnn.co.jp/': ('div', {'id': 'leaf_large_image', 'class': 'img-caption'}),
-    r'http://news.goo.ne.jp/': ('p', {'class': 'imager'}), r'http://jp.reuters.com/': ('td', {'id': "articlePhoto", 'class': "articlePhoto"})}
+    r'http://[\w]*.okezone.com': [('div', {'id': 'pt'}), ('div', {'class': 'detail-img fl'})], r'http://[\w]*.inilah.com': [('div', {'class': 'imgbox'})], r'http://sankei.jp.msn.com/': [('div', {'class': 'img250 imgright'})], r'http://www.cnn.co.jp/': [('div', {'id': 'leaf_large_image', 'class': 'img-caption'})],
+    r'http://news.goo.ne.jp/': [('p', {'class': 'imager'})], r'http://jp.reuters.com/': [('td', {'id': "articlePhoto", 'class': "articlePhoto"})]}
 
 
 class Simplr:
@@ -273,18 +273,16 @@ class Simplr:
                     break
 
             if matched_link:
-                html_tag, html_attrs = HIDDEN_IMAGE[matched_link]
-                article_image = content.find(name=html_tag, attrs=html_attrs)
-                print html_tag, html_attrs
-                print article_image
-                if not article_image:
-                    article_image = self.html.find(
-                        name=html_tag, attrs=html_attrs)
-                    print article_image
-                # prune article image
-                if article_image:
-                    self._fix_images_path(article_image)
-                    self._fix_links_path(article_image)
+                feature_list = HIDDEN_IMAGE[matched_link]
+                for feature in feature_list:
+                    html_tag, html_attrs = feature
+                    if not article_image:
+                        article_image = self.html.find(name=html_tag, attrs=html_attrs)
+                        if article_image:
+                            # prune article image
+                            self._fix_images_path(article_image)
+                            self._fix_links_path(article_image)
+                            break
 
             self._clean_comments(content)
             self._clean(content, 'h1')
@@ -315,7 +313,7 @@ class Simplr:
             self._fix_links_path(content)
 
             content_string = content.renderContents(encoding='utf-8')
-            if not content.findAll('img') and article_image:
+            if not content.find('img') and article_image:
                 article_image_string = article_image.renderContents(
                     encoding='utf-8')
                 content_string = article_image_string + content_string
