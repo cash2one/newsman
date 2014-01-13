@@ -328,27 +328,31 @@ def find_images(content=None, referer=None):
         return None
 
     try:
-        soup = BeautifulSoup(content.decode('utf-8', 'ignore'))
-        normalized_images = []
+        if isinstance(content, str) or isinstance(content, unicode):
+            soup = BeautifulSoup(content.decode('utf-8', 'ignore'))
+            normalized_images = []
 
-        ELEMENT_REPLACED = False
-        for image in soup.findAll('img'):
-            if image.get('src'):
-                normalized_image = find_image(image.get('src'), referer)
-                if normalized_image:
-                    # replace original image link with clean and (local) copy
-                    if 'original_url' in normalized_image and normalized_image['original_url']:
-                        image['src'] = str(normalized_image['url'])
-                        ELEMENT_REPLACED = True
-                    normalized_images.append(normalized_image)
+            ELEMENT_REPLACED = False
+            for image in soup.findAll('img'):
+                if image.get('src'):
+                    normalized_image = find_image(image.get('src'), referer)
+                    if normalized_image:
+                        # replace original image link with clean and (local) copy
+                        if 'original_url' in normalized_image and normalized_image['original_url']:
+                            image['src'] = str(normalized_image['url'])
+                            ELEMENT_REPLACED = True
+                        normalized_images.append(normalized_image)
 
-        content_new = soup.prettify(encoding='utf-8')
-        if ELEMENT_REPLACED and content_new:
-            content = str(
-                html_slimmer(urllib2.unquote(hparser.unescape(content_new))))
-        return normalized_images, content
+            content_new = soup.prettify(encoding='utf-8')
+            if ELEMENT_REPLACED and content_new:
+                content = str(
+                    html_slimmer(urllib2.unquote(hparser.unescape(content_new))))
+            return normalized_images, content
+        else:
+            logger.warning("Wrong format %s" % content)
+            return None
     except Exception as k:
-        logger.error(str(k))
+        logger.error("Problem [%s] Source [%s]" % (str(k), content))
         return None
 
 
