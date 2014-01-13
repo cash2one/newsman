@@ -350,10 +350,10 @@ def find_images(content=None, referer=None):
             return normalized_images, content
         else:
             logger.info("Wrong format %s" % content)
-            return None
+            return None, content
     except Exception as k:
         logger.error("Problem [%s] Source [%s]" % (str(k), content))
-        return None
+        return None, content
 
 
 # TODO: relative path could be a url including its suffix like jpg/png

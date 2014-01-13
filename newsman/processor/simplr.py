@@ -28,8 +28,8 @@ import urlparse
 
 # CONSTANTS
 HIDDEN_IMAGE = {
-    'http://lifestyle.okezone.com':('div', {'id':'pt'}), 'http://sankei.jp.msn.com/': ('div', {'class': 'img250 imgright'}), 'http://www.cnn.co.jp/': ('div', {'id': 'leaf_large_image', 'class': 'img-caption'}),
-    'http://news.goo.ne.jp/': ('p', {'class': 'imager'}), 'http://jp.reuters.com/': ('td', {'id': "articlePhoto", 'class': "articlePhoto"})}
+        r'http://[\w]*.okezone.com':('div', {'id':'pt'}), r'http://[\w]*.inilah.com':('div', {'class':'imgbox'}), r'http://sankei.jp.msn.com/': ('div', {'class': 'img250 imgright'}), r'http://www.cnn.co.jp/': ('div', {'id': 'leaf_large_image', 'class': 'img-caption'}),
+    r'http://news.goo.ne.jp/': ('p', {'class': 'imager'}), r'http://jp.reuters.com/': ('td', {'id': "articlePhoto", 'class': "articlePhoto"})}
 
 
 class Simplr:
@@ -265,10 +265,15 @@ class Simplr:
         try:
             # image retriver
             article_image = None
-            matched_link = [
-                link for link in HIDDEN_IMAGE if self.url.startswith(link)]
+            # find matched prefix
+            matched_link = None
+            for link in HIDDEN_IMAGE:
+                if re.match(link, self.url, re.I):
+                    matched_link = link
+                    break
+
             if matched_link:
-                html_tag, html_attrs = HIDDEN_IMAGE[matched_link[0]]
+                html_tag, html_attrs = HIDDEN_IMAGE[matched_link]
                 article_image = content.find(name=html_tag, attrs=html_attrs)
                 if not article_image:
                     article_image = self.html.find(
@@ -309,6 +314,7 @@ class Simplr:
             if article_image:
                 article_image = article_image.renderContents(encoding='utf-8')
                 content = article_image + content
+
             content = self.regexps['kill_breaks'].sub("<br />", content)
             return content
         except Exception as k:
