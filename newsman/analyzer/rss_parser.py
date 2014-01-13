@@ -39,8 +39,35 @@ from config.settings import LANGUAGES
 from config.settings import DATABASE_REMOVAL_DAYS
 # prefix should not end with a slash
 HIDDEN_LINKS = {'http://news.goo.ne.jp':
-                ('div', 'lead fs16 bold'), 'http://news.nifty.com': ('li', 'headnews')}
+                ('div', {'class': 'lead fs16 bold'}), 'http://news.nifty.com': ('li', {'class': 'headnews'})}
 AD_LINKS = 'http://rss.rssad.jp/rss/ad/'
+
+
+def _get_actual_link(prefix, link):
+    """
+    find the actual news link
+    """
+    if not prefix or not link:
+        logger.error(
+            'Method malformed! Prefix:[%s], Link:[%s]' % (prefix, link))
+
+    try:
+        actual_link = None
+        raw_data = urllib2.urlopen(link)
+        data = raw_data.readlines()
+        # str() is critical
+        soup = BeautifulStoneSoup(str(data))
+        html_tag, html_attrs = HIDDEN_LINKS[prefix]
+        html_wrapper = soup.find(name=html_tag, attrs=html_attrs)
+        if html_wrapper:
+            actual_suffix = html_wrapper.find('a')['href']
+            actual_link = str('%s%s' % (prefix, actual_suffix))
+            return actual_link
+        else:
+            return None
+    except Exception as k:
+        logger.error('Cannot open %s' % k)
+        return None
 
 
 # TODO: [register unsupported date format](http://pythonhosted.org/feedparser/date-parsing.html#advanced-date)
@@ -71,10 +98,26 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
         if e.link:
             original_link = e.link.strip()
             if not original_link.startswith(AD_LINKS):
+                # clean the URL
                 original_link = urllib2.unquote(
                     hparser.unescape(original_link))
                 response = requests.get(original_link, headers=HEADERS)
-                entry['link'] = response.url
+                original_link = response.url
+
+                # find the redirected link
+                matched_prefix = [
+                    link for link in HIDDEN_LINKS if original_link.startswith(link)]
+                found_prefix = matched_prefix[0] if matched_prefix else None
+                if found_prefix:
+                    actual_link = _get_actual_link(found_prefix, original_link)
+                    if actual_link:
+                        entry['link'] = actual_link
+                    else:
+                        logger.error(
+                            'No actual link found for %s!' % original_link)
+                        return None
+                else:
+                    entry['link'] = original_link
             else:
                 logger.info('Advertising link %s' % original_link)
                 return None
@@ -280,7 +323,8 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
                     '%s has been permantently moved to a %s!' % (feed_link, d.href))
                 return None, status, feed_title, etag, modified, '%s has been permantently moved to a %s!' % (feed_link, d.href)
             elif status == 304:
-                logger.warning('%s server has not updated its feeds' % feed_link)
+                logger.warning(
+                    '%s server has not updated its feeds' % feed_link)
                 return None, status, feed_title, etag, modified, '%s server has not updated its feeds' % feed_link
             elif status == 410:
                 logger.critical(
