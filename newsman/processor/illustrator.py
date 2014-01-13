@@ -349,7 +349,7 @@ def find_images(content=None, referer=None):
                     html_slimmer(urllib2.unquote(hparser.unescape(content_new))))
             return normalized_images, content
         else:
-            logger.warning("Wrong format %s" % content)
+            logger.info("Wrong format %s" % content)
             return None
     except Exception as k:
         logger.error("Problem [%s] Source [%s]" % (str(k), content))
