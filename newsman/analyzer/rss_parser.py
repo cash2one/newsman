@@ -70,8 +70,6 @@ def _get_actual_link(prefix, link):
         return None
 
 
-# TODO: [register unsupported date format](http://pythonhosted.org/feedparser/date-parsing.html#advanced-date)
-# TODO: add thumbnail limit(downward)
 def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories=None):
     """
     read a specific entry item from a feed 
