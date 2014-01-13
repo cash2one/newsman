@@ -325,7 +325,7 @@ def find_images(content=None, referer=None):
     """
     if not content:
         logger.error('Content/HTML is found VOID!')
-        return None
+        return None, content
 
     try:
         if isinstance(content, str) or isinstance(content, unicode):
