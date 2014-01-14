@@ -28,7 +28,7 @@ import urlparse
 
 # CONSTANTS
 HIDDEN_IMAGE = {
-    r'http://[\w]*.okezone.com': [('div', {'id': 'pt'}), ('div', {'class': 'detail-img fl'})], r'http://[\w]*.inilah.com': [('div', {'class': 'imgbox'})], r'http://sankei.jp.msn.com/': [('div', {'class': 'img250 imgright'})], r'http://www.cnn.co.jp/': [('div', {'id': 'leaf_large_image', 'class': 'img-caption'})],
+        r'http://www.tempo.co':[('div', {'class':'konten-foto-travel'})], r'http://[\w]*.okezone.com': [('div', {'id': 'pt'}), ('div', {'class': 'detail-img fl'})], r'http://[\w]*.inilah.com': [('div', {'class': 'imgbox'})], r'http://sankei.jp.msn.com/': [('div', {'class': 'img250 imgright'})], r'http://www.cnn.co.jp/': [('div', {'id': 'leaf_large_image', 'class': 'img-caption'})],
     r'http://news.goo.ne.jp/': [('p', {'class': 'imager'})], r'http://jp.reuters.com/': [('td', {'id': "articlePhoto", 'class': "articlePhoto"})]}
 
 
@@ -154,7 +154,7 @@ class Simplr:
                     elem.extract()
                     continue
 
-                if 'tempo.co' in self.url and re.compile('title|submitted|inside-160|zoom-font', re.I).search(unlikely_match_string):
+                if 'tempo.co' in self.url and re.compile('title|submitted|inside-160|zoom-font|blok-share|blok-sitemap|block-inner', re.I).search(unlikely_match_string):
                     elem.extract()
                     continue
 
@@ -629,6 +629,12 @@ class Simplr:
                         img['src'] = img['src'].replace('-n1.jpg', '-p1.jpg')
                     elif img['src'].endswith('-s1.jpg'):
                         img['src'] = img['src'].replace('-s1.jpg', '-p1.jpg')
+
+                # optimization made for tempo.co
+                if 'tempo.co' in img['src']:
+                    if img['src'].endswith('blank.gif'):
+                        if img.get('data-original') and img['data-original']:
+                            img['src'] = img['data-original']
 
                 # optimization made for jp.reuters.com
                 if 's1.reutersmedia.net/resources/r/' in img['src']:
