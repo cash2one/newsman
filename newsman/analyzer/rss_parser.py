@@ -43,7 +43,35 @@ HIDDEN_LINKS = {'http://news.goo.ne.jp':
 AD_LINKS = 'http://rss.rssad.jp/rss/ad/'
 
 
-def _get_actual_link(prefix, link):
+def _find_redirected_link(url=None):
+    """
+    find the real link from redirection
+    """
+    if not url:
+        logger.error('Link [%s] is not valid!' % url)
+        return None
+
+    IS_REDIRECTED = True
+    counter = 0
+    nurl = url
+
+    while IS_REDIRECTED and counter < 10:
+        resp = requests.get(nurl, headers=HEADERS)
+        purl = nurl
+        nurl = resp.url
+
+        if nurl == purl:
+            IS_REDIRECTED = False
+        else:
+            counter = counter + 1
+
+    if not IS_REDIRECTED:
+        return nurl
+    else:
+        return None
+
+
+def _get_actual_link(prefix=None, link=None):
     """
     find the actual news link
     """
@@ -99,8 +127,8 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
                 # clean the URL
                 original_link = urllib2.unquote(
                     hparser.unescape(original_link))
-                response = requests.get(original_link, headers=HEADERS)
-                original_link = response.url
+                # find the real link from redirection
+                original_link = _find_redirected_link(original_link)
 
                 # find the redirected link
                 matched_prefix = [
