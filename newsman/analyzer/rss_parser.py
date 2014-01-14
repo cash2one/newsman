@@ -56,7 +56,7 @@ def _find_redirected_link(url=None):
     nurl = url
 
     while IS_REDIRECTED and counter < 10:
-        resp = requests.get(nurl, headers=HEADERS)
+        resp = requests.get(nurl)
         purl = nurl
         nurl = resp.url
 
