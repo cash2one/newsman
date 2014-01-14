@@ -154,6 +154,10 @@ class Simplr:
                     elem.extract()
                     continue
 
+                if 'tempo.co' in self.url and re.compile('title|submitted|inside-160|zoom-font', re.I).search(unlikely_match_string):
+                    elem.extract()
+                    continue
+
                 if elem.name == 'div':
                     s = elem.renderContents(encoding='utf-8')
                     if not self.regexps['div_to_p_elements'].search(s):
