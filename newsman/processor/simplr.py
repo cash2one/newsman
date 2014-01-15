@@ -379,7 +379,7 @@ class Simplr:
             # spaces
             unwanted_spaces = e.findAll(lambda tag:tag.name == 'p' and not tag.attrs and not tag.text)
             for unwanted_space in unwanted_spaces:
-                if len(unwanted_space.contents) == 1 and unwanted_space.contents[0].name = 'br':
+                if len(unwanted_space.contents) == 1 and unwanted_space.contents[0].name == 'br':
                     unwanted_space.extract()
         except Exception as k:
             logger.error(str(k))
