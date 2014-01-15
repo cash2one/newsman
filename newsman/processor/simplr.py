@@ -295,6 +295,7 @@ class Simplr:
 
             self._clean_comments(content)
             self._clean(content, 'h1')
+            self._clean(content, 'blockquote')
             self._clean(content, 'object')
             self._clean_conditionally(content, "form")
 
