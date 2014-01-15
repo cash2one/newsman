@@ -294,6 +294,8 @@ class Simplr:
                             break
 
             self._clean_comments(content)
+            # remove unwanted parts, by dirty hand
+            self._clean_extra_parts(content)
             self._clean(content, 'h1')
             self._clean(content, 'blockquote')
             self._clean(content, 'object')
@@ -360,6 +362,18 @@ class Simplr:
         try:
             comments = e.findAll(text=lambda text: isinstance(text, Comment))
             [comment.extract() for comment in comments]
+        except Exception as k:
+            logger.error(str(k))
+
+    def _clean_extra_parts(self, e):
+        try:
+            unwanted_parts = None
+            if 'antaranews.com' in self.url:
+                unwanted_parts = "COPYRIGHT . [\d]{3}|Ikuti berita terkini di handphone anda di"
+
+            extra_parts = e.findAll(text=re.compile(unwanted_parts))
+            # careful this might remove a bigger part
+            [extra_part.parent.extract() for extra_part in extra_parts]
         except Exception as k:
             logger.error(str(k))
 
