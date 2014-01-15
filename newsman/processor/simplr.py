@@ -158,6 +158,10 @@ class Simplr:
                     elem.extract()
                     continue
 
+                if 'antaranews.com' in self.url and re.compile('mt10|datetime|byline|title_related|box_v', re.I).search(unlikely_match_string):
+                    elem.extract()
+                    continue
+
                 if elem.name == 'div':
                     s = elem.renderContents(encoding='utf-8')
                     if not self.regexps['div_to_p_elements'].search(s):
