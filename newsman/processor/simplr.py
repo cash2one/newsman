@@ -636,6 +636,13 @@ class Simplr:
                         if img.get('data-original') and img['data-original']:
                             img['src'] = img['data-original']
 
+                # optimization made for antaranews.com
+                if 'antaranews.com' in img['src']:
+                    f = furl(img['src'])
+                    # if small is the size, change it to original size
+                    f.path = str(f.path).replace('/small/', '/ori/')
+                    img['src'] = f.url
+
                 # optimization made for jp.reuters.com
                 if 's1.reutersmedia.net/resources/r/' in img['src']:
                     f = furl(img['src'])
