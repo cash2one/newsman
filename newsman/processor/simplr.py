@@ -367,6 +367,7 @@ class Simplr:
 
     def _clean_extra_parts(self, e):
         try:
+            # meaningful parts
             unwanted_parts = None
             if 'antaranews.com' in self.url:
                 unwanted_parts = "COPYRIGHT . [\d]{3}|Ikuti berita terkini di handphone anda di"
@@ -374,6 +375,12 @@ class Simplr:
             extra_parts = e.findAll(text=re.compile(unwanted_parts))
             # careful this might remove a bigger part
             [extra_part.parent.extract() for extra_part in extra_parts]
+
+            # spaces
+            unwanted_spaces = e.findAll(lambda tag:tag.name == 'p' and not tag.attrs and not tag.text)
+            for unwanted_space in unwanted_spaces:
+                if len(unwanted_space.contents) == 1 and unwanted_space.contents[0].name = 'br':
+                    unwanted_space.extract()
         except Exception as k:
             logger.error(str(k))
 
