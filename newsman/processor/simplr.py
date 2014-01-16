@@ -162,7 +162,7 @@ class Simplr:
                     elem.extract()
                     continue
 
-                if 'detik.com' in self.url and re.compile('komentar|l_red2_detik|l_green_detik|author|date|infoanda|articleshare2|iklan_tengah|adpoint_bottom|recommend|box_1|info_redaksi', re.I).search(unlikely_match_string):
+                if 'detik.com' in self.url and re.compile('komentar|l_red2_detik|l_green_detik|author|date|infoanda|articleshare2|iklan_tengah|adpoint_bottom|recommend|box_1|info_redaksi|link_block', re.I).search(unlikely_match_string):
                     elem.extract()
                     continue
 
