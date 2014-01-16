@@ -28,7 +28,7 @@ import urlparse
 
 # CONSTANTS
 HIDDEN_IMAGE = {
-    r'http://[\w]*.detik.com':[('div', {'class': 'pic_artikel'})], r'http://[\w]*.antaranews.com':[('div', {'class':'imgNews'})], r'http://www.metrotvnews.com': [('div', {'class': 'read-media left'})], r'http://www.tempo.co': [('div', {'class': 'konten-foto-travel'})], r'http://[\w]*.okezone.com': [('div', {'id': 'pt'}), ('div', {'class': 'detail-img fl'})], r'http://[\w]*.inilah.com': [('div', {'class': 'imgbox'})], r'http://sankei.jp.msn.com/': [('div', {'class': 'img250 imgright'})], r'http://www.cnn.co.jp/': [('div', {'id': 'leaf_large_image', 'class': 'img-caption'})],
+    r'http://[\w]*.detik.com':[('div', {'class': re.compile('pic_artikel')})], r'http://[\w]*.antaranews.com':[('div', {'class':'imgNews'})], r'http://www.metrotvnews.com': [('div', {'class': 'read-media left'})], r'http://www.tempo.co': [('div', {'class': 'konten-foto-travel'})], r'http://[\w]*.okezone.com': [('div', {'id': 'pt'}), ('div', {'class': 'detail-img fl'})], r'http://[\w]*.inilah.com': [('div', {'class': 'imgbox'})], r'http://sankei.jp.msn.com/': [('div', {'class': 'img250 imgright'})], r'http://www.cnn.co.jp/': [('div', {'id': 'leaf_large_image', 'class': 'img-caption'})],
     r'http://news.goo.ne.jp/': [('p', {'class': 'imager'})], r'http://jp.reuters.com/': [('td', {'id': "articlePhoto", 'class': "articlePhoto"})]}
 
 
