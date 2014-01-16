@@ -375,6 +375,8 @@ class Simplr:
             unwanted_parts = None
             if 'antaranews.com' in self.url:
                 unwanted_parts = "COPYRIGHT . [\d]{3}|Ikuti berita terkini di handphone anda di"
+            if 'detik.com' in self.url:
+                unwanted_parts = "Your Browser didn't support iframe"
 
             if unwanted_parts:
                 extra_parts = e.findAll(text=re.compile(unwanted_parts))
@@ -383,6 +385,13 @@ class Simplr:
 
             # spaces
             unwanted_spaces = e.findAll(lambda tag:tag.name == 'p' and not tag.attrs and not tag.text)
+            if len(unwanted_spaces) == 1:
+                if len(unwanted_spaces[0].contents) == 0:
+                    unwanted_spaces[0].extract()
+                elif len(unwanted_spaces[0].contents) == 1:
+                    if len(unwanted_spaces[0].contents[0].text) < 15:
+                        unwanted_spaces[0].extract()
+
             for unwanted_space in unwanted_spaces:
                 if len(unwanted_space.contents) == 1 and unwanted_space.contents[0].name == 'br':
                     unwanted_space.extract()
