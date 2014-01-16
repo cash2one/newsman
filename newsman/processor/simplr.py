@@ -372,9 +372,10 @@ class Simplr:
             if 'antaranews.com' in self.url:
                 unwanted_parts = "COPYRIGHT . [\d]{3}|Ikuti berita terkini di handphone anda di"
 
-            extra_parts = e.findAll(text=re.compile(unwanted_parts))
-            # careful this might remove a bigger part
-            [extra_part.parent.extract() for extra_part in extra_parts]
+            if unwanted_parts:
+                extra_parts = e.findAll(text=re.compile(unwanted_parts))
+                # careful this might remove a bigger part
+                [extra_part.parent.extract() for extra_part in extra_parts]
 
             # spaces
             unwanted_spaces = e.findAll(lambda tag:tag.name == 'p' and not tag.attrs and not tag.text)
