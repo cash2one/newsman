@@ -34,10 +34,10 @@ HIDDEN_IMAGE = {
 
 class Simplr:
     regexps = {
-        'unlikely_candidates': re.compile("banner|button|combx|comment|community|copyright|disqus|extra|foot|header|menu|remark|rss|poll|share|shoutbox|sidebar|sponsor|sns|ad-break|agegate|pagination|pager|popup|posted|pr|tweet|twitter", re.I),
+        'unlikely_candidates': re.compile("banner|breadcrumb|button|combx|comment|community|copyright|disqus|extra|foot|header|menu|remark|rss|poll|share|shoutbox|sidebar|sponsor|sns|ad-break|agegate|pagination|pager|popup|posted|pr|tweet|twitter", re.I),
         'ok_maybe_its_a_candidate': re.compile("and|article|body|column|content|main|post|shadow", re.I),
         'positive': re.compile("article|blog|body|content|entry|hentry|image|main|page|pagination|photo|post|story|text", re.I),
-        'negative': re.compile("banner|combx|comment|com|contact|foot|footer|footnote|genre|logo|masthead|media|meta|outbrain|poll|pr|promo|ranking|related|scroll|share|shoutbox|sidebar|sponsor|shopping|tags|tool|widget|link", re.I),
+        'negative': re.compile("banner|breadcrumb|combx|comment|com|contact|foot|footer|footnote|genre|logo|masthead|media|meta|outbrain|poll|pr|promo|ranking|related|scroll|share|shoutbox|sidebar|sponsor|shopping|tags|tool|widget|link", re.I),
         'extraneous': re.compile("print|archive|comment|discuss|e[\-]?mail|share|reply|all|login|sign|single", re.I),
         'div_to_p_elements': re.compile("<(a|blockquote|dl|div|img|ol|p|pre|table|ul)", re.I),
         'replace_brs': re.compile("(<br[^>]*>[ \n\r\t]*){2,}", re.I),
@@ -150,6 +150,10 @@ class Simplr:
                     elem.extract()
                     continue
 
+                if 'sanook.com' in self.url and re.compile('lts|fanpage|nav|wb-ch-h|wb-ly|article-info|related', re.I).search(unlikely_match_string):
+                    elem.extract()
+                    continue
+
                 if 'okezone.com' in self.url and re.compile('subkanal|date-time fl|author fl', re.I).search(unlikely_match_string):
                     elem.extract()
                     continue
@@ -173,9 +177,9 @@ class Simplr:
                     else:
                         if 'kapook.com' in self.url:
                             if elem.get('align') and (elem.get('align') == 'center' or elem.get('align') == 'left'):
-                                # print elem
-                                # print '+++++++++++++++++++++++++++++++++++'
-                                # print
+                                elem.name = 'p'
+                        elif 'sanook.com' in self.url:
+                            if elem.get('class') and elem.get('class') == 'reader':
                                 elem.name = 'p'
                 else:
                     if self.url.startswith('http://jp.reuters.com/'):
@@ -186,15 +190,7 @@ class Simplr:
                         if elem.parent.name == 'div':
                             if elem.name == 'img' and elem.parent.get('id') and (elem.parent.get('id') == 'article' or elem.parent.get('id') == 'container2'):
                                 elem.name = 'p'
-                                # print elem
-                                # print elem.parent
-                                # print "**********************"
-                                # print
                             else:
-                                # print elem
-                                # print elem.parent.attrs
-                                # print "**********************"
-                                # print
                                 pass
 
             for node in self.html.findAll('p'):
@@ -374,17 +370,21 @@ class Simplr:
             # meaningful parts
             unwanted_parts = None
             if 'antaranews.com' in self.url:
-                unwanted_parts = "COPYRIGHT . [\d]{3}|Ikuti berita terkini di handphone anda di"
+                unwanted_parts = u"COPYRIGHT . [\d]{3}|Ikuti berita terkini di handphone anda di"
             if 'detik.com' in self.url:
-                unwanted_parts = "Your Browser didn't support iframe"
+                unwanted_parts = u"Your Browser didn't support iframe"
+            if 'sanook.com' in self.url:
+                unwanted_parts = u'ร่วมเป็นแฟนเพจเรา บน'
+                unwanted_parts = u'อ่านเรื่องที่เกี่ยวข้องทั้งหมด|ร่วมเป็นแฟนเพจเรา บน'
+                #unwanted_parts = u'ติดตามข่าวด่วน เกาะกระแสข่าวดัง บน'
 
             if unwanted_parts:
-                extra_parts = e.findAll(text=re.compile(unwanted_parts))
+                extra_parts = e.findAll(text=re.compile(unwanted_parts, re.UNICODE))
                 # careful this might remove a bigger part
                 [extra_part.parent.extract() for extra_part in extra_parts]
 
             # spaces
-            unwanted_spaces = e.findAll(lambda tag:tag.name == 'p' and not tag.attrs and not tag.text)
+            unwanted_spaces = e.findAll(lambda tag:tag.name == 'p' and not tag.attrs and not (tag.text if 'text' in tag else True))
             if len(unwanted_spaces) == 1:
                 if len(unwanted_spaces[0].contents) == 0:
                     unwanted_spaces[0].extract()
@@ -393,7 +393,7 @@ class Simplr:
                         unwanted_spaces[0].extract()
 
             for unwanted_space in unwanted_spaces:
-                if len(unwanted_space.contents) == 1 and unwanted_space.contents[0].name == 'br':
+                if len(unwanted_space.contents) == 1 and 'name' in unwanted_space.contents[0] and unwanted_space.contents[0].name == 'br':
                     unwanted_space.extract()
         except Exception as k:
             logger.error(str(k))
