@@ -28,7 +28,7 @@ import urlparse
 
 # CONSTANTS
 HIDDEN_IMAGE = {
-    r'http://[\w]*.mthai.com':[('img', {'class':re.compile('alignnone size-full wp-image')})], r'http://[\w]*.detik.com': [('div', {'class': re.compile('pic_artikel')})], r'http://[\w]*.antaranews.com': [('div', {'class': 'imgNews'})], r'http://www.metrotvnews.com': [('div', {'class': 'read-media left'})], r'http://www.tempo.co': [('div', {'class': 'konten-foto-travel'})], r'http://[\w]*.okezone.com': [('div', {'id': 'pt'}), ('div', {'class': 'detail-img fl'})], r'http://[\w]*.inilah.com': [('div', {'class': 'imgbox'})], r'http://sankei.jp.msn.com/': [('div', {'class': 'img250 imgright'})], r'http://www.cnn.co.jp/': [('div', {'id': 'leaf_large_image', 'class': 'img-caption'})],
+    r'http://[\w]*.mthai.com': [('img', {'class': re.compile('alignnone size-full wp-image')})], r'http://[\w]*.detik.com': [('div', {'class': re.compile('pic_artikel')})], r'http://[\w]*.antaranews.com': [('div', {'class': 'imgNews'})], r'http://www.metrotvnews.com': [('div', {'class': 'read-media left'})], r'http://www.tempo.co': [('div', {'class': 'konten-foto-travel'})], r'http://[\w]*.okezone.com': [('div', {'id': 'pt'}), ('div', {'class': 'detail-img fl'})], r'http://[\w]*.inilah.com': [('div', {'class': 'imgbox'})], r'http://sankei.jp.msn.com/': [('div', {'class': 'img250 imgright'})], r'http://www.cnn.co.jp/': [('div', {'id': 'leaf_large_image', 'class': 'img-caption'})],
     r'http://news.goo.ne.jp/': [('p', {'class': 'imager'})], r'http://jp.reuters.com/': [('td', {'id': "articlePhoto", 'class': "articlePhoto"})]}
 
 
@@ -123,12 +123,12 @@ class Simplr:
                     'id', '') + elem.get('class', '')
 
                 if self.regexps['unlikely_candidates'].search(unlikely_match_string) and not self.regexps['ok_maybe_its_a_candidate'].search(unlikely_match_string) and elem.name != 'body':
-                    #print elem.name
-                    #print self.regexps['unlikely_candidates'].findall(unlikely_match_string)
+                    # print elem.name
+                    # print self.regexps['unlikely_candidates'].findall(unlikely_match_string)
                     # print 'id', elem.get('id') if elem.get('id') else None
                     # print 'class', elem.get('class') if elem.get('class') else None
-                    #print '++++++++++++++++++++++++++++++++++++++++++++'
-                    #print
+                    # print '++++++++++++++++++++++++++++++++++++++++++++'
+                    # print
                     elem.extract()
                     continue
 
@@ -329,7 +329,8 @@ class Simplr:
                     encoding='utf-8')
                 # if <img> is rendered to None
                 if not article_image_string:
-                    article_image_string = article_image.parent.renderContents(encoding='utf-8')
+                    article_image_string = article_image.parent.renderContents(
+                        encoding='utf-8')
                 content_string = article_image_string + content_string
 
             content_string = self.regexps[
