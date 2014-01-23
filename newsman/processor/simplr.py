@@ -149,7 +149,7 @@ class Simplr:
                     elem.extract()
                     continue
 
-                if 'mthai.com' in self.url and re.compile('entry-other|source', re.I).search(unlikely_match_string):
+                if 'mthai.com' in self.url and re.compile('entry-other|source|profile-relate|profile-ig|news-relate|news-tag', re.I).search(unlikely_match_string):
                     elem.extract()
                     continue
 
