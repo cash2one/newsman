@@ -28,14 +28,14 @@ import urlparse
 
 # CONSTANTS
 HIDDEN_IMAGE = {
-    r'http://[\w]*.detik.com': [('div', {'class': re.compile('pic_artikel')})], r'http://[\w]*.antaranews.com': [('div', {'class': 'imgNews'})], r'http://www.metrotvnews.com': [('div', {'class': 'read-media left'})], r'http://www.tempo.co': [('div', {'class': 'konten-foto-travel'})], r'http://[\w]*.okezone.com': [('div', {'id': 'pt'}), ('div', {'class': 'detail-img fl'})], r'http://[\w]*.inilah.com': [('div', {'class': 'imgbox'})], r'http://sankei.jp.msn.com/': [('div', {'class': 'img250 imgright'})], r'http://www.cnn.co.jp/': [('div', {'id': 'leaf_large_image', 'class': 'img-caption'})],
+    r'http://[\w]*.mthai.com':[('img', {'class':re.compile('alignnone size-full wp-image')})], r'http://[\w]*.detik.com': [('div', {'class': re.compile('pic_artikel')})], r'http://[\w]*.antaranews.com': [('div', {'class': 'imgNews'})], r'http://www.metrotvnews.com': [('div', {'class': 'read-media left'})], r'http://www.tempo.co': [('div', {'class': 'konten-foto-travel'})], r'http://[\w]*.okezone.com': [('div', {'id': 'pt'}), ('div', {'class': 'detail-img fl'})], r'http://[\w]*.inilah.com': [('div', {'class': 'imgbox'})], r'http://sankei.jp.msn.com/': [('div', {'class': 'img250 imgright'})], r'http://www.cnn.co.jp/': [('div', {'id': 'leaf_large_image', 'class': 'img-caption'})],
     r'http://news.goo.ne.jp/': [('p', {'class': 'imager'})], r'http://jp.reuters.com/': [('td', {'id': "articlePhoto", 'class': "articlePhoto"})]}
 
 
 class Simplr:
     regexps = {
         'unlikely_candidates': re.compile("banner|breadcrumb|button|combx|comment|community|copyright|disqus|extra|foot|header|menu|remark|rss|poll|share|shoutbox|sidebar|sponsor|sns|ad-break|agegate|pagination|pager|popup|posted|pr|tweet|twitter", re.I),
-        'ok_maybe_its_a_candidate': re.compile("and|article|body|column|content|main|post|shadow", re.I),
+        'ok_maybe_its_a_candidate': re.compile("and|article|body|column|content|main|post|primary|shadow", re.I),
         'positive': re.compile("article|blog|body|content|entry|hentry|image|main|page|pagination|photo|post|story|text", re.I),
         'negative': re.compile("banner|breadcrumb|combx|comment|com|contact|foot|footer|footnote|genre|logo|masthead|media|meta|outbrain|poll|pr|promo|ranking|related|scroll|share|shoutbox|sidebar|sponsor|shopping|tags|tool|widget|link", re.I),
         'extraneous': re.compile("print|archive|comment|discuss|e[\-]?mail|share|reply|all|login|sign|single", re.I),
@@ -123,13 +123,12 @@ class Simplr:
                     'id', '') + elem.get('class', '')
 
                 if self.regexps['unlikely_candidates'].search(unlikely_match_string) and not self.regexps['ok_maybe_its_a_candidate'].search(unlikely_match_string) and elem.name != 'body':
-                    # print elem
-                    # print self.regexps['unlikely_candidates'].findall(unlikely_match_string)
+                    #print elem.name
+                    #print self.regexps['unlikely_candidates'].findall(unlikely_match_string)
                     # print 'id', elem.get('id') if elem.get('id') else None
                     # print 'class', elem.get('class') if elem.get('class') else None
-                    # print '++++++++++++++++++++++++++++++++++++++++++++'
-                    # print
-                    # print
+                    #print '++++++++++++++++++++++++++++++++++++++++++++'
+                    #print
                     elem.extract()
                     continue
 
@@ -143,14 +142,14 @@ class Simplr:
                     continue
 
                 if 'kapook.com' in self.url and elem.name == 'table':
-                    # if elem.get('bordercolor') and elem.get('bordercolor') == '#FF0000':
-                    # print elem
-                    # print '&&&&&&&&&&&&&&&&&&&&&&&&&&&'
-                    # print
                     elem.extract()
                     continue
 
                 if 'sanook.com' in self.url and re.compile('lts|fanpage|nav|wb-ch-h|wb-ly|article-info|related', re.I).search(unlikely_match_string):
+                    elem.extract()
+                    continue
+
+                if 'mthai.com' in self.url and re.compile('entry-other|source', re.I).search(unlikely_match_string):
                     elem.extract()
                     continue
 
@@ -328,6 +327,9 @@ class Simplr:
             if not content.find('img') and article_image:
                 article_image_string = article_image.renderContents(
                     encoding='utf-8')
+                # if <img> is rendered to None
+                if not article_image_string:
+                    article_image_string = article_image.parent.renderContents(encoding='utf-8')
                 content_string = article_image_string + content_string
 
             content_string = self.regexps[
@@ -374,9 +376,9 @@ class Simplr:
             if 'detik.com' in self.url:
                 unwanted_parts = u"Your Browser didn't support iframe"
             if 'sanook.com' in self.url:
-                unwanted_parts = u'ร่วมเป็นแฟนเพจเรา บน'
                 unwanted_parts = u'อ่านเรื่องที่เกี่ยวข้องทั้งหมด|ร่วมเป็นแฟนเพจเรา บน'
-                #unwanted_parts = u'ติดตามข่าวด่วน เกาะกระแสข่าวดัง บน'
+            if 'mthai.com' in self.url:
+                unwanted_parts = u'MThai News'
 
             if unwanted_parts:
                 extra_parts = e.findAll(
