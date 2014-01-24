@@ -14,7 +14,7 @@ reload(sys)
 sys.setdefaultencoding("utf-8")
 sys.path.append("..")
 
-from BeautifulSoup import BeautifulSoup, Comment
+from BeautifulSoup import BeautifulSoup, Comment, NavigableString
 import codecs
 from config.settings import logger
 from furl import furl
@@ -28,7 +28,7 @@ import urlparse
 
 # CONSTANTS
 HIDDEN_IMAGE = {
-    r'http://[\w]*.mthai.com': [('img', {'class': re.compile('alignnone size-full wp-image')})], r'http://[\w]*.detik.com': [('div', {'class': re.compile('pic_artikel')})], r'http://[\w]*.antaranews.com': [('div', {'class': 'imgNews'})], r'http://www.metrotvnews.com': [('div', {'class': 'read-media left'})], r'http://www.tempo.co': [('div', {'class': 'konten-foto-travel'})], r'http://[\w]*.okezone.com': [('div', {'id': 'pt'}), ('div', {'class': 'detail-img fl'})], r'http://[\w]*.inilah.com': [('div', {'class': 'imgbox'})], r'http://sankei.jp.msn.com/': [('div', {'class': 'img250 imgright'})], r'http://www.cnn.co.jp/': [('div', {'id': 'leaf_large_image', 'class': 'img-caption'})],
+    r'http://[\w]*.posttoday.com':[('p', {'class':re.compile('centerThumbnail', re.I)})], r'http://[\w]*.matichon.co.th':[('a', {'class':re.compile('lytebox', re.I)})], r'http://[\w]*.mthai.com': [('img', {'class': re.compile('alignnone size-full wp-image')})], r'http://[\w]*.detik.com': [('div', {'class': re.compile('pic_artikel')})], r'http://[\w]*.antaranews.com': [('div', {'class': 'imgNews'})], r'http://www.metrotvnews.com': [('div', {'class': 'read-media left'})], r'http://www.tempo.co': [('div', {'class': 'konten-foto-travel'})], r'http://[\w]*.okezone.com': [('div', {'id': 'pt'}), ('div', {'class': 'detail-img fl'})], r'http://[\w]*.inilah.com': [('div', {'class': 'imgbox'})], r'http://sankei.jp.msn.com/': [('div', {'class': 'img250 imgright'})], r'http://www.cnn.co.jp/': [('div', {'id': 'leaf_large_image', 'class': 'img-caption'})],
     r'http://news.goo.ne.jp/': [('p', {'class': 'imager'})], r'http://jp.reuters.com/': [('td', {'id': "articlePhoto", 'class': "articlePhoto"})]}
 
 
@@ -67,6 +67,8 @@ class Simplr:
                 "<\g<1>span>", str(self.data))
 
             self.html = BeautifulSoup(self.data.decode('utf-8', 'ignore'))
+            self.article_image = None
+            self._get_specific_image()
             self._remove_script()
             self._remove_style()
             self._remove_link()
@@ -169,6 +171,11 @@ class Simplr:
                     elem.extract()
                     continue
 
+
+                if 'posttoday.com' in self.url and re.compile('text-size', re.I).search(unlikely_match_string):
+                    elem.extract()
+                    continue
+
                 if elem.name == 'div':
                     s = elem.renderContents(encoding='utf-8')
                     if not self.regexps['div_to_p_elements'].search(s):
@@ -268,10 +275,9 @@ class Simplr:
         except Exception as k:
             logger.error(str(k))
 
-    def _clean_article(self, content):
+    def _get_specific_image(self):
         try:
             # image retriver
-            article_image = None
             # find matched prefix
             matched_link = None
             for link in HIDDEN_IMAGE:
@@ -283,15 +289,18 @@ class Simplr:
                 feature_list = HIDDEN_IMAGE[matched_link]
                 for feature in feature_list:
                     html_tag, html_attrs = feature
-                    if not article_image:
-                        article_image = self.html.find(
-                            name=html_tag, attrs=html_attrs)
-                        if article_image:
+                    if not self.article_image:
+                        self.article_image = self.html.find(name=html_tag, attrs=html_attrs)
+                        if self.article_image:
                             # prune article image
-                            self._fix_images_path(article_image)
-                            self._fix_links_path(article_image)
+                            self._fix_images_path(self.article_image)
+                            self._fix_links_path(self.article_image)
                             break
+        except Exception as k:
+            logger.error(str(k))
 
+    def _clean_article(self, content):
+        try:
             self._clean_comments(content)
             # remove unwanted parts, by dirty hand
             self._clean_extra_parts(content)
@@ -324,12 +333,12 @@ class Simplr:
             self._fix_links_path(content)
 
             content_string = content.renderContents(encoding='utf-8')
-            if not content.find('img') and article_image:
-                article_image_string = article_image.renderContents(
+            if not content.find('img') and self.article_image:
+                article_image_string = self.article_image.renderContents(
                     encoding='utf-8')
                 # if <img> is rendered to None
                 if not article_image_string:
-                    article_image_string = article_image.parent.renderContents(
+                    article_image_string = self.article_image.parent.renderContents(
                         encoding='utf-8')
                 content_string = article_image_string + content_string
 
@@ -380,6 +389,8 @@ class Simplr:
                 unwanted_parts = u'อ่านเรื่องที่เกี่ยวข้องทั้งหมด|ร่วมเป็นแฟนเพจเรา บน'
             if 'mthai.com' in self.url:
                 unwanted_parts = u'MThai News'
+            if 'matichon.co.th' in self.url:
+                unwanted_parts = u'facebook.com/MatichonOnline|ร่วมเป็นแฟนเพจเฟซบุ๊กกับมติชนออนไลน์'
 
             if unwanted_parts:
                 extra_parts = e.findAll(
@@ -388,8 +399,7 @@ class Simplr:
                 [extra_part.parent.extract() for extra_part in extra_parts]
 
             # spaces
-            unwanted_spaces = e.findAll(
-                lambda tag: tag.name == 'p' and not tag.attrs and not (tag.text if 'text' in tag else True))
+            unwanted_spaces = e.findAll(lambda tag: tag.name == 'p' and not tag.attrs and not (tag.text if 'text' in tag else False))
             if len(unwanted_spaces) == 1:
                 if len(unwanted_spaces[0].contents) == 0:
                     unwanted_spaces[0].extract()
@@ -398,7 +408,7 @@ class Simplr:
                         unwanted_spaces[0].extract()
 
             for unwanted_space in unwanted_spaces:
-                if len(unwanted_space.contents) == 1 and 'name' in unwanted_space.contents[0] and unwanted_space.contents[0].name == 'br':
+                if len(unwanted_space.contents) == 1 and not isinstance(unwanted_space.contents[0], NavigableString) and unwanted_space.contents[0].name == 'br':
                     unwanted_space.extract()
         except Exception as k:
             logger.error(str(k))
@@ -687,6 +697,11 @@ class Simplr:
                     # if small is the size, change it to original size
                     f.path = str(f.path).replace('/small/', '/ori/')
                     img['src'] = f.url
+                
+                if 'matichon.co.th' in img['src']:
+                    suffix = re.findall(r'\d+.(jpe?g|gif|png)$', img['src'].lower())
+                    if suffix:
+                        img['src'] = img['src'].replace('.%s' % suffix[0], 'l.%s' % suffix[0])
 
                 # optimization made for jp.reuters.com
                 if 's1.reutersmedia.net/resources/r/' in img['src']:
