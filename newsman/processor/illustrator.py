@@ -148,7 +148,7 @@ class NormalizedImage:
 
         try:
             response = requests.get(image_url, timeout=UCK_TIMEOUT)
-            if response.status_code > 400:
+            if response.status_code > 400 or 'posttoday.com/media/content' in image_url:
                 raise Exception(
                     'Without HEADERS [%s] cannot be reached!' % str(image_url))
         except Exception as k:
@@ -191,8 +191,10 @@ class NormalizedImage:
             image_data = Image.open(StringIO(image_html))
             # rely on PIL to tell the format
             image_format = image_data.format if image_data and image_data.format else 'jpg'
-            image_web_path = '%s%s.%s' % (IMAGES_PUBLIC_DIR, relative_path, image_format.lower())
-            image_local_path = '%s%s.%s' % (IMAGES_LOCAL_DIR, relative_path, image_format.lower())
+            image_web_path = '%s%s.%s' % (
+                IMAGES_PUBLIC_DIR, relative_path, image_format.lower())
+            image_local_path = '%s%s.%s' % (
+                IMAGES_LOCAL_DIR, relative_path, image_format.lower())
             #image_data = image_data.convert('RGB')
             #image_data.save(image_local_path, image_format)
             f = open(image_local_path, 'wb')
@@ -287,7 +289,8 @@ def find_biggest_image(images=None):
                         biggest = image
                         resolution_max = resolution_image
                 else:
-                    logger.info('Image [%s] is not big enough!' % str(image['url']))
+                    logger.info('Image [%s] is not big enough!' %
+                                str(image['url']))
             else:
                 logger.info('Height and width not found! %s' % str(image))
         return biggest
@@ -301,7 +304,8 @@ def find_image(image_url=None, referer=None):
     find an image from the link
     """
     if not image_url:
-        logger.error('Image URL [%s] is not found | Referer [%s]!' % (image_url, referer))
+        logger.error('Image URL [%s] is not found | Referer [%s]!' %
+                     (image_url, referer))
         return None
 
     try:
@@ -337,7 +341,8 @@ def find_images(content=None, referer=None):
                 if image.get('src'):
                     normalized_image = find_image(image.get('src'), referer)
                     if normalized_image:
-                        # replace original image link with clean and (local) copy
+                        # replace original image link with clean and (local)
+                        # copy
                         if 'original_url' in normalized_image and normalized_image['original_url']:
                             image['src'] = str(normalized_image['url'])
                             ELEMENT_REPLACED = True
@@ -471,7 +476,8 @@ def scale_image(image=None, referer=None, size_expected=MIN_IMAGE_SIZE, resize_b
                     return None, None
 
                 # resize image according to new size
-                image_format = image_data.format.lower() if image_data and image_data.format else 'jpg'
+                image_format = image_data.format.lower(
+                ) if image_data and image_data.format else 'jpg'
                 image_data.thumbnail(size_new, Image.ANTIALIAS)
                 image_cropped = None
 
@@ -491,8 +497,10 @@ def scale_image(image=None, referer=None, size_expected=MIN_IMAGE_SIZE, resize_b
 
                 # save to disk
                 if image_cropped:
-                    image_web_path = '%s%s.%s' % (IMAGES_PUBLIC_DIR, relative_path, image_format.lower())
-                    image_local_path = '%s%s.%s' % (IMAGES_LOCAL_DIR, relative_path, image_format.lower())
+                    image_web_path = '%s%s.%s' % (
+                        IMAGES_PUBLIC_DIR, relative_path, image_format.lower())
+                    image_local_path = '%s%s.%s' % (
+                        IMAGES_LOCAL_DIR, relative_path, image_format.lower())
                     image_cropped = image_cropped.convert('RGB')
                     image_cropped.save(image_local_path, image_format)
 
