@@ -277,8 +277,7 @@ def get_latest_entries(language=None, country=None, category=None, feed=None, li
                         {'%s.%s' % ('labels', label_name): {'$exists': True}}, {'feed_title': 1})
                     feed_names = [feed_list['feed_title']
                                   for feed_list in feed_lists]
-                    items = col.find({'updated': {'$lt': last_entry_in_memory_updated}, 'feed': {'$in': feed_names}}).sort(
-                        'updated', -1).limit(limit_in_database)
+                    items = col.find({'updated': {'$lt': last_entry_in_memory_updated}, 'feed': {'$in': feed_names}}).sort('updated', -1).limit(limit_in_database)
                 else:
                     items = col.find({'updated': {'$lt': last_entry_in_memory_updated}, 'feed': feed}).sort(
                         'updated', -1).limit(limit_in_database)
