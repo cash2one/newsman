@@ -746,3 +746,8 @@ def convert(url, language):
     except Exception as k:
         logger.error('%s for %s' % (str(k), str(url)))
         return None, None, None
+
+
+if __name__ == '__main__':
+    title, content, images = convert(sys.argv[1], sys.argv[2])
+    return content
