@@ -20,6 +20,13 @@ from config.settings import logger
 # CONSTANTS
 from config.settings import LANGUAGES
 
+# Database is indexed by
+# db.en.ensureIndex({'feed':1, 'title':1, 'link':1}, {background: true, unique: true, dropDups: true})
+# to ensure unique insertion
+# and db.en.ensureIndex({'feed':1, 'updated':-1}, {background: true})
+# to ensure fast query
+#
+
 
 def dedup(entries=None, language=None):
     """
