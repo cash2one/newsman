@@ -23,7 +23,7 @@ def clean():
     command = "kill -HUP `ps -A -ostat,ppid | grep -e '^[Zz]' | awk '{print $2}'`"
     subprocess.Popen(command, stderr=subprocess.PIPE, shell=True)
 
-    command = "ps -xal | grep p[y]thon | grep '<defunct>' | awk '{print $4}' | xargs kill -9"
+    command = "ps -xal | grep p[y]thon | grep '<defunct>' | awk '{print $4}' | xargs kill -15"
     subprocess.Popen(command, stderr=subprocess.PIPE, shell=True)
 
 
