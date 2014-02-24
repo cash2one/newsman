@@ -1,2 +1,5 @@
 **gmon.out
-**/*.pyc
+***.pyc
+**core.*
+**db_id_list
+
