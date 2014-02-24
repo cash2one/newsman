@@ -1,0 +1,4 @@
+/**/*.pyc
+/**/core.*
+/**/gmon.out
+/newsman/bin/text_based_feeds/db_id_list
