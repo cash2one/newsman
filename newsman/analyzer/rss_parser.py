@@ -124,11 +124,20 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
         if e.link:
             original_link = e.link.strip()
             if not original_link.startswith(AD_LINKS):
-                # clean the URL
-                original_link = urllib2.unquote(
-                    hparser.unescape(original_link))
+                # print 'original', original_link
+                # print 'unescaped', hparser.unescape(original_link)
+                # print 'unquoted', urllib2.unquote(original_link)
+                # print 'unescaped-unquoted', urllib2.unquote(hparser.unescape(original_link))
+                # print 'unquoted-unescaped', hparser.unescape(urllib2.unquote(original_link))
                 # find the real link from redirection
+                # the sequence of the following two steps are IMPORTANT!
                 original_link = _find_redirected_link(original_link)
+                # print 'anti-redirected', original_link
+                # clean the URL
+                # original_link = urllib2.unquote(hparser.unescape(original_link))
+                # print 'unescaped-unquoted', original_link
+                # print '------------------------------------------------'
+
 
                 # find the redirected link
                 matched_prefix = [
