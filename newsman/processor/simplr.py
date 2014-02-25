@@ -28,7 +28,7 @@ import urlparse
 
 # CONSTANTS
 HIDDEN_IMAGE = {
-    r'http://www.estadao.com.br':[('div', {'class':re.compile('bb-md-noticia-foto', re.I)})], r'http://br.[\w]*.yahoo.com':[('li', {'class':re.compile('photo first last', re.I)})], r'http://g1.globo.com': [('div', {'class': re.compile('foto componente_materia', re.I)})], r'http://[\w]*.posttoday.com': [('p', {'class': re.compile('centerThumbnail', re.I)})], r'http://[\w]*.matichon.co.th': [('a', {'class': re.compile('lytebox', re.I)})], r'http://[\w]*.mthai.com': [('img', {'class': re.compile('alignnone size-full wp-image')})], r'http://[\w]*.detik.com': [('div', {'class': re.compile('pic_artikel')})], r'http://[\w]*.antaranews.com': [('div', {'class': 'imgNews'})], r'http://www.metrotvnews.com': [('div', {'class': 'read-media left'})], r'http://www.tempo.co': [('div', {'class': 'konten-foto-travel'})], r'http://[\w]*.okezone.com': [('div', {'id': 'pt'}), ('div', {'class': 'detail-img fl'})], r'http://[\w]*.inilah.com': [('div', {'class': 'imgbox'})], r'http://sankei.jp.msn.com/': [('div', {'class': 'img250 imgright'})], r'http://www.cnn.co.jp/': [('div', {'id': 'leaf_large_image', 'class': 'img-caption'})],
+    r'http://www.estadao.com.br': [('div', {'class': re.compile('bb-md-noticia-foto', re.I)})], r'http://br.[\w]*.yahoo.com': [('li', {'class': re.compile('photo first last', re.I)})], r'http://g1.globo.com': [('div', {'class': re.compile('foto componente_materia', re.I)})], r'http://[\w]*.posttoday.com': [('p', {'class': re.compile('centerThumbnail', re.I)})], r'http://[\w]*.matichon.co.th': [('a', {'class': re.compile('lytebox', re.I)})], r'http://[\w]*.mthai.com': [('img', {'class': re.compile('alignnone size-full wp-image')})], r'http://[\w]*.detik.com': [('div', {'class': re.compile('pic_artikel')})], r'http://[\w]*.antaranews.com': [('div', {'class': 'imgNews'})], r'http://www.metrotvnews.com': [('div', {'class': 'read-media left'})], r'http://www.tempo.co': [('div', {'class': 'konten-foto-travel'})], r'http://[\w]*.okezone.com': [('div', {'id': 'pt'}), ('div', {'class': 'detail-img fl'})], r'http://[\w]*.inilah.com': [('div', {'class': 'imgbox'})], r'http://sankei.jp.msn.com/': [('div', {'class': 'img250 imgright'})], r'http://www.cnn.co.jp/': [('div', {'id': 'leaf_large_image', 'class': 'img-caption'})],
     r'http://news.goo.ne.jp/': [('p', {'class': 'imager'})], r'http://jp.reuters.com/': [('td', {'id': "articlePhoto", 'class': "articlePhoto"})]}
 
 
@@ -432,7 +432,7 @@ class Simplr:
 
             if unwanted_parts:
                 extra_parts = e.findAll(
-                    text=re.compile(unwanted_parts, re.UNICODE|re.I))
+                    text=re.compile(unwanted_parts, re.UNICODE | re.I))
                 # careful this might remove a bigger part
                 for extra_part in extra_parts:
                     if extra_part.parent.find('a'):
@@ -444,7 +444,8 @@ class Simplr:
                 #[extra_part.parent.extract() for extra_part in extra_parts]
 
             # spaces
-            unwanted_spaces = e.findAll(lambda tag: tag.name in ['p', 'strong', 'footer', 'main', 'header', 'hr'] and not tag.attrs and not (tag.text if 'text' in tag else False))
+            unwanted_spaces = e.findAll(lambda tag: tag.name in [
+                                        'p', 'strong', 'footer', 'main', 'header', 'hr'] and not tag.attrs and not (tag.text if 'text' in tag else False))
             if len(unwanted_spaces) == 1:
                 if len(unwanted_spaces[0].contents) == 0:
                     unwanted_spaces[0].extract()
@@ -461,9 +462,11 @@ class Simplr:
                     match.replaceWithChildren()
 
                 # print '+++++', len(unwanted_space.contents), unwanted_space
-                # print '*****', len(unwanted_space.contents), unwanted_space.contents
+                # print '*****', len(unwanted_space.contents),
+                # unwanted_space.contents
                 if len(unwanted_space.contents) == 1:
-                    # print '   *****', type(unwanted_space.contents[0]), unwanted_space.contents[0].strip()
+                    # print '   *****', type(unwanted_space.contents[0]),
+                    # unwanted_space.contents[0].strip()
                     if not isinstance(unwanted_space.contents[0], NavigableString):
                         # print '      --', unwanted_space.contents[0]
                         if unwanted_space.contents[0].name == ['br', 'strong', 'hr', 'footer', 'div', 'p']:
