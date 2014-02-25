@@ -34,7 +34,7 @@ HIDDEN_IMAGE = {
 
 class Simplr:
     regexps = {
-        'unlikely_candidates': re.compile("banner|breadcrumb|button|combx|comment|community|copyright|disqus|extra|foot|header|menu|remark|rss|poll|share|shoutbox|sidebar|sponsor|sns|ad-break|agegate|pagination|pager|popup|posted|pr|tweet|twitter", re.I),
+        'unlikely_candidates': re.compile("banner|breadcrumb|button|combx|comment|community|copyright|disqus|extra|foot|footer|header|menu|remark|rss|poll|share|shoutbox|sidebar|sponsor|sns|ad-break|agegate|pagination|pager|popup|posted|pr|tweet|twitter", re.I),
         'ok_maybe_its_a_candidate': re.compile("and|article|body|column|content|main|post|primary|shadow", re.I),
         'positive': re.compile("article|blog|body|content|entry|hentry|image|main|page|pagination|photo|post|story|text", re.I),
         'negative': re.compile("banner|breadcrumb|combx|comment|com|contact|foot|footer|footnote|genre|logo|masthead|media|meta|outbrain|poll|pr|promo|ranking|related|scroll|share|shoutbox|sidebar|sponsor|shopping|tags|tool|widget|link", re.I),
@@ -193,6 +193,10 @@ class Simplr:
                     continue
 
                 if 'ig.com.br' in self.url and re.compile('selo-agencia|tool-bar-buttons-social|galleria-image-nav|galleria').search(unlikely_match_string):
+                    elem.extract()
+                    continue
+
+                if re.compile('http://[\w]*.terra.com.br').search(self.url) and re.compile('embbed-gallery|score-widget|widget-container|col-aside|ttl-main|published|related-news', re.I).search(unlikely_match_string):
                     elem.extract()
                     continue
 
@@ -440,27 +444,29 @@ class Simplr:
                 #[extra_part.parent.extract() for extra_part in extra_parts]
 
             # spaces
-            unwanted_spaces = e.findAll(lambda tag: tag.name in ['p', 'strong', 'br', 'i', 'em'] and not tag.attrs and not (tag.text if 'text' in tag else False))
+            unwanted_spaces = e.findAll(lambda tag: tag.name in ['p', 'strong', 'footer', 'main', 'header', 'hr'] and not tag.attrs and not (tag.text if 'text' in tag else False))
             if len(unwanted_spaces) == 1:
                 if len(unwanted_spaces[0].contents) == 0:
                     unwanted_spaces[0].extract()
                 elif len(unwanted_spaces[0].contents) == 1:
-                    if len(unwanted_spaces[0].contents[0].text) < 15:
+                    if not isinstance(unwanted_spaces[0].contents[0], NavigableString) and len(unwanted_spaces[0].contents[0].text) < 15:
+                        unwanted_spaces[0].extract()
+                    elif isinstance(unwanted_spaces[0].contents[0], NavigableString) and len(unwanted_spaces[0].contents[0]) < 15:
                         unwanted_spaces[0].extract()
 
             for unwanted_space in unwanted_spaces:
                 # print '*****', type(unwanted_space), unwanted_space
                 # pre-process: to remove strong, br, itaclics
-                for match in unwanted_space.findAll(['strong', 'i', 'b', 'em']):
+                for match in unwanted_space.findAll(['strong']):
                     match.replaceWithChildren()
 
-                # print '+++++', unwanted_space
+                # print '+++++', len(unwanted_space.contents), unwanted_space
                 # print '*****', len(unwanted_space.contents), unwanted_space.contents
                 if len(unwanted_space.contents) == 1:
                     # print '   *****', type(unwanted_space.contents[0]), unwanted_space.contents[0].strip()
                     if not isinstance(unwanted_space.contents[0], NavigableString):
                         # print '      --', unwanted_space.contents[0]
-                        if unwanted_space.contents[0].name == 'br' or unwanted_space.contents[0].name == 'strong':
+                        if unwanted_space.contents[0].name == ['br', 'strong', 'hr', 'footer', 'div', 'p']:
                             # print '      DELETED!'
                             unwanted_space.extract()
                     # Highly probably a NavigableString
@@ -468,6 +474,7 @@ class Simplr:
                         # print '      --', unwanted_space.contents[0]
                         unwanted_space.extract()
                 elif not len(unwanted_space.contents):
+                    # print '      DELETED!'
                     unwanted_space.extract()
         except Exception as k:
             logger.error(str(k))
