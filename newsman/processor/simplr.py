@@ -192,6 +192,10 @@ class Simplr:
                     elem.extract()
                     continue
 
+                if 'ig.com.br' in self.url and re.compile('selo-agencia|tool-bar-buttons-social|galleria-image-nav|galleria').search(unlikely_match_string):
+                    elem.extract()
+                    continue
+
                 if elem.name == 'div':
                     s = elem.renderContents(encoding='utf-8')
                     if not self.regexps['div_to_p_elements'].search(s):
@@ -419,16 +423,24 @@ class Simplr:
                 unwanted_parts = u'Leia também'
             if 'estadao.com.br' in self.url:
                 unwanted_parts = u'Veja também|Saiba mais sobre'
+            if 'ig.com.br' in self.url:
+                unwanted_parts = u'LEIA TAMBÉM|SAIBA MAIS|Veja também|Leia mais|E também|Assista|Infográfico|veja foto'
 
             if unwanted_parts:
                 extra_parts = e.findAll(
                     text=re.compile(unwanted_parts, re.UNICODE|re.I))
                 # careful this might remove a bigger part
-                [extra_part.parent.extract() for extra_part in extra_parts]
+                for extra_part in extra_parts:
+                    if extra_part.parent.find('a'):
+                        extra_part.parent.extract()
+                    elif extra_part.parent.parent.find('a'):
+                        extra_part.parent.parent.extract()
+                    else:
+                        extra_part.extract()
+                #[extra_part.parent.extract() for extra_part in extra_parts]
 
             # spaces
-            unwanted_spaces = e.findAll(lambda tag: tag.name == 'p' and not tag.attrs and not (
-                tag.text if 'text' in tag else False))
+            unwanted_spaces = e.findAll(lambda tag: tag.name in ['p', 'strong', 'br', 'i', 'em'] and not tag.attrs and not (tag.text if 'text' in tag else False))
             if len(unwanted_spaces) == 1:
                 if len(unwanted_spaces[0].contents) == 0:
                     unwanted_spaces[0].extract()
@@ -438,12 +450,22 @@ class Simplr:
 
             for unwanted_space in unwanted_spaces:
                 # print '*****', type(unwanted_space), unwanted_space
+                # pre-process: to remove strong, br, itaclics
+                for match in unwanted_space.findAll(['strong', 'i', 'b', 'em']):
+                    match.replaceWithChildren()
+
+                # print '+++++', unwanted_space
+                # print '*****', len(unwanted_space.contents), unwanted_space.contents
                 if len(unwanted_space.contents) == 1:
-                    # print '-------------', type(unwanted_space.contents[0]), unwanted_space.contents[0].strip()
-                    if not isinstance(unwanted_space.contents[0], NavigableString) and unwanted_space.contents[0].name == 'br':
-                        unwanted_space.extract()
+                    # print '   *****', type(unwanted_space.contents[0]), unwanted_space.contents[0].strip()
+                    if not isinstance(unwanted_space.contents[0], NavigableString):
+                        # print '      --', unwanted_space.contents[0]
+                        if unwanted_space.contents[0].name == 'br' or unwanted_space.contents[0].name == 'strong':
+                            # print '      DELETED!'
+                            unwanted_space.extract()
                     # Highly probably a NavigableString
                     elif isinstance(unwanted_space.contents[0], NavigableString) and not unwanted_space.contents[0].strip():
+                        # print '      --', unwanted_space.contents[0]
                         unwanted_space.extract()
                 elif not len(unwanted_space.contents):
                     unwanted_space.extract()
