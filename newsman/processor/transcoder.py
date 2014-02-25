@@ -162,7 +162,7 @@ def _combine(content, images):
             return "%s %s" % (image, content), images
         else:
             logger.info('Cannot find biggest image')
-            return content, images
+            return content, biggest
     except Exception as k:
         logger.error(str(k))
         return content, images
