@@ -28,13 +28,13 @@ import urlparse
 
 # CONSTANTS
 HIDDEN_IMAGE = {
-    r'http://www.estadao.com.br': [('div', {'class': re.compile('bb-md-noticia-foto', re.I)})], r'http://br.[\w]*.yahoo.com': [('li', {'class': re.compile('photo first last', re.I)})], r'http://g1.globo.com': [('div', {'class': re.compile('foto componente_materia', re.I)})], r'http://[\w]*.posttoday.com': [('p', {'class': re.compile('centerThumbnail', re.I)})], r'http://[\w]*.matichon.co.th': [('a', {'class': re.compile('lytebox', re.I)})], r'http://[\w]*.mthai.com': [('img', {'class': re.compile('alignnone size-full wp-image')})], r'http://[\w]*.detik.com': [('div', {'class': re.compile('pic_artikel')})], r'http://[\w]*.antaranews.com': [('div', {'class': 'imgNews'})], r'http://www.metrotvnews.com': [('div', {'class': 'read-media left'})], r'http://www.tempo.co': [('div', {'class': 'konten-foto-travel'})], r'http://[\w]*.okezone.com': [('div', {'id': 'pt'}), ('div', {'class': 'detail-img fl'})], r'http://[\w]*.inilah.com': [('div', {'class': 'imgbox'})], r'http://sankei.jp.msn.com/': [('div', {'class': 'img250 imgright'})], r'http://www.cnn.co.jp/': [('div', {'id': 'leaf_large_image', 'class': 'img-caption'})],
+    r'http://www.estadao.com.br':[('div', {'class':re.compile('bb-md-noticia-foto', re.I)})], r'http://br.[\w]*.yahoo.com':[('li', {'class':re.compile('photo first last', re.I)})], r'http://g1.globo.com': [('div', {'class': re.compile('foto componente_materia', re.I)})], r'http://[\w]*.posttoday.com': [('p', {'class': re.compile('centerThumbnail', re.I)})], r'http://[\w]*.matichon.co.th': [('a', {'class': re.compile('lytebox', re.I)})], r'http://[\w]*.mthai.com': [('img', {'class': re.compile('alignnone size-full wp-image')})], r'http://[\w]*.detik.com': [('div', {'class': re.compile('pic_artikel')})], r'http://[\w]*.antaranews.com': [('div', {'class': 'imgNews'})], r'http://www.metrotvnews.com': [('div', {'class': 'read-media left'})], r'http://www.tempo.co': [('div', {'class': 'konten-foto-travel'})], r'http://[\w]*.okezone.com': [('div', {'id': 'pt'}), ('div', {'class': 'detail-img fl'})], r'http://[\w]*.inilah.com': [('div', {'class': 'imgbox'})], r'http://sankei.jp.msn.com/': [('div', {'class': 'img250 imgright'})], r'http://www.cnn.co.jp/': [('div', {'id': 'leaf_large_image', 'class': 'img-caption'})],
     r'http://news.goo.ne.jp/': [('p', {'class': 'imager'})], r'http://jp.reuters.com/': [('td', {'id': "articlePhoto", 'class': "articlePhoto"})]}
 
 
 class Simplr:
     regexps = {
-        'unlikely_candidates': re.compile("banner|breadcrumb|button|combx|comment|community|copyright|disqus|extra|foot|footer|header|menu|remark|rss|poll|share|shoutbox|sidebar|sponsor|sns|ad-break|agegate|pagination|pager|popup|posted|pr|tweet|twitter", re.I),
+        'unlikely_candidates': re.compile("banner|breadcrumb|button|combx|comment|community|copyright|disqus|extra|foot|header|menu|remark|rss|poll|share|shoutbox|sidebar|sponsor|sns|ad-break|agegate|pagination|pager|popup|posted|pr|tweet|twitter", re.I),
         'ok_maybe_its_a_candidate': re.compile("and|article|body|column|content|main|post|primary|shadow", re.I),
         'positive': re.compile("article|blog|body|content|entry|hentry|image|main|page|pagination|photo|post|story|text", re.I),
         'negative': re.compile("banner|breadcrumb|combx|comment|com|contact|foot|footer|footnote|genre|logo|masthead|media|meta|outbrain|poll|pr|promo|ranking|related|scroll|share|shoutbox|sidebar|sponsor|shopping|tags|tool|widget|link", re.I),
@@ -193,10 +193,6 @@ class Simplr:
                     continue
 
                 if 'ig.com.br' in self.url and re.compile('selo-agencia|tool-bar-buttons-social|galleria-image-nav|galleria').search(unlikely_match_string):
-                    elem.extract()
-                    continue
-
-                if re.compile('http://[\w]*.terra.com.br').search(self.url) and re.compile('embbed-gallery|score-widget|widget-container|col-aside|ttl-main|published|related-news', re.I).search(unlikely_match_string):
                     elem.extract()
                     continue
 
@@ -432,7 +428,7 @@ class Simplr:
 
             if unwanted_parts:
                 extra_parts = e.findAll(
-                    text=re.compile(unwanted_parts, re.UNICODE | re.I))
+                    text=re.compile(unwanted_parts, re.UNICODE|re.I))
                 # careful this might remove a bigger part
                 for extra_part in extra_parts:
                     if extra_part.parent.find('a'):
@@ -444,32 +440,27 @@ class Simplr:
                 #[extra_part.parent.extract() for extra_part in extra_parts]
 
             # spaces
-            unwanted_spaces = e.findAll(lambda tag: tag.name in [
-                                        'p', 'strong', 'footer', 'main', 'header', 'hr'] and not tag.attrs and not (tag.text if 'text' in tag else False))
+            unwanted_spaces = e.findAll(lambda tag: tag.name in ['p', 'strong', 'br', 'i', 'em'] and not tag.attrs and not (tag.text if 'text' in tag else False))
             if len(unwanted_spaces) == 1:
                 if len(unwanted_spaces[0].contents) == 0:
                     unwanted_spaces[0].extract()
                 elif len(unwanted_spaces[0].contents) == 1:
-                    if not isinstance(unwanted_spaces[0].contents[0], NavigableString) and len(unwanted_spaces[0].contents[0].text) < 15:
-                        unwanted_spaces[0].extract()
-                    elif isinstance(unwanted_spaces[0].contents[0], NavigableString) and len(unwanted_spaces[0].contents[0]) < 15:
+                    if len(unwanted_spaces[0].contents[0].text) < 15:
                         unwanted_spaces[0].extract()
 
             for unwanted_space in unwanted_spaces:
                 # print '*****', type(unwanted_space), unwanted_space
                 # pre-process: to remove strong, br, itaclics
-                for match in unwanted_space.findAll(['strong']):
+                for match in unwanted_space.findAll(['strong', 'i', 'b', 'em']):
                     match.replaceWithChildren()
 
-                # print '+++++', len(unwanted_space.contents), unwanted_space
-                # print '*****', len(unwanted_space.contents),
-                # unwanted_space.contents
+                # print '+++++', unwanted_space
+                # print '*****', len(unwanted_space.contents), unwanted_space.contents
                 if len(unwanted_space.contents) == 1:
-                    # print '   *****', type(unwanted_space.contents[0]),
-                    # unwanted_space.contents[0].strip()
+                    # print '   *****', type(unwanted_space.contents[0]), unwanted_space.contents[0].strip()
                     if not isinstance(unwanted_space.contents[0], NavigableString):
                         # print '      --', unwanted_space.contents[0]
-                        if unwanted_space.contents[0].name == ['br', 'strong', 'hr', 'footer', 'div', 'p']:
+                        if unwanted_space.contents[0].name == 'br' or unwanted_space.contents[0].name == 'strong':
                             # print '      DELETED!'
                             unwanted_space.extract()
                     # Highly probably a NavigableString
@@ -477,7 +468,6 @@ class Simplr:
                         # print '      --', unwanted_space.contents[0]
                         unwanted_space.extract()
                 elif not len(unwanted_space.contents):
-                    # print '      DELETED!'
                     unwanted_space.extract()
         except Exception as k:
             logger.error(str(k))
