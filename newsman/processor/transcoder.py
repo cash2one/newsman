@@ -22,6 +22,7 @@ from config.settings import hparser
 from config.settings import logger
 import illustrator
 import os
+import requests
 import simplr
 from slimmer import html_slimmer
 import threading
@@ -301,13 +302,13 @@ def prepare_link(url):
         return None
 
     try:
-        html = str(urllib2.urlopen(url, timeout=UCK_TIMEOUT).read())
+        resp = requests.get(url, timeout=UCK_TIMEOUT)
+        html = resp.content if resp.ok else None
         if html:
             detected = chardet.detect(html)
-            if detected:
-                data = html.decode(detected['encoding'], 'ignore')
-            # else:
-            #    data = html.decode('utf-8', 'ignore')
+            encoding = detected['encoding'] if detected else 'utf-8'
+            encoding = 'windows-1252' if 'folha.uol.com.br' in url else encoding
+            data = html.decode(encoding, 'ignore')
             return hparser.unescape(urllib2.unquote(data)).replace(u'\xa0', ' ')
         else:
             logger.warning("Cannot read %s" % url)
