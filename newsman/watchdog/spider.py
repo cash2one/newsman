@@ -93,7 +93,7 @@ def _update(feed_ids):
     for feed_id in feed_ids:
         queue.put(feed_id)
 
-    thread_limit = min(len(feed_ids) / 2, 5)
+    thread_limit = min(len(feed_ids) / 2, 4)
     for i in range(thread_limit):
         thread = UpdateThread('Thread-%i' % i)
         thread.setDaemon(True)
