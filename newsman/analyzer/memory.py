@@ -10,6 +10,7 @@ memory provides an interface to store news in the memory/redis
 
 
 import sys
+
 reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
@@ -25,7 +26,8 @@ from config.settings import MEMORY_EXPIRATION_DAYS
 # list of fields stored in memory
 field_list = [
     '_id', 'category_image', 'feed', 'hotnews_image', 'image', 'labels',
-    'language', 'link', 'mp3', 'summary', 'text_image', 'thumbnail_image', 'title', 'transcoded', 'updated']
+    'language', 'link', 'mp3', 'summary', 'text_image', 'thumbnail_image',
+    'title', 'transcoded', 'updated']
 
 
 def update(entry=None, expiration=None):
@@ -52,12 +54,13 @@ def update(entry=None, expiration=None):
 
         # expired in redis is counted in seconds
         expiration = MEMORY_EXPIRATION_DAYS * 24 * \
-            60 * 60 if not expiration else expiration
+                     60 * 60 if not expiration else expiration
         rclient.expire(entry_reduced['_id'], expiration)
 
         # add entry ids to the RSS list
         rclient.zadd("news::%s::%s" %
-                     (entry_reduced['language'], entry_reduced['feed']), entry_reduced['updated'], entry_reduced['_id'])
+                     (entry_reduced['language'], entry_reduced['feed']),
+                     entry_reduced['updated'], entry_reduced['_id'])
 
         # add entry ids to the label list
         col = Collection(db, FEED_REGISTRAR)
@@ -67,7 +70,8 @@ def update(entry=None, expiration=None):
             for label in item['labels']:
                 # a label is a combination of country, category and label
                 rclient.zadd('news::%s::%s' %
-                             (entry_reduced['language'], label), entry_reduced['updated'], entry_reduced['_id'])
+                             (entry_reduced['language'], label),
+                             entry_reduced['updated'], entry_reduced['_id'])
         # final return
         return True
     except ConnectionError:

@@ -10,6 +10,7 @@ A wrapper for UCK's new interface
 
 
 import sys
+
 reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append("..")

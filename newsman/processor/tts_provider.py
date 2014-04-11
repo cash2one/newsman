@@ -10,6 +10,7 @@ tts_provider breaks text into paragraphs and grabs text-to-speech from google
 
 
 import sys
+
 reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
@@ -41,7 +42,6 @@ if not os.path.exists(MEDIA_TEMP_LOCAL_DIR):
 
 # TODO: write docs
 class GoogleTranslateAPI(threading.Thread):
-
     """
     doc needed!
     """
@@ -54,8 +54,11 @@ class GoogleTranslateAPI(threading.Thread):
 
     def run(self):
         response = subprocess.Popen(
-            '''curl --silent --connect-timeout %s -A Mozilla "http://translate.google.com/translate_tts?ie=UTF-8&oe=UTF-8&tl=%s&q=%s"''' %
-            (GOOGLE_TTS_TIMEOUT, self.language, urllib2.quote(self.text)), stdout=subprocess.PIPE, shell=True, close_fds=True)
+            '''curl --silent --connect-timeout %s -A Mozilla
+            "http://translate.google
+            .com/translate_tts?ie=UTF-8&oe=UTF-8&tl=%s&q=%s"''' %
+            (GOOGLE_TTS_TIMEOUT, self.language, urllib2.quote(self.text)),
+            stdout=subprocess.PIPE, shell=True, close_fds=True)
 
         content, error = response.communicate()
         if not error and content:
@@ -75,7 +78,8 @@ class GoogleTranslateAPI(threading.Thread):
 
 # TODO: rename the file and variables
 # TODO: remove accepting command line calls
-def google(language='en', query='Service provided by Baidu', relative_path='do_not_exist.mp3'):
+def google(language='en', query='Service provided by Baidu',
+           relative_path='do_not_exist.mp3'):
     """
     1. download mp3 from google tts api
     2. convert it to wav
@@ -94,20 +98,23 @@ def google(language='en', query='Service provided by Baidu', relative_path='do_n
     try:
         # generate out.mp3
         tmp_file = _download(language, query, '%s%s-tmp.mp3' %
-                             (MEDIA_TEMP_LOCAL_DIR, relative_path[:-4]))
+                                              (MEDIA_TEMP_LOCAL_DIR,
+                                               relative_path[:-4]))
         if tmp_file:
             # form paths
             tts_local_path = '%s%s' % (MEDIA_LOCAL_DIR, relative_path)
             tts_web_path = '%s%s' % (MEDIA_PUBLIC_DIR, relative_path)
 
-            command = 'lame -S --decode {0} - | sox -q -t wav - -t wav - speed 1.06 | lame -S - {1}; rm {0}'.format(
+            command = 'lame -S --decode {0} - | sox -q -t wav - -t wav - ' \
+                      'speed 1.06 | lame -S - {1}; rm {0}'.format(
                 tmp_file, tts_local_path)
             subprocess.Popen(command, stderr=subprocess.PIPE, shell=True)
             logger.info('... MP3 acceleration is successfully completed!')
             return tts_web_path, tts_local_path
         else:
             logger.info(
-                '%s is revoked due to erros found in downloading!' % relative_path)
+                '%s is revoked due to erros found in downloading!' %
+                relative_path)
             return None, None
     except Exception as k:
         logger.error(str(k))
@@ -148,7 +155,8 @@ def _query_segment(language='en', query='Service provided by Baidu'):
         if sentences:
             # convert to utf-8 and remove spaces
             sentences = filter(
-                lambda x: x, [sentence.strip().encode('utf-8') for sentence in sentences])
+                lambda x: x,
+                [sentence.strip().encode('utf-8') for sentence in sentences])
 
         parts = []
         for sentence in sentences:
@@ -166,7 +174,8 @@ def _query_segment(language='en', query='Service provided by Baidu'):
                 # remove spaces
                 if phrases:
                     phrases = filter(
-                        lambda x: x, [phrase.strip().encode('utf-8') for phrase in phrases])
+                        lambda x: x,
+                        [phrase.strip().encode('utf-8') for phrase in phrases])
 
                 for phrase in phrases:
                     if len(phrase) < 99:
@@ -182,7 +191,9 @@ def _query_segment(language='en', query='Service provided by Baidu'):
                         # remove spaces
                         if words:
                             words = filter(
-                                lambda x: x, [word.strip().encode('utf-8') for word in words])
+                                lambda x: x,
+                                [word.strip().encode('utf-8') for word in
+                                 words])
 
                         # none of len(item) in combined_words will exceed 100
                         # combined_words = ['yyy zzz. aaa bbb']
@@ -191,11 +202,17 @@ def _query_segment(language='en', query='Service provided by Baidu'):
                             # +1 for possible space
                             if len(combined_words) + len(word) + 1 < 100:
                                 if language == 'ja':
-                                    combined_words = ("""%s%s""" if word not in string.punctuation else """%s%s""") % (
-                                        combined_words, word)
+                                    combined_words = (
+                                                     """%s%s""" if word not
+                                                     in string.punctuation
+                                                     else """%s%s""") % (
+                                                         combined_words, word)
                                 else:
-                                    combined_words = ("""%s %s""" if word not in string.punctuation else """%s%s""") % (
-                                        combined_words, word)
+                                    combined_words = (
+                                                     """%s %s""" if word not
+                                                     in string.punctuation
+                                                     else """%s%s""") % (
+                                                         combined_words, word)
                                 combined_words = combined_words.strip()
                             else:
                                 parts.append(combined_words.strip())
@@ -221,11 +238,13 @@ def _query_segment(language='en', query='Service provided by Baidu'):
 # TODO: Test! Test! Test!
 # TODO: boundary checkers
 # TODO: write docs!
-def _download(language='en', query='Service provided by Baidu', tmp_file='do_not_exist.mp3'):
+def _download(language='en', query='Service provided by Baidu',
+              tmp_file='do_not_exist.mp3'):
     """
     docs needed!
     other ways to write _download
-    1. https://github.com/hungtruong/Google-Translate-TTS/blob/master/GoogleTTS.py
+    1. https://github.com/hungtruong/Google-Translate-TTS/blob/master
+    /GoogleTTS.py
     2. https://github.com/gavinmh/tts-api/blob/master/text_segmenter.py
     """
 
@@ -267,7 +286,8 @@ def _download(language='en', query='Service provided by Baidu', tmp_file='do_not
             return None
     except Exception as k:
         logger.error(
-            'Part of tts dowload went wrong, now removing the file: %s' % str(k))
+            'Part of tts dowload went wrong, now removing the file: %s' % str(
+                k))
         if os.path.exists(tmp_file):
             os.remove(tmp_file)
         return None

@@ -10,6 +10,7 @@ database works to manage interaction with the feed database
 
 
 import sys
+
 reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append("..")
@@ -69,7 +70,8 @@ def update(feed_id, **kwargs):
             # by default update returns null upon successful update
             # use find_and_modify if a return is needed
             col.update({'_id': ObjectId(feed_id)}, item)
-            return item['feed_title'] if 'feed_title' in item and item['feed_title'] else 'Feed Title Not Found'
+            return item['feed_title'] if 'feed_title' in item and item[
+                'feed_title'] else 'Feed Title Not Found'
         else:
             logger.error("No such a _id %s in feeds" % feed_id)
             return None
@@ -91,7 +93,8 @@ def save(feed_info=None):
         col = Collection(db, FEED_REGISTRAR)
         # make a record in the feeds table
         item = col.find_one(
-            {'feed_link': feed_info['feed_link'], 'language': feed_info['language']})
+            {'feed_link': feed_info['feed_link'],
+             'language': feed_info['language']})
         if not item:
             feed_info['updated_times'] = 0
             feed_info['latest_update'] = None

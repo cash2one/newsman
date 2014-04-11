@@ -10,6 +10,7 @@ feed works to get feed meta info into database
 
 
 import sys
+
 reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append("..")
@@ -19,6 +20,7 @@ from config.settings import logger
 import database as db_feeds
 import feedparser
 import socket
+
 socket.setdefaulttimeout(10)  # 10 seconds
 
 
@@ -59,7 +61,8 @@ def _read_source(d=None, feed_link=None, language=None, categories=None):
 
 
 # TODO: implement _link_cleaner!
-def add(feed_link=None, language=None, categories=None, transcoder_type="chengdujin"):
+def add(feed_link=None, language=None, categories=None,
+        transcoder_type="chengdujin"):
     """
     read rss/atom meta information from a given feed
     """
@@ -80,7 +83,10 @@ def add(feed_link=None, language=None, categories=None, transcoder_type="chengdu
                 if feed_id:
                     # add entries of this feed
                     # the FINAL return
-                    return scraper.update(feed_link=feed_link, feed_id=feed_id, language=language, categories=categories, transcoder_type=transcoder_type)
+                    return scraper.update(feed_link=feed_link, feed_id=feed_id,
+                                          language=language,
+                                          categories=categories,
+                                          transcoder_type=transcoder_type)
                 else:
                     logger.error('Cannot save feed in database')
                     return None

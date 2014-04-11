@@ -10,6 +10,7 @@ daily, clean saved expired files, temporary files and unrecorded files on disk
 
 
 import sys
+
 reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append("..")
@@ -29,7 +30,8 @@ from config.settings import TRANSCODED_LOCAL_DIR
 def clean_by_item(candidate):
     """
     remove related files on disk of an item
-    mp3_local, transcoded_local, hotnews_image_local, category_image_local, thumbnail_image_local
+    mp3_local, transcoded_local, hotnews_image_local, category_image_local,
+    thumbnail_image_local
     """
     if not candidate:
         logger.error('Method malformed! %s' % str(candidate))
@@ -41,19 +43,23 @@ def clean_by_item(candidate):
             if os.path.exists(candidate['mp3_local']):
                 os.remove(candidate['mp3_local'])
         # transcoded
-        if candidate.has_key('transcoded_local') and candidate['transcoded_local']:
+        if candidate.has_key('transcoded_local') and candidate[
+            'transcoded_local']:
             if os.path.exists(candidate['transcoded_local']):
                 os.remove(candidate['transcoded_local'])
         # hotnews_image
-        if candidate.has_key('hotnews_image_local') and candidate['hotnews_image_local']:
+        if candidate.has_key('hotnews_image_local') and candidate[
+            'hotnews_image_local']:
             if os.path.exists(candidate['hotnews_image_local']['url']):
                 os.remove(candidate['hotnews_image_local']['url'])
         # category_image
-        if candidate.has_key('category_image_local') and candidate['category_image_local']:
+        if candidate.has_key('category_image_local') and candidate[
+            'category_image_local']:
             if os.path.exists(candidate['category_image_local']['url']):
                 os.remove(candidate['category_image_local']['url'])
         # thumbnail_image
-        if candidate.has_key('thumbnail_image_local') and candidate['thumbnail_image_local']:
+        if candidate.has_key('thumbnail_image_local') and candidate[
+            'thumbnail_image_local']:
             if os.path.exists(candidate['thumbnail_image_local']['url']):
                 os.remove(candidate['thumbnail_image_local']['url'])
 
@@ -83,21 +89,26 @@ def _clean_tempory_files():
 
 def _clean_unrecorded_files():
     """
-    remove files not recorded in database, with a illegal status (longer than DATABASE_REMOVAL_DAYS)
+    remove files not recorded in database, with a illegal status (longer than
+    DATABASE_REMOVAL_DAYS)
     1. check if the file is overdue
-    2. collect it with proper indication, i.e. what is it, an mp3 or an image? what document is it in?
+    2. collect it with proper indication, i.e. what is it, an mp3 or an
+    image? what document is it in?
     3. remove duplicates
     4. check if the file is still in database
     5. remove the file if it is not found in database
     """
 
     try:
-        # "en": [(transcoded_local', '/home/work/xxx.html'), ('mp3_local':'/home/work/xxx.mp3')]
+        # "en": [(transcoded_local', '/home/work/xxx.html'),
+        # ('mp3_local':'/home/work/xxx.mp3')]
         unrecorded_files = {}
         # mp3 files
         if os.path.exists(MEDIA_LOCAL_DIR):
             media_files = [os.path.join(MEDIA_LOCAL_DIR, media_file)
-                           for media_file in os.listdir(MEDIA_LOCAL_DIR) if cleaner.is_overdue(os.path.getctime(os.path.join(MEDIA_LOCAL_DIR, media_file)))]
+                           for media_file in os.listdir(MEDIA_LOCAL_DIR) if
+                           cleaner.is_overdue(os.path.getctime(
+                               os.path.join(MEDIA_LOCAL_DIR, media_file)))]
             for media_file in media_files:
                 if os.path.exists(media_file):
                     document_name = media_file.split('_')[0]  # en, en-rIN, pt
@@ -109,7 +120,9 @@ def _clean_unrecorded_files():
         # image files
         if os.path.exists(IMAGES_LOCAL_DIR):
             image_files = [os.path.join(IMAGES_LOCAL_DIR, image_file)
-                           for image_file in os.listdir(IMAGES_LOCAL_DIR) if cleaner.is_overdue(os.path.getctime(os.path.join(IMAGES_LOCAL_DIR, image_file)))]
+                           for image_file in os.listdir(IMAGES_LOCAL_DIR) if
+                           cleaner.is_overdue(os.path.getctime(
+                               os.path.join(IMAGES_LOCAL_DIR, image_file)))]
             for image_file in image_files:
                 if os.path.exists(image_file):
                     document_name = image_file.split('_')[0]
@@ -122,8 +135,12 @@ def _clean_unrecorded_files():
 
         # transcoded files
         if os.path.exists(TRANSCODED_LOCAL_DIR):
-            transcoded_files = [os.path.join(TRANSCODED_LOCAL_DIR, transcoded_file) for transcoded_file in os.listdir(
-                TRANSCODED_LOCAL_DIR) if cleaner.is_overdue(os.path.getctime(os.path.join(TRANSCODED_LOCAL_DIR, transcoded_file)))]
+            transcoded_files = [
+                os.path.join(TRANSCODED_LOCAL_DIR, transcoded_file) for
+                transcoded_file in os.listdir(
+                    TRANSCODED_LOCAL_DIR) if cleaner.is_overdue(
+                    os.path.getctime(
+                        os.path.join(TRANSCODED_LOCAL_DIR, transcoded_file)))]
             for transcoded_file in transcoded_files:
                 if os.path.exists(transcoded_file):
                     document_name = transcoded_file.split('_')[0]
@@ -171,6 +188,7 @@ def clean():
         return True
     else:
         return False
+
 
 if __name__ == "__main__":
     clean()

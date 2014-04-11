@@ -10,6 +10,7 @@ news.py is the wsgi interface to connect the request and the backend
 
 
 import sys
+
 reload(sys)
 sys.setdefaultencoding('UTF-8')
 #sys.path.append('/home/work')
@@ -43,7 +44,10 @@ def get_latest_entries(*bundle):
     """
     LIMIT = 10 if 'limit' not in bundle[0] else int(bundle[0]['limit'])
     START_ID = None if 'start_id' not in bundle[0] else bundle[0]['start_id']
-    return inquirer.get_latest_entries(bundle[0]['language'], bundle[0]['country'], bundle[0]['category'], bundle[0]['feed'], limit=LIMIT, start_id=START_ID)
+    return inquirer.get_latest_entries(bundle[0]['language'],
+                                       bundle[0]['country'],
+                                       bundle[0]['category'], bundle[0]['feed'],
+                                       limit=LIMIT, start_id=START_ID)
 
 
 def get_previous_entries(*bundle):
@@ -52,7 +56,11 @@ def get_previous_entries(*bundle):
     """
     LIMIT = 10 if 'limit' not in bundle[0] else int(bundle[0]['limit'])
     END_ID = None if 'end_id' not in bundle[0] else bundle[0]['end_id']
-    return inquirer.get_previous_entries(bundle[0]['language'], bundle[0]['country'], bundle[0]['category'], bundle[0]['feed'], limit=LIMIT, end_id=END_ID)
+    return inquirer.get_previous_entries(bundle[0]['language'],
+                                         bundle[0]['country'],
+                                         bundle[0]['category'],
+                                         bundle[0]['feed'], limit=LIMIT,
+                                         end_id=END_ID)
 
 
 def _read_http(environ):

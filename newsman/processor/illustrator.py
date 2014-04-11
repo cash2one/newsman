@@ -10,6 +10,7 @@ illustrator is used to find all images from a web page
 
 
 import sys
+
 reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
@@ -39,7 +40,6 @@ if not os.path.exists(IMAGES_LOCAL_DIR):
 
 
 class NormalizedImage:
-
     """
     Class of normalized image
     """
@@ -148,7 +148,8 @@ class NormalizedImage:
 
         try:
             response = requests.get(image_url, timeout=UCK_TIMEOUT)
-            if response.status_code > 400 or 'posttoday.com/media/content' in image_url:
+            if response.status_code > 400 or 'posttoday.com/media/content' in\
+                    image_url:
                 raise Exception(
                     'Without HEADERS [%s] cannot be reached!' % str(image_url))
         except Exception as k:
@@ -182,7 +183,8 @@ class NormalizedImage:
         # generate relative path
         pr = requests.utils.urlparse(image_url)
         relative_path_prefix = str(
-            re.compile(r'[^\w ]', flags=re.UNICODE).sub("", unicode(pr.netloc + pr.path)))
+            re.compile(r'[^\w ]', flags=re.UNICODE).sub("", unicode(
+                pr.netloc + pr.path)))
         relative_path_suffix = str(random.randint(0, 100000000))
         relative_path = '%s_%s' % (relative_path_prefix, relative_path_suffix)
 
@@ -190,7 +192,8 @@ class NormalizedImage:
         try:
             image_data = Image.open(StringIO(image_html))
             # rely on PIL to tell the format
-            image_format = image_data.format if image_data and image_data.format else 'jpg'
+            image_format = image_data.format if image_data and image_data\
+                .format else 'jpg'
             image_web_path = '%s%s.%s' % (
                 IMAGES_PUBLIC_DIR, relative_path, image_format.lower())
             image_local_path = '%s%s.%s' % (
@@ -233,7 +236,8 @@ class NormalizedImage:
         try:
             width, height = self._image_size
             if width and height:
-                return {'url': self._image_url, 'width': width, 'height': height}
+                return {'url': self._image_url, 'width': width,
+                        'height': height}
             return None
         except Exception as k:
             logger.error('Problem:[%s]\nSource:[%s]' %
@@ -343,7 +347,8 @@ def find_images(content=None, referer=None):
                     if normalized_image:
                         # replace original image link with clean and (local)
                         # copy
-                        if 'original_url' in normalized_image and normalized_image['original_url']:
+                        if 'original_url' in normalized_image and \
+                                normalized_image['original_url']:
                             image['src'] = str(normalized_image['url'])
                             ELEMENT_REPLACED = True
                         normalized_images.append(normalized_image)
@@ -351,7 +356,8 @@ def find_images(content=None, referer=None):
             content_new = soup.prettify(encoding='utf-8')
             if ELEMENT_REPLACED and content_new:
                 content = str(
-                    html_slimmer(urllib2.unquote(hparser.unescape(content_new))))
+                    html_slimmer(
+                        urllib2.unquote(hparser.unescape(content_new))))
             return normalized_images, content
         else:
             logger.info("Wrong format %s" % content)
@@ -413,7 +419,8 @@ def generate_thumbnail(image_url=None, referer=None, relative_path=None):
         return None
 
 
-def scale_image(image=None, referer=None, size_expected=MIN_IMAGE_SIZE, resize_by_width=True, crop_by_center=True, relative_path=None):
+def scale_image(image=None, referer=None, size_expected=MIN_IMAGE_SIZE,
+                resize_by_width=True, crop_by_center=True, relative_path=None):
     """
     resize an image as requested
     resize_by_width: resize image according to its width(True)/height(False)
@@ -509,7 +516,10 @@ def scale_image(image=None, referer=None, size_expected=MIN_IMAGE_SIZE, resize_b
                         del image_cropped
                     if image_data:
                         del image_data
-                    return {'url': image_web_path, 'width': width_expected, 'height': height_expected}, {'url': image_local_path, 'width': width_expected, 'height': height_expected}
+                    return {'url': image_web_path, 'width': width_expected,
+                            'height': height_expected}, {
+                           'url': image_local_path, 'width': width_expected,
+                           'height': height_expected}
                 else:
                     # clean data
                     if image_cropped:
@@ -518,7 +528,11 @@ def scale_image(image=None, referer=None, size_expected=MIN_IMAGE_SIZE, resize_b
                         del image_data
                     return None, None
             else:
-                return scale_image(image=image, referer=referer, size_expected=size_expected, resize_by_width=not resize_by_width, crop_by_center=crop_by_center, relative_path=relative_path)
+                return scale_image(image=image, referer=referer,
+                                   size_expected=size_expected,
+                                   resize_by_width=not resize_by_width,
+                                   crop_by_center=crop_by_center,
+                                   relative_path=relative_path)
         else:
             return None, None
     except Exception as k:

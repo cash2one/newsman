@@ -10,6 +10,7 @@ call burify's implementation of readability code to transcode a web page
 
 
 import sys
+
 reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')

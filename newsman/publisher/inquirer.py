@@ -10,6 +10,7 @@ inquirer find news from memory and database
 
 
 import sys
+
 reload(sys)
 sys.setdefaultencoding('UTF-8')
 
@@ -36,8 +37,9 @@ from settings import HOTNEWS_TITLE_ZH
 from settings import LANGUAGES
 from settings import LOGO_PUBLIC_PREFIX
 
-HOTNEWS_TITLE = {'en': HOTNEWS_TITLE_EN, 'ja': HOTNEWS_TITLE_JA, 'th': HOTNEWS_TITLE_TH, 'pt': HOTNEWS_TITLE_PT, 'in':
-                 HOTNEWS_TITLE_IN, 'ar': HOTNEWS_TITLE_AR, 'zh': HOTNEWS_TITLE_ZH}
+HOTNEWS_TITLE = {'en': HOTNEWS_TITLE_EN, 'ja': HOTNEWS_TITLE_JA,
+                 'th': HOTNEWS_TITLE_TH, 'pt': HOTNEWS_TITLE_PT, 'in':
+    HOTNEWS_TITLE_IN, 'ar': HOTNEWS_TITLE_AR, 'zh': HOTNEWS_TITLE_ZH}
 
 
 def get_portal(language=None, country=None, categories=None):
@@ -61,22 +63,27 @@ def get_portal(language=None, country=None, categories=None):
         user_subscription = user_subscription.replace('+', ' ')
         category, feed = user_subscription.split('*|*')
         entries = get_latest_entries(
-            language=language, country=country, category=category, feed=feed, limit=search_limit)
+            language=language, country=country, category=category, feed=feed,
+            limit=search_limit)
         # 'category A': [{'title':'xxx', 'image':'http://yyy.com/zzz.jpg'}]
         # image: category_image
         portal_data[user_subscription] = []
         text_image_item = None
         for entry in entries:
             # only one text_image is necessary
-            if 'text_image' in entry and entry['text_image'] and not text_image_item:
+            if 'text_image' in entry and entry[
+                'text_image'] and not text_image_item:
                 if isinstance(entry['text_image'], str):
                     entry['text_image'] = eval(entry['text_image'])
                 text_image = entry['text_image']
                 text_image_item = {
-                    'title': entry['title'], 'image': text_image, 'updated': entry['updated']}
+                    'title': entry['title'], 'image': text_image,
+                    'updated': entry['updated']}
 
             # search for category_image
-            if 'category_image' in entry and entry['category_image'] and entry['category_image'] != 'None' and entry['category_image'] != 'null':
+            if 'category_image' in entry and entry['category_image'] and entry[
+                'category_image'] != 'None' and entry[
+                'category_image'] != 'null':
                 if isinstance(entry['category_image'], str):
                     entry['category_image'] = eval(entry['category_image'])
                 item = {'title': entry['title'], 'image': entry[
@@ -128,8 +135,10 @@ def get_categories(language=None, country=None, version=None):
 
                     if 'feed_logo' in item and item['feed_logo']:
                         # to string-ify the unicode
-                        feed_logo = {'url': str(item['feed_logo']['url']), 'width': str(
-                            item['feed_logo']['width']), 'height': str(item['feed_logo']['height'])}
+                        feed_logo = {'url': str(item['feed_logo']['url']),
+                                     'width': str(
+                                         item['feed_logo']['width']),
+                                     'height': str(item['feed_logo']['height'])}
                         feed_format = {'order': 100000, 'text': str(
                             item['feed_title']), 'image': feed_logo}
                     else:
@@ -144,7 +153,8 @@ def get_categories(language=None, country=None, version=None):
                     break
             if not CAT_ADDED:
                 output.append(
-                    {'Category': {'text': category_name, 'order': int(category_order)}})
+                    {'Category': {'text': category_name,
+                                  'order': int(category_order)}})
 
             # add label to the category dictionary
             if 'labels' in item and item['labels']:
@@ -159,9 +169,11 @@ def get_categories(language=None, country=None, version=None):
 
                         label_name_shrinked = label_name.replace(' ', '')
                         label_image = {'url': '%s%s_%s/%s.png' % (
-                            LOGO_PUBLIC_PREFIX, language, country, label_name_shrinked), 'width': 71, 'height': 60}
+                            LOGO_PUBLIC_PREFIX, language, country,
+                            label_name_shrinked), 'width': 71, 'height': 60}
                         label_format = {
-                            'order': int(label_order), 'text': label_name, 'image': label_image}
+                            'order': int(label_order), 'text': label_name,
+                            'image': label_image}
 
                         LABEL_ADDED = False
                         for label_format_added in categories[category_name]:
@@ -192,7 +204,8 @@ def get_categories(language=None, country=None, version=None):
         return None
 
 
-def get_latest_entries(language=None, country=None, category=None, feed=None, limit=10, start_id=None):
+def get_latest_entries(language=None, country=None, category=None, feed=None,
+                       limit=10, start_id=None):
     """
     find out latest news items
     search entries newer than start_id
@@ -274,12 +287,19 @@ def get_latest_entries(language=None, country=None, category=None, feed=None, li
                 if label_name:
                     feeds = Collection(db, FEED_REGISTRAR)
                     feed_lists = feeds.find(
-                        {'%s.%s' % ('labels', label_name): {'$exists': True}}, {'feed_title': 1})
+                        {'%s.%s' % ('labels', label_name): {'$exists': True}},
+                        {'feed_title': 1})
                     feed_names = [feed_list['feed_title']
                                   for feed_list in feed_lists]
-                    items = col.find({'updated': {'$lt': last_entry_in_memory_updated}, 'feed': {'$in': feed_names}}).sort('updated', -1).limit(limit_in_database)
+                    items = col.find(
+                        {'updated': {'$lt': last_entry_in_memory_updated},
+                         'feed': {'$in': feed_names}}).sort('updated',
+                                                            -1).limit(
+                        limit_in_database)
                 else:
-                    items = col.find({'updated': {'$lt': last_entry_in_memory_updated}, 'feed': feed}).sort(
+                    items = col.find(
+                        {'updated': {'$lt': last_entry_in_memory_updated},
+                         'feed': feed}).sort(
                         'updated', -1).limit(limit_in_database)
 
                 for item in items:
@@ -294,9 +314,14 @@ def get_latest_entries(language=None, country=None, category=None, feed=None, li
                         if x != 'updated':
                             new_item[str(x)] = str(y)
                         # remove 'u' in "{u'url':u'xxx'}"
-                        if x == 'category_image' or x == 'thumbnail_image' or x == 'hotnews_image' or x == 'text_image':
+                        if x == 'category_image' or x == 'thumbnail_image' or\
+                                        x == 'hotnews_image' or x == \
+                                'text_image':
                             image_dumped = json.dumps(y, encoding='utf-8')
-                            new_item[x] = eval(image_dumped) if image_dumped and image_dumped != "null" else "null"
+                            new_item[x] = eval(
+                                image_dumped) if image_dumped and \
+                                                 image_dumped != "null" else \
+                                "null"
                 new_item['updated'] = entry['updated']
                 new_entries.append(new_item)
 
@@ -304,6 +329,7 @@ def get_latest_entries(language=None, country=None, category=None, feed=None, li
             if dirty_expired_ids:
                 sys.path.append(os.path.join(CODE_BASE, 'newsman'))
                 from watchdog import clean_memory
+
                 clean_memory.clean_by_items(class_name, dirty_expired_ids)
                 logger.warning('Memory contains dirty expired items')
 
@@ -318,7 +344,8 @@ def get_latest_entries(language=None, country=None, category=None, feed=None, li
         if label_name:
             feeds = Collection(db, FEED_REGISTRAR)
             feed_lists = feeds.find(
-                {'%s.%s' % ('labels', label_name): {'$exists': True}}, {'feed_title': 1})
+                {'%s.%s' % ('labels', label_name): {'$exists': True}},
+                {'feed_title': 1})
             feed_names = [feed_list['feed_title'] for feed_list in feed_lists]
             items = col.find({'feed': {'$in': feed_names}}).sort(
                 'updated', -1).limit(limit)
@@ -336,15 +363,19 @@ def get_latest_entries(language=None, country=None, category=None, feed=None, li
                     if x != 'updated':
                         new_item[str(x)] = str(y)
                     # remove 'u' in "{u'url':u'xxx'}"
-                    if x == 'category_image' or x == 'thumbnail_image' or x == 'hotnews_image' or x == 'text_image':
+                    if x == 'category_image' or x == 'thumbnail_image' or x \
+                            == 'hotnews_image' or x == 'text_image':
                         image_dumped = json.dumps(y, encoding='utf-8')
-                        new_item[x] = eval(image_dumped) if image_dumped and image_dumped != "null" else "null" 
+                        new_item[x] = eval(
+                            image_dumped) if image_dumped and image_dumped !=\
+                                             "null" else "null"
             new_item['updated'] = item['updated']
             entries.append(new_item)
         return entries
 
 
-def get_previous_entries(language=None, country=None, category=None, feed=None, limit=10, end_id=None):
+def get_previous_entries(language=None, country=None, category=None, feed=None,
+                         limit=10, end_id=None):
     """
     find entries before end_id
     """
@@ -404,7 +435,8 @@ def get_previous_entries(language=None, country=None, category=None, feed=None, 
         if END_ID_IN_MEMORY:  # see if data in memory suffice
             if limit_in_memory >= limit:  # purely get from memory
                 entry_ids = rclient.zrevrange(
-                    class_name, entry_ids_total - end_id_index, entry_ids_total - end_id_index + limit - 1)
+                    class_name, entry_ids_total - end_id_index,
+                    entry_ids_total - end_id_index + limit - 1)
 
                 dirty_expired_ids = []
                 for entry_id in entry_ids:
@@ -416,7 +448,8 @@ def get_previous_entries(language=None, country=None, category=None, feed=None, 
             else:  # memory + database
                 # memory
                 entry_ids = rclient.zrevrange(
-                    class_name, entry_ids_total - end_id_index, entry_ids_total - end_id_index + limit_in_memory - 1)
+                    class_name, entry_ids_total - end_id_index,
+                    entry_ids_total - end_id_index + limit_in_memory - 1)
 
                 last_entry_in_memory = None
                 dirty_expired_ids = []
@@ -439,13 +472,18 @@ def get_previous_entries(language=None, country=None, category=None, feed=None, 
                 if label_name:
                     feeds = Collection(db, FEED_REGISTRAR)
                     feed_lists = feeds.find(
-                        {'%s.%s' % ('labels', label_name): {'$exists': True}}, {'feed_title': 1})
+                        {'%s.%s' % ('labels', label_name): {'$exists': True}},
+                        {'feed_title': 1})
                     feed_names = [feed_list['feed_title']
                                   for feed_list in feed_lists]
-                    items = col.find({'updated': {'$lt': last_entry_in_memory_updated}, 'feed': {'$in': feed_names}}).sort(
+                    items = col.find(
+                        {'updated': {'$lt': last_entry_in_memory_updated},
+                         'feed': {'$in': feed_names}}).sort(
                         'updated', -1).limit(limit_in_database)
                 else:
-                    items = col.find({'updated': {'$lt': last_entry_in_memory_updated}, 'feed': feed}).sort(
+                    items = col.find(
+                        {'updated': {'$lt': last_entry_in_memory_updated},
+                         'feed': feed}).sort(
                         'updated', -1).limit(limit_in_database)
 
                 for item in items:
@@ -460,9 +498,14 @@ def get_previous_entries(language=None, country=None, category=None, feed=None, 
                         if x != 'updated':
                             new_item[str(x)] = str(y)
                         # remove 'u' in "{u'url':u'xxx'}"
-                        if x == 'category_image' or x == 'thumbnail_image' or x == 'hotnews_image' or x == 'text_image':
+                        if x == 'category_image' or x == 'thumbnail_image' or\
+                                        x == 'hotnews_image' or x == \
+                                'text_image':
                             image_dumped = json.dumps(y, encoding='utf-8')
-                            new_item[x] = eval(image_dumped) if image_dumped and image_dumped != "null" else "null"
+                            new_item[x] = eval(
+                                image_dumped) if image_dumped and \
+                                                 image_dumped != "null" else \
+                                "null"
                 new_item['updated'] = entry['updated']
                 new_entries.append(new_item)
 
@@ -470,6 +513,7 @@ def get_previous_entries(language=None, country=None, category=None, feed=None, 
             if dirty_expired_ids:
                 sys.path.append(os.path.join(CODE_BASE, 'newsman'))
                 from watchdog import clean_memory
+
                 clean_memory.clean_by_items(class_name, dirty_expired_ids)
                 logger.warning('Memory contains dirty expired items')
 
@@ -490,13 +534,16 @@ def get_previous_entries(language=None, country=None, category=None, feed=None, 
                 if label_name:
                     feeds = Collection(db, FEED_REGISTRAR)
                     feed_lists = feeds.find(
-                        {'%s.%s' % ('labels', label_name): {'$exists': True}}, {'feed_title': 1})
+                        {'%s.%s' % ('labels', label_name): {'$exists': True}},
+                        {'feed_title': 1})
                     feed_names = [feed_list['feed_title']
                                   for feed_list in feed_lists]
-                    items = col.find({'updated': {'$lt': end_id_updated}, 'feed': {'$in': feed_names}}).sort(
+                    items = col.find({'updated': {'$lt': end_id_updated},
+                                      'feed': {'$in': feed_names}}).sort(
                         'updated', -1).limit(limit)
                 else:
-                    items = col.find({'updated': {'$lt': end_id_updated}, 'feed': feed}).sort(
+                    items = col.find({'updated': {'$lt': end_id_updated},
+                                      'feed': feed}).sort(
                         'updated', -1).limit(limit)
             else:
                 return None
@@ -504,7 +551,8 @@ def get_previous_entries(language=None, country=None, category=None, feed=None, 
             if label_name:
                 feeds = Collection(db, FEED_REGISTRAR)
                 feed_lists = feeds.find(
-                    {'%s.%s' % ('labels', label_name): {'$exists': True}}, {'feed_title': 1})
+                    {'%s.%s' % ('labels', label_name): {'$exists': True}},
+                    {'feed_title': 1})
                 feed_names = [feed_list['feed_title']
                               for feed_list in feed_lists]
                 items = col.find({'feed': {'$in': feed_names}}).sort(
@@ -523,7 +571,8 @@ def get_previous_entries(language=None, country=None, category=None, feed=None, 
                     # remove 'u' in "{u'url':u'xxx'}"
                     if x == 'category_image' or x == 'thumbnail_image' or x == 'hotnews_image' or x == 'text_image':
                         image_dumped = json.dumps(y, encoding='utf-8')
-                        new_item[x] = eval(image_dumped) if image_dumped and image_dumped != "null" else "null"
+                        new_item[x] = eval(
+                            image_dumped) if image_dumped and image_dumped != "null" else "null"
             new_item['updated'] = item['updated']
             entries.append(new_item)
         return entries

@@ -10,6 +10,7 @@ call baidu uck's api to transcode a web page
 
 
 import sys
+
 reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
@@ -62,7 +63,8 @@ def _sanitize(content=None, referer=None):
                     width, height = ni.get_image_size()
                 except Exception as k:
                     logger.info(
-                        'Problem [%s] for Source [%s]' % (str(k), str(img['src'])))
+                        'Problem [%s] for Source [%s]' % (
+                        str(k), str(img['src'])))
                     continue
                 if width >= 480:
                     img['width'] = '100%'

@@ -10,6 +10,7 @@ daily work, clean expired items and its place in queues in memory
 
 
 import sys
+
 reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append("..")
@@ -78,7 +79,8 @@ def clean():
                 # compute a threshold
                 current_utc_time_posix = calendar.timegm(time.gmtime())
                 deadline_datetime = datetime.utcfromtimestamp(
-                    current_utc_time_posix) - timedelta(days=DATABASE_REMOVAL_DAYS)
+                    current_utc_time_posix) - timedelta(
+                    days=DATABASE_REMOVAL_DAYS)
                 deadline_posix = calendar.timegm(deadline_datetime.timetuple())
 
                 removal_candidates = document.find(

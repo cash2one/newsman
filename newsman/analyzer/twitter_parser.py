@@ -10,6 +10,7 @@ Twitter parser parses specific twitter account in real time
 
 
 import sys
+
 reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
@@ -42,7 +43,8 @@ def _read_entry(status):
         if status.text:
             entry = {}
             splits = [t.strip()
-                      for t in status.text.split() if t.strip() and not t.startswith('#') and 't.co' not in t]
+                      for t in status.text.split() if
+                      t.strip() and not t.startswith('#') and 't.co' not in t]
             entry['title'] = ''.join(splits)
             entry['updated_human'] = status.created_at
             entry['updated'] = status.created_at_in_seconds
@@ -68,7 +70,8 @@ def _read_entry(status):
         return None
 
 
-def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categories=None, etag=None):
+def parse(feed_link=None, feed_id=None, feed_title=None, language=None,
+          categories=None, etag=None):
     """
     Connect twitter and parses the timeline
     """

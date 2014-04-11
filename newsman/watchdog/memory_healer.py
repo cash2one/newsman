@@ -10,6 +10,7 @@ restore memory from database, if memory failed
 
 
 import sys
+
 reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append("/home/work/newsman/newsman")
@@ -57,13 +58,15 @@ def restore():
     try:
         collection_names = db.collection_names()
         for collection_name in collection_names:
-            if collection_name != 'system.indexes' and collection_name != 'feeds':
+            if collection_name != 'system.indexes' and collection_name != \
+                    'feeds':
                 col = Collection(db, collection_name)
 
                 # find valid time to filter out expired items
                 current_utc_time_posix = calendar.timegm(time.gmtime())
                 active_datetime = datetime.utcfromtimestamp(
-                    current_utc_time_posix) - timedelta(days=MEMORY_EXPIRATION_DAYS)
+                    current_utc_time_posix) - timedelta(
+                    days=MEMORY_EXPIRATION_DAYS)
                 active_posix = calendar.timegm(active_datetime.timetuple())
 
                 items = col.find(

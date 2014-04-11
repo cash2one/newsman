@@ -2,7 +2,8 @@
 #-*- coding: utf-8 -*-
 
 """
-PyTeaser is a Python version of [TextTeaser]<https://github.com/MojoJolo/textteaser/>
+PyTeaser is a Python version of [TextTeaser]<https://github
+.com/MojoJolo/textteaser/>
 PyTeaser uses nltp instead of Scala/Java's OpenNLP as the NLP engine. It also
 manages problems of internationalization, languages supported including Thai, 
 Arabic, Chinese, Japanese, Portugues and Indonesian
@@ -13,6 +14,7 @@ Arabic, Chinese, Japanese, Portugues and Indonesian
 
 
 import sys
+
 reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
@@ -42,12 +44,12 @@ from config.settings import SCORED_SENTENCE_LIMIT
 
 
 class PyTeaser:
-
     """
     PyTeaser extracts key sentences from an article
     """
 
-    def __init__(self, language=None, title=None, article=None, link=None, blog=None, category=None):
+    def __init__(self, language=None, title=None, article=None, link=None,
+                 blog=None, category=None):
         if not language or not title or not article:
             logger.error('Method malformed!')
 
@@ -85,7 +87,8 @@ class PyTeaser:
 
     def _clean_article(self):
         """
-        remove html tags, images, links from the article, and encode it appropriately
+        remove html tags, images, links from the article, and encode it
+        appropriately
         """
         try:
             # convert to normal encoding
@@ -149,9 +152,11 @@ class PyTeaser:
                     chardet.detect(text)['encoding'], 'ignore')
 
             # chinese and japanese punctuation
-            cj_punctuation = u"-〃〈-「『【［[〈《（(｛{」』】］]〉》）)｝}。．.!！?？、-〟〰-＃％-＊，-／：-；-＠-＿｛｝｟-･‐-―“-”…-‧﹏"
+            cj_punctuation = u"-〃〈-「『【［[〈《（(｛{」』】］]〉》）)｝}。．" \
+                             u".!！?？、-〟〰-＃％-＊，-／：-；-＠-＿｛｝｟-･‐-―“-”…-‧﹏"
             # thai punctuation, from
-            # http://blogs.transparent.com/thai/thai-punctuation-marks-other-characters-part-2/
+            # http://blogs.transparent
+            # .com/thai/thai-punctuation-marks-other-characters-part-2/
             thai_punctuation = u"อ์()“!,๛ๆฯฯลฯ?."
 
             words = []
@@ -161,7 +166,8 @@ class PyTeaser:
                 words = segmenter.tokenize(text)
                 # remove punctuation
                 words = [word.strip()
-                         for word in words if word.strip() and word not in cj_punctuation]
+                         for word in words if
+                         word.strip() and word not in cj_punctuation]
             elif self._language == 'zh':
                 jieba.enable_parallel(4)
                 seg_list = jieba.cut(text)
@@ -169,34 +175,45 @@ class PyTeaser:
                     words.append(seg)
                 # remove punctuation
                 words = [word.strip()
-                         for word in words if word.strip() and word not in cj_punctuation]
+                         for word in words if
+                         word.strip() and word not in cj_punctuation]
             elif self._language == 'th':
                 if text and text.strip():
                     try:
                         # preprocess text - remove single
                         if text.count('"') % 2:
                             text = text.replace('"', '')
-                        command = '''echo \"%s\" | %s %s/scw.conf %s 2>/dev/null''' % (
-                            str(text.strip().lower()), THAI_WORDSEG, THAI_WORDSEG_DICT, THAI_WORDSEG_DICT)
+                        command = '''echo \"%s\" | %s %s/scw.conf %s
+                        2>/dev/null''' % (
+                            str(text.strip().lower()), THAI_WORDSEG,
+                            THAI_WORDSEG_DICT, THAI_WORDSEG_DICT)
                         response = subprocess.Popen(
-                            command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True, close_fds=True)
+                            command, stdout=subprocess.PIPE,
+                            stderr=subprocess.PIPE, shell=True, close_fds=True)
                         content, error = response.communicate()
                         if not error and content:
-                            if 'error' not in content or 'permission' not in content:
+                            if 'error' not in content or 'permission' not in \
+                                    content:
                                 content = content.strip()
                                 paragraphs = [paragraph.strip()
-                                              for paragraph in content.split('\n') if paragraph.strip()]
+                                              for paragraph in
+                                              content.split('\n') if
+                                              paragraph.strip()]
                                 for paragraph in paragraphs:
                                     modes = [mode.strip()
-                                             for mode in paragraph.split('\t') if mode.strip()]
+                                             for mode in paragraph.split('\t')
+                                             if mode.strip()]
                                     # modes[0]: the orginal [1]: phrase seg
                                     # [2]: basic wordseg [3]: subphrase seg
                                     if len(modes) > 2:
                                         words.extend(
-                                            [word.strip() for word in modes[2].split(u'|') if word.strip()])
+                                            [word.strip() for word in
+                                             modes[2].split(u'|') if
+                                             word.strip()])
                                 # remove punctuation
                                 words = [
-                                    word for word in words if word not in thai_punctuation]
+                                    word for word in words if
+                                    word not in thai_punctuation]
                         elif error:
                             raise Exception(
                                 '%s over %s' % (str(error), str(text.strip())))
@@ -228,8 +245,11 @@ class PyTeaser:
             f = open(stopwords_path, 'r')
             stopwords = f.readlines()
             f.close()
-            #stopwords = [stopword.strip() for stopword in stopwords if stopword.strip()]
-            stopwords = [str(re.compile(r'[^\w ]', flags=re.UNICODE).sub("", unicode(stopword.strip())))
+            #stopwords = [stopword.strip() for stopword in stopwords if
+            # stopword.strip()]
+            stopwords = [str(re.compile(r'[^\w ]', flags=re.UNICODE).sub("",
+                                                                         unicode(
+                                                                             stopword.strip())))
                          for stopword in stopwords if stopword.strip()]
             words_filtered = [word for word in words if word not in stopwords]
 
@@ -289,7 +309,7 @@ class PyTeaser:
                     keyword_count = keyword[1]
                     if word in keyword_word or keyword_word in word:
                         word_in_keywords_score = word_in_keywords_score + \
-                            keyword_count
+                                                 keyword_count
                         break
             sbs_score = (
                 1.0 / math.fabs(len(words)) * float(word_in_keywords_score))
@@ -314,7 +334,9 @@ class PyTeaser:
                 for keyword in keywords:
                     keyword_word = keyword[0]
                     keyword_count = keyword[1]
-                    if (word in keyword_word or keyword_word in word) and keyword_count > 0:
+                    if (
+                            word in keyword_word or keyword_word in word) and\
+                                    keyword_count > 0:
                         word_in_keywords_score_with_index.append(
                             (keyword_count, index))
                         word_in_keywords_count = word_in_keywords_count + 1
@@ -325,18 +347,23 @@ class PyTeaser:
             # 1: [(a, 1), (b, 2), (c, 3), (d, 4)]
             # 2: [(b, 2), (c, 3), (d, 4)]
             # 3: [((a, 1), (b, 2)), ((b, 2), (c, 3)), ((c, 3), (d, 4))]
-            word_in_keywords_score_with_index_sliced = word_in_keywords_score_with_index[
-                1:]
+            word_in_keywords_score_with_index_sliced = \
+                word_in_keywords_score_with_index[
+                                                       1:]
             word_in_keywords_zipped = zip(
-                word_in_keywords_score_with_index, word_in_keywords_score_with_index_sliced)
+                word_in_keywords_score_with_index,
+                word_in_keywords_score_with_index_sliced)
 
-            word_in_keywords_sum_each = [float(item[0][0] * item[1][0]) / float(pow((item[0][1] - item[1][1]), 2))
+            word_in_keywords_sum_each = [float(item[0][0] * item[1][0]) / float(
+                pow((item[0][1] - item[1][1]), 2))
                                          for item in word_in_keywords_zipped]
             word_in_keywords_sum = reduce(
-                lambda x, y: x + y, word_in_keywords_sum_each) if word_in_keywords_sum_each else 0
+                lambda x, y: x + y,
+                word_in_keywords_sum_each) if word_in_keywords_sum_each else 0
 
-            dbs_score = 1.0 / float(word_in_keywords_count) * float(word_in_keywords_count + 1.0) * \
-                float(word_in_keywords_sum)
+            dbs_score = 1.0 / float(word_in_keywords_count) * float(
+                word_in_keywords_count + 1.0) * \
+                        float(word_in_keywords_sum)
             return dbs_score
         except Exception as k:
             logger.error(str(k))
@@ -393,8 +420,9 @@ class PyTeaser:
         try:
             IDEAL_SENTENCE_LENGTH = 20  # unicode words
             sentence_length_score = 1.0 - \
-                math.fabs(IDEAL_SENTENCE_LENGTH - len(sentence_words)) / float(
-                    IDEAL_SENTENCE_LENGTH)
+                                    math.fabs(IDEAL_SENTENCE_LENGTH - len(
+                                        sentence_words)) / float(
+                                        IDEAL_SENTENCE_LENGTH)
             return sentence_length_score
         except Exception as k:
             logger.error(str(k))
@@ -413,7 +441,8 @@ class PyTeaser:
             if title_words:
                 # filter out words that are not in title
                 sentence_words = [
-                    sentence_word for sentence_word in sentence_words if sentence_word in title_words]
+                    sentence_word for sentence_word in sentence_words if
+                    sentence_word in title_words]
                 title_score = float(
                     len(sentence_words)) / float(len(title_words))
                 return title_score
@@ -455,7 +484,9 @@ class PyTeaser:
                     keyword_score = float(sbs_score + dbs_score) / 2.0 * 10.0
 
                     sentence_score = float(
-                        title_score * 1.5 + keyword_score * 2.0 + sentence_length_score * 0.5 + sentence_position_score * 1.0) / 4.0
+                        title_score * 1.5 + keyword_score * 2.0 +
+                        sentence_length_score * 0.5 + sentence_position_score
+                        * 1.0) / 4.0
                     # sentence_length_score, sentence_position_score, '[',
                     # sbs_score, dbs_score, ']'
                     sentences_scored.append((sentence, sentence_score, index))
@@ -500,23 +531,48 @@ class PyTeaser:
 if __name__ == '__main__':
     language = 'en'
     title = "McDonald’s Theory"
-    text = """I use a trick with co-workers when we’re trying to decide where to eat for lunch and no one has any ideas. I recommend McDonald’s.
+    text = """I use a trick with co-workers when we’re trying to decide where
+    to eat for lunch and no one has any ideas. I recommend McDonald’s.
 
-An interesting thing happens. Everyone unanimously agrees that we can’t possibly go to McDonald’s, and better lunch suggestions emerge. Magic!
+An interesting thing happens. Everyone unanimously agrees that we can’t
+possibly go to McDonald’s, and better lunch suggestions emerge. Magic!
 
-It’s as if we’ve broken the ice with the worst possible idea, and now that the discussion has started, people suddenly get very creative. I call it the McDonald’s Theory: people are inspired to come up with good ideas to ward off bad ones.
+It’s as if we’ve broken the ice with the worst possible idea, and now that
+the discussion has started, people suddenly get very creative. I call it the
+McDonald’s Theory: people are inspired to come up with good ideas to ward off
+bad ones.
 
-This is a technique I use a lot at work. Projects start in different ways. Sometimes you’re handed a formal brief. Sometimes you hear a rumor that something might be coming so you start thinking about it early. Other times you’ve been playing with an idea for months or years before sharing with your team. There’s no defined process for all creative work, but I’ve come to believe that all creative endeavors share one thing: the second step is easier than the first. Always.
+This is a technique I use a lot at work. Projects start in different ways.
+Sometimes you’re handed a formal brief. Sometimes you hear a rumor that
+something might be coming so you start thinking about it early. Other times
+you’ve been playing with an idea for months or years before sharing with your
+team. There’s no defined process for all creative work, but I’ve come to
+believe that all creative endeavors share one thing: the second step is
+easier than the first. Always.
 
-Anne Lamott advocates “shitty first drafts,” Nike tells us to “Just Do It,” and I recommend McDonald’s just to get people so grossed out they come up with a better idea. It’s all the same thing. Lamott, Nike, and McDonald’s Theory are all saying that the first step isn’t as hard as we make it out to be. Once I got an email from Steve Jobs, and it was just one word: “Go!” Exactly. Dive in. Do. Stop over-thinking it.
+Anne Lamott advocates “shitty first drafts,” Nike tells us to “Just Do It,
+” and I recommend McDonald’s just to get people so grossed out they come up
+with a better idea. It’s all the same thing. Lamott, Nike, and McDonald’s
+Theory are all saying that the first step isn’t as hard as we make it out to
+be. Once I got an email from Steve Jobs, and it was just one word: “Go!”
+Exactly. Dive in. Do. Stop over-thinking it.
 
-The next time you have an idea rolling around in your head, find the courage to quiet your inner critic just long enough to get a piece of paper and a pen, then just start sketching it. “But I don’t have a long time for this!” you might think. Or, “The idea is probably stupid,” or, “Maybe I’ll go online and click around for—”
+The next time you have an idea rolling around in your head, find the courage
+to quiet your inner critic just long enough to get a piece of paper and a
+pen, then just start sketching it. “But I don’t have a long time for this!”
+you might think. Or, “The idea is probably stupid,” or, “Maybe I’ll go online
+and click around for—”
 
 No. Shut up. Stop sabotaging yourself.
 
-The same goes for groups of people at work. The next time a project is being discussed in its early stages, grab a marker, go to the board, and throw something up there. The idea will probably be stupid, but that’s good! McDonald’s Theory teaches us that it will trigger the group into action.
+The same goes for groups of people at work. The next time a project is being
+discussed in its early stages, grab a marker, go to the board, and throw
+something up there. The idea will probably be stupid, but that’s good!
+McDonald’s Theory teaches us that it will trigger the group into action.
 
-It takes a crazy kind of courage, of focus, of foolhardy perseverance to quiet all those doubts long enough to move forward. But it’s possible, you just have to start. Bust down that first barrier and just get things on the page. It’s not the kind of thing you can do in your head, you have to write something, sketch something, do something, and then revise off it.
+It takes a crazy kind of courage, of focus, of foolhardy perseverance to
+quiet all those doubts long enough to move forward. But it’s possible,
+you just have to start. Bust down that first barrier and just get things on the page. It’s not the kind of thing you can do in your head, you have to write something, sketch something, do something, and then revise off it.
 
 Not sure how to start? Sketch a few shapes, then label them. Say, “This is probably crazy, but what if we.…” and try to make your sketch fit the problem you’re trying to solve. Like a magic spell, the moment you put the stuff on the board, something incredible will happen. The room will see your ideas, will offer their own, will revise your thinking, and by the end of 15 minutes, 30 minutes, an hour, you’ll have made progress.
 

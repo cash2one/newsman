@@ -10,6 +10,7 @@ rss is the interface to rss parsing, processing and storing.
 
 
 import sys
+
 reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
@@ -61,36 +62,51 @@ def _generate_images(image=None, entry=None, rand=None):
 
         # hot news image
         hot_web, hot_local = illustrator.scale_image(
-            image=image, size_expected=HOT_IMAGE_SIZE, resize_by_width=True, crop_by_center=True, relative_path='%s_hotnews' % image_relative_path)
+            image=image, size_expected=HOT_IMAGE_SIZE, resize_by_width=True,
+            crop_by_center=True,
+            relative_path='%s_hotnews' % image_relative_path)
         entry['hotnews_image'] = hot_web if hot_web else None
         entry['hotnews_image_local'] = hot_local if hot_local else None
 
         # category image
         category_web, category_local = illustrator.scale_image(
-            image=image, size_expected=CATEGORY_IMAGE_SIZE, resize_by_width=True, crop_by_center=False, relative_path='%s_category' % image_relative_path)
+            image=image, size_expected=CATEGORY_IMAGE_SIZE,
+            resize_by_width=True, crop_by_center=False,
+            relative_path='%s_category' % image_relative_path)
         entry['category_image'] = category_web if category_web else None
-        entry['category_image_local'] = category_local if category_local else None
+        entry[
+            'category_image_local'] = category_local if category_local else None
 
         # thumbnail image
         # landscape
         if float(image['width']) / float(image['height']) >= THUMBNAIL_STYLE:
             # high resolution
             thumbnail_web, thumbnail_local = illustrator.scale_image(
-                image=image, size_expected=THUMBNAIL_LANDSCAPE_SIZE_HIGH, resize_by_width=True, crop_by_center=True, relative_path='%s_thumbnail' % image_relative_path)
+                image=image, size_expected=THUMBNAIL_LANDSCAPE_SIZE_HIGH,
+                resize_by_width=True, crop_by_center=True,
+                relative_path='%s_thumbnail' % image_relative_path)
             if not thumbnail_web:
                 # normal resolution
                 thumbnail_web, thumbnail_local = illustrator.scale_image(
-                    image=image, size_expected=THUMBNAIL_LANDSCAPE_SIZE_NORMAL, resize_by_width=True, crop_by_center=True, relative_path='%s_thumbnail' % image_relative_path)
+                    image=image, size_expected=THUMBNAIL_LANDSCAPE_SIZE_NORMAL,
+                    resize_by_width=True, crop_by_center=True,
+                    relative_path='%s_thumbnail' % image_relative_path)
         else:  # portrait
             # high resolution
             thumbnail_web, thumbnail_local = illustrator.scale_image(
-                image=image, size_expected=THUMBNAIL_PORTRAIT_SIZE_HIGH, resize_by_width=True, crop_by_center=True, relative_path='%s_thumbnail' % image_relative_path)
+                image=image, size_expected=THUMBNAIL_PORTRAIT_SIZE_HIGH,
+                resize_by_width=True, crop_by_center=True,
+                relative_path='%s_thumbnail' % image_relative_path)
             if not thumbnail_web:
                 # normal resolution
                 thumbnail_web, thumbnail_local = illustrator.scale_image(
-                    image=image, size_expected=THUMBNAIL_PORTRAIT_SIZE_NORMAL, resize_by_width=True, crop_by_center=True, relative_path='%s_thumbnail' % image_relative_path)
+                    image=image, size_expected=THUMBNAIL_PORTRAIT_SIZE_NORMAL,
+                    resize_by_width=True, crop_by_center=True,
+                    relative_path='%s_thumbnail' % image_relative_path)
         entry['thumbnail_image'] = thumbnail_web if thumbnail_web else None
-        entry['thumbnail_image_local'] = thumbnail_local if thumbnail_local else None
+        entry[
+            'thumbnail_image_local'] = thumbnail_local if thumbnail_local \
+            else None
     except Exception as k:
         logger.error(str(k))
         pass
@@ -113,7 +129,7 @@ def _get_tts(entry=None, rand=None):
         tts_relative_path = '%s_%s_%s_%i.mp3' % (
             entry['language'], entry['feed_id'], entry['updated'], rand)
         read_content = '%s. %s' % (entry['title'], entry[
-                                   'summary'] if entry.has_key('summary') and entry['summary'] else "")
+            'summary'] if entry.has_key('summary') and entry['summary'] else "")
         entry['mp3'], entry['mp3_local'] = tts_provider.google(
             entry['language'], read_content, tts_relative_path)
     except Exception as k:
@@ -124,7 +140,8 @@ def _get_tts(entry=None, rand=None):
     return entry
 
 
-def _value_added_process(entries=None, language=None, transcoder_type='chengdujin'):
+def _value_added_process(entries=None, language=None,
+                         transcoder_type='chengdujin'):
     """
     add more value to an entry
     tts, transcode, images, redis_entry_expiration, database_entry_expiration
@@ -150,16 +167,27 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
                 entry['language'], entry['feed_id'], entry['updated'], rand)
 
             # high chances transcoder cannot work properly
-            entry['transcoded'], entry['transcoded_local'], raw_transcoded_content, images_from_transcoded = transcoder.convert(
-                entry['language'], entry['title'], entry['link'], entry['updated'], entry['feed'], transcoder_type, transcoded_relative_path)
+            entry['transcoded'], entry[
+                'transcoded_local'], raw_transcoded_content, \
+            images_from_transcoded = transcoder.convert(
+                entry['language'], entry['title'], entry['link'],
+                entry['updated'], entry['feed'], transcoder_type,
+                transcoded_relative_path)
 
             if entry['transcoded']:
                 # [OPTIONAL] summary
                 if entry['summary'] or raw_transcoded_content:
-                    summary_found = summarizer.extract(entry['language'], entry['title'], str(raw_transcoded_content), entry[
-                                                       'summary'], entry['link'], entry['feed'], '*|*'.join(entry['categories']))
+                    summary_found = summarizer.extract(entry['language'],
+                                                       entry['title'], str(
+                            raw_transcoded_content), entry[
+                                                           'summary'],
+                                                       entry['link'],
+                                                       entry['feed'],
+                                                       '*|*'.join(
+                                                           entry['categories']))
                     entry['summary'] = summary_found
-                #entry['summary'] = entry['summary'] if 'summary' in entry and entry['summary'] else None
+                #entry['summary'] = entry['summary'] if 'summary' in entry
+                # and entry['summary'] else None
 
                 # [OPTIONAL] images
                 # process images found in the transcoded data
@@ -168,7 +196,8 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
                     entry['images'].extend(images_from_transcoded)
                     # remove duplicated images
                     images_deduped = illustrator.dedup_images(
-                        entry['images']) if entry.has_key('images') and entry['images'] else None
+                        entry['images']) if entry.has_key('images') and entry[
+                        'images'] else None
                     # be cautious dedup_images might return None if network
                     # sucks
                     if images_deduped:
@@ -184,20 +213,26 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
                         entry = _generate_images(biggest, entry, rand)
                 # for older version users
                 entry['image'] = entry['thumbnail_image'][
-                    'url'] if 'thumbnail_image' in entry and entry['thumbnail_image'] else None
+                    'url'] if 'thumbnail_image' in entry and entry[
+                    'thumbnail_image'] else None
 
                 # [OPTIONAL] text image
                 # if no category_image is found, generate a text-image
-                if 'category_image' not in entry or ('category_image' in entry and not entry['category_image']):
+                if 'category_image' not in entry or (
+                        'category_image' in entry and not entry[
+                    'category_image']):
                     image_relative_path = '%s_%s_%s_%i' % (
-                        entry['language'], entry['feed_id'], entry['updated'], rand)
+                        entry['language'], entry['feed_id'], entry['updated'],
+                        rand)
                     try:
                         text_img = text2img.Text2Image(
-                            language, entry['title'], '%s_textimage.png' % image_relative_path)
+                            language, entry['title'],
+                            '%s_textimage.png' % image_relative_path)
                         entry['text_image'] = text_img.get_image()
                     except Exception as k:
                         logger.error(
-                            'Problem [%s] generating text2image for [%s]' % (str(k), entry['link']))
+                            'Problem [%s] generating text2image for [%s]' % (
+                            str(k), entry['link']))
 
                 # [OPTIONAL] google tts not for indonesian
                 if entry['language'] != 'in':
@@ -213,7 +248,8 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
                     """
                     deadline = datetime.utcfromtimestamp(
                         updated) + timedelta(days=days_to_deadline)
-                    return time.asctime(time.gmtime(calendar.timegm(deadline.timetuple())))
+                    return time.asctime(
+                        time.gmtime(calendar.timegm(deadline.timetuple())))
 
                 entry['memory_expired'] = _expired(
                     entry['updated'], MEMORY_EXPIRATION_DAYS)
@@ -240,7 +276,8 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
                                 'Cleaned %s in database' % entry['title'])
                         else:
                             logger.error(
-                                'Error cleaning %s in database' % entry['title'])
+                                'Error cleaning %s in database' % entry[
+                                    'title'])
                         # remove entry-created files on disk
                         if clean_disk.clean_by_item(entry):
                             logger.info('Cleaned %s on disk' % entry['title'])
@@ -272,7 +309,8 @@ def _value_added_process(entries=None, language=None, transcoder_type='chengduji
 
 
 # TODO: code to remove added items if things suck at database/memory
-def update(feed_link=None, feed_id=None, language=None, categories=None, transcoder_type='chengdujin', parser_type=None):
+def update(feed_link=None, feed_id=None, language=None, categories=None,
+           transcoder_type='chengdujin', parser_type=None):
     """
     update could be called
     1. from task procedure: feed_id
@@ -311,11 +349,15 @@ def update(feed_link=None, feed_id=None, language=None, categories=None, transco
             if parser_type == 'rss':
                 import rss_parser
                 # parse rss reading from remote rss servers
-                entries, status_new, feed_title_new, etag_new, modified_new, reason_new = rss_parser.parse(
-                    feed_link, feed_id, feed_title, language, categories, etag, modified)
+                entries, status_new, feed_title_new, etag_new, modified_new, \
+                reason_new = rss_parser.parse(
+                    feed_link, feed_id, feed_title, language, categories, etag,
+                    modified)
             elif parser_type == 'twitter':
                 import twitter_parser
-                entries, status_new, feed_title_new, etag_new, reason_new = twitter_parser.parse(
+
+                entries, status_new, feed_title_new, etag_new, reason_new = \
+                    twitter_parser.parse(
                     feed_link, feed_id, feed_title, language, categories, etag)
             else:
                 pass
@@ -336,9 +378,11 @@ def update(feed_link=None, feed_id=None, language=None, categories=None, transco
                         # only feed_id is necessary, others are optional
                         # **kwargs
                         result = db_feeds.update(
-                            feed_id=feed_id, status=status_new, feed_title=feed_title_new, etag=etag_new, modified=modified_new, reason=reason_new)
+                            feed_id=feed_id, status=status_new,
+                            feed_title=feed_title_new, etag=etag_new,
+                            modified=modified_new, reason=reason_new)
                         logger.warning('%s entries of %s added to database!' %
-                                      (str(len(entries)), feed_link))
+                                       (str(len(entries)), feed_link))
                         if result:
                             return result
                         else:
@@ -354,7 +398,9 @@ def update(feed_link=None, feed_id=None, language=None, categories=None, transco
             else:
                 logger.info('Nothing from RSS is updated!')
                 result = db_feeds.update(
-                    feed_id=feed_id, status=status_new, feed_title=feed_title_new, etag=etag_new, modified=modified_new, reason=reason_new)
+                    feed_id=feed_id, status=status_new,
+                    feed_title=feed_title_new, etag=etag_new,
+                    modified=modified_new, reason=reason_new)
                 if not result:
                     logger.error('Error found updating feeds database')
                 return None

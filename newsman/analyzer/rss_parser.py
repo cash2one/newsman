@@ -10,6 +10,7 @@ rss_parser finds all information in an rss item
 
 
 import sys
+
 reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
@@ -22,6 +23,7 @@ from config.settings import logger
 from processor import illustrator
 from datetime import datetime, timedelta
 import warnings
+
 warnings.filterwarnings(
     action="ignore", category=DeprecationWarning, module="feedparser")
 import feedparser
@@ -29,6 +31,7 @@ import html2text
 import re
 import requests
 import socket
+
 socket.setdefaulttimeout(10)  # 10 seconds
 import time
 import urllib2
@@ -39,7 +42,8 @@ from config.settings import LANGUAGES
 from config.settings import DATABASE_REMOVAL_DAYS
 # prefix should not end with a slash
 HIDDEN_LINKS = {'http://news.goo.ne.jp':
-                ('div', {'class': 'lead fs16 bold'}), 'http://news.nifty.com': ('li', {'class': 'headnews'})}
+                    ('div', {'class': 'lead fs16 bold'}),
+                'http://news.nifty.com': ('li', {'class': 'headnews'})}
 AD_LINKS = 'http://rss.rssad.jp/rss/ad/'
 
 
@@ -98,7 +102,8 @@ def _get_actual_link(prefix=None, link=None):
         return None
 
 
-def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories=None):
+def _read_entry(e=None, feed_id=None, feed_title=None, language=None,
+                categories=None):
     """
     read a specific entry item from a feed 
     Note. categories are ids of category item
@@ -127,21 +132,25 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
                 # print 'original', original_link
                 # print 'unescaped', hparser.unescape(original_link)
                 # print 'unquoted', urllib2.unquote(original_link)
-                # print 'unescaped-unquoted', urllib2.unquote(hparser.unescape(original_link))
-                # print 'unquoted-unescaped', hparser.unescape(urllib2.unquote(original_link))
+                # print 'unescaped-unquoted', urllib2.unquote(hparser
+                # .unescape(original_link))
+                # print 'unquoted-unescaped', hparser.unescape(urllib2
+                # .unquote(original_link))
                 # find the real link from redirection
                 # the sequence of the following two steps are IMPORTANT!
                 original_link = _find_redirected_link(original_link)
                 # print 'anti-redirected', original_link
                 # clean the URL
-                # original_link = urllib2.unquote(hparser.unescape(original_link))
+                # original_link = urllib2.unquote(hparser.unescape(
+                # original_link))
                 # print 'unescaped-unquoted', original_link
                 # print '------------------------------------------------'
 
 
                 # find the redirected link
                 matched_prefix = [
-                    link for link in HIDDEN_LINKS if original_link.startswith(link)]
+                    link for link in HIDDEN_LINKS if
+                    original_link.startswith(link)]
                 found_prefix = matched_prefix[0] if matched_prefix else None
                 if found_prefix:
                     actual_link = _get_actual_link(found_prefix, original_link)
@@ -169,7 +178,7 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
             entry['title'] = None
         # remove possible htmlized title
         entry['title'] = re.sub("<.*?>", " ", entry[
-                                'title']) if 'title' in entry and entry['title'] else None
+            'title']) if 'title' in entry and entry['title'] else None
 
         # article published time
         # first try parsed time info
@@ -182,7 +191,8 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
                 entry['updated_human'] = e.published
             except AttributeError as k:
                 entry['error'] = ['%s\n%s' % (
-                    entry['error'], "no 'updated_parsed' or 'published_parsed'")]
+                    entry['error'],
+                    "no 'updated_parsed' or 'published_parsed'")]
                 # then try unparsed time info
                 # this is rarely possible.
                 try:
@@ -220,7 +230,8 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
                 summary = summary.decode(summary_encoding, 'ignore')
             # a <div, for example, and a </div
             is_html = True if len(
-                re.findall(u'</?a|</?p|</?strong|</?img|</?html|</?div', summary)) > 1 else False
+                re.findall(u'</?a|</?p|</?strong|</?img|</?html|</?div',
+                           summary)) > 1 else False
             if is_html:
                 h = html2text.HTML2Text()
                 h.ignore_images = True
@@ -231,7 +242,8 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
                 paragraphs_above_limit = []
                 # remove paragraphs that contain less than x number of words
                 for paragraph in paragraphs:
-                    if entry['language'].startswith('zh') or entry['language'] == 'ja':
+                    if entry['language'].startswith('zh') or entry[
+                        'language'] == 'ja':
                         if len(paragraph) > 18:
                             paragraphs_above_limit.append(paragraph)
                     else:
@@ -322,7 +334,8 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None, categories
 
 # TODO: boundary checkers
 # TODO: update parsing info to feed database
-def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categories=None, etag=None, modified=None):
+def parse(feed_link=None, feed_id=None, feed_title=None, language=None,
+          categories=None, etag=None, modified=None):
     """
     read rss/atom data from a given feed
     feed_id is the feed ObjectId in MongoDB
@@ -334,7 +347,8 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
         return None, None, feed_title, etag, modified, "Method malformed!"
     if language not in LANGUAGES:
         logger.error("Language not supported for %s!" % feed_link)
-        return None, None, feed_title, etag, modified, "Language not supported for %s!" % feed_link
+        return None, None, feed_title, etag, modified, "Language not "
+        "supported for %s!" % feed_link
 
     def _validate_time(entry):
         """
@@ -355,16 +369,22 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
 
             if status == 301:
                 logger.critical(
-                    '%s has been permantently moved to a %s!' % (feed_link, d.href))
-                return None, status, feed_title, etag, modified, '%s has been permantently moved to a %s!' % (feed_link, d.href)
+                    '%s has been permantently moved to a %s!' % (
+                    feed_link, d.href))
+                return None, status, feed_title, etag, modified, '%s has been '
+                'permantently moved to a %s!' % (
+                feed_link, d.href)
             elif status == 304:
                 logger.warning(
                     '%s server has not updated its feeds' % feed_link)
-                return None, status, feed_title, etag, modified, '%s server has not updated its feeds' % feed_link
+                return None, status, feed_title, etag, modified, '%s server '
+                'has not updated its feeds' % feed_link
             elif status == 410:
                 logger.critical(
-                    '%s is gone! Admin should check the feed availability!' % feed_link)
-                return None, status, feed_title, etag, modified, '%s is gone! Admin should check the feed availability!' % feed_link
+                    '%s is gone! Admin should check the feed availability!' %
+                    feed_link)
+                return None, status, feed_title, etag, modified, '%s is gone! '
+                'Admin should check the feed availability!' % feed_link
             elif status == 200 or status == 302:
                 # no need to worry.
                 if status == 302:
@@ -384,13 +404,15 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
                         if feed_title != feed_title_latest:
                             # change feed title
                             logger.info(
-                                '%s title changed! Please update feed table/database' % feed_link)
+                                '%s title changed! Please update feed '
+                                'table/database' % feed_link)
                             logger.info('old title: %s' % feed_title)
                             logger.info('new title: %s' % feed_title_latest)
                             #feed_title = feed_title_latest
                     else:
                         logger.info(
-                            '%s[%s] has no title in its latest RSS' % (feed_title, feed_link))
+                            '%s[%s] has no title in its latest RSS' % (
+                            feed_title, feed_link))
 
                 # update etag/modified
                 etag = None
@@ -426,20 +448,27 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None, categori
                         # the FINAL return
                         # the last one indicates nothing wrong happended in
                         # parsing
-                        return filter(_validate_time, entries), status, feed_title, etag, modified, 'OK'
+                        return filter(_validate_time,
+                                      entries), status, feed_title, etag, \
+                               modified, 'OK'
                     else:
                         logger.info('Feed parsing goes wrong!')
-                        return None, status, feed_title, etag, modified, 'Feed parsing goes wrong!'
+                        return None, status, feed_title, etag, modified, \
+                               'Feed parsing goes wrong!'
                 else:
                     logger.info("Feed %s has no items!" % feed_id)
-                    return None, status, feed_title, etag, modified, 'Feed %s has no items!' % feed_id
+                    return None, status, feed_title, etag, modified, 'Feed %s '
+                    'has no items!' % feed_id
             else:
                 logger.info(
                     'HTTP Error Code [%s] for %s' % (status, feed_link))
-                return None, status, feed_title, etag, modified, 'HTTP Error Code [%s] for %s' % (status, feed_link)
+                return None, status, feed_title, etag, modified, 'HTTP Error '
+                'Code [%s] for %s' % (
+                status, feed_link)
         else:
             logger.info("Cannot parse %s correctly!" % feed_id)
             return None, None, feed_title, etag, modified, "Cannot parse %s correctly!" % feed_id
     except Exception as k:
         logger.exception('%s for %s' % (str(k), feed_id))
-        return None, None, feed_title, etag, modified, '%s for %s' % (str(k), feed_id)
+        return None, None, feed_title, etag, modified, '%s for %s' % (
+        str(k), feed_id)

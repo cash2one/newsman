@@ -10,6 +10,7 @@ scrape is a task to scrape rss resources
 
 
 import sys
+
 reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('/home/work/newsman/newsman')
@@ -27,7 +28,6 @@ from config.settings import FEED_UPDATE_TIMEOUT
 
 
 class TimeoutQueue(Queue.Queue):
-
     """
     Synchronized Queue with timeout feature
     """
@@ -43,14 +43,14 @@ class TimeoutQueue(Queue.Queue):
                 remaining = endtime - time.time()
                 if remaining <= 0.0:
                     raise Exception('[%s] unfinished items [%s]' %
-                                    (str(self.unfinished_tasks), str(self.queue)))
+                                    (str(self.unfinished_tasks),
+                                     str(self.queue)))
                 self.all_tasks_done.wait(remaining)
         finally:
             self.all_tasks_done.release()
 
 
 class UpdateThread(threading.Thread):
-
     """
     Update news rss/twitter ...
     """
@@ -66,14 +66,16 @@ class UpdateThread(threading.Thread):
                 updated_feed = scraper.update(feed_id=feed_id)
                 if updated_feed:
                     logger.warning(
-                        '%s: %s [%s] is successfully updated!' % (self._name, feed_id, updated_feed))
+                        '%s: %s [%s] is successfully updated!' % (
+                        self._name, feed_id, updated_feed))
                 else:
                     logger.warning(
                         '%s: %s receives no update!' % (self._name, feed_id))
                 queue.task_done()
             except Exception as k:
                 logger.error(
-                    '%s: [%s] receives no update but exception' % (self._name, str(k)))
+                    '%s: [%s] receives no update but exception' % (
+                    self._name, str(k)))
                 queue.task_done()
 
 

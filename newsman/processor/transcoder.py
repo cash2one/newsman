@@ -10,6 +10,7 @@ transcoder is the main interface for several transcoders
 
 
 import sys
+
 reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
@@ -48,7 +49,8 @@ from config.settings import UCK_TIMEOUT
 
 TRANSCODE_BUTTON = {'en': TRANSCODING_BTN_EN, 'ja': TRANSCODING_BTN_JA,
                     'th': TRANSCODING_BTN_TH, 'pt': TRANSCODING_BTN_PT,
-                    'in': TRANSCODING_BTN_IN, 'ar': TRANSCODING_BTN_AR, 'zh': TRANSCODING_BTN_ZH}
+                    'in': TRANSCODING_BTN_IN, 'ar': TRANSCODING_BTN_AR,
+                    'zh': TRANSCODING_BTN_ZH}
 
 
 # create a local dir for transcoded content if dir does not exist
@@ -57,7 +59,6 @@ if not os.path.exists(TRANSCODED_LOCAL_DIR):
 
 
 class TranscoderAPI(threading.Thread):
-
     """
     call a transcoder
     """
@@ -102,7 +103,8 @@ def _save(data, path):
         return None, None
 
 
-def _compose(language=None, title=None, updated=None, feed=None, content=None, images=None):
+def _compose(language=None, title=None, updated=None, feed=None, content=None,
+             images=None):
     """
     combine content with a template
     """
@@ -113,7 +115,8 @@ def _compose(language=None, title=None, updated=None, feed=None, content=None, i
     try:
         # sub-info
         updated_sub_info = time.strftime(
-            "%m %d, %Y", time.strptime(time.ctime(updated))) if updated else None
+            "%m %d, %Y",
+            time.strptime(time.ctime(updated))) if updated else None
         sub_info = '%s | %s' % (feed, updated_sub_info)
 
         # select appropriate template
@@ -125,7 +128,8 @@ def _compose(language=None, title=None, updated=None, feed=None, content=None, i
         if f:
             template = str(f.read())
             f.close()
-            return template % (title, title, sub_info, content, TRANSCODE_BUTTON[language])
+            return template % (
+            title, title, sub_info, content, TRANSCODE_BUTTON[language])
         else:
             logger.error("Template %s contains no data!" % news_template)
             return None
@@ -318,7 +322,8 @@ def prepare_link(url):
         return None
 
 
-def convert(language="en", title=None, link=None, updated=None, feed=None, transcoder="chengdujin", relative_path=None, stdout=False):
+def convert(language="en", title=None, link=None, updated=None, feed=None,
+            transcoder="chengdujin", relative_path=None, stdout=False):
     """
     select a transcoder
     send the link
@@ -357,7 +362,8 @@ def convert(language="en", title=None, link=None, updated=None, feed=None, trans
                 if not stdout:
                     # embed content in template
                     news = _compose(
-                        language, title, updated, feed, _sanitize(content), images)
+                        language, title, updated, feed, _sanitize(content),
+                        images)
                     if news:
                         # create web/local path
                         web_path, local_path = _save(news, relative_path)
@@ -393,7 +399,8 @@ def convert(language="en", title=None, link=None, updated=None, feed=None, trans
                     return None, None
         else:
             logger.error(
-                'Link [clean %s] [original %s] cannot be parsed' % (link_clean, link))
+                'Link [clean %s] [original %s] cannot be parsed' % (
+                link_clean, link))
             if not stdout:
                 return None, None, None, None
             else:

@@ -11,6 +11,7 @@ Based on https://github.com/fengli/fabfile-deploy/blob/master/fabfile.py
 
 
 import sys
+
 reload(sys)
 sys.setdefaultencoding('UTF-8')
 
@@ -20,7 +21,8 @@ import os
 # CONSTANTS
 env.GIT_REPO_URL = 'https://github.com/chengdujin/newsman'
 env.REDIS_URL = 'http://download.redis.io/releases/redis-2.6.16.tar.gz'
-env.MONGODB_URL = 'http://fastdl.mongodb.org/linux/mongodb-linux-x86_64-2.4.6.tgz'
+env.MONGODB_URL = 'http://fastdl.mongodb.org/linux/mongodb-linux-x86_64-2.4.6' \
+                  '.tgz'
 
 
 def local():
@@ -98,7 +100,11 @@ def setup_sys_install():
     """
     print "=== SETUP SYSTEM LIBRARIES ==="
     sudo('apt-get -y update')
-    sudo('apt-get -y install build-essential gcc make git-core python-dev python-imaging python-pip curl monit mongodb redis-server sox lame libjpeg8 libjpeg-dev libfreetype6 libfreetype6-dev zlib1g-dev sendmail-bin sensible-mda')
+    sudo(
+        'apt-get -y install build-essential gcc make git-core python-dev '
+        'python-imaging python-pip curl monit mongodb redis-server sox lame '
+        'libjpeg8 libjpeg-dev libfreetype6 libfreetype6-dev zlib1g-dev '
+        'sendmail-bin sensible-mda')
     sudo('apt-get -y upgrade')
     stop_sendmail_logging()
 
@@ -129,12 +135,16 @@ def configure_settings():
     """
     print '=== CONFIGURE REPO SETTINGS ==='
     from fabric.contrib.files import uncomment
+
     uncomment(
-        os.path.join(env.REMOTE_CODEBASE_PATH, 'newsman/config/settings.py'), env.host)
+        os.path.join(env.REMOTE_CODEBASE_PATH, 'newsman/config/settings.py'),
+        env.host)
     uncomment(
-        os.path.join(env.REMOTE_CODEBASE_PATH, 'newsman/config/settings.py'), env.user)
-    run("cp %s %s" % (os.path.join(env.REMOTE_CODEBASE_PATH, 'newsman/config/settings.py'),
-        os.path.join(env.REMOTE_CODEBASE_PATH, 'newsman/publisher/settings.py')))
+        os.path.join(env.REMOTE_CODEBASE_PATH, 'newsman/config/settings.py'),
+        env.user)
+    run("cp %s %s" % (
+    os.path.join(env.REMOTE_CODEBASE_PATH, 'newsman/config/settings.py'),
+    os.path.join(env.REMOTE_CODEBASE_PATH, 'newsman/publisher/settings.py')))
 
 
 def setup_folders():
@@ -145,7 +155,9 @@ def setup_folders():
     with cd(os.path.dirname(env.REMOTE_CODEBASE_PATH)):
         run('mkdir -p STATIC/news/ts')
         run("cp -r %s %s" %
-            (os.path.join(env.REMOTE_CODEBASE_PATH, 'newsman/templates/static*'), 'STATIC/news/ts'))
+            (
+            os.path.join(env.REMOTE_CODEBASE_PATH, 'newsman/templates/static*'),
+            'STATIC/news/ts'))
     with cd(os.path.dirname(env.BACKUP_PATH)):
         run('mkdir %s' % os.path.basename(env.BACKUP_PATH))
         run('mkdir %s' %
@@ -160,6 +172,7 @@ def stop_sendmail_logging():
     """
     print '=== STOP SENDMAIL LOGGING'
     from fabric.contrib.files import append, comment
+
     comment('/etc/rsyslog.conf', 'mail', use_sudo=True)
     append('/etc/rsyslog.conf', 'mail.none', use_sudo=True)
     sudo('/etc/init.d/rsyslog restart')
@@ -329,10 +342,12 @@ def configure_cron():
     """
     print '=== CONFIGURE CRON JOBS ==='
     from fabric.contrib.files import uncomment
+
     for language in env.languages:
         uncomment(
-            os.path.join(env.REMOTE_CODEBASE_PATH, 'newsman/config/cron/cron.job'), 'py %s$' %
-            language)
+            os.path.join(env.REMOTE_CODEBASE_PATH,
+                         'newsman/config/cron/cron.job'), 'py %s$' %
+                                                          language)
 
 
 def deploy_monit():
@@ -367,7 +382,7 @@ def deploy_cron():
     """
     configure_cron()
     run('crontab < %s' % os.path.join(env.REMOTE_CODEBASE_PATH,
-        'newsman/config/cron/cron.job'))
+                                      'newsman/config/cron/cron.job'))
 
 
 def git_pull():
