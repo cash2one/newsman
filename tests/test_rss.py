@@ -15,5 +15,6 @@ from analyzer import scraper
 # feed_link='http://rssfeeds.sanook.com/rss/feeds/sanook/news.index.xml',
 # language='th')
 entries = scraper.update(feed_id='5257d25509d1f72ff1aa8ac3',
-                         feed_link='http://news.mthai.com/category/world-news/feed',
+                         feed_link='http://news.mthai'
+                                   '.com/category/world-news/feed',
                          language='th')
