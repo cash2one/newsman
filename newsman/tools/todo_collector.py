@@ -10,6 +10,7 @@ todo_collector finds all lines with todo and adds them to readme
 
 
 import sys
+
 reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
@@ -19,6 +20,7 @@ import re
 
 # CONSTANTS
 from config.settings import LOCAL
+
 HOME = LOCAL % 'newsman/newsman'
 OUTPUT = LOCAL % 'newsman/TODO.md'
 
@@ -41,7 +43,7 @@ def docs_output(docs, output):
                     for index, method in enumerate(docs[path]):
                         method_line, method_docs = docs[path][method]
                         new_lines.append('    %i. Line %i: %s\n' %
-                                        (index + 1, int(method_line), method))
+                                         (index + 1, int(method_line), method))
                         for method_doc in method_docs:
                             new_lines.append('        - %s\n' % method_doc)
                     new_lines.append('\n')

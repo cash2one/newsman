@@ -1,4 +1,5 @@
 import sys
+
 reload(sys)
 sys.setdefaultencoding('utf-8')
 sys.path.append('../..')
@@ -15,7 +16,10 @@ def _convert(language, country):
     for d in data:
         print d
         url, title = d.strip().split('*|*')
-        item = feeds.update({'language':language, 'countries':country, 'feed_link':url.strip()}, {'$set':{'feed_title':title.strip()}})
+        item = feeds.update({'language': language, 'countries': country,
+                             'feed_link': url.strip()},
+                            {'$set': {'feed_title': title.strip()}})
+
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:

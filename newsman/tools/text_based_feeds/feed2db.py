@@ -10,6 +10,7 @@ feed2db works to turn text-based feed list into database
 
 
 import sys
+
 reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('../..')
@@ -20,9 +21,11 @@ from config.settings import db
 # CONSTANTS
 from config.settings import FEED_REGISTRAR
 #FILE_PREFIX = '/home/work/newsman/newsman/bin/text_based_feeds/feed_lists/'
-#FILE_PREFIX = '/home/users/jinyuan/newsman/newsman/bin/text_based_feeds/feed_lists/'
+#FILE_PREFIX = '/home/users/jinyuan/newsman/newsman/bin/text_based_feeds
+# /feed_lists/'
 #FILE_PREFIX = '/home/ubuntu/newsman/newsman/bin/text_based_feeds/feed_lists/'
-#FILE_PREFIX = '/home/jinyuan/Downloads/newsman/newsman/bin/text_based_feeds/feed_lists/'
+#FILE_PREFIX = '/home/jinyuan/Downloads/newsman/newsman/bin/text_based_feeds
+# /feed_lists/'
 
 
 def _parse_task(line):
@@ -34,9 +37,11 @@ def _parse_task(line):
         task = line.strip().split('*|*')
         # task[1] refers to categories
         if len(task) == 6:
-            return task[0].strip(), task[1].strip(), task[2].strip(), task[3].strip(), task[4].strip(), task[5].strip(), None
+            return task[0].strip(), task[1].strip(), task[2].strip(), task[
+                3].strip(), task[4].strip(), task[5].strip(), None
         elif len(task) == 7:
-            return task[0].strip(), task[1].strip(), task[2].strip(), task[3].strip(), task[4].strip(), task[5].strip(), task[6].strip()
+            return task[0].strip(), task[1].strip(), task[2].strip(), task[
+                3].strip(), task[4].strip(), task[5].strip(), task[6].strip()
         else:
             return None
     else:
@@ -60,7 +65,8 @@ def _convert(language='en', country=None):
 
     for line in lines:
         if line.strip():
-            parser, category_and_order, transcoder, feed_link, feed_title, feed_logo, labels_and_orders = _parse_task(
+            parser, category_and_order, transcoder, feed_link, feed_title, \
+            feed_logo, labels_and_orders = _parse_task(
                 line)
             if feed_link:
                 category_and_order_splits = category_and_order.split('-->')
@@ -90,8 +96,13 @@ def _convert(language='en', country=None):
                 existing_item = db_feeds.find_one({'feed_link': feed_link})
                 if not existing_item:
                     feed_logo = {'url': feed_logo, 'width': 71, 'height': 60}
-                    _id = db_feeds.save({'language': language, 'countries': [country], 'feed_link': feed_link, 'categories': {
-                                        category: category_order}, 'labels': labels, 'feed_title': feed_title, 'latest_update': None, 'updated_times': 0, 'transcoder': transcoder, 'feed_logo': feed_logo, 'parser': parser})
+                    _id = db_feeds.save(
+                        {'language': language, 'countries': [country],
+                         'feed_link': feed_link, 'categories': {
+                            category: category_order}, 'labels': labels,
+                         'feed_title': feed_title, 'latest_update': None,
+                         'updated_times': 0, 'transcoder': transcoder,
+                         'feed_logo': feed_logo, 'parser': parser})
                     db_id_list.write(str(_id) + '\n')
                 else:
                     existing_item['language'] = language

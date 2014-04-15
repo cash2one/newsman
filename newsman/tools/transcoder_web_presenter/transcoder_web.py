@@ -10,6 +10,7 @@ transcoder_web provides a web interface for three transcoders
 
 
 import sys
+
 reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('../..')
@@ -24,7 +25,6 @@ urls = (
 
 
 class Transcoders:
-
     """
     Class to call different transcoders
     """
@@ -52,7 +52,10 @@ class Transcoders:
             language=language, link=url, transcoder='uck', stdout=True)
         title_uck_new, content_uck_new = transcoder.convert(
             language=language, link=url, transcoder='uck_new', stdout=True)
-        return render.combiner(title_simplr, content_simplr, title_burify, content_burify, title_uck, content_uck, title_uck_new, content_uck_new, 'Original Webpage')
+        return render.combiner(title_simplr, content_simplr, title_burify,
+                               content_burify, title_uck, content_uck,
+                               title_uck_new, content_uck_new,
+                               'Original Webpage')
 
 
 if __name__ == "__main__":

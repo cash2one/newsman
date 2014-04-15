@@ -10,6 +10,7 @@ logo_keeper puts feed logos into database
 
 
 import sys
+
 reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('../..')
@@ -26,11 +27,14 @@ from config.settings import FEED_REGISTRAR
 
 #LOGOS_PREFIX = '/home/work/nginx/html/logos/'
 #LOGOS_PREFIX = '/home/users/jinyuan/.jumbo/srv/http/logos/'
-#LOGOS_PREFIX = '/home/jinyuan/Downloads/newsman/newsman/bin/text_based_feeds/logos/'
+#LOGOS_PREFIX = '/home/jinyuan/Downloads/newsman/newsman/bin/text_based_feeds
+# /logos/'
 
 #FILE_PREFIX = '/home/work/newsman/newsman/bin/text_based_feeds/feed_lists/'
-#FILE_PREFIX = '/home/users/jinyuan/newsman/newsman/bin/text_based_feeds/feed_lists/'
-#FILE_PREFIX = '/home/jinyuan/Downloads/newsman/newsman/bin/text_based_feeds/feed_lists/'
+#FILE_PREFIX = '/home/users/jinyuan/newsman/newsman/bin/text_based_feeds
+# /feed_lists/'
+#FILE_PREFIX = '/home/jinyuan/Downloads/newsman/newsman/bin/text_based_feeds
+# /feed_lists/'
 
 
 def _parse_task(line):
@@ -42,9 +46,11 @@ def _parse_task(line):
         task = line.strip().split('*|*')
         # task[1] refers to categories
         if len(task) == 5:
-            return task[0].strip(), task[1].strip(), task[2].strip(), task[3].strip(), task[4].strip(), None
+            return task[0].strip(), task[1].strip(), task[2].strip(), task[
+                3].strip(), task[4].strip(), None
         elif len(task) == 6:
-            return task[0].strip(), task[1].strip(), task[2].strip(), task[3].strip(), task[4].strip(), task[5].strip()
+            return task[0].strip(), task[1].strip(), task[2].strip(), task[
+                3].strip(), task[4].strip(), task[5].strip()
         else:
             return None
     else:
@@ -78,11 +84,14 @@ def _convert(language='en', country=None):
                     logo_path = "%s%s_%s/%s" % (
                         LOGOS_PUBLIC_PREFIX, language, country, logo)
                     if labels:
-                        new_feeds_list.write('%s*|*%s*|*%s*|*%s*|*%s*|*%s*|*%s\n' % (
-                            language, category, transcoder, link, title, logo_path, labels))
+                        new_feeds_list.write(
+                            '%s*|*%s*|*%s*|*%s*|*%s*|*%s*|*%s\n' % (
+                                language, category, transcoder, link, title,
+                                logo_path, labels))
                     else:
                         new_feeds_list.write('%s*|*%s*|*%s*|*%s*|*%s*|*%s\n' % (
-                            language, category, transcoder, link, title, logo_path))
+                            language, category, transcoder, link, title,
+                            logo_path))
                     found_logo = True
                     break
             if not found_logo:

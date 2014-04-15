@@ -9,8 +9,9 @@ the script checks the connectivity and other things of a server
 # @created Sept. 01, 2013
 
 
-import sys 
-reload(sys) 
+import sys
+
+reload(sys)
 sys.setdefaultencoding('UTF-8')
 
 import time

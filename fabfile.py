@@ -143,8 +143,8 @@ def configure_settings():
         os.path.join(env.REMOTE_CODEBASE_PATH, 'newsman/config/settings.py'),
         env.user)
     run("cp %s %s" % (
-    os.path.join(env.REMOTE_CODEBASE_PATH, 'newsman/config/settings.py'),
-    os.path.join(env.REMOTE_CODEBASE_PATH, 'newsman/publisher/settings.py')))
+        os.path.join(env.REMOTE_CODEBASE_PATH, 'newsman/config/settings.py'),
+        os.path.join(env.REMOTE_CODEBASE_PATH, 'newsman/public/settings.py')))
 
 
 def setup_folders():
@@ -156,8 +156,9 @@ def setup_folders():
         run('mkdir -p STATIC/news/ts')
         run("cp -r %s %s" %
             (
-            os.path.join(env.REMOTE_CODEBASE_PATH, 'newsman/templates/static*'),
-            'STATIC/news/ts'))
+                os.path.join(env.REMOTE_CODEBASE_PATH,
+                             'newsman/templates/static*'),
+                'STATIC/news/ts'))
     with cd(os.path.dirname(env.BACKUP_PATH)):
         run('mkdir %s' % os.path.basename(env.BACKUP_PATH))
         run('mkdir %s' %
