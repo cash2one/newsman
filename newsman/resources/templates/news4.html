@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>%s</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="static2/css/base.css"/>
+    <script type="text/javascript">
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', 'UA-40319185-1']);
+		  _gaq.push(['_trackPageview']);
+
+		  (function() {
+		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+
+    </script>
+</head>
+<body onload="javascript:setFont(0);">
+<div class="main">
+    <div class="content">
+        <div class="news-hd">
+            <h1 id="newstitle">%s<i class="tit-ico"></i></h1>
+
+            <p id="newssubtitle" class="sub-info">%s</p>
+        </div>
+        <div id="newscontent" class="news-bd" style="font-size:17px;">
+            %s
+        </div>
+    </div>
+    <a class="fullBtn" href="javascript:void(0)"
+       onclick="window.hao123app_webkit_js.btnClicked()">%s</a>
+</div>
+</body>
+<script>
+var defaultOffset=getCookie('fontOffset');
+if(defaultOffset===''){
+    defaultOffset=0;
+}else{
+    defaultOffset=parseInt(defaultOffset);
+}
+function setFont(offset_pixel){
+    var new_offset=defaultOffset+offset_pixel;
+//    if(new_offset<-6||new_offset>6) return;
+//    if(new_offset<=-6){
+//        document.getElementById('font-minus').className="font-minus-d setFont";
+//    }else{
+//        document.getElementById('font-minus').className="font-minus setFont";
+//    }
+//    if(new_offset>=6){
+//        document.getElementById('font-plus').className="font-plus-d setFont";
+//    }else{
+//        document.getElementById('font-plus').className="font-plus setFont";
+//    }
+    var newstitle=document.getElementById('newstitle'),
+        newssubtitle=document.getElementById('newssubtitle'),
+        newscontent=document.getElementById('newscontent');
+    defaultOffset=new_offset;
+    setCookie('fontOffset',defaultOffset,360);
+    newstitle.style.fontSize=(21+defaultOffset)+"px";
+    newssubtitle.style.fontSize=(14+defaultOffset)+"px";
+    newscontent.style.fontSize=(17+defaultOffset)+"px";
+}
+function getCookie(c_name){
+    if (document.cookie.length>0){
+        c_start=document.cookie.indexOf(c_name + "=");
+        if (c_start!=-1){
+            c_start=c_start+c_name.length+1;
+            c_end=document.cookie.indexOf(";",c_start);
+            if (c_end==-1){
+                c_end=document.cookie.length;
+            }
+            return unescape(document.cookie.substring(c_start,c_end));
+        }
+    }
+    return ""
+}
+function setCookie(c_name, value, expiredays){
+    var exdate=new Date();
+    exdate.setDate(exdate.getDate() + expiredays);
+    document.cookie=c_name+"="+escape(value)+((expiredays==null) ? "" : ";expires="+exdate.toGMTString());
+}
+
+</script>
+</html>
