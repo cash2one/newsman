@@ -2,12 +2,14 @@
 #-*- coding: utf-8 -*-
 
 import sys
+
 reload(sys)
 sys.setdefaultencoding('UTF-8')
 sys.path.append('..')
 
 # remove collection
 from config.settings import db
+
 collections = db.collection_names()
 for collection in collections:
     if collection != 'system.indexes' and collection != 'feeds':
@@ -16,6 +18,7 @@ print 'Database cleaned!'
 
 # clean memory
 from config.settings import rclient
+
 rclient.flushall()
 print 'Memory cleaned!'
 
@@ -42,6 +45,7 @@ def _remove_dir(dir):
             print k
     else:
         print '%s does not exist!' % dir
+
 
 _remove_dir(TRANSCODED_LOCAL_DIR)
 _remove_dir(IMAGES_LOCAL_DIR)
