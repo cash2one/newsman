@@ -4,45 +4,42 @@
 """
 rss is the interface to rss parsing, processing and storing.
 """
-# @author chengdujin
-# @contact chengdujin@gmail.com
-# @created Jul. 20, 2013
+__author__ = 'chengdujin'
+__contact__ = 'chengdujin@gmail.com'
+__created__ = 'Jul. 20, 2013'
 
-
+import calendar
+import database as db_news
+from datetime import datetime, timedelta
+import memory
+from newsman.config.settings import logger
+from newsman.feed_manager import database as db_feeds
+from newsman.processor import illustrator
+from newsman.processor import summarizer
+from newsman.processor import text2img
+from newsman.processor import transcoder
+from newsman.processor import tts_provider
+from newsman.watchdog import clean_disk, clean_database
+import random
 import sys
+import time
+
+# CONSTANTS
+from newsman.config.settings import CATEGORY_IMAGE_SIZE
+from newsman.config.settings import DATABASE_REMOVAL_DAYS
+from newsman.config.settings import HOT_IMAGE_SIZE
+from newsman.config.settings import LANGUAGES
+from newsman.config.settings import MEMORY_EXPIRATION_DAYS
+from newsman.config.settings import THUMBNAIL_LANDSCAPE_SIZE_HIGH
+from newsman.config.settings import THUMBNAIL_LANDSCAPE_SIZE_NORMAL
+from newsman.config.settings import THUMBNAIL_LANDSCAPE_SIZE_LOW
+from newsman.config.settings import THUMBNAIL_PORTRAIT_SIZE_HIGH
+from newsman.config.settings import THUMBNAIL_PORTRAIT_SIZE_NORMAL
+from newsman.config.settings import THUMBNAIL_PORTRAIT_SIZE_LOW
+from newsman.config.settings import THUMBNAIL_STYLE
 
 reload(sys)
 sys.setdefaultencoding('UTF-8')
-sys.path.append('..')
-
-import calendar
-from config.settings import logger
-import database as db_news
-from datetime import datetime, timedelta
-from feed_manager import database as db_feeds
-import memory
-from processor import illustrator
-from processor import summarizer
-from processor import text2img
-from processor import transcoder
-from processor import tts_provider
-import random
-import time
-from watchdog import clean_disk, clean_database
-
-# CONSTANTS
-from config.settings import CATEGORY_IMAGE_SIZE
-from config.settings import DATABASE_REMOVAL_DAYS
-from config.settings import HOT_IMAGE_SIZE
-from config.settings import LANGUAGES
-from config.settings import MEMORY_EXPIRATION_DAYS
-from config.settings import THUMBNAIL_LANDSCAPE_SIZE_HIGH
-from config.settings import THUMBNAIL_LANDSCAPE_SIZE_NORMAL
-from config.settings import THUMBNAIL_LANDSCAPE_SIZE_LOW
-from config.settings import THUMBNAIL_PORTRAIT_SIZE_HIGH
-from config.settings import THUMBNAIL_PORTRAIT_SIZE_NORMAL
-from config.settings import THUMBNAIL_PORTRAIT_SIZE_LOW
-from config.settings import THUMBNAIL_STYLE
 
 
 def _generate_images(image=None, entry=None, rand=None):
@@ -219,8 +216,8 @@ def _value_added_process(entries=None, language=None,
                 # [OPTIONAL] text image
                 # if no category_image is found, generate a text-image
                 if 'category_image' not in entry or (
-                        'category_image' in entry and not entry[
-                    'category_image']):
+                                'category_image' in entry and not entry[
+                            'category_image']):
                     image_relative_path = '%s_%s_%s_%i' % (
                         entry['language'], entry['feed_id'], entry['updated'],
                         rand)
@@ -232,7 +229,7 @@ def _value_added_process(entries=None, language=None,
                     except Exception as k:
                         logger.error(
                             'Problem [%s] generating text2image for [%s]' % (
-                            str(k), entry['link']))
+                                str(k), entry['link']))
 
                 # [OPTIONAL] google tts not for indonesian
                 if entry['language'] != 'in':
@@ -358,7 +355,8 @@ def update(feed_link=None, feed_id=None, language=None, categories=None,
 
                 entries, status_new, feed_title_new, etag_new, reason_new = \
                     twitter_parser.parse(
-                    feed_link, feed_id, feed_title, language, categories, etag)
+                        feed_link, feed_id, feed_title, language, categories,
+                        etag)
             else:
                 pass
 

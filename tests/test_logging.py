@@ -5,9 +5,8 @@ import sys
 
 reload(sys)
 sys.setdefaultencoding('UTF-8')
-sys.path.append("..")
 
-from config import logger
+from newsman.config.settings import logger
 
 logger.error('error')
 logger.info('info')

@@ -4,22 +4,19 @@
 """
 database deals with saving, updating and deleting rss items to/from database
 """
-# @author chengdujin
-# @contact chengdujin@gmail.com
-# @created Jul., 2013
+__author__ = 'chengdujin'
+__contact__ = 'chengdujin@gmail.com'
+__created__ = 'Jul., 2013'
 
-
+from newsman.config.settings import Collection, db
+from newsman.config.settings import logger
 import sys
+
+# CONSTANTS
+from newsman.config.settings import LANGUAGES
 
 reload(sys)
 sys.setdefaultencoding('UTF-8')
-sys.path.append('..')
-
-from config.settings import Collection, db
-from config.settings import logger
-
-# CONSTANTS
-from config.settings import LANGUAGES
 
 # Database is indexed by
 # db.en.ensureIndex({'feed':1, 'title':1, 'link':1}, {background: true,

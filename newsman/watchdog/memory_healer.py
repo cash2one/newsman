@@ -4,28 +4,25 @@
 """
 restore memory from database, if memory failed
 """
-# @author chengdujin
-# @contact chengdujin@gmail.com
-# @created Aug. 23, 2013
+__author__ = 'chengdujin'
+__contact__ = 'chengdujin@gmail.com'
+__created__ = 'Aug. 23, 2013'
 
-
-import sys
-
-reload(sys)
-sys.setdefaultencoding('UTF-8')
-sys.path.append("/home/work/newsman/newsman")
-
-from analyzer import memory
 from bson.objectid import ObjectId
 import calendar
-from config.settings import Collection, db
-from config.settings import rclient
 from datetime import datetime, timedelta
+from newsman.analyzer import memory
+from newsman.config.settings import Collection, db
+from newsman.config.settings import rclient
+import sys
 import time
 
 # CONSTANTS
-from config.settings import MEMORY_EXPIRATION_DAYS
-from config.settings import LANGUAGES
+from newsman.config.settings import MEMORY_EXPIRATION_DAYS
+from newsman.config.settings import LANGUAGES
+
+reload(sys)
+sys.setdefaultencoding('UTF-8')
 
 
 def _expired(updated):

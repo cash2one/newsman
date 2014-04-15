@@ -4,15 +4,9 @@
 """
 inquirer find news from memory and database
 """
-#@author chengdujin
-#@contact chengdujin@gmail.com
-#@created Jan 12, 2013
-
-
-import sys
-
-reload(sys)
-sys.setdefaultencoding('UTF-8')
+__author__ = 'chengdujin'
+__contact__ = 'chengdujin@gmail.com'
+__created__ = 'Jan 12, 2013'
 
 from bson.objectid import ObjectId
 import hashlib
@@ -20,6 +14,7 @@ import json
 from settings import Collection, db
 from settings import logger
 from settings import rclient, ConnectionError
+import sys
 import os
 import urllib2
 
@@ -40,6 +35,9 @@ from settings import LOGO_PUBLIC_PREFIX
 HOTNEWS_TITLE = {'en': HOTNEWS_TITLE_EN, 'ja': HOTNEWS_TITLE_JA,
                  'th': HOTNEWS_TITLE_TH, 'pt': HOTNEWS_TITLE_PT, 'in':
     HOTNEWS_TITLE_IN, 'ar': HOTNEWS_TITLE_AR, 'zh': HOTNEWS_TITLE_ZH}
+
+reload(sys)
+sys.setdefaultencoding('UTF-8')
 
 
 def get_portal(language=None, country=None, categories=None):
@@ -314,7 +312,7 @@ def get_latest_entries(language=None, country=None, category=None, feed=None,
                         if x != 'updated':
                             new_item[str(x)] = str(y)
                         # remove 'u' in "{u'url':u'xxx'}"
-                        if x == 'category_image' or x == 'thumbnail_image' or\
+                        if x == 'category_image' or x == 'thumbnail_image' or \
                                         x == 'hotnews_image' or x == \
                                 'text_image':
                             image_dumped = json.dumps(y, encoding='utf-8')
@@ -328,7 +326,7 @@ def get_latest_entries(language=None, country=None, category=None, feed=None,
             # expired ids not cleaned found
             if dirty_expired_ids:
                 sys.path.append(os.path.join(CODE_BASE, 'newsman'))
-                from watchdog import clean_memory
+                from newsman.watchdog import clean_memory
 
                 clean_memory.clean_by_items(class_name, dirty_expired_ids)
                 logger.warning('Memory contains dirty expired items')
@@ -367,7 +365,7 @@ def get_latest_entries(language=None, country=None, category=None, feed=None,
                             == 'hotnews_image' or x == 'text_image':
                         image_dumped = json.dumps(y, encoding='utf-8')
                         new_item[x] = eval(
-                            image_dumped) if image_dumped and image_dumped !=\
+                            image_dumped) if image_dumped and image_dumped != \
                                              "null" else "null"
             new_item['updated'] = item['updated']
             entries.append(new_item)
@@ -498,7 +496,7 @@ def get_previous_entries(language=None, country=None, category=None, feed=None,
                         if x != 'updated':
                             new_item[str(x)] = str(y)
                         # remove 'u' in "{u'url':u'xxx'}"
-                        if x == 'category_image' or x == 'thumbnail_image' or\
+                        if x == 'category_image' or x == 'thumbnail_image' or \
                                         x == 'hotnews_image' or x == \
                                 'text_image':
                             image_dumped = json.dumps(y, encoding='utf-8')
@@ -512,7 +510,7 @@ def get_previous_entries(language=None, country=None, category=None, feed=None,
             # expired ids not cleaned found
             if dirty_expired_ids:
                 sys.path.append(os.path.join(CODE_BASE, 'newsman'))
-                from watchdog import clean_memory
+                from newsman.watchdog import clean_memory
 
                 clean_memory.clean_by_items(class_name, dirty_expired_ids)
                 logger.warning('Memory contains dirty expired items')
@@ -569,10 +567,12 @@ def get_previous_entries(language=None, country=None, category=None, feed=None,
                     if x != 'updated':
                         new_item[str(x)] = str(y)
                     # remove 'u' in "{u'url':u'xxx'}"
-                    if x == 'category_image' or x == 'thumbnail_image' or x == 'hotnews_image' or x == 'text_image':
+                    if x == 'category_image' or x == 'thumbnail_image' or x \
+                            == 'hotnews_image' or x == 'text_image':
                         image_dumped = json.dumps(y, encoding='utf-8')
                         new_item[x] = eval(
-                            image_dumped) if image_dumped and image_dumped != "null" else "null"
+                            image_dumped) if image_dumped and image_dumped != \
+                                             "null" else "null"
             new_item['updated'] = item['updated']
             entries.append(new_item)
         return entries

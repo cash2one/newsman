@@ -5,24 +5,21 @@
 Feed management supports operations like Insert, Modify and Remove on the 
 level of an RSS feed, a label and a category
 """
-# @author chengdujin
-# @contact chengdujin@gmail.com
-# @created Sept. 23, 2013
+__author__ = 'chengdujin'
+__contact__ = 'chengdujin@gmail.com'
+__created__ = 'Sept. 23, 2013'
 
-
+from newsman.config.settings import Collection, db
+from newsman.config.settings import rclient
+from newsman.watchdog import clean_disk
+from newsman.watchdog import clean_memory
 import sys
+
+# CONSTANTS
+from newsman.config.settings import FEED_REGISTRAR
 
 reload(sys)
 sys.setdefaultencoding('UTF-8')
-sys.path.append('..')
-
-from config.settings import Collection, db
-from config.settings import rclient
-from watchdog import clean_disk
-from watchdog import clean_memory
-
-# CONSTANTS
-from config.settings import FEED_REGISTRAR
 
 
 def modify_field(language):

@@ -4,17 +4,15 @@
 """
 clean zombie processes
 """
-# @author chengdujin
-# @contact chengdujin@gmail.com
-# @created Aug. 22, 2013
-
+__author__ = 'chengdujin'
+__contact__ = 'chengdujin@gmail.com'
+__created__ = 'Aug. 22, 2013'
 
 import sys
+import subprocess
 
 reload(sys)
 sys.setdefaultencoding('UTF-8')
-
-import subprocess
 
 
 def clean():

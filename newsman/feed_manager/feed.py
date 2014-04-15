@@ -4,24 +4,21 @@
 """
 feed works to get feed meta info into database
 """
-# @author chengdujin
-# @contact chengdujin@gmail.com
-# @created Jan 1, 2013
+__author__ = 'chengdujin'
+__contact__ = 'chengdujin@gmail.com'
+__created__ = 'Jan 1, 2013'
 
-
+import database as db_feeds
+import feedparser
+from newsman.analyzer import scraper
+from newsman.config.settings import logger
+import socket
 import sys
+
+socket.setdefaulttimeout(10)  # 10 seconds
 
 reload(sys)
 sys.setdefaultencoding('UTF-8')
-sys.path.append("..")
-
-from analyzer import scraper
-from config.settings import logger
-import database as db_feeds
-import feedparser
-import socket
-
-socket.setdefaulttimeout(10)  # 10 seconds
 
 
 def _read_source(d=None, feed_link=None, language=None, categories=None):

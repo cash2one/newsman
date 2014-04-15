@@ -4,25 +4,22 @@
 """
 A wrapper for UCK's new interface
 """
-# @author chengdujin
-# @contact chengudjin@gmail.com
-# @created Aug. 25, 2013
+__author__ = 'chengdujin'
+__contact__ = 'chengdujin@gmail.com'
+__created__ = 'Aug. 25, 2013'
 
-
-import sys
-
-reload(sys)
-sys.setdefaultencoding('UTF-8')
-sys.path.append("..")
-
-from config.settings import hparser
-from config.settings import logger
+from newsman.config.settings import hparser
+from newsman.config.settings import logger
 import illustrator
+import sys
 import urllib2
 
 # CONSTANTS
-from config.settings import UCK_TIMEOUT
-from config.settings import UCK_TRANSCODING_NEW
+from newsman.config.settings import UCK_TIMEOUT
+from newsman.config.settings import UCK_TRANSCODING_NEW
+
+reload(sys)
+sys.setdefaultencoding('UTF-8')
 
 
 def _collect_images(content=None, referer=None):

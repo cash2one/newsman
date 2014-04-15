@@ -4,30 +4,27 @@
 """
 call baidu uck's api to transcode a web page
 """
-# @author chengdujin
-# @contact chengdujin@gmail.com
-# @created Jan 2, 2013
-
-
-import sys
-
-reload(sys)
-sys.setdefaultencoding('UTF-8')
-sys.path.append('..')
+__author__ = 'chengdujin'
+__contact__ = 'chengdujin@gmail.com'
+__created__ = 'Jan 2, 2013'
 
 from BeautifulSoup import BeautifulSoup, NavigableString, Tag
-from config.settings import hparser
-from config.settings import logger
 import illustrator
 from illustrator import NormalizedImage
+from newsman.config.settings import hparser
+from newsman.config.settings import logger
+import sys
 import urllib2
 
 # CONSTANTS
-from config.settings import UCK_TIMEOUT
-from config.settings import UCK_TRANSCODING
+from newsman.config.settings import UCK_TIMEOUT
+from newsman.config.settings import UCK_TRANSCODING
+
+reload(sys)
+sys.setdefaultencoding('UTF-8')
 
 
-# TODO: test the code
+# TODO: tests the code
 # TODO: remove code that sanitize too much
 def _sanitize(content=None, referer=None):
     """
@@ -64,9 +61,9 @@ def _sanitize(content=None, referer=None):
                 except Exception as k:
                     logger.info(
                         'Problem [%s] for Source [%s]' % (
-                        str(k), str(img['src'])))
+                            str(k), str(img['src'])))
                     continue
-                if width >= 480:
+                if 480 <= width:
                     img['width'] = '100%'
                     img['height'] = 'auto'
 
@@ -92,9 +89,8 @@ def _sanitize(content=None, referer=None):
         # filter item
         img_count = 0
         for item in soup.contents:
-            if isinstance(item, Tag):
-                if item.name == 'img':
-                    img_count = img_count + 1
+            if isinstance(item, Tag) and item.name == 'img':
+                img_count += 1
         if img_count == len(soup.contents):
             return None
         else:

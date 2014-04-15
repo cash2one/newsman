@@ -4,27 +4,25 @@
 """
 daily, clean saved expired files, temporary files and unrecorded files on disk
 """
-# @author chengudjin
-# @contact chengdujin@gmail.com
-# @created Aug. 22, 2013
+__author__ = 'chengdujin'
+__contact__ = 'chengdujin@gmail.com'
+__created__ = 'Aug. 22, 2013'
 
-
+import cleaner
+from newsman.config.settings import Collection, db
+from newsman.config.settings import logger
+import os
 import sys
+
+
+# CONSTANS
+from newsman.config.settings import IMAGES_LOCAL_DIR
+from newsman.config.settings import MEDIA_LOCAL_DIR
+from newsman.config.settings import MEDIA_TEMP_LOCAL_DIR
+from newsman.config.settings import TRANSCODED_LOCAL_DIR
 
 reload(sys)
 sys.setdefaultencoding('UTF-8')
-sys.path.append("..")
-
-from config.settings import Collection, db
-from config.settings import logger
-import os
-import cleaner
-
-# CONSTANS
-from config.settings import IMAGES_LOCAL_DIR
-from config.settings import MEDIA_LOCAL_DIR
-from config.settings import MEDIA_TEMP_LOCAL_DIR
-from config.settings import TRANSCODED_LOCAL_DIR
 
 
 def clean_by_item(candidate):

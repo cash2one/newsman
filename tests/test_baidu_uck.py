@@ -5,9 +5,8 @@ import sys
 
 reload(sys)
 sys.setdefaultencoding('UTF-8')
-sys.path.append("..")
 
-from processor import baidu_uck
+from newsman.processor import baidu_uck
 
 
 def _main(url):

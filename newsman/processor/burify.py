@@ -4,21 +4,18 @@
 """
 call burify's implementation of readability code to transcode a web page
 """
-# @author chengdujin
-# @contact chengdujin@gmail.com
-# @created Aug. 6, 2013
+__author__ = 'chengdujin'
+__contact__ = 'chengdujin@gmail.com'
+__created__ = 'Aug. 6, 2013'
 
-
+from newsman.config.settings import logger
+import illustrator
+from readability import Document
 import sys
+import transcoder
 
 reload(sys)
 sys.setdefaultencoding('UTF-8')
-sys.path.append('..')
-
-from config.settings import logger
-import illustrator
-from readability import Document
-import transcoder
 
 
 def _collect_images(content, referer):

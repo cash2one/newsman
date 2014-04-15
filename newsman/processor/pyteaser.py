@@ -8,39 +8,36 @@ PyTeaser uses nltp instead of Scala/Java's OpenNLP as the NLP engine. It also
 manages problems of internationalization, languages supported including Thai, 
 Arabic, Chinese, Japanese, Portugues and Indonesian
 """
-# @author chengdujin
-# @contact chengdujin@gmail.com
-# @created Nov. 12, 2013
-
-
-import sys
-
-reload(sys)
-sys.setdefaultencoding('UTF-8')
-sys.path.append('..')
+__author__ = 'chengdujin'
+__contact__ = 'chengdujin@gmail.com'
+__created__ = 'Nov. 12, 2013'
 
 import chardet
-from config.settings import Collection, db
-from config.settings import hparser
-from config.settings import logger
 import html2text
 import jieba
 import math
+from newsman.config.settings import Collection, db
+from newsman.config.settings import hparser
+from newsman.config.settings import logger
 import nltk
 from nltk.tokenize import *
 import re
 import string
 import subprocess
+import sys
 import tinysegmenter
 import urllib2
 
 # CONSTANTS
-from config.settings import KEYWORD_REGISTRAR
-from config.settings import DATA_PATH
-from config.settings import THAI_WORDSEG
-from config.settings import THAI_WORDSEG_DICT
-from config.settings import TOP_KEYWORDS_LIMIT
-from config.settings import SCORED_SENTENCE_LIMIT
+from newsman.config.settings import KEYWORD_REGISTRAR
+from newsman.config.settings import DATA_PATH
+from newsman.config.settings import THAI_WORDSEG
+from newsman.config.settings import THAI_WORDSEG_DICT
+from newsman.config.settings import TOP_KEYWORDS_LIMIT
+from newsman.config.settings import SCORED_SENTENCE_LIMIT
+
+reload(sys)
+sys.setdefaultencoding('UTF-8')
 
 
 class PyTeaser:
@@ -122,7 +119,7 @@ class PyTeaser:
             # special: thai, arabic
             if self._language == 'zh' or self._language == 'ja':
                 cj_sent_tokenizer = nltk.RegexpTokenizer(
-                    u'[^!?.！？。．]*[!?.！？。]*')
+                    '[^!?.！？。．]*[!?.！？。]*')
                 sentences = cj_sent_tokenizer.tokenize(self._article)
             elif self._language == 'th':
                 sentences = self._article.split()
@@ -335,7 +332,8 @@ class PyTeaser:
                     keyword_word = keyword[0]
                     keyword_count = keyword[1]
                     if (
-                            word in keyword_word or keyword_word in word) and\
+                                    word in keyword_word or keyword_word in
+                                word) and \
                                     keyword_count > 0:
                         word_in_keywords_score_with_index.append(
                             (keyword_count, index))
@@ -349,7 +347,7 @@ class PyTeaser:
             # 3: [((a, 1), (b, 2)), ((b, 2), (c, 3)), ((c, 3), (d, 4))]
             word_in_keywords_score_with_index_sliced = \
                 word_in_keywords_score_with_index[
-                                                       1:]
+                1:]
             word_in_keywords_zipped = zip(
                 word_in_keywords_score_with_index,
                 word_in_keywords_score_with_index_sliced)
@@ -572,9 +570,16 @@ McDonald’s Theory teaches us that it will trigger the group into action.
 
 It takes a crazy kind of courage, of focus, of foolhardy perseverance to
 quiet all those doubts long enough to move forward. But it’s possible,
-you just have to start. Bust down that first barrier and just get things on the page. It’s not the kind of thing you can do in your head, you have to write something, sketch something, do something, and then revise off it.
+you just have to start. Bust down that first barrier and just get things on
+the page. It’s not the kind of thing you can do in your head, you have to
+write something, sketch something, do something, and then revise off it.
 
-Not sure how to start? Sketch a few shapes, then label them. Say, “This is probably crazy, but what if we.…” and try to make your sketch fit the problem you’re trying to solve. Like a magic spell, the moment you put the stuff on the board, something incredible will happen. The room will see your ideas, will offer their own, will revise your thinking, and by the end of 15 minutes, 30 minutes, an hour, you’ll have made progress.
+Not sure how to start? Sketch a few shapes, then label them. Say, “This is
+probably crazy, but what if we.…” and try to make your sketch fit the problem
+you’re trying to solve. Like a magic spell, the moment you put the stuff on
+the board, something incredible will happen. The room will see your ideas,
+will offer their own, will revise your thinking, and by the end of 15
+minutes, 30 minutes, an hour, you’ll have made progress.
 
 That’s how it’s done"""
 

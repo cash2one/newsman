@@ -4,53 +4,50 @@
 """
 transcoder is the main interface for several transcoders
 """
-# @author chengdujin
-# @contact chengdujin@gmail.com
-# @created Jan 2, 2013
-
-
-import sys
-
-reload(sys)
-sys.setdefaultencoding('UTF-8')
-sys.path.append('..')
+__author__ = 'chengdujin'
+__contact__ = 'chengdujin@gmail.com'
+__created__ = 'Jan 2, 2013'
 
 import baidu_uck
 import baidu_uck_new
 import burify
 import chardet
-from config.settings import hparser
-from config.settings import logger
+from newsman.config.settings import hparser
+from newsman.config.settings import logger
 import illustrator
 import os
 import requests
 import simplr
 from slimmer import html_slimmer
+import sys
 import threading
 import time
 import urllib2
 
 # CONSTANTS
-#from config.settings import NEWS_TEMPLATE_1
-#from config.settings import NEWS_TEMPLATE_2
-from config.settings import NEWS_TEMPLATE_3
-from config.settings import NEWS_TEMPLATE_4
-from config.settings import NEWS_TEMPLATE_ARABIC
-from config.settings import TRANSCODED_LOCAL_DIR
-from config.settings import TRANSCODED_PUBLIC_DIR
-from config.settings import TRANSCODING_BTN_AR
-from config.settings import TRANSCODING_BTN_EN
-from config.settings import TRANSCODING_BTN_IN
-from config.settings import TRANSCODING_BTN_JA
-from config.settings import TRANSCODING_BTN_PT
-from config.settings import TRANSCODING_BTN_TH
-from config.settings import TRANSCODING_BTN_ZH
-from config.settings import UCK_TIMEOUT
+#from newsman.config.settings import NEWS_TEMPLATE_1
+#from newsman.config.settings import NEWS_TEMPLATE_2
+from newsman.config.settings import NEWS_TEMPLATE_3
+from newsman.config.settings import NEWS_TEMPLATE_4
+from newsman.config.settings import NEWS_TEMPLATE_ARABIC
+from newsman.config.settings import TRANSCODED_LOCAL_DIR
+from newsman.config.settings import TRANSCODED_PUBLIC_DIR
+from newsman.config.settings import TRANSCODING_BTN_AR
+from newsman.config.settings import TRANSCODING_BTN_EN
+from newsman.config.settings import TRANSCODING_BTN_IN
+from newsman.config.settings import TRANSCODING_BTN_JA
+from newsman.config.settings import TRANSCODING_BTN_PT
+from newsman.config.settings import TRANSCODING_BTN_TH
+from newsman.config.settings import TRANSCODING_BTN_ZH
+from newsman.config.settings import UCK_TIMEOUT
 
 TRANSCODE_BUTTON = {'en': TRANSCODING_BTN_EN, 'ja': TRANSCODING_BTN_JA,
                     'th': TRANSCODING_BTN_TH, 'pt': TRANSCODING_BTN_PT,
                     'in': TRANSCODING_BTN_IN, 'ar': TRANSCODING_BTN_AR,
                     'zh': TRANSCODING_BTN_ZH}
+
+reload(sys)
+sys.setdefaultencoding('UTF-8')
 
 
 # create a local dir for transcoded content if dir does not exist
@@ -129,7 +126,7 @@ def _compose(language=None, title=None, updated=None, feed=None, content=None,
             template = str(f.read())
             f.close()
             return template % (
-            title, title, sub_info, content, TRANSCODE_BUTTON[language])
+                title, title, sub_info, content, TRANSCODE_BUTTON[language])
         else:
             logger.error("Template %s contains no data!" % news_template)
             return None
@@ -161,8 +158,8 @@ def _combine(content, images):
         # for now, if there are more than one image, take only one of them
         biggest = illustrator.find_biggest_image(images)
         if biggest:
-            IMAGE_TAG = '<img src="%s" width="%s" height="%s">'
-            image = IMAGE_TAG % (
+            image_tag = '<img src="%s" width="%s" height="%s">'
+            image = image_tag % (
                 biggest['url'], str(biggest['width']), str(biggest['height']))
             return "%s %s" % (image, content), images
         else:
@@ -400,7 +397,7 @@ def convert(language="en", title=None, link=None, updated=None, feed=None,
         else:
             logger.error(
                 'Link [clean %s] [original %s] cannot be parsed' % (
-                link_clean, link))
+                    link_clean, link))
             if not stdout:
                 return None, None, None, None
             else:

@@ -5,10 +5,9 @@ import sys
 
 reload(sys)
 sys.setdefaultencoding('UTF-8')
-sys.path.append('..')
 
 # remove collection
-from config.settings import db
+from newsman.config.settings import db
 
 collections = db.collection_names()
 for collection in collections:
@@ -17,16 +16,16 @@ for collection in collections:
 print 'Database cleaned!'
 
 # clean memory
-from config.settings import rclient
+from newsman.config.settings import rclient
 
 rclient.flushall()
 print 'Memory cleaned!'
 
 # clean physical files
 import os
-from config.settings import IMAGES_LOCAL_DIR
-from config.settings import MEDIA_LOCAL_DIR
-from config.settings import TRANSCODED_LOCAL_DIR
+from newsman.config.settings import IMAGES_LOCAL_DIR
+from newsman.config.settings import MEDIA_LOCAL_DIR
+from newsman.config.settings import TRANSCODED_LOCAL_DIR
 
 
 def _remove_dir(dir):

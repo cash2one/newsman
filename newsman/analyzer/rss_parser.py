@@ -4,47 +4,43 @@
 """
 rss_parser finds all information in an rss item
 """
-# @author chengdujin
-# @contact chengdujin@gmail.com
-# @created Jan 2, 2013
-
-
-import sys
-
-reload(sys)
-sys.setdefaultencoding('UTF-8')
-sys.path.append('..')
+__author__ = 'chengdujin'
+__contact__ = 'chengdujin@gmail.com'
+__created__ = 'Jan 2, 2013'
 
 from BeautifulSoup import BeautifulStoneSoup
 import calendar
 import chardet
-from config.settings import hparser
-from config.settings import logger
-from processor import illustrator
+from newsman.config.settings import hparser
+from newsman.config.settings import logger
 from datetime import datetime, timedelta
-import warnings
-
-warnings.filterwarnings(
-    action="ignore", category=DeprecationWarning, module="feedparser")
 import feedparser
 import html2text
+from newsman.processor import illustrator
 import re
 import requests
 import socket
-
-socket.setdefaulttimeout(10)  # 10 seconds
+import sys
 import time
 import urllib2
+import warnings
 
 # CONSTANTS
-from config.settings import HEADERS
-from config.settings import LANGUAGES
-from config.settings import DATABASE_REMOVAL_DAYS
+from newsman.config.settings import HEADERS
+from newsman.config.settings import LANGUAGES
+from newsman.config.settings import DATABASE_REMOVAL_DAYS
+
 # prefix should not end with a slash
 HIDDEN_LINKS = {'http://news.goo.ne.jp':
                     ('div', {'class': 'lead fs16 bold'}),
                 'http://news.nifty.com': ('li', {'class': 'headnews'})}
 AD_LINKS = 'http://rss.rssad.jp/rss/ad/'
+
+socket.setdefaulttimeout(10)  # 10 seconds
+reload(sys)
+sys.setdefaultencoding('UTF-8')
+warnings.filterwarnings(
+    action="ignore", category=DeprecationWarning, module="feedparser")
 
 
 def _find_redirected_link(url=None):
@@ -258,7 +254,7 @@ def _read_entry(e=None, feed_id=None, feed_title=None, language=None,
         entry['summary'] = None if not entry['summary'] else entry['summary']
 
         # article's images
-        # e.g. [{'url':'http://image.com/test.jpg, 'width': u'130', 'height':
+        # e.g. [{'url':'http://image.com/tests.jpg, 'width': u'130', 'height':
         # u'86'}]
         entry['images'] = []
         try:
@@ -370,10 +366,10 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None,
             if status == 301:
                 logger.critical(
                     '%s has been permantently moved to a %s!' % (
-                    feed_link, d.href))
+                        feed_link, d.href))
                 return None, status, feed_title, etag, modified, '%s has been '
                 'permantently moved to a %s!' % (
-                feed_link, d.href)
+                    feed_link, d.href)
             elif status == 304:
                 logger.warning(
                     '%s server has not updated its feeds' % feed_link)
@@ -412,7 +408,7 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None,
                     else:
                         logger.info(
                             '%s[%s] has no title in its latest RSS' % (
-                            feed_title, feed_link))
+                                feed_title, feed_link))
 
                 # update etag/modified
                 etag = None
@@ -464,11 +460,12 @@ def parse(feed_link=None, feed_id=None, feed_title=None, language=None,
                     'HTTP Error Code [%s] for %s' % (status, feed_link))
                 return None, status, feed_title, etag, modified, 'HTTP Error '
                 'Code [%s] for %s' % (
-                status, feed_link)
+                    status, feed_link)
         else:
             logger.info("Cannot parse %s correctly!" % feed_id)
-            return None, None, feed_title, etag, modified, "Cannot parse %s correctly!" % feed_id
+            return None, None, feed_title, etag, modified, "Cannot parse %s "
+            "correctly!" % feed_id
     except Exception as k:
         logger.exception('%s for %s' % (str(k), feed_id))
         return None, None, feed_title, etag, modified, '%s for %s' % (
-        str(k), feed_id)
+            str(k), feed_id)

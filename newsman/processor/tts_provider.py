@@ -4,40 +4,36 @@
 """
 tts_provider breaks text into paragraphs and grabs text-to-speech from google
 """
-# @author chengdujin
-# @contact chengdujin@gmail.com
-# @created Jul., 2013
+__author__ = 'chengdujin'
+__contact__ = 'chengdujin@gmail.com'
+__created__ = 'Jul., 2013'
 
-
-import sys
-
-reload(sys)
-sys.setdefaultencoding('UTF-8')
-sys.path.append('..')
-
-from config.settings import logger
+from newsman.config.settings import logger
 import nltk
 import os
 import re
 import string
 import subprocess
+import sys
 import tinysegmenter
 import threading
 import urllib2
 
 # CONSTANTS
-from config.settings import GOOGLE_TTS_TIMEOUT
-from config.settings import MEDIA_LOCAL_DIR
-from config.settings import MEDIA_PUBLIC_DIR
-from config.settings import MEDIA_TEMP_LOCAL_DIR
-from config.settings import LANGUAGES
-
+from newsman.config.settings import GOOGLE_TTS_TIMEOUT
+from newsman.config.settings import MEDIA_LOCAL_DIR
+from newsman.config.settings import MEDIA_PUBLIC_DIR
+from newsman.config.settings import MEDIA_TEMP_LOCAL_DIR
+from newsman.config.settings import LANGUAGES
 
 if not os.path.exists(MEDIA_LOCAL_DIR):
     os.mkdir(MEDIA_LOCAL_DIR)
 
 if not os.path.exists(MEDIA_TEMP_LOCAL_DIR):
     os.mkdir(MEDIA_TEMP_LOCAL_DIR)
+
+reload(sys)
+sys.setdefaultencoding('UTF-8')
 
 
 # TODO: write docs
@@ -147,7 +143,7 @@ def _query_segment(language='en', query='Service provided by Baidu'):
         sentences = None
         if language == 'ja':
             #jp_sent_tokenizer = nltk.RegexpTokenizer(u'^ !?.！？。．]*[!?.！？。]*')
-            jp_sent_tokenizer = nltk.RegexpTokenizer(u'[^!?.！？。．]*[!?.！？。]*')
+            jp_sent_tokenizer = nltk.RegexpTokenizer('[^!?.！？。．]*[!?.！？。]*')
             sentences = jp_sent_tokenizer.tokenize(query)
         else:
             sentences = nltk.sent_tokenize(query)
@@ -203,15 +199,15 @@ def _query_segment(language='en', query='Service provided by Baidu'):
                             if len(combined_words) + len(word) + 1 < 100:
                                 if language == 'ja':
                                     combined_words = (
-                                                     """%s%s""" if word not
-                                                     in string.punctuation
-                                                     else """%s%s""") % (
+                                                         """%s%s""" if word not
+                                                         in string.punctuation
+                                                         else """%s%s""") % (
                                                          combined_words, word)
                                 else:
                                     combined_words = (
-                                                     """%s %s""" if word not
-                                                     in string.punctuation
-                                                     else """%s%s""") % (
+                                                         """%s %s""" if word not
+                                                         in string.punctuation
+                                                         else """%s%s""") % (
                                                          combined_words, word)
                                 combined_words = combined_words.strip()
                             else:

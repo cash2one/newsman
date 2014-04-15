@@ -4,45 +4,42 @@
 """
 text2img converts text into an image
 """
-# @author chengdujin
-# @contact chengdujin@gmail.com
-# @created Nov. 15, 2013
-
-
-import sys
-
-reload(sys)
-sys.setdefaultencoding('UTF-8')
-sys.path.append('..')
+__author__ = 'chengdujin'
+__contact__ = 'chengdujin@gmail.com'
+__created__ = 'Nov. 15, 2013'
 
 import chardet
-from config.settings import logger
 from PIL import Image, FontFile, ImageFont, ImageDraw
+from newsman.config.settings import logger
 import nltk
 import re
 import subprocess
+import sys
 import textwrap
 import tinysegmenter
 
 # CONSTATNS
-from config.settings import CATEGORY_IMAGE_SIZE
-from config.settings import DATA_PATH
-from config.settings import FONT_PATH_EN
-from config.settings import FONT_PATH_IN
-from config.settings import FONT_PATH_JA
-from config.settings import FONT_PATH_PT
-from config.settings import FONT_PATH_TH
-from config.settings import FONT_PATH_ZH
-from config.settings import IMAGES_LOCAL_DIR
-from config.settings import IMAGES_PUBLIC_DIR
-from config.settings import TEXT_WIDTH_EN
-from config.settings import TEXT_WIDTH_IN
-from config.settings import TEXT_WIDTH_JA
-from config.settings import TEXT_WIDTH_PT
-from config.settings import TEXT_WIDTH_TH
-from config.settings import TEXT_WIDTH_ZH
-from config.settings import THAI_WORDSEG
-from config.settings import THAI_WORDSEG_DICT
+from newsman.config.settings import CATEGORY_IMAGE_SIZE
+from newsman.config.settings import DATA_PATH
+from newsman.config.settings import FONT_PATH_EN
+from newsman.config.settings import FONT_PATH_IN
+from newsman.config.settings import FONT_PATH_JA
+from newsman.config.settings import FONT_PATH_PT
+from newsman.config.settings import FONT_PATH_TH
+from newsman.config.settings import FONT_PATH_ZH
+from newsman.config.settings import IMAGES_LOCAL_DIR
+from newsman.config.settings import IMAGES_PUBLIC_DIR
+from newsman.config.settings import TEXT_WIDTH_EN
+from newsman.config.settings import TEXT_WIDTH_IN
+from newsman.config.settings import TEXT_WIDTH_JA
+from newsman.config.settings import TEXT_WIDTH_PT
+from newsman.config.settings import TEXT_WIDTH_TH
+from newsman.config.settings import TEXT_WIDTH_ZH
+from newsman.config.settings import THAI_WORDSEG
+from newsman.config.settings import THAI_WORDSEG_DICT
+
+reload(sys)
+sys.setdefaultencoding('UTF-8')
 
 
 class Text2Image:
@@ -66,10 +63,10 @@ class Text2Image:
         self._font = None
 
         # danamic loading specific import
-        FONT_PATH = 'FONT_PATH_%s' % self._language.upper()
-        TEXT_WIDTH = 'TEXT_WIDTH_%s' % self._language.upper()
-        self._font_path = eval(FONT_PATH)
-        self._text_width = eval(TEXT_WIDTH)
+        font_path = 'FONT_PATH_%s' % self._language.upper()
+        text_width = 'TEXT_WIDTH_%s' % self._language.upper()
+        self._font_path = eval(font_path)
+        self._text_width = eval(text_width)
 
         self._set_background()
         self._add_text_to_image()
@@ -90,6 +87,7 @@ class Text2Image:
     def _set_font_size(self, line=None):
         """
         set font size on the image
+        :param line:
         """
         if not line:
             logger.error("Method malformed!")
@@ -102,7 +100,7 @@ class Text2Image:
             # adjust font size by text
             while self._font.getsize(line)[0] < img_fraction * self._image.size[
                 0]:
-                self._font_size = self._font_size + 1
+                self._font_size += 1
                 # print self._font_size, self._font.getsize(line)[0]
                 self._font = ImageFont.truetype(
                     self._font_path, self._font_size)

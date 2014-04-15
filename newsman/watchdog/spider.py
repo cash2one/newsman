@@ -4,27 +4,24 @@
 """
 scrape is a task to scrape rss resources
 """
-# @author chengdujin
-# @contact chengdujin@gmail.com
-# @created Aug. 14, 2013
+__author__ = 'chengdujin'
+__contact__ = 'chengdujin@gmail.com'
+__created__ = 'Aug. 14, 2013'
 
-
-import sys
-
-reload(sys)
-sys.setdefaultencoding('UTF-8')
-sys.path.append('/home/work/newsman/newsman')
-
-from analyzer import scraper
-from config.settings import Collection, db
-from config.settings import logger
+from newsman.analyzer import scraper
+from newsman.config.settings import Collection, db
+from newsman.config.settings import logger
 import Queue
+import sys
 import threading
 import time
 
 # CONSTANTS
-from config.settings import FEED_REGISTRAR
-from config.settings import FEED_UPDATE_TIMEOUT
+from newsman.config.settings import FEED_REGISTRAR
+from newsman.config.settings import FEED_UPDATE_TIMEOUT
+
+reload(sys)
+sys.setdefaultencoding('UTF-8')
 
 
 class TimeoutQueue(Queue.Queue):
@@ -67,7 +64,7 @@ class UpdateThread(threading.Thread):
                 if updated_feed:
                     logger.warning(
                         '%s: %s [%s] is successfully updated!' % (
-                        self._name, feed_id, updated_feed))
+                            self._name, feed_id, updated_feed))
                 else:
                     logger.warning(
                         '%s: %s receives no update!' % (self._name, feed_id))
@@ -75,7 +72,7 @@ class UpdateThread(threading.Thread):
             except Exception as k:
                 logger.error(
                     '%s: [%s] receives no update but exception' % (
-                    self._name, str(k)))
+                        self._name, str(k)))
                 queue.task_done()
 
 

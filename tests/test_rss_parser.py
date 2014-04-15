@@ -5,9 +5,8 @@ import sys
 
 reload(sys)
 sys.setdefaultencoding('UTF-8')
-sys.path.append('..')
 
-from analyzer import rss_parser
+from newsman.analyzer import rss_parser
 
 #entries = rss_parser.parse(feed_link='http://news.yahoo.com/rss/us',
 # language='en')

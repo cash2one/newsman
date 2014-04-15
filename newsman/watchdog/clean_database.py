@@ -4,29 +4,26 @@
 """
 daily work, clean expired items and its place in queues in memory
 """
-# @author chengdujin
-# @contact chengdujin@gmail.com
-# @created Aug. 22, 2013
-
-
-import sys
-
-reload(sys)
-sys.setdefaultencoding('UTF-8')
-sys.path.append("..")
+__author__ = 'chengdujin'
+__contact__ = 'chengdujin@gmail.com'
+__created__ = 'Aug. 22, 2013'
 
 from bson.objectid import ObjectId
 import calendar
 import clean_disk
 import clean_memory
-from config.settings import Collection, db
-from config.settings import logger
 from datetime import datetime, timedelta
+from newsman.config.settings import Collection, db
+from newsman.config.settings import logger
+import sys
 import time
 
 # CONSTANTS
-from config.settings import FEED_REGISTRAR
-from config.settings import DATABASE_REMOVAL_DAYS
+from newsman.config.settings import FEED_REGISTRAR
+from newsman.config.settings import DATABASE_REMOVAL_DAYS
+
+reload(sys)
+sys.setdefaultencoding('UTF-8')
 
 
 def clean_by_item(candidate):

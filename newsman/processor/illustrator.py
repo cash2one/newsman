@@ -4,35 +4,32 @@
 """
 illustrator is used to find all images from a web page
 """
-# @author chengdujin
-# @contact chengdujin@gmail.com
-# @created Jul. 23, 2013
-
-
-import sys
-
-reload(sys)
-sys.setdefaultencoding('UTF-8')
-sys.path.append('..')
+__author__ = 'chengdujin'
+__contact__ = 'chengdujin@gmail.com'
+__created__ = 'Jul. 23, 2013'
 
 from BeautifulSoup import BeautifulSoup
-from config.settings import hparser
-from config.settings import logger
 from cStringIO import StringIO
-from PIL import Image
+from newsman.config.settings import hparser
+from newsman.config.settings import logger
 import os
+from PIL import Image
 import random
 import re
 import requests
 from slimmer import html_slimmer
+import sys
 import urllib2
 
 # CONSTANTS
-from config.settings import HEADERS
-from config.settings import IMAGES_LOCAL_DIR
-from config.settings import IMAGES_PUBLIC_DIR
-from config.settings import MIN_IMAGE_SIZE
-from config.settings import UCK_TIMEOUT
+from newsman.config.settings import HEADERS
+from newsman.config.settings import IMAGES_LOCAL_DIR
+from newsman.config.settings import IMAGES_PUBLIC_DIR
+from newsman.config.settings import MIN_IMAGE_SIZE
+from newsman.config.settings import UCK_TIMEOUT
+
+reload(sys)
+sys.setdefaultencoding('UTF-8')
 
 # creat images local directory if it does not exist
 if not os.path.exists(IMAGES_LOCAL_DIR):
@@ -148,7 +145,7 @@ class NormalizedImage:
 
         try:
             response = requests.get(image_url, timeout=UCK_TIMEOUT)
-            if response.status_code > 400 or 'posttoday.com/media/content' in\
+            if response.status_code > 400 or 'posttoday.com/media/content' in \
                     image_url:
                 raise Exception(
                     'Without HEADERS [%s] cannot be reached!' % str(image_url))
@@ -172,6 +169,7 @@ class NormalizedImage:
     def _download_copy(self, image_url=None, image_html=None):
         """
         Download and replace web image (with local one) if Referer is necessary.
+        :rtype : object
         """
         if not image_url:
             logger.error('Image URL is found VOID!')
@@ -192,7 +190,7 @@ class NormalizedImage:
         try:
             image_data = Image.open(StringIO(image_html))
             # rely on PIL to tell the format
-            image_format = image_data.format if image_data and image_data\
+            image_format = image_data.format if image_data and image_data \
                 .format else 'jpg'
             image_web_path = '%s%s.%s' % (
                 IMAGES_PUBLIC_DIR, relative_path, image_format.lower())
@@ -340,7 +338,7 @@ def find_images(content=None, referer=None):
             soup = BeautifulSoup(content.decode('utf-8', 'ignore'))
             normalized_images = []
 
-            ELEMENT_REPLACED = False
+            element_replaced = False
             for image in soup.findAll('img'):
                 if image.get('src'):
                     normalized_image = find_image(image.get('src'), referer)
@@ -350,11 +348,11 @@ def find_images(content=None, referer=None):
                         if 'original_url' in normalized_image and \
                                 normalized_image['original_url']:
                             image['src'] = str(normalized_image['url'])
-                            ELEMENT_REPLACED = True
+                            element_replaced = True
                         normalized_images.append(normalized_image)
 
             content_new = soup.prettify(encoding='utf-8')
-            if ELEMENT_REPLACED and content_new:
+            if element_replaced and content_new:
                 content = str(
                     html_slimmer(
                         urllib2.unquote(hparser.unescape(content_new))))
@@ -518,8 +516,8 @@ def scale_image(image=None, referer=None, size_expected=MIN_IMAGE_SIZE,
                         del image_data
                     return {'url': image_web_path, 'width': width_expected,
                             'height': height_expected}, {
-                           'url': image_local_path, 'width': width_expected,
-                           'height': height_expected}
+                               'url': image_local_path, 'width': width_expected,
+                               'height': height_expected}
                 else:
                     # clean data
                     if image_cropped:

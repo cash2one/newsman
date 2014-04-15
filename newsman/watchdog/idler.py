@@ -4,25 +4,22 @@
 """
 idler finds out sources that do not update frequently
 """
-# @author chengdujin
-# @contact chengdujin@gmail.com
-# @created Sept. 03, 2013
+__author__ = 'chengdujin'
+__contact__ = 'chengdujin@gmail.com'
+__created__ = 'Sept. 03, 2013'
 
-
-import sys
-
-reload(sys)
-sys.setdefaultencoding('UTF-8')
-sys.path.append("/home/work/newsman/newsman")
-
-from config.settings import Collection, db
-from config.settings import logger
 from datetime import datetime, timedelta
+from newsman.config.settings import Collection, db
+from newsman.config.settings import logger
+import sys
 import time
 
 # CONSTANTS
-from config.settings import FEED_REGISTRAR
-from config.settings import FEED_UPDATE_DAYS
+from newsman.config.settings import FEED_REGISTRAR
+from newsman.config.settings import FEED_UPDATE_DAYS
+
+reload(sys)
+sys.setdefaultencoding('UTF-8')
 
 
 def _find_idler():

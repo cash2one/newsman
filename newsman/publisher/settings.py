@@ -4,10 +4,9 @@
 """
 config.py contains most CONSTANTS in the project
 """
-# @author chengdujin
-# @contact chengdujin@gmail.com
-# @created Jan 17, 2013
-
+__author__ = 'chengdujin'
+__contact__ = 'chengdujin@gmail.com'
+__created__ = 'Jan 17, 2013'
 
 import sys
 
@@ -63,7 +62,7 @@ LOCAL = '/home/work/%s'  # official server prefix
 ##PUBLIC = 'http://54.251.107.116/%s'                  # AWS singapore
 ##PUBLIC = 'http://54.232.81.44/%s'                    # AWS sao paolo
 ##PUBLIC = 'http://54.248.227.71/%s'                   # AWS tokyo
-##LOCAL = '/home/users/jinyuan/%s'                   # test server in China
+##LOCAL = '/home/users/jinyuan/%s'                   # tests server in China
 ##LOCAL = '/home/ubuntu/%s'                          # AWS server prefix
 
 
@@ -142,8 +141,8 @@ TEXT_WIDTH_ZH = 12
 
 # headers for url connecting
 HEADERS = {
-'User-Agent': 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, '
-              'like Gecko) Chrome/31.0.1650.63 Safari/537.36'}
+    'User-Agent': 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, '
+                  'like Gecko) Chrome/31.0.1650.63 Safari/537.36'}
 
 # Twitter API
 TWITTER_ACCESS_TOKEN_KEY = "24129666-M47Q6pDLZXLQy1UITxkijkTdKfkvTcBpleidNPjac"

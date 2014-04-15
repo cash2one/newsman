@@ -4,24 +4,21 @@
 """
 database works to manage interaction with the feed database
 """
-# @author chengdujin
-# @contact chengdujin@gmail.com
-# @created Jul. 29, 2013
-
-
-import sys
-
-reload(sys)
-sys.setdefaultencoding('UTF-8')
-sys.path.append("..")
+__author__ = 'chengdujin'
+__contact__ = 'chengdujin@gmail.com'
+__created__ = 'Jul. 29, 2013'
 
 from bson.objectid import ObjectId
-from config.settings import Collection, db
-from config.settings import logger
+from newsman.config.settings import Collection, db
+from newsman.config.settings import logger
+import sys
 import time
 
 # CONSTANTS
-from config.settings import FEED_REGISTRAR
+from newsman.config.settings import FEED_REGISTRAR
+
+reload(sys)
+sys.setdefaultencoding('UTF-8')
 
 
 def get(feed_id=None, feed_link=None, language=None):

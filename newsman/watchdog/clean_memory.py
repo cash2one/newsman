@@ -4,23 +4,20 @@
 """
 daily work, clean expired items and its place in queues in memory
 """
-# @author chengdujin
-# @contact chengdujin@gmail.com
-# @created Aug. 22, 2013
+__author__ = 'chengdujin'
+__contact__ = 'chengdujin@gmail.com'
+__created__ = 'Aug. 22, 2013'
 
-
+from bson.objectid import ObjectId
+import cleaner
+from newsman.config.settings import Collection, db
+from newsman.config.settings import logger
+from newsman.config.settings import rclient
 import sys
+import time
 
 reload(sys)
 sys.setdefaultencoding('UTF-8')
-sys.path.append("..")
-
-from bson.objectid import ObjectId
-from config.settings import Collection, db
-from config.settings import logger
-from config.settings import rclient
-import time
-import cleaner
 
 
 def _is_zombie(item):

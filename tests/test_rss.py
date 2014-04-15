@@ -5,9 +5,8 @@ import sys
 
 reload(sys)
 sys.setdefaultencoding('UTF-8')
-sys.path.append('..')
 
-from analyzer import scraper
+from newsman.analyzer import scraper
 
 #entries = scraper.update(feed_id='5257d25509d1f72ff1aa8abc',
 # feed_link='http://hilight.kapook.com/main/feed', language='th')

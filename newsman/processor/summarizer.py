@@ -4,28 +4,25 @@
 """
 summarizer extracts summary or first paragraph from news
 """
-# @author chengdujin
-# @contact chengdujin@gmail.com
-# created Jul. 29, 2013
-
-
-import sys
-
-reload(sys)
-sys.setdefaultencoding('UTF-8')
-sys.path.append('..')
+__author__ = 'chengdujin'
+__contact__ = 'chengdujin@gmail.com'
+__created__ = 'Jul. 29, 2013'
 
 import chardet
-from config.settings import logger
+from newsman.config.settings import logger
 import html2text
 import nltk
 from pyteaser import PyTeaser
+import sys
 
 # CONSTANTS
-from config.settings import PARAGRAPH_CRITERIA_LATIN
-from config.settings import PARAGRAPH_CRITERIA_KANJI
-from config.settings import PARAGRAPH_CRITERIA_THAI
-from config.settings import SUMMARY_LENGTH_LIMIT
+from newsman.config.settings import PARAGRAPH_CRITERIA_LATIN
+from newsman.config.settings import PARAGRAPH_CRITERIA_KANJI
+from newsman.config.settings import PARAGRAPH_CRITERIA_THAI
+from newsman.config.settings import SUMMARY_LENGTH_LIMIT
+
+reload(sys)
+sys.setdefaultencoding('UTF-8')
 
 
 def _get_shorter_text(content, language, limit):
@@ -44,7 +41,7 @@ def _get_shorter_text(content, language, limit):
 
         # break text by sentence
         if language == 'zh' or language == 'ja':
-            jp_sent_tokenizer = nltk.RegexpTokenizer(u'[^!?.！？。．]*[!?.！？。]*')
+            jp_sent_tokenizer = nltk.RegexpTokenizer('[^!?.！？。．]*[!?.！？。]*')
             sentences = jp_sent_tokenizer.tokenize(content)
         if language == 'th':
             sentences = content.split()

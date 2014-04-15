@@ -4,28 +4,25 @@
 """
 cleaner is an interface file to clean database, memory and files on disk
 """
-# @author chengdujin
-# @contact chengdujin@gmail.com
-# @created Jan 2, 2013
-
-
-import sys
-
-reload(sys)
-sys.setdefaultencoding('UTF-8')
-sys.path.append('/home/work/newsman/newsman')
+__author__ = 'chengdujin'
+__contact__ = 'chengdujin@gmail.com'
+__created__ = 'Jan 2, 2013'
 
 import calendar
-from config.settings import logger
-from datetime import datetime, timedelta
-import time
 import clean_database
 import clean_memory
 import clean_disk
 import clean_process
+from datetime import datetime, timedelta
+from newsman.config.settings import logger
+import sys
+import time
 
 # CONSTANTS
-from config.settings import DATABASE_REMOVAL_DAYS
+from newsman.config.settings import DATABASE_REMOVAL_DAYS
+
+reload(sys)
+sys.setdefaultencoding('UTF-8')
 
 
 def is_overdue(time_stamp):

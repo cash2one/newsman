@@ -4,24 +4,22 @@
 """
 simplr is a simplified readability implementation in python
 """
-# @author chengdujin
-# @contact chengdujin@gmail.com
-# @created Aug. 4, 2013
-
+__author__ = 'chengdujin'
+__contact__ = 'chengdujin@gmail.com'
+__created__ = 'Aug. 4, 2013'
 
 import sys
 
 reload(sys)
 sys.setdefaultencoding("utf-8")
-sys.path.append("..")
 
 from BeautifulSoup import BeautifulSoup, Comment, NavigableString
 import codecs
-from config.settings import logger
 from furl import furl
 import illustrator
 import transcoder
 import math
+from newsman.config.settings import logger
 import posixpath
 import re
 import tinysegmenter
@@ -342,8 +340,10 @@ class Simplr:
                     else:
                         if 'kapook.com' in self.url:
                             if elem.get('align') and (
-                                    elem.get('align') == 'center' or elem.get(
-                                    'align') == 'left'):
+                                            elem.get(
+                                                    'align') == 'center' or
+                                            elem.get(
+                                                    'align') == 'left'):
                                 elem.name = 'p'
                         elif 'sanook.com' in self.url:
                             if elem.get('class') and elem.get(
@@ -394,7 +394,7 @@ class Simplr:
                     # print 'pn-id', parent_hash, parent_node.get('id'),
                     # self._get_class_weight(parent_node)
 
-                if grand_parent_node and grand_parent_hash not in self\
+                if grand_parent_node and grand_parent_hash not in self \
                         .candidates:
                     self.candidates[grand_parent_hash] = self._initialize_node(
                         grand_parent_node)
@@ -437,9 +437,9 @@ class Simplr:
                 # the more links and captions it has, the lower score
                 self.candidates[key]['score'] = self.candidates[key][
                                                     'score'] * (
-                                                1 - self._get_link_density(
-                                                    self.candidates[key][
-                                                        'node']))
+                                                    1 - self._get_link_density(
+                                                        self.candidates[key][
+                                                            'node']))
                 if not top_candidate or self.candidates[key]['score'] > \
                         top_candidate['score']:
                     top_candidate = self.candidates[key]
@@ -526,7 +526,7 @@ class Simplr:
                     encoding='utf-8')
                 # if <img> is rendered to None
                 if not article_image_string:
-                    article_image_string = self.article_image.parent\
+                    article_image_string = self.article_image.parent \
                         .renderContents(
                         encoding='utf-8')
                 content_string = article_image_string + content_string
@@ -613,7 +613,7 @@ class Simplr:
             unwanted_spaces = e.findAll(lambda tag: tag.name in [
                 'p', 'strong', 'footer', 'main', 'header',
                 'hr'] and not tag.attrs and not (
-            tag.text if 'text' in tag else False))
+                tag.text if 'text' in tag else False))
             if len(unwanted_spaces) == 1:
                 if len(unwanted_spaces[0].contents) == 0:
                     unwanted_spaces[0].extract()
@@ -650,7 +650,7 @@ class Simplr:
                     # Highly probably a NavigableString
                     elif isinstance(unwanted_space.contents[0],
                                     NavigableString) and not \
-                    unwanted_space.contents[0].strip():
+                            unwanted_space.contents[0].strip():
                         # print '      --', unwanted_space.contents[0]
                         unwanted_space.extract()
                 elif not len(unwanted_space.contents):
@@ -717,7 +717,8 @@ class Simplr:
                     # elif weight >= 25 and link_density > 0.5:
                     #    to_remove = True
                     elif (
-                            embed_count == 1 and content_length < 35) or \
+                                    embed_count == 1 and content_length < 35) \
+                            or \
                                     embed_count > 1:
                         to_remove = True
 
@@ -930,9 +931,11 @@ class Simplr:
                         mainichi_month = mainichi_id[4:6]
                         mainichi_day = mainichi_id[6:8]
                         img[
-                            'src'] = "http://mainichi.jp/graph/%s/%s/%s/%s/image/001.jpg" % (
-                            mainichi_year, mainichi_month, mainichi_day,
-                            mainichi_id)
+                            'src'] = "http://mainichi" \
+                                     ".jp/graph/%s/%s/%s/%s/image/001.jpg" % (
+                                         mainichi_year, mainichi_month,
+                                         mainichi_day,
+                                         mainichi_id)
 
                 # optimization made for sankei.jp.msn.com
                 if 'sankei.jp.msn.com' in img['src']:

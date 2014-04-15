@@ -5,9 +5,8 @@ import sys
 
 reload(sys)
 sys.setdefaultencoding('UTF-8')
-sys.path.append("..")
 
-from processor import transcoder
+from newsman.processor import transcoder
 
 
 def _main(language, url, trans):

@@ -4,31 +4,28 @@
 """
 Twitter parser parses specific twitter account in real time
 """
-# @author chengdujin
-# @contact chengdujin@gmail.com
-# @created Nov. 19, 2013
+__author__ = 'chengdujin'
+__contact__ = 'chengdujin@gmail.com'
+__created__ = 'Nov. 19, 2013'
 
-
+from newsman.config.settings import logger
 import sys
-
-reload(sys)
-sys.setdefaultencoding('UTF-8')
-sys.path.append('..')
-
-from config.settings import logger
 import twitter
 import urllib2
 
 # CONSTANTS
-from config.settings import LANGUAGES
-from config.settings import TWITTER_ACCESS_TOKEN_KEY
-from config.settings import TWITTER_ACCESS_TOKEN_SECRET
-from config.settings import TWITTER_CONSUMER_KEY
-from config.settings import TWITTER_CONSUMER_SECRET
+from newsman.config.settings import LANGUAGES
+from newsman.config.settings import TWITTER_ACCESS_TOKEN_KEY
+from newsman.config.settings import TWITTER_ACCESS_TOKEN_SECRET
+from newsman.config.settings import TWITTER_CONSUMER_KEY
+from newsman.config.settings import TWITTER_CONSUMER_SECRET
 
 # twitter api interface
 api = twitter.Api(TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET,
                   TWITTER_ACCESS_TOKEN_KEY, TWITTER_ACCESS_TOKEN_SECRET)
+
+reload(sys)
+sys.setdefaultencoding('UTF-8')
 
 
 def _read_entry(status):

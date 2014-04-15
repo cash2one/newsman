@@ -4,21 +4,18 @@
 """
 news.py is the wsgi interface to connect the request and the backend
 """
-#@author chengdujin
-#@contact chengdujin@gmail.com
-#@created Jan 2, 2013
-
-
-import sys
-
-reload(sys)
-sys.setdefaultencoding('UTF-8')
-#sys.path.append('/home/work')
+__author__ = 'chengdujin'
+__contact__ = 'chengdujin@gmail.com'
+__created__ = 'Jan 2, 2013'
 
 import cgi
 import json
 import inquirer
 from settings import logger
+import sys
+
+reload(sys)
+sys.setdefaultencoding('UTF-8')
 
 
 def get_portal(*bundle):
